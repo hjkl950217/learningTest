@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
+// <copyright file="Class.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderOut created at  2018-02-24 09:11:38
+//   Class created at  2018-02-24 11:17:03
 // </summary>
 //<Description>
 //
@@ -42,24 +42,17 @@
  */
 
 using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace 链式编程在业务逻辑上的研究.RMA
 {
     /// <summary>
-    /// The class of OrderOut.
+    /// RMA信息，对应数据库中的RMA表
     /// </summary>
-    public class OrderOut
+    public class RMA
     {
-        /// <summary>
-        /// 订单号
-        /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
 
-        /// <summary>
-        /// 订单中的总金额(商品+税)
-        /// </summary>
-        public decimal OrderTotalAmount { get; set; }
     }
+
+
+
 }

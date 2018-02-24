@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
+// <copyright file="Oder.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderOut created at  2018-02-24 09:11:38
+//   Oder created at  2018-02-24 10:01:36
 // </summary>
 //<Description>
 //
@@ -44,22 +44,24 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace 链式编程在业务逻辑上的研究.Orders
 {
+ 
     /// <summary>
-    /// The class of OrderOut.
+    /// 订单状态
     /// </summary>
-    public class OrderOut
+    public enum OrderStatusEnum:int
     {
         /// <summary>
-        /// 订单号
+        /// 无效订单,V=65
         /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
-
+        Void=65,
         /// <summary>
-        /// 订单中的总金额(商品+税)
+        /// 已完成订单-已生成发票号,I=73
         /// </summary>
-        public decimal OrderTotalAmount { get; set; }
+        Invoiced=73
     }
+
+
+
 }

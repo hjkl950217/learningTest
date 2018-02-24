@@ -44,10 +44,26 @@
 using System;
 using AutoMapper;
 
-namespace 链式编程在业务逻辑上的研究.Order.DTO
+namespace 链式编程在业务逻辑上的研究.Orders.DTO
 {
+    public static class Test
+    {
+        /// <summary>
+        /// 配置Order与OrderOut的映射关系
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
+        {
+            return map.ForMember(
+                     dest => dest.OrderTotalAmount
+                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
+                 );
+        }
+    }
+
     /// <summary>
-    /// 订单对象映射类
+    /// 订单对象映射配置
     /// </summary>
     public class OrderMapFile : Profile
     {
@@ -59,12 +75,17 @@ namespace 链式编程在业务逻辑上的研究.Order.DTO
         protected OrderMapFile( string profileName )
         : base( profileName )
         {
-            // 配置AutoMapper。   dest是目标表达式。opt是源表达式
+            // 配置AutoMapper dest是目标表达式 opt是源表达式
             CreateMap<Order , OrderOut>()
-                .ForMember(
-                    dest => dest.OrderTotalAmount
-                    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                );
+                //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
+                //.ForMember(
+                //    dest => dest.OrderTotalAmount
+                //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
+                //)
+                .ForOrderOut();
+
+            
+
         }
     }
 }

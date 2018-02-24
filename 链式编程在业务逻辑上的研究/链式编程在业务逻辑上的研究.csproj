@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="2Core\Customers\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

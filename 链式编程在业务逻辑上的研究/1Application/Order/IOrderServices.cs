@@ -44,9 +44,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using 链式编程在业务逻辑上的研究.Order.DTO;
+using 链式编程在业务逻辑上的研究.Orders.DTO;
+using 链式编程在业务逻辑上的研究.Role;
 
-namespace 链式编程在业务逻辑上的研究.Order
+namespace 链式编程在业务逻辑上的研究.Orders
 {
     /// <summary>
     /// The class of IOrderServices.
@@ -57,7 +58,14 @@ namespace 链式编程在业务逻辑上的研究.Order
         /// 查询所有订单
         /// </summary>
         /// <returns></returns>
-        Task<List<OrderOut>> GetAllOrder();
+        Task<List<OrderOut>> GetAllOrder( );
+
+        /// <summary>
+        /// 按卖家权限查询所有订单
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns></returns>
+        Task<List<OrderOut>> GetAllOrder( string sellerID );
 
         /// <summary>
         /// 按订单号查询订单
@@ -65,9 +73,5 @@ namespace 链式编程在业务逻辑上的研究.Order
         /// <param name="orderNumber"></param>
         /// <returns></returns>
         Task<OrderOut> GetOrder( int orderNumber );
-
     }
-
-
-
 }

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
+// <copyright file="Class.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderOut created at  2018-02-24 09:11:38
+//   Class created at  2018-02-24 13:40:05
 // </summary>
 //<Description>
 //
@@ -42,24 +42,23 @@
  */
 
 using System;
-using System.ComponentModel.DataAnnotations;
+using 链式编程在业务逻辑上的研究.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace 链式编程在业务逻辑上的研究.Sellers
 {
     /// <summary>
-    /// The class of OrderOut.
+    /// 卖家信息，对应数据库中的Seller表
     /// </summary>
-    public class OrderOut
+    public class Seller
     {
         /// <summary>
-        /// 订单号
+        /// 卖家ID
         /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
+        public string SellerID { get; set; }
 
         /// <summary>
-        /// 订单中的总金额(商品+税)
+        /// 模拟权限号，用二进制存
         /// </summary>
-        public decimal OrderTotalAmount { get; set; }
+        public RoleEnum? Role { get; set; }
     }
 }

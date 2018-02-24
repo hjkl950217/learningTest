@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Oder.cs" company="Newegg" Author="lw47">
+// <copyright file="ICheckRole.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   Oder created at  2018-02-24 10:01:36
+//   ICheckRole created at  2018-02-24 14:20:57
 // </summary>
 //<Description>
 //
@@ -41,34 +41,33 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using 链式编程在业务逻辑上的研究.Infrastructure;
+using 链式编程在业务逻辑上的研究.Sellers;
 
-namespace 链式编程在业务逻辑上的研究.Order
+namespace 链式编程在业务逻辑上的研究.Role
 {
     /// <summary>
-    /// 订单，对应数据库中的Order表
+    /// 权限检查
     /// </summary>
-    public class Order
+    public class CheckRole : ICheckRole
     {
-        /// <summary>
-        /// 订单号
-        /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
+        #region 接口实现
 
-        /// <summary>
-        /// 订单中的商品总金额
-        /// </summary>
-        public decimal ItemTotalAmount { get; set; }
+        public bool InternalOrderCheck( string sellerID )
+        {
+            Seller seller = Data.SellerData.Find( t => t.SellerID == sellerID );
+            if( seller == null ) return false;
 
-        /// <summary>
-        /// 订单中的税总金额
-        /// </summary>
-        public decimal TaxTotalAmount { get; set; }
 
+            //可动态配置权限检查
+            return seller.Role
+               //.IsDeveloper( )
+                .IsInternal( )
+                .IsCheckSuccess( );
+        }
+
+        #endregion 接口实现
     }
-
-
 }

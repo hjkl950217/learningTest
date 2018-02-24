@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace URL验证.Controllers
 {
-   // [Route("api/[controller]")]
+    // [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         #region 测试api/[controller]Get这种
-
 
         // GET api/values/5
         [HttpGet()]
@@ -20,21 +19,14 @@ namespace URL验证.Controllers
             return "A";
         }
 
-
         // GET api/values/5
-        [HttpGet(  )]
+        [HttpGet()]
         [Route( "api/[controller]Get" )]
         public string GetB( int id )
         {
             return "B";
         }
 
-        #endregion
-
-
-      
-
+        #endregion 测试api/[controller]Get这种
     }
-
-
 }

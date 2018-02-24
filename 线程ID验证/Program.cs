@@ -8,23 +8,19 @@ using System.Linq;
 
 namespace 线程ID验证
 {
-    internal class Program 
+    internal class Program
     {
         public static async Task GetA()
         {
             ShowTheadInfo( "GetA" );
             await Task.Run( () => { ShowTheadInfo( "GetAAA" ); return "A"; } );
-
         }
 
         public static Task GetB()
         {
-           
             ShowTheadInfo( "GetB" );
-          return  Task.Run( () => { return "B"; } );
+            return Task.Run( () => { return "B"; } );
         }
-
-
 
         private static void Main( string[] args )
         {
@@ -100,7 +96,5 @@ namespace 线程ID验证
         }
 
         #endregion 获取线程信息
-
     }
-
 }

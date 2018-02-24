@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
+// <copyright file="Class.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderOut created at  2018-02-24 09:11:38
+//   Class created at  2018-02-24 11:17:03
 // </summary>
 //<Description>
 //
@@ -44,22 +44,42 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace 链式编程在业务逻辑上的研究.Item
 {
     /// <summary>
-    /// The class of OrderOut.
+    /// 商品，对应数据库中的Item表
     /// </summary>
-    public class OrderOut
+    public class Item
     {
         /// <summary>
-        /// 订单号
+        /// 商品号
         /// </summary>
         [Key]
-        public int OrderNumber { get; set; }
+        public int ItemNumber { get; set; }
 
         /// <summary>
-        /// 订单中的总金额(商品+税)
+        /// 商品价格金额
         /// </summary>
-        public decimal OrderTotalAmount { get; set; }
+        public decimal UnitPrice { get; set; }
+
+        /// <summary>
+        /// 商品税的总金额
+        /// </summary>
+        public decimal TaxTotalAmount { get; set; }
+
+        /// <summary>
+        /// 商品名字
+        /// </summary>
+        public string ItemName { get; set; }
+
+        /// <summary>
+        /// UPC代码
+        /// </summary>
+        public string UPCCode { get; set; }
+
+        /// <summary>
+        /// 货币代码,3位国家代码,如CAN
+        /// </summary>
+        public string CurrencyCode { get; set; }
     }
 }

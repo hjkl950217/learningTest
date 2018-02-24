@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OderTable.cs" company="Newegg" Author="lw47">
+// <copyright file="ICheckRole.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OderTable created at  2018-02-24 10:12:15
+//   ICheckRole created at  2018-02-24 14:20:57
 // </summary>
 //<Description>
 //
@@ -42,24 +42,20 @@
  */
 
 using System;
-using System.Collections.Generic;
 
-
-
-namespace 链式编程在业务逻辑上的研究.Order
+namespace 链式编程在业务逻辑上的研究.Role
 {
     /// <summary>
-    /// 模拟订单数据表
+    /// The class of ICheckRole.
     /// </summary>
-    public static class OrderTable
+    public interface ICheckRole
     {
         /// <summary>
-        /// 模拟数据表
+        /// 是否可以查询内部订单
         /// </summary>
-        public static List<Order> DataList = new List<Order>()
-        {
-            new Order (){OrderNumber=1000,ItemTotalAmount=100,TaxTotalAmount=10},
-            new Order (){OrderNumber=2000,ItemTotalAmount=200,TaxTotalAmount=20}
-        };
+        /// <param name="source">要检查的权限</param>
+        /// <returns></returns>
+        bool InternalOrderCheck( string sellerID );
+
     }
 }

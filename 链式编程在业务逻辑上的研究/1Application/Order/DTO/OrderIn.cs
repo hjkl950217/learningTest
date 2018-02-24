@@ -41,11 +41,10 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Order.DTO
+namespace 链式编程在业务逻辑上的研究.Orders.DTO
 {
     /// <summary>
     /// The class of OrderIn.
@@ -57,9 +56,5 @@ namespace 链式编程在业务逻辑上的研究.Order.DTO
         /// </summary>
         [Key]
         public int OrderNumber { get; set; }
-
     }
-
-
-
 }

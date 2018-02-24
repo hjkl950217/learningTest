@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
+// <copyright file="OderTable.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderOut created at  2018-02-24 09:11:38
+//   OderTable created at  2018-02-24 10:12:15
 // </summary>
 //<Description>
 //
@@ -42,24 +42,37 @@
  */
 
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using 链式编程在业务逻辑上的研究.Sellers;
+using 链式编程在业务逻辑上的研究.Orders;
+using 链式编程在业务逻辑上的研究.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace 链式编程在业务逻辑上的研究.Infrastructure
 {
     /// <summary>
-    /// The class of OrderOut.
+    /// 模拟订单数据表
     /// </summary>
-    public class OrderOut
+    public static class Data
     {
         /// <summary>
-        /// 订单号
+        /// 模拟订单数据表
         /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
+        public static List<Order> OrderData = new List<Order>( )
+        {
+            new Order (){OrderNumber=1000,ItemTotalAmount=100,TaxTotalAmount=10},
+            new Order (){OrderNumber=2000,ItemTotalAmount=200,TaxTotalAmount=20}
+        };
 
         /// <summary>
-        /// 订单中的总金额(商品+税)
+        /// 模拟卖家数据表
         /// </summary>
-        public decimal OrderTotalAmount { get; set; }
+        public static List<Seller> SellerData = new List<Seller>( )
+        {
+            new Seller (){SellerID="AA",Role=RoleEnum.Developer},
+            new Seller (){SellerID="BB",Role=RoleEnum.InternalSeller},
+            new Seller (){SellerID="CC",Role=RoleEnum.NormalSeller},
+            new Seller (){SellerID="DD",Role=RoleEnum.Boss},
+            new Seller (){SellerID="EE",Role=RoleEnum.DevBoss}
+        };
     }
 }
