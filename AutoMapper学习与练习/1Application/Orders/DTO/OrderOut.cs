@@ -47,9 +47,9 @@ using System.ComponentModel.DataAnnotations;
 namespace AutoMapper学习与练习.Orders.DTO
 {
     /// <summary>
-    /// The class of OrderOut.
+    /// 订单基础信息
     /// </summary>
-    public class OrderOut
+    public class OrderBaseOut
     {
         /// <summary>
         /// 订单号
@@ -61,5 +61,12 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// 订单中的总金额(商品+税)
         /// </summary>
         public decimal OrderTotalAmount { get; set; }
+
+
+        /// <summary>
+        /// 订单生成时间
+        /// </summary>
+        public DateTime InDate { get; set; }
+
     }
 }

@@ -1,13 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="Newegg" Author="lw47">
+// <copyright file="IOrderServices.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   Class1 created at  2018-02-24 09:10:07
+//   IOrderServices created at  2018-02-24 09:17:57
 // </summary>
-//<Description>
+//<Discription>
 //
-//</Description>
+//</Discription>
 // --------------------------------------------------------------------------------------------------------------------
 /**
  *                             _ooOoo_
@@ -44,70 +44,57 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using AutoMapper学习与练习.Orders.DTO;
-using AutoMapper学习与练习.Infrastructure;
+using AutoMapper学习与练习.Role;
 
 namespace AutoMapper学习与练习.Orders
 {
     /// <summary>
-    /// 订单服务
+    ///
     /// </summary>
-    public class OrderServices : IOrderServices
+    public interface IOrderServices
     {
         /// <summary>
-        /// 映射对象
+        /// 查询所有订单
         /// </summary>
-        private readonly IMapper Mapper;
+        /// <returns></returns>
+        IEnumerable<OrderBaseOut> GetAllOrderBase( );
 
-        public OrderServices( IMapper mapper )
-        {
-            this.Mapper = mapper;
-        }
 
         /// <summary>
         /// 查询所有订单
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<OrderOut> GetAllOrder( )
-        {
-            return this.Mapper.Map<IEnumerable<OrderOut>>( Data.OrderData );
-        }
+        IEnumerable<OrderTotalInfoOut> GetAllOrderInfo( );
 
         /// <summary>
-        /// 按订单号查询订单信息
+        /// 按订单号查询订单
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderOut GetOrder( int orderNumber )
-        {
-            return this.GetOrder<OrderOut>( orderNumber );
-        }
+        OrderBaseOut GetOrderBase( int orderNumber );
 
         /// <summary>
-        /// 按订单号查询订单金额相关信息
+        /// 按订单号查询订单中的金额相关信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderAmountOut GetAmountByOrder( int orderNumber )
-        {
-            return this.GetOrder<OrderAmountOut>( orderNumber );
-        }
+        OrderAmountOut GetAmountByOrder( int orderNumber );
 
         /// <summary>
-        /// 按订单号查询订单人员相关信息
+        /// 按订单号查询订单中的相关人员信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderPeopleOut GetPeopleByOrder( int orderNumber )
-        {
-            return this.GetOrder<OrderPeopleOut>( orderNumber );
-        }
+        OrderPeopleOut GetPeopleByOrder( int orderNumber );
 
-        private T GetOrder<T>( int orderNumber )
-        {
-            Order result = Data.OrderData.Find( t => t.OrderNumber == orderNumber );
-            return this.Mapper.Map<T>( result );
-        }
+        /// <summary>
+        /// 查询一个订单中所有信息
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        OrderTotalInfoOut GetOrder( int orderNumber );
+
+
     }
 }

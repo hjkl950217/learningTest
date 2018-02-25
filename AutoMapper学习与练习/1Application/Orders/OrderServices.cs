@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Oder.cs" company="Newegg" Author="lw47">
+// <copyright file="Class1.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   Oder created at  2018-02-24 10:01:36
+//   Class1 created at  2018-02-24 09:10:07
 // </summary>
 //<Description>
 //
@@ -42,55 +42,92 @@
  */
 
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper学习与练习.Orders.DTO;
+using AutoMapper学习与练习.Infrastructure;
 
 namespace AutoMapper学习与练习.Orders
 {
     /// <summary>
-    /// 订单，对应数据库中的Order表
+    /// 订单服务
     /// </summary>
-    public class Order
+    public class OrderServices : IOrderServices
     {
         /// <summary>
-        /// 订单号
+        /// 映射对象
         /// </summary>
-        [Key]
-        public int OrderNumber { get; set; }
+        private readonly IMapper Mapper;
+        public OrderServices( IMapper mapper )
+        {
+            this.Mapper = mapper;
+        }
 
         /// <summary>
-        /// 订单中的商品总金额
+        /// 查询所有订单基础信息
         /// </summary>
-        public decimal ItemTotalAmount { get; set; }
+        /// <returns></returns>
+        public IEnumerable<OrderBaseOut> GetAllOrderBase( )
+        {
+            return this.Mapper.Map<IEnumerable<OrderBaseOut>>( Data.OrderData );
+        }
 
         /// <summary>
-        /// 订单中的税总金额
+        /// 查询所有订单信息
         /// </summary>
-        public decimal TaxTotalAmount { get; set; }
+        /// <returns></returns>
+        public IEnumerable<OrderTotalInfoOut> GetAllOrderInfo( )
+        {
+            return this.Mapper.Map<IEnumerable<OrderTotalInfoOut>>( Data.OrderData );
+        }
 
         /// <summary>
-        /// 订单总运费
+        /// 按订单号查询订单信息
         /// </summary>
-        public decimal OrderShipAmount { get; set; }
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public OrderBaseOut GetOrderBase( int orderNumber )
+        {
+            return this.GetOrder<OrderBaseOut>( orderNumber );
+        }
 
         /// <summary>
-        /// 订单状态
+        /// 按订单号查询订单金额相关信息
         /// </summary>
-        public OrderStatusEnum Status { get; set; }
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public OrderAmountOut GetAmountByOrder( int orderNumber )
+        {
+            return this.GetOrder<OrderAmountOut>( orderNumber );
+        }
 
         /// <summary>
-        /// 卖家ID
+        /// 按订单号查询订单人员相关信息
         /// </summary>
-        public string SellerID { get; set; }
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public OrderPeopleOut GetPeopleByOrder( int orderNumber )
+        {
+            return this.GetOrder<OrderPeopleOut>( orderNumber );
+        }
 
         /// <summary>
-        /// 买家ID
+        /// 按订单号查询订单所有相关信息
         /// </summary>
-        public string CustomerID { get; set; }
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public OrderTotalInfoOut GetOrder( int orderNumber )
+        {
+            return this.GetOrder<OrderTotalInfoOut>( orderNumber );
+        }
 
-        /// <summary>
-        /// 订单生成时间
-        /// </summary>
-        public DateTime InDate { get; set; }
-        //.退运费
+        private T GetOrder<T>( int orderNumber )
+        {
+            Order result = Data.OrderData.Find( t => t.OrderNumber == orderNumber );
+            return this.Mapper.Map<T>( result );
+        }
+
+     
     }
 }

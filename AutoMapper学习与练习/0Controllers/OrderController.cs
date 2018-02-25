@@ -5,32 +5,51 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper学习与练习.Orders.DTO;
 using AutoMapper学习与练习.Role;
+using AutoMapper;
 
 namespace AutoMapper学习与练习.Orders
 {
     public class OrderController : Controller
     {
         private IOrderServices OrderServices;
+        private IMapper Mapper;
 
-        public OrderController( IOrderServices orderServices )
+        public OrderController( IOrderServices orderServices , IMapper mapper )
         {
             this.OrderServices = orderServices;
+            this.Mapper = mapper;
         }
 
+        /// <summary>
+        /// 查询所有订单基础信息
+        /// </summary>
+        /// <returns></returns>
+        // GET api/OrderBase
+        [Route( "api/[controller]Base" )]
+        [HttpGet]
+        public IEnumerable<OrderBaseOut> GetOrderBase( )
+        {
+            return this.OrderServices.GetAllOrderBase( );
+        }
+
+        /// <summary>
+        /// 查询所有订单的所有信息
+        /// </summary>
+        /// <returns></returns>
         // GET api/Order
         [Route( "api/[controller]" )]
         [HttpGet]
-        public IEnumerable<OrderOut> GetOrder( )
+        public IEnumerable<OrderTotalInfoOut> GetOrder( )
         {
-            return this.OrderServices.GetAllOrder( );
+            return this.OrderServices.GetAllOrderInfo( );
         }
 
         // GET api/Order/1000
         [Route( "api/[controller]/{orderNumber:int}" )]
         [HttpGet]
-        public OrderOut GetOrder( [FromRoute]OrderIn orderIn )
+        public OrderBaseOut GetOrder( [FromRoute]OrderIn orderIn )
         {
-            return this.OrderServices.GetOrder( orderIn.OrderNumber );
+            return this.OrderServices.GetOrderBase( orderIn.OrderNumber );
         }
 
         // GET api/OrderAmount/1000?
@@ -47,6 +66,37 @@ namespace AutoMapper学习与练习.Orders
         public OrderPeopleOut GetPeople( [FromRoute]OrderIn orderIn )
         {
             return this.OrderServices.GetPeopleByOrder( orderIn.OrderNumber );
+        }
+
+        // GET autoMapper
+        [Route( "autoMapper" )]
+        [HttpGet]
+        public dynamic GetMapperData( )
+        {
+            var order = new Order( )
+            {
+                OrderNumber = 1000 ,
+                ItemTotalAmount = 100 ,
+                TaxTotalAmount = 10 ,
+                OrderShipAmount = 1 ,
+                Status = OrderStatusEnum.Invoiced ,
+                SellerID = "BB" ,
+                CustomerID = "Z1" ,
+                InDate = Convert.ToDateTime( "2017-01-01" )
+            };
+
+            var orderBase = new OrderBaseOut( )
+            {
+                InDate = DateTime.Now ,
+                OrderNumber = 10 ,
+                OrderTotalAmount = 100
+            };
+
+
+           // var temp = this.Mapper.Map<OrderAmountOut>( order );
+
+
+            return this.Mapper.Map<OrderTotalInfoOut>( order );
         }
     }
 }

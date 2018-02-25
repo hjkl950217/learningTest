@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper学习与练习.Orders;
 using AutoMapper学习与练习.Orders.DTO;
 using Microsoft.AspNetCore.Builder;
@@ -30,9 +33,22 @@ namespace AutoMapper学习与练习
         {
             var config = new AutoMapper.MapperConfiguration( cfg =>
             {
+                //配置替换字符，一定要在创建map之前
+                //cfg.ReplaceMemberName( "Ä" , "A" );//把源类型属性名中的Ä替换成A
+
                 cfg.AddProfile( new OrderMapFile( ) );
+
+
+                // 映射具有public或internal的get的属性
+                cfg.ShouldMapProperty = p =>
+                    p.GetMethod != null
+                    && ( p.GetMethod.IsPublic || p.GetMethod.IsAssembly );
+
+                
+
             } );
 
+           // config.AssertConfigurationIsValid( );
             var mapper = config.CreateMapper( );
             services.AddSingleton( mapper );
         }

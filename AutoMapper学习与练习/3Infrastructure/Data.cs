@@ -67,7 +67,8 @@ namespace AutoMapper学习与练习.Infrastructure
                 OrderShipAmount=1,
                 Status=OrderStatusEnum.Invoiced,
                 SellerID="BB",
-                CustomerID="Z1"
+                CustomerID="Z1",
+                InDate=Convert.ToDateTime("2017-01-01")
             } ,
             new Order ()
             {
@@ -77,6 +78,7 @@ namespace AutoMapper学习与练习.Infrastructure
                 OrderShipAmount=2,
                 Status=OrderStatusEnum.Void,
                 SellerID="CC",
+                InDate=DateTime.Now
             }
         };
 

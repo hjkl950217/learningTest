@@ -1,13 +1,13 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IOrderServices.cs" company="Newegg" Author="lw47">
+// <copyright file="OrderTotalInfoOut.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   IOrderServices created at  2018-02-24 09:17:57
+//   OrderTotalInfoOut created at  2018-02-25 13:46:56
 // </summary>
-//<Discription>
+//<Description>
 //
-//</Discription>
+//</Description>
 // --------------------------------------------------------------------------------------------------------------------
 /**
  *                             _ooOoo_
@@ -41,44 +41,40 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper学习与练习.Orders.DTO;
-using AutoMapper学习与练习.Role;
 
-namespace AutoMapper学习与练习.Orders
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace AutoMapper学习与练习.Orders.DTO
 {
     /// <summary>
-    ///
+    /// 所有订单对象的集合输出，用来测试autoMapper
     /// </summary>
-    public interface IOrderServices
+    public class OrderTotalInfoOut
     {
         /// <summary>
-        /// 查询所有订单
+        /// 订单号
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<OrderOut> GetAllOrder( );
+        [Key]
+        public string OrderNumber { get; set; }
 
         /// <summary>
-        /// 按订单号查询订单
+        /// 金额信息对象
         /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        OrderOut GetOrder( int orderNumber );
+        public OrderAmountOut AmountInfo { get; set; }
 
         /// <summary>
-        /// 按订单号查询订单中的金额相关信息
+        /// 人员信息对象
         /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        OrderAmountOut GetAmountByOrder( int orderNumber );
+        public OrderPeopleOut PeopleInfo { get; set; }
 
         /// <summary>
-        /// 按订单号查询订单中的相关人员信息
+        /// 基础信息对象
         /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        OrderPeopleOut GetPeopleByOrder( int orderNumber );
+        public OrderBaseOut BaseInfo { get; set; }
+
+
     }
+
+
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using 链式编程在业务逻辑上的研究.Orders.DTO;
 using 链式编程在业务逻辑上的研究.Orders;
 using 链式编程在业务逻辑上的研究.Role;
+using AutoMapper;
 
 namespace 链式编程在业务逻辑上的研究
 {
@@ -35,6 +36,8 @@ namespace 链式编程在业务逻辑上的研究
             } );
 
             var mapper = config.CreateMapper( );
+
+    
             services.AddSingleton( mapper );
         }
 
