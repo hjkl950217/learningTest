@@ -8,7 +8,6 @@ using AutoMapper学习与练习.Role;
 
 namespace AutoMapper学习与练习.Orders
 {
-    [Route( "api/[controller]" )]
     public class OrderController : Controller
     {
         private IOrderServices OrderServices;
@@ -19,27 +18,37 @@ namespace AutoMapper学习与练习.Orders
         }
 
         // GET api/Order
-        [HttpGet( "{orderNumber=0:int}" )]
-        public IEnumerable<OrderOut> GetOrder(
-            [FromRoute]int orderNumber ,
-            [FromQuery] string sellerID )
+        [Route( "api/[controller]" )]
+        [HttpGet]
+        public IEnumerable<OrderOut> GetOrder( )
         {
+            return this.OrderServices.GetAllOrder( );
         }
 
-        // GET api/Order/100
-        [HttpGet( "{orderNumber:int}" )]
-        public dynamic GetOrder2( [FromRoute]int orderNumber )
+        // GET api/Order/1000
+        [Route( "api/[controller]/{orderNumber:int}" )]
+        [HttpGet]
+        public OrderOut GetOrder( [FromRoute]OrderIn orderIn )
         {
-            // return this.OrderServices.GetOrder( orderNumber );
-
-            RoleEnum? boss = RoleEnum.Boss;
-            RoleEnum? devBoss = RoleEnum.DevBoss;
-
-            return new
-            {
-                isInterA = boss.IsInternal( ).IsDevBoss( ).IsNormal( ).IsCheckSuccess( ) ,
-                isInterB = devBoss.IsInternal( ).IsCheckSuccess( )
-            };
+            return this.OrderServices.GetOrder( orderIn.OrderNumber );
         }
+
+        // GET api/OrderAmount/1000?
+        [Route( "api/[controller]Amount/{orderNumber:int}" )]
+        [HttpGet]
+        public OrderAmountOut GetOrderAmount( [FromRoute]OrderIn orderIn )
+        {
+            return this.OrderServices.GetAmountByOrder( orderIn.OrderNumber );
+        }
+
+        // GET api/OrderPeole/1000?
+        [Route( "api/[controller]People/{orderNumber:int}" )]
+        [HttpGet]
+        public OrderPeopleOut GetPeople( [FromRoute]OrderIn orderIn )
+        {
+            return this.OrderServices.GetPeopleByOrder( orderIn.OrderNumber );
+        }
+
+
     }
 }

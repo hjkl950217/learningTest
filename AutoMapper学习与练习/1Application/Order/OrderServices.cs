@@ -99,9 +99,9 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderPeoleOut GetPeopleByOrder( int orderNumber )
+        public OrderPeopleOut GetPeopleByOrder( int orderNumber )
         {
-            return this.GetOrder<OrderPeoleOut>( orderNumber );
+            return this.GetOrder<OrderPeopleOut>( orderNumber );
         }
 
         private T GetOrder<T>( int orderNumber )

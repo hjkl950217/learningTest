@@ -80,7 +80,7 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static IMappingExpression<Order , OrderPeoleOut> ForOrderPeoleOut( this IMappingExpression<Order , OrderPeoleOut> map )
+        public static IMappingExpression<Order , OrderPeopleOut> ForOrderPeoleOut( this IMappingExpression<Order , OrderPeopleOut> map )
         {
             return map;
         }
@@ -109,7 +109,7 @@ namespace AutoMapper学习与练习.Orders.DTO
                 .ForOrderOut( );
 
             CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( );
-            CreateMap<Order , OrderPeoleOut>( ).ForOrderPeoleOut( );
+            CreateMap<Order , OrderPeopleOut>( ).ForOrderPeoleOut( );
         }
     }
 }

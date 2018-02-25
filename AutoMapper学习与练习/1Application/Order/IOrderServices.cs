@@ -79,6 +79,6 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-       OrderPeoleOut GetPeopleByOrder( int orderNumber );
+       OrderPeopleOut GetPeopleByOrder( int orderNumber );
     }
 }

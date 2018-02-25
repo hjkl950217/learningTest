@@ -49,7 +49,7 @@ namespace AutoMapper学习与练习.Orders.DTO
     /// <summary>
     /// 订单中人员信息out对象
     /// </summary>
-    public class OrderPeoleOut
+    public class OrderPeopleOut
     {
         /// <summary>
         /// 订单号
