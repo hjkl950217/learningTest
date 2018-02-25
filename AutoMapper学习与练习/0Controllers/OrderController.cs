@@ -48,7 +48,5 @@ namespace AutoMapper学习与练习.Orders
         {
             return this.OrderServices.GetPeopleByOrder( orderIn.OrderNumber );
         }
-
-
     }
 }

@@ -72,13 +72,13 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-       OrderAmountOut GetAmountByOrder( int orderNumber );
+        OrderAmountOut GetAmountByOrder( int orderNumber );
 
         /// <summary>
         /// 按订单号查询订单中的相关人员信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-       OrderPeopleOut GetPeopleByOrder( int orderNumber );
+        OrderPeopleOut GetPeopleByOrder( int orderNumber );
     }
 }

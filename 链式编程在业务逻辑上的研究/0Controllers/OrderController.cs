@@ -35,11 +35,17 @@ namespace 链式编程在业务逻辑上的研究.Orders
 
             RoleEnum? boss = RoleEnum.Boss;
             RoleEnum? devBoss = RoleEnum.DevBoss;
+            RoleEnum? roleNull = null;
 
             return new
             {
                 isInterA = boss.IsInternal( ).IsDevBoss( ).IsNormal( ).IsCheckSuccess( ) ,
-                isInterB = devBoss.IsInternal( ).IsCheckSuccess( )
+                isInterB = boss
+                    .CheckRole( RoleEnum.DevBoss )
+                    .CheckRole( RoleEnum.InternalSeller )
+                    .IsCheckSuccess( ) ,
+                //isInterB = devBoss.IsNormal( ).IsDevBoss().IsCheckSuccess( ),
+                //isNull=roleNull.IsInternal().IsCheckSuccess()
             };
         }
     }

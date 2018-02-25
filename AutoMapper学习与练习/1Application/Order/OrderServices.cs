@@ -109,7 +109,5 @@ namespace AutoMapper学习与练习.Orders
             Order result = Data.OrderData.Find( t => t.OrderNumber == orderNumber );
             return this.Mapper.Map<T>( result );
         }
-
-    
     }
 }
