@@ -109,19 +109,50 @@ namespace 链式编程在业务逻辑上的研究.Role
             return RoleEnum.DevBoss.CheckRole( target );
         }
 
+        /// <summary>
+        /// 权限是否验证成功
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static bool IsCheckSuccess( this RoleEnum? target )
         {
             return ( target == null ) ? false : true;
         }
 
         /// <summary>
-        /// 检查有没有权限
+        /// 检查有没有目标权限-让外部自己调用的
         /// </summary>
-        /// <param name="sources"></param>
-        /// <param name="target"></param>
+        /// <remarks>
+        /// 验证sources是不是有target权限
+        /// </remarks>
+        /// <param name="sources">要被验证的权限</param>
+        /// <param name="target">用来判断的权限</param>
+        /// <returns></returns>
+        public static RoleEnum? CheckRole( this RoleEnum? sources , RoleEnum target )
+        {
+            //判断空
+            if( sources == null ) return null;
+
+            //做位与运算来判断权限
+            bool isSeccess = ( sources.Value | target ) == sources.Value;
+
+            return ( isSeccess == true ) ? sources : null;
+        }
+
+        /// <summary>
+        /// 检查有没有权限-给上面的IS方法用的
+        /// </summary>
+        /// <remarks>
+        /// 验证target是不是有sources权限
+        /// </remarks>
+        /// <param name="sources">用来判断的权限</param>
+        /// <param name="target">要被验证的权限</param>
         /// <returns></returns>
         private static RoleEnum? CheckRole( this RoleEnum sources , RoleEnum? target )
         {
+            //判断空
+            if( target == null ) return null;
+
             //做位与运算来判断权限
             bool isSeccess = ( sources | target ) == target;
 
