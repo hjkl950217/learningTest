@@ -60,6 +60,11 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         private readonly IMapper Mapper;
 
+        public OrderServices( IMapper mapper )
+        {
+            this.Mapper = mapper;
+        }
+
         /// <summary>
         /// 查询所有订单
         /// </summary>
@@ -70,23 +75,23 @@ namespace AutoMapper学习与练习.Orders
         }
 
         /// <summary>
-        /// 按订单号查询订单金额相关信息
-        /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        public IEnumerable<OrderAmountOut> GetAmountByOrder( int orderNumber )
-        {
-            throw new NotImplementedException( );
-        }
-
-        /// <summary>
         /// 按订单号查询订单信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
         public OrderOut GetOrder( int orderNumber )
         {
-            throw new NotImplementedException( );
+            return this.GetOrder<OrderOut>( orderNumber );
+        }
+
+        /// <summary>
+        /// 按订单号查询订单金额相关信息
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public OrderAmountOut GetAmountByOrder( int orderNumber )
+        {
+            return this.GetOrder<OrderAmountOut>( orderNumber );
         }
 
         /// <summary>
@@ -94,9 +99,17 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public IEnumerable<OrderPeoleOut> GetPeopleByOrder( int orderNumber )
+        public OrderPeoleOut GetPeopleByOrder( int orderNumber )
         {
-            throw new NotImplementedException( );
+            return this.GetOrder<OrderPeoleOut>( orderNumber );
         }
+
+        private T GetOrder<T>( int orderNumber )
+        {
+            Order result = Data.OrderData.Find( t => t.OrderNumber == orderNumber );
+            return this.Mapper.Map<T>( result );
+        }
+
+    
     }
 }
