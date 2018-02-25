@@ -20,6 +20,7 @@ namespace AutoMapper学习与练习
         public static IWebHost BuildWebHost( string[ ] args ) =>
             WebHost.CreateDefaultBuilder( args )
                 .UseStartup<Startup>( )
+                .UseUrls("http://*:5000")
                 .Build( );
     }
 }
