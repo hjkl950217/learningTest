@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderMapFile.cs" company="Newegg" Author="lw47">
+// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderMapFile created at  2018-02-24 09:24:54
+//   OrderOut created at  2018-02-24 09:11:38
 // </summary>
 //<Description>
 //
@@ -42,47 +42,24 @@
  */
 
 using System;
-using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace AutoMapper学习与练习.Orders.DTO
 {
-    public static class Test
+    /// <summary>
+    /// The class of OrderOut.
+    /// </summary>
+    public class OrderOut
     {
         /// <summary>
-        /// 配置Order与OrderOut的映射关系
+        /// 订单号
         /// </summary>
-        /// <param name="map"></param>
-        /// <returns></returns>
-        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
-        {
-            return map.ForMember(
-                     dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                 );
-        }
-    }
+        [Key]
+        public int OrderNumber { get; set; }
 
-    /// <summary>
-    /// 订单对象映射配置
-    /// </summary>
-    public class OrderMapFile : Profile
-    {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
-        {
-        }
-
-        protected OrderMapFile( string profileName )
-        : base( profileName )
-        {
-            // 配置AutoMapper dest是目标表达式 opt是源表达式
-            CreateMap<Order , OrderOut>( )
-                //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
-                //.ForMember(
-                //    dest => dest.OrderTotalAmount
-                //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                //)
-                .ForOrderOut( );
-        }
+        /// <summary>
+        /// 订单中的总金额(商品+税)
+        /// </summary>
+        public decimal OrderTotalAmount { get; set; }
     }
 }

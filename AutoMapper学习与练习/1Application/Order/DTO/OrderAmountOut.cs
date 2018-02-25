@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="Newegg" Author="lw47">
+// <copyright file="OrderOut.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   Class1 created at  2018-02-24 09:10:07
+//   OrderOut created at  2018-02-24 09:11:38
 // </summary>
 //<Description>
 //
@@ -42,85 +42,39 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using 链式编程在业务逻辑上的研究.Orders.DTO;
-using 链式编程在业务逻辑上的研究.Infrastructure;
-using 链式编程在业务逻辑上的研究.Role;
+using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders
+namespace AutoMapper学习与练习.Orders.DTO
 {
     /// <summary>
-    /// 订单服务
+    /// 订单金额out对象
     /// </summary>
-    public class OrderServices : IOrderServices
+    public class OrderAmountOut
     {
         /// <summary>
-        /// 映射对象
+        /// 订单号
         /// </summary>
-        private readonly IMapper Mapper;
+        [Key]
+        public int OrderNumber { get; set; }
 
         /// <summary>
-        /// 权限检查
+        /// 订单中的商品总金额
         /// </summary>
-        private ICheckRole CheckRole;
-
-        public OrderServices( IMapper mapper , ICheckRole checkRole )
-        {
-            this.Mapper = mapper;
-            this.CheckRole = checkRole;
-        }
+        public decimal ItemTotalAmount { get; set; }
 
         /// <summary>
-        /// 查找所有订单
+        /// 订单中的税总金额
         /// </summary>
-        /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( )
-        {
-            var task = Task.Run( ( ) =>
-              {
-                  return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-              } );
-
-            return await task;
-        }
+        public decimal TaxTotalAmount { get; set; }
 
         /// <summary>
-        /// 按卖家权限查询所有订单
+        /// 订单总运费
         /// </summary>
-        /// <param name="sellerID"></param>
-        /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( string sellerID )
-        {
-            var task = Task.Run( ( ) =>
-            {
-                //模拟有内部用户权限的才可以查所有的
-                bool isRole = this.CheckRole.InternalOrderCheck( sellerID?.ToUpper( ) );
-                if( isRole == false ) return null;
-
-                return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-            } );
-
-            return await task;
-        }
+        public decimal OrderShipAmount { get; set; }
 
         /// <summary>
-        /// 按订单号查找对象
+        /// 订单中的总金额(商品+税+运费)
         /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        public async Task<OrderOut> GetOrder( int orderNumber )
-        {
-            var task = Task.Run( ( ) =>
-            {
-                Order result = Data
-                .OrderData.Find( t => t.OrderNumber == orderNumber );
-
-                return this.Mapper.Map<OrderOut>( result );
-            } );
-
-            return await task;
-        }
+        public decimal OrderTotalAmount { get; set; }
     }
 }

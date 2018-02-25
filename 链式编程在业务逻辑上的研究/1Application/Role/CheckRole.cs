@@ -60,10 +60,9 @@ namespace 链式编程在业务逻辑上的研究.Role
             Seller seller = Data.SellerData.Find( t => t.SellerID == sellerID );
             if( seller == null ) return false;
 
-
             //可动态配置权限检查
             return seller.Role
-               //.IsDeveloper( )
+                //.IsDeveloper( )
                 .IsInternal( )
                 .IsCheckSuccess( );
         }

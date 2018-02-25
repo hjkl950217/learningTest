@@ -44,7 +44,7 @@
 using System;
 using AutoMapper;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace AutoMapper学习与练习.Orders.DTO
 {
     public static class Test
     {
@@ -59,6 +59,30 @@ namespace 链式编程在业务逻辑上的研究.Orders.DTO
                      dest => dest.OrderTotalAmount
                      , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                  );
+        }
+
+        /// <summary>
+        /// 配置Order与OrderAmountOut的映射关系
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static IMappingExpression<Order , OrderAmountOut> ForOrderAmountOut( this IMappingExpression<Order , OrderAmountOut> map )
+        {
+            return map
+            .ForMember(
+                 dest => dest.OrderTotalAmount
+                 , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount )
+             );
+        }
+
+        /// <summary>
+        /// 配置Order与OrderPeoleOut的映射关系
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static IMappingExpression<Order , OrderPeoleOut> ForOrderPeoleOut( this IMappingExpression<Order , OrderPeoleOut> map )
+        {
+            return map;
         }
     }
 
@@ -83,6 +107,9 @@ namespace 链式编程在业务逻辑上的研究.Orders.DTO
                 //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                 //)
                 .ForOrderOut( );
+
+            CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( );
+            CreateMap<Order , OrderPeoleOut>( ).ForOrderPeoleOut( );
         }
     }
 }

@@ -10,33 +10,33 @@ namespace 线程ID验证
 {
     internal class Program
     {
-        public static async Task GetA()
+        public static async Task GetA( )
         {
             ShowTheadInfo( "GetA" );
-            await Task.Run( () => { ShowTheadInfo( "GetAAA" ); return "A"; } );
+            await Task.Run( ( ) => { ShowTheadInfo( "GetAAA" ); return "A"; } );
         }
 
-        public static Task GetB()
+        public static Task GetB( )
         {
             ShowTheadInfo( "GetB" );
-            return Task.Run( () => { return "B"; } );
+            return Task.Run( ( ) => { return "B"; } );
         }
 
-        private static void Main( string[] args )
+        private static void Main( string[ ] args )
         {
             Console.WriteLine( "验证开始" );
 
-            Task.Run( async () => { await GetA(); } );
+            Task.Run( async ( ) => { await GetA( ); } );
             Thread.Sleep( 1 * 1000 );
 
-            Task.Run( () => { GetB(); } );
+            Task.Run( ( ) => { GetB( ); } );
             Thread.Sleep( 1 * 1000 );
 
             ShowTheadInfo( "Main" );
 
             Console.WriteLine( "主代码执行完毕" );
-            Console.WriteLine();
-            Console.ReadLine();
+            Console.WriteLine( );
+            Console.ReadLine( );
         }
 
         #region 获取线程信息
@@ -51,7 +51,7 @@ namespace 线程ID验证
             var f = typeof( Thread ).GetField( "DONT_USE_InternalThread" ,
                 BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance );
 
-            var pInternalThread = (IntPtr)f.GetValue( thread );
+            var pInternalThread = ( IntPtr )f.GetValue( thread );
             //var nativeId = Marshal.ReadInt32( pInternalThread , ( IntPtr.Size == 8 ) ? 548 : 348 );
             var nativeId = Marshal.ReadInt32( pInternalThread , ( IntPtr.Size == 8 ) ? 0x022C : 0x0160 );
             return nativeId;
@@ -74,7 +74,7 @@ namespace 线程ID验证
         /// <returns></returns>
         public static int GetThreadHashCode( Thread thread )
         {
-            return thread.GetHashCode();
+            return thread.GetHashCode( );
         }
 
         /// <summary>

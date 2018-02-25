@@ -56,6 +56,5 @@ namespace 链式编程在业务逻辑上的研究.Role
         /// <param name="source">要检查的权限</param>
         /// <returns></returns>
         bool InternalOrderCheck( string sellerID );
-
     }
 }

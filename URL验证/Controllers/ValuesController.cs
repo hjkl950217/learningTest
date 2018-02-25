@@ -12,7 +12,7 @@ namespace URL验证.Controllers
         #region 测试api/[controller]Get这种
 
         // GET api/values/5
-        [HttpGet()]
+        [HttpGet( )]
         [Route( "api/[controller]" )]
         public string GetA( int id )
         {
@@ -20,7 +20,7 @@ namespace URL验证.Controllers
         }
 
         // GET api/values/5
-        [HttpGet()]
+        [HttpGet( )]
         [Route( "api/[controller]Get" )]
         public string GetB( int id )
         {

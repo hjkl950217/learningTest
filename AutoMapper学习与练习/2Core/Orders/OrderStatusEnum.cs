@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderMapFile.cs" company="Newegg" Author="lw47">
+// <copyright file="Oder.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderMapFile created at  2018-02-24 09:24:54
+//   Oder created at  2018-02-24 10:01:36
 // </summary>
 //<Description>
 //
@@ -42,47 +42,23 @@
  */
 
 using System;
-using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace AutoMapper学习与练习.Orders
 {
-    public static class Test
+    /// <summary>
+    /// 订单状态
+    /// </summary>
+    public enum OrderStatusEnum : int
     {
         /// <summary>
-        /// 配置Order与OrderOut的映射关系
+        /// 无效订单,V=65
         /// </summary>
-        /// <param name="map"></param>
-        /// <returns></returns>
-        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
-        {
-            return map.ForMember(
-                     dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                 );
-        }
-    }
+        Void = 65,
 
-    /// <summary>
-    /// 订单对象映射配置
-    /// </summary>
-    public class OrderMapFile : Profile
-    {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
-        {
-        }
-
-        protected OrderMapFile( string profileName )
-        : base( profileName )
-        {
-            // 配置AutoMapper dest是目标表达式 opt是源表达式
-            CreateMap<Order , OrderOut>( )
-                //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
-                //.ForMember(
-                //    dest => dest.OrderTotalAmount
-                //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                //)
-                .ForOrderOut( );
-        }
+        /// <summary>
+        /// 已完成订单-已生成发票号,I=73
+        /// </summary>
+        Invoiced = 73
     }
 }

@@ -31,24 +31,19 @@ namespace 链式编程在业务逻辑上的研究
         {
             var config = new AutoMapper.MapperConfiguration( cfg =>
             {
-                cfg.AddProfile( new OrderMapFile() );
+                cfg.AddProfile( new OrderMapFile( ) );
             } );
 
-            var mapper = config.CreateMapper();
+            var mapper = config.CreateMapper( );
             services.AddSingleton( mapper );
         }
 
         public static void AddIoc( IServiceCollection services )
         {
-            services.AddScoped<IOrderServices , OrderServices>();
-
+            services.AddScoped<IOrderServices , OrderServices>( );
 
             services.AddSingleton<ICheckRole , CheckRole>( );
         }
-
-
-
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
@@ -56,18 +51,18 @@ namespace 链式编程在业务逻辑上的研究
             AddMapper( services );
             AddIoc( services );
 
-            services.AddMvc();
+            services.AddMvc( );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure( IApplicationBuilder app , IHostingEnvironment env )
         {
-            if( env.IsDevelopment() )
+            if( env.IsDevelopment( ) )
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage( );
             }
 
-            app.UseMvc();
+            app.UseMvc( );
         }
     }
 }

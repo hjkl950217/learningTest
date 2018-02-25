@@ -5,19 +5,19 @@ namespace 时间格式验证
 {
     internal class Program
     {
-        private static void Main( string[] args )
+        private static void Main( string[ ] args )
         {
             /*参考资料-datetime tostring中自定义的格式资料
              * https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/custom-date-and-time-format-strings
              */
             Console.WriteLine( "Task Start\r\n" );
-            List<object> outputList = new List<object>();
+            List<object> outputList = new List<object>( );
 
             string dt1 = DateTime.Now.ToString( "o" );
             string dt2 = DateTime.Now.ToString( "yyyy-MM-ddTHH:mm:sszzz" );
 
             //unix时间戳
-            long dt3 = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long dt3 = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds( );
 
             //输出
             outputList.Add( dt1 );
@@ -35,7 +35,7 @@ namespace 时间格式验证
             Console.WriteLine( "----------------------" );
 
             //转换回去
-            outputList.Clear();
+            outputList.Clear( );
             index = 1;
             DateTime dt10 = Convert.ToDateTime( dt1 );
             DateTime dt20 = Convert.ToDateTime( dt2 );
@@ -52,7 +52,7 @@ namespace 时间格式验证
             }
 
             Console.WriteLine( "Task End" );
-            Console.ReadLine();
+            Console.ReadLine( );
         }
     }
 }

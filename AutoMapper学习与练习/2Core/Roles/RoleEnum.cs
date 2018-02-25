@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="Newegg" Author="lw47">
+// <copyright file="SellerRole.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   Class1 created at  2018-02-24 09:10:07
+//   SellerRole created at  2018-02-24 13:56:13
 // </summary>
 //<Description>
 //
@@ -42,85 +42,43 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using 链式编程在业务逻辑上的研究.Orders.DTO;
-using 链式编程在业务逻辑上的研究.Infrastructure;
-using 链式编程在业务逻辑上的研究.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders
+namespace AutoMapper学习与练习.Role
 {
     /// <summary>
-    /// 订单服务
+    /// 模拟权限,用位运算判断的，所以要注意值对应的二进制位
     /// </summary>
-    public class OrderServices : IOrderServices
+    public enum RoleEnum
     {
         /// <summary>
-        /// 映射对象
+        /// 开发者
         /// </summary>
-        private readonly IMapper Mapper;
+        Developer = 4,
 
         /// <summary>
-        /// 权限检查
+        /// 内部卖家
         /// </summary>
-        private ICheckRole CheckRole;
-
-        public OrderServices( IMapper mapper , ICheckRole checkRole )
-        {
-            this.Mapper = mapper;
-            this.CheckRole = checkRole;
-        }
+        InternalSeller = 2,
 
         /// <summary>
-        /// 查找所有订单
+        /// 正常卖家-1
         /// </summary>
-        /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( )
-        {
-            var task = Task.Run( ( ) =>
-              {
-                  return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-              } );
-
-            return await task;
-        }
+        NormalSeller = 1,
 
         /// <summary>
-        /// 按卖家权限查询所有订单
+        /// 老板-111
         /// </summary>
-        /// <param name="sellerID"></param>
-        /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( string sellerID )
-        {
-            var task = Task.Run( ( ) =>
-            {
-                //模拟有内部用户权限的才可以查所有的
-                bool isRole = this.CheckRole.InternalOrderCheck( sellerID?.ToUpper( ) );
-                if( isRole == false ) return null;
-
-                return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-            } );
-
-            return await task;
-        }
+        /// <remarks>
+        /// 包括前三个权限
+        /// </remarks>
+        Boss = 7,
 
         /// <summary>
-        /// 按订单号查找对象
+        /// 开发主管-101
         /// </summary>
-        /// <param name="orderNumber"></param>
-        /// <returns></returns>
-        public async Task<OrderOut> GetOrder( int orderNumber )
-        {
-            var task = Task.Run( ( ) =>
-            {
-                Order result = Data
-                .OrderData.Find( t => t.OrderNumber == orderNumber );
-
-                return this.Mapper.Map<OrderOut>( result );
-            } );
-
-            return await task;
-        }
+        /// <remarks>
+        /// 包括开发权限与正常卖家权限
+        /// </remarks>
+        DevBoss = 5,
     }
 }

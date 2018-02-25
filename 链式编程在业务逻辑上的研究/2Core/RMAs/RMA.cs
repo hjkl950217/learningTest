@@ -50,9 +50,5 @@ namespace 链式编程在业务逻辑上的研究.RMA
     /// </summary>
     public class RMA
     {
-
     }
-
-
-
 }

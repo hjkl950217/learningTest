@@ -72,7 +72,9 @@ namespace 链式编程在业务逻辑上的研究.Infrastructure
             new Seller (){SellerID="BB",Role=RoleEnum.InternalSeller},
             new Seller (){SellerID="CC",Role=RoleEnum.NormalSeller},
             new Seller (){SellerID="DD",Role=RoleEnum.Boss},
-            new Seller (){SellerID="EE",Role=RoleEnum.DevBoss}
+            new Seller (){SellerID="EE",Role=RoleEnum.DevBoss},
+            new Seller (){SellerID="Z1"},
+            new Seller (){}
         };
     }
 }

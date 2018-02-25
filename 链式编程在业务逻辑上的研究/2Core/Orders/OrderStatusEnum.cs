@@ -46,22 +46,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace 链式编程在业务逻辑上的研究.Orders
 {
- 
     /// <summary>
     /// 订单状态
     /// </summary>
-    public enum OrderStatusEnum:int
+    public enum OrderStatusEnum : int
     {
         /// <summary>
         /// 无效订单,V=65
         /// </summary>
-        Void=65,
+        Void = 65,
+
         /// <summary>
         /// 已完成订单-已生成发票号,I=73
         /// </summary>
-        Invoiced=73
+        Invoiced = 73
     }
-
-
-
 }

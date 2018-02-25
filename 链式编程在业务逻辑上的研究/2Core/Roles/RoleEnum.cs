@@ -41,7 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-
 using System;
 
 namespace 链式编程在业务逻辑上的研究.Role
@@ -64,7 +63,7 @@ namespace 链式编程在业务逻辑上的研究.Role
         /// <summary>
         /// 正常卖家-1
         /// </summary>
-        NormalSeller= 1,
+        NormalSeller = 1,
 
         /// <summary>
         /// 老板-111
@@ -81,28 +80,10 @@ namespace 链式编程在业务逻辑上的研究.Role
         /// 包括开发权限与正常卖家权限
         /// </remarks>
         DevBoss = 5,
-
-
-
     }
 
-   public static class RoleEnumExt
+    public static class RoleEnumExt
     {
-        /// <summary>
-        /// 检查有没有权限
-        /// </summary>
-        /// <param name="sources"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
-        private static RoleEnum? CheckRole(this RoleEnum sources ,RoleEnum? target )
-        {
-            //做位与运算来判断权限
-            bool isSeccess = ( sources | target ) == target;
-
-            return ( isSeccess == true ) ? target : null;
-        }
-
-
         public static RoleEnum? IsBoss( this RoleEnum? target )
         {
             return RoleEnum.Boss.CheckRole( target );
@@ -131,11 +112,20 @@ namespace 链式编程在业务逻辑上的研究.Role
         public static bool IsCheckSuccess( this RoleEnum? target )
         {
             return ( target == null ) ? false : true;
-
         }
 
+        /// <summary>
+        /// 检查有没有权限
+        /// </summary>
+        /// <param name="sources"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        private static RoleEnum? CheckRole( this RoleEnum sources , RoleEnum? target )
+        {
+            //做位与运算来判断权限
+            bool isSeccess = ( sources | target ) == target;
 
+            return ( isSeccess == true ) ? target : null;
+        }
     }
-    
-
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using 链式编程在业务逻辑上的研究.Orders.DTO;
-using 链式编程在业务逻辑上的研究.Role;
+using AutoMapper学习与练习.Orders.DTO;
+using AutoMapper学习与练习.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders
+namespace AutoMapper学习与练习.Orders
 {
     [Route( "api/[controller]" )]
     public class OrderController : Controller
@@ -20,11 +20,10 @@ namespace 链式编程在业务逻辑上的研究.Orders
 
         // GET api/Order
         [HttpGet( "{orderNumber=0:int}" )]
-        public async Task<IEnumerable<OrderOut>> GetOrder(
+        public IEnumerable<OrderOut> GetOrder(
             [FromRoute]int orderNumber ,
             [FromQuery] string sellerID )
         {
-            return await this.OrderServices.GetAllOrder( sellerID );
         }
 
         // GET api/Order/100

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderMapFile.cs" company="Newegg" Author="lw47">
+// <copyright file="Class.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderMapFile created at  2018-02-24 09:24:54
+//   Class created at  2018-02-24 13:40:05
 // </summary>
 //<Description>
 //
@@ -42,47 +42,23 @@
  */
 
 using System;
-using AutoMapper;
+using AutoMapper学习与练习.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace AutoMapper学习与练习.Sellers
 {
-    public static class Test
+    /// <summary>
+    /// 卖家信息，对应数据库中的Seller表
+    /// </summary>
+    public class Seller
     {
         /// <summary>
-        /// 配置Order与OrderOut的映射关系
+        /// 卖家ID-大写
         /// </summary>
-        /// <param name="map"></param>
-        /// <returns></returns>
-        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
-        {
-            return map.ForMember(
-                     dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                 );
-        }
-    }
+        public string SellerID { get; set; }
 
-    /// <summary>
-    /// 订单对象映射配置
-    /// </summary>
-    public class OrderMapFile : Profile
-    {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
-        {
-        }
-
-        protected OrderMapFile( string profileName )
-        : base( profileName )
-        {
-            // 配置AutoMapper dest是目标表达式 opt是源表达式
-            CreateMap<Order , OrderOut>( )
-                //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
-                //.ForMember(
-                //    dest => dest.OrderTotalAmount
-                //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                //)
-                .ForOrderOut( );
-        }
+        /// <summary>
+        /// 模拟权限号，用二进制存
+        /// </summary>
+        public RoleEnum? Role { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrderMapFile.cs" company="Newegg" Author="lw47">
+// <copyright file="OderTable.cs" company="Newegg" Author="lw47">
 //   Copyright (c) 2018 Newegg.inc. All rights reserved.
 // </copyright>
 // <summary>
-//   OrderMapFile created at  2018-02-24 09:24:54
+//   OderTable created at  2018-02-24 10:12:15
 // </summary>
 //<Description>
 //
@@ -42,47 +42,56 @@
  */
 
 using System;
-using AutoMapper;
+using System.Collections.Generic;
+using AutoMapper学习与练习.Sellers;
+using AutoMapper学习与练习.Orders;
+using AutoMapper学习与练习.Role;
 
-namespace 链式编程在业务逻辑上的研究.Orders.DTO
+namespace AutoMapper学习与练习.Infrastructure
 {
-    public static class Test
+    /// <summary>
+    /// 模拟订单数据表
+    /// </summary>
+    public static class Data
     {
         /// <summary>
-        /// 配置Order与OrderOut的映射关系
+        /// 模拟订单数据表
         /// </summary>
-        /// <param name="map"></param>
-        /// <returns></returns>
-        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
+        public static List<Order> OrderData = new List<Order>( )
         {
-            return map.ForMember(
-                     dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                 );
-        }
-    }
+            new Order ()
+            {
+                OrderNumber =1000,
+                ItemTotalAmount =100,
+                TaxTotalAmount =10,
+                OrderShipAmount=1,
+                Status=OrderStatusEnum.Invoiced,
+                SellerID="BB",
+                CustomerID="Z1"
+            } ,
+            new Order ()
+            {
+                OrderNumber =2000,
+                ItemTotalAmount =200,
+                TaxTotalAmount =20,
+                OrderShipAmount=2,
+                Status=OrderStatusEnum.Void,
+                SellerID="CC",
+            }
+        };
 
-    /// <summary>
-    /// 订单对象映射配置
-    /// </summary>
-    public class OrderMapFile : Profile
-    {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
+        /// <summary>
+        /// 模拟卖家数据表
+        /// </summary>
+        public static List<Seller> SellerData = new List<Seller>( )
         {
-        }
-
-        protected OrderMapFile( string profileName )
-        : base( profileName )
-        {
-            // 配置AutoMapper dest是目标表达式 opt是源表达式
-            CreateMap<Order , OrderOut>( )
-                //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
-                //.ForMember(
-                //    dest => dest.OrderTotalAmount
-                //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
-                //)
-                .ForOrderOut( );
-        }
+            new Seller (){SellerID="AA",Role=RoleEnum.Developer},
+            new Seller (){SellerID="BB",Role=RoleEnum.InternalSeller},
+            new Seller (){SellerID="CC",Role=RoleEnum.NormalSeller},
+            new Seller (){SellerID="DD",Role=RoleEnum.Boss},
+            new Seller (){SellerID="EE",Role=RoleEnum.DevBoss},
+            new Seller (){SellerID="Z1"},
+            new Seller (){}
+        };
     }
 }
