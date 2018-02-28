@@ -75,7 +75,6 @@ namespace AutoMapper学习与练习.Orders.DTO
                      , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                  );
 
-
             result.ReverseMap( );
 
             return result;
@@ -88,7 +87,7 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <returns></returns>
         public static IMappingExpression<Order , OrderAmountOut> ForOrderAmountOut( this IMappingExpression<Order , OrderAmountOut> map )
         {
-            var result= map
+            var result = map
                 //.ForMember( dest => dest.OrderTotalAmount , opt => opt.Ignore( ) )//忽略部分属性的映射
                 .ForMember(
                      dest => dest.OrderTotalAmount
@@ -129,19 +128,30 @@ namespace AutoMapper学习与练习.Orders.DTO
         {
             map.CreateMap<Order , OrderTotalInfoOut>( )
                 .ForMember(
-                dest => dest.AmountInfo
-                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderAmountOut>( a ) )
+                    dest => dest.AmountInfo
+                    , opt => opt.ReuseMap( )
                 ).ForMember(
-                dest => dest.BaseInfo
-                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderBaseOut>( a ) )
+                    dest => dest.BaseInfo
+                    , opt => opt.ReuseMap( )
                 ).ForMember(
-                dest => dest.PeopleInfo
-                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderPeopleOut>( a ) )
+                    dest => dest.PeopleInfo
+                    , opt => opt.ReuseMap( )
                 );
- 
         }
 
-        #endregion OrderTotalInfoOut与Order的关系
+        /// <summary>
+        /// 复用映射逻辑 TSource-->TMember
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TDestination"></typeparam>
+        /// <typeparam name="TMember"></typeparam>
+        /// <param name="opt"></param>
+        public static void ReuseMap<TSource, TDestination, TMember>( this IMemberConfigurationExpression<TSource , TDestination , TMember> opt )
+        {
+            opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<TMember>( a ) );
+        }
+
+        #endregion Order-->OrderTotalInfoOut
 
         #endregion 复杂关系映射
     }
@@ -171,7 +181,6 @@ namespace AutoMapper学习与练习.Orders.DTO
                 //)
                 // .ReverseMap( );//允许翻转
                 .ForOrderOut( );
-              
 
             base.CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( );
             base.CreateMap<Order , OrderPeopleOut>( ).ForOrderPeoleOut( );
@@ -179,7 +188,4 @@ namespace AutoMapper学习与练习.Orders.DTO
             this.ForTotalInfoOut( );
         }
     }
-
-
-
 }
