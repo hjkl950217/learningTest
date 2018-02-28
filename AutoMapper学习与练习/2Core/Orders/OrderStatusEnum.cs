@@ -52,6 +52,12 @@ namespace AutoMapper学习与练习.Orders
     public enum OrderStatusEnum : int
     {
         /// <summary>
+        /// 打开，订单创建后初始状态
+        /// </summary>
+        Open=1,
+
+
+        /// <summary>
         /// 无效订单,V=65
         /// </summary>
         Void = 65,

@@ -48,7 +48,7 @@ namespace AutoMapper学习与练习
 
             } );
 
-           // config.AssertConfigurationIsValid( );
+            config.AssertConfigurationIsValid( );
             var mapper = config.CreateMapper( );
             services.AddSingleton( mapper );
         }
@@ -64,6 +64,8 @@ namespace AutoMapper学习与练习
             AddMapper( services );
             AddIoc( services );
 
+
+        
             services.AddMvc( );
         }
 

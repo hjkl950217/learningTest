@@ -57,17 +57,28 @@ namespace AutoMapper学习与练习.Orders.DTO
         #region 直接关系映射
 
         /// <summary>
-        /// 配置Order与OrderOut的映射关系
+        /// 配置Order与OrderBaseOut的映射关系
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
         public static IMappingExpression<Order , OrderBaseOut> ForOrderOut( this IMappingExpression<Order , OrderBaseOut> map )
         {
-            return map
+            var result = map
+                .ForMember(
+                    dest => dest.Status
+                    , opt => opt.Condition( src => src.Status > 0 )
+                    //如果状态大于0则忽略这个属性映射
+                    //如果要针对这个属性有默认值，应该写在out对象的构造方法里
+                )
                 .ForMember(
                      dest => dest.OrderTotalAmount
                      , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                  );
+
+
+            result.ReverseMap( );
+
+            return result;
         }
 
         /// <summary>
@@ -77,14 +88,16 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <returns></returns>
         public static IMappingExpression<Order , OrderAmountOut> ForOrderAmountOut( this IMappingExpression<Order , OrderAmountOut> map )
         {
-            return map
+            var result= map
                 //.ForMember( dest => dest.OrderTotalAmount , opt => opt.Ignore( ) )//忽略部分属性的映射
                 .ForMember(
                      dest => dest.OrderTotalAmount
                      , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount )
                  );
-                 
-           
+
+            result.ReverseMap( );
+
+            return result;
         }
 
         /// <summary>
@@ -94,72 +107,43 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <returns></returns>
         public static IMappingExpression<Order , OrderPeopleOut> ForOrderPeoleOut( this IMappingExpression<Order , OrderPeopleOut> map )
         {
-            return map;
+            var result = map;
+
+            result.ReverseMap( );
+
+            return result;
         }
 
         #endregion 直接关系映射
 
         #region 复杂关系映射
 
-        #region OrderTotalInfoOut与Order的关系
+        #region Order-->OrderTotalInfoOut
 
         /// <summary>
         /// 配置Order与OrderTotalInfoOut的映射关系
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static void ForTotalInfoOut(this OrderMapFile map )
+        public static void ForTotalInfoOut( this OrderMapFile map )
         {
-
-            map.CreateMap<Order , OrderTotalInfoOut>( );
-
-
-
-
-
-
-            //金额信息
-            map.CreateMap<OrderAmountOut , OrderTotalInfoOut>( )
+            map.CreateMap<Order , OrderTotalInfoOut>( )
                 .ForMember(
-                     dest => dest.AmountInfo
-                     , opt => opt.MapFrom( src => src )
-                 )
-                 .ReverseMap( );
-
-            //基础信息
-            map.CreateMap<OrderBaseOut , OrderTotalInfoOut>( )
-                .ForMember(
-                     dest => dest.BaseInfo
-                     , opt => opt.MapFrom( src => src )
-                 )
-                 .ForMember(
-                     dest => dest.OrderNumber
-                     , opt => opt.MapFrom( src => src.OrderNumber )
-                 )
-                 .ReverseMap( );
-            /*
-             * 下面这种映射应该用ForPath
-             * .ForPath(dest => dest.BaseContentItem.TopicTag, opts => opts.MapFrom(src => src.BaseContentItem.TopicTag))
-             */
-
-
-            //人员信息
-            map.CreateMap<OrderPeopleOut , OrderTotalInfoOut>( )
-             .ForMember(
-                  dest => dest.PeopleInfo
-                  , opt => opt.MapFrom( src => src )
-              )
-             .ReverseMap( );
-
-
-
+                dest => dest.AmountInfo
+                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderAmountOut>( a ) )
+                ).ForMember(
+                dest => dest.BaseInfo
+                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderBaseOut>( a ) )
+                ).ForMember(
+                dest => dest.PeopleInfo
+                , opt => opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<OrderPeopleOut>( a ) )
+                );
+ 
         }
 
-
-        #endregion OrderTotalInfoOut的关系
+        #endregion OrderTotalInfoOut与Order的关系
 
         #endregion 复杂关系映射
-
     }
 
     /// <summary>
@@ -185,18 +169,17 @@ namespace AutoMapper学习与练习.Orders.DTO
                 //    dest => dest.OrderTotalAmount
                 //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                 //)
-                .ForOrderOut( )
-                .ReverseMap( );//允许翻转
+                // .ReverseMap( );//允许翻转
+                .ForOrderOut( );
+              
 
-            base.CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( ).ReverseMap( ); 
-            base.CreateMap<Order , OrderPeopleOut>( ).ForOrderPeoleOut( ).ReverseMap( );
-
+            base.CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( );
+            base.CreateMap<Order , OrderPeopleOut>( ).ForOrderPeoleOut( );
 
             this.ForTotalInfoOut( );
-
-
-
         }
-
     }
+
+
+
 }

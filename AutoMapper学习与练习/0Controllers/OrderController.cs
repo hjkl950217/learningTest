@@ -93,10 +93,14 @@ namespace AutoMapper学习与练习.Orders
             };
 
 
-           // var temp = this.Mapper.Map<OrderAmountOut>( order );
+            // var temp = this.Mapper.Map<OrderAmountOut>( order );
 
+            //创建新对象
+             return this.Mapper.Map<OrderTotalInfoOut>( order );
+           // return this.Mapper.Map<Order>( orderBase );
 
-            return this.Mapper.Map<OrderTotalInfoOut>( order );
+            //合并对象,
+           // return this.Mapper.Map( order,orderBase);
         }
     }
 }

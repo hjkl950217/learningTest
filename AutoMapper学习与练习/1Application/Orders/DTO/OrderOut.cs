@@ -62,6 +62,11 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         public decimal OrderTotalAmount { get; set; }
 
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public OrderStatusEnum Status { get; set; }
+
 
         /// <summary>
         /// 订单生成时间
