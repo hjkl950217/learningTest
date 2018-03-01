@@ -91,7 +91,7 @@ namespace AutoMapper学习与练习.Orders.DTO
                 //.ForMember( dest => dest.OrderTotalAmount , opt => opt.Ignore( ) )//忽略部分属性的映射
                 .ForMember(
                      dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount )
+                     , opt => opt.ResolveUsing( src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount )
                  );
 
             result.ReverseMap( );
@@ -129,7 +129,7 @@ namespace AutoMapper学习与练习.Orders.DTO
             map.CreateMap<Order , OrderTotalInfoOut>( )
                 .ForMember(
                     dest => dest.AmountInfo
-                    , opt => opt.ReuseMap( )
+                    , opt => opt.ReuseMap( ) 
                 ).ForMember(
                     dest => dest.BaseInfo
                     , opt => opt.ReuseMap( )
