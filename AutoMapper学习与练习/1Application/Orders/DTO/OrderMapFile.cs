@@ -87,6 +87,11 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <returns></returns>
         public static IMappingExpression<Order , OrderAmountOut> ForOrderAmountOut( this IMappingExpression<Order , OrderAmountOut> map )
         {
+           //1. 懒
+           //2. 
+
+
+
             var result = map
                 //.ForMember( dest => dest.OrderTotalAmount , opt => opt.Ignore( ) )//忽略部分属性的映射
                 .ForMember(

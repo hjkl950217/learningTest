@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "时间格式验证", "时间格式验证\时间格式验证.csproj", "{6318CDF9-B7F9-48BF-8D97-E23308EE06B4}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URL验证", "URL验证\URL�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链式编程在业务逻辑上的研究", "链式编程在业务逻辑上的研究\链式编程在业务逻辑上的研究.csproj", "{3F8E622B-4114-49B4-81D7-6CFBE0CAFC4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapper学习与练习", "AutoMapper学习与练习\AutoMapper学习与练习.csproj", "{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper学习与练习", "AutoMapper学习与练习\AutoMapper学习与练习.csproj", "{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "反射验证", "反射验证\反射验证.csproj", "{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
