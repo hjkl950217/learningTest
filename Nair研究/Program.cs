@@ -22,6 +22,32 @@ namespace Nair研究
 
     public class NairHelper
     {
+        /*
+         * 用户：
+         * 使用字典访问，只管读写数据，不考虑其他
+         * 
+         * 
+         * 编码：
+         * 1.制作成伪滑动过期
+         * 2.密码统一成MKPL
+         * 3.需要与小A确认下过期时间这个设定，如果需要指定，则不能使用字典的方式
+         * 4.不考虑跨服务，跨服务使用Redis做
+         * 5.帮助类不存数据，都是从nair上取，只是伪装成字典类型
+         * 
+         * 
+         * 3.1如果不能定死，考虑使用对象的方式。然后值在用户查询时转换成他要的格式
+         * 
+         * 
+         * 需求确认：
+         * 把每次方法里的databasename   pwd封装掉
+         * 
+         * 如果过期时间也不需要指定，指用索引器的方式获取
+         * 需要指定时间时调用方法
+         * 
+         * 考虑是不是去扩展他的库，贡献过去
+         * 
+         */
+
 
 
     }
@@ -39,6 +65,8 @@ namespace Nair研究
                 .AddJsonFile( "appsettingsTTT.json" , optional: true , reloadOnChange: true )
                 .Build(); //编译成对象
 
+      
+
             /*
              * 
              * var tt = config.GetSection( "NairSDKSettings" );//读取不到
@@ -51,6 +79,8 @@ namespace Nair研究
              *  
              *  把数据绑定到Settings这个字段上，修改文件后，Settings也会更新
              */
+
+          
 
             //创建DI
             var di = new ServiceCollection()
