@@ -147,9 +147,9 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <summary>
         /// 复用映射逻辑 TSource-->TMember
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TDestination"></typeparam>
-        /// <typeparam name="TMember"></typeparam>
+        /// <typeparam name="TSource">源类型</typeparam>
+        /// <typeparam name="TDestination">目标类型</typeparam>
+        /// <typeparam name="TMember">中间类型，目标类型中需要转换的属性的类型</typeparam>
         /// <param name="opt"></param>
         public static void ReuseMap<TSource, TDestination, TMember>( this IMemberConfigurationExpression<TSource , TDestination , TMember> opt )
         {
