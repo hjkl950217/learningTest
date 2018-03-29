@@ -115,14 +115,23 @@ namespace Nair研究
             client.Put("TestDB" , "TestA" , testA , 30);
             client.Put("TestDB" , "TestB" , testB , 30);
             client.Put("TestDB" , "TestC" , 100 , 30);
+
             Console.WriteLine("写入完成");
 
             Thread.Sleep(10 * 1000);
 
+          
+
             //读取
+            // Dictionary<string , T> Get<T>(string databasename , List<string> keys , string pwd = null);
+
             string strA = client.Get( "TestDB" , "TestA" );//找不到是""
             var objB= client.Get<object>( "TestDB" , "TestB" );//找不到是null
             int objc = client.Get<int>("TestDB" , "TestC");//找不到是抛异常
+
+            //目前用集合找  一个都找不到 如果Key存在会抛出异常
+           // List<string> keyList = new List<string>() { "TestA" };
+           // Dictionary<string , string> objD = client.Get<string>("TestDB" , keyList);
 
             Console.WriteLine( strA );
             Console.WriteLine( "对象：" + objB?.ToString() );
