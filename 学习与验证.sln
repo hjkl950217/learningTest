@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper学习与练习",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "反射验证", "反射验证\反射验证.csproj", "{A169CFD7-26A2-49D6-8F4B-F6ABE6864BA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nair研究与Core库使用", "Nair研究\Nair研究与Core库使用.csproj", "{DC275F05-CAEA-4E7C-9E45-AE14676F7589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nair研究与Core库使用", "Nair研究\Nair研究与Core库使用.csproj", "{DC275F05-CAEA-4E7C-9E45-AE14676F7589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "获取当前路径的方法", "获取当前路径的方法\获取当前路径的方法.csproj", "{6C34A738-375A-4EBA-8EC5-14347FABB0F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{DC275F05-CAEA-4E7C-9E45-AE14676F7589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC275F05-CAEA-4E7C-9E45-AE14676F7589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC275F05-CAEA-4E7C-9E45-AE14676F7589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
