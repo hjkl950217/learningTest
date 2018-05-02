@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "反射验证", "反射验�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nair研究与Core库使用", "Nair研究\Nair研究与Core库使用.csproj", "{DC275F05-CAEA-4E7C-9E45-AE14676F7589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "获取当前路径的方法", "获取当前路径的方法\获取当前路径的方法.csproj", "{6C34A738-375A-4EBA-8EC5-14347FABB0F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "获取当前路径的方法", "获取当前路径的方法\获取当前路径的方法.csproj", "{6C34A738-375A-4EBA-8EC5-14347FABB0F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "批量替换", "批量替换\批量替换.csproj", "{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
