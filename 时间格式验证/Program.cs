@@ -18,7 +18,7 @@ namespace 时间格式验证
 
             //unix时间戳
             long dt3 = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds( );
-
+            // Console.WriteLine($"other unix{(DateTime.UtcNow.ToUniversalTime().Ticks - 621355968000000000) / 10000000}");
             //输出
             outputList.Add( dt1 );
             outputList.Add( dt2 );
@@ -34,7 +34,9 @@ namespace 时间格式验证
 
             Console.WriteLine( "----------------------" );
 
+
             //转换回去
+            Console.WriteLine("转换回去：");
             outputList.Clear( );
             index = 1;
             DateTime dt10 = Convert.ToDateTime( dt1 );
