@@ -1,0 +1,2 @@
+1.AspectCore.Extensions.DependencyInjection  一个轻量级AOP框架 支持双平台
+2.autoMapper 一个映射实体的框架 支持双平台

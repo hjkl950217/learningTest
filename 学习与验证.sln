@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "获取当前路径的方法
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "批量替换", "批量替换\批量替换.csproj", "{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToXml研究", "ToXml研究\ToXml研究.csproj", "{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToXml研究", "ToXml研究\ToXml研究.csproj", "{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "动态添加Attribute", "动态添加Attribute\动态添加Attribute.csproj", "{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http2研究", "Http2研究\Http2研究.csproj", "{10976654-888D-483C-9FF9-0191AA548C3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "动态添加Attribute2", "动态添加Attribute2\动态添加Attribute2.csproj", "{6469EDE0-591D-4947-98F8-4F709EF2793C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10976654-888D-483C-9FF9-0191AA548C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10976654-888D-483C-9FF9-0191AA548C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10976654-888D-483C-9FF9-0191AA548C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10976654-888D-483C-9FF9-0191AA548C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
