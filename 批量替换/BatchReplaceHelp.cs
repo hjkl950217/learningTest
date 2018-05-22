@@ -14,7 +14,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace BatchReplace
@@ -106,7 +105,6 @@ namespace BatchReplace
 
                 //关闭文件流
                 fs.Close();
-             
             }
         }
     }

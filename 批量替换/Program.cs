@@ -11,7 +11,6 @@ namespace BatchReplace
             //Console.WriteLine("请输入要替换的目标字符,按回车结束：");
             //string trgetStr = Console.ReadLine();
 
-
             string sourceStr = "Mkpl.Item";
             string trgetStr = "{{cookiecutter.namespace_name}}";
 
@@ -25,7 +24,6 @@ namespace BatchReplace
             {
                 Console.WriteLine($"{item.FullName}\t{item.Content.Length}");
             }
-
 
             Console.WriteLine($"共处理{tt.Count}个文件");
             Console.WriteLine("运行结束");
