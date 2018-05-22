@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestModel xmlns:i="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://schemas.datacontract.org/2004/07/ToXml%E7%A0%94%E7%A9%B6">
+  <DictList xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+    <d2p1:KeyValueOfstringstring>
+      <d2p1:Key>A1</d2p1:Key>
+      <d2p1:Value>B1</d2p1:Value>
+    </d2p1:KeyValueOfstringstring>
+  </DictList>
+  <Name>A</Name>
+  <NameList xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+    <d2p1:string>AAAA</d2p1:string>
+    <d2p1:string>BBBB</d2p1:string>
+  </NameList>
+  <Num>0</Num>
+</TestModel>
