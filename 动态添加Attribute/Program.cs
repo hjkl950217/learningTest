@@ -26,9 +26,9 @@ namespace 动态添加Attribute
 
 
 
-            //TypeDescriptor.AddAttributes(typeof(TestInterface), new TestAttribute());
-            //AttributeCollection collection = TypeDescriptor.GetAttributes(typeof(TestInterface));
-            //TestAttribute attr = ((TestAttribute)collection[typeof(TestAttribute)]);
+            TypeDescriptor.AddAttributes(typeof(TestInterface), new TestAttribute());
+            AttributeCollection collection = TypeDescriptor.GetAttributes(typeof(TestInterface));
+            TestAttribute attr = ((TestAttribute)collection[typeof(TestAttribute)]);
 
             Type temp = testInterface.GetType();
 

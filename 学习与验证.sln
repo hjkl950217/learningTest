@@ -25,9 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToXml研究", "ToXml研究\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "动态添加Attribute", "动态添加Attribute\动态添加Attribute.csproj", "{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http2研究", "Http2研究\Http2研究.csproj", "{10976654-888D-483C-9FF9-0191AA548C3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Http2研究", "Http2研究\Http2研究.csproj", "{10976654-888D-483C-9FF9-0191AA548C3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "动态添加Attribute2", "动态添加Attribute2\动态添加Attribute2.csproj", "{6469EDE0-591D-4947-98F8-4F709EF2793C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "动态添加Attribute2", "动态添加Attribute2\动态添加Attribute2.csproj", "{6469EDE0-591D-4947-98F8-4F709EF2793C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "动态添加Attribute-A", "动态添加Attribute-A", "{FF8E4081-ADEC-4D22-A023-D096EF544ACD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中间件库", "中间件库", "{E7B76911-9808-432F-A962-900ECB53D095}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareCK", "MiddlewareCK\MiddlewareCK.csproj", "{A46D403E-E13A-4C54-9752-3DE833AEC4A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,9 +93,18 @@ Global
 		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6469EDE0-591D-4947-98F8-4F709EF2793C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D} = {FF8E4081-ADEC-4D22-A023-D096EF544ACD}
+		{6469EDE0-591D-4947-98F8-4F709EF2793C} = {FF8E4081-ADEC-4D22-A023-D096EF544ACD}
+		{A46D403E-E13A-4C54-9752-3DE833AEC4A9} = {E7B76911-9808-432F-A962-900ECB53D095}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB04A57E-6447-4E76-862D-5D1B1638F2B6}

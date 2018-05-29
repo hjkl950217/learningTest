@@ -17,28 +17,41 @@ namespace Http2研究.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("t{id}")]
+        public string Get(int id,string name)
         {
-            return "value";
+            return $"id: {id}";
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("ttt")]
+        public string Post([FromBody]TestIn value,[FromQuery] int num)
         {
+            return $"POST Value: {value?.value}   int:{num}";
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+
+
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+
+
+
+    }
+
+
+    public class TestIn
+    {
+        public string value { get; set; }
     }
 }

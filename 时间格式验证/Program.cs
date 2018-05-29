@@ -20,7 +20,7 @@ namespace 时间格式验证
             string dt2 = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
 
             //unix时间戳
-            long dt3 = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            long dt3 = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             // Console.WriteLine($"other unix{(DateTime.UtcNow.ToUniversalTime().Ticks - 621355968000000000) / 10000000}");
 
             //输出
