@@ -33,7 +33,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "动态添加Attribute-A", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中间件库", "中间件库", "{E7B76911-9808-432F-A962-900ECB53D095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareCK", "MiddlewareCK\MiddlewareCK.csproj", "{A46D403E-E13A-4C54-9752-3DE833AEC4A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareCK", "MiddlewareCK\MiddlewareCK.csproj", "{A46D403E-E13A-4C54-9752-3DE833AEC4A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Html转Pdf", "Html转Pdf\Html转Pdf.csproj", "{57C0E00E-850F-43AF-B5DC-7D3F856F3AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentDictionary的研究", "ConcurrentDictionary的研究\ConcurrentDictionary的研究.csproj", "{29F0D907-563D-4CD6-9283-47487995A9DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,14 @@ Global
 		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46D403E-E13A-4C54-9752-3DE833AEC4A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C0E00E-850F-43AF-B5DC-7D3F856F3AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C0E00E-850F-43AF-B5DC-7D3F856F3AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C0E00E-850F-43AF-B5DC-7D3F856F3AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C0E00E-850F-43AF-B5DC-7D3F856F3AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F0D907-563D-4CD6-9283-47487995A9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F0D907-563D-4CD6-9283-47487995A9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F0D907-563D-4CD6-9283-47487995A9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F0D907-563D-4CD6-9283-47487995A9DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
