@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>建造者模式</AssemblyName>
+    <RootNamespace>建造者模式</RootNamespace>
+  </PropertyGroup>
+
+</Project>
