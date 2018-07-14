@@ -13,7 +13,7 @@ namespace 建造者模式
         {
             if(part == null)
             {
-                part = $"Default {partName}";
+                part = $"Default Aodi`s {partName}";
             }
 
             this.aoDiCar.Add(partName,part);
@@ -39,13 +39,14 @@ namespace 建造者模式
 
         public IBuilder UseOtherPart(string partName,string part)
         {
-            this.aoDiCar.Add(partName,part);
+            this.aoDiCar.Add(partName,$"Aodi`s{part}");
             return this;
         }
 
         public Car BuildCar()
         {
             Console.WriteLine("汽车开始在组装.......");
+            this.aoDiCar.Show();
             Console.WriteLine("汽车组装好了");
             return this.aoDiCar;
         }

@@ -12,27 +12,48 @@ namespace 建造者模式
     {
         private readonly Car buickCar = new Car();
 
-        public IBuilder UseCarDoor()
+        private void UsePartBase(string partName,string part = null)
         {
-            this.buickCar.Add("Buick's Door");
+            if(part == null)
+            {
+                part = $"Default Buick`s {partName}";
+            }
+
+            this.buickCar.Add(partName,part);
+        }
+        public IBuilder UseCarDoor(string part = null)
+        {
+            this.UsePartBase("Door",part);
             return this;
         }
 
-        public IBuilder UseCarWheel()
+        public IBuilder UseCarWheel(string part = null)
         {
-            this.buickCar.Add("Buick's Wheel");
+            this.UsePartBase("Wheel",part);
             return this;
         }
 
-        public IBuilder UseCarEngine()
+        public IBuilder UseCarEngine(string part = null)
         {
-            this.buickCar.Add("Buick's Engine");
+            this.UsePartBase("Engine",part);
+            return this;
+        }
+
+        public IBuilder UseOtherPart(string partName,string part)
+        {
+            this.buickCar.Add(partName,$"Buick`s{part}");
             return this;
         }
 
         public Car BuildCar()
         {
+
+            Console.WriteLine("汽车开始在组装.......");
+            this.buickCar.Show();
+            Console.WriteLine("汽车组装好了");
             return this.buickCar;
         }
+
+       
     }
 }

@@ -23,7 +23,7 @@ namespace 建造者模式
                 .UseCarDoor()
                 .UseCarEngine()
                 .BuildCar();
-            buickCar.Show();
+            //buickCar.Show();
 
             Console.WriteLine();
 
@@ -33,7 +33,7 @@ namespace 建造者模式
                 .UseCarEngine()
                 .UseCarWheel()
                 .BuildCar();
-            aoDiCar.Show();
+           // aoDiCar.Show();
 
             Console.Read();
         }
