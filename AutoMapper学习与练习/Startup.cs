@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+
+using AutoMapper.Mappers;
 using AutoMapper学习与练习.Orders;
 using AutoMapper学习与练习.Orders.DTO;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
 
 namespace AutoMapper学习与练习
 {
@@ -38,13 +41,14 @@ namespace AutoMapper学习与练习
 
                 cfg.AddProfile( new OrderMapFile( ) );
 
+               // cfg.AddExpressionMapping();
 
                 // 映射具有public或internal的get的属性
                 cfg.ShouldMapProperty = p =>
                     p.GetMethod != null
                     && ( p.GetMethod.IsPublic || p.GetMethod.IsAssembly );
 
-                
+            
 
             } );
 
@@ -61,7 +65,10 @@ namespace AutoMapper学习与练习
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
         {
-            AddMapper( services );
+            //AddMapper( services );
+
+            services.AddAutoMapper();
+
             AddIoc( services );
 
 
