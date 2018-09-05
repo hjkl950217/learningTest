@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurrentDictionary的研�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "建造者模式学习", "建造者模式学习\建造者模式学习.csproj", "{A3696E1E-C1FF-4D33-98A3-0DA5A9FE8E6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp语法学习", "CSharp语法学习\CSharp语法学习.csproj", "{215A44F8-C3E6-4198-A805-0AEDA973EBF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp语法学习", "CSharp语法学习\CSharp语法学习.csproj", "{215A44F8-C3E6-4198-A805-0AEDA973EBF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "内存缓存学习\内存缓存学习.csproj", "{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,10 @@ Global
 		{215A44F8-C3E6-4198-A805-0AEDA973EBF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{215A44F8-C3E6-4198-A805-0AEDA973EBF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{215A44F8-C3E6-4198-A805-0AEDA973EBF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
