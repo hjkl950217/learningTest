@@ -2,7 +2,7 @@
 //using System.Linq;
 //using System.Reflection;
 
-//namespace 反射验证
+//namespace 类型相关的研究
 //{
 //    public static class Test
 //    {
@@ -28,7 +28,7 @@
 //             string data
 //             , string systemName = null
 //             , string configName = null
-           
+
 //             )
 //             where TSystemName : class
 //             where TConfigName : class
@@ -46,7 +46,7 @@
 
 //            var tttt = sysObj.GetValue( null );
 
-         
+
 
 //            //取B的信息
 //            var confObj = sysObj?.PropertyType
