@@ -20,7 +20,7 @@ namespace BatchReplace
             replaceHelp.StartWork(sourceStr, trgetStr);
             var tt = replaceHelp.FileList;
 
-            foreach(var item in tt)
+            foreach (var item in tt)
             {
                 Console.WriteLine($"{item.FullName}\t{item.Content.Length}");
             }
