@@ -38,7 +38,7 @@ namespace Redis研究
             //    }
             //    );
 
-            redis.SetAsyncExt(
+            redis.SetEntry(
                 "Test",
                  stu
                 //new DistributedCacheEntryOptions()
@@ -49,7 +49,7 @@ namespace Redis研究
 
             int timeOut = 0;
 
-            var result = redis.GetAsyncExt<Student>("Test")
+            var result = redis.GetEntryAsync<Student>("Test")
                 .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult(); 

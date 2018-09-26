@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.Caching.Distributed
 {
-    public static class IDistributedCacheObjectExtension
+    public static class IDistributedCacheExtension
     {
         #region 序列化部分
 
@@ -53,7 +53,7 @@ namespace Microsoft.Extensions.Caching.Distributed
 
         #region 扩展部分
 
-        public static void SetExt<T>(
+        public static void SetEntry<T>(
            this IDistributedCache distributedCache,
             string key,
             T value,
@@ -72,7 +72,7 @@ namespace Microsoft.Extensions.Caching.Distributed
             }
         }
 
-        public static Task SetAsyncExt<T>(
+        public static Task SetEntryAsync<T>(
           this IDistributedCache distributedCache,
            string key,
            T value,
@@ -84,7 +84,7 @@ namespace Microsoft.Extensions.Caching.Distributed
             return distributedCache.SetAsync(key, data, options, token);
         }
 
-        public static T GetExt<T>(this IDistributedCache distributedCache, string key)
+        public static T GetEntry<T>(this IDistributedCache distributedCache, string key)
             where T : class
         {
             byte[] data = distributedCache.Get(key);
@@ -92,15 +92,13 @@ namespace Microsoft.Extensions.Caching.Distributed
             return Deserialize<T>(data);
         }
 
-
-        public static Task<T> GetAsyncExt<T>(
-            this IDistributedCache distributedCache, 
-            string key, 
-            CancellationToken token = default(CancellationToken) )
+        public static Task<T> GetEntryAsync<T>(
+            this IDistributedCache distributedCache,
+            string key,
+            CancellationToken token = default(CancellationToken))
             where T : class
         {
-           
-            byte[] data =  distributedCache.GetAsync(key)
+            byte[] data = distributedCache.GetAsync(key)
                 .ConfigureAwait(false)//配置异步执行完成后是否返回原始上下文 等同await
                 .GetAwaiter()
                 .GetResult();
