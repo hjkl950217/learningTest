@@ -1,19 +1,18 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Redis研究
+using System;
+
+
+
+namespace Redis和序列化研究
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
+            TestMsgPack();
+
             Console.WriteLine("验证开始");
 
             IServiceCollection services = new ServiceCollection();
@@ -52,15 +51,13 @@ namespace Redis研究
             var result = redis.GetEntryAsync<Student>("Test")
                 .ConfigureAwait(false)
                 .GetAwaiter()
-                .GetResult(); 
+                .GetResult();
             Console.WriteLine(result.Name);
 
             //要测试过期时间使用下面的while
             //while (timeOut == 0)
             //{
             //    // var result = redis.GetString("Test");
-
-          
 
             //    System.Threading.Thread.Sleep(1 * 1000);
 
@@ -80,39 +77,22 @@ namespace Redis研究
             Console.ReadLine();
         }
 
+
+        public static void TestMsgPack()
+        {
+            Student stu = new Student() { ID = 10, Name = "Test" };
+
+
+      
+
+
+        }
+
         [Serializable]
         public class Student
         {
             public int ID { get; set; }
             public string Name { get; set; }
-        }
-
-        public static byte[] SerializaStu(Student student)
-        {
-            IFormatter formatter = new BinaryFormatter();
-
-            MemoryStream stream = new MemoryStream();
-
-            formatter.Serialize(stream, student);
-
-            return stream.ToArray();
-        }
-
-
-
-
-
-        public static T ByteArrayToObject<T>(byte[] arrBytes) where T : class
-        {
-            IFormatter formatter = new BinaryFormatter();
-
-            MemoryStream memStream = new MemoryStream(arrBytes);
-
-            //memStream.Write(arrBytes, 0, arrBytes.Length);
-            //memStream.Seek(0, SeekOrigin.Begin);
-
-            object obj = formatter.Deserialize(memStream);
-            return obj as T;
         }
     }
 }

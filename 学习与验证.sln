@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp语法学习", "CShar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "内存缓存学习\内存缓存学习.csproj", "{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis研究", "Redis研究\Redis研究.csproj", "{26DB3BD4-6EA8-4916-9353-2D66F03053B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis和序列化研究", "Redis和序列化研究\Redis和序列化研究.csproj", "{26DB3BD4-6EA8-4916-9353-2D66F03053B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

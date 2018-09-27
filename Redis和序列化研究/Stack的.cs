@@ -3,7 +3,7 @@
 //using StackExchange.Redis;
 //using System;
 
-//namespace Redis研究
+//namespace Redis和序列化研究
 //{
 //    internal class Program
 //    {
@@ -12,11 +12,11 @@
 //            Console.WriteLine("验证开始");
 
 //            IServiceCollection services = new ServiceCollection();
-           
+
 //            IServiceProvider di = services.BuildServiceProvider();
 
 
-  
+
 
 //            ConnectionMultiplexer conn = ConnectionMultiplexer.Connect("localhost");
 
