@@ -1,10 +1,9 @@
 ﻿using MessagePack;
+using MessagePack.Resolvers;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Dynamic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Redis和序列化研究
 {
@@ -12,6 +11,8 @@ namespace Redis和序列化研究
     {
         private static void Main(string[] args)
         {
+            StartupSerializable();
+
             Console.WriteLine("验证开始");
 
             List<Student2> msgStatusList = new List<Student2>()
@@ -30,22 +31,45 @@ namespace Redis和序列化研究
 
             var data = SerializableMsgPack(msgStatusList);
 
-
-            IFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, msgStatusList);
-            var testBytes= stream.ToArray();
+            //最老的方式
+            //IFormatter formatter = new BinaryFormatter();
+            //MemoryStream stream = new MemoryStream();
+            //formatter.Serialize(stream, msgStatusList);
+            //var testBytes= stream.ToArray();
 
             List<Student3> result = DeSerializableMsgPack<List<Student3>>(data);
 
+            //动态类型-1
+            //会报错 说没有这个类型的解析器
+            //
+            dynamic obj2 = new ExpandoObject();
+            obj2.ID = 5;
+            var data2 = SerializableMsgPack(obj2);
+            dynamic result2 = DeSerializableMsgPack<dynamic>(data2);
+
+            //动态类型-2
+            Student3 obj3 = new Student3() { ID = 5 };
+            var data3 = SerializableMsgPack<Student3>(obj3);
+            dynamic result3 = DeSerializableMsgPack<dynamic>(data3);
+
             foreach (var item in result)
             {
-               // Console.WriteLine($"{item.ID}\t{item.Name}");
+                // Console.WriteLine($"{item.ID}\t{item.Name}");
                 Console.WriteLine($"{item.ID}");
             }
 
             Console.WriteLine("验证结束");
             Console.ReadLine();
+        }
+
+        public static void StartupSerializable()
+        {
+            CompositeResolver.RegisterAndSetAsDefault(
+               // BuiltinResolver.Instance,
+                StandardResolver.Instance
+                //DynamicContractlessObjectResolver.Instance,
+                //DynamicEnumAsStringResolver.Instance
+           );
         }
 
         public static byte[] SerializableMsgPack<T>(T students)
@@ -56,10 +80,9 @@ namespace Redis和序列化研究
 
         public static T DeSerializableMsgPack<T>(byte[] data)
         {
+            var t = MessagePackSerializer.ToJson(data);
 
-          var t=  MessagePackSerializer.ToJson(data);
-
-            return MessagePackSerializer.Deserialize<T>(data);
+            return MessagePackSerializer.Deserialize<T>(data, CompositeResolver.Instance);
         }
 
         [MessagePackObject]
@@ -86,12 +109,11 @@ namespace Redis和序列化研究
 
         [MessagePackObject(keyAsPropertyName: true)]
         [Serializable]
-        public class Student3
+        public sealed class Student3
         {
             public int ID { get; set; }
 
-        
-           // public string Name { get; set; }
+            // public string Name { get; set; }
         }
     }
 }
