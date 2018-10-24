@@ -57,7 +57,7 @@ namespace Microsoft.Extensions.Caching.Distributed
             DistributedCacheEntryOptions options = null
            )
         {
-            byte[] data = Serializa(value);
+            byte[] data = SerializeDefault(value);
 
             if (options == null)
             {
@@ -77,7 +77,7 @@ namespace Microsoft.Extensions.Caching.Distributed
            CancellationToken token = default(CancellationToken)
           )
         {
-            byte[] data = Serializa(value);
+            byte[] data = SerializeDefault(value);
             return distributedCache.SetAsync(key, data, options, token);
         }
 
@@ -86,7 +86,7 @@ namespace Microsoft.Extensions.Caching.Distributed
         {
             byte[] data = distributedCache.Get(key);
 
-            return Deserialize<T>(data);
+            return DeserializeDefault<T>(data);
         }
 
         public static Task<T> GetEntryAsync<T>(
@@ -100,7 +100,7 @@ namespace Microsoft.Extensions.Caching.Distributed
                 .GetAwaiter()
                 .GetResult();
 
-            return Task.FromResult(Deserialize<T>(data));
+            return Task.FromResult(DeserializeDefault<T>(data));
         }
 
         #endregion 扩展部分
