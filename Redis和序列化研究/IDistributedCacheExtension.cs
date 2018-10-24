@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using MessagePack;
+using MessagePack.Resolvers;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
@@ -11,7 +13,7 @@ namespace Microsoft.Extensions.Caching.Distributed
         #region 序列化部分
 
         /// <summary>
-        /// 将对象序列化为二进制数据
+        /// (原生解析-不推荐)将对象序列化为二进制数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj">要序列化的数据</param>
@@ -19,34 +21,29 @@ namespace Microsoft.Extensions.Caching.Distributed
         /// 没有限制<typeparamref name="T"/>的类型,值类型会有一个装箱操作
         /// </remarks>
         /// <returns></returns>
-        private static byte[] Serializa<T>(T obj)
+        private static byte[] SerializeDefault<T>(T obj)
         {
             IFormatter formatter = new BinaryFormatter();
-
             MemoryStream stream = new MemoryStream();
 
+            //序列化
             formatter.Serialize(stream, obj);
-
             return stream.ToArray();
         }
 
         /// <summary>
-        /// 将二进制数据序列化为对象
+        /// (原生解析-不推荐)将二进制数据序列化为对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="arrBytes"></param>
         /// <returns></returns>
-        private static T Deserialize<T>(byte[] arrBytes) where T : class
+        private static T DeserializeDefault<T>(byte[] arrBytes) where T : class
         {
-            IFormatter formatter = new BinaryFormatter();
-
-            MemoryStream memStream = new MemoryStream(arrBytes);
-
-            //memStream.Write(arrBytes, 0, arrBytes.Length);
-            //memStream.Seek(0, SeekOrigin.Begin);
-
-            object obj = formatter.Deserialize(memStream);
-            return obj as T;
+            using (MemoryStream ms = new MemoryStream(arrBytes))
+            {
+                IFormatter br = new BinaryFormatter();
+                return (T)br.Deserialize(ms);
+            }
         }
 
         #endregion 序列化部分

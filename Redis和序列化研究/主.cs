@@ -22,6 +22,7 @@ namespace Redis和序列化研究
     {
         private static void Main(string[] args)
         {
+     
             Console.WriteLine("验证开始");
             Stopwatch stopwatch = new Stopwatch();
             int testTotal = 50 * 10000;
@@ -401,7 +402,7 @@ namespace Redis和序列化研究
 
         public static byte[] Serialize<T>(T data)
         {
-            return MessagePackSerializer.Serialize<T>(data);
+            return MessagePackSerializer.Serialize<T>(data, CompositeResolver.Instance);
         }
 
         public static T Deserialize<T>(byte[] data)
