@@ -66,11 +66,6 @@ namespace EFCore学习
             var testCode = di.GetRequiredService<TestCode>();
             testCode.Run();
 
-
-          
-
-            Console.WriteLine("验证结束");
-            Console.ReadLine();
         }
     }
 }

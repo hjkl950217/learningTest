@@ -36,7 +36,19 @@ namespace EFCore学习.Data
                 {
                     FirstName="李",
                     LastName="四",
-                    EnrollmentDate=Convert.ToDateTime("2002-2-2")
+                    EnrollmentDate=Convert.ToDateTime("2001-2-2")
+                },
+                new Student()
+                {
+                    FirstName="赵",
+                    LastName="六",
+                    EnrollmentDate=Convert.ToDateTime("2008-3-3")
+                },
+                new Student()
+                {
+                    FirstName="周",
+                    LastName="七",
+                    EnrollmentDate=Convert.ToDateTime("2006-4-4")
                 }
             };
 

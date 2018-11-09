@@ -22,28 +22,39 @@ namespace EFCore学习.LogicCode
 
         public void Run()
         {
+            //起步
             this.GetAsync();
 
+            //CRUD
             this.ReadData();
-
             this.CreateAndUpdateData();
-
             this.Update();
+
+            //排序-筛选-分页-分组
+            this.SortByStudentID();
+            this.SearchName();
+            this.Pagination();
+            this.Group();
+
+            Console.WriteLine("验证结束");
+            Console.ReadLine();
         }
 
-        public void Show(string str)
+        public void Log(string str)
         {
             this.logger.LogInformation(str);
         }
 
-        //R
+        //起步
         public void GetAsync()
         {
             System.Console.WriteLine("R-获取集合数据");
             List<Student> students = this.schoolContext.Students.ToList();
 
-            this.Show(students.ToJson());
+            this.Log(students.ToJson());
         }
+
+        #region CRUD
 
         //R
         public void ReadData()
@@ -55,7 +66,7 @@ namespace EFCore学习.LogicCode
                 .AsNoTracking()
                 .FirstOrDefault(m => m.ID == 2);
 
-            this.Show(student.ToJson());
+            this.Log(student.ToJson());
         }
 
         //C 和 D
@@ -77,9 +88,9 @@ namespace EFCore学习.LogicCode
                 .FirstOrDefault(t => t.FirstName == "现");
 
             this.logger.LogInformation("新添加的成员：");
-            this.Show(result?.ToJson());
+            this.Log(result?.ToJson());
 
-            this.Show("添加成功");
+            this.Log("添加成功");
 
             this.schoolContext.Students.Remove(result);
             this.schoolContext.SaveChanges();
@@ -102,8 +113,76 @@ namespace EFCore学习.LogicCode
 
             this.schoolContext.SaveChanges();
         }
+
+        #endregion CRUD
+
+        #region 排序-筛选-分页
+
+        //排序
+        public void SortByStudentID()
+        {
+            this.Log("排序-StudentID");
+
+            List<Student> students = this.schoolContext.Students
+                .AsNoTracking()
+                .OrderByDescending(t => t.ID)
+                .ToList();
+            this.Log(students.ToJson());
+        }
+
+        //筛选
+        public void SearchName()
+        {
+            this.Log("筛选-姓为李的");
+
+            Student student = this.schoolContext.Students
+                  .AsNoTracking()
+                  .SingleOrDefault(t => t.FirstName == "李");
+
+            this.Log(student.ToJson());
+        }
+
+        //分页
+        public void Pagination()
+        {
+            this.Log("分页--第二页--页大小为2--ID升序");
+
+            int pageIndex = 2;
+            int pageSize = 2;
+
+            List<Student> students = this.schoolContext.Students
+              .AsNoTracking()
+              .OrderBy(t => t.ID)
+              .Skip((pageIndex - 1) * pageSize)
+              .Take(pageSize)
+              .ToList();
+            this.Log(students.ToJson());
+        }
+
+        //分组
+        public void Group()
+        {
+            this.Log("分组-同一年的为一组");
+
+            //Student student = this.schoolContext.Students
+            //      .AsNoTracking()
+            //      .SingleOrDefault(t => t.FirstName == "李");
+
+            this.Log("错误分组：");
+            var result = from a in this.schoolContext.Students
+                         group a by a.EnrollmentDate.Year into g
+                         select new KeyValuePair<int, List<Student>>(g.Key, g.ToList());
+            var resultInfo = result.ToDictionary(t => t.Key, t => t.Value);
+
+            this.Log("正确作法应该不使用EF，使用原生SQL.数据量少时使用错误的也可以");
+
+            this.Log(resultInfo.ToJson());
+        }
+
+        #endregion 排序-筛选-分页
     }
 
+    //显示测试结果用的
     public static class Extensions
     {
         private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
