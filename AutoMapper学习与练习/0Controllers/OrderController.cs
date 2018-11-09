@@ -48,7 +48,7 @@ namespace AutoMapper学习与练习.Orders
         [Route( "api/[controller]/{orderNumber:int}" )]
         [HttpGet]
         public OrderBaseOut GetOrder( [FromRoute]OrderIn orderIn )
-        {base.HttpContext.Response.Cookies
+        {
             return this.OrderServices.GetOrderBase( orderIn.OrderNumber );
         }
 
