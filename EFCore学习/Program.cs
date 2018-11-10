@@ -26,6 +26,15 @@ namespace EFCore学习
 
         private static void Main(string[] args)
         {
+            /*
+             * 教程地址：
+             * https://docs.microsoft.com/zh-cn/aspnet/core/data/ef-rp/?view=aspnetcore-2.1
+             * 
+             * 只能参考，他的教程更像是说明文档
+             * 
+             */
+
+
             Console.WriteLine("Hello World!");
 
             #region 模拟注册

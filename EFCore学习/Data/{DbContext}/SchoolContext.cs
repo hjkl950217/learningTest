@@ -7,6 +7,11 @@ namespace EFCore学习.Data
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
+            /*
+             * 反向工程命令
+             * Scaffold-DbContext "Server=wcmis218\sqlexpress;Database=Lynn_Test;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir TestModels
+             * 
+             */
         }
 
         public DbSet<Student> Students { get; set; }
@@ -21,9 +26,11 @@ namespace EFCore学习.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //指定创建时的表名
-            modelBuilder.Entity<Student>().ToTable(nameof(Student));
+           // modelBuilder.Entity<Student>().ToTable(nameof(Student));
             modelBuilder.Entity<Enrollment>().ToTable(nameof(Enrollment));
             modelBuilder.Entity<Course>().ToTable(nameof(Course));
+
+            modelBuilder.ApplyConfiguration(new StudentMap());
         }
     }
 }
