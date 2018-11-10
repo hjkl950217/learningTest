@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nair研究与Core库使用"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "获取当前路径的方法", "获取当前路径的方法\获取当前路径的方法.csproj", "{6C34A738-375A-4EBA-8EC5-14347FABB0F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "批量替换", "批量替换\批量替换.csproj", "{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToXml研究", "ToXml研究\ToXml研究.csproj", "{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "动态添加Attribute", "动态添加Attribute\动态添加Attribute.csproj", "{CCA0E349-AB8C-4B34-BB04-1D919C3C4A8D}"
@@ -45,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "内�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis和序列化研究", "Redis和序列化研究\Redis和序列化研究.csproj", "{26DB3BD4-6EA8-4916-9353-2D66F03053B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore学习", "EFCore学习\EFCore学习.csproj", "{5A6D28AC-EC56-49CD-9A51-FA82BB4FEBE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore学习", "EFCore学习\EFCore学习.csproj", "{5A6D28AC-EC56-49CD-9A51-FA82BB4FEBE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "批量替换", "批量替换\批量替换.csproj", "{B61AF969-BE3E-4DE4-BD26-67C26B3D2D26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +85,6 @@ Global
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C34A738-375A-4EBA-8EC5-14347FABB0F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7DC1D31-8F06-402C-9BA9-2ECAC8859B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB7A1E6-E1DC-49F5-855F-4F50753D6D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -133,6 +129,10 @@ Global
 		{5A6D28AC-EC56-49CD-9A51-FA82BB4FEBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A6D28AC-EC56-49CD-9A51-FA82BB4FEBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A6D28AC-EC56-49CD-9A51-FA82BB4FEBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B61AF969-BE3E-4DE4-BD26-67C26B3D2D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61AF969-BE3E-4DE4-BD26-67C26B3D2D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61AF969-BE3E-4DE4-BD26-67C26B3D2D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61AF969-BE3E-4DE4-BD26-67C26B3D2D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
