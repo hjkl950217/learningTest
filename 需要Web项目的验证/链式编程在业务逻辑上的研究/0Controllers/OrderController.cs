@@ -1,35 +1,33 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using 链式编程在业务逻辑上的研究.Orders.DTO;
 using 链式编程在业务逻辑上的研究.Role;
 
 namespace 链式编程在业务逻辑上的研究.Orders
 {
-    [Route( "api/[controller]" )]
+    [Route("api/[controller]")]
     public class OrderController : Controller
     {
         private IOrderServices OrderServices;
 
-        public OrderController( IOrderServices orderServices )
+        public OrderController(IOrderServices orderServices)
         {
             this.OrderServices = orderServices;
         }
 
         // GET api/Order
-        [HttpGet( "{orderNumber=0:int}" )]
+        [HttpGet("{orderNumber=0:int}")]
         public async Task<IEnumerable<OrderOut>> GetOrder(
-            [FromRoute]int orderNumber ,
-            [FromQuery] string sellerID )
+            [FromRoute]int orderNumber,
+            [FromQuery] string sellerID)
         {
-            return await this.OrderServices.GetAllOrder( sellerID );
+            return await this.OrderServices.GetAllOrder(sellerID);
         }
 
         // GET api/Order/100
-        [HttpGet( "{orderNumber:int}" )]
-        public dynamic GetOrder2( [FromRoute]int orderNumber )
+        [HttpGet("{orderNumber:int}")]
+        public dynamic GetOrder2([FromRoute]int orderNumber)
         {
             // return this.OrderServices.GetOrder( orderNumber );
 
@@ -39,11 +37,11 @@ namespace 链式编程在业务逻辑上的研究.Orders
 
             return new
             {
-                isInterA = boss.IsInternal( ).IsDevBoss( ).IsNormal( ).IsCheckSuccess( ) ,
+                isInterA = boss.IsInternal().IsDevBoss().IsNormal().IsCheckSuccess(),
                 isInterB = boss
-                    .CheckRole( RoleEnum.DevBoss )
-                    .CheckRole( RoleEnum.InternalSeller )
-                    .IsCheckSuccess( ) ,
+                    .CheckRole(RoleEnum.DevBoss)
+                    .CheckRole(RoleEnum.InternalSeller)
+                    .IsCheckSuccess(),
                 //isInterB = devBoss.IsNormal( ).IsDevBoss().IsCheckSuccess( ),
                 //isNull=roleNull.IsInternal().IsCheckSuccess()
             };

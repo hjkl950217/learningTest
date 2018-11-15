@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     public interface TestInterface2
     {

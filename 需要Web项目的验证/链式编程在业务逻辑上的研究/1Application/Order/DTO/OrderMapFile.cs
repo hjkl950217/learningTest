@@ -41,7 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using AutoMapper;
 
 namespace 链式编程在业务逻辑上的研究.Orders.DTO
@@ -53,11 +52,11 @@ namespace 链式编程在业务逻辑上的研究.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static IMappingExpression<Order , OrderOut> ForOrderOut( this IMappingExpression<Order , OrderOut> map )
+        public static IMappingExpression<Order, OrderOut> ForOrderOut(this IMappingExpression<Order, OrderOut> map)
         {
             return map.ForMember(
                      dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
+                     , opt => opt.MapFrom(src => src.ItemTotalAmount + src.TaxTotalAmount)
                  );
         }
     }
@@ -67,22 +66,22 @@ namespace 链式编程在业务逻辑上的研究.Orders.DTO
     /// </summary>
     public class OrderMapFile : Profile
     {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
+        public OrderMapFile()
+        : this("OrderMapFile")
         {
         }
 
-        protected OrderMapFile( string profileName )
-        : base( profileName )
+        protected OrderMapFile(string profileName)
+        : base(profileName)
         {
             // 配置AutoMapper dest是目标表达式 opt是源表达式
-            CreateMap<Order , OrderOut>( )
+            CreateMap<Order, OrderOut>()
                 //// 这里放在一个方法里是为了更好的修改对应关系，让这个构造方法不是几合一
                 //.ForMember(
                 //    dest => dest.OrderTotalAmount
                 //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                 //)
-                .ForOrderOut( );
+                .ForOrderOut();
         }
     }
 }

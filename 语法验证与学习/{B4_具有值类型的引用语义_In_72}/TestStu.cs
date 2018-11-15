@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     public class TestStu
     {

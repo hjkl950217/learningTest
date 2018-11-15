@@ -9,6 +9,8 @@
 //
 //</Discription>
 // --------------------------------------------------------------------------------------------------------------------
+using AutoMapper学习与练习.Orders.DTO;
+
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -41,11 +43,7 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper学习与练习.Orders.DTO;
-using AutoMapper学习与练习.Role;
 
 namespace AutoMapper学习与练习.Orders
 {
@@ -58,43 +56,40 @@ namespace AutoMapper学习与练习.Orders
         /// 查询所有订单
         /// </summary>
         /// <returns></returns>
-        IEnumerable<OrderBaseOut> GetAllOrderBase( );
-
+        IEnumerable<OrderBaseOut> GetAllOrderBase();
 
         /// <summary>
         /// 查询所有订单
         /// </summary>
         /// <returns></returns>
-        IEnumerable<OrderTotalInfoOut> GetAllOrderInfo( );
+        IEnumerable<OrderTotalInfoOut> GetAllOrderInfo();
 
         /// <summary>
         /// 按订单号查询订单
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        OrderBaseOut GetOrderBase( int orderNumber );
+        OrderBaseOut GetOrderBase(int orderNumber);
 
         /// <summary>
         /// 按订单号查询订单中的金额相关信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        OrderAmountOut GetAmountByOrder( int orderNumber );
+        OrderAmountOut GetAmountByOrder(int orderNumber);
 
         /// <summary>
         /// 按订单号查询订单中的相关人员信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        OrderPeopleOut GetPeopleByOrder( int orderNumber );
+        OrderPeopleOut GetPeopleByOrder(int orderNumber);
 
         /// <summary>
         /// 查询一个订单中所有信息
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        OrderTotalInfoOut GetOrder( int orderNumber );
-
-
+        OrderTotalInfoOut GetOrder(int orderNumber);
     }
 }

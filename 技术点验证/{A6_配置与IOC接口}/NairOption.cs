@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     /// <summary>
     /// Nair需要的配置类实体
@@ -18,12 +14,13 @@ namespace 技术点验证
         /// 默认环境
         /// </summary>
         public string DefaultCluster { get; set; }
+
         /// <summary>
         /// 对应环境的配置
         /// </summary>
         public Clusters Clusters { get; set; }
     }
-    
+
     /// <summary>
     /// 对应环境的配置
     /// </summary>
@@ -51,5 +48,4 @@ namespace 技术点验证
         public string NairServerIps { get; set; }
         public string DataBaseLocation { get; set; }
     }
-
 }

@@ -9,6 +9,10 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
+using AutoMapper学习与练习.Orders;
+using AutoMapper学习与练习.Role;
+using AutoMapper学习与练习.Sellers;
+
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -43,9 +47,6 @@
 
 using System;
 using System.Collections.Generic;
-using AutoMapper学习与练习.Sellers;
-using AutoMapper学习与练习.Orders;
-using AutoMapper学习与练习.Role;
 
 namespace AutoMapper学习与练习.Infrastructure
 {
@@ -57,7 +58,7 @@ namespace AutoMapper学习与练习.Infrastructure
         /// <summary>
         /// 模拟订单数据表
         /// </summary>
-        public static List<Order> OrderData = new List<Order>( )
+        public static List<Order> OrderData = new List<Order>()
         {
             new Order ()
             {
@@ -85,7 +86,7 @@ namespace AutoMapper学习与练习.Infrastructure
         /// <summary>
         /// 模拟卖家数据表
         /// </summary>
-        public static List<Seller> SellerData = new List<Seller>( )
+        public static List<Seller> SellerData = new List<Seller>()
         {
             new Seller (){SellerID="AA",Role=RoleEnum.Developer},
             new Seller (){SellerID="BB",Role=RoleEnum.InternalSeller},

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Primitives;
 using System;
-using System.Threading;
 
 namespace 内存缓存学习.Controllers
 {
@@ -26,8 +24,8 @@ namespace 内存缓存学习.Controllers
 
             return new
             {
-                Time=DateTimeOffset.Now,
-                result=   result
+                Time = DateTimeOffset.Now,
+                result = result
             };
         }
 
@@ -53,10 +51,9 @@ namespace 内存缓存学习.Controllers
             MemoryCacheEntryOptions options = new MemoryCacheEntryOptions();
 
             options.SlidingExpiration = TimeSpan.FromSeconds(expireNum);//滑动过期时间
-            options.AbsoluteExpirationRelativeToNow= TimeSpan.FromSeconds(expireNum+3);//绝对过期时间
+            options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(expireNum + 3);//绝对过期时间
 
             return options;
         }
-
     }
 }

@@ -3,20 +3,20 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-   public class A_获取当前路径的方法: IVerification
+    public class A_获取当前路径的方法 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A1_获取当前路径的方法;
 
         public void Start(string[] args)
         {
-           //按情况复制下面的7行代码到你的项目中，测试后再确定使用那一个
-           /* 但下面的方法暂时不能解决这种问题：
-            * 
-            * 如果用donet cli 扩展工具在命令行中运行，工具会把项目的dll用反射加载的话。
-            * 下面的方法都获取的是工具的地址
-            * 
-            * 
-            */
+            //按情况复制下面的7行代码到你的项目中，测试后再确定使用那一个
+            /* 但下面的方法暂时不能解决这种问题：
+             *
+             * 如果用donet cli 扩展工具在命令行中运行，工具会把项目的dll用反射加载的话。
+             * 下面的方法都获取的是工具的地址
+             *
+             *
+             */
 
             ////获取模块的完整路径。
             //string path1 = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
@@ -35,7 +35,5 @@ namespace 技术点验证
 
             Console.ReadLine();
         }
-
-
     }
 }

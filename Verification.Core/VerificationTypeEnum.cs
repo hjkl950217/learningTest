@@ -17,17 +17,20 @@
         /// 只用来查看配置与IOC的使用即可
         /// </summary>
         A6_配置与IOC接口,
+
         A7_动态添加Attribute,
         A8_MessagePack基准测试,
 
         B1_建造者模式学习,
         B2_类型相关的研究,
         B3_协变和逆变,
+
         /// <summary>
         /// 在C# 7.2版本才有的
         /// </summary>
         B4_具有值类型的引用语义_In_72,
 
+        B5_表达式树研究,
 
         ZZZZ_Non
     }

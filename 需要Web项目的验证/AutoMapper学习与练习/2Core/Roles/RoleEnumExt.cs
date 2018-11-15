@@ -41,35 +41,33 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
-
 namespace AutoMapper学习与练习.Role
 {
     public static class RoleEnumExt
     {
-        public static RoleEnum? IsBoss( this RoleEnum? target )
+        public static RoleEnum? IsBoss(this RoleEnum? target)
         {
-            return RoleEnum.Boss.CheckRole( target );
+            return RoleEnum.Boss.CheckRole(target);
         }
 
-        public static RoleEnum? IsDeveloper( this RoleEnum? target )
+        public static RoleEnum? IsDeveloper(this RoleEnum? target)
         {
-            return RoleEnum.Developer.CheckRole( target );
+            return RoleEnum.Developer.CheckRole(target);
         }
 
-        public static RoleEnum? IsInternal( this RoleEnum? target )
+        public static RoleEnum? IsInternal(this RoleEnum? target)
         {
-            return RoleEnum.InternalSeller.CheckRole( target );
+            return RoleEnum.InternalSeller.CheckRole(target);
         }
 
-        public static RoleEnum? IsNormal( this RoleEnum? target )
+        public static RoleEnum? IsNormal(this RoleEnum? target)
         {
-            return RoleEnum.NormalSeller.CheckRole( target );
+            return RoleEnum.NormalSeller.CheckRole(target);
         }
 
-        public static RoleEnum? IsDevBoss( this RoleEnum? target )
+        public static RoleEnum? IsDevBoss(this RoleEnum? target)
         {
-            return RoleEnum.DevBoss.CheckRole( target );
+            return RoleEnum.DevBoss.CheckRole(target);
         }
 
         /// <summary>
@@ -77,9 +75,9 @@ namespace AutoMapper学习与练习.Role
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool IsCheckSuccess( this RoleEnum? target )
+        public static bool IsCheckSuccess(this RoleEnum? target)
         {
-            return ( target == null ) ? false : true;
+            return (target == null) ? false : true;
         }
 
         /// <summary>
@@ -91,15 +89,15 @@ namespace AutoMapper学习与练习.Role
         /// <param name="sources">要被验证的权限</param>
         /// <param name="target">用来判断的权限</param>
         /// <returns></returns>
-        public static RoleEnum? CheckRole( this RoleEnum? sources , RoleEnum target )
+        public static RoleEnum? CheckRole(this RoleEnum? sources, RoleEnum target)
         {
             //判断空
-            if( sources == null ) return null;
+            if (sources == null) return null;
 
             //做位与运算来判断权限
-            bool isSeccess = ( sources.Value | target ) == sources.Value;
+            bool isSeccess = (sources.Value | target) == sources.Value;
 
-            return ( isSeccess == true ) ? sources : null;
+            return (isSeccess == true) ? sources : null;
         }
 
         /// <summary>
@@ -111,15 +109,15 @@ namespace AutoMapper学习与练习.Role
         /// <param name="sources">用来判断的权限</param>
         /// <param name="target">要被验证的权限</param>
         /// <returns></returns>
-        private static RoleEnum? CheckRole( this RoleEnum sources , RoleEnum? target )
+        private static RoleEnum? CheckRole(this RoleEnum sources, RoleEnum? target)
         {
             //判断空
-            if( target == null ) return null;
+            if (target == null) return null;
 
             //做位与运算来判断权限
-            bool isSeccess = ( sources | target ) == target;
+            bool isSeccess = (sources | target) == target;
 
-            return ( isSeccess == true ) ? target : null;
+            return (isSeccess == true) ? target : null;
         }
     }
 }

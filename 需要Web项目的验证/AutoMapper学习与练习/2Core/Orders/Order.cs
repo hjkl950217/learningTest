@@ -91,6 +91,7 @@ namespace AutoMapper学习与练习.Orders
         /// 订单生成时间
         /// </summary>
         public DateTime InDate { get; set; }
+
         //.退运费
     }
 }

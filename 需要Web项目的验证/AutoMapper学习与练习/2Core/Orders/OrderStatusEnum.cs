@@ -41,9 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace AutoMapper学习与练习.Orders
 {
     /// <summary>
@@ -54,8 +51,7 @@ namespace AutoMapper学习与练习.Orders
         /// <summary>
         /// 打开，订单创建后初始状态
         /// </summary>
-        Open=1,
-
+        Open = 1,
 
         /// <summary>
         /// 无效订单,V=65

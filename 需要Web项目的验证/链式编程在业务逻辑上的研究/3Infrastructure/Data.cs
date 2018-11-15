@@ -41,11 +41,10 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using System.Collections.Generic;
-using 链式编程在业务逻辑上的研究.Sellers;
 using 链式编程在业务逻辑上的研究.Orders;
 using 链式编程在业务逻辑上的研究.Role;
+using 链式编程在业务逻辑上的研究.Sellers;
 
 namespace 链式编程在业务逻辑上的研究.Infrastructure
 {
@@ -57,7 +56,7 @@ namespace 链式编程在业务逻辑上的研究.Infrastructure
         /// <summary>
         /// 模拟订单数据表
         /// </summary>
-        public static List<Order> OrderData = new List<Order>( )
+        public static List<Order> OrderData = new List<Order>()
         {
             new Order (){OrderNumber=1000,ItemTotalAmount=100,TaxTotalAmount=10},
             new Order (){OrderNumber=2000,ItemTotalAmount=200,TaxTotalAmount=20}
@@ -66,7 +65,7 @@ namespace 链式编程在业务逻辑上的研究.Infrastructure
         /// <summary>
         /// 模拟卖家数据表
         /// </summary>
-        public static List<Seller> SellerData = new List<Seller>( )
+        public static List<Seller> SellerData = new List<Seller>()
         {
             new Seller (){SellerID="AA",Role=RoleEnum.Developer},
             new Seller (){SellerID="BB",Role=RoleEnum.InternalSeller},

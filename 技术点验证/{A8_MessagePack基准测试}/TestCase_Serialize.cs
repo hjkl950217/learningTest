@@ -4,7 +4,7 @@ using System.Text;
 
 namespace 技术点验证
 {
-    [ CoreJob]
+    [CoreJob]
     [ProcessCount(5)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class TestCase_Serialize

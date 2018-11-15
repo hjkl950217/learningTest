@@ -37,8 +37,7 @@
         /// 比如大灯、方向盘、低音炮等等。
         /// </remarks>
         /// <returns></returns>
-        IBuilder UseOtherPart(string partName,string part);
-
+        IBuilder UseOtherPart(string partName, string part);
 
         /// <summary>
         /// 获得组装好的汽车

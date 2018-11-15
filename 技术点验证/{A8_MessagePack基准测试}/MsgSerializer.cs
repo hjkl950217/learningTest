@@ -31,7 +31,6 @@ namespace 技术点验证
            // DynamicEnumAsStringResolver.Instance
            );
 
-
             MsgSerializer.IsSetup = true;
         }
 
@@ -64,7 +63,6 @@ namespace 技术点验证
             }
         }
 
-
         public static string SerializeJson<T>(T data)
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(data);
@@ -74,6 +72,5 @@ namespace 技术点验证
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data);
         }
-
     }
 }

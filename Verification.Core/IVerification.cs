@@ -5,7 +5,7 @@
     /// </summary>
     public interface IVerification
     {
-        VerificationTypeEnum VerificationType { get;}
+        VerificationTypeEnum VerificationType { get; }
 
         /// <summary>
         /// 开始验证

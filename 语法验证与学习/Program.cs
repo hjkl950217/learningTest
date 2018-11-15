@@ -6,7 +6,7 @@ namespace 语法验证与学习
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             VerificationTypeEnum verificationType = VerificationTypeEnum.A2_线程ID验证;
 
@@ -28,19 +28,11 @@ namespace 语法验证与学习
             Console.ReadLine();
         }
 
-
         public static List<IVerification> RegisterAllVerification()
         {
             List<IVerification> verifications = new List<IVerification>();
 
-            #region 验证接口的注册
-
-  
-
-            #endregion 验证接口的注册
-
             return verifications;
-
         }
 
         /// <summary>
@@ -53,6 +45,5 @@ namespace 语法验证与学习
         {
             return verifications.Find(t => t.VerificationType == verificationType);
         }
-
     }
 }

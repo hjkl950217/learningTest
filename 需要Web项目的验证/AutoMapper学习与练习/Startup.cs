@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using AutoMapper;
-
-using AutoMapper.Mappers;
+﻿using AutoMapper;
 using AutoMapper学习与练习.Orders;
 using AutoMapper学习与练习.Orders.DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
 
 namespace AutoMapper学习与练习
 {
     public class Startup
     {
-        public Startup( IConfiguration configuration )
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -32,59 +21,54 @@ namespace AutoMapper学习与练习
         /// 添加Mapper映射关系
         /// </summary>
         /// <param name="services"></param>
-        public static void AddMapper( IServiceCollection services )
+        public static void AddMapper(IServiceCollection services)
         {
-            var config = new AutoMapper.MapperConfiguration( cfg =>
-            {
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+           {
                 //配置替换字符，一定要在创建map之前
                 //cfg.ReplaceMemberName( "Ä" , "A" );//把源类型属性名中的Ä替换成A
 
-                cfg.AddProfile( new OrderMapFile( ) );
+                cfg.AddProfile(new OrderMapFile());
 
-               // cfg.AddExpressionMapping();
+                // cfg.AddExpressionMapping();
 
                 // 映射具有public或internal的get的属性
                 cfg.ShouldMapProperty = p =>
-                    p.GetMethod != null
-                    && ( p.GetMethod.IsPublic || p.GetMethod.IsAssembly );
+                   p.GetMethod != null
+                   && (p.GetMethod.IsPublic || p.GetMethod.IsAssembly);
+           });
 
-            
-
-            } );
-
-            config.AssertConfigurationIsValid( );
-            var mapper = config.CreateMapper( );
-            services.AddSingleton( mapper );
+            config.AssertConfigurationIsValid();
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
-        public static void AddIoc( IServiceCollection services )
+        public static void AddIoc(IServiceCollection services)
         {
-            services.AddScoped<IOrderServices , OrderServices>( );
+            services.AddScoped<IOrderServices, OrderServices>();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices( IServiceCollection services )
+        public void ConfigureServices(IServiceCollection services)
         {
             //AddMapper( services );
 
             services.AddAutoMapper();
 
-            AddIoc( services );
+            AddIoc(services);
 
-
-        
-            services.AddMvc( );
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure( IApplicationBuilder app , IHostingEnvironment env )
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if( env.IsDevelopment( ) )
+            if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage( );
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc( );
+            app.UseMvc();
         }
     }
 }

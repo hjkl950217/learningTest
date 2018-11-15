@@ -41,8 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
-
 namespace 链式编程在业务逻辑上的研究.Role
 {
     /// <summary>
@@ -55,6 +53,6 @@ namespace 链式编程在业务逻辑上的研究.Role
         /// </summary>
         /// <param name="source">要检查的权限</param>
         /// <returns></returns>
-        bool InternalOrderCheck( string sellerID );
+        bool InternalOrderCheck(string sellerID);
     }
 }

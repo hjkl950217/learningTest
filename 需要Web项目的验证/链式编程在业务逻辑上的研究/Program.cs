@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace 链式编程在业务逻辑上的研究
 {
     public class Program
     {
-        public static void Main( string[ ] args )
+        public static void Main(string[] args)
         {
-            BuildWebHost( args ).Run( );
+            BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost( string[ ] args ) =>
-            WebHost.CreateDefaultBuilder( args )
-                .UseStartup<Startup>( )
-                .UseUrls( "http://*:5000" )
-                .Build( );
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseUrls("http://*:5000")
+                .Build();
     }
 }

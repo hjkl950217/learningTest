@@ -41,8 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
-
 namespace AutoMapper学习与练习.RMA
 {
     /// <summary>

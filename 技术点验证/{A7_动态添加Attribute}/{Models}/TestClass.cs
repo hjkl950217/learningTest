@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace 技术点验证
 {
     public class TestClass : TestInterface
     {
-    
         public void AddInt(int num)
         {
             throw new NotImplementedException();

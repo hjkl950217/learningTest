@@ -67,11 +67,9 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         public OrderStatusEnum Status { get; set; }
 
-
         /// <summary>
         /// 订单生成时间
         /// </summary>
         public DateTime InDate { get; set; }
-
     }
 }

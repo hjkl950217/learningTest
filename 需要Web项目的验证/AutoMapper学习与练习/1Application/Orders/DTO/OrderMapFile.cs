@@ -41,7 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using AutoMapper;
 
 namespace AutoMapper学习与练习.Orders.DTO
@@ -61,21 +60,21 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static IMappingExpression<Order , OrderBaseOut> ForOrderOut( this IMappingExpression<Order , OrderBaseOut> map )
+        public static IMappingExpression<Order, OrderBaseOut> ForOrderOut(this IMappingExpression<Order, OrderBaseOut> map)
         {
             var result = map
                 .ForMember(
                     dest => dest.Status
-                    , opt => opt.Condition( src => src.Status > 0 )
+                    , opt => opt.Condition(src => src.Status > 0)
                     //如果状态大于0则忽略这个属性映射
                     //如果要针对这个属性有默认值，应该写在out对象的构造方法里
                 )
                 .ForMember(
                      dest => dest.OrderTotalAmount
-                     , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
+                     , opt => opt.MapFrom(src => src.ItemTotalAmount + src.TaxTotalAmount)
                  );
 
-            result.ReverseMap( );
+            result.ReverseMap();
 
             return result;
         }
@@ -85,21 +84,19 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static IMappingExpression<Order , OrderAmountOut> ForOrderAmountOut( this IMappingExpression<Order , OrderAmountOut> map )
+        public static IMappingExpression<Order, OrderAmountOut> ForOrderAmountOut(this IMappingExpression<Order, OrderAmountOut> map)
         {
-           //1. 懒
-           //2. 
-
-
+            //1. 懒
+            //2.
 
             var result = map
                 //.ForMember( dest => dest.OrderTotalAmount , opt => opt.Ignore( ) )//忽略部分属性的映射
                 .ForMember(
                      dest => dest.OrderTotalAmount
-                     , opt => opt.ResolveUsing( src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount )
+                     , opt => opt.ResolveUsing(src => src.ItemTotalAmount + src.TaxTotalAmount + src.OrderShipAmount)
                  );
 
-            result.ReverseMap( );
+            result.ReverseMap();
 
             return result;
         }
@@ -109,11 +106,11 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static IMappingExpression<Order , OrderPeopleOut> ForOrderPeoleOut( this IMappingExpression<Order , OrderPeopleOut> map )
+        public static IMappingExpression<Order, OrderPeopleOut> ForOrderPeoleOut(this IMappingExpression<Order, OrderPeopleOut> map)
         {
             var result = map;
 
-            result.ReverseMap( );
+            result.ReverseMap();
 
             return result;
         }
@@ -129,18 +126,18 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static void ForTotalInfoOut( this OrderMapFile map )
+        public static void ForTotalInfoOut(this OrderMapFile map)
         {
-            map.CreateMap<Order , OrderTotalInfoOut>( )
+            map.CreateMap<Order, OrderTotalInfoOut>()
                 .ForMember(
                     dest => dest.AmountInfo
-                    , opt => opt.ReuseMap( ) 
+                    , opt => opt.ReuseMap()
                 ).ForMember(
                     dest => dest.BaseInfo
-                    , opt => opt.ReuseMap( )
+                    , opt => opt.ReuseMap()
                 ).ForMember(
                     dest => dest.PeopleInfo
-                    , opt => opt.ReuseMap( )
+                    , opt => opt.ReuseMap()
                 );
         }
 
@@ -151,9 +148,9 @@ namespace AutoMapper学习与练习.Orders.DTO
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <typeparam name="TMember">中间类型，目标类型中需要转换的属性的类型</typeparam>
         /// <param name="opt"></param>
-        public static void ReuseMap<TSource, TDestination, TMember>( this IMemberConfigurationExpression<TSource , TDestination , TMember> opt )
+        public static void ReuseMap<TSource, TDestination, TMember>(this IMemberConfigurationExpression<TSource, TDestination, TMember> opt)
         {
-            opt.ResolveUsing( ( a , b , c , context ) => context.Mapper.Map<TMember>( a ) );
+            opt.ResolveUsing((a, b, c, context) => context.Mapper.Map<TMember>(a));
         }
 
         #endregion Order-->OrderTotalInfoOut
@@ -166,31 +163,31 @@ namespace AutoMapper学习与练习.Orders.DTO
     /// </summary>
     public class OrderMapFile : Profile
     {
-        public OrderMapFile( )
-        : this( "OrderMapFile" )
+        public OrderMapFile()
+        : this("OrderMapFile")
         {
         }
 
-        protected OrderMapFile( string profileName )
-        : base( profileName )
+        protected OrderMapFile(string profileName)
+        : base(profileName)
         {
             /*
              * 具体配置放在其他方法里是为了更好的修改对应关系，让这个构造方法不是几合一
              */
 
             // 配置AutoMapper dest是目标表达式 opt是源表达式
-            base.CreateMap<Order , OrderBaseOut>( )
+            base.CreateMap<Order, OrderBaseOut>()
                 //.ForMember(
                 //    dest => dest.OrderTotalAmount
                 //    , opt => opt.MapFrom( src => src.ItemTotalAmount + src.TaxTotalAmount )
                 //)
                 // .ReverseMap( );//允许翻转
-                .ForOrderOut( );
+                .ForOrderOut();
 
-            base.CreateMap<Order , OrderAmountOut>( ).ForOrderAmountOut( );
-            base.CreateMap<Order , OrderPeopleOut>( ).ForOrderPeoleOut( );
+            base.CreateMap<Order, OrderAmountOut>().ForOrderAmountOut();
+            base.CreateMap<Order, OrderPeopleOut>().ForOrderPeoleOut();
 
-            this.ForTotalInfoOut( );
+            this.ForTotalInfoOut();
         }
     }
 }

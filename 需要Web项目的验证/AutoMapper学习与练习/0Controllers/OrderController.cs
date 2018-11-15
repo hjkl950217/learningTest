@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 using AutoMapper学习与练习.Orders.DTO;
-using AutoMapper学习与练习.Role;
-using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace AutoMapper学习与练习.Orders
 {
@@ -14,7 +11,7 @@ namespace AutoMapper学习与练习.Orders
         private IOrderServices OrderServices;
         private IMapper Mapper;
 
-        public OrderController( IOrderServices orderServices , IMapper mapper )
+        public OrderController(IOrderServices orderServices, IMapper mapper)
         {
             this.OrderServices = orderServices;
             this.Mapper = mapper;
@@ -25,11 +22,11 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <returns></returns>
         // GET api/OrderBase
-        [Route( "api/[controller]Base" )]
+        [Route("api/[controller]Base")]
         [HttpGet]
-        public IEnumerable<OrderBaseOut> GetOrderBase( )
+        public IEnumerable<OrderBaseOut> GetOrderBase()
         {
-            return this.OrderServices.GetAllOrderBase( );
+            return this.OrderServices.GetAllOrderBase();
         }
 
         /// <summary>
@@ -37,70 +34,69 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <returns></returns>
         // GET api/Order
-        [Route( "api/[controller]" )]
+        [Route("api/[controller]")]
         [HttpGet]
-        public IEnumerable<OrderTotalInfoOut> GetOrder( )
+        public IEnumerable<OrderTotalInfoOut> GetOrder()
         {
-            return this.OrderServices.GetAllOrderInfo( );
+            return this.OrderServices.GetAllOrderInfo();
         }
 
         // GET api/Order/1000
-        [Route( "api/[controller]/{orderNumber:int}" )]
+        [Route("api/[controller]/{orderNumber:int}")]
         [HttpGet]
-        public OrderBaseOut GetOrder( [FromRoute]OrderIn orderIn )
+        public OrderBaseOut GetOrder([FromRoute]OrderIn orderIn)
         {
-            return this.OrderServices.GetOrderBase( orderIn.OrderNumber );
+            return this.OrderServices.GetOrderBase(orderIn.OrderNumber);
         }
 
         // GET api/OrderAmount/1000?
-        [Route( "api/[controller]Amount/{orderNumber:int}" )]
+        [Route("api/[controller]Amount/{orderNumber:int}")]
         [HttpGet]
-        public OrderAmountOut GetOrderAmount( [FromRoute]OrderIn orderIn )
+        public OrderAmountOut GetOrderAmount([FromRoute]OrderIn orderIn)
         {
-            return this.OrderServices.GetAmountByOrder( orderIn.OrderNumber );
+            return this.OrderServices.GetAmountByOrder(orderIn.OrderNumber);
         }
 
         // GET api/OrderPeole/1000?
-        [Route( "api/[controller]People/{orderNumber:int}" )]
+        [Route("api/[controller]People/{orderNumber:int}")]
         [HttpGet]
-        public OrderPeopleOut GetPeople( [FromRoute]OrderIn orderIn )
+        public OrderPeopleOut GetPeople([FromRoute]OrderIn orderIn)
         {
-            return this.OrderServices.GetPeopleByOrder( orderIn.OrderNumber );
+            return this.OrderServices.GetPeopleByOrder(orderIn.OrderNumber);
         }
 
         // GET autoMapper
-        [Route( "autoMapper" )]
+        [Route("autoMapper")]
         [HttpGet]
-        public dynamic GetMapperData( )
+        public dynamic GetMapperData()
         {
-            var order = new Order( )
+            var order = new Order()
             {
-                OrderNumber = 1000 ,
-                ItemTotalAmount = 100 ,
-                TaxTotalAmount = 10 ,
-                OrderShipAmount = 1 ,
-                Status = OrderStatusEnum.Invoiced ,
-                SellerID = "BB" ,
-                CustomerID = "Z1" ,
-                InDate = Convert.ToDateTime( "2017-01-01" )
+                OrderNumber = 1000,
+                ItemTotalAmount = 100,
+                TaxTotalAmount = 10,
+                OrderShipAmount = 1,
+                Status = OrderStatusEnum.Invoiced,
+                SellerID = "BB",
+                CustomerID = "Z1",
+                InDate = Convert.ToDateTime("2017-01-01")
             };
 
-            var orderBase = new OrderBaseOut( )
+            var orderBase = new OrderBaseOut()
             {
-                InDate = DateTime.Now ,
-                OrderNumber = 10 ,
+                InDate = DateTime.Now,
+                OrderNumber = 10,
                 OrderTotalAmount = 100
             };
-
 
             // var temp = this.Mapper.Map<OrderAmountOut>( order );
 
             //创建新对象
-             return this.Mapper.Map<OrderTotalInfoOut>( order );
-           // return this.Mapper.Map<Order>( orderBase );
+            return this.Mapper.Map<OrderTotalInfoOut>(order);
+            // return this.Mapper.Map<Order>( orderBase );
 
             //合并对象,
-           // return this.Mapper.Map( order,orderBase);
+            // return this.Mapper.Map( order,orderBase);
         }
     }
 }

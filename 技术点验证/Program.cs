@@ -4,9 +4,9 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-   public class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             VerificationTypeEnum verificationType = VerificationTypeEnum.A2_线程ID验证;
 
@@ -28,7 +28,6 @@ namespace 技术点验证
             Console.ReadLine();
         }
 
-
         public static List<IVerification> RegisterAllVerification()
         {
             List<IVerification> verifications = new List<IVerification>();
@@ -42,7 +41,6 @@ namespace 技术点验证
             #endregion 验证接口的注册
 
             return verifications;
-
         }
 
         /// <summary>
@@ -51,10 +49,9 @@ namespace 技术点验证
         /// <param name="verifications"></param>
         /// <param name="verificationType"></param>
         /// <returns></returns>
-        public static IVerification GetVerification(List<IVerification> verifications,VerificationTypeEnum verificationType)
+        public static IVerification GetVerification(List<IVerification> verifications, VerificationTypeEnum verificationType)
         {
             return verifications.Find(t => t.VerificationType == verificationType);
         }
-
     }
 }

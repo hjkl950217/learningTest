@@ -9,6 +9,10 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
+using AutoMapper;
+using AutoMapper学习与练习.Infrastructure;
+using AutoMapper学习与练习.Orders.DTO;
+
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -41,12 +45,7 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper学习与练习.Orders.DTO;
-using AutoMapper学习与练习.Infrastructure;
 
 namespace AutoMapper学习与练习.Orders
 {
@@ -59,7 +58,8 @@ namespace AutoMapper学习与练习.Orders
         /// 映射对象
         /// </summary>
         private readonly IMapper Mapper;
-        public OrderServices( IMapper mapper )
+
+        public OrderServices(IMapper mapper)
         {
             this.Mapper = mapper;
         }
@@ -68,18 +68,18 @@ namespace AutoMapper学习与练习.Orders
         /// 查询所有订单基础信息
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<OrderBaseOut> GetAllOrderBase( )
+        public IEnumerable<OrderBaseOut> GetAllOrderBase()
         {
-            return this.Mapper.Map<IEnumerable<OrderBaseOut>>( Data.OrderData );
+            return this.Mapper.Map<IEnumerable<OrderBaseOut>>(Data.OrderData);
         }
 
         /// <summary>
         /// 查询所有订单信息
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<OrderTotalInfoOut> GetAllOrderInfo( )
+        public IEnumerable<OrderTotalInfoOut> GetAllOrderInfo()
         {
-            return this.Mapper.Map<IEnumerable<OrderTotalInfoOut>>( Data.OrderData );
+            return this.Mapper.Map<IEnumerable<OrderTotalInfoOut>>(Data.OrderData);
         }
 
         /// <summary>
@@ -87,9 +87,9 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderBaseOut GetOrderBase( int orderNumber )
+        public OrderBaseOut GetOrderBase(int orderNumber)
         {
-            return this.GetOrder<OrderBaseOut>( orderNumber );
+            return this.GetOrder<OrderBaseOut>(orderNumber);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderAmountOut GetAmountByOrder( int orderNumber )
+        public OrderAmountOut GetAmountByOrder(int orderNumber)
         {
-            return this.GetOrder<OrderAmountOut>( orderNumber );
+            return this.GetOrder<OrderAmountOut>(orderNumber);
         }
 
         /// <summary>
@@ -107,9 +107,9 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderPeopleOut GetPeopleByOrder( int orderNumber )
+        public OrderPeopleOut GetPeopleByOrder(int orderNumber)
         {
-            return this.GetOrder<OrderPeopleOut>( orderNumber );
+            return this.GetOrder<OrderPeopleOut>(orderNumber);
         }
 
         /// <summary>
@@ -117,17 +117,15 @@ namespace AutoMapper学习与练习.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public OrderTotalInfoOut GetOrder( int orderNumber )
+        public OrderTotalInfoOut GetOrder(int orderNumber)
         {
-            return this.GetOrder<OrderTotalInfoOut>( orderNumber );
+            return this.GetOrder<OrderTotalInfoOut>(orderNumber);
         }
 
-        private T GetOrder<T>( int orderNumber )
+        private T GetOrder<T>(int orderNumber)
         {
-            Order result = Data.OrderData.Find( t => t.OrderNumber == orderNumber );
-            return this.Mapper.Map<T>( result );
+            Order result = Data.OrderData.Find(t => t.OrderNumber == orderNumber);
+            return this.Mapper.Map<T>(result);
         }
-
-     
     }
 }

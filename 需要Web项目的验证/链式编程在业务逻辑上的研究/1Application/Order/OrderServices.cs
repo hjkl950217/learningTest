@@ -9,6 +9,8 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
+using AutoMapper;
+
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -41,12 +43,10 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
-using 链式编程在业务逻辑上的研究.Orders.DTO;
 using 链式编程在业务逻辑上的研究.Infrastructure;
+using 链式编程在业务逻辑上的研究.Orders.DTO;
 using 链式编程在业务逻辑上的研究.Role;
 
 namespace 链式编程在业务逻辑上的研究.Orders
@@ -66,7 +66,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// </summary>
         private ICheckRole CheckRole;
 
-        public OrderServices( IMapper mapper , ICheckRole checkRole )
+        public OrderServices(IMapper mapper, ICheckRole checkRole)
         {
             this.Mapper = mapper;
             this.CheckRole = checkRole;
@@ -76,12 +76,12 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// 查找所有订单
         /// </summary>
         /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( )
+        public async Task<List<OrderOut>> GetAllOrder()
         {
-            var task = Task.Run( ( ) =>
-              {
-                  return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-              } );
+            var task = Task.Run(() =>
+             {
+                 return this.Mapper.Map<List<OrderOut>>(Data.OrderData);
+             });
 
             return await task;
         }
@@ -91,16 +91,16 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// </summary>
         /// <param name="sellerID"></param>
         /// <returns></returns>
-        public async Task<List<OrderOut>> GetAllOrder( string sellerID )
+        public async Task<List<OrderOut>> GetAllOrder(string sellerID)
         {
-            var task = Task.Run( ( ) =>
-            {
+            var task = Task.Run(() =>
+           {
                 //模拟有内部用户权限的才可以查所有的
-                bool isRole = this.CheckRole.InternalOrderCheck( sellerID?.ToUpper( ) );
-                if( isRole == false ) return null;
+                bool isRole = this.CheckRole.InternalOrderCheck(sellerID?.ToUpper());
+               if (isRole == false) return null;
 
-                return this.Mapper.Map<List<OrderOut>>( Data.OrderData );
-            } );
+               return this.Mapper.Map<List<OrderOut>>(Data.OrderData);
+           });
 
             return await task;
         }
@@ -110,15 +110,15 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// </summary>
         /// <param name="orderNumber"></param>
         /// <returns></returns>
-        public async Task<OrderOut> GetOrder( int orderNumber )
+        public async Task<OrderOut> GetOrder(int orderNumber)
         {
-            var task = Task.Run( ( ) =>
-            {
-                Order result = Data
-                .OrderData.Find( t => t.OrderNumber == orderNumber );
+            var task = Task.Run(() =>
+           {
+               Order result = Data
+               .OrderData.Find(t => t.OrderNumber == orderNumber);
 
-                return this.Mapper.Map<OrderOut>( result );
-            } );
+               return this.Mapper.Map<OrderOut>(result);
+           });
 
             return await task;
         }

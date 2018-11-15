@@ -41,7 +41,6 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-using System;
 using 链式编程在业务逻辑上的研究.Role;
 
 namespace 链式编程在业务逻辑上的研究.Sellers
