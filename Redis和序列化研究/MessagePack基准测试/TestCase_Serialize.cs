@@ -19,7 +19,7 @@ namespace Redis和序列化研究
         [GlobalSetup]
         public void SetUp()
         {
-            Serializable.StartupSerializable();
+            MsgSerializer.InitializeMsgPackSerializer();
             this.testIntData = TestHelper.GetIntTestData(this.TestTotal);
             this.testStringData = TestHelper.GetIntTestData2(this.TestTotal);
             this.testNonData = TestHelper.GetIntTestData3(this.TestTotal);
@@ -28,31 +28,31 @@ namespace Redis和序列化研究
         [Benchmark]
         public byte[] TestIntSerialize()
         {
-            return Serializable.Serialize(this.testIntData);
+            return MsgSerializer.Serialize(this.testIntData);
         }
 
         [Benchmark]
         public byte[] TestStringSerialize()
         {
-            return Serializable.Serialize(this.testStringData);
+            return MsgSerializer.Serialize(this.testStringData);
         }
 
         [Benchmark]
         public byte[] TestNonSerialize()
         {
-            return Serializable.SerializeDefault(this.testNonData);
+            return MsgSerializer.SerializeDefault(this.testNonData);
         }
 
         [Benchmark]
         public byte[] TestDefaultSerialize()
         {
-            return Serializable.SerializeDefault(this.testNonData);
+            return MsgSerializer.SerializeDefault(this.testNonData);
         }
 
         [Benchmark]
         public byte[] TestJsonSerialize()
         {
-            return Encoding.UTF8.GetBytes(Serializable.SerializeJson(this.testNonData));
+            return Encoding.UTF8.GetBytes(MsgSerializer.SerializeJson(this.testNonData));
         }
     }
 }

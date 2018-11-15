@@ -33,7 +33,7 @@ namespace Redis和序列化研究
 
         private static void CompatibilityTest()
         {
-            Serializable.StartupSerializable();//初始化序列化器
+            MsgSerializer.InitializeMsgPackSerializer();//初始化序列化器
 
             TestEntity_Non result = null;
 
@@ -88,8 +88,8 @@ namespace Redis和序列化研究
 
         public static TestEntity_Non BaseTest<T>(T obj)
         {
-            var byteT = Serializable.Serialize(obj);
-            var result = Serializable.Deserialize<TestEntity_Non>(byteT);
+            var byteT = MsgSerializer.Serialize(obj);
+            var result = MsgSerializer.Deserialize<TestEntity_Non>(byteT);
             return result;
         }
     }

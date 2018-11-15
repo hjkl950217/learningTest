@@ -21,48 +21,48 @@ namespace Redis和序列化研究
         [GlobalSetup]
         public void SetUp()
         {
-            Serializable.StartupSerializable();
+            MsgSerializer.InitializeMsgPackSerializer();
             var testIntDataT = TestHelper.GetIntTestData(this.TestTotal);
             var testStringDataT = TestHelper.GetIntTestData2(this.TestTotal);
             var testNonDataT = TestHelper.GetIntTestData3(this.TestTotal);
             var testDefaultDataT = TestHelper.GetIntTestData3(this.TestTotal);
             var testJsonDataT = TestHelper.GetIntTestData3(this.TestTotal);
 
-            this.testIntData = Serializable.Serialize(testIntDataT);
-            this.testStringData = Serializable.Serialize(testStringDataT);
-            this.testNonData = Serializable.Serialize(testNonDataT);
-            this.testDefaultData = Serializable.SerializeDefault(testDefaultDataT);
-            this.testJsonData = Encoding.UTF8.GetBytes(Serializable.SerializeJson(testJsonDataT));
+            this.testIntData = MsgSerializer.Serialize(testIntDataT);
+            this.testStringData = MsgSerializer.Serialize(testStringDataT);
+            this.testNonData = MsgSerializer.Serialize(testNonDataT);
+            this.testDefaultData = MsgSerializer.SerializeDefault(testDefaultDataT);
+            this.testJsonData = Encoding.UTF8.GetBytes(MsgSerializer.SerializeJson(testJsonDataT));
         }
 
         [Benchmark]
         public List<TestEntity_Int> TestIntDeserialize()
         {
-            return Serializable.Deserialize<List<TestEntity_Int>>(this.testIntData);
+            return MsgSerializer.Deserialize<List<TestEntity_Int>>(this.testIntData);
         }
 
         [Benchmark]
         public List<TestEntity_String> TestStringDeserialize()
         {
-            return Serializable.Deserialize<List<TestEntity_String>>(this.testStringData);
+            return MsgSerializer.Deserialize<List<TestEntity_String>>(this.testStringData);
         }
 
         [Benchmark]
         public List<TestEntity_Non> TestNonDeserialize()
         {
-            return Serializable.Deserialize<List<TestEntity_Non>>(this.testNonData);
+            return MsgSerializer.Deserialize<List<TestEntity_Non>>(this.testNonData);
         }
 
         [Benchmark]
         public List<TestEntity_Non> TestDefaultDeserialize()
         {
-            return Serializable.DeserializeDefault<List<TestEntity_Non>>(this.testDefaultData);
+            return MsgSerializer.DeserializeDefault<List<TestEntity_Non>>(this.testDefaultData);
         }
 
         [Benchmark]
         public List<TestEntity_Non> TestJsonDeserialize()
         {
-            return Serializable
+            return MsgSerializer
                 .DeserializeJson<List<TestEntity_Non>>(Encoding.UTF8.GetString(this.testJsonData));
         }
     }
