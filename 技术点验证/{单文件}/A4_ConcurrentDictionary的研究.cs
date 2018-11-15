@@ -1,72 +1,12 @@
-﻿namespace DictionaryHowTo
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Verification.Core;
+
+namespace 技术点验证
 {
-    using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Verification.Core;
-
-    // The type of the Value to store in the dictionary:
-    internal class CityInfo : IEqualityComparer<CityInfo>
-    {
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 最后查询时间
-        /// </summary>
-        public DateTime lastQueryDate { get; set; }
-
-        /// <summary>
-        /// 经度
-        /// </summary>
-        public decimal Longitude { get; set; }
-
-        /// <summary>
-        /// 维度
-        /// </summary>
-        public decimal Latitude { get; set; }
-
-        /// <summary>
-        /// 最近高温
-        /// </summary>
-        public int[] RecentHighTemperatures { get; set; }
-
-        public CityInfo(string name, decimal longitude, decimal latitude, int[] temps)
-        {
-            Name = name;
-            lastQueryDate = DateTime.Now;
-            Longitude = longitude;
-            Latitude = latitude;
-            RecentHighTemperatures = temps;
-        }
-
-        public CityInfo()
-        {
-        }
-
-        public CityInfo(string key)
-        {
-            Name = key;
-            // MaxValue means "not initialized"
-            Longitude = Decimal.MaxValue;
-            Latitude = Decimal.MaxValue;
-            lastQueryDate = DateTime.Now;
-            RecentHighTemperatures = new int[] { 0 };
-        }
-
-        public bool Equals(CityInfo x, CityInfo y)
-        {
-            return x.Name == y.Name && x.Longitude == y.Longitude && x.Latitude == y.Latitude;
-        }
-
-        public int GetHashCode(CityInfo obj)
-        {
-            CityInfo ci = (CityInfo)obj;//（没懂）强转一下，以处理子类
-            return ci.Name.GetHashCode();//以name做为判断相同的依据
-        }
-    }
-
     public class A4_ConcurrentDictionary的研究 : IVerification
     {
         // Create a new concurrent dictionary.
@@ -178,7 +118,7 @@
                     //    throw new ArgumentException("不允许重复的城市名称: {0}.", ci.Name);
 
                     // 唯一可更新的字段是温度数组和上次查询日期。
-                    existingVal.lastQueryDate = DateTime.Now;
+                    existingVal.LastQueryDate = DateTime.Now;
                     existingVal.RecentHighTemperatures = ci.RecentHighTemperatures;
                     return existingVal;
                 });
@@ -291,7 +231,7 @@
                                             retrievedValue.Longitude,
                                             retrievedValue.Latitude,
                                             retrievedValue.RecentHighTemperatures);
-            newValue.lastQueryDate = Convert.ToDateTime("2010-11-11");
+            newValue.LastQueryDate = Convert.ToDateTime("2010-11-11");
 
             // 用新值替换旧值。
             //PS：这里应该理解为（key,要更新的新值,用来对比的对象）
@@ -317,6 +257,65 @@
             foreach (var temp in temps) Console.Write("{0}, ", temp);
             Console.WriteLine();
             Console.WriteLine("--Use Data End--");
+        }
+    }
+
+    public class CityInfo : IEqualityComparer<CityInfo>//相等比较器的接口
+    {
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 最后查询时间
+        /// </summary>
+        public DateTime LastQueryDate { get; set; }
+
+        /// <summary>
+        /// 经度
+        /// </summary>
+        public decimal Longitude { get; set; }
+
+        /// <summary>
+        /// 维度
+        /// </summary>
+        public decimal Latitude { get; set; }
+
+        /// <summary>
+        /// 最近高温
+        /// </summary>
+        public int[] RecentHighTemperatures { get; set; }
+
+        public CityInfo(string name, decimal longitude, decimal latitude, int[] temps)
+        {
+            Name = name;
+            LastQueryDate = DateTime.Now;
+            Longitude = longitude;
+            Latitude = latitude;
+            RecentHighTemperatures = temps;
+        }
+
+        public CityInfo()
+        {
+        }
+
+        public CityInfo(string key)
+        {
+            Name = key;
+            // MaxValue means "not initialized"
+            Longitude = Decimal.MaxValue;
+            Latitude = Decimal.MaxValue;
+            LastQueryDate = DateTime.Now;
+            RecentHighTemperatures = new int[] { 0 };
+        }
+
+        public bool Equals(CityInfo x, CityInfo y)
+        {
+            return x.Name == y.Name && x.Longitude == y.Longitude && x.Latitude == y.Latitude;
+        }
+
+        public int GetHashCode(CityInfo obj)
+        {
+            CityInfo ci = (CityInfo)obj;//（没懂）强转一下，以处理子类
+            return ci.Name.GetHashCode();//以name做为判断相同的依据
         }
     }
 }
