@@ -1,42 +1,14 @@
 ﻿using System;
+using Verification.Core;
 
 namespace 语法验证与学习
 {
-    public interface IGeneric<T>
+    public class B6_扫描泛型接口 : IVerification
     {
-        void ShowInfo();
-    }
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B6_扫描泛型接口;
 
-    public class Generic<T> : IGeneric<T>
-    {
-        public void ShowInfo()
+        public void Start(string[] args)
         {
-            Console.WriteLine("T={0}", typeof(T));
-        }
-    }
-
-    public class Generic3 : IGeneric<string>
-    {
-        public void ShowInfo()
-        {
-            Console.WriteLine("T={0}", typeof(string));
-        }
-    }
-
-    public class Generic2<T, U>
-    {
-        public Generic2()
-        {
-            Console.WriteLine("T={0},U={1}", typeof(T), typeof(U));
-        }
-    }
-
-    internal class Test2
-    {
-        private static void Main()
-        {
-            Console.WriteLine("验证开始");
-
             #region 1.获取泛型结构
 
             //Type genericClass = typeof(Generic<>);//获取基本泛型结构
@@ -134,9 +106,35 @@ namespace 语法验证与学习
             //}
 
             #endregion 4.扫描程序集中所有类型
+        }
+    }
 
-            Console.WriteLine("验证结束");
-            Console.ReadLine();
+    public interface IGeneric<T>
+    {
+        void ShowInfo();
+    }
+
+    public class Generic<T> : IGeneric<T>
+    {
+        public void ShowInfo()
+        {
+            Console.WriteLine("T={0}", typeof(T));
+        }
+    }
+
+    public class Generic3 : IGeneric<string>
+    {
+        public void ShowInfo()
+        {
+            Console.WriteLine("T={0}", typeof(string));
+        }
+    }
+
+    public class Generic2<T, U>
+    {
+        public Generic2()
+        {
+            Console.WriteLine("T={0},U={1}", typeof(T), typeof(U));
         }
     }
 }

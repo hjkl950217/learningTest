@@ -34,7 +34,7 @@ namespace 技术点验证
             IVerification verification = GetVerification(verifications, verificationType);
 
             Console.WriteLine("开始验证");
-            Console.WriteLine($"验证:{verification.VerificationType.ToString()}");
+            Console.WriteLine($"验证:\t-{verification.VerificationType.ToString()}-");
             Console.WriteLine("===============================================");
             Console.WriteLine();
 

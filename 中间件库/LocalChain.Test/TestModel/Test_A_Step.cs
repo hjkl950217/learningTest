@@ -13,7 +13,7 @@ namespace Nova.LogicalChain.Test
         {
             var conText2 = context.GetGenericContext<TestResult>();
 
-            //todo... 模拟自己的操作
+            // 模拟自己的操作
 
             if (conText2.ResultEntiy.ID == 100)
             {
@@ -25,7 +25,7 @@ namespace Nova.LogicalChain.Test
 
             var endTask = this.Next.InvokeAsync(conText2);
 
-            //todo... 模拟上一步完成后自己的操作
+            // 模拟上一步完成后自己的操作
 
             return endTask;
         }
