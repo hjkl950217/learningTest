@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Verification.Core\Verification.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="{B5_表达式树研究}\{ExpressionTranslator}\{Translator}\" />
+  </ItemGroup>
+
 </Project>

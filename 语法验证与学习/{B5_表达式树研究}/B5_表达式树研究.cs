@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using Verification.Core;
 
 namespace 语法验证与学习
@@ -16,13 +17,15 @@ namespace 语法验证与学习
 
             this.DemoList.AddRange(new Action[]
             {
-                this.Demo1,this.Demo2,this.Demo3,this.Demo4,this.Demo5
+                this.Demo1,this.Demo2,this.Demo3,this.Demo4,this.Demo5,
+                this.Demo6,
+                this.DemoEnd
             });
 
             //批量执行
             foreach (var item in this.DemoList)
             {
-                item();
+                item();//执行示例的委托
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine();
             }
@@ -83,7 +86,78 @@ namespace 语法验证与学习
 
         public void Demo5()
         {
-            Console.WriteLine("演示5-Lambda表达式转换为Expression");
+            Console.WriteLine("演示5-打印Lambda表达式第一个行参的名称");
+            Console.WriteLine("如果没显示内容说明代码不正确");
+
+            Expression<Func<int, int>> addFunc = num => num + 5;
+
+            if (addFunc.NodeType == ExpressionType.Lambda)
+            {
+                LambdaExpression lambdaExp = addFunc as LambdaExpression;
+                IReadOnlyList<ParameterExpression> paraList = lambdaExp.Parameters;
+
+                if (paraList != null)
+                {
+                    Console.WriteLine("形参名： " + paraList[0].Name);
+                    Console.WriteLine("形参类型： " + paraList[0].Type.Name);
+                }
+            }
+        }
+
+        public void Demo6()
+        {
+            Console.WriteLine("演示6-翻译表达式");
+            Console.WriteLine("如果没显示内容说明代码不正确");
+            Console.WriteLine();
+
+            StringBuilder showTxt = new StringBuilder();
+
+            //翻译基本信息
+            Expression<Func<int, int>> sum = num => num + 5;
+            showTxt.AppendLine($"根节点的节点类型是:{sum.NodeType}");
+            showTxt.AppendLine($"根节点的类型是:{sum.Type.Name}");
+            showTxt.AppendLine($"根节点的名字是:{sum.Name}");
+            showTxt.AppendLine($"根节点的代码是:{sum.ToString()}");
+            showTxt.AppendLine();
+
+            //翻译形参
+            showTxt.AppendLine($@"表达式的形参有:{sum.Parameters.Count}个,");
+            foreach (var item in sum.Parameters)
+            {
+                showTxt.Append($"节点的节点类型是:{sum.Parameters[0].NodeType},");
+                showTxt.Append($"类型是:{sum.Parameters[0].Type.Name},");
+                showTxt.Append($"参数的名字是:{sum.Parameters[0]}");
+                showTxt.AppendLine();
+                showTxt.AppendLine();
+            }
+
+            //翻译主体
+            var sumBody = sum.Body as BinaryExpression;
+            showTxt.AppendLine($"主体节点的节点类型是:{sumBody.NodeType}");
+            showTxt.AppendLine($"主体节点代码:{sumBody.ToString()}");
+            showTxt.AppendLine();
+
+            //翻译左节点
+            var leftNode = sumBody.Left as ParameterExpression;
+            showTxt.AppendLine($"主体左节点的节点类型是:{leftNode.NodeType}");
+            showTxt.AppendLine($"主体左节点的类型是：{leftNode.Type.Name}");
+            showTxt.Append($"主体左节点的名字是:{leftNode.Name}");
+            showTxt.AppendLine();
+            showTxt.AppendLine();
+
+            //翻译右节点
+            var rightNode = sumBody.Left as ParameterExpression;
+            showTxt.AppendLine($"主体右节点的节点类型是:{rightNode.NodeType}");
+            showTxt.AppendLine($"主体右节点的类型是：{rightNode.Type.Name}");
+            showTxt.Append($"主体右节点的名字是:{rightNode.Name}");
+            showTxt.AppendLine();
+            showTxt.AppendLine();
+
+            Console.WriteLine(showTxt.ToString());
+        }
+
+        public void DemoEnd()
+        {
         }
     }
 }
