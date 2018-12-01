@@ -18,7 +18,7 @@ namespace 语法验证与学习
             this.DemoList.AddRange(new Action[]
             {
                 this.Demo1,this.Demo2,this.Demo3,this.Demo4,this.Demo5,
-                this.Demo6,
+                this.Demo6,this.Demo7,
                 this.DemoEnd
             });
 
@@ -154,6 +154,28 @@ namespace 语法验证与学习
             showTxt.AppendLine();
 
             Console.WriteLine(showTxt.ToString());
+        }
+
+        public void Demo7()
+        {
+            Console.WriteLine("演示7-递归翻译表达式");
+            Console.WriteLine("如果没显示内容说明代码不正确");
+            Console.WriteLine();
+
+
+            Expression firstArg = Expression.Constant(1);
+            Expression secondArg = Expression.Constant(42);
+
+            BinaryExpression add = Expression.Add(firstArg, secondArg);
+
+
+       
+            BaseTranslator translator = ExpressionTranslatorHelper.GetTranslator(add);
+            translator.Translator();
+
+          string result=  translator.Content.ToString();
+
+
         }
 
         public void DemoEnd()
