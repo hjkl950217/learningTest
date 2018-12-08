@@ -40,5 +40,8 @@
     <None Update="{A6_配置与IOC接口}\nairConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="{A9_读取文件并监控变化}\test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
