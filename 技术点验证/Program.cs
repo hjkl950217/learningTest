@@ -20,7 +20,7 @@ namespace 技术点验证
             verifications.Add(new A05_EFCore学习());
             verifications.Add(new A07_动态添加Attribute());
             verifications.Add(new A08_MessagePack基准测试());
-            verifications.Add(new A9_读取文件并监控变化());
+            verifications.Add(new A09_读取文件并监控变化());
 
             #endregion 验证接口的注册
 
