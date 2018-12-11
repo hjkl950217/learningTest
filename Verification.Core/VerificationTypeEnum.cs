@@ -7,31 +7,41 @@
     /// </summary>
     public enum VerificationTypeEnum
     {
-        A1_获取当前路径的方法,
-        A2_线程ID验证,
-        A3_时间格式验证,
-        A4_ConcurrentDictionary的研究,
-        A5_EFCore学习,
+        #region 技术点
+
+        A01_获取当前路径的方法,
+        A02_线程ID验证,
+        A03_时间格式验证,
+        A04_ConcurrentDictionary的研究,
+        A05_EFCore学习,
 
         /// <summary>
         /// 只用来查看配置与IOC的使用即可
         /// </summary>
-        A6_配置与IOC接口,
+        A06_配置与IOC接口,
 
-        A7_动态添加Attribute,
-        A8_MessagePack基准测试,
-        A9_读取文件并监控变化,
+        A07_动态添加Attribute,
+        A08_MessagePack基准测试,
+        A09_读取文件并监控变化,
+        A10_读取文件到配置系统并监控变化,
 
-        B1_建造者模式学习,
-        B2_类型相关的研究,
-        B3_协变和逆变,
+        #endregion 技术点
+
+        #region 语法类
+
+        B01_建造者模式学习,
+        B02_类型相关的研究,
+        B03_协变和逆变,
 
         /// <summary>
         /// 在C# 7.2版本才有的
         /// </summary>
-        B4_具有值类型的引用语义_In_72,
-        B5_表达式树研究,
-        B6_扫描泛型接口,
+        B04_具有值类型的引用语义_In_72,
+
+        B05_表达式树研究,
+        B06_扫描泛型接口,
+
+        #endregion 语法类
 
         ZZZZ_Non
     }

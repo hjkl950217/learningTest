@@ -4,9 +4,9 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
-    public class B2_类型相关的研究 : IVerification
+    public class B02_类型相关的研究 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B2_类型相关的研究;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B02_类型相关的研究;
 
         public void Start(string[] args)
         {

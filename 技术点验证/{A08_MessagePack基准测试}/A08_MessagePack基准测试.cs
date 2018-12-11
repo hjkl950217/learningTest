@@ -4,7 +4,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A8_MessagePack基准测试 : IVerification
+    public class A08_MessagePack基准测试 : IVerification
     {
         /*
 * 依赖的库
@@ -19,7 +19,7 @@ namespace 技术点验证
 <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
 */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A8_MessagePack基准测试;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A08_MessagePack基准测试;
 
         public void Start(string[] args)
         {
@@ -27,7 +27,7 @@ namespace 技术点验证
 
             //Summary summary = BenchmarkRunner.Run<TestCase_Serialize>();
 
-            BenchmarkSwitcher.FromAssembly(typeof(A8_MessagePack基准测试).Assembly).RunAll();
+            BenchmarkSwitcher.FromAssembly(typeof(A08_MessagePack基准测试).Assembly).RunAll();
 
             //var tt = new TestCase_Serialize();
             //tt.SetUp();

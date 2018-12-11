@@ -3,9 +3,9 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
-    public class B6_扫描泛型接口 : IVerification
+    public class B06_扫描泛型接口 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B6_扫描泛型接口;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B06_扫描泛型接口;
 
         public void Start(string[] args)
         {

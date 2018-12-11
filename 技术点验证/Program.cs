@@ -12,14 +12,14 @@ namespace 技术点验证
 
             #region 验证接口的注册
 
-            verifications.Add(new A1_获取当前路径的方法());
-            verifications.Add(new A2_线程ID验证());
-            verifications.Add(new A3_时间格式验证());
-            verifications.Add(new A4_ConcurrentDictionary的研究());
-            verifications.Add(new A5_EFCore学习());
-            verifications.Add(new A5_EFCore学习());
-            verifications.Add(new A7_动态添加Attribute());
-            verifications.Add(new A8_MessagePack基准测试());
+            verifications.Add(new A01_获取当前路径的方法());
+            verifications.Add(new A02_线程ID验证());
+            verifications.Add(new A03_时间格式验证());
+            verifications.Add(new A04_ConcurrentDictionary的研究());
+            verifications.Add(new A05_EFCore学习());
+            verifications.Add(new A05_EFCore学习());
+            verifications.Add(new A07_动态添加Attribute());
+            verifications.Add(new A08_MessagePack基准测试());
             verifications.Add(new A9_读取文件并监控变化());
 
             #endregion 验证接口的注册
@@ -29,7 +29,7 @@ namespace 技术点验证
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A9_读取文件并监控变化;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A09_读取文件并监控变化;
 
             List<IVerification> verifications = RegisterAllVerification();
             IVerification verification = GetVerification(verifications, verificationType);

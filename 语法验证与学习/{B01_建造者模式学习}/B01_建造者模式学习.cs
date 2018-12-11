@@ -11,9 +11,9 @@ namespace 语法验证与学习
     /// <summary>
     /// 客户类
     /// </summary>
-    internal class B1_建造者模式学习 : IVerification
+    internal class B01_建造者模式学习 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B1_建造者模式学习;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B01_建造者模式学习;
 
         public void Start(string[] args)
         {

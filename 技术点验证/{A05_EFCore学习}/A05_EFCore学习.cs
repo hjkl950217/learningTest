@@ -9,7 +9,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A5_EFCore学习 : IVerification
+    public class A05_EFCore学习 : IVerification
     {
         /*
          * 需要
@@ -20,7 +20,7 @@ namespace 技术点验证
          *
         */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A5_EFCore学习;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A05_EFCore学习;
 
         public void Start(string[] args)
         {
@@ -51,12 +51,12 @@ namespace 技术点验证
             //模拟注册服务的方法
             services.AddDbContext<SchoolContext>(options =>
                 options
-                .UseLoggerFactory(A5_EFCore学习.loggerFactory)
+                .UseLoggerFactory(A05_EFCore学习.loggerFactory)
                 .UseSqlServer(configuration.GetValue<string>("DefaultConnection"))
             );
 
             //模拟注册日志工厂
-            services.AddSingleton<ILoggerFactory>(A5_EFCore学习.loggerFactory);
+            services.AddSingleton<ILoggerFactory>(A05_EFCore学习.loggerFactory);
 
             //模拟业务代码注册
             services.AddSingleton<TestCode>();

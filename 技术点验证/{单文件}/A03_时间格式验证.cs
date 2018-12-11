@@ -4,9 +4,9 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A3_时间格式验证 : IVerification
+    public class A03_时间格式验证 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A3_时间格式验证;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A03_时间格式验证;
 
         public void Start(string[] args)
         {

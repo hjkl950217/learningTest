@@ -3,9 +3,9 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A1_获取当前路径的方法 : IVerification
+    public class A01_获取当前路径的方法 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A1_获取当前路径的方法;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A01_获取当前路径的方法;
 
         public void Start(string[] args)
         {

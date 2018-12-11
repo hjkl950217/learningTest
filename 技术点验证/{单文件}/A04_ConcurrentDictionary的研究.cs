@@ -7,12 +7,12 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A4_ConcurrentDictionary的研究 : IVerification
+    public class A04_ConcurrentDictionary的研究 : IVerification
     {
         // Create a new concurrent dictionary.
         private static ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A4_ConcurrentDictionary的研究;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A04_ConcurrentDictionary的研究;
 
         public void Start(string[] args)
         {

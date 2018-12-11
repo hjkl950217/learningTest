@@ -7,12 +7,12 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class A9_读取文件并监控变化 : IVerification
+    public class A09_读取文件并监控变化 : IVerification
     {
         public VerificationTypeEnum VerificationType =>
-            VerificationTypeEnum.A9_读取文件并监控变化;
+            VerificationTypeEnum.A09_读取文件并监控变化;
 
-        private const string testFile = "test.json";
+        private const string testFile = "testA9.json";
 
         public void Start(string[] args)
         {
@@ -20,7 +20,7 @@ namespace 技术点验证
             //一个IFileProvider 可以看做是对一个目录的映射
 
             string debugAddress = Directory.GetCurrentDirectory();
-            string root = Path.Combine(debugAddress, $"{{{nameof(A9_读取文件并监控变化)}}}");
+            string root = Path.Combine(debugAddress, $"{{{nameof(A09_读取文件并监控变化)}}}");
 
             Console.WriteLine($"根目录: {root}\t 测试文件:{testFile}");
 
