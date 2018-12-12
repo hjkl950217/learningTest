@@ -21,6 +21,7 @@ namespace 技术点验证
             verifications.Add(new A07_动态添加Attribute());
             verifications.Add(new A08_MessagePack基准测试());
             verifications.Add(new A09_读取文件并监控变化());
+            verifications.Add(new A10_读取文件到配置系统并监控变化());
 
             #endregion 验证接口的注册
 
@@ -29,7 +30,7 @@ namespace 技术点验证
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A09_读取文件并监控变化;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A10_读取文件到配置系统并监控变化;
 
             List<IVerification> verifications = RegisterAllVerification();
             IVerification verification = GetVerification(verifications, verificationType);
