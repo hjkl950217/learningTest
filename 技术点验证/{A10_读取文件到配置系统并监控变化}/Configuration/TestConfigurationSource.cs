@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 namespace 技术点验证
 {
@@ -33,6 +34,10 @@ namespace 技术点验证
         /// <returns></returns>
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
+            string debugAddress = Directory.GetCurrentDirectory();
+            this.ConfigFileFullName = Path.Combine(debugAddress, $"{{{nameof(A10_读取文件到配置系统并监控变化)}}}");
+
+
             return new TestConfigurationProvider(this);
         }
     }
