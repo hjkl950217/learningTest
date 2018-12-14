@@ -57,13 +57,13 @@ namespace 技术点验证
             {
                 if (base.Data.ContainsKey(item.Key))//存在则更新
                 {
-                    var oldValue = base.Data[item.Key];
-                    Console.WriteLine($"Key:{item.Key} 老值为:{item.Value}");
+                   // var oldValue = base.Data[item.Key];
+                   // Console.WriteLine($"老Key:{item.Key} 老值为:{oldValue}");
 
                     base.Data[item.Key] = item.Value;
-                    Console.WriteLine($"更新{item.Key} 新值为:{item.Value}");
-                    Console.WriteLine($"模拟的单例数据:{A10_读取文件到配置系统并监控变化.testConfig.TestName}");
-                    Console.WriteLine("-----------------");
+
+                   // Console.WriteLine($"新Key:{item.Key} 新值为:{item.Value}");
+                   // Console.WriteLine("-----------------");
                 }
                 else//不存在则新加
                 {
@@ -72,6 +72,7 @@ namespace 技术点验证
             }
 
             base.OnReload();//发出信号，表示TestConfigurationProvider的数据已经被改变
+            Console.WriteLine($"模拟的单例数据:{A10_读取文件到配置系统并监控变化.testConfig?.TestName}");
         }
 
         /// <summary>
@@ -115,8 +116,9 @@ namespace 技术点验证
         public static void Bind<T>(IConfiguration configuration, string sectionKey, T data)
             where T : TestConfig
         {
+            IConfigurationSection section = configuration.GetSection(sectionKey);
             //【1】获取新数据
-            var newConfig = JsonConvert.DeserializeObject<TestConfig>(configuration[sectionKey]);
+            var newConfig = JsonConvert.DeserializeObject<TestConfig>(section.Value);
 
             //【2】赋值新数据
             /*
@@ -126,7 +128,9 @@ namespace 技术点验证
             data.TestName = newConfig.TestName;
 
             //【3】绑定下次的回调
-            IConfigurationSection section = configuration.GetSection(sectionKey);
+            //IConfigurationSection section = configuration.GetSection(sectionKey);
+
+           
 
             section.GetReloadToken()
                 .RegisterChangeCallback(

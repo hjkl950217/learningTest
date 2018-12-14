@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalChain", "中间件库\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalChain.Test", "中间件库\LocalChain.Test\LocalChain.Test.csproj", "{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fsharp学习", "Fsharp学习\Fsharp学习.fsproj", "{3BBC3F70-A375-4281-B68B-F349269B76F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,14 @@ Global
 		{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}.Release|x64.ActiveCfg = Release|x64
 		{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}.Release|x64.Build.0 = Release|x64
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Debug|x64.Build.0 = Debug|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Release|x64.ActiveCfg = Release|Any CPU
+		{3BBC3F70-A375-4281-B68B-F349269B76F5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
