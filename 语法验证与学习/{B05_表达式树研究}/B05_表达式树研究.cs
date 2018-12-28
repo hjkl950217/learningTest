@@ -162,20 +162,15 @@ namespace 语法验证与学习
             Console.WriteLine("如果没显示内容说明代码不正确");
             Console.WriteLine();
 
-
             Expression firstArg = Expression.Constant(1);
             Expression secondArg = Expression.Constant(42);
 
             BinaryExpression add = Expression.Add(firstArg, secondArg);
 
-
-       
             BaseTranslator translator = ExpressionTranslatorHelper.GetTranslator(add);
             translator.Translator();
 
-          string result=  translator.Content.ToString();
-
-
+            string result = translator.Content.ToString();
         }
 
         public void DemoEnd()

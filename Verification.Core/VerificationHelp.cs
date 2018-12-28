@@ -8,6 +8,12 @@ namespace Verification.Core
     /// </summary>
     public static class VerificationHelp
     {
+        /// <summary>
+        /// 开始验证
+        /// </summary>
+        /// <param name="typeEnum">要验证的类型</param>
+        /// <param name="allVerification">验证库中所有注册的验证接口实例.A系列和B系列是分离的</param>
+        /// <param name="args">从命令行中获取的参数</param>
         public static void StartVerification(
             VerificationTypeEnum typeEnum, 
             List<IVerification> allVerification,
@@ -45,7 +51,7 @@ namespace Verification.Core
 
             if (result == null)
             {
-                Console.WriteLine($"{verificationType} 没有注册");
+                throw new ArgumentNullException($"{verificationType} 没有注册");
             }
 
             return result;
