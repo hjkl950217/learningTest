@@ -33,34 +33,11 @@ namespace 技术点验证
         private static void Main(string[] args)
         {
             VerificationTypeEnum verificationType = VerificationTypeEnum.A11_日志系统研究;
-
             List<IVerification> verifications = RegisterAllVerification();
-            IVerification verification = GetVerification(verifications, verificationType);
 
-            Console.WriteLine("开始验证");
-            Console.WriteLine($"验证:\t-{verification.VerificationType.ToString()}-");
-            Console.WriteLine("===============================================");
-            Console.WriteLine();
-
-            verification.Start(args);
-
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("===============================================");
-            Console.WriteLine("验证结束");
-            Console.ReadLine();
+            //开始验证
+            VerificationHelp.StartVerification(verificationType, verifications, args);
         }
 
-        /// <summary>
-        /// 获取验证接口的实例
-        /// </summary>
-        /// <param name="verifications"></param>
-        /// <param name="verificationType"></param>
-        /// <returns></returns>
-        public static IVerification GetVerification(List<IVerification> verifications, VerificationTypeEnum verificationType)
-        {
-            return verifications.Find(t => t.VerificationType == verificationType);
-        }
     }
 }

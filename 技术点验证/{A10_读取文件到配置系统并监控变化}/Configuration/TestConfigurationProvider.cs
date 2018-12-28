@@ -57,13 +57,13 @@ namespace 技术点验证
             {
                 if (base.Data.ContainsKey(item.Key))//存在则更新
                 {
-                   // var oldValue = base.Data[item.Key];
-                   // Console.WriteLine($"老Key:{item.Key} 老值为:{oldValue}");
+                    // var oldValue = base.Data[item.Key];
+                    // Console.WriteLine($"老Key:{item.Key} 老值为:{oldValue}");
 
                     base.Data[item.Key] = item.Value;
 
-                   // Console.WriteLine($"新Key:{item.Key} 新值为:{item.Value}");
-                   // Console.WriteLine("-----------------");
+                    // Console.WriteLine($"新Key:{item.Key} 新值为:{item.Value}");
+                    // Console.WriteLine("-----------------");
                 }
                 else//不存在则新加
                 {
@@ -129,8 +129,6 @@ namespace 技术点验证
 
             //【3】绑定下次的回调
             //IConfigurationSection section = configuration.GetSection(sectionKey);
-
-           
 
             section.GetReloadToken()
                 .RegisterChangeCallback(
