@@ -1,11 +1,11 @@
 ﻿using System;
 using Verification.Core;
 
-namespace 语法验证与学习
+namespace 技术点验证
 {
-    public class B06_扫描泛型接口 : IVerification
+    public class A12_扫描泛型接口 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B06_扫描泛型接口;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A12_扫描泛型接口;
 
         public void Start(string[] args)
         {

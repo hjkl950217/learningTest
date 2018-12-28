@@ -13,13 +13,23 @@ namespace 技术点验证
          * 
          */
 
-        public static IServiceCollection AddFileLogClient(this IServiceCollection  services)
+        /// <summary>
+        /// 按IOC中注册ILogClient Txt文件类型
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddTestLogClientForTxt(this IServiceCollection  services)
         {
-            services.TryAddSingleton<ILogClient, FileLogClient>();
+            services.TryAddSingleton<ILogClient, TxtLogClient>();
             return services;
         }
 
-        public static IServiceCollection AddConsoleLogClient(this IServiceCollection services)
+        /// <summary>
+        /// 按IOC中注册ILogClient 控制台类型
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddTestLogClientForConsole(this IServiceCollection services)
         {
             services.TryAddSingleton<ILogClient, ConsoleLogClient>();
             return services;
