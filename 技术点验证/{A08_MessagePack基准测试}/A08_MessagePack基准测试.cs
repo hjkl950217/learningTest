@@ -27,7 +27,13 @@ namespace 技术点验证
 
             //Summary summary = BenchmarkRunner.Run<TestCase_Serialize>();
 
-            BenchmarkSwitcher.FromAssembly(typeof(A08_MessagePack基准测试).Assembly).RunAll();
+            //BenchmarkSwitcher.FromAssembly(typeof(A08_MessagePack基准测试).Assembly).RunAll();
+            Type[] types = new Type[]
+            {
+                typeof(TestCase_Deserialize),
+                typeof(TestCase_Serialize)
+            };
+            BenchmarkSwitcher.FromTypes(types).RunAll();
 
             //var tt = new TestCase_Serialize();
             //tt.SetUp();

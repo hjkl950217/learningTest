@@ -7,6 +7,8 @@ namespace 技术点验证
 {
     public static class TestHelper
     {
+        public static Random random = new Random(DateTime.UtcNow.Second);
+
         //public static List<TestEntity> GetIntTestData<T>(int totaol)
         //    where T : TestEntity, new()
         //{
@@ -142,6 +144,32 @@ namespace 技术点验证
             }
 
             return testData;
+        }
+
+        /// <summary>
+        /// 获取随机的字符串
+        /// </summary>
+        /// <param name="byteSize"></param>
+        /// <returns></returns>
+        public static string GetRandomString(int byteSize = 100)
+        {
+            byte[] tempByte = new byte[random.Next(byteSize)];
+            random.NextBytes(tempByte);//用随机数器随机填充
+            string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+
+            return testStr;
+        }
+
+        public static T GetRandomEnum<T>(int maxValue)
+            where T : struct
+        {
+            return Enum.Parse<T>(TestHelper.random.Next(maxValue).ToString(), true);
+        }
+
+        public static T GetRandomEnum<T>(int minValue, int maxValue)
+            where T : struct
+        {
+            return Enum.Parse<T>(TestHelper.random.Next(minValue, maxValue).ToString(), true);
         }
     }
 }

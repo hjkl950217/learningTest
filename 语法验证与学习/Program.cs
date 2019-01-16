@@ -16,7 +16,7 @@ namespace 语法验证与学习
             verifications.Add(new B03_协变和逆变());
             verifications.Add(new B04_具有值类型的引用语义_In_72());
             verifications.Add(new B05_表达式树研究());
-             verifications.Add(new B06_模式匹配_In_70());
+            verifications.Add(new B06_模式匹配_In_70());
 
             #endregion 注册
 

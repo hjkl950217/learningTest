@@ -24,6 +24,8 @@ namespace 技术点验证
             verifications.Add(new A10_读取文件到配置系统并监控变化());
             verifications.Add(new A11_日志系统研究());
             verifications.Add(new A12_扫描泛型接口());
+            verifications.Add(new A13_Asynclocal的坑());
+            verifications.Add(new A14_查找相同对象的基准测试());
 
             #endregion 验证接口的注册
 
@@ -32,7 +34,7 @@ namespace 技术点验证
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A11_日志系统研究;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A14_查找相同对象的基准测试;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证

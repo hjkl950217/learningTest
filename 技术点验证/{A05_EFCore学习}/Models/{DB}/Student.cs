@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace 技术点验证
 {
     /// <summary>
-    /// 学生
+    /// 学生-A05使用的实体类
     /// </summary>
     [Table("Student")]
     public class Student

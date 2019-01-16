@@ -19,9 +19,9 @@ namespace Verification.Core
             List<IVerification> allVerification,
             string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B06_模式匹配_In_70;
+            
 
-            IVerification verification = VerificationHelp.GetVerification(allVerification, verificationType);
+            IVerification verification = VerificationHelp.GetVerification(allVerification, typeEnum);
 
             Console.WriteLine("开始验证");
             Console.WriteLine($"验证:\t-{verification.VerificationType.ToString()}-");
