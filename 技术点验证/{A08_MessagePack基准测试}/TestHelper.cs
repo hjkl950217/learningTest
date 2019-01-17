@@ -171,5 +171,42 @@ namespace 技术点验证
         {
             return Enum.Parse<T>(TestHelper.random.Next(minValue, maxValue).ToString(), true);
         }
+
+        /// <summary>
+        /// 返回一个随机的小写字符
+        /// </summary>
+        /// <returns></returns>
+        public static char GetRandomLowerChar()
+        {
+            //97  122
+            return Convert.ToChar(TestHelper.random.Next(97, 123));
+        }
+
+        /// <summary>
+        /// 返回一个随机的大写字符
+        /// </summary>
+        /// <returns></returns>
+        public static char GetRandomUpChar()
+        {
+            //65  90
+            return Convert.ToChar(TestHelper.random.Next(65, 91));
+        }
+
+        /// <summary>
+        /// 获取一个随机的字符，可能是大写或小写的
+        /// </summary>
+        /// <returns></returns>
+        public static char GetRandomChar()
+        {
+            bool isUp = DateTime.Now.Ticks % 2 == 0;
+            if (isUp == true)
+            {
+                return TestHelper.GetRandomUpChar();
+            }
+            else
+            {
+                return TestHelper.GetRandomLowerChar();
+            }
+        }
     }
 }
