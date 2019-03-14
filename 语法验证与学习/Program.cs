@@ -17,6 +17,7 @@ namespace 语法验证与学习
             verifications.Add(new B04_具有值类型的引用语义_In_72());
             verifications.Add(new B05_表达式树研究());
             verifications.Add(new B06_模式匹配_In_70());
+            verifications.Add(new B07_递归());
 
             #endregion 注册
 
@@ -25,7 +26,7 @@ namespace 语法验证与学习
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B06_模式匹配_In_70;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B07_递归;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证

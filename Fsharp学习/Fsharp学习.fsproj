@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="笔记.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>
