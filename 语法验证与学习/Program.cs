@@ -26,7 +26,7 @@ namespace 语法验证与学习
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B07_递归;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B05_表达式树研究;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
