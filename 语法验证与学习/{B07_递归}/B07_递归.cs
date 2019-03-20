@@ -47,7 +47,7 @@ namespace 语法验证与学习
             Console.WriteLine($"动态规划\t{result_A}种\t用时{sp.ElapsedTicks}毫微秒\t计算{this.DynamicPlanNum}次");
 
             Console.WriteLine();
-            Console.WriteLine("100毫微秒为CPU一个晶振周期，为十亿分之一秒。 ns 纳秒 毫微秒");
+            Console.WriteLine("100毫微秒为CPU一个晶振周期，为十亿分之一秒。 别名：ns、纳秒");
 
             #endregion 2. 结算货币找零 找最少张数
         }
@@ -109,7 +109,7 @@ namespace 语法验证与学习
 
             foreach (var c in coins)
             {
-                if (money > c)
+                if (money >= c)
                 {
                     /*
                      * 下面这二行代码是程序的出口。
