@@ -5,6 +5,9 @@
     /// </summary>
     public interface IVerification
     {
+        /// <summary>
+        /// 验证的类型
+        /// </summary>
         VerificationTypeEnum VerificationType { get; }
 
         /// <summary>
