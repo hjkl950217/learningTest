@@ -18,6 +18,7 @@ namespace 语法验证与学习
             verifications.Add(new B05_表达式树研究());
             verifications.Add(new B06_模式匹配_In_70());
             verifications.Add(new B07_递归());
+            verifications.Add(new B08_Chsarp中写函数式编程());
 
             #endregion 注册
 
@@ -26,7 +27,7 @@ namespace 语法验证与学习
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B05_表达式树研究;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B08_Chsarp中写函数式编程;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
