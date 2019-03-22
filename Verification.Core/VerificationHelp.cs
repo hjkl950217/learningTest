@@ -59,7 +59,14 @@ namespace Verification.Core
         public class TempLiknObject { }//用来关联方法的内部对象
 
         private static readonly List<Action> actions = new List<Action>();//用来临时装子验证方法
-        private static readonly TempLiknObject tempLiknObject = new TempLiknObject();//启动时直接new,避免以后再new
+        private static TempLiknObject tempLiknObject = new TempLiknObject();//启动时直接new,避免以后再new
+
+        public static TempLiknObject Start()
+        {
+            VerificationHelp.tempLiknObject = new TempLiknObject();
+
+            return VerificationHelp.tempLiknObject;
+        }
 
         /// <summary>
         /// 添加一个要执行的子验证方法
@@ -67,7 +74,7 @@ namespace Verification.Core
         /// <param name="verification"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static TempLiknObject Add(Action action)
+        public static TempLiknObject Add(this TempLiknObject t, Action action)
         {
             VerificationHelp.actions.Add(action);
             return VerificationHelp.tempLiknObject;
@@ -79,7 +86,7 @@ namespace Verification.Core
         /// <param name="verification"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static TempLiknObject AddRange(params Action[] action)
+        public static TempLiknObject AddRange(this TempLiknObject t, params Action[] action)
         {
             action = action ?? new Action[0];
             VerificationHelp.actions.AddRange(action);

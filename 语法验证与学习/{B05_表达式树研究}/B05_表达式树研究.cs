@@ -14,8 +14,6 @@ namespace 语法验证与学习
         {
             Func<double, double, double> pow = Math.Pow;
 
-            // var exp = pow.Partial1(Math.E);//
-
             Action[] actions = new Action[]
             {
                 this.Demo1,this.Demo2,this.Demo3,this.Demo4,this.Demo5,
@@ -23,11 +21,10 @@ namespace 语法验证与学习
                 this.DemoEnd
             };
 
-            VerificationHelp.AddRange(actions)
+            VerificationHelp.Start()
+                .AddRange(actions)
                 .BatchRun();
         }
-
-      
 
         public void Demo1()
         {
