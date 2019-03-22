@@ -12,26 +12,22 @@ namespace 语法验证与学习
 
         public void Start(string[] args)
         {
-            //定义演示的集合
-            this.DemoList = new List<Action>();
+            Func<double, double, double> pow = Math.Pow;
 
-            this.DemoList.AddRange(new Action[]
+            // var exp = pow.Partial1(Math.E);//
+
+            Action[] actions = new Action[]
             {
                 this.Demo1,this.Demo2,this.Demo3,this.Demo4,this.Demo5,
                 this.Demo6,this.Demo7,
                 this.DemoEnd
-            });
+            };
 
-            //批量执行
-            foreach (var item in this.DemoList)
-            {
-                item();//执行示例的委托
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine();
-            }
+            VerificationHelp.AddRange(actions)
+                .BatchRun();
         }
 
-        public List<Action> DemoList { get; set; }
+      
 
         public void Demo1()
         {
@@ -171,10 +167,12 @@ namespace 语法验证与学习
             translator.Translator();
 
             string result = translator.Content.ToString();
+            Console.WriteLine(result);
         }
 
         public void DemoEnd()
         {
+            Console.WriteLine("--END--");
         }
     }
 }
