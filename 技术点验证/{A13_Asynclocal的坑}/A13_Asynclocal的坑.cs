@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Verification.Core;
@@ -28,19 +28,22 @@ namespace 技术点验证
 
         public static void Show(string preStr)
         {
-            Console.WriteLine("当前线程ID:"+Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("当前线程ID:" + Thread.CurrentThread.ManagedThreadId);
             Console.WriteLine(preStr + A13_Asynclocal的坑.v.Value);
             Console.WriteLine("----------------");
-            Console.WriteLine(); 
+            Console.WriteLine();
         }
     }
 
     public class Intercept
     {
-        public static async Task Invoke()
+        public static Task Invoke()
         {
-            A13_Asynclocal的坑.v.Value = 888;
-            A13_Asynclocal的坑.Show("await之中的值");
+            return Task.Run(() =>
+            {
+                A13_Asynclocal的坑.v.Value = 888;
+                A13_Asynclocal的坑.Show("await之中的值");
+            });
         }
     }
 }

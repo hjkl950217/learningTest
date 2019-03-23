@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using Verification.Core;
 
@@ -50,7 +50,7 @@ namespace 语法验证与学习
         /// 阶乘：n! = n*(n-1)*(n-2)*(n-3)*...*3*2*1
         /// 阶乘最小是1，所以使用递归是比较好的。
         /// </remarks>
-        public void FactorialDemo()
+        public void FactorialDemo() 
         {
             //
             /*

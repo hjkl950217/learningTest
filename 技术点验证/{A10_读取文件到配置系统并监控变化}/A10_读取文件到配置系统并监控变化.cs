@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
@@ -48,7 +48,7 @@ namespace 技术点验证
             IServiceProvider di = services.BuildServiceProvider();
 
             var configEntity = di.GetService<TestConfig>();
-            A10_读取文件到配置系统并监控变化.testConfig = configEntity;
+            testConfig = configEntity;
             Console.WriteLine($"第一次从DI获取到值:{configEntity.TestName}");
         }
     }

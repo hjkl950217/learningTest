@@ -1,4 +1,4 @@
-﻿namespace Verification.Core
+namespace Verification.Core
 {
     /// <summary>
     /// 验证的类型
@@ -47,6 +47,7 @@
         B06_模式匹配_In_70,
         B07_递归,
         B08_Chsarp中写函数式编程,
+        B09_访问者模式,
 
         #endregion 语法类
 
