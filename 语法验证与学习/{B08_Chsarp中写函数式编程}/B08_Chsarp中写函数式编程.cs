@@ -14,7 +14,8 @@ namespace 语法验证与学习
         {
             VerificationHelp.Start()
                 .Add(this.FactorialDemo)
-                .Add(this.ClosureDemo)
+                .Add(this.CurryFunctionDemo)
+                .Add(this.ClosureDemo) //这个放最后，执行时间长
                 .BatchRun();
         }
 
@@ -75,20 +76,80 @@ namespace 语法验证与学习
         public void PartialFunctionDemo()
         {
             Func<double, double, double> pow = Math.Pow;
-            var exp = pow.Partial1(Math.E);//得到: e^x  这样的函数
-            var step = pow.Partial1(2);//得到: 2^x  这样的函数
+            Func<double, double> exp = pow.Partial1(Math.E);//得到: e^x  这样的函数
+            Func<double, double> step = pow.Partial1(2);//得到: 2^x  这样的函数
 
-            var square = pow.Partial2(2);//得到 x^2 这样的函数
-            var cube = pow.Partial2(3);//得到 x^3 这样的函数
+            Func<double, double> square = pow.Partial2(2);//得到 x^2 这样的函数
+            Func<double, double> cube = pow.Partial2(3);//得到 x^3 这样的函数
+
+            /*
+             * 在三维坐标系中，要计算一个点到原点的距离，当有一个值固定的时候
+             *
+             * 原始方法： x,y,z=>开方( x * x + y * y + z * z ) //三坐标平方，再开方
+             *
+             * 利用分部:  x,y=>开方( x * x + y * y + 0 )  //在X轴和Y轴组成的平面计算。因为此平面Z坐标永远为0
+             *
+             */
         }
+
+        #region 柯里化
 
         /// <summary>
         /// 柯里化
         /// </summary>
+        /// <remarks>
+        /// 柯里化 (Currying)是一种能将一个N参函数变为N个单参函数的方法
+        /// https://www.oschina.net/translate/functional-programming-in-csharp?lang=chs&p=8
+        /// </remarks>
         public void CurryFunctionDemo()
         {
-            //https://www.oschina.net/translate/functional-programming-in-csharp?lang=chs&p=8
+            Func<double, double, double> pow = Math.Pow;
+            var curriedPow = pow.Curry();
+            double p1 = Math.Pow(Math.E, 2);
+            double p2 = curriedPow(Math.E)(2);
+
+            /*
+             * 接上面的继续
+             * 建一个二维距离函数，用来计算X轴上X=3平面中，点与点之间的距离
+             * 利用柯里化能很好的生成出来。(上面的分部方法可以认为是柯里化里面的一小部分)
+             *
+             * 分部方式每一种都需要写一个方法，而柯里化只需要写一个就搞定
+             *
+             */
+
+            // 柯里化
+            Func<double, double, double, double> distance3D = Distance3D;
+            var curriedDistance = distance3D.Curry();
+            double d1 = Distance3D(3, 4, 12);
+            double d2 = curriedDistance(3)(4)(12);
+
+            // 生成平面X=3上的计算方法
+            Func<double, Func<double, double>> distance2DAtX3 = curriedDistance(3);
+            double d11 = Distance3D(3, 4, 12);
+            double d22 = distance2DAtX3(4)(12);
+
+            //生成平面X=3上的线Y=4
+            Func<double, double> distanceAtX3Y5 = distance2DAtX3(4);
+            double d111 = Distance3D(3, 4, 12);
+            double d222 = distanceAtX3Y5(12);
+
+            // 反柯里化
+            Func<double, double, double, double> unCurriedDistance = curriedDistance.UnCurry();
         }
+
+        /// <summary>
+        /// 计算一个点到原点的距离-只是示例方法
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
+        private static double Distance3D(double x, double y, double z)
+        {
+            return Math.Sqrt(x * x + y * y + z * z);
+        }
+
+        #endregion 柯里化
     }
 
     /// <summary>
@@ -135,10 +196,44 @@ namespace 语法验证与学习
             return a => func(a, defaultValue);
         }
 
-        public static Func<T1, Func<T2, Func<T3, TResult>>> Curry<T1, T2, T3, TResult>(
-            Func<T1, T2, T3, TResult> function)
+        #region 柯里化
+
+        public static Func<T1, Func<T2, TResult>> Curry<T1, T2, TResult>(this Func<T1, T2, TResult> function)
         {
+            /*
+             * a=>b  或是 b =>a 都无所谓
+             * 因为都是利用闭包传递引用，所以只要能对上号 最后的function
+             *
+             *
+             */
+
+            return b => a => function(b, a);
+        }
+
+        public static Func<T1, Func<T2, Func<T3, TResult>>> Curry<T1, T2, T3, TResult>(
+           this Func<T1, T2, T3, TResult> function)
+        {
+            /*
+             * 才看这个代码可能懵逼，但是理解了闭包就好办了
+             * a => [ b => c => function(a, b, c)]
+             *
+             * a是参数,在最里面的function中则直接使用了
+             * 相当于(a,b,c)=>function(a, b, c)
+             *
+             */
+
             return a => b => c => function(a, b, c);
         }
+
+        public static Func<T1, T2, T3, TResult> UnCurry<T1, T2, T3, TResult>(this Func<T1, Func<T2, Func<T3, TResult>>> function)
+        {
+            /*
+             * curriedDistance(3)(4)(12) 是不是等价于 Distance3D(3, 4, 12)
+             */
+
+            return (a, b, c) => function(a)(b)(c);
+        }
+
+        #endregion 柯里化
     }
 }
