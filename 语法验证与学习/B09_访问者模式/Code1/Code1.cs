@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace 语法验证与学习._B09_访问者模式_.Code
+namespace 语法验证与学习.B09_访问者模式
 {
     public class Code1
     {

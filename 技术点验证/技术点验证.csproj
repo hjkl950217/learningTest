@@ -35,16 +35,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="{A10_读取文件到配置系统并监控变化}\testA10.json">
+    <None Update="A10_读取文件到配置系统并监控变化\testA10.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="{A06_配置与IOC接口}\appsettingsTTT.json">
+    <None Update="A06_配置与IOC接口\appsettingsTTT.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="{A06_配置与IOC接口}\nairConfig.json">
+    <None Update="A06_配置与IOC接口\nairConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="{A09_读取文件并监控变化}\testA9.json">
+    <None Update="A09_读取文件并监控变化\testA9.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
