@@ -1,4 +1,4 @@
-﻿namespace 语法验证与学习.B09_访问者模式.Model
+﻿namespace 语法验证与学习
 {
     public enum StatusEnum
     {
