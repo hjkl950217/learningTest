@@ -32,7 +32,7 @@ namespace 语法验证与学习
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
-            VerificationHelp.StartVerification(verificationType, verifications, args); 
+            VerificationHelp.StartVerification(verificationType, verifications, args);
         }
     }
 }

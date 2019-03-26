@@ -50,5 +50,18 @@ namespace 语法验证与学习
                 item.GetConclusion(visitor);
             }
         }
+
+        //static IEnumerable<int> InfiniteEvenNumbersSet()
+        //{
+        //    for (int i = 0 ; ; i++)
+        //        if (i % 2 == 0) yield return i;
+        //}
+
+        //static <int>InfiniteEvenNumbersSet()
+        //{
+        //    for (int i = 0 ; ; i++)
+        //        if (i % 2 == 0)  return i;
+        //}
+
     }
 }

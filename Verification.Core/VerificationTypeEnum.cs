@@ -1,4 +1,4 @@
-namespace Verification.Core
+﻿namespace Verification.Core
 {
     /// <summary>
     /// 验证的类型
@@ -29,6 +29,7 @@ namespace Verification.Core
         A13_Asynclocal的坑,
         A14_查找相同对象的基准测试,
         A15_分割字符串的基准测试,
+        A16_懒加载,
 
         #endregion 技术点
 
@@ -48,6 +49,7 @@ namespace Verification.Core
         B07_递归,
         B08_Chsarp中写函数式编程,
         B09_访问者模式,
+     
 
         #endregion 语法类
 
