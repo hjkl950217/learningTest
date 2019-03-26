@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace 语法验证与学习
 {
@@ -24,7 +25,30 @@ namespace 语法验证与学习
             this.persons.AddRange(person2s);
         }
 
+        /// <summary>
+        /// 移除访问者
+        /// </summary>
+        /// <param name="person2s"></param>
+        public void Detach(params Person2[] person2s)
+        {
+            var detachObjs = (from a in this.persons
+                              from b in person2s
+                              where a.GetType() == b.GetType()
+                              select a).ToList();
 
-        //还要添加移除的和显示反应的
+            detachObjs.ForEach(t => this.persons.Remove(t));
+        }
+
+        /// <summary>
+        /// 显示反应
+        /// </summary>
+        /// <param name="visitor"></param>
+        public void Display(IVisitor visitor)
+        {
+            foreach (var item in this.persons)
+            {
+                item.GetConclusion(visitor);
+            }
+        }
     }
 }

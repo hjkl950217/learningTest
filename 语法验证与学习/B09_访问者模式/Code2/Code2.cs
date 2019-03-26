@@ -9,10 +9,10 @@ namespace 语法验证与学习
             Person[] persons = new Person[]
             {
                 new Man(){Status=StatusEnum.CauseSuccess},
-                new Man(){Status=StatusEnum.CauseFailure},
-                new Man(){Status=StatusEnum.InLove},
                 new Woman(){Status=StatusEnum.CauseSuccess},
+                new Man(){Status=StatusEnum.CauseFailure},
                 new Woman(){Status=StatusEnum.CauseFailure},
+                new Man(){Status=StatusEnum.InLove},
                 new Woman(){Status=StatusEnum.InLove}
             };
 
@@ -42,7 +42,7 @@ namespace 语法验证与学习
         {
             if (base.Status == StatusEnum.CauseSuccess)
             {
-                Console.WriteLine("男人成功时,背后多半有一个伟大的女人。");
+                Console.WriteLine("男人成功时,背后多半有一个伟大的女人");
             }
             else if (base.Status == StatusEnum.CauseFailure)
             {
@@ -64,7 +64,7 @@ namespace 语法验证与学习
             switch (base.Status)
             {
                 case StatusEnum.CauseSuccess:
-                    Console.WriteLine("女人成功时,背后大多有一个不成功的男人。");
+                    Console.WriteLine("女人成功时,背后大多有一个不成功的男人");
                     break;
 
                 case StatusEnum.CauseFailure:
