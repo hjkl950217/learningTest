@@ -9,9 +9,9 @@
 
     <Platforms>AnyCPU;x64</Platforms>
 
-    <AssemblyName>Nova.LocalChain.Test</AssemblyName>
+    <AssemblyName>Nova.LogicChain.Test</AssemblyName>
 
-    <RootNamespace>Nova.LocalChain.Test</RootNamespace>
+    <RootNamespace>Nova.LogicChain.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocalChain\LocalChain.csproj" />
+    <ProjectReference Include="..\LocalChain\Nova.LogicChain.csproj" />
   </ItemGroup>
 
 </Project>

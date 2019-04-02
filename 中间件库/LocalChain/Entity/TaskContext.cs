@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Nova.LocalChain.Entity
+namespace Nova.LogicChain.Entity
 {
     /// <summary>
     /// 以中间件方式执行逻辑链的上下文

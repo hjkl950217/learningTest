@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Nova.LocalChain.Entity
+namespace Nova.LogicChain.Entity
 {
     public partial class TaskContext
     {

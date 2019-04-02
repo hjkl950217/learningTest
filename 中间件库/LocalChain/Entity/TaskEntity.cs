@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nova.LocalChain.Entity
+namespace Nova.LogicChain.Entity
 {
     /// <summary>
     /// 注册、排序过程中使用的最小单位数据。 框架使用

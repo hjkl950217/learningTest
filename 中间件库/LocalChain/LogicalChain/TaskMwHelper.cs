@@ -1,6 +1,6 @@
 ﻿//using System.Linq;
 
-//namespace Nova.LocalChain
+//namespace Nova.LogicChain
 //{
 //    /// <summary>
 //    /// 还没想好名字的帮助类

@@ -1,4 +1,4 @@
-﻿namespace Nova.LocalChain.Entity
+﻿namespace Nova.LogicChain.Entity
 {
     /// <summary>
     /// 针对<see cref="TaskContext"/>及其泛型的扩展方法

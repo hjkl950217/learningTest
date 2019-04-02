@@ -1,5 +1,5 @@
-﻿using Nova.LocalChain;
-using Nova.LocalChain.Entity;
+﻿using Nova.LogicChain;
+using Nova.LogicChain.Entity;
 using System;
 using System.Collections.Generic;
 

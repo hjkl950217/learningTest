@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Nova.LocalChain.Entity;
+using Nova.LogicChain.Entity;
 using System;
 
-namespace Nova.LocalChain
+namespace Nova.LogicChain
 {
     /// <summary>
     /// 逻辑链-自动注册标记

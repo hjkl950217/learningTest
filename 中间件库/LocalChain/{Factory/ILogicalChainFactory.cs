@@ -1,8 +1,8 @@
-﻿using Nova.LocalChain.Entity;
+﻿using Nova.LogicChain.Entity;
 using System;
 using System.Collections.Generic;
 
-namespace Nova.LocalChain
+namespace Nova.LogicChain
 {
     /// <summary>
     /// 逻辑链工厂接口

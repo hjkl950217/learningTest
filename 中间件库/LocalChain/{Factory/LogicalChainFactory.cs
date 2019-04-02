@@ -1,10 +1,10 @@
-﻿using Nova.LocalChain.Entity;
+﻿using Nova.LogicChain.Entity;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nova.LocalChain
+namespace Nova.LogicChain
 {
     /// <summary>
     /// <see cref="INovaFactory"/>接口的默认实现

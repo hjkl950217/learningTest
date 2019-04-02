@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Nova.LocalChain;
-using Nova.LocalChain.Entity;
+using Nova.LogicChain;
+using Nova.LogicChain.Entity;
 using System;
 using Xunit;
 

@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "工具", "工具", "{A07215
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "批量替换", "工具\批量替换\批量替换.csproj", "{97220B9C-0690-46F8-9875-D90CC1A82F36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalChain", "中间件库\LocalChain\LocalChain.csproj", "{4E118834-E8D6-4DA8-95FB-5AC3B51C013D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nova.LogicChain", "中间件库\LocalChain\Nova.LogicChain.csproj", "{4E118834-E8D6-4DA8-95FB-5AC3B51C013D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalChain.Test", "中间件库\LocalChain.Test\LocalChain.Test.csproj", "{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nova.LogicChain.Test", "中间件库\LocalChain.Test\Nova.LogicChain.Test.csproj", "{D89A5DA1-75CE-4BBD-B042-3B500EEE8C9F}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Fsharp学习", "Fsharp学习\Fsharp学习.fsproj", "{3BBC3F70-A375-4281-B68B-F349269B76F5}"
 EndProject

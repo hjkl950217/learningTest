@@ -1,10 +1,10 @@
-﻿using Nova.LocalChain.Entity;
+﻿using Nova.LogicChain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Nova.LocalChain
+namespace Nova.LogicChain
 {
     /// <summary>
     /// 逻辑链帮助类

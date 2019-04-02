@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nova.LocalChain.Entity
+namespace Nova.LogicChain.Entity
 {
     /// <summary>
     /// 业务验证中的元素
