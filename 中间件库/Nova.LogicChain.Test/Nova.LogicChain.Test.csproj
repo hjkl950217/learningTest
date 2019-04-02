@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocalChain\Nova.LogicChain.csproj" />
+    <ProjectReference Include="..\Nova.LogicChain\Nova.LogicChain.csproj" />
   </ItemGroup>
 
 </Project>
