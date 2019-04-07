@@ -28,6 +28,7 @@ namespace 技术点验证
             verifications.Add(new A14_查找相同对象的基准测试());
             verifications.Add(new A15_分割字符串的基准测试());
             verifications.Add(new A16_懒加载());
+            verifications.Add(new A17_马尔科夫链());
 
             #endregion 验证接口的注册
 
@@ -36,7 +37,7 @@ namespace 技术点验证
 
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A16_懒加载;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A17_马尔可夫链链;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
