@@ -30,14 +30,14 @@ namespace 技术点验证
 
             this.SplitData(this.data);
 
-            //Console.WriteLine("分析概率后的数据");
-            //var markovData = this.FindAllPath(this.data, this.separator);
-            //foreach (var item in markovData.OrderBy(t => t.NodeName))
-            //{
-            //    Console.WriteLine($"key:{item}\t到下一节点的数量：{item.NextNodeNum}\t概率：{item.NextNodeProbabilityString}");
-            //}
-            //Console.WriteLine("======================");
-            //Console.WriteLine();
+            Console.WriteLine("分析概率后的数据");
+            var markovData = this.AnalyzeData(this.SplitData, this.CreateList, this.data);
+            foreach (var item in markovData.OrderBy(t => t.Key))
+            {
+                Console.WriteLine($"key:{item}\t到下一节点的数量：{item.Value.NextNodeNum}\t概率：{item.Value.NextNodeProbabilityString}");
+            }
+            Console.WriteLine("======================");
+            Console.WriteLine();
         }
 
         #region 字段区
@@ -57,48 +57,29 @@ namespace 技术点验证
         /// </summary>
         private readonly string separator = "->";
 
-        private static readonly string startNodeName = "Start";
-        private static readonly string endNodeName = "End";
+        private static Func<MarkovChainNode> NodeFactory(string key)
+        {
+            return () =>
+            {
+                switch (key)
+                {
+                    case MarkovChainNode.StartNodeName: return MarkovChainNode.CreateStartNode();
 
-        private static readonly MarkovChain startNode = new MarkovChain()
-        {
-            NodeName = startNodeName
-        };
-        private static readonly MarkovChain endNode = new MarkovChain()
-        {
-            NodeName = endNodeName
-        };
-
-        private static Func<MarkovChain> valueFactory(string key)
-        {
-            return () => new MarkovChain() { NodeName = key };
+                    case MarkovChainNode.EndNodeName: return MarkovChainNode.EndNode;
+                    default: return new MarkovChainNode() { NodeName = key };
+                }
+            };
         }
 
         #endregion 字段区
-
-        /*
-         * todo:A17_马尔科夫链
-         * 分割，然后创建默认的集合
-         * 
-         * 然后用递归+动态规划
-         * 
-         * 
-         * 递归用来遍历树，用动态规划记录数据
-         * 
-         * 
-         */
-
-
 
         /// <summary>
         /// 创建初始集合，包含开始节点
         /// </summary>
         /// <returns></returns>
-        private List<MarkovChain> CreateList()
+        private Dictionary<string, MarkovChainNode> CreateList()
         {
-            List<MarkovChain> result = new List<MarkovChain>();
-            result.Add(new MarkovChain() { NodeName = startNodeName });//添加默认节点
-
+            Dictionary<string, MarkovChainNode> result = new Dictionary<string, MarkovChainNode>();
             return result;
         }
 
@@ -118,7 +99,7 @@ namespace 技术点验证
                 if (item == null || item.Length == 0 || item.Trim() == this.separator)
                     continue;
 
-                string[] tempArry = ($"{startNodeName}->{item}->{endNodeName}")
+                string[] tempArry = ($"{MarkovChainNode.StartNodeName}->{item}->{MarkovChainNode.EndNodeName}")
                     .Split(this.separator, StringSplitOptions.RemoveEmptyEntries)
                     .Where(t => !string.IsNullOrEmpty(t))//找出不为null的字段
                     .Select(t => t.Trim())
@@ -126,6 +107,45 @@ namespace 技术点验证
 
                 result.Add(tempArry);
             }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 分析数据
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, MarkovChainNode> AnalyzeData(
+            Func<string[], List<string[]>> splitFunc,
+            Func<Dictionary<string, MarkovChainNode>> initialFactory,
+            string[] sourceData)
+        {
+            Dictionary<string, MarkovChainNode> result = initialFactory();
+            List<string[]> splitedData = splitFunc(sourceData);
+
+            #region 遍历并处理
+
+            foreach (var item in splitedData)//遍历每条数据
+            {
+                for (int i = 0 ; i < item.Length ; i++)//遍历每条数据中的节点
+                {
+                    //从结果区中拿到节点
+                    var tempNode = result.GetOrAdd(item[i], NodeFactory(item[i]));
+
+                    //添加节点 关联下一个节点
+                    bool isEnd = i + 1 == item.Length;
+                    if (!isEnd)
+                    {
+                        //如果不是最后一个节点，关联下一个节点
+                        var nextNode = result.GetOrAdd(item[i + 1], NodeFactory(item[i + 1]));
+                        tempNode.NextNodeList.Add(nextNode);
+                    }
+
+                    //最后一个节点是默认的end节点，所以只需要处理end节点之前的就好
+                }
+            }
+
+            #endregion 遍历并处理
 
             return result;
         }
