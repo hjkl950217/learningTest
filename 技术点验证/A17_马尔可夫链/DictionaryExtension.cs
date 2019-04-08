@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Linq;
 
 namespace System.Collections.Generic
 {
@@ -12,7 +9,8 @@ namespace System.Collections.Generic
             TKey key,
             Func<TValue> valueFactory)
         {
-            if (valueFactory == null) throw new ArgumentNullException(nameof(valueFactory));
+            valuePairs.CheckNull(nameof(valuePairs));
+            valueFactory.CheckNull(nameof(valueFactory));
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
 
@@ -24,9 +22,6 @@ namespace System.Collections.Generic
                 return tempValue;
             }
         }
-
-
-
     }
 
     public static class ICollectionExtension
@@ -37,8 +32,12 @@ namespace System.Collections.Generic
             Func<T> valueFactory)
             where T : class
         {
-            T value = source.FirstOrDefault(predicate);
+            source.CheckNull(nameof(source));
+            predicate.CheckNull(nameof(predicate));
+            valueFactory.CheckNull(nameof(valueFactory));
 
+
+            T value = source.FirstOrDefault(predicate);
             if (value == null)
             {
                 var tempValue = valueFactory();
@@ -49,7 +48,34 @@ namespace System.Collections.Generic
             {
                 return value;
             }
+        }
 
+        /// <summary>
+        /// 浅拷贝到另一个数组中
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">要拷贝的数据源</param>
+        /// <param name="size">指定的数组大小</param>
+        /// <returns></returns>
+        public static T[] Copy<T>(this ICollection<T> source, int size)
+        {
+            source.CheckNull(nameof(source));
+
+            T[] tempResult = new T[size];
+            source.CopyTo(tempResult, 0);
+            return tempResult;
+        }
+
+        /// <summary>
+        /// 浅拷贝到另一个数组中,默认数组大小为<see cref="ICollection{T}.Count"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">要拷贝的数据源</param>
+        /// <returns></returns>
+        public static T[] Copy<T>(this ICollection<T> source)
+        {
+            source.CheckNull(nameof(source));
+            return source.Copy(source.Count);
         }
     }
 }

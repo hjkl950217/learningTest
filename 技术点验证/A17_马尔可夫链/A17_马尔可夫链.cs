@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Verification.Core;
 
 namespace 技术点验证
@@ -31,13 +32,27 @@ namespace 技术点验证
             this.SplitData(this.data);
 
             Console.WriteLine("分析概率后的数据");
-            var markovData = this.AnalyzeData(this.SplitData, this.CreateList, this.data);
+            var markovData = this.AnalyzeData(this.CreateList, this.SplitData, this.data);
             foreach (var item in markovData.OrderBy(t => t.Key))
             {
-                Console.WriteLine($"key:{item}\t到下一节点的数量：{item.Value.NextNodeNum}\t概率：{item.Value.NextNodeProbabilityString}");
+                Console.WriteLine($"key:{item.Key}\t到下一节点的数量：{item.Value.NextNodeNum}\t概率：{item.Value.NextNodeProbabilityString}");
             }
             Console.WriteLine("======================");
             Console.WriteLine();
+
+            //todo:A17_马尔科夫链
+            /*
+             * 遍历这里还有点问题，遍历的算法不对
+             *
+             * 扩展：每个路径长度问题，如何按指定的长度来处理？
+             *
+             */
+            Console.WriteLine("所有可能的路径");
+            var result = this.FindAllPath(markovData);
+            foreach (var item in result)
+            {
+                Console.WriteLine(this.CombinPath(item));
+            }
         }
 
         #region 字段区
@@ -49,7 +64,8 @@ namespace 技术点验证
         {
             "->",
             "1A -> 2F -> 3A -> 4F",
-            "1E -> 2C -> 3A -> 4C"
+            "1E -> 2C -> 3A -> 4C",
+            "1A -> 2A -> 3F -> 4C"
         };
 
         /// <summary>
@@ -72,6 +88,8 @@ namespace 技术点验证
         }
 
         #endregion 字段区
+
+        #region 数据分析、处理部分
 
         /// <summary>
         /// 创建初始集合，包含开始节点
@@ -99,7 +117,7 @@ namespace 技术点验证
                 if (item == null || item.Length == 0 || item.Trim() == this.separator)
                     continue;
 
-                string[] tempArry = ($"{MarkovChainNode.StartNodeName}->{item}->{MarkovChainNode.EndNodeName}")
+                string[] tempArry = ($"{MarkovChainNode.StartNodeName}->{item.ToUpper()}->{MarkovChainNode.EndNodeName}")
                     .Split(this.separator, StringSplitOptions.RemoveEmptyEntries)
                     .Where(t => !string.IsNullOrEmpty(t))//找出不为null的字段
                     .Select(t => t.Trim())
@@ -116,8 +134,8 @@ namespace 技术点验证
         /// </summary>
         /// <returns></returns>
         public Dictionary<string, MarkovChainNode> AnalyzeData(
-            Func<string[], List<string[]>> splitFunc,
             Func<Dictionary<string, MarkovChainNode>> initialFactory,
+            Func<string[], List<string[]>> splitFunc,
             string[] sourceData)
         {
             Dictionary<string, MarkovChainNode> result = initialFactory();
@@ -149,5 +167,64 @@ namespace 技术点验证
 
             return result;
         }
+
+        #endregion 数据分析、处理部分
+
+        #region 遍历部分
+
+        /// <summary>
+        /// 将路径的节点数组转换为<see cref="String"/>，以方便输出
+        /// </summary>
+        /// <param name="markovChainNodes"></param>
+        /// <returns></returns>
+        public string CombinPath(MarkovChainNode[] markovChainNodes)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(markovChainNodes[0].NodeName);
+            foreach (var item in markovChainNodes.Skip(1))
+            {
+                stringBuilder.AppendFormat(" -> {0}", item.NodeName);
+            }
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="data">包含节点关系的数据集合</param>
+        /// <param name="resultSet">递归过程中传递结果集，返回时也是返回此结果集</param>
+        /// <param name="startKey">每次递归要查找的key</param>
+        /// <param name="tempList">临时集合，在递归中代表当前的路径</param>
+        /// <returns></returns>
+        private List<MarkovChainNode[]> FindAllPath(
+            Dictionary<string, MarkovChainNode> data,
+            List<MarkovChainNode[]> resultSet = null,
+            string startKey = MarkovChainNode.StartNodeName,
+            List<MarkovChainNode> tempList = null)
+        {
+            resultSet = resultSet ?? new List<MarkovChainNode[]>();
+            tempList = tempList ?? new List<MarkovChainNode>();
+
+            switch (startKey)
+            {
+                case MarkovChainNode.EndNodeName:
+                    //如果要查找的key为end节点名，代表当前路径已经找完，需要把当前路径拷贝到结果集中
+                    MarkovChainNode[] tempResult = tempList.Copy(tempList.Count + 1);//这里加1是要算上end节点本身
+                    tempResult[tempList.Count] = MarkovChainNode.EndNode;//给最后一个节点赋值上结束节点
+                    resultSet.Add(tempResult);
+                    tempList.Clear();
+                    return resultSet;
+                default:
+                    var tempNode = data[startKey];
+                    tempList.Add(tempNode);//添加到临时集合中
+                    foreach (var item in tempNode.NextNodeList)//遍历子节点集合
+                    {
+                        this.FindAllPath(data, resultSet, item.NodeName, tempList);
+                    }
+                    return resultSet;
+            }
+        }
+
+        #endregion 遍历部分
     }
 }
