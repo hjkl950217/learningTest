@@ -7,17 +7,17 @@ namespace Nova.LogicChain.Entity
     /// </summary>
     /// <remarks>
     /// 接口处（接口定义、方法定义）等暂时不能使用泛型上下文。
-    /// 参数传递、使用中推荐使用<see cref="TaskContext{TResult}"/>
+    /// 参数传递、使用中推荐使用<see cref="StepContext{TResult}"/>
     /// </remarks>
-    public abstract partial class TaskContext
+    public abstract partial class StepContext
     {
         /// <summary>
-        /// 初始化<see cref="TaskContext{TResult}"/>实例和和属性
+        /// 初始化<see cref="StepContext{TResult}"/>实例和和属性
         /// </summary>
-        public TaskContext()
+        protected StepContext()
         {
             this.ProcessCompleted = false;
-            this.ErrorList = new List<TaskError>();
+            this.ErrorList = new List<StepError>();
             this.Result = new object();
         }
 
@@ -32,7 +32,7 @@ namespace Nova.LogicChain.Entity
         /// <remarks>
         /// 当任务执行时发生异常时写入
         /// </remarks>
-        public virtual List<TaskError> ErrorList { get; }
+        public virtual List<StepError> ErrorList { get; }
 
         /// <summary>
         /// 上下文中的返回数据
@@ -47,29 +47,5 @@ namespace Nova.LogicChain.Entity
         {
             return this.Result;
         }
-    }
-
-    /// <summary>
-    /// 以中间件方式执行逻辑链的泛型上下文
-    /// </summary>
-    public class TaskContext<TResult> : TaskContext
-    {
-        public TaskContext() : base()
-        {
-        }
-
-        /// <summary>
-        /// 上下文中的返回数据
-        /// </summary>
-        public override object Result
-        {
-            get => this.ResultEntiy;
-        }
-
-        /// <summary>
-        /// 获取当前上下文中的<see cref="Result"/>
-        /// </summary>
-        /// <returns></returns>
-        public TResult ResultEntiy { get; internal set; }
     }
 }

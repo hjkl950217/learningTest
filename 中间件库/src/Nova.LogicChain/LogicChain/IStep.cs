@@ -6,7 +6,7 @@ namespace Nova.LogicChain
     /// <summary>
     /// 以中间件方式执行的任务步骤接口，一个实现对应一步逻辑
     /// </summary>
-    public interface ITask
+    public interface IStep
     {
         #region 考虑以后在抽象类中加的东西
 
@@ -43,16 +43,20 @@ namespace Nova.LogicChain
         /// 下一个中间件
         /// </summary>
         /// <remarks>
-        /// 由TaskMwHelper初始化时统一排序和赋值
+        /// 由<see cref="LogicalChainHelper"/>中排序或初始化时统一指定
         /// </remarks>
-        ITask Next { get; set; }
+        IStep Next { get; set; }
 
         /// <summary>
         /// 异步执行任务
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">要处理的步骤上下文.</param>
+        /// <remarks>
+        /// 参数初始化：<para></para>
+        /// 一般来说第一个步骤代码执行时不会判断null，由调用者负责初始化化。如果使用IOC，则不需要关心此参数
+        /// </remarks>
         /// <returns></returns>
-        Task InvokeAsync(TaskContext context);
+        Task InvokeAsync(StepContext context);
     }
 
     /*
@@ -67,27 +71,5 @@ namespace Nova.LogicChain
      *
      */
 
-    /// <summary>
-    /// 结束中间件，代表最后一步
-    /// </summary>
-    public class EndTaskMw : ITask
-    {
-        /// <summary>
-        /// 下一个中间件
-        /// </summary>
-        /// <remarks>
-        /// 由TaskMwHelper初始化时统一排序和赋值
-        /// </remarks>
-        public ITask Next { get; set; }
-
-        /// <summary>
-        /// 直接返回一个<see cref="Task.CompletedTask"/>来结束调用
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public Task InvokeAsync(TaskContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
+   
 }

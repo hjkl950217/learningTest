@@ -4,25 +4,28 @@ using System.Threading.Tasks;
 
 namespace Nova.LogicalChain.Test
 {
-    [NovaRegister(TestTaskEnum.End, typeof(TestResult))]
-    public class Test_B_Step : ITask
+    [LogicChainStep(TestTaskEnum.Start, typeof(TestResult))]
+    public class Test_A_Step : IStep
     {
-        public ITask Next { get; set; }
+        public IStep Next { get; set; }
 
-        public Task InvokeAsync(TaskContext context)
+        public Task InvokeAsync(StepContext context)
         {
             var conText2 = context.GetGenericContext<TestResult>();
 
-            if (conText2.ResultEntiy.ID == 200)
+            // 模拟自己的操作
+
+            if (conText2.ResultEntiy.ID == 100)
             {
                 //模拟分支
-                conText2.ResultEntiy.ID = 200;
-                conText2.ResultEntiy.Message = "只执行到第二步";
+                conText2.ResultEntiy.Message = "只执行到第一步";
                 context.ProcessCompleted = true;
                 return Task.CompletedTask;
             }
 
             var endTask = this.Next.InvokeAsync(conText2);
+
+            // 模拟上一步完成后自己的操作
 
             return endTask;
         }

@@ -6,7 +6,7 @@ namespace Nova.LogicChain.Entity
     /// <summary>
     /// 业务验证中的元素
     /// </summary>
-    public class TaskError
+    public class StepError
     {
         /// <summary>
         /// 自定义信息
@@ -36,6 +36,6 @@ namespace Nova.LogicChain.Entity
         /// <summary>
         /// 内部错误
         /// </summary>
-        public List<TaskError> InnerErrors { get; set; }
+        public List<StepError> InnerErrors { get; set; }
     }
 }

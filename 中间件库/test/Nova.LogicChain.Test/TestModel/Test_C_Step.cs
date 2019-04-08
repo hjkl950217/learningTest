@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Nova.LogicalChain.Test
 {
-    [NovaRegister(TestTaskEnum.EndLog, typeof(TestResult))]
-    public class Test_C_Step : ITask
+    [LogicChainStep(TestTaskEnum.EndLog, typeof(TestResult))]
+    public class Test_C_Step : IStep
     {
         private readonly TestConfig testConfig;
 
@@ -14,9 +14,9 @@ namespace Nova.LogicalChain.Test
             this.testConfig = testConfig;
         }
 
-        public ITask Next { get; set; }
+        public IStep Next { get; set; }
 
-        public Task InvokeAsync(TaskContext context)
+        public Task InvokeAsync(StepContext context)
         {
             var conText2 = context.GetGenericContext<TestResult>();
 

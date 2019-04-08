@@ -29,11 +29,11 @@ namespace Nova.LogicalChain.Test.DiI_Test
                 return di;
             }
 
-            public static (ITask ITask, TaskContext<TestResult> TestContext) GetMockeTaskAndContext(int expectID)
+            public static (IStep ITask, StepContext<TestResult> TestContext) GetMockeTaskAndContext(int expectID)
             {
                 IServiceProvider di = MockHelper.GetMockeDI();
 
-                ITask testTask = di
+                IStep testTask = di
                     .GetService<INovaFactory>()
                     .GetFirstTask<TestTaskEnum>();
 
@@ -41,7 +41,7 @@ namespace Nova.LogicalChain.Test.DiI_Test
                 {
                     ID = expectID,
                 };
-                TaskContext<TestResult> taskContext = TaskContext.CreateContext(testContext);
+                StepContext<TestResult> taskContext = StepContext.CreateContext(testContext);
 
                 return (testTask, taskContext);
             }

@@ -8,15 +8,15 @@ namespace Nova.LogicChain
     /// 逻辑链-自动注册标记
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    public class NovaRegisterAttribute : Attribute
+    public class LogicChainStepAttribute : Attribute
     {
         /// <summary>
-        /// 初始化一个<see cref="NovaRegisterAttribute"/>实例
+        /// 初始化一个<see cref="LogicChainStepAttribute"/>实例
         /// </summary>
         /// <param name="taskEnumTypeValue">步骤枚举值</param>
         /// <param name="contextResultType"></param>
         /// <param name="lifetime">表示在DI中的生命周期配置。默认为<see cref="ServiceLifetime.Singleton"/></param>
-        public NovaRegisterAttribute(
+        public LogicChainStepAttribute(
             object taskEnumTypeValue,
             Type contextResultType,
             ServiceLifetime lifetime = ServiceLifetime.Singleton)
@@ -30,7 +30,7 @@ namespace Nova.LogicChain
 
             if (taskEnumTypeValue.GetType().IsEnum == false)
             {
-                throw new TypeAccessException($"{nameof(NovaRegisterAttribute)} initialization need Enum type.{nameof(taskEnumTypeValue)}'s type is {taskEnumTypeValue.GetType().Name}");
+                throw new TypeAccessException($"{nameof(LogicChainStepAttribute)} initialization need Enum type.{nameof(taskEnumTypeValue)}'s type is {taskEnumTypeValue.GetType().Name}");
             }
 
             #endregion 检测
@@ -53,7 +53,7 @@ namespace Nova.LogicChain
         public int TaskEnumOrder { get; }
 
         /// <summary>
-        /// 记录<see cref="TaskContext{TResult}"/>中的类型
+        /// 记录<see cref="StepContext{TResult}"/>中的类型
         /// </summary>
         public Type ContextResultType { get; set; }
 

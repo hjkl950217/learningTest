@@ -16,7 +16,7 @@ namespace Nova.LogicChain
         /// <para>key为步骤枚举的类型</para>
         /// <para>value为步骤枚举对应的步骤实现,已经排列好调用顺序，第一个既可执行</para>
         /// </summary>
-        private readonly ConcurrentDictionary<Type, TaskEntity[]> taskList;
+        private readonly ConcurrentDictionary<Type, StepEntity[]> taskList;
 
         /// <summary>
         /// DI实例
@@ -28,14 +28,14 @@ namespace Nova.LogicChain
         /// </summary>
         /// <param name="serviceProvider">DI实例</param>
         /// <param name="taskList">
-        /// 需要处理的 <see cref="TaskEntity"/> 集合。可调用 <see cref="NovaHelper.FindAllTaskEntity"/> 获得
+        /// 需要处理的 <see cref="StepEntity"/> 集合。可调用 <see cref="LogicalChainHelper.FindAllTaskEntity"/> 获得
         /// </param>
-        public NovaFactory(IServiceProvider serviceProvider, List<TaskEntity> taskList)
+        public NovaFactory(IServiceProvider serviceProvider, List<StepEntity> taskList)
         {
             this.di = serviceProvider;
 
             var tempTaskList = this.GetNovaList(taskList);
-            this.taskList = new ConcurrentDictionary<Type, TaskEntity[]>(tempTaskList);
+            this.taskList = new ConcurrentDictionary<Type, StepEntity[]>(tempTaskList);
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace Nova.LogicChain
         /// </summary>
         /// <typeparam name="TEnumType"></typeparam>
         /// <returns></returns>
-        public ITask GetFirstTask<TEnumType>()
+        public IStep GetFirstTask<TEnumType>()
         {
-            TaskEntity[] taskEntity = this.taskList.GetOrAdd(
+            StepEntity[] taskEntity = this.taskList.GetOrAdd(
                 typeof(TEnumType),
                 type => this.GetTaskEntity(type)
                 );
@@ -60,14 +60,14 @@ namespace Nova.LogicChain
         /// <summary>
         /// 获取所有的步骤枚举和对应的实现数据
         /// </summary>
-        /// <param name="taskList">帮助整理的<see cref="TaskEntity"/>集合。默认返回工厂缓存的数据</param>
+        /// <param name="taskList">帮助整理的<see cref="StepEntity"/>集合。默认返回工厂缓存的数据</param>
         /// <remarks>
         /// 此方法提供给调试时使用，开发使用<see cref="GetFirstTask{TEnumType}"/>方法即可。<para></para>
         /// 如果是启动时调用：会扫描程序集然后注册、添加、排序等等。
         /// 如果是启动后调用：会返回缓存中的数据。
         /// </remarks>
         /// <returns></returns>
-        public Dictionary<Type, TaskEntity[]> GetNovaList(List<TaskEntity> taskList = null)
+        public Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity> taskList = null)
         {
             if (this.taskList == null || this.taskList.Any() == false)
             {
@@ -90,36 +90,36 @@ namespace Nova.LogicChain
         /// 整理、获取所有的Task
         /// </summary>
         /// <returns></returns>
-        private TaskEntity[] GetTaskEntity(Type enumType)
+        private StepEntity[] GetTaskEntity(Type enumType)
         {
             //1.获取Type数据
-            List<TaskEntity> taskList = this.A_FindAllTaskEntity();
+            List<StepEntity> tempTaskList = this.A_FindAllTaskEntity();
 
             //2.创建或获取接口
-            taskList = this.B_CreateInstance(taskList, this.di);
+            this.B_CreateInstance(tempTaskList, this.di);
 
             //3.排序-排列接口上的Next
             //分组-以type为索引
-            var taskGroup = taskList.FindAll(t => t.Attribute.TaskEnumType == enumType);
+            var taskGroup = tempTaskList.FindAll(t => t.Attribute.TaskEnumType == enumType);
 
             //排列next属性
-            return NovaHelper.SortList(taskGroup);
+            return LogicalChainHelper.SortList(taskGroup);
         }
 
         /// <summary>
-        /// 找出所有程序集中所有包含<see cref="NovaRegisterAttribute"/>的类数据
+        /// 找出所有程序集中所有包含<see cref="LogicChainStepAttribute"/>的类数据
         /// </summary>
         /// <returns></returns>
-        private List<TaskEntity> A_FindAllTaskEntity()
+        private List<StepEntity> A_FindAllTaskEntity()
         {
-            return NovaHelper.FindAllTaskEntity();
+            return LogicalChainHelper.FindAllTaskEntity();
         }
 
-        private List<TaskEntity> B_CreateInstance(in List<TaskEntity> taskList, IServiceProvider di)
+        private List<StepEntity> B_CreateInstance(in List<StepEntity> taskList, IServiceProvider di)
         {
             foreach (var item in taskList)
             {
-                item.StepInstanceObject = this.CreateInstance<ITask>(item.StepType, di);
+                item.StepInstanceObject = this.CreateInstance<IStep>(item.StepType, di);
             }
             return taskList;
         }
@@ -129,15 +129,15 @@ namespace Nova.LogicChain
         /// </summary>
         /// <param name="taskList"></param>
         /// <returns></returns>
-        private Dictionary<Type, TaskEntity[]> C_SortAndPermutation(in List<TaskEntity> taskList)
+        private Dictionary<Type, StepEntity[]> C_SortAndPermutation(in List<StepEntity> taskList)
         {
             var taskGroup = taskList
                 .ToLookup(t => t.Attribute.TaskEnumType);
 
-            Dictionary<Type, TaskEntity[]> result = new Dictionary<Type, TaskEntity[]>();
+            Dictionary<Type, StepEntity[]> result = new Dictionary<Type, StepEntity[]>();
             foreach (var item in taskGroup)
             {
-                var temp = NovaHelper.SortList(item.ToList());
+                var temp = LogicalChainHelper.SortList(item.ToList());
 
                 result.Add(item.Key, temp);
             }

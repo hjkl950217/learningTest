@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
     /// <summary>
     /// 逻辑链扩展
     /// </summary>
-    public static class NovaExtension
+    public static class LogicChainExtension
     {
         /// <summary>
         /// 注册逻辑链服务
@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddNova(this IServiceCollection services)
         {
             //扫描并注册程序集中所有带标签的实现
-            List<TaskEntity> taskList = NovaHelper.FindAllTaskEntity();
+            List<StepEntity> taskList = LogicalChainHelper.FindAllTaskEntity();
             foreach (var item in taskList)
             {
                 ServiceDescriptor serviceDescriptor = new ServiceDescriptor(
