@@ -1,7 +1,7 @@
 ﻿using Nova.LogicChain.Entity;
 using System.Threading.Tasks;
 
-namespace Nova.LogicChain.LogicChain
+namespace Nova.LogicChain
 {
     /// <summary>
     /// 以中间件方式执行的步骤接口，一个实现对应一步逻辑

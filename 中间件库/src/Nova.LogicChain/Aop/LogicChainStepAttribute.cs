@@ -5,7 +5,7 @@ using System;
 namespace Nova.LogicChain
 {
     /// <summary>
-    /// 逻辑链-自动注册标记
+    /// 步骤链-自动注册标记
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     public class LogicChainStepAttribute : Attribute
@@ -14,19 +14,24 @@ namespace Nova.LogicChain
         /// 初始化一个<see cref="LogicChainStepAttribute"/>实例
         /// </summary>
         /// <param name="taskEnumTypeValue">步骤枚举值</param>
-        /// <param name="contextResultType"></param>
-        /// <param name="lifetime">表示在DI中的生命周期配置。默认为<see cref="ServiceLifetime.Singleton"/></param>
+        /// <param name="contextResultType">
+        /// 表示<see cref="StepContext.Result"/>中的类型。<para></para>
+        ///
+        /// 如果你继承的是<see cref="IStep"/>，建议指定此属性，提高代码阅读性.
+        ///
+        /// 如果你继承的是<see cref="IStep{TResult}"/>,则不用指定此属性,框架会自动赋值.<para></para>
+        /// </param>
+        /// <param name="lifetime">
+        /// 表示在DI中的生命周期配置。默认为<see cref="ServiceLifetime.Singleton"/>
+        /// </param>
         public LogicChainStepAttribute(
             object taskEnumTypeValue,
-            Type contextResultType,
+            Type contextResultType = null,
             ServiceLifetime lifetime = ServiceLifetime.Singleton)
         {
             #region 检测
 
-            if (taskEnumTypeValue == null)
-            {
-                throw new ArgumentNullException(nameof(taskEnumTypeValue));
-            }
+            taskEnumTypeValue.CheckNull(nameof(taskEnumTypeValue));
 
             if (taskEnumTypeValue.GetType().IsEnum == false)
             {
@@ -53,13 +58,16 @@ namespace Nova.LogicChain
         public int TaskEnumOrder { get; }
 
         /// <summary>
-        /// 记录<see cref="StepContext{TResult}"/>中的类型
+        /// 表示<see cref="StepContext.Result"/>中的类型
         /// </summary>
         public Type ContextResultType { get; set; }
 
         /// <summary>
         /// 代表步骤实现的生命周期
         /// </summary>
-        public ServiceLifetime Lifetime { get; }//此属性可向IOC指定是什么作用域
+        /// <remarks>
+        /// 用来向IOC注册时指定作用域
+        /// </remarks>
+        public ServiceLifetime Lifetime { get; }
     }
 }

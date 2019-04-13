@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Nova.LogicChain.Entity;
 
 namespace Nova.LogicChain
 {
-    /// <summary>
-    /// 结束中间件，代表最后一步
-    /// </summary>
-    public class EndStep : IStep
+    public class EndStep<TResult> : IStep<TResult>
+        where TResult:class
     {
         /// <summary>
         /// 下一个中间件
@@ -14,17 +13,17 @@ namespace Nova.LogicChain
         /// <remarks>
         /// 由框架统一排序和赋值
         /// </remarks>
-        public IStep Next { get; set; }
+        public IStep<TResult> Next { get; set; }
 
         /// <summary>
-        /// 直接返回一个<see cref="Task.CompletedTask"/>来结束调用
+        /// 直接返回一个<see cref="Task{TResult}"/>来结束调用
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public Task InvokeAsync(StepContext context)
+        public Task<TResult> InvokeAsync(StepContext<TResult> context)
         {
             context.ProcessCompleted = true;
-            return Task.CompletedTask;
+            return context.ResultEntiy.ToTask();
         }
     }
 }

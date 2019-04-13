@@ -18,13 +18,22 @@ namespace Nova.LogicalChain.Test
 
         public Task InvokeAsync(StepContext context)
         {
-            var conText2 = context.GetGenericContext<TestResult>();
+            var conText2 = context.As<TestResult>();
 
-            //模拟分支
-            conText2.ResultEntiy.ID = 300;
-            conText2.ResultEntiy.Message = $"ServiceName:{this.testConfig.ServiceName}";
-            context.ProcessCompleted = true;
-            return Task.CompletedTask;
+            if (this.testConfig.IsRelease)
+            {
+                //模拟分支
+                conText2.ResultEntiy.ID = 300;
+                conText2.ResultEntiy.Message = $"ServiceName:{this.testConfig.ServiceName}";
+                context.ProcessCompleted = true;
+                return Task.CompletedTask;
+            }
+            else
+            {
+                return Task.CompletedTask;
+            }
+
+          
         }
     }
 }

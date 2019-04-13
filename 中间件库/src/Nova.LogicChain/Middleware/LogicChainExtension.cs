@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             foreach (var item in taskList)
             {
                 ServiceDescriptor serviceDescriptor = new ServiceDescriptor(
-                     item.StepType,
+                    item.StepType,
                     item.StepType,
                     item.Attribute.Lifetime);
 

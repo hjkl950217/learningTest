@@ -13,16 +13,34 @@
         /// <typeparam name="TResult"></typeparam>
         /// <param name="taskContext"></param>
         /// <remarks>
+        /// 转换逻辑同As关键字<para></para>
         /// 因为使用<see cref="StepContext"/>不太方便，所以提供了此方法，代替了自己转换
-        /// 能转换的前提是<paramref name="taskContext"/>已经是<typeparamref name="TResult"/>类型的上下文了。
+        /// 能转换的前提是<paramref name="taskContext"/>已经是<see cref="StepContext{TResult}"/>类型的上下文了。
         /// </remarks>
         /// <returns></returns>
-        public static StepContext<TResult> GetGenericContext<TResult>(this StepContext taskContext)
+        public static StepContext<TResult> As<TResult>(this StepContext taskContext)
             where TResult : class
         {
             return taskContext as StepContext<TResult>;
         }
 
         #endregion 获取TaskContext
+
+        //#region 泛型与非泛型互转
+
+        ///// <summary>
+        ///// 将当前步骤上下文转换为泛型上下文
+        ///// </summary>
+        ///// <typeparam name="TResult"></typeparam>
+        ///// <param name="context"></param>
+        ///// <returns></returns>
+        //public static StepContext<TResult> As<TResult>(this StepContext context)
+        //    where TResult : class
+        //{
+        //    return context as StepContext<TResult>;
+        //}
+
+
+        //#endregion 泛型与非泛型互转
     }
 }

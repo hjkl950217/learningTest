@@ -11,7 +11,7 @@ namespace Nova.LogicalChain.Test
 
         public Task InvokeAsync(StepContext context)
         {
-            var conText2 = context.GetGenericContext<TestResult>();
+            var conText2 = context.As<TestResult>();
 
             if (conText2.ResultEntiy.ID == 200)
             {

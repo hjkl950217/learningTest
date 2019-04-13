@@ -18,7 +18,7 @@ namespace Nova.LogicChain.Entity
 
         /// <summary>
         /// 实现类的<see cref="Type"/>数据。
-        /// 只会是直接或间接继承<see cref="IStep"/>接口的类
+        /// 只会是直接或间接继承<see cref="IStep"/>接口或<see cref="IStep{TResult}"/>接口的类
         /// </summary>
         public Type StepType { get; set; }
 

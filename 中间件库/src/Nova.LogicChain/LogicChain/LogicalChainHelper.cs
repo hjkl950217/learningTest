@@ -128,12 +128,12 @@ namespace Nova.LogicChain
            bool isAutoEnd = true)
         {
             //排序- 一组接口内部排序
-            var taskList = taskArray
+            var stepList = taskArray
                 .OrderBy(i => i.Attribute.TaskEnumOrder)
                 .ToArray();
 
-            StepEntity tempMw = taskList.First();//获取第一个中间件的引用
-            foreach (var item in taskList)
+            StepEntity tempMw = stepList.First();//获取第一个中间件的引用
+            foreach (var item in stepList)
             {
                 tempMw.StepInstanceObject.Next = item.StepInstanceObject;
                 tempMw = item;//将指针移动到下一个
@@ -144,9 +144,10 @@ namespace Nova.LogicChain
                 ? new EndStep()
                 : null;
 
-            return taskList;
+            return stepList;
         }
 
         #endregion 排列接口
+
     }
 }

@@ -1,0 +1,13 @@
+﻿
+--SonarQube命令
+dotnet test /p:CollectCoverage=true /p:CopyLocalLockFileAssemblies=true /p:CoverletOutputFormat=opencover /p:Exclude=\"[xunit.*]*,[*.Test]*\" /p:Threshold=0 /p:ThresholdType=line /p:ThresholdStat=average
+dotnet build-server shutdown 
+dotnet SonarScanner begin /k:"Mkpl.Sdk.Core" /d:sonar.host.url="{host}" /d:sonar.login=admin /d:sonar.password=admin /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /d:sonar.coverage.exclusions="test.cs,**\test.cs,**test.cs"
+dotnet build
+dotnet SonarScanner  end /d:sonar.login=admin /d:sonar.password=admin
+
+
+--手动发包命令
+先把生成的nupkg包赋值到push目录
+dotnet nuget push src push\*.nupkg -s http://nuget.newegg.org -k 1
+

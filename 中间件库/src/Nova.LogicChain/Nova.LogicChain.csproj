@@ -1,16 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <!--引用解决方案公用项目配置-->
+  <Import Project="../../build/ProjectCommon.targets" />
+  
   <PropertyGroup>
-    <RootNamespace>Nova.LogicChain</RootNamespace>
-    <AssemblyName>Nova.LogicChain</AssemblyName>
+    <RootNamespace>$(BaseLibraryName).LogicChain</RootNamespace>
+    <AssemblyName>$(BaseLibraryName).LogicChain</AssemblyName>
 
     <Description>Nova库中的逻辑链库,基于netstandard2.0.结合建造者和逻辑链两种设计模式</Description>
     <PackageReleaseNotes>Nova库中的逻辑链库,基于netstandard2.0.结合建造者和逻辑链两种设计模式</PackageReleaseNotes>
 
     <!--库版本号-->
-    <Version>0.0.1.0</Version>
+    <!--<Version>0.0.1.0</Version>
     <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <FileVersion>0.0.1.0</FileVersion>
+    <FileVersion>0.0.1.0</FileVersion>-->
 
     <!--仓库地址-->
     <RepositoryUrl></RepositoryUrl>
@@ -32,7 +34,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <DocumentationFile>bin\$(Configuration)\Nova.LogicChain.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(BaseLibraryName).LogicChain.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <OutputPath>bin\$(Configuration)</OutputPath>
   </PropertyGroup>

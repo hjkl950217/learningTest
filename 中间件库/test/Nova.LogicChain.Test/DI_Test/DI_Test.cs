@@ -17,7 +17,7 @@ namespace Nova.LogicalChain.Test.DiI_Test
                 IServiceCollection diBuilder = new ServiceCollection();
                 diBuilder.AddNova();//注册服务
 
-                diBuilder.AddSingleton<TestConfig>(new TestConfig()
+                diBuilder.AddSingleton(new TestConfig()
                 {
                     ServiceName = MockHelper.TestServiceName,
                     IsRelease = true

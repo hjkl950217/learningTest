@@ -1,25 +1,21 @@
-﻿using System;
-
-namespace Nova.LogicChain.Entity
+﻿namespace Nova.LogicChain.Entity
 {
     /// <summary>
     /// 以中间件方式执行逻辑链的泛型上下文
     /// </summary>
     public class StepContext<TResult> : StepContext
-        where TResult:class
+        where TResult : class
     {
+        public StepContext(TResult result, bool completed) : base(result, completed)
+        {
+        }
+
+        public StepContext(TResult result) : base(result)
+        {
+        }
+
         public StepContext() : base()
         {
-        }
-
-        public StepContext(TResult result) : this()
-        {
-            this.ResultEntiy = result ?? throw new ArgumentNullException(nameof(result));
-        }
-
-        public StepContext(TResult result,bool completed) : this(result)
-        {
-            base.ProcessCompleted = completed;
         }
 
         /// <summary>
@@ -28,6 +24,7 @@ namespace Nova.LogicChain.Entity
         public override object Result
         {
             get => this.ResultEntiy;
+            internal set => this.ResultEntiy = value as TResult;
         }
 
         /// <summary>

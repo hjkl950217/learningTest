@@ -1,5 +1,4 @@
 ﻿using Nova.LogicChain.Entity;
-using Nova.LogicChain.LogicChain;
 using System;
 using System.Threading.Tasks;
 
@@ -8,22 +7,39 @@ namespace Nova.LogicChain
     public abstract class StepBase<TResult> : IStep<TResult>
         where TResult : class
     {
-        IStep<TResult> IStep<TResult>.Next { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IStep<TResult> Next { get; set; }
+
+        public StepContext Context { get; set; }
 
         public Task<TResult> InvokeAsync(StepContext<TResult> context)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
+            context.CheckNull(nameof(context));
+            this.Context = context;
 
-            //todo:只是写了抽象类，其它的都还没做
+            if (this.Context.ProcessCompleted)
+            {
+                return Task.FromResult(this.Context.As<TResult>().ResultEntiy);
+            }
 
-            return this.GetResult(context);
+            return this.Next.InvokeAsync(this.ProcessContext(context));
         }
 
-        protected abstract Task<TResult> GetResult(StepContext<TResult> context);
+        /// <summary>
+        /// 由子类实现每个步骤的具体逻辑
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        protected abstract StepContext<TResult> ProcessContext(StepContext<TResult> context);
 
-        protected StepContext<TResult> Complete(TResult result)
+        /// <summary>
+        /// 给<see cref="StepContext.ProcessCompleted"/>属性赋值为true，结束当前的步骤链
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected virtual StepContext<TResult> Complete(TResult result = null)
         {
-            return new StepContext<TResult>(result, true);
+            this.Context.ProcessCompleted = true;
+            return this.Context.As<TResult>();
         }
     }
 }
