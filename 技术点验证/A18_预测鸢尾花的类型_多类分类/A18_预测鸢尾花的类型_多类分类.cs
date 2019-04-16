@@ -1,4 +1,6 @@
 ﻿using Microsoft.ML;
+using Microsoft.ML.Data;
+using Microsoft.ML.Trainers;
 using Microsoft.ML.Transforms;
 using System;
 using Verification.Core;
@@ -11,16 +13,18 @@ namespace 技术点验证
 
     /*
      * 简书文档1：http://blog.lisp4fun.com/2018/03/03/decision-tree
-     * 
+     *
      * 微软文档1：https://dotnet.microsoft.com/learn/machinelearning-ai/ml-dotnet-get-started-tutorial/intro
      * 微软文档2：https://dotnet.microsoft.com/learn/machinelearning-ai/ml-dotnet-get-started-tutorial/code
+     *
+     * 知乎资料：https://zhuanlan.zhihu.com/p/45955585
      */
 
     public class A18_预测鸢尾花的类型_多类分类 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类;
 
-        public const string dataBaseAddr = @"A18_情感分析分类\data";
+        public const string dataBaseAddr = @"A18_预测鸢尾花的类型_多类分类\data";
         public const string _dataPath = dataBaseAddr + @"\iris.txt";
 
         public void Start(string[] args)
@@ -41,21 +45,35 @@ namespace 技术点验证
 
             //添加转换估计器
             var columnConcatenatingEstimator = mlContext.Transforms.Concatenate("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth");
-            estimator.Append(columnConcatenatingEstimator);
+            EstimatorChain<ColumnConcatenatingTransformer> chain = estimator.Append(columnConcatenatingEstimator);
 
             //添加检查点
             //后续处理节点将会使用检查点的数据格式
-            estimator.AppendCacheCheckpoint(mlContext);
+            chain = chain.AppendCacheCheckpoint(mlContext);
 
             //添加最大熵估计器
-            var maxEntropyEstimator = mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
-                labelColumnName: "Label",
-                featureColumnName: "Features");
-            estimator.Append(maxEntropyEstimator);
+            SdcaMaximumEntropyMulticlassTrainer maxEntropyEstimator = mlContext
+                .MulticlassClassification
+                .Trainers
+                .SdcaMaximumEntropy(
+                    labelColumnName: "Label",
+                    featureColumnName: "Features");
+            EstimatorChain<MulticlassPredictionTransformer<MaximumEntropyModelParameters>> chain2 = chain.Append(maxEntropyEstimator);
 
             //添加键转值估计器
-            var kToVEstimator = mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel");
-            var pipeline = estimator.Append(kToVEstimator);
+            KeyToValueMappingEstimator kToVEstimator = mlContext
+                .Transforms
+                .Conversion
+                .MapKeyToValue("PredictedLabel");
+            EstimatorChain<KeyToValueMappingTransformer> chain3 = chain2.Append(kToVEstimator);
+
+            var pipeline = chain3;
+
+            //var pipeline = mlContext.Transforms.Conversion.MapValueToKey("Label")
+            // .Append(mlContext.Transforms.Concatenate("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"))
+            // .AppendCacheCheckpoint(mlContext)
+            // .Append(mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(labelColumnName: "Label", featureColumnName: "Features"))
+            // .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
 
             #endregion 转换数据并添加学习者--构建模型
 

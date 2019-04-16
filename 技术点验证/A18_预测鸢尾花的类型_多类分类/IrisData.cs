@@ -42,6 +42,7 @@ namespace 技术点验证
         /// 预测出的标签，在训练模型时设置
         /// </summary>
         [LoadColumn(4)]
+        [ColumnName(nameof(Label))] //这行不是必须
         public string Label;
     }
 }
