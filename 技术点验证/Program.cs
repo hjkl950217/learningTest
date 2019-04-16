@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verification.Core;
 
 namespace 技术点验证
 {
     public class Program
     {
+        private static void Main(string[] args)
+        {
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类;
+            List<IVerification> verifications = RegisterAllVerification();
+
+            //开始验证
+            VerificationHelp.StartVerification(verificationType, verifications, args);
+        }
+
         public static List<IVerification> RegisterAllVerification()
         {
             List<IVerification> verifications = new List<IVerification>();
@@ -29,20 +37,11 @@ namespace 技术点验证
             verifications.Add(new A15_分割字符串的基准测试());
             verifications.Add(new A16_懒加载());
             verifications.Add(new A17_马尔科夫链());
+            verifications.Add(new A18_预测鸢尾花的类型_多类分类());
 
             #endregion 验证接口的注册
 
             return verifications;
         }
-
-        private static void Main(string[] args)
-        {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A17_马尔可夫链链;
-            List<IVerification> verifications = RegisterAllVerification();
-
-            //开始验证
-            VerificationHelp.StartVerification(verificationType, verifications, args);
-        }
-
     }
 }

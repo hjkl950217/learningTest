@@ -5,6 +5,15 @@ namespace 语法验证与学习
 {
     public class Program
     {
+        private static void Main(string[] args)
+        {
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B09_访问者模式;
+            List<IVerification> verifications = RegisterAllVerification();
+
+            //开始验证
+            VerificationHelp.StartVerification(verificationType, verifications, args);
+        }
+
         public static List<IVerification> RegisterAllVerification()
         {
             List<IVerification> verifications = new List<IVerification>();
@@ -24,15 +33,6 @@ namespace 语法验证与学习
             #endregion 注册
 
             return verifications;
-        }
-
-        private static void Main(string[] args)
-        {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B09_访问者模式;
-            List<IVerification> verifications = RegisterAllVerification();
-
-            //开始验证
-            VerificationHelp.StartVerification(verificationType, verifications, args);
         }
     }
 }

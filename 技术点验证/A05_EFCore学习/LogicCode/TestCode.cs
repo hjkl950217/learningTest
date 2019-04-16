@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Verification.Core;
 
 namespace 技术点验证
 {
@@ -175,20 +175,5 @@ namespace 技术点验证
         }
 
         #endregion 排序-筛选-分页
-    }
-
-    //显示测试结果用的
-    public static class Extensions
-    {
-        private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
-        {
-            Formatting = Formatting.Indented,
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        };
-
-        public static string ToJson<T>(this T obj)
-        {
-            return JsonConvert.SerializeObject(obj, jsonSerializerSettings);
-        }
     }
 }

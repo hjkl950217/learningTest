@@ -8,7 +8,7 @@ namespace 技术点验证
 {
     public class A17_马尔科夫链 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A17_马尔可夫链链;
+        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A17_马尔可夫链;
 
         /*
          * 用马尔可夫链来生成不同的路径
