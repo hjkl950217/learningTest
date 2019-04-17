@@ -18,6 +18,9 @@ namespace 技术点验证
      * 微软文档2：https://dotnet.microsoft.com/learn/machinelearning-ai/ml-dotnet-get-started-tutorial/code
      *
      * 知乎资料：https://zhuanlan.zhihu.com/p/45955585
+     * 最大熵模型资料：https://www.cnblogs.com/pinard/p/6093948.html
+     * 
+     * 
      */
 
     public class A18_预测鸢尾花的类型_多类分类 : IVerification
