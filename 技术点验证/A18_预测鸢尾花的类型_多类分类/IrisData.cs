@@ -39,8 +39,11 @@ namespace 技术点验证
         public float PetalWidth;
 
         /// <summary>
-        /// 预测出的标签，在训练模型时设置
+        /// 标签,或是说类型
         /// </summary>
+        /// <remarks>
+        /// 数据中最后一列为标签，用于在算法的训练和测试阶段标识每个数据行。
+        /// </remarks>
         [LoadColumn(4)]
         [ColumnName(nameof(Label))] //这行不是必须
         public string Label;
