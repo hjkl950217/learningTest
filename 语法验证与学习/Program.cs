@@ -7,7 +7,7 @@ namespace 语法验证与学习
     {
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B10_I__的原子性;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B01_建造者模式学习;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
