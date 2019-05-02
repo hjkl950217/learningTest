@@ -17,6 +17,8 @@ namespace 技术点验证
 <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
 <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.2" />
 <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+
+            还可以使用Bogus来造数据
 */
 
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A08_MessagePack基准测试;
