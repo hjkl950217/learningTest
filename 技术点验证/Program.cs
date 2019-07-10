@@ -31,7 +31,7 @@ namespace 技术点验证
             verifications.Add(new A09_读取文件并监控变化());
             verifications.Add(new A10_读取文件到配置系统并监控变化());
             verifications.Add(new A11_日志系统研究());
-            verifications.Add(new A12_扫描泛型接口());
+            verifications.Add(new A12_扫描泛型接口_判断类型());
             verifications.Add(new A13_Asynclocal的坑());
             verifications.Add(new A14_查找相同对象的基准测试());
             verifications.Add(new A15_分割字符串的基准测试());
