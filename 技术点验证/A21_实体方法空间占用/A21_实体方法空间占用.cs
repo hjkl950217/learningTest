@@ -1,4 +1,5 @@
 ﻿using AutoFixture;
+using System;
 using Verification.Core;
 
 namespace 技术点验证
@@ -19,8 +20,74 @@ namespace 技术点验证
             this.Test(10 * 10);
             this.Test(10 * 100);
             this.Test(10 * 1000);
+
+            Console.WriteLine("结论:实体方法不会影响内存占用");
+
             //this.Test(10 * 1_0000);
         }
+
+        public void Test(int count)
+        {
+            System.Console.WriteLine("======================================================");
+            System.Console.WriteLine($"执行测试，测试对象个数:{count}");
+            System.GC.Collect();
+
+            System.GC.Collect();
+            this.Test("--无方法--", count, this.CrteateData);
+            System.Console.WriteLine();
+            System.GC.Collect();
+            this.Test("--使用实体方法--", count, this.CrteateDataByEntity);
+            System.Console.WriteLine();
+            System.GC.Collect();
+            this.Test("--使用扩展方法--", count, this.CrteateDataByExtension);
+
+            System.Console.WriteLine("======================================================");
+        }
+
+        public void Test<T>(string name, int count, Func<int, T[]> testFunc)
+        {
+            System.Console.WriteLine(name);
+            var b1 = this.ShowMemoryUsage();
+            var result = testFunc(count);
+            var b2 = this.ShowMemoryUsage();
+            this.ShowDifference(b1, b2);
+            System.Console.WriteLine(name);
+            result = null;
+            System.GC.Collect();
+        }
+
+        #region 造数据
+
+        private T[] CreateBase<T>(int count)
+        {
+            Fixture fixture = new Fixture();
+
+            T[] result = new T[count];
+            for (int i = 0 ; i < count ; i++)
+            {
+                result[i] = fixture.Create<T>();
+            }
+            return result;
+        }
+
+        public A21_TestObj[] CrteateData(int count)
+        {
+            return this.CreateBase<A21_TestObj>(count);
+        }
+
+        public A21_TestObj1[] CrteateDataByEntity(int count)
+        {
+            return this.CreateBase<A21_TestObj1>(count);
+        }
+
+        public A21_TestObj2[] CrteateDataByExtension(int count)
+        {
+            return this.CreateBase<A21_TestObj2>(count);
+        }
+
+        #endregion 造数据
+
+        #region 显示内存占用
 
         private long ShowMemoryUsage()
         {
@@ -46,56 +113,6 @@ namespace 技术点验证
                 );
         }
 
-        public void Test(int count)
-        {
-            System.Console.WriteLine("======================================================");
-            System.Console.WriteLine($"执行测试，测试对象个数:{count}");
-            System.GC.Collect();
-
-            System.Console.WriteLine("--使用实体方法--");
-            var a1 = this.ShowMemoryUsage();
-            var result1 = this.UseEntityMethod(count);
-            var a2 = this.ShowMemoryUsage();
-            this.ShowDifference(a1, a2);
-            result1 = null;
-            System.Console.WriteLine("--使用实体方法--");
-
-            System.Console.WriteLine();
-
-            System.GC.Collect();
-            System.Console.WriteLine("--使用扩展方法--");
-            var b1 = this.ShowMemoryUsage();
-            var result2 = this.UseExtensionMethod(count);
-            var b2 = this.ShowMemoryUsage();
-            this.ShowDifference(b1, b2);
-            System.Console.WriteLine("--使用扩展方法--");
-            result2 = null;
-            System.GC.Collect();
-
-            System.Console.WriteLine("======================================================");
-        }
-
-        public A21_TestObj1[] UseEntityMethod(int count)
-        {
-            Fixture fixture = new Fixture();
-
-            A21_TestObj1[] result = new A21_TestObj1[count];
-            for (int i = 0 ; i < count ; i++)
-            {
-                result[i] = fixture.Create<A21_TestObj1>();
-            }
-            return result;
-        }
-
-        public A21_TestObj2[] UseExtensionMethod(int count)
-        {
-            Fixture fixture = new Fixture();
-            A21_TestObj2[] result = new A21_TestObj2[count];
-            for (int i = 0 ; i < count ; i++)
-            {
-                result[i] = fixture.Create<A21_TestObj2>();
-            }
-            return result;
-        }
+        #endregion 显示内存占用
     }
 }
