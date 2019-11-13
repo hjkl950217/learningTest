@@ -7,7 +7,7 @@ namespace 语法验证与学习
     {
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B01_建造者模式学习;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B12_Switch_In_80;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
@@ -30,6 +30,8 @@ namespace 语法验证与学习
             verifications.Add(new B08_Chsarp中写函数式编程());
             verifications.Add(new B09_访问者模式());
             verifications.Add(new B10_I__的原子性());
+            verifications.Add(new B11_表达式树修改());
+            verifications.Add(new B12_Switch_In_80());
 
             #endregion 注册
 

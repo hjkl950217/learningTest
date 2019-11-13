@@ -4,9 +4,11 @@ using System.Text;
 
 namespace 技术点验证
 {
+	//[SimpleJob(RuntimeMoniker.NetCoreApp22)]
     [CoreJob]
     [ProcessCount(5)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
+	[InProcess]
     public class TestCase_Serialize
     {
         private List<TestEntity_Int> testIntData;

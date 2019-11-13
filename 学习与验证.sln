@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链式编程在业务逻辑
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper学习与练习", "需要Web项目的验证\AutoMapper学习与练习\AutoMapper学习与练习.csproj", "{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "需要Web项目的验证\内存缓存学习\内存缓存学习.csproj", "{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "技术点验证", "技术点验证\技术点验证.csproj", "{3D961354-044C-4EFC-B8DF-58ACEDFB3EF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "语法验证与学习", "语法验证与学习\语法验证与学习.csproj", "{FB6AAA31-45A8-456F-9B25-B6D6E44B0FE0}"
@@ -22,6 +20,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "批量替换", "工具\批量替换\批量替换.csproj", "{97220B9C-0690-46F8-9875-D90CC1A82F36}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Fsharp学习", "Fsharp学习\Fsharp学习.fsproj", "{3BBC3F70-A375-4281-B68B-F349269B76F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67F897C0-69F5-4C36-9EEB-A4FD3D0CA58F}"
+	ProjectSection(SolutionItems) = preProject
+		未填的坑.txt = 未填的坑.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,14 +50,6 @@ Global
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Release|x64.ActiveCfg = Release|Any CPU
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6}.Release|x64.Build.0 = Release|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Debug|x64.Build.0 = Debug|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|x64.ActiveCfg = Release|Any CPU
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F}.Release|x64.Build.0 = Release|Any CPU
 		{3D961354-044C-4EFC-B8DF-58ACEDFB3EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D961354-044C-4EFC-B8DF-58ACEDFB3EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D961354-044C-4EFC-B8DF-58ACEDFB3EF1}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -102,7 +97,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3F8E622B-4114-49B4-81D7-6CFBE0CAFC4D} = {A6AACA52-E03D-4819-A6C8-0CB2E7C0CFFD}
 		{1EC3187F-7E0E-4093-A647-8FA5A56D09B6} = {A6AACA52-E03D-4819-A6C8-0CB2E7C0CFFD}
-		{0FE41D19-C85B-42FE-B8AB-CC274F67DA1F} = {A6AACA52-E03D-4819-A6C8-0CB2E7C0CFFD}
 		{97220B9C-0690-46F8-9875-D90CC1A82F36} = {A072151E-59ED-430D-942D-099DAB18A85A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

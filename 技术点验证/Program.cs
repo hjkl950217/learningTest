@@ -7,7 +7,7 @@ namespace 技术点验证
     {
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A19_熵的计算;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A21_实体方法空间占用;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
@@ -39,6 +39,8 @@ namespace 技术点验证
             verifications.Add(new A17_马尔科夫链());
             verifications.Add(new A18_预测鸢尾花的类型_多类分类());
             verifications.Add(new A19_熵的计算());
+            verifications.Add(new A20_并行查找数组中非0的索引());
+            verifications.Add(new A21_实体方法空间占用());
 
             #endregion 验证接口的注册
 

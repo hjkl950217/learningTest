@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 using System;
 using System.Collections.Generic;
 using Verification.Core;
@@ -73,16 +72,19 @@ namespace 技术点验证
             testCode.Run();
         }
 
-        public static readonly ILoggerFactory loggerFactory = new LoggerFactory(new[]
-        {
-            new ConsoleLoggerProvider(
-                (category,level)=>
-                {
-                    return (level==LogLevel.Information)
-                    ||(level==LogLevel.Warning)
-                    ||(level==LogLevel.Error);
-                },
-                true)
-        });
+        //public static readonly ILoggerFactory loggerFactory = new LoggerFactory(new[]
+        //{
+        //    //new ConsoleLoggerProvider(
+        //    //    opt=>
+        //    //    {
+        //    //         (opt.LogToStandardErrorThreshold==LogLevel.Information)
+        //    //        ||(level==LogLevel.Warning)
+        //    //        ||(level==LogLevel.Error);
+        //    //    }
+        //    //    )
+
+        //});
+
+        public static readonly ILoggerFactory loggerFactory = new LoggerFactory();
     }
 }
