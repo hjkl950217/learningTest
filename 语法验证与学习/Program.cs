@@ -7,7 +7,7 @@ namespace 语法验证与学习
     {
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.B12_Switch_In_80;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.B13_用函数式写通用比较器;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
@@ -32,6 +32,7 @@ namespace 语法验证与学习
             verifications.Add(new B10_I__的原子性());
             verifications.Add(new B11_表达式树修改());
             verifications.Add(new B12_Switch_In_80());
+            verifications.Add(new B13_用函数式写通用比较器());
 
             #endregion 注册
 

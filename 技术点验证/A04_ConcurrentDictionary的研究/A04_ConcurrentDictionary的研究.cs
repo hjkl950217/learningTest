@@ -9,6 +9,17 @@ namespace 技术点验证
 {
     public class A04_ConcurrentDictionary的研究 : IVerification
     {
+        /*
+         * BlockingCollection<T> 为实现IProducerConsumerCollection <T>的任何类型提供边界和阻止功能。有关更多信息，请参见BlockingCollection概述。
+         *IProducerConsumerCollection<T>  类型必须实现才能在中使用的接口BlockingCollection。
+         *
+         *
+         * ConcurrentDictionary <TKey，TValue>   键值对字典的线程安全实现。
+         * ConcurrentQueue<T>  FIFO（先进先出）队列的线程安全实现。
+         * ConcurrentStack<T>  LIFO（后进先出）堆栈的线程安全实现。
+         *
+         */
+
         // Create a new concurrent dictionary.
         private static ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
