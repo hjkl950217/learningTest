@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
 using System;
-using System.Linq;
 using Verification.Core;
 
 namespace 语法验证与学习
@@ -10,13 +9,13 @@ namespace 语法验证与学习
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B13_用函数式写通用比较器;
 
         private readonly Fixture fixture = new Fixture();
-        private int count = 3;
+        private int count = 2;
 
         public void Start(string[] args)
         {
-            // this.ShowRepeat();
+            this.ShowTwoValueComparerTest();
 
-            this.Show_HigherOrderFunction();
+            //this.Show_HigherOrderFunction();
         }
 
         #region 造数据
@@ -90,22 +89,35 @@ namespace 语法验证与学习
 
         #region 全重复
 
-        public void ShowRepeat()
+        public void ShowTwoValueComparerTest()
         {
-            System.Console.WriteLine("===演示全重复的情况===");
+            int count = this.count;//比较器测试只要2个数据
+            this.count = 2;
+            System.Console.WriteLine("===演示比较器测试结果===");
+
+            Console.WriteLine("==演示1 全重复==");
             TwoValueEntity[] repeatObjs = this.GetRepeat();
+            this.TwoValueComparerEqualTest("a", 1, "a", 1, true);
 
-            var comparer = new TwoValueEntityComparer();
-            var repeatObjHashCodes = repeatObjs.Distinct(comparer).Select(t => t.GetHashCode());
-            var repeatObjHashCodes2 = repeatObjs.Distinct().Select(t => t.GetHashCode());
+            System.Console.WriteLine("===演示比较器测试结果===");
+            this.count = count;//还原
+        }
 
-            System.Console.WriteLine("用比较器接口: " + repeatObjHashCodes.ToJson());
-            Console.WriteLine("---------");
-            System.Console.WriteLine("用默认行为: " + repeatObjHashCodes2.ToJson());
+        private TwoValueEntityComparer twoValueEntityComparer = new TwoValueEntityComparer();
 
-            Func<Func<TwoValueEntity, string>, Func<TwoValueEntity, int>> ShowValue222222 = getValue => value => getValue(value).GetHashCode();
+        public void TwoValueComparerEqualTest(string name1, int id1, string name2, int id2, bool expected)
+        {
+            TwoValueEntity entity1 = new TwoValueEntity() { Name = name1, ID = id1 };
+            TwoValueEntity entity2 = new TwoValueEntity() { Name = name2, ID = id2 };
 
-            System.Console.WriteLine("===演示全重复的情况===");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("--测试Equal--");
+            Console.WriteLine($"测试数据1:{nameof(TwoValueEntity.Name)}:{entity1.Name}\t\t{nameof(TwoValueEntity.ID)}:{entity1.ID}");
+            Console.WriteLine($"测试数据2:{nameof(TwoValueEntity.Name)}:{entity2.Name}\t\t{nameof(TwoValueEntity.ID)}:{entity2.ID}");
+            Console.WriteLine($"预期结果:{expected}");
+            bool actual = twoValueEntityComparer.Equals(entity1, entity2);
+            Console.WriteLine($"实际结果:{actual}");
         }
 
         public void Show_HigherOrderFunction()
