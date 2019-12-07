@@ -33,6 +33,7 @@ namespace 语法验证与学习
             verifications.Add(new B11_表达式树修改());
             verifications.Add(new B12_Switch_In_80());
             verifications.Add(new B13_用函数式写通用比较器());
+            verifications.Add(new B14_用函数式检查SellerID());
 
             #endregion 注册
 
