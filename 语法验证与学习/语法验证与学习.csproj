@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--<PackageReference Include="FSharp.Core" Version="4.7.0" />-->
     <PackageReference Include="morelinq" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fsharp学习\Fsharp学习.fsproj" />
     <ProjectReference Include="..\Verification.Core\Verification.Core.csproj" />
   </ItemGroup>
 </Project>
