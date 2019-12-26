@@ -7,7 +7,7 @@ namespace 技术点验证
     {
         private static void Main(string[] args)
         {
-            VerificationTypeEnum verificationType = VerificationTypeEnum.A21_实体方法空间占用;
+            VerificationTypeEnum verificationType = VerificationTypeEnum.A22_从表达式中解析成员变量名;
             List<IVerification> verifications = RegisterAllVerification();
 
             //开始验证
@@ -41,6 +41,7 @@ namespace 技术点验证
             verifications.Add(new A19_熵的计算());
             verifications.Add(new A20_并行查找数组中非0的索引());
             verifications.Add(new A21_实体方法空间占用());
+            verifications.Add(new A22_从表达式中解析成员变量名());
 
             #endregion 验证接口的注册
 

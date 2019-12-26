@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="递归.fs" />
+    <Compile Include="序列.fs" />
+    <Compile Include="数组.fs" />
+    <Compile Include="列表.fs" />
+    <Compile Include="管道.fs" />
+    <Compile Include="元组.fs" />
+    <Compile Include="字符串.fs" />
     <Compile Include="File1.fs" />
     <Content Include="笔记.txt" />
     <Compile Include="Program.fs" />
