@@ -17,8 +17,10 @@ let sign num=
     elif num <0 then "negative"
     else "zero"
 
-let function1 x =
-    (x + 1).ToString()
+let function1 num =
+    if num>0 then "positive"
+    elif num <0 then "negative"
+    else "zero"
 
 [<EntryPoint>]
 let main argv=

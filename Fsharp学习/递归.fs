@@ -60,7 +60,7 @@ let showRecursiveFunctions=
         else fibonacciSequenceByTailRecursion(n-1,second,first+second)
 
     let fibonacciSequenceByTailRecursion n =fibonacciSequenceByTailRecursion(n,1,1) //这里2个1为种子。 f(1)=1 f(2)=1
-    let firstFibonacciSequence n=  Seq.init (n+1) fibonacciSequenceByTailRecursion
+    let firstFibonacciSequence n =  Seq.init (n+1) fibonacciSequenceByTailRecursion
                                     |>Seq.skip 1
                                     |>Seq.toList
     printfn "斐波那契数列前%d项:%A" 5 (firstFibonacciSequence(5))
@@ -78,14 +78,13 @@ let showRecursiveFunctions=
             map.[n]<-result
             result
 
-    let dict = new Dictionary<int, int>()
-    dict.Add(1,1)
-    dict.Add(2,1)
+    let fibonacciSequenceByDynamicProgramming (n:int)=
+        let dict = new Dictionary<int, int>()
+        dict.Add(1,1)
+        dict.Add(2,1)
+        fibonacciSequenceByDynamicProgramming(n,dict)
 
-    //let firstFibonacciSequence2222 (n,dict)=Seq.init>>fibonacciSequenceByDynamicProgramming(n,dict)
-
-    //let firstFibonacciSequence2 (n,dict)=  Seq.init n+1 fibonacciSequenceByTailRecursion dict
-    //                                |>Seq.skip 1
-    //                                |>Seq.toList
-
-    printfn "斐波那契数列前%d项:%A" 5 
+    let firstN_FibonacciSequence2 n =Seq.init (n+1) fibonacciSequenceByDynamicProgramming
+                                        |>Seq.skip 1
+                                        |>Seq.toList
+    printfn "斐波那契数列前%d项:%A" 5 (firstN_FibonacciSequence2(5))

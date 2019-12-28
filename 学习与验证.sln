@@ -26,6 +26,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		未填的坑.txt = 未填的坑.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "资料", "资料", "{7A627A5F-642A-4FFA-866A-FFD6929AE76A}"
+	ProjectSection(SolutionItems) = preProject
+		资料\.Net GC资料.txt = 资料\.Net GC资料.txt
+		资料\三方类库.txt = 资料\三方类库.txt
+		资料\要看的知识.txt = 资料\要看的知识.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

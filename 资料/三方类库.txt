@@ -1,0 +1,16 @@
+1.AspectCore.Extensions.DependencyInjection  一个轻量级AOP框架 支持双平台
+2.AutoMapper 一个映射实体的框架 支持双平台
+3.FluentValidation.AspNetCore	一个模型验证的框架，不只是DTO
+4.Gapotchenko.FX 基础库的加强库
+5.BenchmarkDotNet 基准测试的库
+6.Natasha  动态编制-使用roslyn方案打造高性能动态代码库。
+7.Newtonsoft.Json json序列化
+8.Autofixture 集成测试神器，可以在UT中动态生成数据
+9.ErrorProne.NET  一套基于roslyn的分析器，用于捕获常见的C＃错误
+10.PDFsharp 免费的处理PDF的库，无平台限制
+
+
+查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
+PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+
+ConfuserEx  混淆代码工具

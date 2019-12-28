@@ -1,0 +1,51 @@
+SonarQube插件地址
+https://docs.sonarqube.org/display/PLUG/Plugin+Library#app-switcher
+
+SonarLintVS插件官网
+https://www.sonarlint.org/
+
+docker化
+mark之前的镜像 http://humpback.newegg.org/hub/_/edi%2Fsonarqube/overview;activedTab=tags
+代码  http://trgit2/edi-images/sonarqube/tree/build
+
+
+微服务的服务发现
+https://www.jianshu.com/p/1bf9a46efe7a
+
+向量、因子学习
+https://blog.csdn.net/u010137431/article/details/50411288
+
+SpreadsheetML
+https://docs.aspose.com/pages/viewpage.action?pageId=5276499
+
+
+C# 异常类 Exception 枚举所有类型的异常
+https://www.cnblogs.com/goody9807/archive/2012/09/04/2670753.html
+
+C#异常类型
+https://blog.csdn.net/lianchangshuai/article/details/5813593
+
+异常的最佳做法（微软文档）
+https://docs.microsoft.com/zh-cn/dotnet/standard/exceptions/best-practices-for-exceptions#handle-common-conditions-without-throwing-exceptions
+
+淺析C#中 ConcurrentDictionary的實現
+https://hk.saowen.com/a/54f75f9c1477ececc463db01b494660e6bee9dbc4986ea8f6fbd154297fca86c
+
+《微服务：从设计到部署》中文版
+https://docshome.gitbooks.io/microservices/content/
+
+基于DotNet Core的RPC框架(一) DotBPE.RPC快速开始（PRC框架）
+https://my.oschina.net/redhu/blog/900613
+
+jay的项目
+https://github.com/hstarorg/HstarDoc/blob/master/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CORS%E8%AF%A6%E8%A7%A3.md
+https://github.com/hstarorg/Lara
+
+DDD战略篇：架构设计的响应力 http://insights.thoughtworkers.org/ddd-architecture-design/
+DDD实战篇：分层架构的代码结构  http://insights.thoughtworkers.org/ddd-layered-architecture/
+DDD战术篇：领域模型的应用  http://insights.thoughtworkers.org/ddd-domain-model/
+DDD & Microservices ：https://insights.thoughtworks.cn/ddd-and-microservices/
+
+
+js函数式编程指南：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
+
