@@ -17,8 +17,13 @@ let sign num=
     elif num <0 then "negative"
     else "zero"
 
+let function1 x =
+    (x + 1).ToString()
+
 [<EntryPoint>]
 let main argv=
+
+    //showBasic //演示基础部分相关
 
     //showString //演示字符串相关
     //showTuple //演示元组相关
