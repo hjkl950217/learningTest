@@ -9,7 +9,7 @@ let showRecursiveFunctions=
     //处理元素的集合或序列通常是通过F＃中的递归来完成的。
     //尽管F＃支持循环和命令式编程，但首选递归，因为它更容易保证正确性。
 
-    printfn "演示---递归"
+    printfn "---演示-递归---"
 
     ///阶乘- f(n)=n*f(n-1)
     let rec factortial n=
@@ -56,7 +56,7 @@ let showRecursiveFunctions=
     ///斐波那契数列-尾递归
     let rec fibonacciSequenceByTailRecursion (n:int,first:int,second:int)=
         if   n=1 then first
-        elif n=2 then second
+        elif n=2 then second  //
         else fibonacciSequenceByTailRecursion(n-1,second,first+second)
 
     let fibonacciSequenceByTailRecursion n =fibonacciSequenceByTailRecursion(n,1,1) //这里2个1为种子。 f(1)=1 f(2)=1
@@ -87,4 +87,25 @@ let showRecursiveFunctions=
     let firstN_FibonacciSequence2 n =Seq.init (n+1) fibonacciSequenceByDynamicProgramming
                                         |>Seq.skip 1
                                         |>Seq.toList
+
     printfn "斐波那契数列前%d项:%A" 5 (firstN_FibonacciSequence2(5))
+
+    /// 本示例使用递归计算整数列表的总和。
+    // 下面y:ys 是用的模式匹配中的缺点模式
+    //资料：https://docs.microsoft.com/zh-cn/dotnet/fsharp/language-reference/pattern-matching#cons-pattern
+    let rec sumList xs =
+        match xs with
+        | []    -> 0
+        | head::tailList -> head + (sumList tailList)
+
+    /// 使用带有结果累加器的辅助函数，可以使“ sumList”的尾部递归。
+    let rec sumListTailRecHelper accumulator xs =
+        match xs with
+        | []    -> accumulator
+        | head::tailList -> sumListTailRecHelper (accumulator+head) tailList
+
+    /// 这将调用尾递归辅助函数，将“ 0”作为种子累加。 这样的方法在F＃中很常见。
+    let sumListTailRecursive xs = sumListTailRecHelper 0 xs
+
+    let oneThroughTen = [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+    printfn "The sum 1-10 is %d" (sumListTailRecursive oneThroughTen)

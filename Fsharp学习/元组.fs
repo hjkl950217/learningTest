@@ -4,7 +4,7 @@ open System
 
 let showTuple=
 
-    printfn "演示---循环+元组"
+    printfn "---演示---循环+元组"
     let sampleNumbers = [ 0 .. 10 ]
     let sampleTableOfSquares = [ for i in 0 .. 10 -> (i, (i*i).ToString()) ]
 
@@ -12,7 +12,7 @@ let showTuple=
     printfn "The table of squares from 0 to 99 is:\n%A" sampleTableOfSquares
     Console.WriteLine();
 
-    printfn "演示---元组"
+    printfn "---演示---元组"
     let tuple1 = (1, 2, 3)//一个简单int元组
     let swapElems (a, b) = (b, a)//一个元组转换函数
     printfn "交换 （1, 20）的结果是 %A" (swapElems (1,20))

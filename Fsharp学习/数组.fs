@@ -3,7 +3,7 @@
 open System
 
 let showArray=
-    printfn "演示---数组"
+    printfn "---演示---数组"
 
     //数组是相同类型元素的固定大小的可变集合。它们支持元素的快速随机访问，并且比F＃列表快，因为它们只是连续的内存块
     let array1=[| |] //空数组

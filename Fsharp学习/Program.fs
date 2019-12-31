@@ -11,6 +11,7 @@ open Fsharp学习.列表
 open Fsharp学习.数组
 open Fsharp学习.序列
 open Fsharp学习.递归
+open Fsharp学习.基础
 
 let sign num=
     if num>0 then "positive"

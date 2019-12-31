@@ -4,7 +4,7 @@ open System
 
 let showPipe=
 
-    printfn "演示---管道"
+    printfn "---演示-管道---"
     let isOdd x = x % 2 <> 0//判断是否是奇数
     let square x = x * x
     let addOne x = x + 1
