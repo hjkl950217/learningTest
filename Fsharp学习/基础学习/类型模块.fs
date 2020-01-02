@@ -1,4 +1,4 @@
-﻿module Fsharp学习.类型模块
+﻿module Fsharp学习.基础学习.类型模块
 
 ///纪录类型-联系卡
 type ContactCard =

@@ -6,17 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="类型模块.fs" />
-    <Compile Include="类型.fs" />
-    <Compile Include="0基础.fs" />
-    <Compile Include="递归.fs" />
-    <Compile Include="序列.fs" />
-    <Compile Include="数组.fs" />
-    <Compile Include="列表.fs" />
-    <Compile Include="管道.fs" />
-    <Compile Include="元组.fs" />
-    <Compile Include="字符串.fs" />
-    <Compile Include="File1.fs" />
+    <Compile Include="练习Demo\容器.fs" />
+    <Compile Include="基础学习\类型模块.fs" />
+    <Compile Include="基础学习\类型.fs" />
+    <Compile Include="基础学习\基础.fs" />
+    <Compile Include="基础学习\递归.fs" />
+    <Compile Include="基础学习\序列.fs" />
+    <Compile Include="基础学习\数组.fs" />
+    <Compile Include="基础学习\列表.fs" />
+    <Compile Include="基础学习\管道.fs" />
+    <Compile Include="基础学习\元组.fs" />
+    <Compile Include="基础学习\字符串.fs" />
     <Content Include="笔记.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>

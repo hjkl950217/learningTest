@@ -1,4 +1,4 @@
-﻿module Fsharp学习.字符串
+﻿module Fsharp学习.基础学习.字符串
 open System
 
 let showString=

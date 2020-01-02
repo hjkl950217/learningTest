@@ -1,6 +1,6 @@
-﻿module Fsharp学习.类型
+﻿module Fsharp学习.基础学习.类型
 
-open Fsharp学习.类型模块
+open Fsharp学习.基础学习.类型模块
 
 let showType=
 

@@ -1,4 +1,4 @@
-﻿module Fsharp学习.基础
+﻿module Fsharp学习.基础学习.基础
 
 open System
 open System.Linq;

@@ -1,4 +1,4 @@
-﻿module Fsharp学习.序列
+﻿module Fsharp学习.基础学习.序列
 
 open System
 
