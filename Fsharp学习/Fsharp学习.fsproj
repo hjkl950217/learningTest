@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="类型模块.fs" />
+    <Compile Include="类型.fs" />
     <Compile Include="0基础.fs" />
     <Compile Include="递归.fs" />
     <Compile Include="序列.fs" />

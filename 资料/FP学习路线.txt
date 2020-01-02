@@ -1,0 +1,27 @@
+﻿零碎：
+Hindley-Milner 类型--一种类型系统，主要用于不同背景的人可以高效沟通的一种元语言，是SystemF的子集
+
+函数组合(compose)
+柯里化(curry)
+纯函数
+
+
+
+
+
+资料：
+1. FP比较系统的入门引导：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
