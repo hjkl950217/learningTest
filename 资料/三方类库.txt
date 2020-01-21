@@ -1,16 +1,16 @@
-1.AspectCore.Extensions.DependencyInjection  Ò»¸öÇáÁ¿¼¶AOP¿ò¼Ü Ö§³ÖË«Æ½Ì¨
-2.AutoMapper Ò»¸öÓ³ÉäÊµÌåµÄ¿ò¼Ü Ö§³ÖË«Æ½Ì¨
-3.FluentValidation.AspNetCore	Ò»¸öÄ£ĞÍÑéÖ¤µÄ¿ò¼Ü£¬²»Ö»ÊÇDTO
-4.Gapotchenko.FX »ù´¡¿âµÄ¼ÓÇ¿¿â
-5.BenchmarkDotNet »ù×¼²âÊÔµÄ¿â
-6.Natasha  ¶¯Ì¬±àÖÆ-Ê¹ÓÃroslyn·½°¸´òÔì¸ßĞÔÄÜ¶¯Ì¬´úÂë¿â¡£
-7.Newtonsoft.Json jsonĞòÁĞ»¯
-8.Autofixture ¼¯³É²âÊÔÉñÆ÷£¬¿ÉÒÔÔÚUTÖĞ¶¯Ì¬Éú³ÉÊı¾İ
-9.ErrorProne.NET  Ò»Ì×»ùÓÚroslynµÄ·ÖÎöÆ÷£¬ÓÃÓÚ²¶»ñ³£¼ûµÄC££´íÎó
-10.PDFsharp Ãâ·ÑµÄ´¦ÀíPDFµÄ¿â£¬ÎŞÆ½Ì¨ÏŞÖÆ
+1.AspectCore.Extensions.DependencyInjection  ä¸€ä¸ªè½»é‡çº§AOPæ¡†æ¶ æ”¯æŒåŒå¹³å°ï¼Œé™æ€ç»‡å…¥
+2.AutoMapper ä¸€ä¸ªæ˜ å°„å®ä½“çš„æ¡†æ¶ æ”¯æŒåŒå¹³å°
+3.FluentValidation.AspNetCore	ä¸€ä¸ªæ¨¡å‹éªŒè¯çš„æ¡†æ¶ï¼Œä¸åªæ˜¯DTO
+4.Gapotchenko.FX åŸºç¡€åº“çš„åŠ å¼ºåº“
+5.BenchmarkDotNet åŸºå‡†æµ‹è¯•çš„åº“
+6.Natasha  åŠ¨æ€ç¼–ç»‡-ä½¿ç”¨roslynæ–¹æ¡ˆæ‰“é€ é«˜æ€§èƒ½åŠ¨æ€ä»£ç åº“ã€‚
+7.Newtonsoft.Json jsonåºåˆ—åŒ–
+8.Autofixture é›†æˆæµ‹è¯•ç¥å™¨ï¼Œå¯ä»¥åœ¨UTä¸­åŠ¨æ€ç”Ÿæˆæ•°æ®
+9.ErrorProne.NET  ä¸€å¥—åŸºäºroslynçš„åˆ†æå™¨ï¼Œç”¨äºæ•è·å¸¸è§çš„Cï¼ƒé”™è¯¯
+10.PDFsharp å…è´¹çš„å¤„ç†PDFçš„åº“ï¼Œæ— å¹³å°é™åˆ¶
 
 
-²é¿´GCÊı¾İµÄ¹¤¾ß£ºhttps://github.com/Microsoft/perfview#getting-perfview
+æŸ¥çœ‹GCæ•°æ®çš„å·¥å…·ï¼šhttps://github.com/Microsoft/perfview#getting-perfview
 PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
 
-ConfuserEx  »ìÏı´úÂë¹¤¾ß
+ConfuserEx  æ··æ·†ä»£ç å·¥å…·
