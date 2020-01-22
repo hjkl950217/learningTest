@@ -37,7 +37,7 @@
             //}
         }
 
-        public static MemberType Create(IdCardNo idCard) => Create((int)idCard);
+        public static MemberType Create(IdCardNo idCardNo) => Create((int)idCardNo);
 
         public override bool BizCheckValue() => true;
 
