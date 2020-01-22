@@ -1,6 +1,6 @@
 ﻿namespace 技术点验证
 {
-    public class Age : ValueObject<int>
+    public class Age : ValueBase<int>
     {
         public Age(int data) : base(data)
         {

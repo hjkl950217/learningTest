@@ -1,6 +1,6 @@
 ﻿namespace 技术点验证
 {
-    public class MemberType : ValueObject<MemberTypeEnum>
+    public class MemberType : ValueBase<MemberTypeEnum>
     {
         private MemberType(MemberTypeEnum data) : base(data)
         {
@@ -44,11 +44,5 @@
         public const string errorMsg = "idCard must be greater than 0";
 
         public override string ErrorMsgForCheckValue(MemberTypeEnum memberTypeEnum) => errorMsg;
-    }
-
-    public enum MemberTypeEnum
-    {
-        Student,
-        Teacher
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace 技术点验证
 {
-    public class IdCard : ValueObject<string>
+    public class IdCard : ValueBase<string>
     {
         public IdCard(string data) : base(data)
         {

@@ -4,21 +4,21 @@ using Verification.Core;
 namespace 技术点验证
 {
     /// <summary>
-    /// 值对象基类<para></para>
+    /// 值对象基类-用于值类型非class<para></para>
     /// 可保证数据不能为null，数据正确(需重写<see cref="BizCheckValue"/>方法以完成业务规则检测)<para></para>
     /// 使用时可以当普通数据使用，如: int a=new Age(50)
     /// </summary>
+    /// <remarks>
+    /// 微软关于值对象的资料:https://docs.microsoft.com/zh-cn/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
+    /// </remarks>
     /// <typeparam name="TValue"></typeparam>
-    public abstract class ValueObject<TValue> : IValueObject<TValue>
+    public abstract class ValueBase<TValue> : IValue<TValue>
     {
-        //微软关于值对象的资料:https://docs.microsoft.com/zh-cn/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
-        //它是针对一个对象的。但目前我们只需要保证单个数据值是值对象即可，还不上升到更高的层级
-
         public TValue Value { get; }
 
         #region 内部逻辑
 
-        protected ValueObject(TValue data)
+        protected ValueBase(TValue data)
         {
             this.Value = data;
 
@@ -72,7 +72,7 @@ namespace 技术点验证
 
         public override bool Equals(object obj)
         {
-            var obj2 = obj as IValueObject<TValue>;
+            var obj2 = obj as IValue<TValue>;
             if (obj2 != null)
             {
                 return this.Value.Equals(obj2.Value);
@@ -132,14 +132,14 @@ namespace 技术点验证
 
         //== !=必须调用Equals方法。因为 vo1==null 这种也是调用一个等号运算符，导致死循环
 
-        public static bool operator ==(ValueObject<TValue> vo1, ValueObject<TValue> vo2)
+        public static bool operator ==(ValueBase<TValue> v1, ValueBase<TValue> v2)
         {
-            return object.Equals(vo1, vo2);//具体比较逻辑由Equals完成
+            return object.Equals(v1, v2);//具体比较逻辑由Equals完成
         }
 
-        public static bool operator !=(ValueObject<TValue> vo1, ValueObject<TValue> vo2)
+        public static bool operator !=(ValueBase<TValue> v1, ValueBase<TValue> v2)
         {
-            return !object.Equals(vo1, vo2);// 具体比较逻辑由Equals完成
+            return !object.Equals(v1, v2);// 具体比较逻辑由Equals完成
         }
 
         #region 隐式和显式转换
@@ -148,7 +148,7 @@ namespace 技术点验证
         /// 隐式转换  <![CDATA[ValueObject<T, TValue>->TValue   eg: TValue a=new ValueObject<TValue>(xxx)]]>
         /// </summary>
         /// <param name="valueObject"></param>
-        public static implicit operator TValue(ValueObject<TValue> valueObject)
+        public static implicit operator TValue(ValueBase<TValue> valueObject)
         {
             return valueObject.Value;
         }
