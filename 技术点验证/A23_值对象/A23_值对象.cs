@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Verification.Core;
 
 namespace 技术点验证
@@ -9,10 +9,32 @@ namespace 技术点验证
 
         public void Start(string[] args)
         {
-            List<IdCard> idCards = new List<IdCard>();
-            for (int i = 0 ; i < 10_0000 ; i++)
+            this.Show(() => _ = new IdCard("012345678912345678"));
+            this.Show(() => _ = new IdCard("01234567891234567X"));
+            this.TryShow(() => _ = new IdCard("01234567891234567x"));
+            this.TryShow(() => _ = new IdCard("01234567891234567-"));
+
+            this.Show(() => _ = new Age(25));
+            this.TryShow(() => _ = new Age(18));
+            this.TryShow(() => _ = new Age(-1));
+
+            this.Show(() => _ = MemberType.Create(500));
+            this.TryShow(() => _ = MemberType.Create(-500));
+
+            this.TryShow(() => _ = MemberType.Create(new IdCardNo(255)));
+        }
+
+        public void Show(Action action) => action();
+
+        public void TryShow(Action action)
+        {
+            try
             {
-                idCards.Add(new IdCard("01234567891234567X"));
+                action();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace Verification.Core
 {
     /// <summary>
-    /// 业务验证中的元素
+    /// 业务验证中的错误实体
     /// </summary>
     public class BizError
     {

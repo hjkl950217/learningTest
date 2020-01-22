@@ -3,6 +3,12 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    /// <summary>
+    /// 值对象基类<para></para>
+    /// 可保证数据不能为null，数据正确(需重写<see cref="BizCheckValue"/>方法以完成业务规则检测)<para></para>
+    /// 使用时可以当普通数据使用，如: int a=new Age(50)
+    /// </summary>
+    /// <typeparam name="TValue"></typeparam>
     public abstract class ValueObject<TValue> : IValueObject<TValue>
     {
         //微软关于值对象的资料:https://docs.microsoft.com/zh-cn/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
@@ -46,25 +52,21 @@ namespace 技术点验证
         }
 
         /// <summary>
-        ///
+        /// 检查数据<para></para>
+        /// 检查通过返回true，否则返回false+错误对象
         /// </summary>
         /// <returns></returns>
         public virtual (bool checkResult, BizError errorObj) Check()
         {
-            if (!this.BizCheckValue())
+            if (this.BizCheckValue())
             {
                 return (
-                    false,
-                    new BizError()
-                    {
-                        ErrorCode = "0OO0",
-                        CustomObject = this.ToString(),
-                        ErrorMessage = this.ErrorMsgForCheckValue()
-                    });
+                    true,
+                    new BizError());
             }
             else
             {
-                return (true, new BizError());
+                return (false, this.GetBizError());
             }
         }
 
@@ -102,10 +104,29 @@ namespace 技术点验证
         /// <summary>
         /// 由子类重写，指示当业务检查失败时，异常中的错误信息。
         /// </summary>
+        /// <param name="value">发生错误的值</param>
         /// <returns></returns>
-        public abstract string ErrorMsgForCheckValue();
+        public virtual string ErrorMsgForCheckValue(TValue value) => $"Check {this.GetType().Name} value error. now value:{value.ToString()}";
 
         #endregion 子类重写
+
+        #region 子类可用的方法
+
+        /// <summary>
+        /// 获取一个<see cref="BizError"/>对象
+        /// </summary>
+        /// <returns></returns>
+        protected virtual BizError GetBizError()
+        {
+            return new BizError()
+            {
+                ErrorCode = "0OO0",
+                CustomObject = this,
+                ErrorMessage = this.ErrorMsgForCheckValue(this.Value)
+            };
+        }
+
+        #endregion 子类可用的方法
 
         #region 符号重载
 
