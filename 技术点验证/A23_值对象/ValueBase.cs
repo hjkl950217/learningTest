@@ -100,13 +100,17 @@ namespace 技术点验证
 
         #endregion 内部逻辑
 
-        #region 需要子类重写
+        #region 由子类重写
 
         /// <summary>
         /// 由子类重写，指示如何进行业务检查。true为检查通过，否则为false
         /// </summary>
         /// <returns></returns>
         public abstract bool BizCheckValue();
+
+        #endregion 由子类重写
+
+        #region 子类可重写
 
         /// <summary>
         /// 子类可重写，指示当业务检查失败时，异常中的错误信息。
@@ -131,7 +135,7 @@ namespace 技术点验证
         /// <returns></returns>
         public virtual int GetHashCodeCore() => this.Value.GetHashCode();
 
-        #endregion 需要子类重写
+        #endregion 子类可重写
 
         #region 子类可用的方法
 
