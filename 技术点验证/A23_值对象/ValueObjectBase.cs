@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace 技术点验证
 {
@@ -21,18 +22,40 @@ namespace 技术点验证
 
         #region 内部逻辑
 
-        public override bool Equals(object obj)
+        public override bool EqualsCode(TValue value)
         {
-            //var valueObject = obj as IValueObject<TValue>;
-            //var value = obj as TValue;
+            return Enumerable.SequenceEqual(
+                first: this.GetEqualityComponents(this.Value),
+                second: this.GetEqualityComponents(value));
+        }
 
-            if (object.ReferenceEquals(this, obj))
-                return true;
-            else if (base.GetType() != obj.GetType()
-                 || base.Value.GetType() != obj.GetType())
-                return false;
+        public override int GetHashCodeCore()
+        {
+            //        return GetEqualityComponents()
+            //.Aggregate(1, (current, obj) =>
+            //{
+            //    unchecked
+            //    {
+            //        return current * 23 + (obj?.GetHashCode() ?? 0);
+            //    }
+            //});
 
-            // return base.Equals(obj);
+            //todo:待测试GetHashCode
+            /*      1       2
+             * 1    null    "abc"
+             * 2    null    null
+             * 3    "abc"   null
+             * 4    null    null
+             *
+             *
+             */
+
+            return this.GetEqualityComponents(this.Value)
+                  .Aggregate(1, (first, next) =>
+                  {
+                      //这里256这个数字是随便写的，是为了避免计算哈希值的逻辑有重复的
+                      return (first * 256) ^ (next?.GetHashCode() ?? 0);
+                  });
         }
 
         #endregion 内部逻辑
@@ -43,7 +66,7 @@ namespace 技术点验证
         /// 由子类重写，获取参与相等比较的成员
         /// </summary>
         /// <returns></returns>
-        protected abstract IEnumerable<object> GetEqualityComponents();
+        protected abstract IEnumerable<object> GetEqualityComponents(TValue value);
 
         #endregion 需要子类重写
     }
