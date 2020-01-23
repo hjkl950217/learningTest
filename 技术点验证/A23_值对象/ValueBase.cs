@@ -72,18 +72,25 @@ namespace 技术点验证
 
         public override bool Equals(object obj)
         {
-            var obj2 = obj as IValue<TValue>;
-            if (obj2 != null)
+            switch (obj)
             {
-                return this.Value.Equals(obj2.Value);
-            }
+                case object _ when object.ReferenceEquals(this, obj):
+                    return true;
 
-            return base.Equals(obj);
+                case IValue<TValue> obj2:
+                    return this.EqualsCode(obj2.Value);
+
+                case TValue obj2:
+                    return this.EqualsCode(obj2);
+
+                default:
+                    return false;
+            }
         }
 
         public override int GetHashCode()
         {
-            return this.Value.GetHashCode();
+            return this.GetHashCodeCore();
         }
 
         public override string ToString()
@@ -93,7 +100,7 @@ namespace 技术点验证
 
         #endregion 内部逻辑
 
-        #region 子类重写
+        #region 需要子类重写
 
         /// <summary>
         /// 由子类重写，指示如何进行业务检查。true为检查通过，否则为false
@@ -102,13 +109,29 @@ namespace 技术点验证
         public abstract bool BizCheckValue();
 
         /// <summary>
-        /// 由子类重写，指示当业务检查失败时，异常中的错误信息。
+        /// 子类可重写，指示当业务检查失败时，异常中的错误信息。
         /// </summary>
         /// <param name="value">发生错误的值</param>
         /// <returns></returns>
         public virtual string ErrorMsgForCheckValue(TValue value) => $"Check {this.GetType().Name} value error. now value:{value.ToString()}";
 
-        #endregion 子类重写
+        /// <summary>
+        /// 子类可重写，指示如果使用<paramref name="value"/>与<see cref="Value"/>进行内容比较<para></para>
+        /// 引用、类型比较由基类完成<para></para>
+        /// 基类默认行为：用<see cref="object.Equals(object)"/>方法对<paramref name="value"/>、<see cref="Value"/>做相等比较
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public virtual bool EqualsCode(TValue value) => object.Equals(this.Value, value);
+
+        /// <summary>
+        /// 子类可重写，指示如果使用<see cref="Value"/>计算哈希值<para></para>
+        /// 基类默认行为：用<see cref="TValue.GetHashCode"/>方法对<see cref="Value"/>做计算
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetHashCodeCore() => this.Value.GetHashCode();
+
+        #endregion 需要子类重写
 
         #region 子类可用的方法
 

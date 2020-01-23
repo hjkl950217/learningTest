@@ -1,4 +1,6 @@
-﻿namespace 技术点验证
+﻿using System.Collections.Generic;
+
+namespace 技术点验证
 {
     /// <summary>
     /// 值对象基类-用于值类型是class<para></para>
@@ -16,5 +18,33 @@
         protected ValueObjectBase(TValue data) : base(data)
         {
         }
+
+        #region 内部逻辑
+
+        public override bool Equals(object obj)
+        {
+            //var valueObject = obj as IValueObject<TValue>;
+            //var value = obj as TValue;
+
+            if (object.ReferenceEquals(this, obj))
+                return true;
+            else if (base.GetType() != obj.GetType()
+                 || base.Value.GetType() != obj.GetType())
+                return false;
+
+            // return base.Equals(obj);
+        }
+
+        #endregion 内部逻辑
+
+        #region 需要子类重写
+
+        /// <summary>
+        /// 由子类重写，获取参与相等比较的成员
+        /// </summary>
+        /// <returns></returns>
+        protected abstract IEnumerable<object> GetEqualityComponents();
+
+        #endregion 需要子类重写
     }
 }
