@@ -10,6 +10,7 @@ namespace 技术点验证
     /// </summary>
     /// <remarks>
     /// 微软关于值对象的资料:https://docs.microsoft.com/zh-cn/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
+    /// 其它人关于class为引用类型的处理  https://enterprisecraftsmanship.com/posts/value-object-better-implementation <para></para>
     /// </remarks>
     /// <typeparam name="TValue"></typeparam>
     public abstract class ValueBase<TValue> : IValue<TValue>
@@ -129,7 +130,7 @@ namespace 技术点验证
         public virtual bool EqualsCode(TValue value) => object.Equals(this.Value, value);
 
         /// <summary>
-        /// 子类可重写，指示如果使用<see cref="Value"/>计算哈希值<para></para>
+        /// 子类可重写，指示如何计算<see cref="Value"/>的哈希值<para></para>
         /// 基类默认行为：用<see cref="TValue.GetHashCode"/>方法对<see cref="Value"/>做计算
         /// </summary>
         /// <returns></returns>

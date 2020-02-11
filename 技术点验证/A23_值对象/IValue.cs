@@ -17,6 +17,10 @@ namespace 技术点验证
         /// </summary>
         TValue Value { get; }
 
+        /// <summary>
+        /// 指示如何完成业务检查
+        /// </summary>
+        /// <returns></returns>
         (bool checkResult, BizError errorObj) Check();
     }
 }

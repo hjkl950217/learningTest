@@ -10,18 +10,25 @@ namespace 技术点验证
     /// </summary>
     /// <remarks>
     /// 微软关于值对象的资料:https://docs.microsoft.com/zh-cn/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
+    /// 其它人关于class为引用类型的处理  https://enterprisecraftsmanship.com/posts/value-object-better-implementation <para></para>
     /// </remarks>
     /// <typeparam name="TValue"></typeparam>
-    public abstract class ValueObjectBase<TValue> : ValueBase<TValue>, IValueObject<TValue>
+    public abstract class ValueObjectBase<TValue> : ValueBase<TValue>, IValueObject<TValue>, IValue<TValue>
         where TValue : class
     {
-        //其它人关于class 值类型的处理  https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
         protected ValueObjectBase(TValue data) : base(data)
         {
         }
 
-        #region 内部逻辑
+        #region 子类可重写
 
+        /// <summary>
+        /// 子类可重写，指示如果使用<paramref name="value"/>与<see cref="Value"/>进行内容比较<para></para>
+        /// 引用、类型比较由基类完成<para></para>
+        /// <see cref="ValueObjectBase{TValue}"/>基类已经完成了成员的比较，子类只需要实现<see cref="GetEqualityComponents(TValue)"/>即可，有特殊需求时可修改成员所属类型的<see cref="System.Object.Equals(object)"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public override bool EqualsCode(TValue value)
         {
             return Enumerable.SequenceEqual(
@@ -29,18 +36,24 @@ namespace 技术点验证
                 second: this.GetEqualityComponents(value));
         }
 
+        /// <summary>
+        /// 子类可重写，指示如何计算<see cref="Value"/>的哈希值<para></para>
+        /// 基类默认行为：调用<see cref="GetEqualityComponents(TValue)"/>方法获取要参与哈希计算的成员，然后调用成员所属的<see cref="System.Object.GetHashCode"/>方法成员的哈希值，最后利用System.Linq.Enumerable.Aggregate累加器函数计算哈希值。<para></para>
+        /// 计算逻辑:
+        /// <code>
+        /// //first种子为1 next为每个成员 <para></para>
+        /// (first * 256) ^ (next?.GetHashCode() ?? 0)
+        /// </code>
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCodeCore()
         {
-            //        return GetEqualityComponents()
-            //.Aggregate(1, (current, obj) =>
-            //{
-            //    unchecked
-            //    {
-            //        return current * 23 + (obj?.GetHashCode() ?? 0);
-            //    }
-            //});
-
             //todo:待测试GetHashCode
+            //因为装箱拆箱的问题， 考虑 GetEqualityComponents方法分离， 找到值类型的基元类型后， 分为2个方法
+            //然后这个基类中由一个方法统一调用这2个子类重写的方法
+
+            //考虑2：是不是每个class的值类型都需要这种强制?
+            //如果不是所有的，有没有可能利用反射 或 表达式编译的方式 获取所有成员 然后参与计算
             /*      1       2
              * 1    null    "abc"
              * 2    null    null
@@ -51,16 +64,24 @@ namespace 技术点验证
              */
 
             return this.GetEqualityComponents(this.Value)
-                  .Aggregate(1, (first, next) =>
-                  {
-                      //这里256这个数字是随便写的，是为了避免计算哈希值的逻辑有重复的
-                      return (first * 256) ^ (next?.GetHashCode() ?? 0);
-                  });
+                  .Aggregate(1, this.HashCodeAggregate);
         }
 
-        #endregion 内部逻辑
+        /// <summary>
+        /// 计算哈希值的累加方法
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
+        protected virtual int HashCodeAggregate(int first, object next)
+        {
+            //这里256这个数字是随便写的，是为了避免计算哈希值的逻辑有重复的
+            return (first * 256) ^ (next?.GetHashCode() ?? 0);
+        }
 
-        #region 需要子类重写
+        #endregion 子类可重写
+
+        #region 由子类重写
 
         /// <summary>
         /// 由子类重写，获取参与相等比较的成员
@@ -68,6 +89,6 @@ namespace 技术点验证
         /// <returns></returns>
         protected abstract IEnumerable<object> GetEqualityComponents(TValue value);
 
-        #endregion 需要子类重写
+        #endregion 由子类重写
     }
 }
