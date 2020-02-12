@@ -4,7 +4,7 @@ using System.Linq;
 namespace 技术点验证
 {
     /// <summary>
-    /// 值对象基类-用于值类型是class<para></para>
+    /// 值对象基类-针对引用类型<para></para>
     /// 可保证数据不能为null，数据正确(需重写<see cref="BizCheckValue"/>方法以完成业务规则检测)<para></para>
     /// 使用时可以当普通数据使用，如: int a=new Age(50)
     /// </summary>
@@ -48,21 +48,6 @@ namespace 技术点验证
         /// <returns></returns>
         public override int GetHashCodeCore()
         {
-            //todo:待测试GetHashCode
-            //因为装箱拆箱的问题， 考虑 GetEqualityComponents方法分离， 找到值类型的基元类型后， 分为2个方法
-            //然后这个基类中由一个方法统一调用这2个子类重写的方法
-
-            //考虑2：是不是每个class的值类型都需要这种强制?
-            //如果不是所有的，有没有可能利用反射 或 表达式编译的方式 获取所有成员 然后参与计算
-            /*      1       2
-             * 1    null    "abc"
-             * 2    null    null
-             * 3    "abc"   null
-             * 4    null    null
-             *
-             *
-             */
-
             return this.GetEqualityComponents(this.Value)
                   .Aggregate(1, this.HashCodeAggregate);
         }

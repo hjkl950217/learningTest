@@ -20,7 +20,7 @@ namespace 技术点验证
             var di = new ServiceCollection()
              .AddSingleton<TestInterface, TestClass>()
              .ConfigureDynamicProxy()
-             .BuildDynamicProxyServiceProvider();//编译
+             .BuildDynamicProxyProvider();//编译
 
             TestInterface testInterface = di.GetService<TestInterface>();
 
