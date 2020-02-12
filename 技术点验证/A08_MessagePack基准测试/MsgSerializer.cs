@@ -20,6 +20,7 @@ namespace 技术点验证
         {
             if (MsgSerializer.IsSetup == true) { return; }
 
+            //todo  修复报错 :https://github.com/neuecc/MessagePack-CSharp
             CompositeResolver.RegisterAndSetAsDefault(
                 //Builtin原语和标准类解析器。它包括原始（int，bool，string ...）和可空，数组和列表。和一些额外的内置类型（Guid，Uri，BigInteger等......）。
                 BuiltinResolver.Instance,
@@ -36,12 +37,12 @@ namespace 技术点验证
 
         public static byte[] Serialize<T>(T data)
         {
-            return MessagePackSerializer.Serialize<T>(data, CompositeResolver.Instance);
+            return MessagePackSerializer.Serialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
         }
 
         public static T Deserialize<T>(byte[] data)
         {
-            return MessagePackSerializer.Deserialize<T>(data, CompositeResolver.Instance);
+            return MessagePackSerializer.Deserialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
         }
 
         public static byte[] SerializeDefault<T>(T obj)
