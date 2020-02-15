@@ -12,7 +12,7 @@ namespace 技术点验证
         /// <summary>
         /// 班级信息-模拟值类型值对象
         /// </summary>
-        public Value<string> Name { get; set; }
+        public ValueObject<string> Name { get; set; }
 
         /// <summary>
         /// 班级信息-模拟引用类型值对象

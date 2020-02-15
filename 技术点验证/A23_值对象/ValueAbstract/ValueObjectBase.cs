@@ -29,7 +29,7 @@ namespace 技术点验证
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public override bool EqualsCode(TValue value)
+        protected override bool EqualsCode(TValue value)
         {
             return Enumerable.SequenceEqual(
                 first: this.GetEqualityComponents(this.Value),
@@ -46,7 +46,7 @@ namespace 技术点验证
         /// </code>
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCodeCore()
+        protected override int GetHashCodeCore()
         {
             return this.GetEqualityComponents(this.Value)
                   .Aggregate(1, this.HashCodeAggregate);

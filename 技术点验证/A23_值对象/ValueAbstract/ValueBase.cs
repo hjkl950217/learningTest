@@ -13,63 +13,14 @@ namespace 技术点验证
     /// 其它人关于class为引用类型的处理  https://enterprisecraftsmanship.com/posts/value-object-better-implementation <para></para>
     /// </remarks>
     /// <typeparam name="TValue"></typeparam>
-    public abstract class ValueBase<TValue> : IValue<TValue>
+    public abstract class ValueBase<TValue> : IValue<TValue>, IValueCheck<TValue>
     {
-        public TValue Value { get; }
+        public TValue Value { get; protected set; }
+        TValue IValue<TValue>.Value { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #region 内部逻辑
 
-        protected ValueBase(TValue data)
-        {
-            this.Value = data;
-
-            if (this.IsNulReference(data))
-            {
-                throw new ArgumentNullException(nameof(data));
-            }
-
-            var checkObj = this.Check();
-            if (!checkObj.checkResult)
-            {
-                throw new ArgumentException(checkObj.errorObj.ErrorMessage, nameof(data));
-            }
-        }
-
-        /// <summary>
-        /// 检查空引用。值类型与非空则返回false，引用类型为空时返回true
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private bool IsNulReference(TValue data)
-        {
-            if (typeof(TValue).IsValueType)
-            {
-                return false;
-            }
-            else
-            {
-                return data == null;
-            }
-        }
-
-        /// <summary>
-        /// 检查数据<para></para>
-        /// 检查通过返回true，否则返回false+错误对象
-        /// </summary>
-        /// <returns></returns>
-        public virtual (bool checkResult, BizError errorObj) Check()
-        {
-            if (this.BizCheckValue())
-            {
-                return (
-                    true,
-                    new BizError());
-            }
-            else
-            {
-                return (false, this.GetBizError());
-            }
-        }
+        protected ValueBase(TValue data) => ((IValue<TValue>)this).SetValue(data);
 
         public override bool Equals(object obj)
         {
@@ -97,6 +48,23 @@ namespace 技术点验证
         public override string ToString()
         {
             return this.Value.ToString();
+        }
+
+        /// <summary>
+        /// 检查空引用。值类型与非空则返回false，引用类型为空时返回true
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private bool IsNulReference(TValue data)
+        {
+            if (typeof(TValue).IsValueType)
+            {
+                return false;
+            }
+            else
+            {
+                return data == null;
+            }
         }
 
         #endregion 内部逻辑
@@ -127,14 +95,14 @@ namespace 技术点验证
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public virtual bool EqualsCode(TValue value) => object.Equals(this.Value, value);
+        protected virtual bool EqualsCode(TValue value) => object.Equals(this.Value, value);
 
         /// <summary>
         /// 子类可重写，指示如何计算<see cref="Value"/>的哈希值<para></para>
         /// 基类默认行为：用<see cref="TValue.GetHashCode"/>方法对<see cref="Value"/>做计算
         /// </summary>
         /// <returns></returns>
-        public virtual int GetHashCodeCore() => this.Value.GetHashCode();
+        protected virtual int GetHashCodeCore() => this.Value.GetHashCode();
 
         #endregion 子类可重写
 
@@ -192,5 +160,40 @@ namespace 技术点验证
         #endregion 隐式和显式转换
 
         #endregion 符号重载
+
+        void IValue<TValue>.SetValue(TValue value)
+        {
+            this.Value = value;
+
+            if (this.IsNulReference(value))
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            var checkObj = ((IValueCheck<TValue>)this).Check(value);
+            if (!checkObj.checkResult)
+            {
+                throw new ArgumentException(checkObj.errorObj.ErrorMessage, nameof(value));
+            }
+        }
+
+        /// <summary>
+        /// 检查数据<para></para>
+        /// 检查通过返回true，否则返回false+错误对象
+        /// </summary>
+        /// <returns></returns>
+        (bool checkResult, BizError errorObj) IValueCheck<TValue>.Check(TValue value)
+        {
+            if (this.BizCheckValue())
+            {
+                return (
+                    true,
+                    new BizError());
+            }
+            else
+            {
+                return (false, this.GetBizError());
+            }
+        }
     }
 }

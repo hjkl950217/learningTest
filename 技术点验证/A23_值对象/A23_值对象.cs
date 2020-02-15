@@ -60,7 +60,7 @@ namespace 技术点验证
             for (int i = 0 ; i < msArray.Length ; i++)
             {
                 sp.Start();
-                this.Show(() => _ = new Value<string>("0") == new Value<string>(getNewString('c')));
+                this.Show(() => _ = Value.Create("0") == Value.Create(getNewString('c')));
                 sp.Stop();
 
                 msArray[i] = sp.ElapsedMilliseconds;
@@ -71,26 +71,33 @@ namespace 技术点验证
 
             #endregion 测试==重写
 
-            #region 测试引用值对象使用
+            #region 测试引用值对象的Equals
 
-            ////这是为了快速造数据的
-            //StuClassInfo_Entity GetClassInfo(int id, string name)
-            //{
-            //    return new StuClassInfo_Entity()
-            //    {
-            //    }
-            //}
+            //这是为了快速造数据的
+            StuClassInfo_Entity getClassInfo(int id, string name)
+            {
+                return new StuClassInfo_Entity()
+                {
+                    ClassID = id,
+                    ClassName = new ClassName(name)
+                };
+            }
 
-            //this.Show(() => _ = new StuClassInfo(new StuClassInfo_Entity() { }))
+            StuClassInfo stuClassInfo1 = new StuClassInfo(getClassInfo(1, "1a"));
+            StuClassInfo stuClassInfo2 = new StuClassInfo(getClassInfo(1, "1a"));
 
-            #endregion 测试引用值对象使用
+            Console.WriteLine("测试引用值对象的Equals");
+            this.Show(() => Console.WriteLine(stuClassInfo1 == stuClassInfo2));
+            this.Show(() => Console.WriteLine(stuClassInfo1.Equals(stuClassInfo2)));
+
+            #endregion 测试引用值对象的Equals
 
             #region 测试引用值对象的GetHashCode
 
             void testHashCode(int id1, string str1, int id2, string str2, bool expected)
             {
-                StuClassInfo obj1 = new StuClassInfo(new StuClassInfo_Entity() { ClassID = id1, ClassName = new Value<string>(str1) });
-                StuClassInfo obj2 = new StuClassInfo(new StuClassInfo_Entity() { ClassID = id2, ClassName = new Value<string>(str2) });
+                StuClassInfo obj1 = new StuClassInfo(new StuClassInfo_Entity() { ClassID = id1, ClassName = new ClassName(str1) });
+                StuClassInfo obj2 = new StuClassInfo(new StuClassInfo_Entity() { ClassID = id2, ClassName = new ClassName(str2) });
 
                 bool result = obj1.GetHashCode() == obj2.GetHashCode();
 
@@ -98,15 +105,13 @@ namespace 技术点验证
                 Console.WriteLine($"\t {obj1.Value.ClassID}\t {obj1.Value.ClassName.Value}\t {obj2.Value.ClassID}\t {obj2.Value.ClassName.Value}\t {expected}\t {result} {isOk}");
             }
 
+            Console.WriteLine("测试引用值对象的GetHashCode");
             Console.WriteLine($"\t id1 \t cont1 \t id2 \t cont2 \t 预期 \t 实际");
 
             testHashCode(1, "1", 1, "1", true);
             testHashCode(2, "1", 200, "1", true);
-
             testHashCode(3, "1", 3, "12", false);
             testHashCode(4, "1", 4, "12", false);
-
-            _ = new ValueObject<object>("123").GetHashCode();
 
             #endregion 测试引用值对象的GetHashCode
         }
@@ -143,6 +148,14 @@ namespace 技术点验证
          * 这里的值对象是技术性的，而DDD中值对象是概念上的
          * 这里的值对象是可变的，而DDD中值对象是不可变的
          * 这里的值对象用来保证符合业务规则，而DDD中值对象仅仅只是充当“数值”的作用，你也可以理解为某个状态的“快照”
+         *
+         *
+         *
+         * 第1版：简易值对象。仅仅只是构造方法中加业务规则的单个类
+         * 第2版：增加值类型值对象的父类。重写哈希、相等、==  !=符号
+         * 第3版：增加引用类型值对象的父类。子类在参与相等、哈希计算时只需要重写一个方法即可
+         * 第4版：优化父类。优化：子类继承需要完成的方法、引用类型值对象计算相等和哈希的方式
+         * 第5版：优化使用细节,基础接口调整。增加默认的值对象类、增加Value这个静态类
          *
          *
          *
