@@ -13,7 +13,7 @@ namespace 技术点验证
             VerificationTypeEnum verificationType = VerificationTypeEnum.A01_获取当前路径的方法;
             List<IVerification> verifications = RegisterAllVerification();
 
-            //IVerification verification = GetVerification(VerificationTypeEnum.A01_获取当前路径的方法);
+            IVerification verification = GetVerification(VerificationTypeEnum.A01_获取当前路径的方法);
 
             //开始验证
             VerificationHelp.StartVerification(verificationType, verifications, args);
@@ -74,33 +74,66 @@ namespace 技术点验证
                 return i.GetInterfaces().Contains(typeof(IVerification));
             };
 
-            //判断是否为只有一个构造方法，且是无参数的
-            Func<Type, bool> isOnlyOne_NonParameterConstructor = i =>
-            {
-                return i.GetConstructor(
-                    bindingAttr: BindingFlags.Public,
-                    binder: null,
-                    types: null,
-                    modifiers: null) != null;
-            };
+            ////判断是否为只有一个构造方法，且是无参数的
+            //Func<Type, bool> isOnlyOne_NonParameterConstructor = i =>
+            //{
+            //    return i.GetConstructor(
+            //        bindingAttr: BindingFlags.Public,
+            //        binder: null,
+            //        types: null,
+            //        modifiers: null) != null;
+            //};
 
             //判断是否为我们要用的验证类
             Func<Type, bool> isTargetVerification = i =>
             {
-                //提取验证类中的验证类型
-                PropertyInfo propertyInfo = i.GetProperties()
-                    .FirstOrDefault(t => t.PropertyType == typeof(VerificationTypeEnum)
-                            && t.CanRead == true
-                            && t.CanWrite == false);
+                var attr = i.GetCustomAttribute<VerifcationTypeAttribute>();
 
-                //判断是否为我们需要的
-                if (propertyInfo == null) return false;
+                if (attr == null)//没有继承的情况-兼容方案
+                {
+                    //提取验证类中的验证类型
+                    PropertyInfo propertyInfo = i.GetProperties()
+                        .FirstOrDefault(t => t.PropertyType == typeof(VerificationTypeEnum)
+                                && t.CanRead == true
+                                && t.CanWrite == false);
+
+                    if (propertyInfo == null) return false;
+                    else
+                    {
+                        try
+                        {
+                            _ = (IVerification)Activator.CreateInstance(i);
+                            return true;
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else if (attr.VerificationTypeEnum == verificationTypeEnum)
+                {
+                    return true;
+                }
                 else
                 {
-                    //这里要修改成  判断Attribute
-
-                    return (VerificationTypeEnum)propertyInfo.GetMethod.Invoke(null, null) == verificationTypeEnum;
+                    return false;
                 }
+
+                ////提取验证类中的验证类型
+                //PropertyInfo propertyInfo = i.GetProperties()
+                //    .FirstOrDefault(t => t.PropertyType == typeof(VerificationTypeEnum)
+                //            && t.CanRead == true
+                //            && t.CanWrite == false);
+
+                ////判断是否为我们需要的
+                //if (propertyInfo == null) return false;
+                //else
+                //{
+                //    //这里要修改成  判断Attribute
+
+                //    return (VerificationTypeEnum)propertyInfo.GetMethod.Invoke(null, null) == verificationTypeEnum;
+                //}
             };
 
             //组合验证的方法
