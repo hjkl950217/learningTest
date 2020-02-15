@@ -14,35 +14,44 @@ namespace 技术点验证
         private static bool IsSetup = false;
 
         /// <summary>
+        /// 项目中配置的默认MsgPack配置
+        /// </summary>
+        private static MessagePackSerializerOptions serializerOptions;
+
+        /// <summary>
         /// 注册Msg的序列化器-启动时调用一次即可
         /// </summary>
         public static void InitializeMsgPackSerializer()
         {
             if (MsgSerializer.IsSetup == true) { return; }
 
-            //todo  修复报错 :https://github.com/neuecc/MessagePack-CSharp
-            CompositeResolver.RegisterAndSetAsDefault(
-                //Builtin原语和标准类解析器。它包括原始（int，bool，string ...）和可空，数组和列表。和一些额外的内置类型（Guid，Uri，BigInteger等......）。
-                BuiltinResolver.Instance,
-                //合成的解析器。它按以下顺序解析builtin -> attribute -> dynamic enum -> dynamic generic -> dynamic union -> dynamic object -> dynamic object fallback。这是MessagePackSerializer的默认值。
-                StandardResolver.Instance,
-                //所有类和结构的解析器。它不需要MessagePackObjectAttribute和序列化键作为字符串（与标记为[MessagePackObject（true）]相同）。
-                DynamicContractlessObjectResolver.Instance
-           //枚举的解析器和可空的。它使用反射调用来解析第一次可以为空。
-           // DynamicEnumAsStringResolver.Instance
-           );
+            //创建组合解析器
+            IFormatterResolver resolver = CompositeResolver.Create(
+                  //Builtin原语和标准类解析器。它包括原始（int，bool，string ...）和可空，数组和列表。和一些额外的内置类型（Guid，Uri，BigInteger等......）。
+                  BuiltinResolver.Instance,
+                  //合成的解析器。它按以下顺序解析builtin -> attribute -> dynamic enum -> dynamic generic -> dynamic union -> dynamic object -> dynamic object fallback。这是MessagePackSerializer的默认值。
+                  StandardResolver.Instance,
+                  //所有类和结构的解析器。它不需要MessagePackObjectAttribute和序列化键作为字符串（与标记为[MessagePackObject（true）]相同）。
+                  DynamicContractlessObjectResolver.Instance
+             //枚举的解析器和可空的。它使用反射调用来解析第一次可以为空。
+             // DynamicEnumAsStringResolver.Instance
+             );
+            //转换成Options并赋值到私有字段上面
+            serializerOptions = MessagePackSerializerOptions.Standard.WithResolver(resolver);
 
             MsgSerializer.IsSetup = true;
         }
 
         public static byte[] Serialize<T>(T data)
         {
-            return MessagePackSerializer.Serialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
+            //return MessagePackSerializer.Serialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
+            return MessagePackSerializer.Serialize<T>(data, MsgSerializer.serializerOptions);
         }
 
         public static T Deserialize<T>(byte[] data)
         {
-            return MessagePackSerializer.Deserialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
+            //  return MessagePackSerializer.Deserialize<T>(data, MessagePack.Resolvers.ContractlessStandardResolver.Options);
+            return MessagePackSerializer.Deserialize<T>(data, MsgSerializer.serializerOptions);
         }
 
         public static byte[] SerializeDefault<T>(T obj)
