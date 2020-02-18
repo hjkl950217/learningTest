@@ -23,6 +23,7 @@ namespace 技术点验证
      *
      */
 
+    [VerifcationType(VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类)]
     public class A18_预测鸢尾花的类型_多类分类 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类;
@@ -99,8 +100,5 @@ namespace 技术点验证
 
             Console.WriteLine($"预测结果：{prediction.ToJson()}"); ; //这个方法需要迁移到验证库中
         }
-
-
-      
     }
 }

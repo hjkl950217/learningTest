@@ -7,6 +7,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A04_ConcurrentDictionary的研究)]
     public class A04_ConcurrentDictionary的研究 : IVerification
     {
         /*

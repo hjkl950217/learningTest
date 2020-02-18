@@ -5,6 +5,7 @@ using 技术点验证._A15_分割字符串的基准测试_;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A15_分割字符串的基准测试)]
     public class A15_分割字符串的基准测试 : IVerification
     {
         /*

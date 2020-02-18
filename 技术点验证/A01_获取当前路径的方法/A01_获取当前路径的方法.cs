@@ -19,22 +19,22 @@ namespace 技术点验证
              *
              */
 
-            ////获取模块的完整路径。
-            //string path1 = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            ////获取和设置当前目录(该进程从中启动的目录)的完全限定目录
-            //string path2 = System.Environment.CurrentDirectory;
-            ////获取应用程序的当前工作目录
-            //string path3 = System.IO.Directory.GetCurrentDirectory();
-            ////获取程序的基目录
-            //string path4 = System.AppDomain.CurrentDomain.BaseDirectory;
-            ////获取和设置包括该应用程序的目录的名称
-            //string path5 = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            ////获取启动了应用程序的可执行文件的路径
-            //string path6 = System.Windows.Forms.Application.StartupPath;
-            ////获取启动了应用程序的可执行文件的路径及文件名
-            //string path7 = System.Windows.Forms.Application.ExecutablePath;
+            this.Show("获取模块的完整路径", System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            this.Show("获取和设置当前目录(该进程从中启动的目录)的完全限定目录", System.Environment.CurrentDirectory);
+            this.Show("获取应用程序的当前工作目录", System.IO.Directory.GetCurrentDirectory());
+            this.Show("获取程序的基目录", System.AppDomain.CurrentDomain.BaseDirectory);
+            this.Show("获取和设置包括该应用程序的目录的名称", System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+            //this.Show("获取启动了应用程序的可执行文件的路径", System.Windows.Forms.Application.StartupPath);
+            //this.Show("获取启动了应用程序的可执行文件的路径及文件名", System.Windows.Forms.Application.ExecutablePath);
 
             Console.ReadLine();
+        }
+
+        public void Show(string methodName, string value)
+        {
+            Console.WriteLine(methodName);
+            Console.WriteLine(value);
+            Console.WriteLine();
         }
     }
 }

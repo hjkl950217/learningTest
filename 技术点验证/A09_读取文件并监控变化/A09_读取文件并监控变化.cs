@@ -9,11 +9,12 @@ namespace 技术点验证
 {
     /*
   * 需要
-  * 
+  *
   *  Microsoft.Extensions.FileProviders
-  * 
+  *
   */
 
+    [VerifcationType(VerificationTypeEnum.A09_读取文件并监控变化)]
     public class A09_读取文件并监控变化 : IVerification
     {
         public VerificationTypeEnum VerificationType =>

@@ -4,6 +4,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B02_用反射设置值)]
     public class B02_用反射设置值 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B02_用反射设置值;

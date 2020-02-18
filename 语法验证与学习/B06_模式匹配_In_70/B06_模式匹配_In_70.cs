@@ -4,6 +4,7 @@ using 语法验证与学习._B06_模式匹配_In_70_;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B06_模式匹配_In_70)]
     public class B06_模式匹配_In_70 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B06_模式匹配_In_70;
@@ -16,13 +17,11 @@ namespace 语法验证与学习
             Console.WriteLine($"Circle的面积是{result1}");
             Console.WriteLine();
 
-
             Console.WriteLine("switch中使用表达式进行匹配");
-            Rectangle rectangle  = new Rectangle(3, 2);
+            Rectangle rectangle = new Rectangle(3, 2);
             double result2 = this.CalcuateAreaBySwitch(rectangle);
             Console.WriteLine($"Rectangle的面积是{result2}");
             Console.WriteLine();
-
 
             Console.WriteLine("switch中使用var进行匹配");
             string testStr = string.Empty;
@@ -78,7 +77,7 @@ namespace 语法验证与学习
              * 如下面的例子，前面2个判断0的，影响范围就很小，最在最上面。
              *
              * case null：只会匹配引用类型，可以适用Rectangle来测试
-             * 
+             *
              * default关键字无论你写在什么位置，永远最后一个执行
              */
 
@@ -111,12 +110,12 @@ namespace 语法验证与学习
         {
             /*
              * var关键字可以在写代码时就确定类型
-             * 
+             *
              * 例子中最后有一个判断字符串为空白长度的
              * 代表参数为空字符时，default永远不会被执行
-             * 
+             *
              * 编译器不会报错，但非常建议保留，以防止以后修改时忘记和增强表义完整性
-             * 
+             *
              */
 
             switch (shapeDescription)
@@ -133,10 +132,10 @@ namespace 语法验证与学习
                 case var o when (o?.Trim().Length ?? 0) == 0:
                     // 匹配到空白字符
                     return null;
+
                 default:
                     //永远不会被执行
                     return "invalid shape description";
-
             }
         }
     }

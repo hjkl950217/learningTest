@@ -11,6 +11,7 @@ namespace 技术点验证
 {
     // 用到了AspectCore.Extensions.DependencyInjection
 
+    [VerifcationType(VerificationTypeEnum.A04_ConcurrentDictionary的研究)]
     public class A07_动态添加Attribute : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A07_动态添加Attribute;

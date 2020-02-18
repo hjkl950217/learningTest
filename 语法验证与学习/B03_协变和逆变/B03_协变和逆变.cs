@@ -9,6 +9,7 @@ namespace 语法验证与学习
     public class Son : Father
     { public string Name { get; set; } }
 
+    [VerifcationType(VerificationTypeEnum.B03_协变和逆变)]
     public class B03_协变和逆变 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B03_协变和逆变;

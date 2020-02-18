@@ -5,6 +5,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A23_值对象)]
     public class A23_值对象 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A23_值对象;

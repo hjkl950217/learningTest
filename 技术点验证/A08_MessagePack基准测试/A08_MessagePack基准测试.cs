@@ -4,6 +4,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A08_MessagePack基准测试)]
     public class A08_MessagePack基准测试 : IVerification
     {
         /*

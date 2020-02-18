@@ -4,6 +4,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B07_递归)]
     public class B07_递归 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B07_递归;
@@ -39,7 +40,6 @@ namespace 语法验证与学习
             int result = this.CountChange_Recursive(money, coins);
             sp.Stop();
             Console.WriteLine($"递归\t\t{result}种\t用时{sp.ElapsedTicks}毫微秒\t计算{this.RecursiveNum}次");
-
 
             sp.Restart();
             int result_A = this.CountChange_DynamicPlan(money, coins);

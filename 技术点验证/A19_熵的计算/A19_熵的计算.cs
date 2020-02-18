@@ -3,6 +3,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A19_熵的计算)]
     public class A19_熵的计算 : IVerification
     {
         /*
@@ -38,7 +39,7 @@ namespace 技术点验证
             //计算熵的函数 newBase为对数中的底数
             Func<double, double> func_h(double newBase)
             {
-                return a => -(3 *  //公式中是相加，这里乘3是因为总数为3个，并且概率是均等的。 
+                return a => -(3 *  //公式中是相加，这里乘3是因为总数为3个，并且概率是均等的。
                 (iris_probaility * Math.Log(a, newBase))
                 );
             }

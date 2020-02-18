@@ -5,6 +5,7 @@ using 技术点验证._A14_查找相同对象的基准测试_;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A14_查找相同对象的基准测试)]
     public class A14_查找相同对象的基准测试 : IVerification
     {
         /*

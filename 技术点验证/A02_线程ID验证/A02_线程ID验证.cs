@@ -7,6 +7,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A02_线程ID验证)]
     public class A02_线程ID验证 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A02_线程ID验证;

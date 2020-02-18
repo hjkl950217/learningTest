@@ -6,6 +6,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A17_马尔可夫链)]
     public class A17_马尔科夫链 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A17_马尔可夫链;
@@ -214,6 +215,7 @@ namespace 技术点验证
                     resultSet.Add(tempResult);
                     tempList.Clear();
                     return resultSet;
+
                 default:
                     var tempNode = data[startKey];
                     tempList.Add(tempNode);//添加到临时集合中

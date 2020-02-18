@@ -8,9 +8,7 @@ using Verification.Core;
 /// </summary>
 namespace 语法验证与学习
 {
-    /// <summary>
-    /// 客户类
-    /// </summary>
+    [VerifcationType(VerificationTypeEnum.B01_建造者模式学习)]
     internal class B01_建造者模式学习 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B01_建造者模式学习;

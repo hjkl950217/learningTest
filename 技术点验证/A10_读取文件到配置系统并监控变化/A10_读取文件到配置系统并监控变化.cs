@@ -13,6 +13,7 @@ namespace 技术点验证
      *
      */
 
+    [VerifcationType(VerificationTypeEnum.A10_读取文件到配置系统并监控变化)]
     public class A10_读取文件到配置系统并监控变化 : IVerification
     {
         public VerificationTypeEnum VerificationType =>

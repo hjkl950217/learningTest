@@ -8,6 +8,7 @@ namespace 语法验证与学习
     //参考资料：https://stackoverflow.com/questions/4628243/is-the-operator-thread-safe
     //线程太少，无法真正观察到++操作符 有锁与无锁的版本
 
+    [VerifcationType(VerificationTypeEnum.B01_建造者模式学习)]
     public class B10_I__的原子性 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B10_I__的原子性;

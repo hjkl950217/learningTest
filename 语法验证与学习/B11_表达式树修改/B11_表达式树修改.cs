@@ -4,13 +4,14 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B12_Switch_In_80)]
     public class B11_表达式树修改 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B11_表达式树修改;
 
         public void Start(string[] args)
         {
-			//https://www.cnblogs.com/snailblog/p/11521359.html
+            //https://www.cnblogs.com/snailblog/p/11521359.html
             Expression<Func<int, int, int>> func = (x, y) => x + y;
             Expression<Func<int, Func<int, int>>> func2 = x => y => x + y;
 

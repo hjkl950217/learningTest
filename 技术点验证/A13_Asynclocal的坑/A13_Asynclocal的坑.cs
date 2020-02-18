@@ -5,6 +5,7 @@ using Verification.Core;
 
 namespace 技术点验证
 {
+    [VerifcationType(VerificationTypeEnum.A13_Asynclocal的坑)]
     public class A13_Asynclocal的坑 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A13_Asynclocal的坑;

@@ -16,6 +16,7 @@ namespace 技术点验证
      *
      */
 
+    [VerifcationType(VerificationTypeEnum.A20_并行查找数组中非0的索引)]
     public class A20_并行查找数组中非0的索引 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.A20_并行查找数组中非0的索引;

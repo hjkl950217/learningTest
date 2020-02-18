@@ -3,6 +3,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B15_在CSharp中使用FSharp)]
     public class B14_用函数式检查SellerID : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B14_用函数式检查SellerID;

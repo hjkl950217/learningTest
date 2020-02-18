@@ -4,6 +4,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B08_Chsarp中写函数式编程)]
     public class B08_Chsarp中写函数式编程 : IVerification
     {
         //参考资料： https://www.oschina.net/translate/functional-programming-in-csharp?lang=chs&p=1
@@ -12,7 +13,7 @@ namespace 语法验证与学习
 
         public void Start(string[] args)
         {
-            VerificationHelp.Start()
+            LinkAction.Start()
                 .Add(this.FactorialDemo)
                 .Add(this.CurryFunctionDemo)
                 .Add(this.ClosureDemo) //这个放最后，执行时间长
@@ -50,7 +51,7 @@ namespace 语法验证与学习
         /// 阶乘：n! = n*(n-1)*(n-2)*(n-3)*...*3*2*1
         /// 阶乘最小是1，所以使用递归是比较好的。
         /// </remarks>
-        public void FactorialDemo() 
+        public void FactorialDemo()
         {
             //
             /*

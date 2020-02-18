@@ -6,6 +6,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
+    [VerifcationType(VerificationTypeEnum.B05_表达式树研究)]
     public class B05_表达式树研究 : IVerification
     {
         public VerificationTypeEnum VerificationType => VerificationTypeEnum.B05_表达式树研究;
@@ -21,7 +22,7 @@ namespace 语法验证与学习
                 this.DemoEnd
             };
 
-            VerificationHelp.Start()
+            LinkAction.Start()
                 .AddRange(actions)
                 .BatchRun();
         }
