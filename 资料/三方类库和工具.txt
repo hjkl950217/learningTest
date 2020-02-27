@@ -10,7 +10,10 @@
 10.PDFsharp 免费的处理PDF的库，无平台限制
 
 
-查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
-PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+--工具
 
-ConfuserEx  混淆代码工具
+
+1.查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
+PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+2.ConfuserEx  混淆代码工具
+3.10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw

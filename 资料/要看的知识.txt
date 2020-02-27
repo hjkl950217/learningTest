@@ -49,3 +49,22 @@ DDD & Microservices ：https://insights.thoughtworks.cn/ddd-and-microservices/
 
 js函数式编程指南：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
 
+
+C#中的函数式编程:http://hamidmosalla.com/2019/04/25/functional-programming-in-c-sharp-a-brief-guide/#Functional_Programming_Libraries_for_C
+
+C＃FP语言扩展  https://github.com/louthy/language-ext
+更多LINQ    https://github.com/morelinq/MoreLINQ
+C＃的功能扩展 https://github.com/vkhorikov/CSharpFunctionalExtensions
+
+3.0中的分布式追踪和监视：https://devblogs.microsoft.com/aspnet/improvements-in-net-core-3-0-for-troubleshooting-and-monitoring-distributed-apps/
+W3C中的追踪上下文规范：https://www.w3.org/TR/trace-context/
+
+在C#中使用F# 	https://connelhooley.uk/blog/2017/04/30/f-sharp-to-c-sharp
+		https://www.cnblogs.com/hjklin/p/fs-for-cs-dev-5.html#_label2	
+
+功能性C# fp相关的：https://enterprisecraftsmanship.com/posts/functional-c-immutability/
+DRY(不要自我重复):https://enterprisecraftsmanship.com/posts/dry-revisited/
+铁路导向编程：https://fsharpforfunandprofit.com/rop/
+
+
+Kafka设计解析（一）：http://www.jasongj.com/2015/03/10/KafkaColumn1/
