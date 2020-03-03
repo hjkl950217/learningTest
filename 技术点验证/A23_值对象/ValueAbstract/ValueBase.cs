@@ -16,11 +16,14 @@ namespace 技术点验证
     public abstract class ValueBase<TValue> : IValue<TValue>, IValueCheck<TValue>
     {
         public TValue Value { get; protected set; }
-        TValue IValue<TValue>.Value { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        TValue IValue<TValue>.Value { get => this.Value; set => this.Value = value; }
 
         #region 内部逻辑
 
-        protected ValueBase(TValue data) => ((IValue<TValue>)this).SetValue(data);
+        protected ValueBase(TValue data)
+        {
+            ((IValue<TValue>)this).SetValue(data);
+        }
 
         public override bool Equals(object obj)
         {
@@ -86,7 +89,10 @@ namespace 技术点验证
         /// </summary>
         /// <param name="value">发生错误的值</param>
         /// <returns></returns>
-        public virtual string ErrorMsgForCheckValue(TValue value) => $"Check {this.GetType().Name} value error. now value:{value.ToString()}";
+        public virtual string ErrorMsgForCheckValue(TValue value)
+        {
+            return $"Check {this.GetType().Name} value error. now value:{value.ToString()}";
+        }
 
         /// <summary>
         /// 子类可重写，指示如果使用<paramref name="value"/>与<see cref="Value"/>进行内容比较<para></para>
@@ -95,14 +101,20 @@ namespace 技术点验证
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected virtual bool EqualsCode(TValue value) => object.Equals(this.Value, value);
+        protected virtual bool EqualsCode(TValue value)
+        {
+            return object.Equals(this.Value, value);
+        }
 
         /// <summary>
         /// 子类可重写，指示如何计算<see cref="Value"/>的哈希值<para></para>
         /// 基类默认行为：用<see cref="TValue.GetHashCode"/>方法对<see cref="Value"/>做计算
         /// </summary>
         /// <returns></returns>
-        protected virtual int GetHashCodeCore() => this.Value.GetHashCode();
+        protected virtual int GetHashCodeCore()
+        {
+            return this.Value.GetHashCode();
+        }
 
         #endregion 子类可重写
 
