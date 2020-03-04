@@ -18,7 +18,7 @@ namespace 语法验证与学习
 
         public static StringBuilder stringBuilder = new StringBuilder();
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             NoLockDemo();
             //LockDemo();

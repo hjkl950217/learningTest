@@ -1,11 +1,11 @@
-﻿using BenchmarkDotNet.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证._A14_查找相同对象的基准测试_
 {
-    [CoreJob]
+    [SimpleJob]
     [ProcessCount(2)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class TestCompared
@@ -17,7 +17,7 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
 #pragma warning disable S1104 // Fields should not have public accessibility
 
         // [Params(200, 1000, 5000, 10000)]
-        [Params(5*10000,10*10000)]
+        [Params(5 * 10000, 10 * 10000)]
         public int DataCount;
 
 #pragma warning restore S1104 // Fields should not have public accessibility

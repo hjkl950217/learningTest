@@ -1,7 +1,9 @@
-﻿using MessagePack;
+﻿#pragma warning disable CA2235 // Mark all non-serializable fields
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using MessagePack;
 
 namespace 技术点验证
 {
@@ -126,7 +128,9 @@ namespace 技术点验证
     {
         public int Integr { get; set; }
         public double Double { get; set; }
+
         public decimal Decimal { get; set; }
+
         public bool Boolen { get; set; }
         public string Name { get; set; }
         public TestEnum TestEnum { get; set; }
@@ -138,3 +142,5 @@ namespace 技术点验证
         public dynamic DynamicObj { get; set; }
     }
 }
+
+#pragma warning restore CA2235 // Mark all non-serializable fields

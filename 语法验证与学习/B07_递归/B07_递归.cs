@@ -16,7 +16,7 @@ namespace 语法验证与学习
          *
          */
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             // 1. 递推与递归
             //都是以阶乘为例子
@@ -147,7 +147,7 @@ namespace 语法验证与学习
         /// <param name="coins"></param>
         /// <param name="sheets"></param>
         /// <returns></returns>
-        public int CountChange_DynamicPlan(int amount, int[] coins, int[] sheets = null)
+        public int CountChange_DynamicPlan(int amount, int[] coins, int[]? sheets = null)
         {
             if (sheets == null) sheets = new int[amount + 1];//这里都是整数，所以这样计算。其实是每一块钱都需要存下
 

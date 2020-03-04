@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Text;
 
 namespace 语法验证与学习
@@ -8,7 +6,8 @@ namespace 语法验证与学习
     public class ConstantTranslator : BaseTranslator
     {
         private readonly new ConstantExpression Node;
-        public ConstantTranslator(ConstantExpression node, string strPrefix = null, StringBuilder content = null) : base(node, strPrefix, content)
+
+        public ConstantTranslator(ConstantExpression node, string? strPrefix = null, StringBuilder? content = null) : base(node, strPrefix, content)
         {
             this.Node = node;
         }

@@ -1,14 +1,14 @@
-﻿using BenchmarkDotNet.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证
 {
-	//[SimpleJob(RuntimeMoniker.NetCoreApp22)]
-    [CoreJob]
+    //[SimpleJob(RuntimeMoniker.NetCoreApp22)]
+    [SimpleJob]
     [ProcessCount(5)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
-	[InProcess]
+    [InProcess]
     public class TestCase_Serialize
     {
         private List<TestEntity_Int> testIntData;

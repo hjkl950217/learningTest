@@ -10,21 +10,21 @@
         /// </summary>
         /// <param name="part">车门型号</param>
         /// <returns></returns>
-        IBuilder UseCarDoor(string part = null);
+        IBuilder UseCarDoor(string? part = null);
 
         /// <summary>
         /// 创建车轮
         /// </summary>
         /// <param name="part">车轮型号</param>
         /// <returns></returns>
-        IBuilder UseCarWheel(string part = null);
+        IBuilder UseCarWheel(string? part = null);
 
         /// <summary>
         /// 创建引擎
         /// </summary>
         /// <param name="part">引擎型号</param>
         /// <returns></returns>
-        IBuilder UseCarEngine(string part = null);
+        IBuilder UseCarEngine(string? part = null);
 
         // 当然还有部件，等，这里就省略了
 
@@ -37,7 +37,7 @@
         /// 比如大灯、方向盘、低音炮等等。
         /// </remarks>
         /// <returns></returns>
-        IBuilder UseOtherPart(string partName, string part);
+        IBuilder UseOtherPart(string partName, string? part);
 
         /// <summary>
         /// 获得组装好的汽车

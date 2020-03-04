@@ -1,10 +1,10 @@
-﻿using BenchmarkDotNet.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证
 {
-    [CoreJob]
+    [SimpleJob]
     [ProcessCount(5)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class TestCase_Deserialize

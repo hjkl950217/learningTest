@@ -1,10 +1,10 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
+﻿using System;
 using System.Linq;
+using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证._A15_分割字符串的基准测试_
 {
-    [CoreJob]
+    [SimpleJob]
     [ProcessCount(2)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class SubstringTest
