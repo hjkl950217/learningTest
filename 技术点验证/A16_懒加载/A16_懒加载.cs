@@ -8,8 +8,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A16_懒加载)]
     public class A16_懒加载 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A16_懒加载;
-
         public void Start(string[] args)
         {
             int result = LazyDemo.InfiniteEvenNumbersSet().Skip(10).First();

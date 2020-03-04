@@ -9,8 +9,6 @@ namespace 语法验证与学习
     {
         //参考资料： https://www.oschina.net/translate/functional-programming-in-csharp?lang=chs&p=1
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B08_Chsarp中写函数式编程;
-
         public void Start(string[] args)
         {
             LinkAction.Start()

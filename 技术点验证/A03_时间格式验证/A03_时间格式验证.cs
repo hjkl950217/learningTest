@@ -7,8 +7,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A03_时间格式验证)]
     public class A03_时间格式验证 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A03_时间格式验证;
-
         public void Start(string[] args)
         {
             Console.WriteLine($"-{DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")}-");

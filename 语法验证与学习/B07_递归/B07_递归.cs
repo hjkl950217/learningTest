@@ -7,7 +7,6 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B07_递归)]
     public class B07_递归 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B07_递归;
         /*
          * 递推：从小到大,如:1+2+3
          * 递归：从大小到,如:(3-0)+(3-1)+(3-2)

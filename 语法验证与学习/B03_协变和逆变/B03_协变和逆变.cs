@@ -12,8 +12,6 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B03_协变和逆变)]
     public class B03_协变和逆变 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B03_协变和逆变;
-
         public delegate void mydelege1(Father f);
 
         public delegate void mydelege2(Son s);

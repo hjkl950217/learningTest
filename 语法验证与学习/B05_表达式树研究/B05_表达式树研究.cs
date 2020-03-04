@@ -9,8 +9,6 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B05_表达式树研究)]
     public class B05_表达式树研究 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B05_表达式树研究;
-
         public void Start(string[] args)
         {
             Func<double, double, double> pow = Math.Pow;

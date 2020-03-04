@@ -1,10 +1,10 @@
-﻿using AspectCore.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using AspectCore.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Verification.Core;
 
 namespace 技术点验证
@@ -14,8 +14,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A04_ConcurrentDictionary的研究)]
     public class A07_动态添加Attribute : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A07_动态添加Attribute;
-
         public void Start(string[] args)
         {
             var di = new ServiceCollection()

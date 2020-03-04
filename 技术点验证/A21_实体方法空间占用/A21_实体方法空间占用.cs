@@ -1,5 +1,5 @@
-﻿using AutoFixture;
-using System;
+﻿using System;
+using AutoFixture;
 using Verification.Core;
 
 namespace 技术点验证
@@ -7,8 +7,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A21_实体方法空间占用)]
     public class A21_实体方法空间占用 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A21_实体方法空间占用;
-
         /*
          * 参考 C++虚函数表原理浅析：https://www.cnblogs.com/zhxmdefj/p/11594459.html
          *

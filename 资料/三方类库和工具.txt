@@ -8,6 +8,8 @@
 8.Autofixture 集成测试神器，可以在UT中动态生成数据
 9.ErrorProne.NET  一套基于roslyn的分析器，用于捕获常见的C＃错误
 10.PDFsharp 免费的处理PDF的库，无平台限制
+11. NSubstitute  moq UT中用于mock数据的框架
+
 
 
 --工具

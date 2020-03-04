@@ -24,8 +24,6 @@ namespace 技术点验证
         // Create a new concurrent dictionary.
         private static ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A04_ConcurrentDictionary的研究;
-
         public void Start(string[] args)
         {
             CityInfo[] data =

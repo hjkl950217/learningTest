@@ -12,10 +12,10 @@ namespace Verification.Core
         /// <param name="typeEnum">要验证的类型</param>
         /// <param name="allVerification">验证库中所有注册的验证接口实例.A系列和B系列是分离的</param>
         /// <param name="args">从命令行中获取的参数</param>
-        public static void StartVerification(this IVerification verification, string[] args)
+        public static void StartVerification(this IVerification verification, VerificationTypeEnum verificationTypeEnum, string[] args)
         {
             Console.WriteLine("开始验证");
-            Console.WriteLine($"验证:\t-{verification.VerificationType.ToString()}-");
+            Console.WriteLine($"验证:\t-{verificationTypeEnum.ToString()}-");
             Console.WriteLine("===============================================");
             Console.WriteLine();
 
@@ -35,7 +35,7 @@ namespace Verification.Core
         public static void StartVerification(VerificationTypeEnum verificationTypeEnum, string[] args)
         {
             VerificationHelp.GetVerification(verificationTypeEnum)
-                .StartVerification(args);
+                .StartVerification(verificationTypeEnum, args);
         }
 
         private static IVerification GetVerification(VerificationTypeEnum verificationTypeEnum)
@@ -62,29 +62,31 @@ namespace Verification.Core
             Func<Type, bool> isTargetVerification = i =>
             {
                 var attr = i.GetCustomAttribute<VerifcationTypeAttribute>();
-                if (attr == null)//没有继承的情况-兼容方案
-                {
-                    //提取验证类中的验证类型
-                    PropertyInfo propertyInfo = i.GetProperties()
-                        .FirstOrDefault(t => t.PropertyType == typeof(VerificationTypeEnum)
-                                && t.CanRead == true
-                                && t.CanWrite == false);
 
-                    if (propertyInfo == null) return false;
-                    else
-                    {
-                        try
-                        {
-                            _ = (IVerification)Activator.CreateInstance(i);//判断是否 有无参数的构造方法
-                            return true;
-                        }
-                        catch
-                        {
-                            return false;
-                        }
-                    }
-                }
-                else if (attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
+                //if (attr == null)//没有继承的情况-兼容方案
+                //{
+                //    //提取验证类中的验证类型
+                //    PropertyInfo propertyInfo = i.GetProperties()
+                //        .FirstOrDefault(t => t.PropertyType == typeof(VerificationTypeEnum)
+                //                && t.CanRead == true
+                //                && t.CanWrite == false);
+
+                //    if (propertyInfo == null) return false;
+                //    else
+                //    {
+                //        try
+                //        {
+                //            _ = (IVerification)Activator.CreateInstance(i);//判断是否 有无参数的构造方法
+                //            return true;
+                //        }
+                //        catch
+                //        {
+                //            return false;
+                //        }
+                //    }
+                //}
+
+                if (attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
                 {
                     return true;
                 }

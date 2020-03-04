@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using Verification.Core;
 
 namespace 技术点验证
@@ -19,8 +19,6 @@ namespace 技术点验证
     <PackageReference Include="newtonsoft.json" Version="11.0.2" />
          *
         */
-
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A05_EFCore学习;
 
         public void Start(string[] args)
         {

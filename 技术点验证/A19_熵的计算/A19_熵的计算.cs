@@ -13,8 +13,6 @@ namespace 技术点验证
          * 博客资料2：https://www.cnblogs.com/pinard/p/6093948.html
          */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A19_熵的计算;
-
         //计算 熵、条件熵、相对熵、交叉熵
         public void Start(string[] args)
         {

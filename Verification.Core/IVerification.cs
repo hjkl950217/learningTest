@@ -8,7 +8,7 @@
         /// <summary>
         /// 验证的类型
         /// </summary>
-        VerificationTypeEnum VerificationType { get; }
+        //VerificationTypeEnum VerificationType { get; }
 
         /// <summary>
         /// 开始验证
