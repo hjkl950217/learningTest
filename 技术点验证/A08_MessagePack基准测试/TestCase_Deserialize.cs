@@ -9,11 +9,11 @@ namespace 技术点验证
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class TestCase_Deserialize
     {
-        private byte[] testIntData;
-        private byte[] testStringData;
-        private byte[] testNonData;
-        private byte[] testDefaultData;
-        private byte[] testJsonData;
+        private byte[]? testIntData;
+        private byte[]? testStringData;
+        private byte[]? testNonData;
+        private byte[]? testDefaultData;
+        private byte[]? testJsonData;
 
         [Params(1 * 100, 1000, 5000, 10000)]
         public int TestTotal;

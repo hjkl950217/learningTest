@@ -11,7 +11,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
     {
 #pragma warning disable S1450
         private readonly char[] symbols = new char[] { ';', '-', '*', '#', '!' };
-        private string[] TestList;
+        private string?[]? TestList;
 #pragma warning restore S1450
 
 #pragma warning disable S1104 // Fields should not have public accessibility
