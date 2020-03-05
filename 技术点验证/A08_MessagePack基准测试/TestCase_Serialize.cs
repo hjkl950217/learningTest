@@ -11,9 +11,11 @@ namespace 技术点验证
     [InProcess]
     public class TestCase_Serialize
     {
-        private List<TestEntity_Int>? testIntData;
-        private List<TestEntity_String?>? testStringData;
-        private List<TestEntity_Non>? testNonData;
+#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
+        private List<TestEntity_Int> testIntData;
+        private List<TestEntity_String?> testStringData;
+        private List<TestEntity_Non> testNonData;
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 
         [Params(1 * 100, 1000, 5000, 10000)]
         public int TestTotal;
