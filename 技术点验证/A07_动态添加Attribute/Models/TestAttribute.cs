@@ -9,7 +9,7 @@ namespace 技术点验证
         /// <summary>
         /// 测试用的Name
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public override async Task Invoke(AspectContext context, AspectDelegate next)
         {
@@ -24,7 +24,7 @@ namespace 技术点验证
             }
         }
 
-        //public TestAttribute(string name)
+        //public TestAttribute(string? name)
         //{
         //    this.Name = name;
         //}

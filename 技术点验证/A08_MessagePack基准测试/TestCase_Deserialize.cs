@@ -9,11 +9,13 @@ namespace 技术点验证
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class TestCase_Deserialize
     {
-        private byte[]? testIntData;
-        private byte[]? testStringData;
-        private byte[]? testNonData;
-        private byte[]? testDefaultData;
-        private byte[]? testJsonData;
+#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
+        private byte[] testIntData;
+        private byte[] testStringData;
+        private byte[] testNonData;
+        private byte[] testDefaultData;
+        private byte[] testJsonData;
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 
         [Params(1 * 100, 1000, 5000, 10000)]
         public int TestTotal;
@@ -23,13 +25,13 @@ namespace 技术点验证
         {
             MsgSerializer.InitializeMsgPackSerializer();
             var testIntDataT = TestHelper.GetIntTestData(this.TestTotal);
-            var testStringDataT = TestHelper.GetIntTestData2(this.TestTotal);
+            var testStringData = TestHelper.GetIntTestData2(this.TestTotal);
             var testNonDataT = TestHelper.GetIntTestData3(this.TestTotal);
             var testDefaultDataT = TestHelper.GetIntTestData3(this.TestTotal);
             var testJsonDataT = TestHelper.GetIntTestData3(this.TestTotal);
 
             this.testIntData = MsgSerializer.Serialize(testIntDataT);
-            this.testStringData = MsgSerializer.Serialize(testStringDataT);
+            this.testStringData = MsgSerializer.Serialize(testStringData);
             this.testNonData = MsgSerializer.Serialize(testNonDataT);
             this.testDefaultData = MsgSerializer.SerializeDefault(testDefaultDataT);
             this.testJsonData = Encoding.UTF8.GetBytes(MsgSerializer.SerializeJson(testJsonDataT));
@@ -43,6 +45,7 @@ namespace 技术点验证
 
         [Benchmark]
         public List<TestEntity_String> TestStringDeserialize()
+
         {
             return MsgSerializer.Deserialize<List<TestEntity_String>>(this.testStringData);
         }

@@ -34,7 +34,7 @@ namespace 技术点验证
             this.buffer1.AsSpan().CopyTo(this.buffer3);
         }
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             int index = this.ParallelMethod();
             Console.WriteLine($"查找的索引为:{index}");

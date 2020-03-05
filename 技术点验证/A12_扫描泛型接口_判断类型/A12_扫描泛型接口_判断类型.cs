@@ -6,7 +6,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A12_扫描泛型接口_判断类型)]
     public class A12_扫描泛型接口_判断类型 : IVerification
     {
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             #region 1.获取泛型结构
 
@@ -14,7 +14,7 @@ namespace 技术点验证
             //Type genericClass2 = typeof(Generic2<,>);//实例获取双参数基本泛型结构
 
             ////1.1 用参数结构制作实参泛型结构
-            //string typeName = "System.String";
+            //string? typeName = "System.string?";
             //Type typeArgument = Type.GetType(typeName);//泛型形参结构
             //Type constructedClass = genericClass.MakeGenericType(typeArgument);
             //object created = Activator.CreateInstance(constructedClass);
@@ -26,7 +26,7 @@ namespace 技术点验证
             // IsGenericType 结构是否为泛型
             // IsGenericTypeDefinition 结构是滞为泛型定义
 
-            //Type strType = typeof(string);
+            //Type strType = typeof(string?);
             //Type genericType = typeof(Generic<>);
             //Type genericType2 = genericType.MakeGenericType(strType);
 
@@ -45,7 +45,7 @@ namespace 技术点验证
 
             //{type}.GetGenericArguments()
 
-            //Type strType = typeof(string);
+            //Type strType = typeof(string?);
             //Type genericType = typeof(Generic<>);
             //Type genericType2 = genericType.MakeGenericType(strType);
 
@@ -55,7 +55,7 @@ namespace 技术点验证
             //foreach (var itemA in typeArry)
             //{
             //    //遍历每个结构中的参数
-            //    //Generic<string> 会包括2个  它自己和string的
+            //    //Generic<string?> 会包括2个  它自己和string?的
             //    Console.WriteLine($"TypeName:  {itemA.FullName}");
             //    foreach (Type item in itemA.GetGenericArguments())
             //    {
@@ -121,7 +121,7 @@ namespace 技术点验证
         }
     }
 
-    public class Generic3 : IGeneric<string>
+    public class Generic3 : IGeneric<string?>
     {
         public void ShowInfo()
         {

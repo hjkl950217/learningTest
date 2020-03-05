@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace 技术点验证
 {
@@ -8,8 +8,8 @@ namespace 技术点验证
     {
         public static ILoggingBuilder AddTestLogger(
             this ILoggingBuilder loggingBuilder,
-            Func<string, LogLevel, bool> globalFilter = null,
-             Func<string, LogLevel, bool> testLoggerFilter = null)
+            Func<string, LogLevel, bool>? globalFilter = null,
+             Func<string, LogLevel, bool>? testLoggerFilter = null)
         {
             if (globalFilter != null)
             {
@@ -30,7 +30,7 @@ namespace 技术点验证
 
         public static ILoggingBuilder AddTestLogger(
           this ILoggingBuilder loggingBuilder,
-          Func<string, LogLevel, bool> globalFilter = null)
+          Func<string, LogLevel, bool>? globalFilter = null)
         {
             return loggingBuilder.AddTestLogger(globalFilter);
         }

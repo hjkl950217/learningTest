@@ -4,16 +4,16 @@ namespace 技术点验证
 {
     public class Program
     {
-        private static void Main(string[] args)
+        private static void Main(string?[] args)
         {
             //开始验证
             // VerificationHelp.StartVerification(VerificationTypeEnum.A23_值对象, args);
             TraceMessage("testMsg", "testMember", "testFilePath", 20);
         }
 
-        public static void TraceMessage(string message,
-            [CallerMemberName]string memberName = "",
-            [CallerFilePath]string sourceFilePath = "",
+        public static void TraceMessage(string? message,
+            [CallerMemberName]string? memberName = "",
+            [CallerFilePath]string? sourceFilePath = "",
             [CallerLineNumber]int sourceLineNumber = 0)
         {
             System.Diagnostics.Trace.WriteLine("message: " + message);

@@ -16,7 +16,7 @@ namespace 技术点验证
         /// <returns></returns>
         public static IConfigurationBuilder AddTestConfiguration(
             this IConfigurationBuilder configurationBuilder,
-            string configFileName ,
+            string? configFileName ,
             bool reloadOnChange=false
             )
         {

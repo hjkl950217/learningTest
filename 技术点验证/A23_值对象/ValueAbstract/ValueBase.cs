@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Verification.Core;
 
 namespace 技术点验证
@@ -14,18 +15,23 @@ namespace 技术点验证
     /// </remarks>
     /// <typeparam name="TValue"></typeparam>
     public abstract class ValueBase<TValue> : IValue<TValue>, IValueCheck<TValue>
+        where TValue : notnull
     {
+        [NotNull]
         public TValue Value { get; protected set; }
+
+        [NotNull]
         TValue IValue<TValue>.Value { get => this.Value; set => this.Value = value; }
 
         #region 内部逻辑
 
-        protected ValueBase(TValue data)
+        protected ValueBase([NotNull]TValue data)
         {
-            ((IValue<TValue>)this).SetValue(data);
+            this.Value = data;
+            this.CheckVlueWithException();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             switch (obj)
             {
@@ -50,7 +56,7 @@ namespace 技术点验证
 
         public override string ToString()
         {
-            return this.Value.ToString();
+            return this.Value.ToString() ?? string.Empty;
         }
 
         /// <summary>
@@ -176,17 +182,6 @@ namespace 技术点验证
         void IValue<TValue>.SetValue(TValue value)
         {
             this.Value = value;
-
-            if (this.IsNulReference(value))
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            var checkObj = ((IValueCheck<TValue>)this).Check(value);
-            if (!checkObj.checkResult)
-            {
-                throw new ArgumentException(checkObj.errorObj.ErrorMessage, nameof(value));
-            }
         }
 
         /// <summary>
@@ -196,6 +191,11 @@ namespace 技术点验证
         /// <returns></returns>
         (bool checkResult, BizError errorObj) IValueCheck<TValue>.Check(TValue value)
         {
+            if (this.IsNulReference(this.Value))
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             if (this.BizCheckValue())
             {
                 return (
@@ -205,6 +205,15 @@ namespace 技术点验证
             else
             {
                 return (false, this.GetBizError());
+            }
+        }
+
+        private void CheckVlueWithException()
+        {
+            var checkObj = ((IValueCheck<TValue>)this).Check(this.Value);
+            if (!checkObj.checkResult)
+            {
+                throw new ArgumentException(checkObj.errorObj.ErrorMessage, nameof(this.Value));
             }
         }
     }

@@ -13,7 +13,7 @@ namespace 技术点验证
 <PackageReference Include="BenchmarkDotNet" Version="0.11.1" />
 */
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("测试开始");
             //需要在发布模式下测试

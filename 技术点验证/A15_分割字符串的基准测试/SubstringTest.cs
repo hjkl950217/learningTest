@@ -7,12 +7,14 @@ namespace 技术点验证._A15_分割字符串的基准测试_
     [SimpleJob]
     [ProcessCount(2)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
-    public class SubstringTest
+    public class SubStringTest
     {
+#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 #pragma warning disable S1450
-        private readonly char[] symbols = new char[] { ';', '-', '*', '#', '!' };
-        private string?[]? TestList;
+        public readonly char[] symbols = new char[] { ';', '-', '*', '#', '!' };
+        public string[] TestList;
 #pragma warning restore S1450
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 
 #pragma warning disable S1104 // Fields should not have public accessibility
 
@@ -75,7 +77,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
             }
         }
 
-        public string MethodA(string source, params char[] symbols)
+        public string? MethodA(string? source, params char[] symbols)
         {
             if (source == null)
             {
@@ -99,7 +101,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
             }
         }
 
-        public string MethodB(string source, params char[] symbols)
+        public string? MethodB(string? source, params char[] symbols)
         {
             if (source == null)
             {

@@ -8,6 +8,7 @@ namespace System.Collections.Generic
             this IDictionary<TKey, TValue> valuePairs,
             TKey key,
             Func<TValue> valueFactory)
+            where TKey : notnull
         {
             valuePairs.CheckNull(nameof(valuePairs));
             valueFactory.CheckNull(nameof(valueFactory));
@@ -35,7 +36,6 @@ namespace System.Collections.Generic
             source.CheckNull(nameof(source));
             predicate.CheckNull(nameof(predicate));
             valueFactory.CheckNull(nameof(valueFactory));
-
 
             T value = source.FirstOrDefault(predicate);
             if (value == null)

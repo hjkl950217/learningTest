@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Verification.Core;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
 {
@@ -35,7 +34,7 @@ namespace 技术点验证
             this.Group();
         }
 
-        public void Log(string str)
+        public void Log(string? str)
         {
             this.logger.LogInformation(str);
         }
@@ -81,13 +80,15 @@ namespace 技术点验证
 
             var result = this.schoolContext.Students
                 .FirstOrDefault(t => t.FirstName == "现");
-
             this.logger.LogInformation("新添加的成员：");
-            this.Log(result?.ToJson());
 
-            this.Log("添加成功");
+            if (result != null)
+            {
+                this.Log(result.ToJson());
+                this.Log("添加成功");
+                this.schoolContext.Students.Remove(result);
+            }
 
-            this.schoolContext.Students.Remove(result);
             this.schoolContext.SaveChanges();
         }
 
@@ -98,7 +99,7 @@ namespace 技术点验证
 
             var result = this.schoolContext.Students
                 .Find(1);
-            string tempStr = result.FirstName;
+            string? tempStr = result.FirstName;
 
             result.FirstName = "AAAAAA";
             this.schoolContext.SaveChanges();

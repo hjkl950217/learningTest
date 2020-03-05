@@ -22,12 +22,12 @@
         /// <summary>
         /// 关联的Course-单个
         /// </summary>
-        public Course Courses { get; set; }
+        public Course? Courses { get; set; }
 
         /// <summary>
         /// 关联的Student-单个
         /// </summary>
-        public Student Students { get; set; }
+        public Student? Students { get; set; }
     }
 
     public enum Grade

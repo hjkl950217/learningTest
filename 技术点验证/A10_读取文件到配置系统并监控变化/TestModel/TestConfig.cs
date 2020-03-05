@@ -6,6 +6,6 @@ namespace 技术点验证
 {
   public  class TestConfig
     {
-        public string TestName { get; set; }
+        public string? TestName { get; set; }
     }
 }

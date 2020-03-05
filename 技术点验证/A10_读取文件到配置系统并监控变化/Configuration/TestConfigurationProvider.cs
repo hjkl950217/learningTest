@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 
 namespace 技术点验证
 {
@@ -80,18 +80,18 @@ namespace 技术点验证
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        private IDictionary<string, string> ReadData(Stream stream)
+        private IDictionary<string, string?> ReadData(Stream stream)
         {
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-            string result = reader.ReadToEnd();
+            string? result = reader.ReadToEnd();
 
             reader.Close();
             stream.Close();
 
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+            return JsonConvert.DeserializeObject<Dictionary<string, string?>>(result);
         }
 
-        public override void Set(string key, string value)
+        public override void Set(string? key, string? value)
         {
             //调用父类方法，走配置系统的流程更新配置
             base.Set(key, value);
@@ -99,7 +99,7 @@ namespace 技术点验证
             //调用其它方法，更新配置文件
         }
 
-        public override bool TryGet(string key, out string value)
+        public override bool TryGet(string key, out string? value)
         {
             /*
              *
@@ -113,7 +113,7 @@ namespace 技术点验证
             return base.TryGet(key, out value);
         }
 
-        public static void Bind<T>(IConfiguration configuration, string sectionKey, T data)
+        public static void Bind<T>(IConfiguration configuration, string? sectionKey, T data)
             where T : TestConfig
         {
             IConfigurationSection section = configuration.GetSection(sectionKey);

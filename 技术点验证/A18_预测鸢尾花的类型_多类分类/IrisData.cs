@@ -46,6 +46,6 @@ namespace 技术点验证
         /// </remarks>
         [LoadColumn(4)]
         [ColumnName(nameof(Label))] //这行不是必须
-        public string Label;
+        public string? Label;
     }
 }

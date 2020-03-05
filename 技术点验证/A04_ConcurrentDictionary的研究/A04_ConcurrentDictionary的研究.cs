@@ -24,7 +24,7 @@ namespace 技术点验证
         // Create a new concurrent dictionary.
         private static ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             CityInfo[] data =
             {
@@ -140,8 +140,8 @@ namespace 技术点验证
         // 此方法显示如何使用数据并确保它已被添加到字典中。
         private static void RetrieveValueOrAdd()
         {
-            string searchKey = "Caracas";
-            CityInfo retrievedValue = null;
+            string? searchKey = "Caracas";
+            CityInfo? retrievedValue = null;
 
             try
             {
@@ -165,8 +165,8 @@ namespace 技术点验证
         // 当键/值对不存在时如何新添一个数据
         private static void RetrieveAndUpdateOrAdd()
         {
-            CityInfo retrievedValue;
-            string searchKey = "Buenos Aires";
+            CityInfo? retrievedValue;
+            string? searchKey = "Buenos Aires";
 
             //获取数据成功
             if (cities.TryGetValue(searchKey, out retrievedValue))
@@ -210,7 +210,7 @@ namespace 技术点验证
         {
             //真正的实施留给读者作为练习。
             //PS:真实的情况可能是从其他数据源中查询数据
-            if (String.CompareOrdinal(name, "Caracas") == 0)
+            if (string.CompareOrdinal(name, "Caracas") == 0)
                 return new CityInfo()
                 {
                     Name = "Caracas",
@@ -218,7 +218,7 @@ namespace 技术点验证
                     Latitude = -66.916667M,
                     RecentHighTemperatures = new int[] { 91, 89, 91, 91, 87, 90, 91 }
                 };
-            else if (String.CompareOrdinal(name, "Buenos Aires") == 0)
+            else if (string.CompareOrdinal(name, "Buenos Aires") == 0)
                 return new CityInfo()
                 {
                     Name = "Buenos Aires",
@@ -233,7 +233,9 @@ namespace 技术点验证
         //演示更新数据操作
         private static void TryUpdate()
         {
-            cities.TryGetValue("Toronto", out CityInfo retrievedValue);
+            cities.TryGetValue("Toronto", out CityInfo? retrievedValue);
+
+            retrievedValue = retrievedValue ?? new CityInfo();
 
             // 制作数据的副本。
             //lastQueryDate会自动赋值为当前时间
@@ -305,6 +307,8 @@ namespace 技术点验证
 
         public CityInfo()
         {
+            this.Name = string.Empty;
+            this.RecentHighTemperatures = Array.Empty<int>();
         }
 
         public CityInfo(string key)

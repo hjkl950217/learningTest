@@ -17,8 +17,8 @@ namespace 技术点验证
         [System.ComponentModel.DataAnnotations.Key]
         public int ID { get; set; }
 
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// 登记日期
@@ -29,6 +29,6 @@ namespace 技术点验证
         /// <summary>
         /// 导航属性-修读纪录
         /// </summary>
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = System.Array.Empty<Enrollment>();
     }
 }

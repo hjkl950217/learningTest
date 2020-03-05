@@ -5,7 +5,7 @@
     /// </summary>
     public class NairOption
     {
-        public Nairsdksettings NairSDKSettings { get; set; }
+        public Nairsdksettings? NairSDKSettings { get; set; }
     }
 
     public class Nairsdksettings
@@ -13,12 +13,12 @@
         /// <summary>
         /// 默认环境
         /// </summary>
-        public string DefaultCluster { get; set; }
+        public string? DefaultCluster { get; set; }
 
         /// <summary>
         /// 对应环境的配置
         /// </summary>
-        public Clusters Clusters { get; set; }
+        public Clusters? Clusters { get; set; }
     }
 
     /// <summary>
@@ -26,26 +26,26 @@
     /// </summary>
     public class Clusters
     {
-        public GdevCluster GDEVCluster { get; set; }
-        public GqcCluster GQCCluster { get; set; }
-        public Wh7Cluster WH7Cluster { get; set; }
+        public GdevCluster? GDEVCluster { get; set; }
+        public GqcCluster? GQCCluster { get; set; }
+        public Wh7Cluster? WH7Cluster { get; set; }
     }
 
     public class GdevCluster
     {
-        public string NairServerIps { get; set; }
-        public string DataBaseLocation { get; set; }
+        public string? NairServerIps { get; set; }
+        public string? DataBaseLocation { get; set; }
     }
 
     public class GqcCluster
     {
-        public string NairServerIps { get; set; }
-        public string DataBaseLocation { get; set; }
+        public string? NairServerIps { get; set; }
+        public string? DataBaseLocation { get; set; }
     }
 
     public class Wh7Cluster
     {
-        public string NairServerIps { get; set; }
-        public string DataBaseLocation { get; set; }
+        public string? NairServerIps { get; set; }
+        public string? DataBaseLocation { get; set; }
     }
 }

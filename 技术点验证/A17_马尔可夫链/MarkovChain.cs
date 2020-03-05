@@ -19,6 +19,7 @@ namespace 技术点验证
             NodeName = EndNodeName,
             NextNodeList = new List<MarkovChainNode>()
         };
+
         /// <summary>
         /// 创建一个开始节点
         /// </summary>
@@ -36,11 +37,10 @@ namespace 技术点验证
             };
         }
 
-
         /// <summary>
         /// 当前节点的名字
         /// </summary>
-        public string NodeName { get; set; }
+        public string NodeName { get; set; } = string.Empty;
 
         /// <summary>
         /// 后续节点
@@ -60,6 +60,6 @@ namespace 技术点验证
         /// <summary>
         /// 到下一个节点的概率(字符串版本)
         /// </summary>
-        public string NextNodeProbabilityString { get => $"{(this.NextNodeProbability * 100).ToString("0.00")}%"; }
+        public string? NextNodeProbabilityString { get => $"{(this.NextNodeProbability * 100).ToString("0.00")}%"; }
     }
 }

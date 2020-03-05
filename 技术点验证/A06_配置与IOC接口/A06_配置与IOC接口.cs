@@ -53,7 +53,7 @@
 
 //    internal class Program2
 //    {
-//        private static void Main(string[] args)
+//        private static void Main(string?[] args)
 //        {
 //            //创建配置
 //            IConfiguration config = new ConfigurationBuilder()
@@ -95,7 +95,7 @@
 
 //            //写入
 //            //存在则执行修改，否则新增
-//            string testA = "AAAA";
+//            string? testA = "AAAA";
 //            var testB = new { Name = "BBBB" };
 //            client.Put("TestDB", "TestA", testA, 30);
 //            client.Put("TestDB", "TestB", testB, 30);
@@ -106,18 +106,18 @@
 //            Thread.Sleep(10 * 1000);
 
 //            //读取
-//            // Dictionary<string , T> Get<T>(string databasename , List<string> keys , string pwd = null);
+//            // Dictionary<string? , T> Get<T>(string? databasename , List<string?> keys , string? pwd = null);
 
-//            string strA = client.Get("TestDB", "TestA");//找不到是""
+//            string? strA = client.Get("TestDB", "TestA");//找不到是""
 //            var objB = client.Get<object>("TestDB", "TestB");//找不到是null
 //            int objc = client.Get<int>("TestDB", "TestC");//找不到是抛异常
 
 //            //目前用集合找  一个都找不到 如果Key存在会抛出异常
-//            // List<string> keyList = new List<string>() { "TestA" };
-//            // Dictionary<string , string> objD = client.Get<string>("TestDB" , keyList);
+//            // List<string?> keyList = new List<string?>() { "TestA" };
+//            // Dictionary<string? , string?> objD = client.Get<string?>("TestDB" , keyList);
 
 //            Console.WriteLine(strA);
-//            Console.WriteLine("对象：" + objB?.ToString());
+//            Console.WriteLine("对象：" + objB?.Tostring?());
 //            Console.WriteLine("读取完成");
 
 //            //删除
