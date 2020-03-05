@@ -36,10 +36,9 @@ namespace 技术点验证.A24_使用高阶函数
                     if (methodInfo != null)
                     {
                         Console.WriteLine($"方法名签名:{methodInfo.Name}");
-
                         return attrType => () =>
                         {
-                            //...
+                            Console.WriteLine($"类型:{attrType.Name}");
                         };
                     }
                     else
