@@ -1,7 +1,7 @@
+using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using System;
 using Verification.Core;
 
 namespace 技术点验证
@@ -19,11 +19,11 @@ namespace 技术点验证
         public VerificationTypeEnum VerificationType =>
             VerificationTypeEnum.A10_读取文件到配置系统并监控变化;
 
-        private const string testFile = "testA10.json";
+        private const string? testFile = "testA10.json";
 
-        public static TestConfig testConfig = null;//模拟业务代码中的单例引用
+        public static TestConfig? testConfig = null;//模拟业务代码中的单例引用
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             IConfiguration configuration = new ConfigurationBuilder()
                 //IConfiguration在构建webhost的时候就确定了

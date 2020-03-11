@@ -6,7 +6,7 @@ namespace 技术点验证
 {
     public class TestConfigurationSource : IConfigurationSource
     {
-        public TestConfigurationSource(string fileName, bool reloadOnChange = true)
+        public TestConfigurationSource(string? fileName, bool reloadOnChange = true)
         {
             this.ConfigFileName = fileName;
             this.ReloadOnChange = reloadOnChange;
@@ -22,7 +22,7 @@ namespace 技术点验证
         /// <summary>
         /// 配置文件的全名
         /// </summary>
-        public string ConfigAddress { get; set; }
+        public string? ConfigAddress { get; set; }
 
         /// <summary>
         /// 配置发生改变时，是否更改程序中的配置
@@ -32,7 +32,7 @@ namespace 技术点验证
         /// <summary>
         /// 配置文件名
         /// </summary>
-        public string ConfigFileName { get; set; }
+        public string? ConfigFileName { get; set; }
 
         /// <summary>
         /// 构建配置提供器
@@ -41,7 +41,7 @@ namespace 技术点验证
         /// <returns></returns>
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            string debugAddress = Directory.GetCurrentDirectory();
+            string? debugAddress = Directory.GetCurrentDirectory();
             this.ConfigAddress = Path.Combine(debugAddress, $"{{{nameof(A10_读取文件到配置系统并监控变化)}}}");
 
 

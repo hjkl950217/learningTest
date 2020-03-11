@@ -3,7 +3,7 @@
     public static class TestModel
     {
         public static A A { get; set; } = new A();
-        public static string XXX { get; set; } = "default";
+        public static string? XXX { get; set; } = "default";
     }
 
     //大类
@@ -15,6 +15,6 @@
     //小类
     public class B
     {
-        public string Data { get; set; } = "原始数据";
+        public string? Data { get; set; } = "原始数据";
     }
 }

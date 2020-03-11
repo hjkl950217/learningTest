@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -10,9 +11,9 @@ namespace 技术点验证
     /// </summary>
     public class PropertyChain
     {
-        public static string PropertyChainSeparator = ".";
+        public static string? PropertyChainSeparator = ".";
 
-        private readonly List<string> _memberNames = new List<string>(2);
+        private readonly List<string?> _memberNames = new List<string?>(2);
 
         /// <summary>
         /// Creates a new PropertyChain.
@@ -29,7 +30,7 @@ namespace 技术点验证
             if (parent != null
                 && parent._memberNames.Count > 0)
             {
-                _memberNames.AddRange(parent._memberNames);
+                this._memberNames.AddRange(parent._memberNames);
             }
         }
 
@@ -37,7 +38,7 @@ namespace 技术点验证
         /// Creates a new PropertyChain
         /// </summary>
         /// <param name="memberNames"></param>
-        public PropertyChain(IEnumerable<string> memberNames)
+        public PropertyChain(IEnumerable<string?> memberNames)
         {
             this._memberNames.AddRange(memberNames);
         }
@@ -51,7 +52,7 @@ namespace 技术点验证
         {
             var memberNames = new Stack<string>();
 
-            var getMemberExp = new Func<Expression, MemberExpression>(toUnwrap =>
+            var getMemberExp = new Func<Expression, MemberExpression?>(toUnwrap =>
             {
                 if (toUnwrap is UnaryExpression)
                 {
@@ -79,17 +80,17 @@ namespace 技术点验证
         public void Add(MemberInfo member)
         {
             if (member != null)
-                _memberNames.Add(member.Name);
+                this._memberNames.Add(member.Name);
         }
 
         /// <summary>
         /// Adds a property name to the chain
         /// </summary>
         /// <param name="propertyName">Name of the property to add</param>
-        public void Add(string propertyName)
+        public void Add(string? propertyName)
         {
             if (!string.IsNullOrEmpty(propertyName))
-                _memberNames.Add(propertyName);
+                this._memberNames.Add(propertyName);
         }
 
         /// <summary>
@@ -102,33 +103,33 @@ namespace 技术点验证
         /// <param name="surroundWithBrackets">Whether square brackets should be applied before and after the indexer. Default true.</param>
         public void AddIndexer(object indexer, bool surroundWithBrackets = true)
         {
-            if (_memberNames.Count == 0)
+            if (this._memberNames.Count == 0)
             {
                 throw new InvalidOperationException("Could not apply an Indexer because the property chain is empty.");
             }
 
-            string last = _memberNames[_memberNames.Count - 1];
+            string? last = this._memberNames[this._memberNames.Count - 1];
             last += surroundWithBrackets ? "[" + indexer + "]" : indexer;
 
-            _memberNames[_memberNames.Count - 1] = last;
+            this._memberNames[this._memberNames.Count - 1] = last;
         }
 
         /// <summary>
-        /// Creates a string representation of a property chain.
+        /// Creates a string? representation of a property chain.
         /// </summary>
-        public override string ToString()
+        public override string? ToString()
         {
-            // Performance: Calling string.Join causes much overhead when it's not needed.
-            switch (_memberNames.Count)
+            // Performance: Calling string?.Join causes much overhead when it's not needed.
+            switch (this._memberNames.Count)
             {
                 case 0:
                     return string.Empty;
 
                 case 1:
-                    return _memberNames[0];
+                    return this._memberNames[0];
 
                 default:
-                    return string.Join(PropertyChain.PropertyChainSeparator, _memberNames);
+                    return string.Join(PropertyChain.PropertyChainSeparator, this._memberNames);
             }
         }
 
@@ -139,17 +140,17 @@ namespace 技术点验证
         /// </summary>
         /// <param name="parentChain">The parent chain to compare</param>
         /// <returns>True if the current chain is the child of the other chain, otherwise false</returns>
-        public bool IsChildChainOf(PropertyChain parentChain)
+        public bool IsChildChainOf([NotNull]PropertyChain parentChain)
         {
-            return ToString().StartsWith(parentChain.ToString());
+            return (this.ToString() ?? string.Empty).StartsWith(parentChain.ToString() ?? string.Empty);
         }
 
         /// <summary>
         /// Builds a property path.
         /// </summary>
-        public string BuildPropertyName(string propertyName)
+        public string? BuildPropertyName(string? propertyName)
         {
-            if (_memberNames.Count == 0)
+            if (this._memberNames.Count == 0)
             {
                 return propertyName;
             }
@@ -162,6 +163,6 @@ namespace 技术点验证
         /// <summary>
         /// Number of member names in the chain
         /// </summary>
-        public int Count => _memberNames.Count;
+        public int Count => this._memberNames.Count;
     }
 }

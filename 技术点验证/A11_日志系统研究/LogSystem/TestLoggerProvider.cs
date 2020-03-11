@@ -11,7 +11,7 @@ namespace 技术点验证
             this.logClient = logClient;
         }
 
-        public ILogger CreateLogger(string categoryName)
+        public ILogger CreateLogger(string? categoryName)
         {
             return new TestLogger(categoryName, this.logClient);
         }

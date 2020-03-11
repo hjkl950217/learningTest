@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿#nullable disable
+
+using System.Collections.Generic;
 
 namespace 技术点验证
 {
+    /// <summary>
+    /// 不要直接使用此Entity,请使用<see cref="PreStudent"/>
+    /// </summary>
     public class PreStudent_Entity
     {
         /// <summary>

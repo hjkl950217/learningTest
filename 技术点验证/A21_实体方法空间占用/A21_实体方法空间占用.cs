@@ -1,5 +1,5 @@
-﻿using AutoFixture;
-using System;
+﻿using System;
+using AutoFixture;
 using Verification.Core;
 
 namespace 技术点验证
@@ -7,15 +7,13 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A21_实体方法空间占用)]
     public class A21_实体方法空间占用 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A21_实体方法空间占用;
-
         /*
          * 参考 C++虚函数表原理浅析：https://www.cnblogs.com/zhxmdefj/p/11594459.html
          *
          *
          */
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             this.Test(10);
             this.Test(10 * 10);
@@ -45,7 +43,7 @@ namespace 技术点验证
             System.Console.WriteLine("======================================================");
         }
 
-        public void Test<T>(string name, int count, Func<int, T[]> testFunc)
+        public void Test<T>(string? name, int count, Func<int, T[]> testFunc)
         {
             System.Console.WriteLine(name);
             var b1 = this.ShowMemoryUsage();
@@ -53,7 +51,6 @@ namespace 技术点验证
             var b2 = this.ShowMemoryUsage();
             this.ShowDifference(b1, b2);
             System.Console.WriteLine(name);
-            result = null;
             System.GC.Collect();
         }
 

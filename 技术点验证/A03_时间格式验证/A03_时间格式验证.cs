@@ -7,21 +7,19 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A03_时间格式验证)]
     public class A03_时间格式验证 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A03_时间格式验证;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine($"-{DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")}-");
             Console.WriteLine($"-{DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")}-");
 
-            /*参考资料-datetime tostring中自定义的格式资料
-             * https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/custom-date-and-time-format-strings
+            /*参考资料-datetime tostring?中自定义的格式资料
+             * https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/custom-date-and-time-format-string?s
              */
             Console.WriteLine("Task Start\r\n");
             List<object> outputList = new List<object>();
 
-            string dt1 = DateTime.Now.ToString("o");
-            string dt2 = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string? dt1 = DateTime.Now.ToString("o");
+            string? dt2 = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
 
             //unix时间戳
             long dt3 = DateTimeOffset.UtcNow.ToUnixTimeSeconds();

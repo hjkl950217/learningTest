@@ -9,8 +9,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A17_马尔可夫链)]
     public class A17_马尔科夫链 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A17_马尔可夫链;
-
         /*
          * 用马尔可夫链来生成不同的路径
          *
@@ -20,7 +18,7 @@ namespace 技术点验证
          * 原文：https://zhuanlan.zhihu.com/p/61028042
          */
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("原始数据");
             foreach (var item in this.data)
@@ -107,7 +105,7 @@ namespace 技术点验证
         /// </summary>
         /// <param name="data"></param>
         /// <returns>
-        /// 一条string[]代表处理好的样本
+        /// 一条string?[]代表处理好的样本
         /// </returns>
         private List<string[]> SplitData(string[] data)
         {
@@ -174,11 +172,11 @@ namespace 技术点验证
         #region 遍历部分
 
         /// <summary>
-        /// 将路径的节点数组转换为<see cref="String"/>，以方便输出
+        /// 将路径的节点数组转换为<see cref="string?"/>，以方便输出
         /// </summary>
         /// <param name="markovChainNodes"></param>
         /// <returns></returns>
-        public string CombinPath(MarkovChainNode[] markovChainNodes)
+        public string? CombinPath(MarkovChainNode[] markovChainNodes)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(markovChainNodes[0].NodeName);
@@ -199,9 +197,9 @@ namespace 技术点验证
         /// <returns></returns>
         private List<MarkovChainNode[]> FindAllPath(
             Dictionary<string, MarkovChainNode> data,
-            List<MarkovChainNode[]> resultSet = null,
+            List<MarkovChainNode[]>? resultSet = null,
             string startKey = MarkovChainNode.StartNodeName,
-            List<MarkovChainNode> tempList = null)
+            List<MarkovChainNode>? tempList = null)
         {
             resultSet = resultSet ?? new List<MarkovChainNode[]>();
             tempList = tempList ?? new List<MarkovChainNode>();

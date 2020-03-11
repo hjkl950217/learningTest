@@ -10,9 +10,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A02_线程ID验证)]
     public class A02_线程ID验证 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A02_线程ID验证;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("验证开始");
 
@@ -48,10 +46,12 @@ namespace 技术点验证
         /// <returns></returns>
         public static int GetNativeThreadId(Thread thread)
         {
-            var f = typeof(Thread).GetField("DONT_USE_InternalThread",
+            FieldInfo? f = typeof(Thread).GetField("DONT_USE_InternalThread",
                 BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
 
-            var pInternalThread = (IntPtr)f.GetValue(thread);
+#pragma warning disable CS8605 // 取消装箱可能为 null 的值。
+            var pInternalThread = (IntPtr)f?.GetValue(thread);
+#pragma warning restore CS8605 // 取消装箱可能为 null 的值。
             //var nativeId = Marshal.ReadInt32( pInternalThread , ( IntPtr.Size == 8 ) ? 548 : 348 );
             var nativeId = Marshal.ReadInt32(pInternalThread, (IntPtr.Size == 8) ? 0x022C : 0x0160);
             return nativeId;
@@ -80,7 +80,7 @@ namespace 技术点验证
         /// <summary>
         /// 显示线程信息
         /// </summary>
-        public static void ShowTheadInfo(string methodName)
+        public static void ShowTheadInfo(string? methodName)
         {
             Thread nowThead = Thread.CurrentThread;
 

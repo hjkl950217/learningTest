@@ -8,14 +8,12 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A23_值对象)]
     public class A23_值对象 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A23_值对象;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             //Show只是执行方法  try方法报错时会输出错误信息
             //这里这样写是为了方便复制+快速切换
 
-            string getNewString(params char[] c) => new string(c);
+            string getNewstring(params char[] c) => new string(c);
 
             #region 测试值类型
 
@@ -61,7 +59,7 @@ namespace 技术点验证
             for (int i = 0 ; i < msArray.Length ; i++)
             {
                 sp.Start();
-                this.Show(() => _ = Value.Create("0") == Value.Create(getNewString('c')));
+                this.Show(() => _ = Value.Create("0") == Value.Create(getNewstring('c')));
                 sp.Stop();
 
                 msArray[i] = sp.ElapsedMilliseconds;
@@ -102,7 +100,7 @@ namespace 技术点验证
 
                 bool result = obj1.GetHashCode() == obj2.GetHashCode();
 
-                string isOk = expected == result ? "" : "*";
+                string? isOk = expected == result ? "" : "*";
                 Console.WriteLine($"\t {obj1.Value.ClassID}\t {obj1.Value.ClassName.Value}\t {obj2.Value.ClassID}\t {obj2.Value.ClassName.Value}\t {expected}\t {result} {isOk}");
             }
 
@@ -121,7 +119,7 @@ namespace 技术点验证
 
         public void Show(Action action) => action();
 
-        public void Show(string str) => Console.WriteLine(str);
+        public void Show(string? str) => Console.WriteLine(str);
 
         public void TryShow(Action action)
         {
@@ -135,7 +133,7 @@ namespace 技术点验证
             }
         }
 
-        public void TryShow(string str) => Console.WriteLine();
+        public void TryShow(string? str) => Console.WriteLine();
 
         #endregion 用于输出到控制台的辅助方法
 

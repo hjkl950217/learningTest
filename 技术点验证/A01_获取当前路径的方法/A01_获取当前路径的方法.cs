@@ -6,9 +6,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A01_获取当前路径的方法)]
     public class A01_获取当前路径的方法 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A01_获取当前路径的方法;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             //按情况复制下面的7行代码到你的项目中，测试后再确定使用那一个
             /* 但下面的方法暂时不能解决这种问题：
@@ -30,7 +28,7 @@ namespace 技术点验证
             Console.ReadLine();
         }
 
-        public void Show(string methodName, string value)
+        public void Show(string? methodName, string? value)
         {
             Console.WriteLine(methodName);
             Console.WriteLine(value);

@@ -10,7 +10,7 @@ namespace 技术点验证
         /// 纪录日志
         /// </summary>
         /// <param name="message"></param>
-        void WriteLog(string message);
+        void WriteLog(string? message);
 
     }
 }

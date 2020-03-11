@@ -1,5 +1,5 @@
-﻿using BenchmarkDotNet.Running;
-using System;
+﻿using System;
+using BenchmarkDotNet.Running;
 using Verification.Core;
 using 技术点验证._A15_分割字符串的基准测试_;
 
@@ -13,16 +13,14 @@ namespace 技术点验证
 <PackageReference Include="BenchmarkDotNet" Version="0.11.1" />
 */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A15_分割字符串的基准测试;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("测试开始");
             //需要在发布模式下测试
 
             Type[] types = new Type[]
             {
-                typeof(SubstringTest)
+                typeof(SubStringTest)
             };
             BenchmarkSwitcher.FromTypes(types).RunAll();
         }

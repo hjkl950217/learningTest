@@ -1,10 +1,10 @@
-﻿using AspectCore.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using AspectCore.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Verification.Core;
 
 namespace 技术点验证
@@ -14,9 +14,9 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A04_ConcurrentDictionary的研究)]
     public class A07_动态添加Attribute : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A07_动态添加Attribute;
+#pragma warning disable CS8602 // 取消引用可能出现的空引用。
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             var di = new ServiceCollection()
              .AddSingleton<TestInterface, TestClass>()
@@ -33,6 +33,7 @@ namespace 技术点验证
 
             Assembly[] allAssembly = AppDomain.CurrentDomain.GetAssemblies();
             Assembly tragetAssembly = allAssembly
+
                 .FirstOrDefault(t => t.FullName.Contains("动态添加Attribute2"));
 
             IEnumerable<Type> results = from type in tragetAssembly.GetTypes()
@@ -50,5 +51,7 @@ namespace 技术点验证
             Console.WriteLine("运行完成");
             Console.ReadLine();
         }
+
+#pragma warning restore CS8602 // 取消引用可能出现的空引用。
     }
 }

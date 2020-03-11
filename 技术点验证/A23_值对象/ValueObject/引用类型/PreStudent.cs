@@ -15,6 +15,8 @@ namespace 技术点验证
 
         public override bool BizCheckValue()
         {
+            var t = this.Value.ClassInfos.Value;
+
             return this.Value.StudentID > 0
                 && this.Value != null//模拟实体类的业务规则，这里只是不可空
                 && !this.Value.ClassInfos.Value.Any(t => t.Value.ClassName == this.Value.Name);//模拟业务规则，这里是学员姓名不能与任何一个班级名相等

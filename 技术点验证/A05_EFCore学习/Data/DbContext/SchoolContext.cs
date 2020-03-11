@@ -4,7 +4,10 @@ namespace 技术点验证
 {
     public class SchoolContext : DbContext
     {
+#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
+
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
         {
             /*
              * 反向工程命令

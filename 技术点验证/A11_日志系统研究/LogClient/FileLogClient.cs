@@ -2,7 +2,7 @@
 {
     public class TxtLogClient : ILogClient
     {
-        public void WriteLog(string message)
+        public void WriteLog(string? message)
         {
             throw new System.NotImplementedException();
         }

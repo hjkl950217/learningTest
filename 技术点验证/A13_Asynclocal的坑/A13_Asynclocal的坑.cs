@@ -8,11 +8,9 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A13_Asynclocal的坑)]
     public class A13_Asynclocal的坑 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A13_Asynclocal的坑;
-
         public static AsyncLocal<int> v = new AsyncLocal<int>();
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             var task = Task.Run(async () =>
             {
@@ -27,7 +25,7 @@ namespace 技术点验证
             task.Wait();
         }
 
-        public static void Show(string preStr)
+        public static void Show(string? preStr)
         {
             Console.WriteLine("当前线程ID:" + Thread.CurrentThread.ManagedThreadId);
             Console.WriteLine(preStr + A13_Asynclocal的坑.v.Value);

@@ -1,15 +1,12 @@
 ﻿using System;
 using Verification.Core;
-using 语法验证与学习._B06_模式匹配_In_70_;
 
 namespace 语法验证与学习
 {
     [VerifcationType(VerificationTypeEnum.B06_模式匹配_In_70)]
     public class B06_模式匹配_In_70 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B06_模式匹配_In_70;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("if中使用is进行类型匹配");
             Circle circle = new Circle(3);
@@ -24,8 +21,8 @@ namespace 语法验证与学习
             Console.WriteLine();
 
             Console.WriteLine("switch中使用var进行匹配");
-            string testStr = string.Empty;
-            object result3 = this.CreateShapeBySwitchVar(testStr);
+            string? testStr = string.Empty;
+            object? result3 = this.CreateShapeBySwitchVar(testStr);
             Console.WriteLine($"创建出来的图形是:-- {result3?.GetType().Name}--");
             Console.WriteLine();
         }
@@ -106,7 +103,7 @@ namespace 语法验证与学习
             }
         }
 
-        public object CreateShapeBySwitchVar(string shapeDescription)
+        public object? CreateShapeBySwitchVar(string? shapeDescription)
         {
             /*
              * var关键字可以在写代码时就确定类型

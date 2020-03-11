@@ -11,9 +11,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B01_建造者模式学习)]
     internal class B01_建造者模式学习 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B01_建造者模式学习;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             IBuilder buickCarBuilder = new BuickBuilder();
             IBuilder aoDiCarBuilder = new AoDiBuilder();

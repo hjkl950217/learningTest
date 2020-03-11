@@ -11,7 +11,7 @@ namespace 技术点验证
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//手动指定主键
         public int CourseID { get; set; }
 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// 积分
@@ -21,6 +21,6 @@ namespace 技术点验证
         /// <summary>
         /// 导航属性-关联的Enrollment-多个
         /// </summary>
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = System.Array.Empty<Enrollment>();
     }
 }

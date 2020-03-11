@@ -1,8 +1,8 @@
-﻿using Microsoft.ML;
+﻿using System;
+using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Transforms;
-using System;
 using Verification.Core;
 
 namespace 技术点验证
@@ -26,12 +26,10 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类)]
     public class A18_预测鸢尾花的类型_多类分类 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A18_预测鸢尾花的类型_多类分类;
+        public const string? dataBaseAddr = @"A18_预测鸢尾花的类型_多类分类\data";
+        public const string? _dataPath = dataBaseAddr + @"\iris.txt";
 
-        public const string dataBaseAddr = @"A18_预测鸢尾花的类型_多类分类\data";
-        public const string _dataPath = dataBaseAddr + @"\iris.txt";
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             //创建ML上下文
             MLContext mlContext = new MLContext();

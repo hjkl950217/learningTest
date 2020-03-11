@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using Verification.Core;
 
 namespace 技术点验证
@@ -20,9 +20,7 @@ namespace 技术点验证
          *
         */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A05_EFCore学习;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             /*
              * 教程地址：
@@ -37,9 +35,9 @@ namespace 技术点验证
             #region 模拟注册
 
             //配置
-            KeyValuePair<string, string>[] testConfig = new KeyValuePair<string, string>[]
+            KeyValuePair<string?, string?>[] testConfig = new KeyValuePair<string?, string?>[]
                 {
-               new KeyValuePair<string, string>("DefaultConnection",@"Application Name=Lynn;data source=wcmis218\sqlexpress;database=Lynn_Test;user id=sa;password=yhdckGTX007.;Timeout=30;connection lifetime=300; min pool size=2; max pool size=50")
+               new KeyValuePair<string?, string?>("DefaultConnection",@"Application Name=Lynn;data source=wcmis218\sqlexpress;database=Lynn_Test;user id=sa;password=yhdckGTX007.;Timeout=30;connection lifetime=300; min pool size=2; max pool size=50")
                 };
 
             IServiceCollection services = new ServiceCollection();
@@ -52,7 +50,7 @@ namespace 技术点验证
             services.AddDbContext<SchoolContext>(options =>
                 options
                 .UseLoggerFactory(A05_EFCore学习.loggerFactory)
-                .UseSqlServer(configuration.GetValue<string>("DefaultConnection"))
+                .UseSqlServer(configuration.GetValue<string?>("DefaultConnection"))
             );
 
             //模拟注册日志工厂

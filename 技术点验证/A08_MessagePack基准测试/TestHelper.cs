@@ -17,7 +17,7 @@ namespace 技术点验证
 
         //    byte[] tempByte = new byte[random.Next(100)];
         //    random.NextBytes(tempByte);
-        //    string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+        //    string? testStr = UTF8Encoding.UTF8.Getstring?(tempByte);
         //    TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
         //    for (int i = 0 ; i < totaol ; i++)
@@ -33,8 +33,8 @@ namespace 技术点验证
         //            TestColor = Color.FromArgb(random.Next(0, 256)),
         //            IntList = new List<int>() { 50, 100 },
         //            DoubleList = new List<double> { 50.50, 100.001 },
-        //            StringArry = new string[] { testStr },
-        //            DicList = new Dictionary<int, string>() { { 20, testStr } },
+        //            string?Arry = new string?[] { testStr },
+        //            DicList = new Dictionary<int, string?>() { { 20, testStr } },
         //            DynamicObj = new List<object>() { new object() }
         //        };
 
@@ -51,7 +51,7 @@ namespace 技术点验证
 
             byte[] tempByte = new byte[random.Next(100)];
             random.NextBytes(tempByte);
-            string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+            string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
             for (int i = 0 ; i < totaol ; i++)
@@ -68,7 +68,7 @@ namespace 技术点验证
                     IntList = new List<int>() { 50, 100 },
                     DoubleList = new List<double> { 50.50, 100.001 },
                     StringArry = new string[] { testStr },
-                    DicList = new Dictionary<int, string>() { { 20, testStr } },
+                    DicList = new Dictionary<int, string?>() { { 20, testStr } },
                     DynamicObj = new List<object>() { new object() }
                 };
 
@@ -78,19 +78,19 @@ namespace 技术点验证
             return testData;
         }
 
-        public static List<TestEntity_String> GetIntTestData2(int totaol)
+        public static List<TestEntity_String?> GetIntTestData2(int totaol)
         {
-            List<TestEntity_String> testData = new List<TestEntity_String>();
+            List<TestEntity_String?> testData = new List<TestEntity_String?>();
             Random random = new Random(totaol);
 
             byte[] tempByte = new byte[random.Next(100)];
             random.NextBytes(tempByte);
-            string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+            string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
             for (int i = 0 ; i < totaol ; i++)
             {
-                TestEntity_String temp = new TestEntity_String()
+                TestEntity_String? temp = new TestEntity_String()
                 {
                     Integr = 10,
                     Double = 20.22,
@@ -102,7 +102,7 @@ namespace 技术点验证
                     IntList = new List<int>() { 50, 100 },
                     DoubleList = new List<double> { 50.50, 100.001 },
                     StringArry = new string[] { testStr },
-                    DicList = new Dictionary<int, string>() { { 20, testStr } },
+                    DicList = new Dictionary<int, string?>() { { 20, testStr } },
                     DynamicObj = new List<object>() { new object() }
                 };
 
@@ -119,7 +119,7 @@ namespace 技术点验证
 
             byte[] tempByte = new byte[random.Next(100)];
             random.NextBytes(tempByte);
-            string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+            string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
             for (int i = 0 ; i < totaol ; i++)
@@ -136,7 +136,7 @@ namespace 技术点验证
                     IntList = new List<int>() { 50, 100 },
                     DoubleList = new List<double> { 50.50, 100.001 },
                     StringArry = new string[] { testStr },
-                    DicList = new Dictionary<int, string>() { { 20, testStr } },
+                    DicList = new Dictionary<int, string?>() { { 20, testStr } },
                     DynamicObj = new List<object>() { new object() }
                 };
 
@@ -151,11 +151,11 @@ namespace 技术点验证
         /// </summary>
         /// <param name="byteSize"></param>
         /// <returns></returns>
-        public static string GetRandomString(int byteSize = 100)
+        public static string? GetRandomString(int byteSize = 100)
         {
             byte[] tempByte = new byte[random.Next(byteSize)];
             random.NextBytes(tempByte);//用随机数器随机填充
-            string testStr = UTF8Encoding.UTF8.GetString(tempByte);
+            string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
 
             return testStr;
         }

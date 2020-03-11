@@ -11,7 +11,6 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B01_建造者模式学习)]
     public class B10_I__的原子性 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B10_I__的原子性;
         public const int ThreadCount = 10;//线程数
         public static int num = 1;
 
@@ -19,7 +18,7 @@ namespace 语法验证与学习
 
         public static StringBuilder stringBuilder = new StringBuilder();
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             NoLockDemo();
             //LockDemo();

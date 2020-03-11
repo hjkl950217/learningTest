@@ -20,15 +20,15 @@ namespace 技术点验证
         public VerificationTypeEnum VerificationType =>
             VerificationTypeEnum.A09_读取文件并监控变化;
 
-        private const string testFile = "testA9.json";
+        private const string? testFile = "testA9.json";
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             //设置一个目录映射
             //一个IFileProvider 可以看做是对一个目录的映射
 
-            string debugAddress = Directory.GetCurrentDirectory();
-            string root = Path.Combine(debugAddress, $"{{{nameof(A09_读取文件并监控变化)}}}");
+            string? debugAddress = Directory.GetCurrentDirectory();
+            string? root = Path.Combine(debugAddress, $"{{{nameof(A09_读取文件并监控变化)}}}");
 
             Console.WriteLine($"根目录: {root}\t 测试文件:{testFile}");
 
@@ -58,10 +58,10 @@ namespace 技术点验证
             Console.WriteLine();
         }
 
-        public static string ReadData(Stream stream)
+        public static string? ReadData(Stream stream)
         {
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-            string result = reader.ReadToEnd();
+            string? result = reader.ReadToEnd();
 
             reader.Close();
             stream.Close();

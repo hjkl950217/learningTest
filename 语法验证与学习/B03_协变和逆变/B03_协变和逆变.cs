@@ -7,13 +7,11 @@ namespace 语法验证与学习
     { public int ID { get; set; } }
 
     public class Son : Father
-    { public string Name { get; set; } }
+    { public string? Name { get; set; } }
 
     [VerifcationType(VerificationTypeEnum.B03_协变和逆变)]
     public class B03_协变和逆变 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B03_协变和逆变;
-
         public delegate void mydelege1(Father f);
 
         public delegate void mydelege2(Son s);
@@ -28,7 +26,7 @@ namespace 语法验证与学习
             Console.WriteLine(s.ID);
         }
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             /*
              * T->>IEnumerable<T> 这个过程可以看成是一个`投影`，或是说过程
@@ -39,13 +37,13 @@ namespace 语法验证与学习
              *
              * 逆变：在框架中，经常能看到接收参数是Object类型的。
              * 但里面使用时会转换为具体类型
-             * 比如：收到object类型的数据，会转换为string使用。
+             * 比如：收到object类型的数据，会转换为string?使用。
              *
              * 上面这种就是逆变。
              *
              * 不变：上面的协变或是逆变，都能转换成功（在特定条件下）。不确定转换能不能成功就是不变。
-             * 比如：string->Objet 一能成功。
-             *       Object->string 一定能成功么？ 如果Object里装的是int类型数据？
+             * 比如：string?->Objet 一能成功。
+             *       Object->string? 一定能成功么？ 如果Object里装的是int类型数据？
              *
              *       对第二种就是不变的。因为不知道，不确定
              *

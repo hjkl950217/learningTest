@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8602 // 取消引用可能出现的空引用。
+
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -9,9 +11,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B05_表达式树研究)]
     public class B05_表达式树研究 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B05_表达式树研究;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Func<double, double, double> pow = Math.Pow;
 
@@ -127,7 +127,9 @@ namespace 语法验证与学习
 
             //翻译主体
             var sumBody = sum.Body as BinaryExpression;
+
             showTxt.AppendLine($"主体节点的节点类型是:{sumBody.NodeType}");
+
             showTxt.AppendLine($"主体节点代码:{sumBody.ToString()}");
             showTxt.AppendLine();
 
@@ -161,10 +163,10 @@ namespace 语法验证与学习
 
             BinaryExpression add = Expression.Add(firstArg, secondArg);
 
-            BaseTranslator translator = ExpressionTranslatorHelper.GetTranslator(add);
+            BaseTranslator? translator = ExpressionTranslatorHelper.GetTranslator(add);
             translator.Translator();
 
-            string result = translator.Content.ToString();
+            string? result = translator.Content.ToString();
             Console.WriteLine(result);
         }
 
@@ -174,3 +176,5 @@ namespace 语法验证与学习
         }
     }
 }
+
+#pragma warning restore CS8602 // 取消引用可能出现的空引用。

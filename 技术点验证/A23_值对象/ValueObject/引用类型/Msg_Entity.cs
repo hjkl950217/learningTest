@@ -13,6 +13,6 @@
         /// <summary>
         /// 消息内容
         /// </summary>
-        public string MsgContent { get; set; }
+        public string? MsgContent { get; set; }
     }
 }

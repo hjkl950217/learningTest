@@ -1,8 +1,8 @@
-﻿using AutoFixture;
-using System;
+﻿using System;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using AutoFixture;
 using Verification.Core;
 
 namespace 技术点验证
@@ -19,8 +19,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A20_并行查找数组中非0的索引)]
     public class A20_并行查找数组中非0的索引 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A20_并行查找数组中非0的索引;
-
         public A20_并行查找数组中非0的索引()
         {
             int countNum = 17;
@@ -36,7 +34,7 @@ namespace 技术点验证
             this.buffer1.AsSpan().CopyTo(this.buffer3);
         }
 
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             int index = this.ParallelMethod();
             Console.WriteLine($"查找的索引为:{index}");

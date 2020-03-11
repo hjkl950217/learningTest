@@ -6,9 +6,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B12_Switch_In_80)]
     public class B12_Switch_In_80 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B12_Switch_In_80;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             TagObject tagObject = new TagObject()
             {

@@ -1,5 +1,5 @@
-﻿using BenchmarkDotNet.Running;
-using System;
+﻿using System;
+using BenchmarkDotNet.Running;
 using Verification.Core;
 
 namespace 技术点验证
@@ -22,9 +22,7 @@ namespace 技术点验证
             还可以使用Bogus来造数据
 */
 
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.A08_MessagePack基准测试;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine("测试开始");
 
@@ -41,7 +39,7 @@ namespace 技术点验证
             //var tt = new TestCase_Serialize();
             //tt.SetUp();
             //tt.TestIntSerialize();
-            //tt.TestStringSerialize();
+            //tt.Teststring?Serialize();
             //tt.TestNonSerialize();
             //tt.TestDefaultSerialize();
             //tt.TestJsonSerialize();
@@ -57,7 +55,7 @@ namespace 技术点验证
         {
             MsgSerializer.InitializeMsgPackSerializer();//初始化序列化器
 
-            TestEntity_Non result = null;
+            TestEntity_Non? result = null;
 
             // 测试intKey To NonKey
             TestEntity_Int test = new TestEntity_Int()

@@ -1,5 +1,8 @@
-﻿using System;
+﻿#pragma warning disable CS8602 // 取消引用可能出现的空引用。
+
+using System;
 using System.Linq;
+using System.Reflection;
 using Verification.Core;
 
 namespace 语法验证与学习
@@ -7,17 +10,15 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B02_用反射设置值)]
     public class B02_用反射设置值 : IVerification
     {
-        public VerificationTypeEnum VerificationType => VerificationTypeEnum.B02_用反射设置值;
-
-        public void Start(string[] args)
+        public void Start(string?[] args)
         {
             Console.WriteLine(TestModel.A.BBB.Data);
             Console.WriteLine("开始测试");
 
-            string inPut = "";
+            string? inPut = "";
             while (inPut != "2")
             {
-                string tempIn = Console.ReadLine();
+                string? tempIn = Console.ReadLine();
 
                 Ext.GetDataOnWatch<A, B>(tempIn);
 
@@ -33,9 +34,9 @@ namespace 语法验证与学习
     public static class Ext
     {
         public static void GetDataOnWatch<TSystemName, TConfigName>(
-             string data
-             , string systemName = null
-             , string configName = null
+             string? data
+             , string? systemName = null
+             , string? configName = null
 
              )
              where TSystemName : class
@@ -53,7 +54,7 @@ namespace 语法验证与学习
             var tttt = sysObj.GetValue(null);
 
             //取B的信息
-            var confObj = sysObj?.PropertyType
+            PropertyInfo? confObj = sysObj?.PropertyType
                 .GetProperties()
                 .Where(t => t.PropertyType == typeof(TConfigName))
                 .FirstOrDefault();
@@ -74,7 +75,9 @@ namespace 语法验证与学习
             */
 
             //取具体数据
+
             var battributes = confObj.PropertyType
+
                 .GetProperties()
                 .Where(t => t.PropertyType == typeof(string))
                 .First();
@@ -91,3 +94,5 @@ namespace 语法验证与学习
         }
     }
 }
+
+#pragma warning restore CS8602 // 取消引用可能出现的空引用。

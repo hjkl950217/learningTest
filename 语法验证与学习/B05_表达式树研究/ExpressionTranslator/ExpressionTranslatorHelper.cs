@@ -15,7 +15,7 @@ namespace 语法验证与学习
         /// <param name="strPrefix"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static BaseTranslator GetTranslator(Expression rootNode, string strPrefix = null, StringBuilder content = null)
+        public static BaseTranslator? GetTranslator(Expression rootNode, string? strPrefix = null, StringBuilder? content = null)
         {
             strPrefix = strPrefix ?? string.Empty;
             content = content ?? new StringBuilder();
@@ -29,7 +29,7 @@ namespace 语法验证与学习
 
                 default:
                     content.AppendLine($"遇到了不支持的节点类型:{rootNode.NodeType}");
-                    return default;
+                    return null;
             }
         }
     }

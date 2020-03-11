@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace 语法验证与学习
 {
@@ -9,7 +10,7 @@ namespace 语法验证与学习
     {
         private readonly Car buickCar = new Car();
 
-        private void UsePartBase(string partName, string part = null)
+        private void UsePartBase(string partName, string? part = null)
         {
             if (part == null)
             {
@@ -19,25 +20,25 @@ namespace 语法验证与学习
             this.buickCar.Add(partName, part);
         }
 
-        public IBuilder UseCarDoor(string part = null)
+        public IBuilder UseCarDoor(string? part = null)
         {
             this.UsePartBase("Door", part);
             return this;
         }
 
-        public IBuilder UseCarWheel(string part = null)
+        public IBuilder UseCarWheel(string? part = null)
         {
             this.UsePartBase("Wheel", part);
             return this;
         }
 
-        public IBuilder UseCarEngine(string part = null)
+        public IBuilder UseCarEngine(string? part = null)
         {
             this.UsePartBase("Engine", part);
             return this;
         }
 
-        public IBuilder UseOtherPart(string partName, string part)
+        public IBuilder UseOtherPart([NotNull]string partName, string? part)
         {
             this.buickCar.Add(partName, $"Buick`s{part}");
             return this;
