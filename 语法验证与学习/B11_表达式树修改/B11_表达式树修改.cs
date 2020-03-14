@@ -4,7 +4,7 @@ using Verification.Core;
 
 namespace 语法验证与学习
 {
-    [VerifcationType(VerificationTypeEnum.B12_Switch_In_80)]
+    [VerifcationType(VerificationTypeEnum.B11_表达式树修改)]
     public class B11_表达式树修改 : IVerification
     {
         public void Start(string?[] args)

@@ -4,10 +4,10 @@ namespace 技术点验证
 {
     public class Program
     {
-        private static void Main(string?[] args)
+        public static void Main(string?[] args)
         {
             //开始验证
-            VerificationHelp.StartVerification(VerificationTypeEnum.A24_使用高阶函数, args);
+            VerificationHelp.StartVerification(VerificationTypeEnum.A25_查看调用者信息, args);
         }
     }
 }
