@@ -17,8 +17,8 @@ namespace 语法验证与学习
         /// <returns></returns>
         public static BaseTranslator? GetTranslator(Expression rootNode, string? strPrefix = null, StringBuilder? content = null)
         {
-            strPrefix = strPrefix ?? string.Empty;
-            content = content ?? new StringBuilder();
+            strPrefix ??= string.Empty;
+            content ??= new StringBuilder();
             switch (rootNode.NodeType)
             {
                 case ExpressionType.Add:

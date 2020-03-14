@@ -115,25 +115,14 @@ namespace 语法验证与学习
              *
              */
 
-            switch (shapeDescription)
+            return shapeDescription switch
             {
-                case "circle":
-                    return new Circle(2);
-
-                case "square":
-                    return new Square(4);
-
-                case "large-circle":
-                    return new Circle(12);
-
-                case var o when (o?.Trim().Length ?? 0) == 0:
-                    // 匹配到空白字符
-                    return null;
-
-                default:
-                    //永远不会被执行
-                    return "invalid shape description";
-            }
+                "circle" => new Circle(2),
+                "square" => new Square(4),
+                "large-circle" => new Circle(12),
+                var o when (o?.Trim().Length ?? 0) == 0 => null,// 匹配到空白字符
+                _ => "invalid shape description",//永远不会被执行
+            };
         }
     }
 }

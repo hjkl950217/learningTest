@@ -46,7 +46,7 @@ namespace Verification.Core
         /// <returns></returns>
         public static LinkAction AddRange(this LinkAction t, params Action[] actions)
         {
-            actions = actions ?? new Action[0];
+            actions ??= Array.Empty<Action>();
             t.Actions.AddRange(actions);
             return t;
         }

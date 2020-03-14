@@ -63,7 +63,7 @@ namespace 语法验证与学习
             int acc = 1;//递推需要使用一个累积器保存中间结果
             for (int i = 1 ; i <= n ; i++)
             {
-                acc = acc * i;
+                acc *= i;
             }
             return acc;
         }

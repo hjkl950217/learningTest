@@ -21,10 +21,10 @@ namespace 语法验证与学习
             Console.WriteLine(s.ID);
         }
 
-        private static void fun2(Son s)
-        {
-            Console.WriteLine(s.ID);
-        }
+        //private static void fun2(Son s)
+        //{
+        //    Console.WriteLine(s.ID);
+        //}
 
         public void Start(string?[] args)
         {

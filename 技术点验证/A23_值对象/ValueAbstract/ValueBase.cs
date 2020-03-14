@@ -33,20 +33,13 @@ namespace 技术点验证
 
         public override bool Equals(object? obj)
         {
-            switch (obj)
+            return obj switch
             {
-                case object _ when object.ReferenceEquals(this, obj):
-                    return true;
-
-                case IValue<TValue> obj2:
-                    return this.EqualsCode(obj2.Value);
-
-                case TValue obj2:
-                    return this.EqualsCode(obj2);
-
-                default:
-                    return false;
-            }
+                object _ when object.ReferenceEquals(this, obj) => true,
+                IValue<TValue> obj2 => this.EqualsCode(obj2.Value),
+                TValue obj2 => this.EqualsCode(obj2),
+                _ => false,
+            };
         }
 
         public override int GetHashCode()

@@ -75,7 +75,7 @@ namespace 语法验证与学习
 
             //处理这些变量的引用，因为是递归调用此方法，尽量避免额外的内存分配
             //这样处理后，子类在调用时就可以一直把最开始的这些变量引用传递进去
-            content = content ?? this.Content;
+            content ??= this.Content;
 
             //分类型解析
             return ExpressionTranslatorHelper.GetTranslator(rootNode, strPrefix, content);

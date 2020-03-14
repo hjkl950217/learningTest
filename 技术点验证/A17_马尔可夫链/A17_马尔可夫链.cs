@@ -76,13 +76,12 @@ namespace 技术点验证
         {
             return () =>
             {
-                switch (key)
+                return key switch
                 {
-                    case MarkovChainNode.StartNodeName: return MarkovChainNode.CreateStartNode();
-
-                    case MarkovChainNode.EndNodeName: return MarkovChainNode.EndNode;
-                    default: return new MarkovChainNode() { NodeName = key };
-                }
+                    MarkovChainNode.StartNodeName => MarkovChainNode.CreateStartNode(),
+                    MarkovChainNode.EndNodeName => MarkovChainNode.EndNode,
+                    _ => new MarkovChainNode() { NodeName = key },
+                };
             };
         }
 
@@ -201,8 +200,8 @@ namespace 技术点验证
             string startKey = MarkovChainNode.StartNodeName,
             List<MarkovChainNode>? tempList = null)
         {
-            resultSet = resultSet ?? new List<MarkovChainNode[]>();
-            tempList = tempList ?? new List<MarkovChainNode>();
+            resultSet ??= new List<MarkovChainNode[]>();
+            tempList ??= new List<MarkovChainNode>();
 
             switch (startKey)
             {
