@@ -14,11 +14,14 @@
 
 
 --工具
-
-
 1.查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
 PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
 2.ConfuserEx  混淆代码工具
 3.10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw
 4.rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
 5. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
+
+--产品或组织
+1. dapr  还有istio/linkerd/kuma
+2. cncf
+3. 
