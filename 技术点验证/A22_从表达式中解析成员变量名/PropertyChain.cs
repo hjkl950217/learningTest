@@ -120,17 +120,18 @@ namespace 技术点验证
         public override string? ToString()
         {
             // Performance: Calling string?.Join causes much overhead when it's not needed.
-            switch (this._memberNames.Count)
+            //return this._memberNames.Count switch
+            //{
+            //    0 => string.Empty,
+            //    1 => this._memberNames[0],
+            //    _ => string.Join(PropertyChain.PropertyChainSeparator, this._memberNames),
+            //};
+
+            return this._memberNames.Count switch
             {
-                case 0:
-                    return string.Empty;
-
-                case 1:
-                    return this._memberNames[0];
-
-                default:
-                    return string.Join(PropertyChain.PropertyChainSeparator, this._memberNames);
-            }
+                0 => string.Empty,
+                _ => string.Join(PropertyChain.PropertyChainSeparator, this._memberNames)
+            };
         }
 
         /// <summary>

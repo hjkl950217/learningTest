@@ -22,7 +22,7 @@ namespace 技术点验证
          */
 
         // Create a new concurrent dictionary.
-        private static ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
+        private static readonly ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
         public void Start(string?[] args)
         {
@@ -165,11 +165,10 @@ namespace 技术点验证
         // 当键/值对不存在时如何新添一个数据
         private static void RetrieveAndUpdateOrAdd()
         {
-            CityInfo? retrievedValue;
             string? searchKey = "Buenos Aires";
 
             //获取数据成功
-            if (cities.TryGetValue(searchKey, out retrievedValue))
+            if (cities.TryGetValue(searchKey, out CityInfo retrievedValue))
             {
                 // 使用数据
                 UseData(retrievedValue);
@@ -235,7 +234,7 @@ namespace 技术点验证
         {
             cities.TryGetValue("Toronto", out CityInfo? retrievedValue);
 
-            retrievedValue = retrievedValue ?? new CityInfo();
+            retrievedValue ??= new CityInfo();
 
             // 制作数据的副本。
             //lastQueryDate会自动赋值为当前时间
@@ -256,7 +255,7 @@ namespace 技术点验证
             Console.WriteLine("--Use Data Start--");
             Console.Write("最近{0}的高温: ", showData.Name);
 
-            int[] temps = new int[0];
+            int[] temps;
             if (isDictory == false)
             {
                 temps = showData.RecentHighTemperatures;
@@ -298,11 +297,11 @@ namespace 技术点验证
 
         public CityInfo(string name, decimal longitude, decimal latitude, int[] temps)
         {
-            Name = name;
-            LastQueryDate = DateTime.Now;
-            Longitude = longitude;
-            Latitude = latitude;
-            RecentHighTemperatures = temps;
+            this.Name = name;
+            this.LastQueryDate = DateTime.Now;
+            this.Longitude = longitude;
+            this.Latitude = latitude;
+            this.RecentHighTemperatures = temps;
         }
 
         public CityInfo()
@@ -313,12 +312,12 @@ namespace 技术点验证
 
         public CityInfo(string key)
         {
-            Name = key;
+            this.Name = key;
             // MaxValue means "not initialized"
-            Longitude = Decimal.MaxValue;
-            Latitude = Decimal.MaxValue;
-            LastQueryDate = DateTime.Now;
-            RecentHighTemperatures = new int[] { 0 };
+            this.Longitude = Decimal.MaxValue;
+            this.Latitude = Decimal.MaxValue;
+            this.LastQueryDate = DateTime.Now;
+            this.RecentHighTemperatures = new int[] { 0 };
         }
 
         public bool Equals(CityInfo x, CityInfo y)

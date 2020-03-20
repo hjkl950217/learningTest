@@ -2,7 +2,7 @@
 
 namespace Verification.Core
 {
-    public static class StringExtension
+    public static class StringExtensions
     {
         /// <summary>
         /// 判断两个字符串是否相等，忽略大小写

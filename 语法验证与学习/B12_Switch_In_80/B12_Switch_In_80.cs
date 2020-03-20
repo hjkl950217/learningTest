@@ -14,9 +14,12 @@ namespace 语法验证与学习
                 Tag2 = TagEnum.Two
             };
 
+            GetTag_Exception_Patterns(5);
+
             Console.WriteLine($"Switch匹配_表示式模式：{this.GetTag_Expression_Patterns(TagEnum.First)}");
             Console.WriteLine($"Switch匹配_属性模式：{this.GetTag_Property_Patterns(tagObject)}");
             Console.WriteLine($"Switch匹配_位置模式：{this.GetTag_Positional_Patterns(tagObject)}");
+
             var (x, _) = tagObject;
             Console.WriteLine($"解构： {x.ToString()}");
         }
@@ -51,8 +54,17 @@ namespace 语法验证与学习
 
             return tagObject switch
             {
-                var (x, y) when x == TagEnum.First && y == TagEnum.Two => 3,
+                var (x, y) when x == TagEnum.First && y == TagEnum.Two
+                    => 3,
                 _ => 0
+            };
+        }
+
+        public int GetTag_Exception_Patterns(int a)
+        {
+            return a switch
+            {
+                100 => 10
             };
         }
     }
@@ -75,7 +87,6 @@ namespace 语法验证与学习
         }
 
         //这里构造方法与解构方法是展示8.0的位置模式
-
         public TagObject(TagEnum tag1, TagEnum tag2)
         {
             (this.Tag1, this.Tag2) = (tag1, tag2);

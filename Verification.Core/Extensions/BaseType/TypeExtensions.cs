@@ -1,6 +1,6 @@
 ﻿namespace System.Linq
 {
-    public static class TypeExtension
+    public static class TypeExtensions
     {
         /// <summary>
         /// 判断指定的类型 <paramref name="type"/> 是否是指定泛型类型的子类型，或实现了指定泛型接口。

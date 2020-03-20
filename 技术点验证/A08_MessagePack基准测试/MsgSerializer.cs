@@ -69,11 +69,9 @@ namespace 技术点验证
 
         public static T DeserializeDefault<T>(byte[] arrBytes) where T : class
         {
-            using (MemoryStream ms = new MemoryStream(arrBytes))
-            {
-                IFormatter br = new BinaryFormatter();
-                return (T)br.Deserialize(ms);
-            }
+            using MemoryStream ms = new MemoryStream(arrBytes);
+            IFormatter br = new BinaryFormatter();
+            return (T)br.Deserialize(ms);
         }
 
         public static string SerializeJson<T>(T data)

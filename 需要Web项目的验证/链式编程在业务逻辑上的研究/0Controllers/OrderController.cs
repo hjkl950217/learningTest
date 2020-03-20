@@ -9,7 +9,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
-        private IOrderServices OrderServices;
+        private readonly IOrderServices OrderServices;
 
         public OrderController(IOrderServices orderServices)
         {
@@ -27,7 +27,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
 
         // GET api/Order/100
         [HttpGet("{orderNumber:int}")]
-        public dynamic GetOrder2([FromRoute]int orderNumber)
+        public static dynamic GetOrder2([FromRoute]int orderNumber)
         {
             // return this.OrderServices.GetOrder( orderNumber );
 

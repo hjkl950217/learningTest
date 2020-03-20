@@ -1,15 +1,15 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using AutoMapper学习与练习.Orders.DTO;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 
 namespace AutoMapper学习与练习.Orders
 {
     public class OrderController : Controller
     {
-        private IOrderServices OrderServices;
-        private IMapper Mapper;
+        private readonly IOrderServices OrderServices;
+        private readonly IMapper Mapper;
 
         public OrderController(IOrderServices orderServices, IMapper mapper)
         {

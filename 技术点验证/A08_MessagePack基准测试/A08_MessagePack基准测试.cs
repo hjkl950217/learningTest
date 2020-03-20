@@ -53,15 +53,17 @@ namespace 技术点验证
 
         private static void CompatibilityTest()
         {
+#pragma warning disable IDE0059 // 不需要赋值
             MsgSerializer.InitializeMsgPackSerializer();//初始化序列化器
 
-            TestEntity_Non? result = null;
+            TestEntity_Non? result;
 
             // 测试intKey To NonKey
             TestEntity_Int test = new TestEntity_Int()
             {
                 TestEnum = TestEnum.Close
             };
+
             result = BaseTest(test);
 
             //测试匿名类型+枚举值
@@ -104,6 +106,8 @@ namespace 技术点验证
 
             dynamic test6666 = new { Decimal = 30M };
             result = BaseTest(test6666);
+
+#pragma warning restore IDE0059 // 不需要赋值
         }
 
         public static TestEntity_Non BaseTest<T>(T obj)

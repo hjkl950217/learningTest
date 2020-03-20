@@ -6,7 +6,7 @@ using Verification.Core.ConstAndEnum;
 
 namespace System
 {
-    public static class ObjectExtension
+    public static class ObjectExtensions
     {
         public static string ToJson<T>(this T obj)
         {

@@ -9,8 +9,6 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
-using AutoMapper;
-
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -45,6 +43,7 @@ using AutoMapper;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using 链式编程在业务逻辑上的研究.Infrastructure;
 using 链式编程在业务逻辑上的研究.Orders.DTO;
 using 链式编程在业务逻辑上的研究.Role;
@@ -64,7 +63,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// <summary>
         /// 权限检查
         /// </summary>
-        private ICheckRole CheckRole;
+        private readonly ICheckRole CheckRole;
 
         public OrderServices(IMapper mapper, ICheckRole checkRole)
         {
@@ -95,8 +94,8 @@ namespace 链式编程在业务逻辑上的研究.Orders
         {
             var task = Task.Run(() =>
            {
-                //模拟有内部用户权限的才可以查所有的
-                bool isRole = this.CheckRole.InternalOrderCheck(sellerID?.ToUpper());
+               //模拟有内部用户权限的才可以查所有的
+               bool isRole = this.CheckRole.InternalOrderCheck(sellerID?.ToUpper());
                if (isRole == false) return null;
 
                return this.Mapper.Map<List<OrderOut>>(Data.OrderData);

@@ -13,7 +13,10 @@ namespace 技术点验证
             //Show只是执行方法  try方法报错时会输出错误信息
             //这里这样写是为了方便复制+快速切换
 
-            string getNewstring(params char[] c) => new string(c);
+            string getNewstring(params char[] c)
+            {
+                return new string(c);
+            }
 
             #region 测试值类型
 
@@ -117,9 +120,15 @@ namespace 技术点验证
 
         #region 用于输出到控制台的辅助方法
 
-        public void Show(Action action) => action();
+        public void Show(Action action)
+        {
+            action();
+        }
 
-        public void Show(string? str) => Console.WriteLine(str);
+        public void Show(string? str)
+        {
+            Console.WriteLine(str);
+        }
 
         public void TryShow(Action action)
         {
@@ -133,7 +142,10 @@ namespace 技术点验证
             }
         }
 
-        public void TryShow(string? str) => Console.WriteLine();
+        public void TryShow(string? str)
+        {
+            Console.WriteLine();
+        }
 
         #endregion 用于输出到控制台的辅助方法
 
