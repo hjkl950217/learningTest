@@ -1,4 +1,4 @@
-在startup类的ConfigureServices 方法最末尾加这个代码:
+﻿在startup类的ConfigureServices 方法最末尾加这个代码:
 
 
             bool ignore(Type type1)
