@@ -21,52 +21,52 @@ namespace 技术点验证
 
         public string? Method1()
         {
-            return $"{this.StringArry.ToJson()}{this.DicList.ToJson()}";
+            return $"{this.StringArry.ToJsonExt()}{this.DicList.ToJsonExt()}";
         }
 
         public string? Method2()
         {
-            return $"{this.DoubleList.ToJson()}";
+            return $"{this.DoubleList.ToJsonExt()}";
         }
 
         public string? Method3()
         {
-            return $"{this.TestColor.ToJson()}";
+            return $"{this.TestColor.ToJsonExt()}";
         }
 
         public string? Method4()
         {
-            return $"{this.Integr.ToJson()}";
+            return $"{this.Integr.ToJsonExt()}";
         }
 
         public string? Method5()
         {
-            return $"{this.Double.ToJson()}";
+            return $"{this.Double.ToJsonExt()}";
         }
 
         public string? Method6()
         {
-            return $"{this.Name.ToJson()}";
+            return $"{this.Name.ToJsonExt()}";
         }
 
         public string? Method7()
         {
-            return $"{this.TestEnum.ToJson()}";
+            return $"{this.TestEnum.ToJsonExt()}";
         }
 
         public string? Method8()
         {
-            return $"{this.TestEnum.ToJson()}{this.Integr.ToJson()}";
+            return $"{this.TestEnum.ToJsonExt()}{this.Integr.ToJsonExt()}";
         }
 
         public string? Method9()
         {
-            return $"{this.Double.ToJson()}{this.Integr.ToJson()}";
+            return $"{this.Double.ToJsonExt()}{this.Integr.ToJsonExt()}";
         }
 
         public string? Method10()
         {
-            return $"{this.StringArry.ToJson()}{this.Integr.ToJson()}";
+            return $"{this.StringArry.ToJsonExt()}{this.Integr.ToJsonExt()}";
         }
     }
 }

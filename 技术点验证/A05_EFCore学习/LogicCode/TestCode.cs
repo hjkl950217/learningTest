@@ -45,7 +45,7 @@ namespace 技术点验证
             System.Console.WriteLine("R-获取集合数据");
             List<Student> students = this.schoolContext.Students.ToList();
 
-            this.Log(students.ToJson());
+            this.Log(students.ToJsonExt());
         }
 
         #region CRUD
@@ -60,7 +60,7 @@ namespace 技术点验证
                 .AsNoTracking()
                 .FirstOrDefault(m => m.ID == 2);
 
-            this.Log(student.ToJson());
+            this.Log(student.ToJsonExt());
         }
 
         //C 和 D
@@ -84,7 +84,7 @@ namespace 技术点验证
 
             if (result != null)
             {
-                this.Log(result.ToJson());
+                this.Log(result.ToJsonExt());
                 this.Log("添加成功");
                 this.schoolContext.Students.Remove(result);
             }
@@ -123,7 +123,7 @@ namespace 技术点验证
                 .AsNoTracking()
                 .OrderByDescending(t => t.ID)
                 .ToList();
-            this.Log(students.ToJson());
+            this.Log(students.ToJsonExt());
         }
 
         //筛选
@@ -135,7 +135,7 @@ namespace 技术点验证
                   .AsNoTracking()
                   .SingleOrDefault(t => t.FirstName == "李");
 
-            this.Log(student.ToJson());
+            this.Log(student.ToJsonExt());
         }
 
         //分页
@@ -152,7 +152,7 @@ namespace 技术点验证
               .Skip((pageIndex - 1) * pageSize)
               .Take(pageSize)
               .ToList();
-            this.Log(students.ToJson());
+            this.Log(students.ToJsonExt());
         }
 
         //分组
@@ -172,7 +172,7 @@ namespace 技术点验证
 
             this.Log("正确作法应该不使用EF，使用原生SQL.数据量少时使用错误的也可以");
 
-            this.Log(resultInfo.ToJson());
+            this.Log(resultInfo.ToJsonExt());
         }
 
         #endregion 排序-筛选-分页

@@ -96,7 +96,7 @@ namespace 技术点验证
                 PetalWidth = 5.1f,
             });
 
-            Console.WriteLine($"预测结果：{prediction.ToJson()}"); ; //这个方法需要迁移到验证库中
+            Console.WriteLine($"预测结果：{prediction.ToJsonExt()}"); ; //这个方法需要迁移到验证库中
         }
     }
 }

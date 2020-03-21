@@ -1,30 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace System.Collections.Generic
+namespace System
 {
-    public static class DictionaryExtension
-    {
-        public static TValue GetOrAdd<TKey, TValue>(
-            this IDictionary<TKey, TValue> valuePairs,
-            TKey key,
-            Func<TValue> valueFactory)
-            where TKey : notnull
-        {
-            valuePairs.CheckNull(nameof(valuePairs));
-            valueFactory.CheckNull(nameof(valueFactory));
-
-            bool isExist = valuePairs.TryGetValue(key, out TValue value);
-
-            if (isExist) { return value; }
-            else
-            {
-                var tempValue = valueFactory();
-                valuePairs.Add(key, tempValue);
-                return tempValue;
-            }
-        }
-    }
-
     public static class ICollectionExtension
     {
         public static T GetOrAdd<T>(

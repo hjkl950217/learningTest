@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// 通用获取值的方式
-        /// <para>示例:  A.Cookies.GetDataOrDefault(t => t.Value, string.Empty) </para>
+        /// <para>示例:  A.GetDataOrDefault(t => t.Value, string.Empty) </para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -18,12 +18,17 @@
         public static TResult GetDataOrDefault<T, TResult>(
             this T data,
             Func<T, TResult> getData,
-            Func<TResult> defaultValueFunc)
+            Func<TResult> defaultValueFunc,
+            Func<TResult, bool>? useDefault = null)
         {
-            if (getData == null) throw new ArgumentNullException("getData not can be null");
-            if (defaultValueFunc == null) throw new ArgumentNullException("defaultValueFunc not can be null");
+            useDefault ??= t => t == null;
+
+            if (getData == null) throw new ArgumentNullException($"{nameof(getData)} not can be null");
+            if (defaultValueFunc == null) throw new ArgumentNullException($"{nameof(defaultValueFunc)} not can be null");
             if (data == null) return defaultValueFunc();
-            else return getData(data);
+
+            TResult result = getData(data);
+            return useDefault(result) ? defaultValueFunc() : result;
         }
 
         /// <summary>
@@ -33,7 +38,10 @@
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="data"></param>
-        /// <param name="getData"></param>
+        /// <param name="defaultValue"></param>
+        /// <remarks>
+        /// 这里不对<paramref name="defaultValue"/>做空检测。只是想让调用者给一个值，如果给的是null值则代表默认值就是null
+        /// </remarks>
         /// <returns></returns>
         public static TResult GetDataOrDefault<T, TResult>(
             this T data,
@@ -76,7 +84,9 @@
             where T : class
             where TResult : class
         {
+#pragma warning disable CS8603 // 可能的 null 引用返回。
             return data.GetDataOrDefault(getData, () => null);
+#pragma warning restore CS8603 // 可能的 null 引用返回。
         }
 
         /// <summary>
