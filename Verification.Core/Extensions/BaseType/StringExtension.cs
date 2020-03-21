@@ -290,5 +290,15 @@ namespace System
             encoding = encoding ?? Encoding.UTF8;
             return source.BaseConvertAndDefalut(Array.Empty<byte>(), encoding.GetBytes);
         }
+
+        public static T ToEnum<T>(this string str, bool ignoreCase = false)
+            where T : struct
+        {
+            if (Enum.TryParse<T>(str, ignoreCase, out var enumValue))
+            {
+                return enumValue;
+            }
+            return default(T);
+        }
     }
 }
