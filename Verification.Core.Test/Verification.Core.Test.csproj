@@ -26,4 +26,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Verification.Core\Verification.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\TestModel\" />
+  </ItemGroup>
 </Project>
