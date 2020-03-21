@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Verification.Core.Attr
+namespace Verification.Core
 {
     /// <summary>
     /// 枚举上的描述-用于扩展自带枚举的功能
