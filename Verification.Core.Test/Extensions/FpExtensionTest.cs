@@ -36,7 +36,7 @@ namespace Verification.Core.Test.Extensions
             Action<string> result2 = strToInt.Pipe(doInt1);
 
             //a->...->void  => (a->void)
-            Action<int> result3 = doInt1.Pipe(doInt2, doInt3);
+            Action<int> result3 = doInt1.Pipe(doInt2, doInt3, doInt4);
 
             #endregion 单独验证
 
