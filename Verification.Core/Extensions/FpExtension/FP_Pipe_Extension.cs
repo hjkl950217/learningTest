@@ -2,13 +2,17 @@
 
 namespace System
 {
-    public static class FPExtension
+    /// <summary>
+    /// 函数式扩展-管道
+    /// </summary>
+    public static class FP_Pipe_Extension
     {
         #region 管道
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  a->b->c  得到 a->c 函数
+        /// 适合:  (a->b)->(b->c) => (a->c) <para></para>
+        /// 示例： (string->int)->(int->bool) => (string->bool)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
         /// <typeparam name="TCenter"></typeparam>
@@ -17,7 +21,7 @@ namespace System
         /// <param name="func"></param>
         /// <returns></returns>
         public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-          this Func<TInput, TCenter> sourceFunc,
+          [NotNull] this Func<TInput, TCenter> sourceFunc,
           [NotNull] Func<TCenter, TResult> func)
         {
             sourceFunc.CheckNull(nameof(sourceFunc));
@@ -28,7 +32,8 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  a->b->void  得到 a->void 函数
+        /// 适合： (a->b)->(b->void) => (a->void) <para></para>
+        /// 示例:  (string->int)->(int->void) => (string->void)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -36,7 +41,7 @@ namespace System
         /// <param name="action"></param>
         /// <returns></returns>
         public static Action<TInput> Pipe<TInput, TResult>(
-            this Func<TInput, TResult> sourceFunc,
+            [NotNull] this Func<TInput, TResult> sourceFunc,
             [NotNull] Action<TResult> action)
         {
             sourceFunc.CheckNull(nameof(sourceFunc));
@@ -47,14 +52,15 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  a->...->void  得到 a->void 函数
+        /// 适合： (a->void)->(a->void)->...  => (a->void) <para></para>
+        /// 示例:  (string->void)->(string->void)->...  => (string->void)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
         /// <param name="sourceFunc"></param>
         /// <param name="actions"></param>
         /// <returns></returns>
         public static Action<TInput> Pipe<TInput>(
-            this Action<TInput> sourceFunc,
+            [NotNull] this Action<TInput> sourceFunc,
             [NotNull] params Action<TInput>[] actions)
         {
             sourceFunc.CheckNull(nameof(sourceFunc));
@@ -65,7 +71,8 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  (a->c)->...->void  得到 a->void 函数
+        /// 适合： (a->b)->(b->void)->...  => (a->void) <para></para>
+        /// 示例:  (string->int)->(int->void)->...  => (string->void)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -73,7 +80,7 @@ namespace System
         /// <param name="actions"></param>
         /// <returns></returns>
         public static Action<TInput> Pipe<TInput, TResult>(
-            this Func<TInput, TResult> sourceFunc,
+            [NotNull] this Func<TInput, TResult> sourceFunc,
             [NotNull] params Action<TResult>[] actions)
         {
             sourceFunc.CheckNull(nameof(sourceFunc));
