@@ -19,7 +19,7 @@ namespace 技术点验证
 
         public void Start(string?[] args)
         {
-            //直接看代码即可
+            System.Console.WriteLine("直接看代码");
         }
     }
 }

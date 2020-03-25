@@ -7,7 +7,7 @@ namespace 技术点验证
         public static void Main(string?[] args)
         {
             //开始验证
-            VerificationHelp.StartVerification(VerificationTypeEnum.A25_查看调用者信息, args);
+            VerificationHelper.StartVerification(VerificationTypeEnum.A26_不同集合的对比纪录, args);
         }
     }
 }

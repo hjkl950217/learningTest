@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using AutoFixture;
 
 namespace Verification.Core
 {
-    public static class VerificationHelp
+    public static class VerificationHelper
     {
         public static void StartVerification(VerificationTypeEnum verificationTypeEnum, string[] args)
         {
-            VerificationHelp.GetVerification(verificationTypeEnum)
+            VerificationHelper.GetVerification(verificationTypeEnum)
                 .CheckNull()
                 .StartVerification(verificationTypeEnum, args);
         }
@@ -96,6 +97,24 @@ namespace Verification.Core
             #endregion 查找
 
             return VerificationInfo.Create(verificationTypeEnum, () => (IVerification)Activator.CreateInstance(type));
+        }
+
+        public static Fixture fixture = new Fixture();
+
+        public static T[] MockArray<T>(int count = 1)
+        {
+            T[] result = new T[count];
+            for (int i = 0 ; i < result.Length ; i++)
+            {
+                result[0] = fixture.Create<T>();
+            }
+
+            return result;
+        }
+
+        public static T Mock<T>()
+        {
+            return VerificationHelper.MockArray<T>(1)[0];
         }
     }
 }

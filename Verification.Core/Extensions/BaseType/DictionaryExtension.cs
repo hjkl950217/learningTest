@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace System
@@ -179,6 +180,19 @@ namespace System
             }
 
             return value;
+        }
+
+        public static IReadOnlyDictionary<TKey, TValue> ToReadOnly<TKey, TValue>(
+            this IEnumerable<KeyValuePair<TKey, TValue>> source)
+        {
+            source.CheckNullOrEmpty(nameof(source));
+
+            return source switch
+            {
+                IReadOnlyDictionary<TKey, TValue> rod => (IReadOnlyDictionary<TKey, TValue>)source,
+                IDictionary<TKey, TValue> dic => new ReadOnlyDictionary<TKey, TValue>(dic),
+                _ => new ReadOnlyDictionary<TKey, TValue>(source.ToDictionary(k => k.Key, v => v.Value)),
+            };
         }
     }
 }

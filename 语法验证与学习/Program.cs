@@ -7,7 +7,7 @@ namespace 语法验证与学习
         public static void Main(string?[] args)
         {
             //开始验证
-            VerificationHelp.StartVerification(VerificationTypeEnum.B17_Aggregate, args);
+            VerificationHelper.StartVerification(VerificationTypeEnum.B17_Aggregate, args);
         }
     }
 }
