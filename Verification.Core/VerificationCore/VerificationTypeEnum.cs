@@ -44,6 +44,7 @@
         A23_值对象,
         A24_使用高阶函数,
         A25_查看调用者信息,
+        A26_不同集合的对比纪录,
 
         #endregion 技术点
 
@@ -69,6 +70,7 @@
         B14_用函数式检查SellerID,
         B15_在CSharp中使用FSharp,
         B16_特性_在泛型和委托上标记_40,
+        B17_Aggregate,
 
         #endregion 语法类
 

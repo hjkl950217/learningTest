@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Verification.Core.ConstAndEnum;
 using Formatting = Newtonsoft.Json.Formatting;
 
-namespace Verification.Core.ConstAndEnum
+namespace Verification.Core.Serializer
 {
     /// <summary>
     /// json序列化设置的设置常量
