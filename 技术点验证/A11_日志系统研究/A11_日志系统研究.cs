@@ -19,7 +19,7 @@ namespace 技术点验证
 
         public void Start(string?[] args)
         {
-            //todo:完成 A11_日志系统研究
+            //直接看代码即可
         }
     }
 }

@@ -1,19 +1,24 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
 {
     public class TestLoggerProvider : ILoggerProvider
     {
         private readonly ILogClient logClient;
-        public TestLoggerProvider(ILogClient logClient)
+        private readonly Func<string, LogLevel, bool>? loggerCategoryLevelFilter;
+
+        public TestLoggerProvider(
+            ILogClient logClient,
+            Func<string, LogLevel, bool>? categoryLevelFilter)
         {
             this.logClient = logClient;
+            this.loggerCategoryLevelFilter = categoryLevelFilter;
         }
 
         public ILogger CreateLogger(string? categoryName)
         {
-            return new TestLogger(categoryName, this.logClient);
+            return new TestLogger(categoryName, this.logClient, this.loggerCategoryLevelFilter);
         }
 
         #region IDisposable Support
