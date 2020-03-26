@@ -12,7 +12,7 @@ namespace Verification.Core.Test.Extensions
         public void DoTest1()
         {
             //导航
-            Fp_Do_Extension.Do(strToInt, intToVoid);
+            Fp_Do_Extensions.Do(strToInt, intToVoid);
 
             // (string->int)->(int->void)->... => (string->int)
             Func<string, int> result = strToInt.Do(intToVoid);
@@ -24,7 +24,7 @@ namespace Verification.Core.Test.Extensions
         public void DoTest2()
         {
             //导航
-            Fp_Do_Extension.Do(strToVoid, strToVoid, strToVoid);
+            Fp_Do_Extensions.Do(strToVoid, strToVoid, strToVoid);
 
             //(string->void)->(string->void)->...  => (string->void)
             Action<string> result = strToVoid
@@ -45,7 +45,7 @@ namespace Verification.Core.Test.Extensions
             //expect :  (string->double)
 
             //step 1
-            Fp_Do_Extension.Do(intToVoid, intToVoid, intToVoid);
+            Fp_Do_Extensions.Do(intToVoid, intToVoid, intToVoid);
             Func<string, int> step1 = strToInt.Do(intToVoid, intToVoid, intToVoid);
             Assert.Equal(1, step1("1"));
 

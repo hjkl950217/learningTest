@@ -10,7 +10,7 @@ namespace System
     /// <summary>
     /// 字符串扩展类
     /// </summary>
-    public static class StringExtension
+    public static class StringExtensions
     {
         public static readonly char[] DefualtSeparators = new[] { ',', ';' };
 
@@ -200,7 +200,7 @@ namespace System
         /// </summary>
         /// <param name="source">要处理的字符串</param>
         /// <param name="separators">要分割的字符串.
-        /// 默认使用 ,或 ;  参考：<see cref="StringExtension.DefualtSeparators"/>
+        /// 默认使用 ,或 ;  参考：<see cref="StringExtensions.DefualtSeparators"/>
         /// </param>
         /// <param name="selector">字符串的处理，默认使用Trim().ToUpper()</param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ namespace System
             selector = selector ?? (t => t.Trim().ToUpper());
             return source
                 .Split(separators
-                        ?? StringExtension.DefualtSeparators,
+                        ?? StringExtensions.DefualtSeparators,
                         StringSplitOptions.RemoveEmptyEntries)
                 .Where(i => !string.IsNullOrWhiteSpace(i))
                 .Select(i => selector(i))

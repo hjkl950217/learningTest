@@ -12,7 +12,7 @@ namespace Verification.Core.Test.Extensions
         public void PipeTest1()
         {
             //导航
-            FP_Pipe_Extension.Pipe(strToInt, intToDouble);
+            FP_Pipe_Extensions.Pipe(strToInt, intToDouble);
 
             //(string->int)->(int->double)->(double->string)  => (string->string)
             Func<string, string> result = strToInt
@@ -26,7 +26,7 @@ namespace Verification.Core.Test.Extensions
         public void PipeTest2()
         {
             //导航
-            FP_Pipe_Extension.Pipe(strToInt, intToVoid);
+            FP_Pipe_Extensions.Pipe(strToInt, intToVoid);
 
             //(string->int)->(int->void) => (string->void)
             Action<string> result = strToInt
@@ -39,7 +39,7 @@ namespace Verification.Core.Test.Extensions
         public void PipeTest3()
         {
             //导航
-            FP_Pipe_Extension.Pipe(strToVoid, strToVoid, strToVoid);
+            FP_Pipe_Extensions.Pipe(strToVoid, strToVoid, strToVoid);
 
             //(string->void)->(string->void)->...  => (string->void)
             Action<string> result = strToVoid
@@ -52,7 +52,7 @@ namespace Verification.Core.Test.Extensions
         public void PipeTest4()
         {
             //导航
-            FP_Pipe_Extension.Pipe(strToInt, intToVoid, intToVoid);
+            FP_Pipe_Extensions.Pipe(strToInt, intToVoid, intToVoid);
 
             //(string->int)->(int->void)->...  => (string->void)
             Action<string> result = strToInt.Pipe(intToVoid, intToVoid, intToVoid);
@@ -72,7 +72,7 @@ namespace Verification.Core.Test.Extensions
             //expect :  (string->void)
 
             //step 1
-            FP_Pipe_Extension.Pipe(strToInt, intToDouble);
+            FP_Pipe_Extensions.Pipe(strToInt, intToDouble);
             Func<string, string> step1 = strToInt
                 .Pipe(intToDouble)
                 .Pipe(doubleToStr);
@@ -80,7 +80,7 @@ namespace Verification.Core.Test.Extensions
             Assert.Equal("1", step1("1"));
 
             //step 2
-            FP_Pipe_Extension.Pipe(step1, strToVoid, strToVoid);
+            FP_Pipe_Extensions.Pipe(step1, strToVoid, strToVoid);
             Action<string> step2 = step1
                 .Pipe(strToVoid, strToVoid, strToVoid);
 

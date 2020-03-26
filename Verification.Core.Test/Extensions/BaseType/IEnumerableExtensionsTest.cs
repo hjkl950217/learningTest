@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Verification.Core.Test.Extensions
 {
-    public class EnumerableExtensionsTest
+    public class IEnumerableExtensionsTest
     {
         private static class MockHelper
         {
@@ -276,5 +276,192 @@ namespace Verification.Core.Test.Extensions
         }
 
         #endregion Intersect
+
+        #region SelectMap
+
+        public class SelectMapTest
+        {
+            [Fact]
+            public void SourceIsNull_WithException()
+            {
+                List<SellerInfo> testData = null;
+                var ex = Assert.Throws<ArgumentNullException>(() =>
+                    testData.SelectMap(c => c.ToJsonExt())
+                );
+
+                Assert.NotNull(ex);
+            }
+
+            [Fact]
+            public void SourceNotNull_WithNoException()
+            {
+                List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
+
+                _ = testData.SelectMap(c => c.ToJsonExt());
+            }
+        }
+
+        #endregion SelectMap
+
+        #region RemoveNull
+
+        public class RemoveNullTest
+        {
+            #region Object
+
+            [Fact]
+            public void SourceIsNull_WithException()
+            {
+                List<SellerInfo> testData = null;
+                var ex = Assert.Throws<ArgumentNullException>(() =>
+                    testData.RemoveNull()
+                );
+
+                Assert.NotNull(ex);
+            }
+
+            [Fact]
+            public void SourceIsNull_WithException2()
+            {
+                List<SellerInfo> testData = null;
+                var ex = Assert.Throws<ArgumentNullException>(() =>
+                    testData.RemoveNullBy(t => t.SellerID)
+                );
+
+                Assert.NotNull(ex);
+            }
+
+            [Fact]
+            public void SourceNotNull_WithNoException()
+            {
+                List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
+                testData.Add(null);
+
+                var result = testData.RemoveNull().ToArray();
+                Assert.Equal(5, result.Length);
+            }
+
+            [Fact]
+            public void SourceNotNull_WithNoException2()
+            {
+                List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
+                testData[0].IDCard = null;
+
+                var result = testData.RemoveNullBy(t => t.IDCard).ToArray();
+                Assert.Equal(4, result.Length);
+            }
+
+            #endregion Object
+
+            #region String
+
+            [Fact]
+            public void StringSourceIsNull_WithException()
+            {
+                List<string> testData = null;
+                var ex = Assert.Throws<ArgumentNullException>(() =>
+                    testData.RemoveNull()
+                );
+
+                Assert.NotNull(ex);
+            }
+
+            [Fact]
+            public void StringSourceIsNull_WithException2()
+            {
+                List<SellerInfo> testData = null;
+                var ex = Assert.Throws<ArgumentNullException>(() =>
+                    testData.RemoveNullBy(t => t.SellerID)
+                );
+
+                Assert.NotNull(ex);
+            }
+
+            [Fact]
+            public void StringSourceNotNull_WithNoException()
+            {
+                List<string> testData = TestHelper.MockArray<string>(5).ToList();
+                testData.Add(null);
+
+                var result = testData.RemoveNull().ToArray();
+                Assert.Equal(5, result.Length);
+            }
+
+            [Fact]
+            public void StringSourceNotNull_WithNoException2()
+            {
+                List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
+                testData[0].SellerID = null;
+
+                var result = testData.RemoveNullBy(t => t.SellerID).ToArray();
+                Assert.Equal(4, result.Length);
+            }
+
+            #endregion String
+        }
+
+        #endregion RemoveNull
+
+        #region To集合
+
+        public class ToArray
+        {
+            [Fact]
+            public void SourceIsNull_WithNoException()
+            {
+                List<SellerInfo> testData = null;
+                _ = testData.ToArray(t => t);
+            }
+
+            [Fact]
+            public void SourceIsNull_WithNoExceptionAndDefault()
+            {
+                List<SellerInfo> testData = null;
+                var result = testData.ToArray(t => t);
+
+                Assert.NotNull(result);
+            }
+
+            [Fact]
+            public void SourceNotNull_WithNoException()
+            {
+                List<SellerInfo> testData = TestHelper.MockList<SellerInfo>();
+                var result = testData.ToArray(t => t.SellerID);
+
+                Assert.NotNull(result);
+                Assert.Equal(testData.Count, result.Length);
+            }
+        }
+
+        public class ToList
+        {
+            [Fact]
+            public void SourceIsNull_WithNoException()
+            {
+                List<SellerInfo> testData = null;
+                _ = testData.ToList(t => t);
+            }
+
+            [Fact]
+            public void SourceIsNull_WithNoExceptionAndDefault()
+            {
+                List<SellerInfo> testData = null;
+                var result = testData.ToList(t => t);
+
+                Assert.NotNull(result);
+            }
+
+            [Fact]
+            public void SourceNotNull_WithNoException()
+            {
+                List<SellerInfo> testData = TestHelper.MockList<SellerInfo>();
+                var result = testData.ToList(t => t.SellerID);
+
+                Assert.NotNull(result);
+                Assert.Equal(testData.Count, result.Count);
+            }
+        }
+
+        #endregion To集合
     }
 }

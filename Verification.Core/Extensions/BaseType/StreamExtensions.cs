@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static class StreamExtension
+    public static class StreamExtensions
     {
         /// <summary>
         /// 将MemoryStream 转换为 byte数组

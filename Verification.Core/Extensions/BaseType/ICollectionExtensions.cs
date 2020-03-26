@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace System
 {
-    public static class ICollectionExtension
+    public static class ICollectionExtensions
     {
         public static T GetOrAdd<T>(
             this ICollection<T> source,

@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static class Fp_Do_Extension
+    public static class Fp_Do_Extensions
     {
         /// <summary>
         /// 管道 <para></para>
@@ -38,14 +38,14 @@ namespace System
         /// <param name="sourceFunc"></param>
         /// <param name="actions"></param>
         /// <remarks>
-        /// 这里和<see cref="FP_Pipe_Extension.Pipe{TInput}(Action{TInput}, Action{TInput}[])"/>是一样的，这里修改名字是方便调用者
+        /// 这里和<see cref="FP_Pipe_Extensions.Pipe{TInput}(Action{TInput}, Action{TInput}[])"/>是一样的，这里修改名字是方便调用者
         /// </remarks>
         /// <returns></returns>
         public static Action<TInput> Do<TInput>(
             [NotNull] this Action<TInput> sourceFunc,
             [NotNull] params Action<TInput>[] actions)
         {
-            return FP_Pipe_Extension.Pipe(sourceFunc, actions);
+            return FP_Pipe_Extensions.Pipe(sourceFunc, actions);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using AutoFixture;
 
 namespace Verification.Core.Test
 {
@@ -6,17 +7,14 @@ namespace Verification.Core.Test
     {
         public static Fixture fixture = VerificationHelper.fixture;
 
-        public static T[] MockArray<T>(int count = 1)
+        public static T[] MockArray<T>(int count = 3)
         {
-            //    T[] result = new T[count];
-            //    for (int i = 0 ; i < result.Length ; i++)
-            //    {
-            //        result[i] = fixture.Create<T>();
-            //    }
-
-            //    return result;
-
             return VerificationHelper.MockArray<T>(count);
+        }
+
+        public static List<T> MockList<T>(int count = 3)
+        {
+            return VerificationHelper.MockList<T>(count);
         }
 
         public static T Mock<T>()

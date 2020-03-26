@@ -2,7 +2,7 @@
 
 namespace Verification.Core.Extensions.BaseType
 {
-    public static class IntExtension
+    public static class IntExtensions
     {
         public static T ToEnum<T>(this int value)
             where T : struct

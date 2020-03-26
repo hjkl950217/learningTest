@@ -1,6 +1,6 @@
 ﻿namespace System
 {
-    public static class NullValueExtension
+    public static class NullValueExtensions
     {
         /// <summary>
         /// 返回数据或返回默认值

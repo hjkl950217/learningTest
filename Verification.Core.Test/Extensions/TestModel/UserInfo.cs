@@ -1,4 +1,4 @@
-﻿namespace Verification.Core.Test.Extensions
+﻿namespace Verification.Core.Test
 {
     /// <summary>
     /// 此对象仅做为UT使用

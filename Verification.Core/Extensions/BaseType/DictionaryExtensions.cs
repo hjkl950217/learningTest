@@ -7,7 +7,7 @@ namespace System
     /// <summary>
     /// Dictionary扩展类
     /// </summary>
-    public static class DictionaryExtension
+    public static class DictionaryExtensions
     {
         public static TValue GetOrDefault<TKey, TValue>(
             this IDictionary<TKey, TValue> valuePairs,

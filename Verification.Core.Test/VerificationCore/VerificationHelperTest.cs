@@ -8,23 +8,31 @@ namespace Verification.Core.Test.VerificationCore
     {
         public class MockArrayTest
         {
-            public class MockArray
+            public void NoError()
             {
-                public void TestDistinct()
-                {
-                    var source = TestHelper.MockArray<KeyValuePair<int, int>>(5);
+                var source = VerificationHelper.MockArray<KeyValuePair<int, int>>(5);
 
-                    int result = source.Select(t => t.GetHashCode()).Distinct().Count();
-                    Assert.Equal(5, result);
-                }
+                int result = source.Select(t => t.GetHashCode()).Distinct().Count();
+                Assert.Equal(5, result);
             }
+        }
 
-            public class Mock
+        public class MocklListTest
+        {
+            public void NoError()
             {
-                public void NoException()
-                {
-                    _ = TestHelper.Mock<KeyValuePair<int, int>>();
-                }
+                var source = VerificationHelper.MockList<KeyValuePair<int, int>>(5);
+
+                int result = source.Select(t => t.GetHashCode()).Distinct().Count();
+                Assert.Equal(5, result);
+            }
+        }
+
+        public class MockTest
+        {
+            public void NoException()
+            {
+                _ = VerificationHelper.Mock<KeyValuePair<int, int>>();
             }
         }
     }

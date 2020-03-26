@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static class ByteExtension
+    public static class ByteExtensions
     {
         /// <summary>
         /// 将byte[] 转换为<see cref="string"/>

@@ -5,7 +5,7 @@ namespace System
     /// <summary>
     /// 函数式扩展-管道
     /// </summary>
-    public static class FP_Pipe_Extension
+    public static class FP_Pipe_Extensions
     {
         #region 管道
 
