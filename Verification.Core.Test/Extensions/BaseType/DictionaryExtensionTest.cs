@@ -73,7 +73,7 @@ namespace Verification.Core.Test.Extensions.BaseType
 
         void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
         {
-            (this.InternelDic as ICollection<KeyValuePair<TKey, TValue>>).Add(item);
+            (this.InternelDic as ICollection<KeyValuePair<TKey, TValue>>)?.Add(item);
         }
 
         void ICollection<KeyValuePair<TKey, TValue>>.Clear()
@@ -98,12 +98,12 @@ namespace Verification.Core.Test.Extensions.BaseType
 
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
         {
-            return (this.InternelDic as IEnumerable<KeyValuePair<TKey, TValue>>).GetEnumerator();
+            return (this.InternelDic as IEnumerable<KeyValuePair<TKey, TValue>>)?.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (this.InternelDic as IEnumerable).GetEnumerator();
+            return (this.InternelDic as IEnumerable)?.GetEnumerator();
         }
 
         bool IDictionary<TKey, TValue>.Remove(TKey key)

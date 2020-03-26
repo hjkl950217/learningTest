@@ -16,15 +16,17 @@ namespace System
             valueFactory.CheckNull(nameof(valueFactory));
 
             T value = source.FirstOrDefault(predicate);
-            if (value == null)
+            switch (value)
             {
-                var tempValue = valueFactory();
-                source.Add(tempValue);
-                return tempValue;
-            }
-            else
-            {
-                return value;
+                case null:
+                {
+                    var tempValue = valueFactory();
+                    source.Add(tempValue);
+                    return tempValue;
+                }
+
+                default:
+                    return value;
             }
         }
 
