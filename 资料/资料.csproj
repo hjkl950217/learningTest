@@ -45,6 +45,7 @@
   <ItemGroup>
     <Content Include=".Net GC资料.txt" />
     <Content Include="Exported-2020-01-21.vssettings" />
+    <Content Include="Exported-2020-03-19.vssettings" />
     <Content Include="FP学习路线.txt" />
     <Content Include="VS插件列表.txt" />
     <Content Include="三方类库和工具.txt" />
