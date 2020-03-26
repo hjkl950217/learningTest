@@ -46,8 +46,9 @@
     <Content Include=".Net GC资料.txt" />
     <Content Include="Exported-2020-01-21.vssettings" />
     <Content Include="FP学习路线.txt" />
+    <Content Include="VS插件列表.txt" />
     <Content Include="三方类库和工具.txt" />
-    <Content Include="代理片段\代码-调试IOC问题.txt" />
+    <Content Include="代码片段\代码-调试IOC问题.txt" />
     <Content Include="要看的知识.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
