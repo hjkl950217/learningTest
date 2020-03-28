@@ -47,10 +47,19 @@
     <Content Include="Exported-2020-01-21.vssettings" />
     <Content Include="Exported-2020-03-19.vssettings" />
     <Content Include="FP学习路线.txt" />
+    <Content Include="SQL脚本模版\CreateView-GQC映射同步链的.sql" />
+    <Content Include="SQL脚本模版\Create_Table_S7EDIDB01.MPS_Portal_SystemFeedback-创建表.sql" />
+    <Content Include="SQL脚本模版\MPS_Seller_APIDeveloperInfo.批量刷数据-更新.sql" />
+    <Content Include="SQL脚本模版\MPS_Seller_PriceSafeguardSetting-批量刷数据-更新数据.sql" />
+    <Content Include="SQL脚本模版\刷新RMA_Solr.sql" />
     <Content Include="VS插件列表.txt" />
     <Content Include="三方类库和工具.txt" />
     <Content Include="代码片段\代码-调试IOC问题.txt" />
     <Content Include="要看的知识.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="配置模版\docker-compose.yml" />
+    <None Include="配置模版\nginx.conf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
