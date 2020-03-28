@@ -68,3 +68,6 @@ DRY(不要自我重复):https://enterprisecraftsmanship.com/posts/dry-revisited/
 Kafka设计解析（一）：http://www.jasongj.com/2015/03/10/KafkaColumn1/
 
 CQRS：https://martinfowler.com/bliki/CommandQuerySeparation.html
+
+docker-compose详解(有配置讲解)：
+https://www.yuque.com/zhuimengdemayi-b9frn/cz48p8/27268b927f6e938681e6138e318e71f0#rpYrl
