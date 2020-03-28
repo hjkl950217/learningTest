@@ -1,6 +1,8 @@
-version: '3.7'
 #官方配置文件说明：https://docs.docker.com/compose/compose-file/#volumes
 
+#创建时报无效名字：文件路径不能有中文。 原因是compose会基于当前文件名的名字创建容器名，如果有中文会生成"_xx"的名字，第一个字符只能是字母或数字，导致报错。
+
+version: '3.7'
 services:
   #服务名字
   rma-web:
@@ -11,11 +13,11 @@ services:
       - "80" #在不向主机发布端口的情况下公开端口 - 链接的服务只能访问这些端口。只能指定内部端口。 
    # network_mode: "bridge" #网络模式 bridge、host、none、service:[service name]
 
- # seller-web:
+  #seller-web:
     #image: "10.16.78.88/marketplace/mkpl-seller-service:develop-20200320061732"
     #ports:
      # - "8080"
-   # network_mode: "bridge"
+    #network_mode: "bridge"
     
   nginx:
     image: "a.newegg.org/newegg-docker/library/nginx:latest"
