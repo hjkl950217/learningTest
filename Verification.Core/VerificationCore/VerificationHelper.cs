@@ -8,7 +8,7 @@ namespace Verification.Core
 {
     public static class VerificationHelper
     {
-        public static void StartVerification(VerificationTypeEnum verificationTypeEnum, string[] args)
+        public static void StartVerification(VerificationTypeEnum verificationTypeEnum, string[]? args)
         {
             VerificationHelper.GetVerification(verificationTypeEnum)
                 .CheckNull()
