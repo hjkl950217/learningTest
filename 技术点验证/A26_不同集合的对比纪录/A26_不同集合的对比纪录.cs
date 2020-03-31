@@ -11,7 +11,7 @@ namespace 技术点验证.A26_不同集合的对比纪录
     {
         public void Start(string?[] args)
         {
-            Console.WriteLine("结论直接看代码，运行起来只有验证代码");
+            Console.WriteLine("运行起来只有验证代码,结论和分析在代码中");
 
             HashSet_TestHashHowTime();
 
