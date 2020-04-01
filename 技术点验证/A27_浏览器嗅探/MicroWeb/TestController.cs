@@ -14,7 +14,7 @@ namespace 技术点验证
             string userAgent = base.HttpContext.Request.Headers[HeaderNames.UserAgent];
             return new
             {
-                userAgent
+                UserAgent = userAgent
             };
         }
     }
