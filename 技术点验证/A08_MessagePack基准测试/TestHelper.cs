@@ -193,6 +193,16 @@ namespace 技术点验证
         }
 
         /// <summary>
+        /// 返回一个随机的数字字符
+        /// </summary>
+        /// <returns></returns>
+        public static char GetRandomNum()
+        {
+            //0-9
+            return Convert.ToChar(TestHelper.random.Next(0, 10));
+        }
+
+        /// <summary>
         /// 获取一个随机的字符，可能是大写或小写的
         /// </summary>
         /// <returns></returns>
