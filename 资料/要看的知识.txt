@@ -1,73 +1,75 @@
-SonarQube²å¼şµØÖ·
+ï»¿SonarQubeæ’ä»¶åœ°å€
 https://docs.sonarqube.org/display/PLUG/Plugin+Library#app-switcher
 
-SonarLintVS²å¼ş¹ÙÍø
+SonarLintVSæ’ä»¶å®˜ç½‘
 https://www.sonarlint.org/
 
 
-Î¢·şÎñµÄ·şÎñ·¢ÏÖ
+å¾®æœåŠ¡çš„æœåŠ¡å‘ç°
 https://www.jianshu.com/p/1bf9a46efe7a
 
-ÏòÁ¿¡¢Òò×ÓÑ§Ï°
+å‘é‡ã€å› å­å­¦ä¹ 
 https://blog.csdn.net/u010137431/article/details/50411288
 
 SpreadsheetML
 https://docs.aspose.com/pages/viewpage.action?pageId=5276499
 
 
-C# Òì³£Àà Exception Ã¶¾ÙËùÓĞÀàĞÍµÄÒì³£
+C# å¼‚å¸¸ç±» Exception æšä¸¾æ‰€æœ‰ç±»å‹çš„å¼‚å¸¸
 https://www.cnblogs.com/goody9807/archive/2012/09/04/2670753.html
 
-C#Òì³£ÀàĞÍ
+C#å¼‚å¸¸ç±»å‹
 https://blog.csdn.net/lianchangshuai/article/details/5813593
 
-Òì³£µÄ×î¼Ñ×ö·¨£¨Î¢ÈíÎÄµµ£©
+å¼‚å¸¸çš„æœ€ä½³åšæ³•ï¼ˆå¾®è½¯æ–‡æ¡£ï¼‰
 https://docs.microsoft.com/zh-cn/dotnet/standard/exceptions/best-practices-for-exceptions#handle-common-conditions-without-throwing-exceptions
 
-œ\ÎöC#ÖĞ ConcurrentDictionaryµÄŒ¬F
+æ·ºæC#ä¸­ ConcurrentDictionaryçš„å¯¦ç¾
 https://hk.saowen.com/a/54f75f9c1477ececc463db01b494660e6bee9dbc4986ea8f6fbd154297fca86c
 
-¡¶Î¢·şÎñ£º´ÓÉè¼Æµ½²¿Êğ¡·ÖĞÎÄ°æ
+ã€Šå¾®æœåŠ¡ï¼šä»è®¾è®¡åˆ°éƒ¨ç½²ã€‹ä¸­æ–‡ç‰ˆ
 https://docshome.gitbooks.io/microservices/content/
 
-»ùÓÚDotNet CoreµÄRPC¿ò¼Ü(Ò») DotBPE.RPC¿ìËÙ¿ªÊ¼£¨PRC¿ò¼Ü£©
+åŸºäºDotNet Coreçš„RPCæ¡†æ¶(ä¸€) DotBPE.RPCå¿«é€Ÿå¼€å§‹ï¼ˆPRCæ¡†æ¶ï¼‰
 https://my.oschina.net/redhu/blog/900613
 
-jayµÄÏîÄ¿
+jayçš„é¡¹ç›®
 https://github.com/hstarorg/HstarDoc/blob/master/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CORS%E8%AF%A6%E8%A7%A3.md
 https://github.com/hstarorg/Lara
 
-DDDÕ½ÂÔÆª£º¼Ü¹¹Éè¼ÆµÄÏìÓ¦Á¦ http://insights.thoughtworkers.org/ddd-architecture-design/
-DDDÊµÕ½Æª£º·Ö²ã¼Ü¹¹µÄ´úÂë½á¹¹  http://insights.thoughtworkers.org/ddd-layered-architecture/
-DDDÕ½ÊõÆª£ºÁìÓòÄ£ĞÍµÄÓ¦ÓÃ  http://insights.thoughtworkers.org/ddd-domain-model/
-DDD & Microservices £ºhttps://insights.thoughtworks.cn/ddd-and-microservices/
+DDDæˆ˜ç•¥ç¯‡ï¼šæ¶æ„è®¾è®¡çš„å“åº”åŠ› http://insights.thoughtworkers.org/ddd-architecture-design/
+DDDå®æˆ˜ç¯‡ï¼šåˆ†å±‚æ¶æ„çš„ä»£ç ç»“æ„  http://insights.thoughtworkers.org/ddd-layered-architecture/
+DDDæˆ˜æœ¯ç¯‡ï¼šé¢†åŸŸæ¨¡å‹çš„åº”ç”¨  http://insights.thoughtworkers.org/ddd-domain-model/
+DDD & Microservices ï¼šhttps://insights.thoughtworks.cn/ddd-and-microservices/
 
 
-jsº¯ÊıÊ½±à³ÌÖ¸ÄÏ£ºhttps://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
+jså‡½æ•°å¼ç¼–ç¨‹æŒ‡å—ï¼šhttps://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
 
 
-C#ÖĞµÄº¯ÊıÊ½±à³Ì:http://hamidmosalla.com/2019/04/25/functional-programming-in-c-sharp-a-brief-guide/#Functional_Programming_Libraries_for_C
+C#ä¸­çš„å‡½æ•°å¼ç¼–ç¨‹:http://hamidmosalla.com/2019/04/25/functional-programming-in-c-sharp-a-brief-guide/#Functional_Programming_Libraries_for_C
 
-C££FPÓïÑÔÀ©Õ¹  https://github.com/louthy/language-ext
-¸ü¶àLINQ      https://github.com/morelinq/MoreLINQ
-C££µÄ¹¦ÄÜÀ©Õ¹ https://github.com/vkhorikov/CSharpFunctionalExtensions
-ÔÚC#ÖĞÊ¹ÓÃF# 	https://connelhooley.uk/blog/2017/04/30/f-sharp-to-c-sharp
+Cï¼ƒFPè¯­è¨€æ‰©å±•  https://github.com/louthy/language-ext
+æ›´å¤šLINQ      https://github.com/morelinq/MoreLINQ
+Cï¼ƒçš„åŠŸèƒ½æ‰©å±• https://github.com/vkhorikov/CSharpFunctionalExtensions
+åœ¨C#ä¸­ä½¿ç”¨F# 	https://connelhooley.uk/blog/2017/04/30/f-sharp-to-c-sharp
 		https://www.cnblogs.com/hjklin/p/fs-for-cs-dev-5.html#_label2	
 
-
-3.0ÖĞµÄ·Ö²¼Ê½×·×ÙºÍ¼àÊÓ£ºhttps://devblogs.microsoft.com/aspnet/improvements-in-net-core-3-0-for-troubleshooting-and-monitoring-distributed-apps/
-W3CÖĞµÄ×·×ÙÉÏÏÂÎÄ¹æ·¶£ºhttps://www.w3.org/TR/trace-context/
+å‡½æ•°å¼å…³äºmaybeçš„éƒ¨åˆ† http://jiyinyiyong.github.io/monads-in-pictures/Â 
 
 
-
-¹¦ÄÜĞÔC# fpÏà¹ØµÄ£ºhttps://enterprisecraftsmanship.com/posts/functional-c-immutability/
-DRY(²»Òª×ÔÎÒÖØ¸´):https://enterprisecraftsmanship.com/posts/dry-revisited/
-ÌúÂ·µ¼Ïò±à³Ì£ºhttps://fsharpforfunandprofit.com/rop/
+3.0ä¸­çš„åˆ†å¸ƒå¼è¿½è¸ªå’Œç›‘è§†ï¼šhttps://devblogs.microsoft.com/aspnet/improvements-in-net-core-3-0-for-troubleshooting-and-monitoring-distributed-apps/
+W3Cä¸­çš„è¿½è¸ªä¸Šä¸‹æ–‡è§„èŒƒï¼šhttps://www.w3.org/TR/trace-context/
 
 
-KafkaÉè¼Æ½âÎö£¨Ò»£©£ºhttp://www.jasongj.com/2015/03/10/KafkaColumn1/
 
-CQRS£ºhttps://martinfowler.com/bliki/CommandQuerySeparation.html
+åŠŸèƒ½æ€§C# fpç›¸å…³çš„ï¼šhttps://enterprisecraftsmanship.com/posts/functional-c-immutability/
+DRY(ä¸è¦è‡ªæˆ‘é‡å¤):https://enterprisecraftsmanship.com/posts/dry-revisited/
+é“è·¯å¯¼å‘ç¼–ç¨‹ï¼šhttps://fsharpforfunandprofit.com/rop/
 
-docker-composeÏê½â(ÓĞÅäÖÃ½²½â)£º
+
+Kafkaè®¾è®¡è§£æï¼ˆä¸€ï¼‰ï¼šhttp://www.jasongj.com/2015/03/10/KafkaColumn1/
+
+CQRSï¼šhttps://martinfowler.com/bliki/CommandQuerySeparation.html
+
+docker-composeè¯¦è§£(æœ‰é…ç½®è®²è§£)ï¼š
 https://www.yuque.com/zhuimengdemayi-b9frn/cz48p8/27268b927f6e938681e6138e318e71f0#rpYrl

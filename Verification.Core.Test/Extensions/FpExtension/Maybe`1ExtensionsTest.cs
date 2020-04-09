@@ -5,10 +5,22 @@ namespace Verification.Core.Test.Extensions.FpExtension
 {
     public class Maybe_1ExtensionsTest
     {
+        #region 基础扩展
+
+        public class IsNothingTest
+        {
+            [Fact]
+            public void Fmap_ImplicitOperator_WithNoError()
+            {
+            }
+        }
+
+        #endregion 基础扩展
+
         public class FmapTest
         {
             [Fact]
-            public void Fmap_Implicitoperator_WithNoError()
+            public void Fmap_ImplicitOperator_WithNoError()
             {
                 Maybe<int> a1 = 1;
                 int b1 = a1;
