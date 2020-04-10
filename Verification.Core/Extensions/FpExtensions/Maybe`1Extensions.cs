@@ -14,7 +14,7 @@ namespace System
 
         /// <summary>
         /// 映射<para></para>
-        /// 接收一个<paramref name="func"/>将<paramref name="input"/>转换为<see cref="Maybe{T}"/><para></para>
+        /// 接收一个<paramref name="func"/>,转换为<see cref="Maybe{T}"/><para></para>
         /// 示例1：Maybe{int} t1 = 7;<para></para>int b=t1;<para></para>
         /// 示例2：<see cref="Maybe{int}"/> t2 = <see cref="Maybe{int}"/>.Nothing();
         /// </summary>
@@ -27,19 +27,8 @@ namespace System
             where A : notnull
             where B : notnull
         {
-            //switch (input)
-            //{
-            //    case { HasValue: true } a when input.HasValue:
-            //        return new Maybe<B>(func(a.Value));
-
-            //    case null:
-            //    default:
-            //        return Maybe<B>.Nothing();
-            //}
-
             return input switch
             {
-                null => Maybe<B>.Nothing(),
                 { HasValue: true } => new Maybe<B>(func(input.Value)),
                 _ => Maybe<B>.Nothing()
             };
@@ -47,7 +36,7 @@ namespace System
 
         /// <summary>
         /// Apply<para></para>
-        /// 用<paramref name="mapFunc"/>的<see cref="Maybe{T}.Value"/>转换<paramref name="input"/>转换<para></para>
+        /// 用<paramref name="mapFunc"/>的<see cref="Maybe{T}.Value"/>转换<para></para>
         /// 示例：Maybe{int} input = 3;<para></para>
         /// Maybe{Func{int, bool}} isOdd = new Func{int, bool}(x => (x 除号 1) == 1);<para></para>
         /// Maybe{bool} result=input.Apply(isOdd);
@@ -72,11 +61,17 @@ namespace System
             where A : notnull
             where B : notnull
         {
-            return input switch
+            return (input, bindFunc) switch
             {
-                { HasValue: true } => bindFunc(input.Value),
+                ({ HasValue: true }, null) => Maybe<B>.Nothing(),
+                ({ HasValue: true }, _) => bindFunc(input.Value),
                 _ => Maybe<B>.Nothing(),
             };
+            //return input switch
+            //{
+            //    { HasValue: true } => bindFunc(input.Value),
+            //    _ => Maybe<B>.Nothing(),
+            //};
         }
 
         #endregion 函数式扩展

@@ -1,9 +1,17 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation.Validators;
 
 namespace System
 {
+    /// <summary>
+    /// Mayby基类，不包含Mayby本身的逻辑，仅包含快捷方法。Mayby具体逻辑参考<see cref="Maybe{T}"/>
+    /// </summary>
     public class Maybe
     {
+        protected Maybe()
+        {
+        }
+
         public bool HasValue { get; protected set; } = false;
 
         public bool IsNothing() => this.HasValue;
@@ -16,6 +24,6 @@ namespace System
         /// <param name="input"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Maybe<A> Pure<A>(A value) where A : notnull => value;
+        public static Maybe<A> Pure<A>(A value) where A : notnull => new Maybe<A>(value);
     }
 }

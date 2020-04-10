@@ -11,7 +11,9 @@ namespace System
     {
         private readonly T innerValue;
 
-        public T Value => this.HasValue ? this.innerValue : throw new InvalidOperationException();
+        public T Value => base.HasValue ? this.innerValue : throw new InvalidOperationException("value is null");
+
+#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 
         private Maybe()
         {
@@ -24,12 +26,14 @@ namespace System
             base.HasValue = true;
         }
 
-        public Maybe(Maybe<T> value)
+        public Maybe([NotNull]Maybe<T> value)
         {
-            if (!value.HasValue) return;
+            if (value?.HasValue != true) return;
             this.innerValue = value.Value;
             base.HasValue = true;
         }
+
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
 
         public static implicit operator Maybe<T>(T value)
         {
@@ -44,7 +48,7 @@ namespace System
 
         public override string ToString()
         {
-            return this.HasValue ? this.Value.ToString() : "Nothing";
+            return base.HasValue ? this.Value.ToString() : "Nothing";
         }
 
         public static Maybe<T> Nothing()
