@@ -2,7 +2,7 @@
 
 namespace Verification.Core.Test.Extensions.FpExtension
 {
-    public static class FpMockHelper
+    public static class FpMockFunc
     {
         #region 测试用基本函数
 
@@ -16,6 +16,7 @@ namespace Verification.Core.Test.Extensions.FpExtension
         #region 源类型为int
 
         public static Func<int, double> intToDouble = t => (double)t;
+        public static Func<int, string> intToString = t => t.ToString();
         public static Action<int> intToVoid = t => { };
 
         #endregion 源类型为int

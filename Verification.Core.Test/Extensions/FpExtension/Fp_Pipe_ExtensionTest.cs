@@ -1,6 +1,6 @@
 ﻿using System;
 using Xunit;
-using static Verification.Core.Test.Extensions.FpExtension.FpMockHelper;
+using static Verification.Core.Test.Extensions.FpExtension.FpMockFunc;
 
 namespace Verification.Core.Test.Extensions
 {
