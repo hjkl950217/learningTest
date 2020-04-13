@@ -9,8 +9,8 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    [VerifcationType(VerificationTypeEnum.A29_模拟中间件_责任链模式)]
-    public class A29_模拟中间件_责任链模式 : IVerification
+    [VerifcationType(VerificationTypeEnum.A30_模拟中间件_责任链模式)]
+    public class A30_模拟中间件_责任链模式 : IVerification
     {
         public void Start(string[] args)
         {

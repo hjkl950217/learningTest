@@ -7,6 +7,7 @@ namespace 技术点验证.A28_字符串做加法
     [VerifcationType(VerificationTypeEnum.A28_字符串做加法)]
     public class A28_字符串做加法 : IVerification
     {
+        //todo:需要迁移面试题中的代码过来
         public void Start(string[] args)
         {
             string a = AddOnne.StringAddition("12321425443443", "433222");
@@ -30,16 +31,10 @@ namespace 技术点验证.A28_字符串做加法
     [MinColumn, MaxColumn, MeanColumn, MedianColumn, MemoryDiagnoser]
     public class AddTest
     {
-        public List<(string, string)> TestList;
-
         [Params(10 * 1000, 30 * 1000)]
         public int DataCount;
 
-        [GlobalSetup]
-        public void SetUp()
-        {
-            this.TestList = this.GetTestDataList();
-        }
+        public List<(string, string)> TestList;
 
         private List<(string, string)> GetTestDataList()
         {
@@ -62,24 +57,6 @@ namespace 技术点验证.A28_字符串做加法
             }
 
             return result;
-        }
-
-        [Benchmark(Baseline = true)]
-        public void MethodA_Master()
-        {
-            foreach (var item in this.TestList)
-            {
-                this.MethodA(item.Item1, item.Item2);
-            }
-        }
-
-        [Benchmark]
-        public void MethodB_Master()
-        {
-            foreach (var item in this.TestList)
-            {
-                this.MethodB(item.Item1, item.Item2);
-            }
         }
 
         public string MethodA(string? xStr, string? yStr)
@@ -106,6 +83,15 @@ namespace 技术点验证.A28_字符串做加法
             //}
 
             return AddOnne.StringAddition(xStr, yStr);
+        }
+
+        [Benchmark(Baseline = true)]
+        public void MethodA_Master()
+        {
+            foreach (var item in this.TestList)
+            {
+                this.MethodA(item.Item1, item.Item2);
+            }
         }
 
         public string MethodB(string? xStr, string? yStr)
@@ -135,6 +121,21 @@ namespace 技术点验证.A28_字符串做加法
             //    return source;
             //}
             return "";
+        }
+
+        [Benchmark]
+        public void MethodB_Master()
+        {
+            foreach (var item in this.TestList)
+            {
+                this.MethodB(item.Item1, item.Item2);
+            }
+        }
+
+        [GlobalSetup]
+        public void SetUp()
+        {
+            this.TestList = this.GetTestDataList();
         }
     }
 }
