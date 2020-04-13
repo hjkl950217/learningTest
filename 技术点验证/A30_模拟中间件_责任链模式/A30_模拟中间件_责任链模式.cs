@@ -42,13 +42,13 @@ namespace 技术点验证
     {
     }
 
-    //public delegate Task MockRequestDelegate(MockHttpContext context);
+    public delegate Task MockRequestDelegate(MockHttpContext context);
 
     public class ApplicationBuilder
     {
-        private readonly IList<Func<Func<MockHttpContext, Task>, Func<MockHttpContext, Task>>> components = new List<Func<Func<MockHttpContext, Task>, Func<MockHttpContext, Task>>>();
+        private readonly IList<Func<MockRequestDelegate, MockRequestDelegate>> components = new List<Func<MockRequestDelegate, MockRequestDelegate>>();
 
-        public ApplicationBuilder Use(Func<Func<MockHttpContext, Task>, Func<MockHttpContext, Task>> component)
+        public ApplicationBuilder Use(Func<MockRequestDelegate, MockRequestDelegate> component)
         {
             this.components.Add(component);
             return this;
@@ -73,9 +73,9 @@ namespace 技术点验证
             });
         }
 
-        public Func<MockHttpContext, Task> Build()
+        public MockRequestDelegate Build()
         {
-            Func<MockHttpContext, Task> result = context => Task.CompletedTask;
+            MockRequestDelegate result = context => Task.CompletedTask;
 
             foreach (var item in this.components.Reverse())
             {
