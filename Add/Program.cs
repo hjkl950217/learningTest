@@ -4,13 +4,9 @@
     {
         private static void Main(string[] args)
         {
-            #region 单个测试
+            string a = AddOnne.AddByString("12321425443443", "433222");
 
-            #endregion 单个测试
-
-            // string a = AddOnne.StringAddition("12321425443443", "433222");
-
-            string a = AddOnne.AddByString("19", "17");
+            // string a = AddOnne.AddByString("19", "17");
 
             string result = "12321425876665";
 

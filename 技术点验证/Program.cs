@@ -7,7 +7,7 @@ namespace 技术点验证
         public static void Main(string[]? args)
         {
             //开始验证
-            VerificationHelper.StartVerification(VerificationTypeEnum.A28_字符串做加法, args);
+            VerificationHelper.StartVerification(VerificationTypeEnum.A29_模拟中间件_责任链模式, args);
         }
     }
 }

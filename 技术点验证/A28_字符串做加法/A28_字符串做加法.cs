@@ -9,9 +9,9 @@ namespace 技术点验证.A28_字符串做加法
     {
         public void Start(string[] args)
         {
-            // string a = AddOnne.StringAddition("12321425443443", "433222");
+            string a = AddOnne.StringAddition("12321425443443", "433222");
 
-            string a = AddOnne.StringAddition("19", "17");
+            // string a = AddOnne.StringAddition("19", "17");
 
             string result = "12321425876665";
             //Console.WriteLine("测试开始");

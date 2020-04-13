@@ -71,3 +71,6 @@ CQRS：https://martinfowler.com/bliki/CommandQuerySeparation.html
 
 docker-compose详解(有配置讲解)：
 https://www.yuque.com/zhuimengdemayi-b9frn/cz48p8/27268b927f6e938681e6138e318e71f0#rpYrl
+
+
+从0搭建Abp vnext构建API接口服务：https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247484005&idx=1&sn=8ba96a150128c6f1a37e1cc1bcb1be9c&chksm=ebebc37adc9c4a6c3c30e1ea6e852184a842e53f55f844f46dab60a9928c5e0106680796b4a6&mpshare=1&scene=1&srcid=&sharer_sharetime=1586260300745&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=9866547c1b5ab09b7c9660109d2d21b36edc0a268d9be20ca45adfa6d76c754ee8e4c327150725f619db206e54cea7721bae39cdce0ae2f0dd858754234bae91105465a11b26b00aae2aa337c7a73070&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AamOM97f7TTzy39MUASFVmg%3D&pass_ticket=tgsS3coIbj7FH7%2BENg0o3WsrVwKbjd3p0eqIo3dd%2FtI%3D
