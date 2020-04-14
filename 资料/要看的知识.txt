@@ -43,9 +43,6 @@ DDD战术篇：领域模型的应用  http://insights.thoughtworkers.org/ddd-dom
 DDD & Microservices ：https://insights.thoughtworks.cn/ddd-and-microservices/
 
 
-js函数式编程指南：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
-
-
 C#中的函数式编程:http://hamidmosalla.com/2019/04/25/functional-programming-in-c-sharp-a-brief-guide/#Functional_Programming_Libraries_for_C
 
 C＃FP语言扩展  https://github.com/louthy/language-ext

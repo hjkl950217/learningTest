@@ -10,9 +10,12 @@ Hindley-Milner 类型--一种类型系统，主要用于不同背景的人可以
 
 
 资料：
-1. FP比较系统的入门引导：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html
+1. js函数式编程指南：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
+	FP比较系统的入门引导
+2. js-ramda官方文档： https://ramdajs.com/docs/#reduce 
+	可参考一些操作符的命名、描述、函数式声时
 
-
+	
 
 
 

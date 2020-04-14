@@ -9,6 +9,8 @@ namespace System
     {
         #region Action
 
+        #region 1个入参，1个出参
+
         /// <summary>
         /// 管道 <para></para>
         /// 适合： (a->b)->(b->void) => (a->void) <para></para>
@@ -71,6 +73,32 @@ namespace System
                 actions.For(item => item(tempResult));
             };
         }
+
+        #endregion 1个入参，1个出参
+
+        #region 2个入参，一个出参
+
+        /// <summary>
+        /// 管道 <para></para>
+        /// 适合： ((a->b)->c)->(c->void) => ((a->b)->void) <para></para>
+        /// 示例:  (string->int)->(int->void) => (string->void)
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="sourceFunc"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2, TResult>(
+            [NotNull] this Func<TInput1, TInput2, TResult> sourceFunc,
+            [NotNull] Action<TResult> action)
+        {
+            sourceFunc.CheckNull(nameof(sourceFunc));
+            action.CheckNull(nameof(action));
+
+            return (x, y) => action(sourceFunc(x, y));
+        }
+
+        #endregion 2个入参，一个出参
 
         #endregion Action
 
