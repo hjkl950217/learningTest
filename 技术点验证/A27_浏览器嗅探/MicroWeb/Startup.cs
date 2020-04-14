@@ -24,7 +24,7 @@ namespace 技术点验证
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
             app.UseCookiePolicy();//启动Cookie策略 需要在操作cookie中间件之前

@@ -30,58 +30,12 @@ namespace 技术点验证
                 Console.WriteLine("离开第2个中间件");
             });
 
-            application.Run(context => { Console.WriteLine("进入末尾中间件"); });
+            application.Run(context => { Console.WriteLine("进入末尾中间件"); return Task.CompletedTask; });
+            //application.Run(_ => Console.WriteLine("进入末尾中间件"));
 
             var mockPipe = application.Build();
 
             mockPipe.Invoke(new MockHttpContext());
-        }
-    }
-
-    public class MockHttpContext
-    {
-    }
-
-    public delegate Task MockRequestDelegate(MockHttpContext context);
-
-    public class ApplicationBuilder
-    {
-        private readonly IList<Func<MockRequestDelegate, MockRequestDelegate>> components = new List<Func<MockRequestDelegate, MockRequestDelegate>>();
-
-        public ApplicationBuilder Use(Func<MockRequestDelegate, MockRequestDelegate> component)
-        {
-            this.components.Add(component);
-            return this;
-        }
-
-        public ApplicationBuilder Use([NotNull] Func<MockHttpContext, Func<Task>, Task> component)
-        {
-            return this.Use(next => context => component(context, () => next(context)));
-        }
-
-        public ApplicationBuilder Run(Func<MockHttpContext, Task> component)
-        {
-            return this.Use(next => context => component(context));
-        }
-
-        public ApplicationBuilder Run([NotNull]Action<MockHttpContext> component)
-        {
-            return this.Use(next => context =>
-            {
-                component(context);
-                return Task.CompletedTask;
-            });
-        }
-
-        public MockRequestDelegate Build()
-        {
-            MockRequestDelegate result = context => Task.CompletedTask;
-
-            foreach (var item in this.components.Reverse())
-            {
-                result = item(result);
-            }
-            return result;
         }
     }
 }
