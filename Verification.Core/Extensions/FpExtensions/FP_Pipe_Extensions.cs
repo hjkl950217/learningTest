@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace System
 {
@@ -7,33 +8,13 @@ namespace System
     /// </summary>
     public static class FP_Pipe_Extensions
     {
-        #region Action
+        #region 返回Action
 
-        #region 1个入参，1个出参
-
-        /// <summary>
-        /// 管道 <para></para>
-        /// 适合： (a->b)->(b->void) => (a->void) <para></para>
-        /// 示例:  (string->int)->(int->void) => (string->void)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sourceFunc"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public static Action<TInput> Pipe<TInput, TResult>(
-            [NotNull] this Func<TInput, TResult> sourceFunc,
-            [NotNull] Action<TResult> action)
-        {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            action.CheckNull(nameof(action));
-
-            return t => action(sourceFunc(t));
-        }
+        #region 1个入参
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合： (a->void)->(a->void)->...  => (a->void) <para></para>
+        /// (a->void)->(a->void)->...  => (a->void) <para></para>
         /// 示例:  (string->void)->(string->void)->...  => (string->void)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
@@ -52,7 +33,7 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合： (a->b)->(b->void)->...  => (a->void) <para></para>
+        /// (a->b)->(b->void)->...  => (a->void) <para></para>
         /// 示例:  (string->int)->(int->void)->...  => (string->void)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>
@@ -74,39 +55,15 @@ namespace System
             };
         }
 
-        #endregion 1个入参，1个出参
+        #endregion 1个入参
 
-        #region 2个入参，一个出参
-
-        /// <summary>
-        /// 管道 <para></para>
-        /// 适合： ((a->b)->c)->(c->void) => ((a->b)->void) <para></para>
-        /// 示例:  (string->int)->(int->void) => (string->void)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sourceFunc"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2, TResult>(
-            [NotNull] this Func<TInput1, TInput2, TResult> sourceFunc,
-            [NotNull] Action<TResult> action)
-        {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            action.CheckNull(nameof(action));
-
-            return (x, y) => action(sourceFunc(x, y));
-        }
-
-        #endregion 2个入参，一个出参
-
-        #endregion Action
+        #endregion 返回Action
 
         #region Func
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  (a->b)->(b->c) => (a->c) <para></para>
+        /// (a->b)->(b->c) => (a->c) <para></para>
         /// 示例： (string->int)->(int->bool) => (string->bool)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>

@@ -31,7 +31,7 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
-        /// 适合:  (a->b)->(b->void)->... => (a->b) <para></para>
+        /// (a->b)->(b->void)->... => (a->b) <para></para>
         /// 示例： (string->int)->(int->void)->... => (string->int)
         /// </summary>
         /// <typeparam name="TInput"></typeparam>

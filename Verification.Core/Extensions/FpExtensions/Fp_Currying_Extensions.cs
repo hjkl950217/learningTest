@@ -9,7 +9,7 @@
 
         /// <summary>
         /// 柯里化<para></para>
-        /// 适合:  (a->void) => (a->(()->void)) <para></para>
+        /// (a->void) => (a->(()->void)) <para></para>
         /// 示例： (int->void) => (int->(()->void))
         /// </summary>
         /// <typeparam name="T1"></typeparam>
@@ -23,7 +23,7 @@
 
         /// <summary>
         /// 柯里化<para></para>
-        /// 适合:  (a->b->void) => (a->(b->(()->void))) <para></para>
+        /// (a->b->void) => (a->(b->(()->void))) <para></para>
         /// 示例： (int->string->void) => (int->(string->(()->void)))
         /// </summary>
         /// <typeparam name="T1"></typeparam>
