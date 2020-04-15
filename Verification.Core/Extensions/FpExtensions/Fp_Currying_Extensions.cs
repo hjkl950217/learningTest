@@ -80,6 +80,9 @@
         //todo: 后续还有东西没理解：https://zhuanlan.zhihu.com/p/94591842
     }
 
+    /// <summary>
+    /// 函数式扩展-分布函数
+    /// </summary>
     public static class Fp_Partial_Extensions
     {
         #region Action
