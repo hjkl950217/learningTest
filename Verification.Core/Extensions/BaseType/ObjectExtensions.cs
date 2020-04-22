@@ -292,24 +292,6 @@ namespace System
             return objStr.ToBytes(encoding);
         }
 
-        /// <summary>
-        /// MKPL Cumstom extension metohed: Auto convert the Objcet to a int? type
-        /// </summary>
-        /// <param name="value">the given original object</param>
-        /// <returns>the convert result</returns>
-        public static int? ToIntegerExt<T>(this T value)
-        {
-            if (null == value) return null;
-            if (DBNull.Value == (value as DBNull)) return null;
-
-            if (int.TryParse(value.ToString(), out int integerValue))
-            {
-                return integerValue;
-            }
-
-            return null;
-        }
-
         public static int ToInt32<T>(this T str)
             where T : class
         {

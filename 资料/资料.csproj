@@ -59,6 +59,9 @@
     <Content Include="要看的知识.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="2020年1月起成都市个体参保人员缴纳社会保险费标准%281%29.pdf" />
+    <None Include="成都市全部区（市）县社保基层网点地址、电话-2017.06.14更新.xlsx" />
+    <None Include="离职手册最新版-王学懿.docx" />
     <None Include="配置模版\docker-compose.yml" />
     <None Include="配置模版\nginx.conf" />
   </ItemGroup>
