@@ -14,7 +14,7 @@ namespace 技术点验证
     {
         public void Start(string[] args)
         {
-            ApplicationBuilder application = new ApplicationBuilder();
+            MyApplicationBuilder application = new MyApplicationBuilder();
 
             application.Use(async (context, next) =>
             {

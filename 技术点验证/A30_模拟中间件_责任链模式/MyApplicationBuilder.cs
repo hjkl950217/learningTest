@@ -9,11 +9,11 @@ using Verification.Core;
 
 namespace 技术点验证
 {
-    public class ApplicationBuilder : IApplicationBuilder
+    public class MyApplicationBuilder : IMyApplicationBuilder
     {
         private readonly IList<Func<MockRequestDelegate, MockRequestDelegate>> inlineDelegates = new List<Func<MockRequestDelegate, MockRequestDelegate>>();
 
-        public ApplicationBuilder Use(Func<MockRequestDelegate, MockRequestDelegate> inlineDelegate)
+        public MyApplicationBuilder Use(Func<MockRequestDelegate, MockRequestDelegate> inlineDelegate)
         {
             this.inlineDelegates.Add(inlineDelegate);
             return this;
