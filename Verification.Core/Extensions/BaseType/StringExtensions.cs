@@ -3,7 +3,9 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Verification.Core.ConstAndEnum;
 using Verification.Core.Helper;
+using Verification.Core.Serializer;
 
 namespace System
 {
@@ -15,25 +17,23 @@ namespace System
         public static readonly char[] DefualtSeparators = new[] { ',', ';' };
 
         /// <summary>
-        ///MKPL Cumstom extension metohed: Auto Convert Json string to object
+        /// 转成json对象
         /// </summary>
-        /// <typeparam name="T">Object Type</typeparam>
-        /// <param name="jsonStr">Json String</param>
-        /// <returns>Json format string</returns>
-        public static T ToObjectExt<T>(this string jsonStr)
+        /// <typeparam name="T">要序列化的string</typeparam>
+        /// <param name="jsonStr">               </param>
+        /// <param name="jsonSerializerSettings">自定义的序列化设置</param>
+        /// <returns></returns>
+        public static T ToObjectExt<T>(
+            this string jsonStr,
+            JsonSerializerSettings jsonSerializerSettings = null)
         {
-            var setting = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            var timeConverter = new IsoDateTimeConverter { DateTimeFormat = "MM\\/dd\\/yyyy HH:mm:ss" };
-            setting.Converters.Add(timeConverter);
+            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
 
-            return JsonConvert.DeserializeObject<T>(jsonStr, setting);
+            return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
         }
 
         /// <summary>
-        /// 格式化国家名字，转换成首字母大写，其他小写。如CHINA->China
+        /// 格式化国家名字，转换成首字母大写，其他小写。如CHINA-&gt;China
         /// </summary>
         /// <param name="countryName">国家名字</param>
         /// <returns></returns>
@@ -73,9 +73,9 @@ namespace System
         /// 基础转换,转换失败时会报错
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">要转换的字符串</param>
+        /// <param name="str">    要转换的字符串</param>
         /// <param name="convert">转换的方法</param>
-        /// <returns>类型为<typeparamref name="TValue"/>的值</returns>
+        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
         /// <exception cref="ArgumentException">The parameter 'str' is invalid、Empty、Null</exception>
         private static TValue BaseConvert<TValue>(
           this string str,
@@ -91,10 +91,10 @@ namespace System
         /// 基础转换,转换失败时会返回默认值
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">要转换的字符串</param>
+        /// <param name="str">         要转换的字符串</param>
         /// <param name="defaultValue">默认值</param>
-        /// <param name="convert">转换的方法</param>
-        /// <returns>类型为<typeparamref name="TValue"/>的值</returns>
+        /// <param name="convert">     转换的方法</param>
+        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
         private static TValue TryBaseConvert<TValue>(
           this string str,
           TValue defaultValue,
@@ -163,7 +163,7 @@ namespace System
         /// <summary>
         /// string转换为MD5字符串,null或""会返回""
         /// </summary>
-        /// <param name="str">要加密的字符串</param>
+        /// <param name="str"> 要加密的字符串</param>
         /// <param name="is32">是否返回32位长度，为false时返回16位</param>
         /// <returns></returns>
         public static string ToMD5(this string str, bool is32 = true)
@@ -198,11 +198,11 @@ namespace System
         /// <summary>
         /// 分割为数组
         /// </summary>
-        /// <param name="source">要处理的字符串</param>
-        /// <param name="separators">要分割的字符串.
-        /// 默认使用 ,或 ;  参考：<see cref="StringExtensions.DefualtSeparators"/>
+        /// <param name="source">    要处理的字符串</param>
+        /// <param name="separators">
+        /// 要分割的字符串. 默认使用 ,或 ; 参考： <see cref="StringExtensions.DefualtSeparators" />
         /// </param>
-        /// <param name="selector">字符串的处理，默认使用Trim().ToUpper()</param>
+        /// <param name="selector">  字符串的处理，默认使用Trim().ToUpper()</param>
         /// <returns></returns>
         public static string[] SplitToArray(
             this string source,
@@ -226,9 +226,9 @@ namespace System
 
         /// <summary>
         /// 移除字符串中最后一位多余的符号.需要做trim操作的请先处理好
-        /// <para>例:"1;2;3;"-->"1;2;3"</para>
+        /// <para>例:"1;2;3;"--&gt;"1;2;3"</para>
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source"> </param>
         /// <param name="symbols">要处理的符号集合</param>
         /// <returns></returns>
         public static string RemoveExtraSymbol(this string source, params char[] symbols)
@@ -261,11 +261,14 @@ namespace System
         }
 
         /// <summary>
-        /// 截取字符串，默认从0开始截取。强兼容版本
-        /// <para>如果<paramref name="length"/>大于<paramref name="source"/>的长度，则截取<paramref name="source"/>的长度</para>
+        /// 截取字符串，默认从0开始截取。如果参数比实际值大，则用实际值
+        /// <para>
+        /// 如果 <paramref name="length" /> 大于 <paramref name="source" /> 的长度，则截取 <paramref
+        /// name="source" /> 的长度
+        /// </para>
         /// </summary>
-        /// <param name="source">为null或长度为0时返回<see cref="string.Empty"/></param>
-        /// <param name="length">要截取的长度。不能小于0</param>
+        /// <param name="source">    为null或长度为0时返回 <see cref="string.Empty" /></param>
+        /// <param name="length">    要截取的长度。不能小于0</param>
         /// <param name="startIndex">开始截取的索引号。默认为0,不能小于0</param>
         /// <returns></returns>
         public static string SubstringExt(this string source, int length, int startIndex = 0)
@@ -282,8 +285,8 @@ namespace System
         /// <summary>
         /// 转换为byte[]
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="encoding">编码格式，默认<see cref="Encoding.UTF8"/></param>
+        /// <param name="source">  </param>
+        /// <param name="encoding">编码格式，默认 <see cref="Encoding.UTF8" /></param>
         /// <returns></returns>
         public static byte[] ToBytes(this string source, Encoding encoding = null)
         {
