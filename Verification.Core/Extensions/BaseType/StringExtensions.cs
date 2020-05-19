@@ -261,14 +261,12 @@ namespace System
         }
 
         /// <summary>
-        /// 截取字符串，默认从0开始截取。如果参数比实际值大，则用实际值
-        /// <para>
+        /// 截取字符串，默认从0开始截取。如果参数比实际值大，则用实际值 <para></para>
         /// 如果 <paramref name="length" /> 大于 <paramref name="source" /> 的长度，则截取 <paramref
         /// name="source" /> 的长度
-        /// </para>
         /// </summary>
-        /// <param name="source">    为null或长度为0时返回 <see cref="string.Empty" /></param>
-        /// <param name="length">    要截取的长度。不能小于0</param>
+        /// <param name="source">为null或长度为0时返回 <see cref="string.Empty" /></param>
+        /// <param name="length">要截取的长度。不能小于0</param>
         /// <param name="startIndex">开始截取的索引号。默认为0,不能小于0</param>
         /// <returns></returns>
         public static string SubstringExt(this string source, int length, int startIndex = 0)
