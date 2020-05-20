@@ -31,42 +31,42 @@ namespace 技术点验证
 
         public string? Method3()
         {
-            return $"{this.TestColor.ToJsonExt()}";
+            return $"{this.TestColor.GetValueOrDefault().ToString()}";
         }
 
         public string? Method4()
         {
-            return $"{this.Integr.ToJsonExt()}";
+            return $"{this.Integr.ToString()}";
         }
 
         public string? Method5()
         {
-            return $"{this.Double.ToJsonExt()}";
+            return $"{this.Double.ToString()}";
         }
 
         public string? Method6()
         {
-            return $"{this.Name.ToJsonExt()}";
+            return $"{this.Name.ToString()}";
         }
 
         public string? Method7()
         {
-            return $"{this.TestEnum.ToJsonExt()}";
+            return $"{this.TestEnum.ToString()}";
         }
 
         public string? Method8()
         {
-            return $"{this.TestEnum.ToJsonExt()}{this.Integr.ToJsonExt()}";
+            return $"{this.TestEnum.ToString()}{this.Integr.ToString()}";
         }
 
         public string? Method9()
         {
-            return $"{this.Double.ToJsonExt()}{this.Integr.ToJsonExt()}";
+            return $"{this.Double.ToString()}{this.Integr.ToString()}";
         }
 
         public string? Method10()
         {
-            return $"{this.StringArry.ToJsonExt()}{this.Integr.ToJsonExt()}";
+            return $"{this.StringArry?.ToJsonExt()}{this.Integr.ToString()}";
         }
     }
 }
