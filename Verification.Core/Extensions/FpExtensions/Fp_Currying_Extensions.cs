@@ -51,6 +51,10 @@
 
         #region Func
 
+        //Func<SensorMessage,Action<byte[]> > -> Currying -> Func<SensorMessage, Func<Action<byte[]>>>
+        //Func<SensorMessage, Func<Action<byte[]>>>(XXX)
+        //Func<Action<byte[]>()
+        //Action<byte[]>
         public static Func<T1, Func<TResult>> Currying<T1, TResult>(
             this Func<T1, TResult> func)
         {
