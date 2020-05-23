@@ -28,7 +28,11 @@ namespace System
             sourceFunc.CheckNull(nameof(sourceFunc));
             actions.CheckNull(nameof(actions));
 
-            return t => actions.For(item => item(t));
+            return t =>
+            {
+                sourceFunc(t);
+                actions.For(item => item(t));
+            };
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace System
             sourceFunc.CheckNull(nameof(sourceFunc));
             func.CheckNull(nameof(func));
 
-            return t => func(sourceFunc(t)); ;
+            return t => func(sourceFunc(t));
         }
 
         #endregion Func

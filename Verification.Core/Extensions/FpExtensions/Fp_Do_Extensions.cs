@@ -22,7 +22,10 @@ namespace System
             [NotNull] this Action<TInput> sourceFunc,
             [NotNull] params Action<TInput>[] actions)
         {
-            return FP_Pipe_Extensions.Pipe(sourceFunc, actions);
+            sourceFunc.CheckNull(nameof(sourceFunc));
+            actions.CheckNull(nameof(actions));
+            actions.For(t => sourceFunc += t);
+            return sourceFunc;
         }
 
         #endregion Action
