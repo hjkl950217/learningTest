@@ -23,7 +23,7 @@ namespace Verification.Core
         public static VerificationInfo StartVerification(
             this VerificationInfo verification,
             VerificationTypeEnum verificationTypeEnum,
-            string[] args)
+            string[]? args)
         {
             Console.WriteLine("开始验证");
             Console.WriteLine($"验证:\t-{verificationTypeEnum.ToString()}-");
