@@ -11,6 +11,9 @@
 11. NSubstitute  moq UT中用于mock数据的框架
 12  Polly是一个.NET弹性和瞬态故障处理库，允许开发人员以流畅和线程安全的方式表达诸如重试，断路器，超时，隔离头和回退之类的策略
 13. language-ext 一个C#里使用FP风格的库
+14.FlubuCore 跨平台的构建和部署自动化系统，用于使用C＃代码构建项目和执行部署脚本
+15.Hangfire 执行后台作业处理的库
+16.Refit .NET的REST库,它可以实现按接口定义生成httpClient的功能
 
 
 --工具
