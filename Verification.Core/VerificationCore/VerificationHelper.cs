@@ -17,8 +17,6 @@ namespace Verification.Core
 
         private static VerificationInfo GetVerification(VerificationTypeEnum verificationTypeEnum)
         {
-            //todo: 优化查找-->运行的方式
-
             #region 查找
 
             //判断是否为class
@@ -48,7 +46,6 @@ namespace Verification.Core
             };
 
             //组合验证的方法
-
             Func<Type, bool> typeJudge = i =>
                    isClass(i)
                    && isVerification(i)
