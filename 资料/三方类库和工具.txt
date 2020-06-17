@@ -14,6 +14,9 @@
 14. FlubuCore 跨平台的构建和部署自动化系统，用于使用C＃代码构建项目和执行部署脚本
 15. Hangfire 执行后台作业处理的库
 16. Refit .NET的REST库,它可以实现按接口定义生成httpClient的功能
+17. WebApiClient 比refit功能更强的库，用法类似但扩展性更好
+18.Chinese 中文解析工具库
+19.DotnetSpider 爬虫库
 
 
 --工具
