@@ -27,6 +27,22 @@ namespace Verification.Core.Helper
         private static readonly ConcurrentDictionary<string, EnumAttributeData[]> EnumStructCache = new ConcurrentDictionary<string, EnumAttributeData[]>();
 
         /// <summary>
+        /// 获取或添加枚举数据。数据源为 (私有)EnumHelper.EnumStructCache
+        /// </summary>
+        /// <param name="enumType">枚举的Type数据</param>
+        /// <returns></returns>
+        [return: NotNull]
+        public EnumAttributeData[] GetAllEnumAttributeData([NotNull]Type enumType)
+        {
+            var result = EnumHelper.EnumStructCache
+                 .GetOrAdd(
+                     key: enumType.Name,
+                     valueFactory: _ => this.BuildEnumAttributeDatas(enumType));
+
+            return result;
+        }
+
+        /// <summary>
         /// 提取枚举的结构
         /// </summary>
         /// <typeparam name="TEnum">枚举的类型</typeparam>

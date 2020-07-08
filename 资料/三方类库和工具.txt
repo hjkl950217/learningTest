@@ -16,9 +16,32 @@
 16. Refit .NET的REST库,它可以实现按接口定义生成httpClient的功能
 17. WebApiClient 比refit功能更强的库，用法类似但扩展性更好
 18. Chinese 中文解析工具库
-19. DotnetSpider 爬虫库-.net core-可分布式
-20. HtmlAgilityPack 爬虫库-简单易上手
-21. LibVLCSharp VLC的包装库，可跨平台播放视频
+19. DotnetSpider 爬虫库
+20. HtmlAgilityPack 另一个爬虫库，比DotnetSpider功能简单一些，但存在时间更久一些。
+21. Flurl 一个流式构建url的库，并且可以http调用
+22. AsyncEx 异步帮助库。涉及到队列、异步上下文时，可以考虑使用。
+23. Digipolis.DataAccess  EF的UnitOfWork和Repositories的基类。
+24. Exceptionless.DateTimeExtensions    DateTimeRange，工作日和各种DateTime，DateTimeOffset，TimeSpan扩展方法。
+25. FluentDateTime 流式的datetime操作扩展
+26. Enums.NET 高性能类型安全的.NET枚举实用程序库
+27. FluentFTP FTP和FTPS客户端
+28. Humanizer  满足显示字符串，枚举，日期，时间，时间跨度，数字和数量的所有.NET需求。
+30. pose - 用委托替换任何.NET方法(包括静态和非虚拟)
+31. Scrutor  Microsoft.Extensions.DependencyInjection的程序集扫描扩展。
+32. System.Linq.Dynamic.Core 可以在IQueryable上执行使用字符串的查询。
+33. Valit - Valit是对.NET Core的简单验证库，减少if的使用。
+34. EFCore.BulkExtensions EF的批量操作库
+35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集。 
+36. Elasticsearch.Net 官方推荐的 Elasticsearch .NET客户端
+37. SearchExtensions  IQueryable接口的高级搜索功能，例如Entity Framework查询。
+36. BinarySerializer - 二进制序列化库，用于控制字节和位级别的数据格式。
+37. MessagePack-CSharp MessagePack在C#中比较好的实现
+38. RazorLight 基于Microsoft针对.NET Core的Razor解析引擎的模板引擎。
+39. Bogus 简单而健全的C#假数据生成器。基于并从着名的faker.js移植。
+40. AutoFixture 快速创建假数据
+41. CommandLineUtils .NET Core和.NET Framework的命令行解析和实用程序。
+42  workflow-core .NET Standard的轻量级工作流引擎。
+43. LibVLCSharp VLC的包装库，可跨平台播放视频
 
 
 --工具
