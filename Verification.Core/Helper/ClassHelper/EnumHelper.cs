@@ -20,16 +20,22 @@ namespace Verification.Core.Helper
         /// <summary>
         /// 枚举结构缓存
         /// </summary>
+        /// <Value>
+        /// <para>Key:枚举类名</para>
+        /// <para>Value:枚举数据</para>
+        /// </Value>
         private static readonly ConcurrentDictionary<string, EnumAttributeData[]> EnumStructCache = new ConcurrentDictionary<string, EnumAttributeData[]>();
 
         /// <summary>
         /// 提取枚举的结构
         /// </summary>
-        /// <param name="enumType">枚举的Type数据</param>
+        /// <typeparam name="TEnum">枚举的类型</typeparam>
         /// <returns></returns>
         [return: NotNull]
-        protected EnumAttributeData[] BuildEnumAttributeDatas(Type enumType)
+        protected EnumAttributeData[] BuildEnumAttributeDatas<TEnum>()
+            where TEnum : Enum
         {
+            Type enumType = typeof(TEnum);
             //获得枚举的字段数据
             FieldInfo[] fields = enumType
                  .GetFields(BindingFlags.Static | BindingFlags.Public)
@@ -61,18 +67,14 @@ namespace Verification.Core.Helper
             return enumDataList;
         }
 
-        /// <summary>
-        /// 获取或添加枚举数据。数据源为 (私有)EnumHelper.EnumStructCache
-        /// </summary>
-        /// <param name="enumType">枚举的Type数据</param>
-        /// <returns></returns>
         [return: NotNull]
-        public EnumAttributeData[] GetAllEnumAttributeData([NotNull]Type enumType)
+        public EnumAttributeData[] GetAllEnumAttributeData<TEnum>()
+              where TEnum : Enum
         {
             var result = EnumHelper.EnumStructCache
                  .GetOrAdd(
-                     key: enumType.Name,
-                     valueFactory: _ => this.BuildEnumAttributeDatas(enumType));
+                     key: typeof(TEnum).Name,
+                     valueFactory: _ => this.BuildEnumAttributeDatas<TEnum>());
 
             return result;
         }

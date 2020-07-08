@@ -3,7 +3,7 @@
     /// <summary>
     /// DateTime扩展类
     /// </summary>
-    public static partial class DateTimeExtensions
+    public static class DateTimeExtensions
     {
         /// <summary>
         /// 获取Unix时间戳,单位为秒（前端默认是s）
@@ -26,8 +26,5 @@
         {
             return source.ToUnixTimeSeconds();
         }
-
-
     }
-
 }

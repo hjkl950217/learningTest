@@ -129,7 +129,7 @@ namespace System
             if (obj == null) return string.Empty;
 
             //利用 转成json字符串又转回成对象的方式   替换掉对象中的类型信息
-            object otempObj = JsonConvert.DeserializeObject(
+            object? otempObj = JsonConvert.DeserializeObject(
                   obj.ToJsonExt(),
                   type,
                   JsonSerializerSettingConst.DefaultSetting);
