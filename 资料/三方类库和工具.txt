@@ -15,8 +15,10 @@
 15. Hangfire 执行后台作业处理的库
 16. Refit .NET的REST库,它可以实现按接口定义生成httpClient的功能
 17. WebApiClient 比refit功能更强的库，用法类似但扩展性更好
-18.Chinese 中文解析工具库
-19.DotnetSpider 爬虫库
+18. Chinese 中文解析工具库
+19. DotnetSpider 爬虫库-.net core-可分布式
+20. HtmlAgilityPack 爬虫库-简单易上手
+21. LibVLCSharp VLC的包装库，可跨平台播放视频
 
 
 --工具
