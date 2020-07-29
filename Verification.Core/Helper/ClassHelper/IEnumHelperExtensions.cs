@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Verification.Core.Helper;
 
-namespace Verification.Core.Helper
+namespace JT.SDK.Core.Abstract
 {
     public static class IEnumHelperExtensions
     {
@@ -27,7 +28,7 @@ namespace Verification.Core.Helper
             Dictionary<string, TValue> resultList = new Dictionary<string, TValue>();
 
             //遍历数据并组合成Dictionary
-            foreach (var item in enumHelper.GetAllEnumAttributeData<TEnum>())//获取枚举结构数据
+            foreach (var item in enumHelper.GetAllEnumAttributeData(typeof(TEnum)))//获取枚举结构数据
             {
                 try
                 {
@@ -93,26 +94,24 @@ namespace Verification.Core.Helper
         #region 获取枚举上的Attribute
 
         /// <summary>
-        /// 获取枚举值上的默认第一个特性<para></para>
-        /// 如果存在多个<typeparamref name="TAttribute"/>，取第一个
+        /// 获取枚举值上<typeparamref name="TAttribute"/>特性的第一个<para></para>
+        /// 如果存在多个，取第一个
         /// </summary>
-        /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <typeparam name="TAttribute">枚举特性上面的类型</typeparam>
         /// <param name="enumValue">枚举值</param>
         /// <param name="orderFunc">用于排序的委托</param>
         /// <returns></returns>
-        public static TAttribute GetFirstAttribute<TEnum, TAttribute>(
+        public static TAttribute? GetFirstAttribute<TAttribute>(
             this IEnumHelper enumHelper,
-            TEnum enumValue,
-            Func<TAttribute, int> orderFunc)
-            where TEnum : Enum
+            Enum enumValue,
+            Func<TAttribute?, int> orderFunc)
             where TAttribute : Attribute
         {
             //获取枚举结构数据
-            EnumAttributeData[] fieldList = enumHelper.GetAllEnumAttributeData<TEnum>();
+            EnumAttributeData[] fieldList = enumHelper.GetAllEnumAttributeData(enumValue.GetType());
 
             //获取枚举值上面的特性集合
-            Attribute[] enumValueAttributeArry = Array.Find(fieldList, t => enumValue.Equals(t.EnumValue))
+            Attribute[]? enumValueAttributeArry = Array.Find(fieldList, t => enumValue.Equals(t.EnumValue))
                 ?.AttributeArray;
 
             if (enumValueAttributeArry == null)
@@ -122,30 +121,27 @@ namespace Verification.Core.Helper
             else
             {
                 Type attributeType = typeof(TAttribute);
-#pragma warning disable CS8604 // 可能的 null 引用参数。
+
                 return enumValueAttributeArry
-                    .Where(t => t.GetType() == attributeType)
+                    ?.Where(t => t.GetType() == attributeType)
                     .OrderBy(t => orderFunc(t as TAttribute))
                     .FirstOrDefault() as TAttribute;
-#pragma warning restore CS8604 // 可能的 null 引用参数。
             }
         }
 
         /// <summary>
-        /// 获取枚举值上的默认第一个特性<para></para>
-        /// 如果存在多个<typeparamref name="TAttribute"/>，取第一个
+        /// 获取枚举值上<typeparamref name="TAttribute"/>特性的第一个<para></para>
+        /// 如果存在多个，取第一个
         /// </summary>
-        /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <typeparam name="TAttribute">枚举特性上面的类型</typeparam>
         /// <param name="enumValue">枚举值</param>
         /// <returns></returns>
-        public static TAttribute GetFirstAttribute<TEnum, TAttribute>(
+        public static TAttribute? GetFirstAttribute<TAttribute>(
             this IEnumHelper enumHelper,
-            [NotNull] TEnum enumValue)
-            where TEnum : Enum
+            [NotNull] Enum enumValue)
             where TAttribute : Attribute
         {
-            return IEnumHelperExtensions.GetFirstAttribute<TEnum, TAttribute>(
+            return IEnumHelperExtensions.GetFirstAttribute<TAttribute>(
                 enumHelper: enumHelper,
                 enumValue: enumValue,
                 orderFunc: _ => 1);
@@ -158,16 +154,14 @@ namespace Verification.Core.Helper
         /// <summary>
         /// 获取枚举值上面的结构信息
         /// </summary>
-        /// <typeparam name="TEnum">枚举类型</typeparam>
         /// <param name="enumHelper"></param>
         /// <param name="enumValue"></param>
         /// <returns></returns>
-        public static EnumAttributeData GetEnumAttributeData<TEnum>(
+        public static EnumAttributeData GetEnumAttributeData(
             this IEnumHelper enumHelper,
-            TEnum enumValue)
-            where TEnum : Enum
+            Enum enumValue)
         {
-            return enumHelper.GetAllEnumAttributeData<TEnum>()
+            return enumHelper.GetAllEnumAttributeData(enumValue.GetType())
                 .First(t => t.EnumValue.GetHashCode() == enumValue.GetHashCode());//枚举的哈希值是枚举值对应的int
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
@@ -23,9 +24,10 @@ namespace System
         /// <param name="jsonStr">               </param>
         /// <param name="jsonSerializerSettings">自定义的序列化设置</param>
         /// <returns></returns>
+        [return: MaybeNull]
         public static T ToObjectExt<T>(
             this string jsonStr,
-            JsonSerializerSettings jsonSerializerSettings = null)
+            JsonSerializerSettings? jsonSerializerSettings = null)
         {
             jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
 
@@ -69,6 +71,14 @@ namespace System
 
         #region 基础类型与string之间的转换
 
+        private static readonly Action<string> emptyWithException = t =>
+        {
+            if (t.Length == 0)
+            {
+                throw new ArgumentException("The parameter 'str' is invalid、Empty、Null");
+            }
+        };
+
         /// <summary>
         /// 基础转换,转换失败时会报错
         /// </summary>
@@ -81,37 +91,25 @@ namespace System
           this string str,
           Func<string, TValue> convert)
         {
-            if (str.IsNullOrEmpty() == true)
-                throw new ArgumentException("The parameter 'str' is invalid、Empty、Null", nameof(str));
-
-            return convert(str);
+            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
+            return str.BaseConvert(convertTemp);
         }
 
         /// <summary>
         /// 基础转换,转换失败时会返回默认值
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">         要转换的字符串</param>
+        /// <param name="str">要转换的字符串</param>
         /// <param name="defaultValue">默认值</param>
-        /// <param name="convert">     转换的方法</param>
+        /// <param name="convert">转换的方法</param>
         /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
         private static TValue TryBaseConvert<TValue>(
           this string str,
-          TValue defaultValue,
-          Func<string, TValue> convert)
+          Func<string, TValue> convert,
+          TValue defaultValue = default)
         {
-            if (str.IsNullOrEmpty())
-            {
-                return defaultValue;
-            }
-            try
-            {
-                return convert(str);
-            }
-            catch
-            {
-                return defaultValue;
-            }
+            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
+            return str.BaseConvertOrDefalut(defaultValue, convertTemp);
         }
 
         public static int ToInt32(this string str)
@@ -121,7 +119,7 @@ namespace System
 
         public static int ToInt32OrDefault(this string str, int defaultValue = 0)
         {
-            return str.TryBaseConvert(defaultValue, System.Convert.ToInt32);
+            return str.TryBaseConvert(System.Convert.ToInt32, defaultValue);
         }
 
         public static bool ToBool(this string str)
@@ -131,7 +129,7 @@ namespace System
 
         public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
         {
-            return str.TryBaseConvert(defaultValue, System.Convert.ToBoolean);
+            return str.TryBaseConvert(System.Convert.ToBoolean, defaultValue);
         }
 
         public static decimal ToDecimal(this string str)
@@ -143,7 +141,7 @@ namespace System
             this string str,
             decimal defaultValue = 0.00M)
         {
-            return str.TryBaseConvert(defaultValue, System.Convert.ToDecimal);
+            return str.TryBaseConvert(System.Convert.ToDecimal, defaultValue);
         }
 
         public static double ToDouble(this string str)
@@ -155,7 +153,56 @@ namespace System
             this string str,
             double defaultValue = 0.00)
         {
-            return str.TryBaseConvert(defaultValue, System.Convert.ToDouble);
+            return str.TryBaseConvert(System.Convert.ToDouble, defaultValue);
+        }
+
+        #region TryToDateTimeOffset
+
+        /// <summary>
+        /// 标准时间格式中包含的符号(用于和long区分使用)
+        /// </summary>
+        private static string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
+
+        private static DateTimeOffset TryToDateTimeOffsetBase(this string str, Func<string, DateTimeOffset> convert)
+        {
+            return str switch
+            {
+                string a when a.IsNullOrEmpty() => DateTimeOffset.MinValue,
+                var a when a.ContainsSymbol(timeSysmbols) => str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
+                _ => str.TryBaseConvert(convert)//匹配不上则为long
+            };
+        }
+
+        public static DateTimeOffset TryToDateTimeOffset(this string str)
+        {
+            return str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset);
+        }
+
+        public static DateTimeOffset TryToUtcDateTimeOffset(this string str)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffset);
+        }
+
+        public static DateTimeOffset TryToUtcDateTimeOffsetByMilliseconds(this string str)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds);
+        }
+
+        public static DateTimeOffset TryToLocalDateTimeOffset(this string str)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffset);
+        }
+
+        public static DateTimeOffset TryToLocalDateTimeOffsetByMilliseconds(this string str)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds);
+        }
+
+        #endregion TryToDateTimeOffset
+
+        public static long ToLong(this string str, long defaultValue = 0L)
+        {
+            return str.TryBaseConvert(TypeConvertDelegate.stringToLong, defaultValue);
         }
 
         #endregion 基础类型与string之间的转换
@@ -286,10 +333,10 @@ namespace System
         /// <param name="source">  </param>
         /// <param name="encoding">编码格式，默认 <see cref="Encoding.UTF8" /></param>
         /// <returns></returns>
-        public static byte[] ToBytes(this string source, Encoding encoding = null)
+        public static byte[] ToBytes(this string source, Encoding? encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            return source.BaseConvertAndDefalut(Array.Empty<byte>(), encoding.GetBytes);
+            return source.BaseConvertOrDefalut(Array.Empty<byte>(), encoding.GetBytes);
         }
 
         public static T ToEnum<T>(this string str, bool ignoreCase = false)
@@ -300,6 +347,22 @@ namespace System
                 return enumValue;
             }
             return default(T);
+        }
+
+        /// <summary>
+        /// 判断是否包含符号
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        public static bool ContainsSymbol(this string str, params string[] symbols)
+        {
+            return str switch
+            {
+                null => false,
+                string a when a == string.Empty => false,
+                _ => symbols.Any(t => str.Contains(t))
+            };
         }
     }
 }

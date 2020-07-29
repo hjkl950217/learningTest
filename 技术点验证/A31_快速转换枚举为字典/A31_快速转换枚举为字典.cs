@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Verification.Core;
@@ -12,7 +10,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A31_快速转换枚举为字典)]
     public class A31_快速转换枚举为字典 : IVerification
     {
-        public void Start(string[] args)
+        public void Start(string[]? args)
         {
             Type[] types = new Type[]
             {
@@ -37,7 +35,9 @@ namespace 技术点验证
                  .GetFields(BindingFlags.Static | BindingFlags.Public)
                  ?? Array.Empty<FieldInfo>();
 
+#pragma warning disable CS8605 // 取消装箱可能为 null 的值。
             _ = fields.ToDictionary(k => k.Name, v => (int)v.GetValue(null));
+#pragma warning restore CS8605 // 取消装箱可能为 null 的值。
         }
 
         [Benchmark]

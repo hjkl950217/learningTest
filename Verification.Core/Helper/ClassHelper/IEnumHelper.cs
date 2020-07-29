@@ -8,9 +8,9 @@ namespace Verification.Core.Helper
         /// <summary>
         /// 获取或添加枚举数据。数据源为 (私有)EnumHelper.EnumStructCache
         /// </summary>
-        /// <typeparam name="TEnum">枚举的类型</typeparam>
+        /// <param name="enumType">枚举的类型</param>
         /// <returns></returns>
         [return: NotNull]
-        EnumAttributeData[] GetAllEnumAttributeData<TEnum>() where TEnum : Enum;
+        EnumAttributeData[] GetAllEnumAttributeData(Type enumType);
     }
 }

@@ -13,7 +13,7 @@ namespace System
         public static string ToStr(this byte[] source, Encoding? encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            return source.BaseConvertAndDefalut(string.Empty, encoding.GetString);
+            return source.BaseConvertOrDefalut(string.Empty, encoding.GetString);
         }
     }
 }

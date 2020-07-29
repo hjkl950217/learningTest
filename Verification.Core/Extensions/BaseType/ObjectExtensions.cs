@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml;
 using Newtonsoft.Json;
@@ -11,8 +12,7 @@ namespace System
 {
     public static class ObjectExtensions
     {
-        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings jsonSerializerSettings = null)
-            where T : class
+        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? jsonSerializerSettings = null)
         {
             if (obj == null) return string.Empty;
 
@@ -87,7 +87,7 @@ namespace System
              where T : class
         {
             // 0.数据检查
-            if (obj.IsNullOrEmpty()) return null;
+            if (obj.IsNullOrEmpty()) return string.Empty;
 
             // 1.获取定制的xml序列化器
             XmlWriterSettings xmlSetting = new XmlWriterSettings
@@ -145,7 +145,7 @@ namespace System
         /// <param name="value"></param>
         /// <returns></returns>
         public static bool IsNullOrEmpty<T>(this T value)
-          where T : class
+          where T : class?
         {
             #region 1.对象级别
 
@@ -154,7 +154,7 @@ namespace System
             if (isObjectNull == true) return true;
 
             //判断是否为集合
-            IEnumerator tempEnumerator = (value as IEnumerable)?.GetEnumerator();
+            IEnumerator? tempEnumerator = (value as IEnumerable)?.GetEnumerator();
             if (tempEnumerator == null) return false;//这里出去代表是对象 且 引用不为null.所以为false
 
             #endregion 1.对象级别
@@ -224,7 +224,7 @@ namespace System
             if (source == null) throw new ArgumentNullException(nameof(source));
 
             //判断是否为集合
-            IEnumerator tempEnumerator = (source as IEnumerable)?.GetEnumerator();//为null才代表是对象
+            IEnumerator? tempEnumerator = (source as IEnumerable)?.GetEnumerator();//为null才代表是对象
             if (tempEnumerator != null)
                 throw new TypeAccessException($"{nameof(source)}'s type not is array type!");
 
@@ -266,7 +266,7 @@ namespace System
         /// <param name="source">  </param>
         /// <param name="encoding">编码格式，默认 <see cref="Encoding.UTF8" /></param>
         /// <returns></returns>
-        public static byte[] ToBytes<T>(this T source, Encoding encoding = null)
+        public static byte[] ToBytes<T>(this T source, Encoding? encoding = null)
         {
             source.CheckNull(nameof(source));
 
@@ -284,7 +284,7 @@ namespace System
         public static int ToInt32OrDefault<T>(this T str, int defaultValue = 0)
              where T : class
         {
-            return str.BaseConvertAndDefalut(defaultValue, System.Convert.ToInt32);
+            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToInt32);
         }
 
         public static bool ToBool<T>(this T str)
@@ -296,7 +296,7 @@ namespace System
         public static bool ToBoolOrDefault<T>(this T str, bool defaultValue = false)
               where T : class
         {
-            return str.BaseConvertAndDefalut(defaultValue, System.Convert.ToBoolean);
+            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToBoolean);
         }
 
         public static decimal ToDecimal<T>(this T str)
@@ -309,7 +309,7 @@ namespace System
             this T str,
             decimal defaultValue = 0.00M) where T : class
         {
-            return str.BaseConvertAndDefalut(defaultValue, System.Convert.ToDecimal);
+            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToDecimal);
         }
 
         public static double ToDouble<T>(this T str)
@@ -322,7 +322,7 @@ namespace System
             this T str,
             double defaultValue = 0.00) where T : class
         {
-            return str.BaseConvertAndDefalut(defaultValue, System.Convert.ToDouble);
+            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToDouble);
         }
 
         #endregion 基础类型与Object之间的转换

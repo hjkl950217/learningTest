@@ -300,7 +300,7 @@ namespace Verification.Core.Helper
         /// <param name="keyLength">混淆key的长度</param>
         /// <param name="customWords">自定义的生成字,默认:O o 0</param>
         /// <returns>生成的混淆key字符串数组</returns>
-        public static string[] GetConfuseKey(int confuseNum = 3, int keyLength = 12, char[] customWords = null)
+        public static string[] GetConfuseKey(int confuseNum = 3, int keyLength = 12, char[]? customWords = null)
         {
             //可以使用span再次提高下性能
             char[] words = customWords ?? new char[] { 'O', 'o', '0' };//混淆字符

@@ -1,4 +1,5 @@
-﻿using Verification.Core.Helper;
+﻿using JT.SDK.Core.Abstract;
+using Verification.Core.Helper;
 
 namespace System
 {

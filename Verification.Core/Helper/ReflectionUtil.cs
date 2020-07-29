@@ -56,8 +56,8 @@ namespace Verification.Core.Helper
         public static IEnumerable<TTypeInfo> ScanType<TTypeInfo>(
             Func<Type, bool> typerPreJudger,
             Func<Type, TTypeInfo> typeInfoConvert,
-            Func<TTypeInfo, bool> filter = null,
-            Func<IEnumerable<Type>> findTypeByAppDomain = null)
+            Func<TTypeInfo, bool>? filter = null,
+            Func<IEnumerable<Type>>? findTypeByAppDomain = null)
         {
             typerPreJudger.CheckNull(nameof(typerPreJudger));
             typeInfoConvert.CheckNull(nameof(typeInfoConvert));

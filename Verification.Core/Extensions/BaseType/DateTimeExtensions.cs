@@ -26,5 +26,16 @@
         {
             return source.ToUnixTimeSeconds();
         }
+
+        /// <summary>
+        /// 在当前时间上面添加偏移
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static DateTimeOffset AddOffset(this DateTimeOffset source, TimeSpan offset)
+        {
+            return new DateTimeOffset(source.UtcDateTime.Ticks, source.Offset + offset);
+        }
     }
 }

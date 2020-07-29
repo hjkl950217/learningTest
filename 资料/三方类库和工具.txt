@@ -42,6 +42,9 @@
 41. CommandLineUtils .NET Core和.NET Framework的命令行解析和实用程序。
 42  workflow-core .NET Standard的轻量级工作流引擎。
 43. LibVLCSharp VLC的包装库，可跨平台播放视频
+44. FluentScheduler 勤快哥推荐的非分布式定时任务框架
+45. FluentHttpClient 流式调用httpClient
+46. Masuit.Tools 勤快哥的工具类，包含各种工具代码
 
 
 --工具

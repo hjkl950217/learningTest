@@ -34,7 +34,7 @@
         /// <param name="defaultValue">默认值</param>
         /// <param name="convert">转换的方法</param>
         /// <returns>类型为<typeparamref name="TValue"/>的值</returns>
-        public static TValue BaseConvertAndDefalut<T, TValue>(
+        public static TValue BaseConvertOrDefalut<T, TValue>(
           this T source,
           TValue defaultValue,
           Func<T, TValue> convert)
@@ -52,5 +52,28 @@
                 return defaultValue;
             }
         }
+
+        #region ToEnum
+
+        private static TEnum BaseToEnum<TEnum, TValue>(TValue value)
+            where TEnum : Enum
+            where TValue : struct
+        {
+            return (TEnum)Enum.ToObject(typeof(TEnum), value);
+        }
+
+        public static TEnum ToEnum<TEnum>(this byte value)
+           where TEnum : Enum
+        {
+            return BaseToEnum<TEnum, byte>(value);
+        }
+
+        public static TEnum ToEnum<TEnum>(this ushort value)
+          where TEnum : Enum
+        {
+            return BaseToEnum<TEnum, ushort>(value);
+        }
+
+        #endregion ToEnum
     }
 }

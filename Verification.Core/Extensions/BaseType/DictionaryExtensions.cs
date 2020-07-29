@@ -15,7 +15,7 @@ namespace System
             TValue defaultValue = default)
         {
             key.CheckNull(nameof(key));
-            valuePairs.CheckNull(nameof(valuePairs));
+            if (valuePairs.IsNullOrEmpty()) { return defaultValue; }
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
             if (isExist) { return value; }
