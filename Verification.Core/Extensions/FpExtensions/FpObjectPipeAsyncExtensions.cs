@@ -7,8 +7,8 @@ namespace System
     {
         /// <summary>
         /// 管道 <para></para>
-        /// a->(a->b) => b <para></para>
-        /// 示例： string->(string->int) => int
+        /// a->(a->bool)->(a->a) => a <para></para>
+        /// 示例： string->(string->bool)->(string->string) => string
         /// </summary>
         /// <Value>
         /// <para><paramref name="input"/>：要处理的值 </para>
