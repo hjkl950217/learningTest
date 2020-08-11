@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup .NET Core Build Env
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
@@ -21,6 +21,8 @@ jobs:
       run: dotnet restore CkTools
     - name: Build
       run: dotnet build CkTools --configuration Release --no-restore -o package
+    - name: log
+      run: pwd
     - name: Push
       run: |
             dotnet nuget push "**/*.nupkg" 
