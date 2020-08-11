@@ -8,6 +8,8 @@
     </Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
     <PackageTags>Masuit.Tools</PackageTags>
+    <iconUrl>https://github.com/hjkl950217/learningTest/blob/master/CkTools/CkTools.png</iconUrl>
+   
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
