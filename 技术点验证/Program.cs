@@ -1,4 +1,5 @@
 ﻿using Verification.Core;
+using Verification.Core.VerificationCore;
 
 namespace 技术点验证
 {

@@ -34,21 +34,21 @@ namespace 技术点验证._A15_分割字符串的基准测试_
             string[] result = new string[this.DataCount];
             for (int i = 0 ; i < this.DataCount ; i++)
             {
-                int lenth = TestHelper.random.Next(10);
+                int lenth = A08TestHelper.random.Next(10);
                 char[] tempChars = new char[lenth];
 
                 //随机一个字符串
                 for (int j = 0 ; j < lenth ; j++)
                 {
-                    tempChars[j] = TestHelper.GetRandomChar();
+                    tempChars[j] = A08TestHelper.GetRandomChar();
 
                     if (j % 2 == 0)
                     {
-                        tempChars[j] = TestHelper.GetRandomChar();
+                        tempChars[j] = A08TestHelper.GetRandomChar();
                     }
                     else
                     {
-                        tempChars[j] = this.symbols[TestHelper.random.Next(this.symbols.Length)];
+                        tempChars[j] = this.symbols[A08TestHelper.random.Next(this.symbols.Length)];
                     }
                 }
 

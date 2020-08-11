@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using 技术点验证.DataConvertHander;
-using Verification.Core;
+using CkTools;
 
 namespace 技术点验证.TestSensorDataHander
 {

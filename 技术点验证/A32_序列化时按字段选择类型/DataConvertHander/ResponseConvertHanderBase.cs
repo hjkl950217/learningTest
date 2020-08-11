@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Verification.Core.Helper;
+using CkTools.Helper;
 
 namespace 技术点验证.DataConvertHander
 {
@@ -21,12 +21,12 @@ namespace 技术点验证.DataConvertHander
         /// <summary>
         /// 返回结果初始化器
         /// </summary>
-        private Func<TDataSource, TType, TOutPut> outPutInitializer;
+        private readonly Func<TDataSource, TType, TOutPut> outPutInitializer;
 
         /// <summary>
         /// 数据设置器
         /// </summary>
-        private Func<TDataSource, TField, TOutPut, TOutPut> outPutSetter;
+        private readonly Func<TDataSource, TField, TOutPut, TOutPut> outPutSetter;
 
         protected ResponseConvertHanderBase()
         {
@@ -45,7 +45,7 @@ namespace 技术点验证.DataConvertHander
             if (dataSource.IsNullOrEmpty())
                 return Array.Empty<TOutPut>();
 
-            var initFunc = outPutInitializer.Currying()(dataSource)(this.HanderType);
+            var initFunc = this.outPutInitializer.Currying()(dataSource)(this.HanderType);
 
             var result = ArrayHelper.GetArray<TOutPut>(
                count: this.fieldTypes.Length,

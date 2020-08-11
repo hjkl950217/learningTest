@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using CkTools.ConstAndEnum;
+using CkTools.Helper;
 using Verification.Core;
-using Verification.Core.ConstAndEnum;
 
 namespace 技术点验证.A26_不同集合的对比纪录
 {
@@ -13,7 +14,7 @@ namespace 技术点验证.A26_不同集合的对比纪录
         {
             Console.WriteLine("运行起来只有验证代码,结论和分析在代码中");
 
-            HashSet_TestHashHowTime();
+            this.HashSet_TestHashHowTime();
 
             #region 集合
 
@@ -69,11 +70,11 @@ namespace 技术点验证.A26_不同集合的对比纪录
             HashSet<TestString> hashSet = new HashSet<TestString>();
             Console.WriteLine("创建HashSet完成");
 
-            hashSet.Add(VerificationHelper.Mock<TestString>());
+            hashSet.Add(TestHelper.Mock<TestString>());
             Console.WriteLine("添加HashSet完成");
-            hashSet.Add(VerificationHelper.Mock<TestString>());
+            hashSet.Add(TestHelper.Mock<TestString>());
             Console.WriteLine("添加HashSet完成");
-            hashSet.Add(VerificationHelper.Mock<TestString>());
+            hashSet.Add(TestHelper.Mock<TestString>());
             Console.WriteLine("添加HashSet完成");
         }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AutoFixture;
+using System.Text;
 
-namespace Verification.Core
+namespace Verification.Core.VerificationCore
 {
     public static class VerificationHelper
     {
@@ -81,31 +81,6 @@ namespace Verification.Core
             #endregion 查找
 
             return VerificationInfo.Create(verificationTypeEnum, () => (IVerification)Activator.CreateInstance(type));
-        }
-
-        public static Fixture fixture = new Fixture();
-
-        public static T[] MockArray<T>(int count = 3)
-        {
-            T[] result = new T[count];
-            for (int i = 0 ; i < result.Length ; i++)
-            {
-                result[i] = fixture.Create<T>();
-            }
-
-            return result;
-        }
-
-        public static List<T> MockList<T>(int count = 3)
-        {
-            List<T> result = new List<T>();
-            result.Add(fixture.Create<T>());
-            return result;
-        }
-
-        public static T Mock<T>()
-        {
-            return VerificationHelper.MockArray<T>(1)[0];
         }
     }
 }

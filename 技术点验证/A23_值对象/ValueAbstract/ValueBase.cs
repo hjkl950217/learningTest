@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using CkTools;
 using Verification.Core;
 
 namespace 技术点验证
@@ -25,7 +26,7 @@ namespace 技术点验证
 
         #region 内部逻辑
 
-        protected ValueBase([NotNull]TValue data)
+        protected ValueBase([NotNull] TValue data)
         {
             this.Value = data;
             this.CheckVlueWithException();
