@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build CkTools --configuration Release --no-restore -o package
     - name: log
-      run: pwd
+      run: ls
     - name: Push
       run: |
             dotnet nuget push "**/*.nupkg" 
