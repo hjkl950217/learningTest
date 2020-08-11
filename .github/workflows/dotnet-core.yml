@@ -23,13 +23,13 @@ jobs:
       run: dotnet build CkTools --configuration Release --no-restore -o package
     - name: Push
       run: |
-            dotnet nuget push "package/*.nupkg" 
+            cddotnet nuget push "**/*.nupkg" 
             -k 'oy2bhl42nx3mvdkdgzxqlxydntxmnfuupmdt6l4adbv4cm' 
             -s 'https://api.nuget.org/v3/index.json'  
             --skip-duplicate
     - name: Push Symbol 
       run: |
-            dotnet nuget push "package/*.snupkg" 
+            dotnet nuget push "**/*.snupkg" 
             -k 'oy2bhl42nx3mvdkdgzxqlxydntxmnfuupmdt6l4adbv4cm' 
             -s 'https://api.nuget.org/v3/index.json'  
             --skip-duplicate
