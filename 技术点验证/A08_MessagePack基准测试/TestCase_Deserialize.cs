@@ -24,11 +24,11 @@ namespace 技术点验证
         public void SetUp()
         {
             MsgSerializer.InitializeMsgPackSerializer();
-            var testIntDataT = TestHelper.GetIntTestData(this.TestTotal);
-            var testStringData = TestHelper.GetIntTestData2(this.TestTotal);
-            var testNonDataT = TestHelper.GetIntTestData3(this.TestTotal);
-            var testDefaultDataT = TestHelper.GetIntTestData3(this.TestTotal);
-            var testJsonDataT = TestHelper.GetIntTestData3(this.TestTotal);
+            var testIntDataT = A08TestHelper.GetIntTestData(this.TestTotal);
+            var testStringData = A08TestHelper.GetIntTestData2(this.TestTotal);
+            var testNonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
+            var testDefaultDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
+            var testJsonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
 
             this.testIntData = MsgSerializer.Serialize(testIntDataT);
             this.testStringData = MsgSerializer.Serialize(testStringData);

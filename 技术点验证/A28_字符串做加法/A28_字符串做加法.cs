@@ -41,15 +41,15 @@ namespace 技术点验证.A28_字符串做加法
             List<(string, string)> result = new List<(string, string)>();
             for (int i = 0 ; i < this.DataCount ; i++)
             {
-                int lenth = TestHelper.random.Next(20);
+                int lenth = A08TestHelper.random.Next(20);
                 char[] tempChars = new char[lenth];
                 char[] tempChars2 = new char[lenth];
 
                 //随机一个字符数组
                 for (int j = 0 ; j < lenth ; j++)
                 {
-                    tempChars[j] = TestHelper.GetRandomNum();
-                    tempChars2[j] = TestHelper.GetRandomNum();
+                    tempChars[j] = A08TestHelper.GetRandomNum();
+                    tempChars2[j] = A08TestHelper.GetRandomNum();
                 }
 
                 //把随机的字符数组添加到返回结果中

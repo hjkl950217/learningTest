@@ -24,9 +24,9 @@ namespace 技术点验证
         public void SetUp()
         {
             MsgSerializer.InitializeMsgPackSerializer();
-            this.testIntData = TestHelper.GetIntTestData(this.TestTotal);
-            this.testStringData = TestHelper.GetIntTestData2(this.TestTotal);
-            this.testNonData = TestHelper.GetIntTestData3(this.TestTotal);
+            this.testIntData = A08TestHelper.GetIntTestData(this.TestTotal);
+            this.testStringData = A08TestHelper.GetIntTestData2(this.TestTotal);
+            this.testNonData = A08TestHelper.GetIntTestData3(this.TestTotal);
         }
 
         [Benchmark]

@@ -35,10 +35,10 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
             {
                 StudentTest tempStu = new StudentTest()
                 {
-                    Address = TestHelper.GetRandomString(),
-                    Code = TestHelper.GetRandomEnum<HttpStatusCode>(500, 512),
-                    Name = TestHelper.GetRandomString(),
-                    PhoneNumber = TestHelper.random.Next(this.DataCount),
+                    Address = A08TestHelper.GetRandomString(),
+                    Code = A08TestHelper.GetRandomEnum<HttpStatusCode>(500, 512),
+                    Name = A08TestHelper.GetRandomString(),
+                    PhoneNumber = A08TestHelper.random.Next(this.DataCount),
                     Tag = this.DataCount % 2 == 0 ? "01" : "02"
                 };
                 studentTests.Add(tempStu);
