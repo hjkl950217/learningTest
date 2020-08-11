@@ -19,10 +19,10 @@
     <!--目标框架-->
     <!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
 
-    <!--构建项目时生成Nuget包-->
+    <!--构建信息-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
-    <!--是否验证许可证-->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 
     <!--支持平台-->

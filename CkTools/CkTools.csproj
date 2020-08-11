@@ -1,4 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\SDKPulishNuget.targets" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -16,7 +18,6 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.1.1" />
     <PackageReference Include="FluentValidation.ValidatorAttribute" Version="8.6.1" />
     <PackageReference Include="AspectCore.Extensions.Reflection" Version="2.1.0" />
-
     <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
 </Project>
