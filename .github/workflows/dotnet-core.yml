@@ -21,9 +21,7 @@ jobs:
       run: dotnet restore CkTools
     - name: Build
       run: dotnet build CkTools --configuration Release --no-restore -o package
-    - name: log
-      run: ls
     - name: Push
-      run: dotnet nuget push "**/*.nupkg" -k 'oy2bhl42nx3mvdkdgzxqlxydntxmnfuupmdt6l4adbv4cm' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+      run: dotnet nuget push "**/*.nupkg" -k 'oy2ood3whx623akk2snqwa3oloxkwjmehp4lom5skyuodq' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
     - name: Push Symbol 
-      run: dotnet nuget push "**/*.snupkg" -k 'oy2bhl42nx3mvdkdgzxqlxydntxmnfuupmdt6l4adbv4cm' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+      run: dotnet nuget push "**/*.snupkg" -k 'oy2ood3whx623akk2snqwa3oloxkwjmehp4lom5skyuodq' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
