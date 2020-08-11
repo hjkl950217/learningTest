@@ -2,18 +2,16 @@
   <PropertyGroup>
 
     <!--库信息-->
+    <!--更多信息：https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#nuget-metadata-properties-->
     <Authors>长空X</Authors>
-    <Description>
-      包含一些扩展方法、工具类、FP扩展代码
-    </Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
-    <PackageTags>Masuit.Tools</PackageTags>
-    <iconUrl>https://github.com/hjkl950217/learningTest/blob/master/CkTools/CkTools.png</iconUrl>
-   
+    <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageIcon>logo.png</PackageIcon>
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
-    <Version>3.1.0.1</Version>
+    <Version>3.1.0.3</Version>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)$(VersionSuffix)</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
@@ -26,6 +24,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <IncludeSource>true</IncludeSource>
+    <IncludeContentInPack>true</IncludeContentInPack>
 
     <!--支持平台-->
     <Platforms>AnyCPU;x86</Platforms>
@@ -43,4 +43,8 @@
 
     <!--下面是其它项目级别的配置-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>

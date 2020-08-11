@@ -23,11 +23,12 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Fsharp学习", "Fsharp学�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67F897C0-69F5-4C36-9EEB-A4FD3D0CA58F}"
 	ProjectSection(SolutionItems) = preProject
+		logo.png = logo.png
 		SDKPulishNuget.targets = SDKPulishNuget.targets
 		未填的坑.txt = 未填的坑.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "资料", "资料\资料.csproj", "{A5DA441D-F0BB-42F8-BD6D-48117CBE4172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "资料", "资料\资料.csproj", "{A5DA441D-F0BB-42F8-BD6D-48117CBE4172}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "堆栈信息格式化", "工具\堆栈信息格式化\堆栈信息格式化.csproj", "{E9EFB88A-B170-4AFB-ABD1-296794375133}"
 EndProject
