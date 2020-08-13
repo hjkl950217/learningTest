@@ -3,9 +3,8 @@
 
     <!--库信息-->
     <!--更多信息：https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#nuget-metadata-properties-->
+    <!--PackageProjectUrl和RepositoryUrl需要在项目文件中设置，否则会被覆盖-->
     <Authors>长空X</Authors>
-    <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageIcon>logo.png</PackageIcon>
 
