@@ -61,7 +61,7 @@ namespace CkTools.Test.Test.Extensions
             // (int->string)->1 => (()->string)
             Func<string> result = intToString.Currying()(1);
 
-            Assert.Equal("", result());
+            Assert.Equal("1", result());
         }
 
         #endregion Func
