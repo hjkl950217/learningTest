@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace System
 {
@@ -76,15 +77,15 @@ namespace System
 
         private static void CheckArguments(object source, object predicate)
         {
-            source.CheckNull(nameof(source));
-            predicate.CheckNull(nameof(predicate));
+            source.CheckNullWithException(nameof(source));
+            predicate.CheckNullWithException(nameof(predicate));
         }
 
         private static void CheckArguments(object first, object second, object predicate)
         {
-            first.CheckNull(nameof(first));
-            second.CheckNull(nameof(second));
-            predicate.CheckNull(nameof(predicate));
+            first.CheckNullWithException(nameof(first));
+            second.CheckNullWithException(nameof(second));
+            predicate.CheckNullWithException(nameof(predicate));
         }
 
         #endregion private check
@@ -240,7 +241,7 @@ namespace System
           Func<IEnumerable<TResult>, TArray> converter,
           Func<TArray> defaultValueFunc)
         {
-            selector.CheckNull(nameof(selector));
+            selector.CheckNullWithException(nameof(selector));
 
             return source == null
                 ? defaultValueFunc()
@@ -289,6 +290,29 @@ namespace System
                 defaultValueFunc: () => defaultValue ?? new List<TResult>());
         }
 
+        /// <summary>
+        /// Select+ToList的组合版本(异步)
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="selector"></param>
+        /// <param name="defaultValue">当<paramref name="source"/>为<see cref="null"/>时，返回的值.默认值为:0长度的<see cref="List{T}"/></param>
+        /// <returns></returns>
+        public static Task<List<TResult>> ToListAsync<TSource, TResult>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TResult> selector,
+            List<TResult>? defaultValue = null)
+        {
+            return Task.Run(() =>
+            {
+                return IEnumerableExtensions.ToList<TSource, TResult>(
+                    source: source,
+                    selector: selector,
+                    defaultValue: defaultValue);
+            });
+        }
+
         #endregion To集合
 
         #region FirstOrDefault
@@ -329,7 +353,7 @@ namespace System
             Action<TSource> valueSetter)
             where TSource : class
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
             return source.Select(t => { valueSetter(t); return t; });
         }
 
@@ -344,7 +368,7 @@ namespace System
         public static IEnumerable<TSource> RemoveNull<TSource>(
             this IEnumerable<TSource> source)
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
             return source.Where(t => t != null);
         }
 
@@ -360,8 +384,8 @@ namespace System
             this IEnumerable<TSource> source,
             Func<TSource, TProperty> propertySelector)
         {
-            source.CheckNull(nameof(source));
-            propertySelector.CheckNull(nameof(propertySelector));
+            source.CheckNullWithException(nameof(source));
+            propertySelector.CheckNullWithException(nameof(propertySelector));
             return source.Where(t => propertySelector(t) != null);
         }
 
@@ -373,7 +397,7 @@ namespace System
         public static IEnumerable<string> RemoveNullOrEmpty(
             this IEnumerable<string> source)
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
             return source.Where(t => !string.IsNullOrEmpty(t));
         }
 
@@ -388,8 +412,8 @@ namespace System
             this IEnumerable<TSource> source,
             Func<TSource, string> propertySelector)
         {
-            source.CheckNull(nameof(source));
-            propertySelector.CheckNull(nameof(propertySelector));
+            source.CheckNullWithException(nameof(source));
+            propertySelector.CheckNullWithException(nameof(propertySelector));
             return source.Where(t => !string.IsNullOrEmpty(propertySelector(t)));
         }
 

@@ -14,7 +14,7 @@ namespace System
             TKey key,
             TValue defaultValue = default)
         {
-            key.CheckNull(nameof(key));
+            key.CheckNullWithException(nameof(key));
             if (valuePairs.IsNullOrEmpty()) { return defaultValue; }
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
@@ -36,9 +36,9 @@ namespace System
              TKey key,
              TValue value)
         {
-            key.CheckNull(nameof(key));
-            value.CheckNull(nameof(value));
-            valuePairs.CheckNull(nameof(valuePairs));
+            key.CheckNullWithException(nameof(key));
+            value.CheckNullWithException(nameof(value));
+            valuePairs.CheckNullWithException(nameof(valuePairs));
 
             bool isExist = valuePairs.ContainsKey(key);
             if (!isExist)
@@ -82,9 +82,9 @@ namespace System
             Func<TValue> factory)
 
         {
-            key.CheckNull(nameof(key));
-            valuePairs.CheckNull(nameof(valuePairs));
-            factory.CheckNull(nameof(factory));
+            key.CheckNullWithException(nameof(key));
+            valuePairs.CheckNullWithException(nameof(valuePairs));
+            factory.CheckNullWithException(nameof(factory));
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
             if (isExist) { return value; }
@@ -130,7 +130,7 @@ namespace System
            Func<TValue> factory)
 
         {
-            factory.CheckNull(nameof(factory));
+            factory.CheckNullWithException(nameof(factory));
             return valuePairs.GetOrAdd(key, () => factory());
         }
 
@@ -167,8 +167,8 @@ namespace System
            TKey key,
            TValue value)
         {
-            valuePairs.CheckNull(nameof(valuePairs));
-            value.CheckNull(nameof(value));
+            valuePairs.CheckNullWithException(nameof(valuePairs));
+            value.CheckNullWithException(nameof(value));
 
             if (valuePairs.ContainsKey(key))
             {
@@ -185,7 +185,7 @@ namespace System
         public static IReadOnlyDictionary<TKey, TValue> ToReadOnly<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> source)
         {
-            source.CheckNullOrEmpty(nameof(source));
+            source.CheckNullOrEmptyWithException(nameof(source));
 
             return source switch
             {

@@ -25,8 +25,8 @@ namespace System
             [NotNull] this Action<TInput> sourceFunc,
             [NotNull] params Action<TInput>[] actions)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            actions.CheckNull(nameof(actions));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            actions.CheckNullWithException(nameof(actions));
 
             return t =>
             {
@@ -49,8 +49,8 @@ namespace System
             [NotNull] this Func<TInput, TResult> sourceFunc,
             [NotNull] params Action<TResult>[] actions)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            actions.CheckNull(nameof(actions));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            actions.CheckNullWithException(nameof(actions));
 
             return t =>
             {
@@ -80,8 +80,8 @@ namespace System
           [NotNull] this Func<TInput, TCenter> sourceFunc,
           [NotNull] Func<TCenter, TResult> func)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            func.CheckNull(nameof(func));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            func.CheckNullWithException(nameof(func));
 
             return t => func(sourceFunc(t));
         }

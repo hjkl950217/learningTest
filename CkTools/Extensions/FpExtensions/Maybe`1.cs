@@ -42,7 +42,7 @@ namespace System
 
         public static implicit operator T(Maybe<T> value)
         {
-            value.CheckNull(nameof(value));
+            value.CheckNullWithException(nameof(value));
             return value.Value;
         }
 

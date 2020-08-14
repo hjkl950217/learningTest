@@ -25,17 +25,17 @@ namespace AutoMapper学习与练习
         {
             var config = new AutoMapper.MapperConfiguration(cfg =>
            {
-                //配置替换字符，一定要在创建map之前
-                //cfg.ReplaceMemberName( "Ä" , "A" );//把源类型属性名中的Ä替换成A
+               //配置替换字符，一定要在创建map之前
+               //cfg.ReplaceMemberName( "Ä" , "A" );//把源类型属性名中的Ä替换成A
 
-                cfg.AddProfile(new OrderMapFile());
+               cfg.AddProfile(new OrderMapFile());
 
-                // cfg.AddExpressionMapping();
+               // cfg.AddExpressionMapping();
 
-                // 映射具有public或internal的get的属性
-                cfg.ShouldMapProperty = p =>
-                   p.GetMethod != null
-                   && (p.GetMethod.IsPublic || p.GetMethod.IsAssembly);
+               // 映射具有public或internal的get的属性
+               cfg.ShouldMapProperty = p =>
+                  p.GetMethod != null
+                  && (p.GetMethod.IsPublic || p.GetMethod.IsAssembly);
            });
 
             config.AssertConfigurationIsValid();
@@ -51,9 +51,7 @@ namespace AutoMapper学习与练习
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //AddMapper( services );
-
-            services.AddAutoMapper();
+            AddMapper(services);
 
             AddIoc(services);
 

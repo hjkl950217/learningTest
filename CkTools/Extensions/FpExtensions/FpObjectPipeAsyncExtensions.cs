@@ -23,8 +23,8 @@ namespace System
             [NotNull] Func<TInput, TInput> func
             )
         {
-            isExecute.CheckNull(nameof(isExecute));
-            func.CheckNull(nameof(func));
+            isExecute.CheckNullWithException(nameof(isExecute));
+            func.CheckNullWithException(nameof(func));
 
             return input.ContinueWith(inObj =>
             {

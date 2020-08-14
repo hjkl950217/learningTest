@@ -59,8 +59,8 @@ namespace CkTools.Helper
             Func<TTypeInfo, bool>? filter = null,
             Func<IEnumerable<Type>>? findTypeByAppDomain = null)
         {
-            typerPreJudger.CheckNull(nameof(typerPreJudger));
-            typeInfoConvert.CheckNull(nameof(typeInfoConvert));
+            typerPreJudger.CheckNullWithException(nameof(typerPreJudger));
+            typeInfoConvert.CheckNullWithException(nameof(typeInfoConvert));
 
             filter ??= t => t != null;
             findTypeByAppDomain ??= () => AppDomain.CurrentDomain.GetAssemblies()

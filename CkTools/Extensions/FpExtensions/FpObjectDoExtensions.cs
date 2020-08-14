@@ -24,8 +24,8 @@ namespace System
             [NotNull] Action<TInput> doFunc
             )
         {
-            isExecute.CheckNull(nameof(isExecute));
-            doFunc.CheckNull(nameof(doFunc));
+            isExecute.CheckNullWithException(nameof(isExecute));
+            doFunc.CheckNullWithException(nameof(doFunc));
 
             if (isExecute(input)) { doFunc(input); }
 
@@ -47,8 +47,8 @@ namespace System
             [NotNull] Func<TInput, bool> isExecute,
             [NotNull] Func<TInput, Task> doAsyncFunc)
         {
-            isExecute.CheckNull(nameof(isExecute));
-            doAsyncFunc.CheckNull(nameof(doAsyncFunc));
+            isExecute.CheckNullWithException(nameof(isExecute));
+            doAsyncFunc.CheckNullWithException(nameof(doAsyncFunc));
 
             if (isExecute(input))
             {

@@ -35,7 +35,7 @@ namespace CkTools.Serializer
 
         public void Register(ContentTypeEnum contentType, ISerializer serializer)
         {
-            serializer.CheckNull(nameof(serializer));
+            serializer.CheckNullWithException(nameof(serializer));
             serializerList.AddOrUpdate(contentType, serializer);
         }
     }

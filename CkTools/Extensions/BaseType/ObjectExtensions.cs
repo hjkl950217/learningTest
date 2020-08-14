@@ -12,14 +12,7 @@ namespace System
 {
     public static class ObjectExtensions
     {
-        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? jsonSerializerSettings = null)
-        {
-            if (obj == null) return string.Empty;
-
-            //序列化并返回
-            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
-            return JsonConvert.SerializeObject(obj, jsonSerializerSettings);
-        }
+        #region CheckNull
 
         /// <summary>
         /// 检查参数是否为null，为null时抛出异常
@@ -28,7 +21,7 @@ namespace System
         /// <param name="obj">      要检查的对象</param>
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null时抛出</exception>
-        public static void CheckNull<T>(this T obj, string paramName)
+        public static void CheckNullWithException<T>(this T obj, string paramName)
         {
             if (obj == null) throw new ArgumentNullException(paramName);
         }
@@ -41,7 +34,7 @@ namespace System
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <param name="message">  抛出异常时,显示的错误信息</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null时抛出</exception>
-        public static void CheckNull<T>(this T obj, string paramName, string message)
+        public static void CheckNullWithException<T>(this T obj, string paramName, string message)
         {
             if (obj == null) throw new ArgumentNullException(paramName, message);
         }
@@ -52,7 +45,7 @@ namespace System
         /// <param name="obj">      要检查的对象</param>
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
-        public static void CheckNullOrEmpty(this IEnumerable obj, string paramName)
+        public static void CheckNullOrEmptyWithException(this IEnumerable obj, string paramName)
         {
             if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName);
         }
@@ -64,43 +57,22 @@ namespace System
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <param name="message">  抛出异常时,显示的错误信息</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
-        public static void CheckNullOrEmpty(this IEnumerable obj, string paramName, string message)
+        public static void CheckNullOrEmptyWithException(this IEnumerable obj, string paramName, string message)
         {
             if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName, message);
         }
 
-        public static T DeepCopy<T>(this T obj)
-            where T : class
+        #endregion CheckNull
+
+        #region Tojson
+
+        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? jsonSerializerSettings = null)
         {
-            string outPut = obj.ToJsonExt();
-            return outPut.ToObjectExt<T>();
-        }
+            if (obj == null) return string.Empty;
 
-        /// <summary>
-        /// 转换成XML字符串,对象为空时返回null
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj">                </param>
-        /// <param name="isRemoveDeclaration">是否去掉XML声明。</param>
-        /// <returns></returns>
-        public static string ToXmlExtV2<T>(this T obj, bool isRemoveDeclaration = true)
-             where T : class
-        {
-            // 0.数据检查
-            if (obj.IsNullOrEmpty()) return string.Empty;
-
-            // 1.获取定制的xml序列化器
-            XmlWriterSettings xmlSetting = new XmlWriterSettings
-            {
-                //忽略XML声明
-                OmitXmlDeclaration = isRemoveDeclaration,
-                Indent = true,
-                Encoding = Encoding.UTF8,
-            };
-            ISerializer xmlSeria = new Xml_System_Serializer(xmlSetting);
-
-            // 2.序列化并返回
-            return xmlSeria.SerializeToString(obj);
+            //序列化并返回
+            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
+            return JsonConvert.SerializeObject(obj, jsonSerializerSettings);
         }
 
         /// <summary>
@@ -136,6 +108,42 @@ namespace System
 
             //序列化并返回
             return JsonConvert.SerializeObject(otempObj, JsonSerializerSettingConst.DefaultSetting);
+        }
+
+        #endregion Tojson
+
+        public static T DeepCopy<T>(this T obj)
+            where T : class
+        {
+            string outPut = obj.ToJsonExt();
+            return outPut.ToObjectExt<T>();
+        }
+
+        /// <summary>
+        /// 转换成XML字符串,对象为空时返回null
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">                </param>
+        /// <param name="isRemoveDeclaration">是否去掉XML声明。</param>
+        /// <returns></returns>
+        public static string ToXmlExtV2<T>(this T obj, bool isRemoveDeclaration = true)
+             where T : class
+        {
+            // 0.数据检查
+            if (obj.IsNullOrEmpty()) return string.Empty;
+
+            // 1.获取定制的xml序列化器
+            XmlWriterSettings xmlSetting = new XmlWriterSettings
+            {
+                //忽略XML声明
+                OmitXmlDeclaration = isRemoveDeclaration,
+                Indent = true,
+                Encoding = Encoding.UTF8,
+            };
+            ISerializer xmlSeria = new Xml_System_Serializer(xmlSetting);
+
+            // 2.序列化并返回
+            return xmlSeria.SerializeToString(obj);
         }
 
         /// <summary>
@@ -268,7 +276,7 @@ namespace System
         /// <returns></returns>
         public static byte[] ToBytes<T>(this T source, Encoding? encoding = null)
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
 
             string objStr = JsonConvert.SerializeObject(source, JsonSerializerSettingConst.StorageSetting);
             encoding = encoding ?? Encoding.UTF8;

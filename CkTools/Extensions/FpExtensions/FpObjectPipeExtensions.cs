@@ -22,8 +22,8 @@ namespace System
             [NotNull] Func<TInput, TInput> func
             )
         {
-            isExecute.CheckNull(nameof(isExecute));
-            func.CheckNull(nameof(func));
+            isExecute.CheckNullWithException(nameof(isExecute));
+            func.CheckNullWithException(nameof(func));
 
             if (isExecute(input))
             {
@@ -52,7 +52,7 @@ namespace System
             [NotNull] Func<TInput, TOutput> func
             )
         {
-            func.CheckNull(nameof(func));
+            func.CheckNullWithException(nameof(func));
 
             return func(input);
         }

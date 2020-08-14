@@ -21,8 +21,8 @@ namespace System
             [NotNull] this Action<TInput> sourceFunc,
             [NotNull] Action<TInput> action)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            action.CheckNull(nameof(action));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            action.CheckNullWithException(nameof(action));
             sourceFunc += action;
             return sourceFunc;
         }
@@ -40,8 +40,8 @@ namespace System
             [NotNull] this Action<TInput> sourceFunc,
             [NotNull] params Action<TInput>[] actions)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            actions.CheckNull(nameof(actions));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            actions.CheckNullWithException(nameof(actions));
             actions.For(t => sourceFunc += t);
             return sourceFunc;
         }
@@ -64,8 +64,8 @@ namespace System
             [NotNull] this Func<TInput, TResult> sourceFunc,
             [NotNull] Action<TResult> action)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            action.CheckNull(nameof(action));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            action.CheckNullWithException(nameof(action));
 
             return t =>
             {
@@ -89,8 +89,8 @@ namespace System
             [NotNull] this Func<TInput, TResult> sourceFunc,
             [NotNull] params Action<TResult>[] actions)
         {
-            sourceFunc.CheckNull(nameof(sourceFunc));
-            actions.CheckNull(nameof(actions));
+            sourceFunc.CheckNullWithException(nameof(sourceFunc));
+            actions.CheckNullWithException(nameof(actions));
 
             return t =>
             {

@@ -35,9 +35,9 @@ namespace 技术点验证.DataConvertHander
             this.outPutInitializer = this.SetOutPutInitializer();
             this.outPutSetter = this.SetOutPutSetter();
 
-            this.fieldTypes.CheckNull(nameof(this.fieldTypes));
-            this.outPutInitializer.CheckNull(nameof(this.outPutInitializer));
-            this.outPutSetter.CheckNull(nameof(this.outPutSetter));
+            this.fieldTypes.CheckNullWithException(nameof(this.fieldTypes));
+            this.outPutInitializer.CheckNullWithException(nameof(this.outPutInitializer));
+            this.outPutSetter.CheckNullWithException(nameof(this.outPutSetter));
         }
 
         public IEnumerable<TOutPut> Parse(TDataSource dataSource)

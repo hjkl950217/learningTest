@@ -11,9 +11,9 @@ namespace System
             Func<T> valueFactory)
             where T : class
         {
-            source.CheckNull(nameof(source));
-            predicate.CheckNull(nameof(predicate));
-            valueFactory.CheckNull(nameof(valueFactory));
+            source.CheckNullWithException(nameof(source));
+            predicate.CheckNullWithException(nameof(predicate));
+            valueFactory.CheckNullWithException(nameof(valueFactory));
 
             T value = source.FirstOrDefault(predicate);
             switch (value)
@@ -39,7 +39,7 @@ namespace System
         /// <returns></returns>
         public static T[] Copy<T>(this ICollection<T> source, int size)
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
 
             T[] tempResult = new T[size];
             source.CopyTo(tempResult, 0);
@@ -54,7 +54,7 @@ namespace System
         /// <returns></returns>
         public static T[] Copy<T>(this ICollection<T> source)
         {
-            source.CheckNull(nameof(source));
+            source.CheckNullWithException(nameof(source));
             return source.Copy(source.Count);
         }
     }

@@ -6,7 +6,7 @@ namespace CkTools.Helper
     {
         public static TEntity[] GetArray<TEntity>(int count, Func<TEntity> createFactory)
         {
-            createFactory.CheckNull(nameof(createFactory));
+            createFactory.CheckNullWithException(nameof(createFactory));
 
             TEntity[] result = new TEntity[count];
 
@@ -27,7 +27,7 @@ namespace CkTools.Helper
         public static TEntity[] GetArrayByNew<TEntity>(int count, Func<TEntity, TEntity> initFunc)
             where TEntity : class, new()
         {
-            initFunc.CheckNull(nameof(initFunc));
+            initFunc.CheckNullWithException(nameof(initFunc));
             return GetArray(count, () => initFunc(new TEntity()));
         }
     }

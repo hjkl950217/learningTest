@@ -360,9 +360,20 @@ namespace System
             return str switch
             {
                 null => false,
+                string a when string.IsNullOrEmpty(a) => false,
                 string a when a == string.Empty => false,
                 _ => symbols.Any(t => str.Contains(t))
             };
+        }
+
+        /// <summary>
+        /// 判断字符串是否为空
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string s)
+        {
+            return string.IsNullOrEmpty(s);
         }
     }
 }

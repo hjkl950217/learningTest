@@ -24,7 +24,7 @@ namespace CkTools.Helper
             [NotNull] Func<EnumAttributeData, TValue> convert)
             where TEnum : Enum
         {
-            convert.CheckNull(nameof(convert));
+            convert.CheckNullWithException(nameof(convert));
             Dictionary<string, TValue> resultList = new Dictionary<string, TValue>();
 
             //遍历数据并组合成Dictionary
