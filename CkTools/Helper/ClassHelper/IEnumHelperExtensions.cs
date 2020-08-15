@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using CkTools.Helper;
 
 namespace CkTools.Helper
 {
@@ -28,7 +27,7 @@ namespace CkTools.Helper
             Dictionary<string, TValue> resultList = new Dictionary<string, TValue>();
 
             //遍历数据并组合成Dictionary
-            foreach (var item in enumHelper.GetAllEnumAttributeData(typeof(TEnum)))//获取枚举结构数据
+            foreach (EnumAttributeData? item in enumHelper.GetAllEnumAttributeData(typeof(TEnum)))//获取枚举结构数据
             {
                 try
                 {

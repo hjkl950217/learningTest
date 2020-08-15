@@ -4,11 +4,11 @@ namespace Verification.Core
 {
     public static class VerificationInfoExtension
     {
-        public static VerificationInfo CheckNull(this VerificationInfo verification)
+        public static VerificationInfo CheckNull(this VerificationInfo? verification)
         {
             if (verification == null)
             {
-                throw new NotImplementedException($"{verification.VerificationType.ToString()} 发生异常");
+                throw new NotImplementedException($"{verification?.VerificationType} 发生异常");
             }
 
             return verification;

@@ -77,7 +77,7 @@ namespace CkTools.Test.Test.Helper.ClassHelper
             [Fact]
             public void TC_GetStruct_Value_Exception()
             {
-                var result = Assert.Throws<InvalidCastException>(() =>
+                InvalidCastException result = Assert.Throws<InvalidCastException>(() =>
                 {
                     EnumHelper.Instance.GetEnumStruct<TestEnumByte, char>();
                 });
@@ -103,6 +103,14 @@ namespace CkTools.Test.Test.Helper.ClassHelper
         public class GetAttributeTest
         {
             [Fact]
+            public void Tc_GetAttribute_Null()
+            {
+                Attribute result = TestEnumAttr.Default.GetAttribute<FlagsAttribute>();
+
+                Assert.Null(result);
+            }
+
+            [Fact]
             public void Tc_GetAttribute()
             {
                 EnumDescriptionAttribute result = TestEnumAttr.Default.GetAttribute<EnumDescriptionAttribute>();
@@ -111,14 +119,6 @@ namespace CkTools.Test.Test.Helper.ClassHelper
                 Assert.Equal("-Default-", result.ShowValue);
                 Assert.Equal("D", result.DBValue);
                 Assert.Equal("Default", result.Description);
-            }
-
-            [Fact]
-            public void Tc_GetAttribute_Null()
-            {
-                Attribute result = TestEnumAttr.Default.GetAttribute<FlagsAttribute>();
-
-                Assert.Null(result);
             }
         }
     }

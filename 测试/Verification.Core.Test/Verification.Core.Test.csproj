@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\UT.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\Verification.Core\Verification.Core.csproj" />
+    <Compile Remove="VerificationCore\**" />
+    <EmbeddedResource Remove="VerificationCore\**" />
+    <None Remove="VerificationCore\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="VerificationCore\" />
+    <ProjectReference Include="..\..\Verification.Core\Verification.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="AutoFixture.AutoNSubstitute" Version="4.13.0" />

@@ -28,7 +28,6 @@ public class EnumHelper : IEnumHelper
     /// <summary>
     /// 提取枚举的结构
     /// </summary>
-    /// <typeparam name="TEnum">枚举的类型</typeparam>
     /// <returns></returns>
     [return: NotNull]
     protected EnumAttributeData[] BuildEnumAttributeDatas(Type enumType)

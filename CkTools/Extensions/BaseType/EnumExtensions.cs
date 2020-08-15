@@ -23,7 +23,7 @@ namespace System
         /// <param name="enumValue">枚举值</param>
         public static TAttribute? GetAttribute<TAttribute>(
             this Enum enumValue,
-            Func<TAttribute, int>? orderFunc = null)
+            Func<TAttribute?, int>? orderFunc = null)
             where TAttribute : Attribute
         {
             return orderFunc switch
