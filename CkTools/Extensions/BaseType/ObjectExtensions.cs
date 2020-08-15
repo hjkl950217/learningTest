@@ -66,13 +66,19 @@ namespace System
 
         #region Tojson
 
-        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? jsonSerializerSettings = null)
+        //针对某些时候引用了库却没有引用json.net的情况
+        public static string ToJsonExt<T>(this T obj)
+        {
+            return obj.ToJsonExt(null);
+        }
+
+        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? setting = null)
         {
             if (obj == null) return string.Empty;
 
             //序列化并返回
-            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
-            return JsonConvert.SerializeObject(obj, jsonSerializerSettings);
+            setting = setting ?? JsonSerializerSettingConst.DefaultSetting;
+            return JsonConvert.SerializeObject(obj, setting);
         }
 
         /// <summary>
