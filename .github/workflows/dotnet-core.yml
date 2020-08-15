@@ -20,7 +20,7 @@ jobs:
     - name: Restore
       run: dotnet restore CkTools
     - name: UT
-      run: dotnet test |dotnet test
+      run: dotnet test
     - name: Build
       run: dotnet build CkTools --configuration Release --no-restore -o package
     - name: Push
