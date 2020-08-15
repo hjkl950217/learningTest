@@ -77,7 +77,7 @@ namespace System
             if (obj == null) return string.Empty;
 
             //序列化并返回
-            setting ??= JsonSerializerSettingConst.DefaultSetting;
+            setting = setting?? JsonSerializerSettingConst.DefaultSetting;
             return JsonConvert.SerializeObject(obj, setting);
         }
 
