@@ -1,4 +1,4 @@
-﻿﻿# CkTools
+# CkTools
 
 | NuGet | License |
 |--|--|
