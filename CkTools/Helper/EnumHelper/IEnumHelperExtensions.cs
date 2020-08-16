@@ -103,7 +103,7 @@ namespace CkTools.Helper
         public static TAttribute? GetFirstAttribute<TAttribute>(
             this IEnumHelper enumHelper,
             Enum enumValue,
-            Func<TAttribute?, int> orderFunc)
+            Func<TAttribute, int> orderFunc)
             where TAttribute : Attribute
         {
             //获取枚举结构数据
@@ -122,9 +122,9 @@ namespace CkTools.Helper
                 Type attributeType = typeof(TAttribute);
 
                 return enumValueAttributeArry
-                    ?.Where(t => t.GetType() == attributeType)
-                    .OrderBy(t => orderFunc(t as TAttribute))
-                    .FirstOrDefault() as TAttribute;
+                    .Cast<TAttribute>()
+                    .OrderBy(t => orderFunc(t))
+                    .FirstOrDefault(t => t.GetType() == attributeType);
             }
         }
 
