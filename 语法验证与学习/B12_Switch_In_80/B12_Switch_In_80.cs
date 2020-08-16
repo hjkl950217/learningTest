@@ -14,13 +14,13 @@ namespace 语法验证与学习
                 Tag2 = TagEnum.Two
             };
 
-            GetTag_Exception_Patterns(5);
+            this.GetTag_Exception_Patterns(5);
 
             Console.WriteLine($"Switch匹配_表示式模式：{this.GetTag_Expression_Patterns(TagEnum.First)}");
             Console.WriteLine($"Switch匹配_属性模式：{this.GetTag_Property_Patterns(tagObject)}");
             Console.WriteLine($"Switch匹配_位置模式：{this.GetTag_Positional_Patterns(tagObject)}");
 
-            var (x, _) = tagObject;
+            (TagEnum x, TagEnum _) = tagObject;
             Console.WriteLine($"解构： {x.ToString()}");
         }
 
@@ -64,7 +64,8 @@ namespace 语法验证与学习
         {
             return a switch
             {
-                100 => 10
+                100 => 10,
+                _ => 10,
             };
         }
     }

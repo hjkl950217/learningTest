@@ -8,7 +8,7 @@ namespace 语法验证与学习
         public static void Main(string[]? args)
         {
             //开始验证
-            VerificationHelper.StartVerification(VerificationTypeEnum.B17_Aggregate, args);
+            VerificationHelper.StartVerification(VerificationTypeEnum.B18_ConcurrentDictionary原子操作, args);
         }
     }
 }
