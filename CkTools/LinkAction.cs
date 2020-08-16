@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CkTools
 {
     /// <summary>
-    /// 链接<see cref="actions"/>的对象
+    /// 链接Action的对象
     /// </summary>
     public class LinkAction
     {
@@ -29,26 +29,26 @@ namespace CkTools
         /// <summary>
         /// 添加一个要执行的Action
         /// </summary>
-        /// <param name="verification"></param>
+        /// <param name="linkObj"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static LinkAction Add(this LinkAction t, Action action)
+        public static LinkAction Add(this LinkAction linkObj, Action action)
         {
-            t.Actions.Add(action);
-            return t;
+            linkObj.Actions.Add(action);
+            return linkObj;
         }
 
         /// <summary>
         /// 添加一组要执行的Action
         /// </summary>
-        /// <param name="verification"></param>
-        /// <param name="action"></param>
+        /// <param name="linkObj"></param>
+        /// <param name="actions"></param>
         /// <returns></returns>
-        public static LinkAction AddRange(this LinkAction t, params Action[] actions)
+        public static LinkAction AddRange(this LinkAction linkObj, params Action[] actions)
         {
             actions ??= Array.Empty<Action>();
-            t.Actions.AddRange(actions);
-            return t;
+            linkObj.Actions.AddRange(actions);
+            return linkObj;
         }
 
         /// <summary>

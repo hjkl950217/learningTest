@@ -7,7 +7,6 @@ namespace System
         /// <summary>
         /// 获取枚举值对应的名字
         /// </summary>
-        /// <typeparam name="TEnum"></typeparam>
         /// <param name="enumValue"></param>
         /// <returns></returns>
         public static string GetEnumName(this Enum enumValue)
@@ -37,7 +36,7 @@ namespace System
         /// 获取枚举值（不是枚举名）对应的字符串类型。<para></para>
         /// 如: AAA.B=1  返回"1"
         /// </summary>
-        /// <param name="en">枚举值</param>
+        /// <param name="enumValue">枚举值</param>
         /// <returns>枚举值对应的值类型，字符串表现形式</returns>
         public static string GetValueString(this Enum enumValue)
         {

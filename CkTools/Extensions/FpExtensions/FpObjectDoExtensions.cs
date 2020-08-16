@@ -83,7 +83,7 @@ namespace System
         /// <Value>
         /// <para><paramref name="input"/>：要处理的值 </para>
         /// <para><paramref name="isExecute"/>：判断是否执行，true为执行 </para>
-        /// <para><paramref name="doFunc"/>：将要执行的处理 </para>
+        /// <para><paramref name="doAsyncFunc"/>：将要执行的处理 </para>
         /// </Value>
         /// <typeparam name="TInput">可传递任意类型</typeparam>
         /// <returns></returns>

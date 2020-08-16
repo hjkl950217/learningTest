@@ -5,7 +5,7 @@ namespace CkTools.Serializer
 {
     public class XmlContentSerializerOptions
     {
-        public XmlSerializerNamespaces Namespaces { get; set; }
-        public XmlWriterSettings WriterSettings { get; set; }
+        public XmlSerializerNamespaces? Namespaces { get; set; }
+        public XmlWriterSettings? WriterSettings { get; set; }
     }
 }

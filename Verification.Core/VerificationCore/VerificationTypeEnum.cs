@@ -77,6 +77,7 @@
         B15_在CSharp中使用FSharp,
         B16_特性_在泛型和委托上标记_40,
         B17_Aggregate,
+        B18_ConcurrentDictionary原子操作,
 
         #endregion 语法类
 

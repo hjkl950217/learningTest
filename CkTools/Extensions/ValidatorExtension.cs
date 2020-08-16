@@ -171,11 +171,11 @@ namespace FluentValidation
             return ruleBuilder
                 .NotNull()
                 .NotEmpty()
-                .Must((chars) =>
+                .Must(chars =>
                 {
                     if (chars == null) return false;
 
-                    string tempStr = chars as string;
+                    string? tempStr = chars as string;
                     if (tempStr == null) tempStr = new string(tempStr.ToArray());
                     return CheckSellerIDFormat(tempStr, enableStrictMode: true);
                 })

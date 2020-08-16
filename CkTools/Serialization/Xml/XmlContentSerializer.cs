@@ -28,12 +28,12 @@ namespace CkTools.Serializer
 
         private XmlSerializer GetXmlSerializer(Type type)
         {
-            return _serializerPool.GetOrAdd(type,
+            return this._serializerPool.GetOrAdd(type,
                 t => new XmlSerializer(t, string.Empty)
                 );
         }
 
-        private XmlContentSerializerOptions GetXmlOptions(object options)
+        private XmlContentSerializerOptions GetXmlOptions(object? options)
         {
             if (!(options is XmlContentSerializerOptions option))
             {
@@ -41,13 +41,13 @@ namespace CkTools.Serializer
             }
             if (option.Namespaces == null)
             {
-                var xmlnamespace = new XmlSerializerNamespaces();
+                XmlSerializerNamespaces? xmlnamespace = new XmlSerializerNamespaces();
                 xmlnamespace.Add(string.Empty, string.Empty);
                 option.Namespaces = xmlnamespace;
             }
             if (option.WriterSettings == null)
             {
-                option.WriterSettings = options as XmlWriterSettings ?? writerSettings;
+                option.WriterSettings = options as XmlWriterSettings ?? this.writerSettings;
             }
 
             return option;
@@ -55,38 +55,38 @@ namespace CkTools.Serializer
 
         public T DeserializeFromStream<T>(Stream stream, object? options = null)
         {
-            var serializer = GetXmlSerializer(typeof(T));
+            XmlSerializer? serializer = this.GetXmlSerializer(typeof(T));
             return (T)serializer.Deserialize(stream);
         }
 
         public T DeserializeFromString<T>(string content, object? options = null)
         {
-            var serializer = GetXmlSerializer(typeof(T));
+            XmlSerializer? serializer = this.GetXmlSerializer(typeof(T));
             using (TextReader reader = new StringReader(content))
             {
                 return (T)serializer.Deserialize(reader);
             }
         }
 
-        public void SerializeToStream(object request, Stream stream, object? options = null)
+        public void SerializeToStream(object? request, Stream stream, object? options = null)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("request");
             }
-            XmlContentSerializerOptions option = GetXmlOptions(options);
+            XmlContentSerializerOptions option = this.GetXmlOptions(options);
 
-            var writer = XmlWriter.Create(stream, option.WriterSettings);
-            GetXmlSerializer(request.GetType()).Serialize(writer, request, option.Namespaces);
+            XmlWriter? writer = XmlWriter.Create(stream, option.WriterSettings);
+            this.GetXmlSerializer(request.GetType()).Serialize(writer, request, option.Namespaces);
         }
 
-        public string SerializeToString(object request, object? options = null)
+        public string SerializeToString(object? request, object? options = null)
         {
-            using (var stream = new MemoryStream())
+            using (MemoryStream? stream = new MemoryStream())
             {
-                SerializeToStream(request, stream, options);
+                this.SerializeToStream(request, stream, options);
                 stream.Seek(0, SeekOrigin.Begin);
-                var reader = new StreamReader(stream, Encoding.UTF8);
+                StreamReader? reader = new StreamReader(stream, Encoding.UTF8);
                 return reader.ReadToEnd();
             }
         }

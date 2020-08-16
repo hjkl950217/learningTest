@@ -17,7 +17,7 @@ namespace CkTools.Comparer
         /// </summary>
         /// <param name="equalsFunc">默认使用key比较，传递此参数后，会使用比较方法比较。</param>
         public KeyValuePairComparer(
-            Func<KeyValuePair<TKey, TValue>, KeyValuePair<TKey, TValue>, bool> equalsFunc = null)
+            Func<KeyValuePair<TKey, TValue>, KeyValuePair<TKey, TValue>, bool>? equalsFunc = null)
         {
             this.equalsFunc = equalsFunc;
         }

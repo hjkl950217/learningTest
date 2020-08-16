@@ -233,7 +233,7 @@ namespace System
         /// <param name="source"></param>
         /// <param name="selector"></param>
         /// <param name="converter"></param>
-        /// <param name="defaultValueFunc">当<paramref name="source"/>为<see cref="null"/>时，会调用此委托生成默认值</param>
+        /// <param name="defaultValueFunc">当<paramref name="source"/>为null时，会调用此委托生成默认值</param>
         /// <returns></returns>
         private static TArray IEnumerableBaseTo<TSource, TResult, TArray>(
           IEnumerable<TSource> source,
@@ -255,7 +255,7 @@ namespace System
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="selector"></param>
-        /// <param name="defaultValue">当<paramref name="source"/>为<see cref="null"/>时，返回的值.默认值为:0长度的<see cref="{TResult}[]"/></param>
+        /// <param name="defaultValue">当<paramref name="source"/>为null时，返回的值.默认值为:0长度的数组</param>
         /// <returns></returns>
         public static TResult[] ToArray<TSource, TResult>(
             this IEnumerable<TSource> source,
@@ -276,7 +276,7 @@ namespace System
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="selector"></param>
-        /// <param name="defaultValue">当<paramref name="source"/>为<see cref="null"/>时，返回的值.默认值为:0长度的<see cref="List{T}"/></param>
+        /// <param name="defaultValue">当<paramref name="source"/>为null时，返回的值.默认值为:0长度的<see cref="List{T}"/></param>
         /// <returns></returns>
         public static List<TResult> ToList<TSource, TResult>(
             this IEnumerable<TSource> source,
@@ -297,7 +297,7 @@ namespace System
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
         /// <param name="selector"></param>
-        /// <param name="defaultValue">当<paramref name="source"/>为<see cref="null"/>时，返回的值.默认值为:0长度的<see cref="List{T}"/></param>
+        /// <param name="defaultValue">当<paramref name="source"/>为null时，返回的值.默认值为:0长度的<see cref="List{T}"/></param>
         /// <returns></returns>
         public static Task<List<TResult>> ToListAsync<TSource, TResult>(
             this IEnumerable<TSource> source,

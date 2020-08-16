@@ -27,6 +27,7 @@
         /// 示例： (int->string->void) => (int->(string->(()->void)))
         /// </summary>
         /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
         /// <param name="action"></param>
         /// <returns></returns>
         public static Func<T1, Func<T2, Action>> Currying<T1, T2>(

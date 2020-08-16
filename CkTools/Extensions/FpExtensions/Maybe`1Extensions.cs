@@ -6,7 +6,7 @@ namespace System
     {
         #region 基础扩展
 
-        public static bool IsNothing([NotNull]this Maybe maybe) => maybe.HasValue;
+        public static bool IsNothing([NotNull] this Maybe maybe) => maybe.HasValue;
 
         #endregion 基础扩展
 
@@ -15,15 +15,14 @@ namespace System
         /// <summary>
         /// 映射<para></para>
         /// 接收一个<paramref name="func"/>,转换为<see cref="Maybe{T}"/><para></para>
-        /// 示例1：Maybe{int} t1 = 7;<para></para>int b=t1;<para></para>
-        /// 示例2：<see cref="Maybe{int}"/> t2 = <see cref="Maybe{int}"/>.Nothing();
+        /// 示例：Maybe{int} t1 = 7;   t1.Fmap(t=>t==1).Value//false  <para></para>
         /// </summary>
         /// <typeparam name="A"></typeparam>
         /// <typeparam name="B"></typeparam>
         /// <param name="input"></param>
         /// <param name="func"></param>
         /// <returns></returns>
-        public static Maybe<B> Fmap<A, B>([NotNull]this Maybe<A> input, Func<A, B> func)
+        public static Maybe<B> Fmap<A, B>([NotNull] this Maybe<A> input, Func<A, B> func)
             where A : notnull
             where B : notnull
         {
@@ -46,7 +45,7 @@ namespace System
         /// <param name="input"></param>
         /// <param name="mapFunc"></param>
         /// <returns></returns>
-        public static Maybe<B> Apply<A, B>([NotNull]this Maybe<A> input, [NotNull]Maybe<Func<A, B>> mapFunc)
+        public static Maybe<B> Apply<A, B>([NotNull] this Maybe<A> input, [NotNull] Maybe<Func<A, B>> mapFunc)
             where A : notnull
             where B : notnull
         {
@@ -57,7 +56,7 @@ namespace System
             };
         }
 
-        public static Maybe<B> Bind<A, B>([NotNull]this Maybe<A> input, [NotNull]Func<A, Maybe<B>> bindFunc)
+        public static Maybe<B> Bind<A, B>([NotNull] this Maybe<A> input, [NotNull] Func<A, Maybe<B>> bindFunc)
             where A : notnull
             where B : notnull
         {
