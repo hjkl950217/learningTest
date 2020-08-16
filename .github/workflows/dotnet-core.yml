@@ -23,6 +23,11 @@ jobs:
     - name: Build
       run: dotnet build CkTools --configuration Release --no-restore -o package
     - name: Push
-      run: dotnet nuget push "**/*.nupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+      run: |
+        dotnet nuget add source https://nuget.pkg.github.com/hjkl950217/index.json -n github -u hjkl950217 -p GH_TOKEN [--store-password-in-clear-text]
+        dotnet nuget push "**/*.nupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+        dotnet nuget push "**/*.nupkg" --source "github" --skip-duplicate
     - name: Push Symbol 
-      run: dotnet nuget push "**/*.snupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+      run: |
+        dotnet nuget push "**/*.snupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+        dotnet nuget push "**/*.snupkg" --source "github" --skip-duplicate
