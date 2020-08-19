@@ -275,7 +275,7 @@ namespace FluentValidation
 
         public static IRuleBuilderOptions<T, IEnumerable<char>> AllUpper<T>(
            this IRuleBuilder<T, IEnumerable<char>> ruleBuilder,
-           string errorMsg = null)
+           string? errorMsg = null)
         {
             return ruleBuilder.Predicate(
                 Enumerable.All,
@@ -285,7 +285,7 @@ namespace FluentValidation
 
         public static IRuleBuilderOptions<T, IEnumerable<char>> AnyUpper<T>(
             this IRuleBuilder<T, IEnumerable<char>> ruleBuilder,
-            string errorMsg = null)
+            string? errorMsg = null)
         {
             return ruleBuilder.Predicate(
                 Enumerable.Any,
@@ -295,7 +295,7 @@ namespace FluentValidation
 
         public static IRuleBuilderOptions<T, IEnumerable<char>> AllLower<T>(
            this IRuleBuilder<T, IEnumerable<char>> ruleBuilder,
-           string errorMsg = null)
+           string? errorMsg = null)
         {
             return ruleBuilder.Predicate(
                 Enumerable.All,
@@ -305,7 +305,7 @@ namespace FluentValidation
 
         public static IRuleBuilderOptions<T, IEnumerable<char>> AnyLower<T>(
             this IRuleBuilder<T, IEnumerable<char>> ruleBuilder,
-            string errorMsg = null)
+            string? errorMsg = null)
         {
             return ruleBuilder.Predicate(
                 Enumerable.Any,
