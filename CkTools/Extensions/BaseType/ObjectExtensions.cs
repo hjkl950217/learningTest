@@ -1,12 +1,11 @@
-﻿using System.Collections;
+﻿using CkTools.Serializer;
+using CkTools.Serializer.Abstraction;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml;
-using Newtonsoft.Json;
-using CkTools.Serializer;
-using CkTools.Serializer.Abstraction;
 
 namespace System
 {
@@ -152,12 +151,14 @@ namespace System
             return xmlSeria.SerializeToString(obj);
         }
 
+        #region IsNull and IsNullOrEmpty
+
         /// <summary>
-        /// 判断是否为null，null或0长度都返回true
+        /// 判断null，null或0长度都返回true
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的对象</param>
+        /// <returns>判断结果,null或0长度返回true,否则返回false</returns>
         public static bool IsNullOrEmpty<T>(this T value)
           where T : class?
         {
@@ -186,10 +187,69 @@ namespace System
         }
 
         /// <summary>
-        /// 判断是否为null，null或0长度都返回false
+        /// 判断null
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
+        /// <param name="value">要判断的对象</param>
+        /// <returns>判断结果,null返回true,否则返回false</returns>
+        public static bool IsNull(this object value)
+        {
+            return value == null;
+        }
+
+        /// <summary>
+        /// 判断null,空数组
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的数组</param>
+        /// <returns>判断结果,null或空数组返回true,否则返回false</returns>
+        public static bool IsNullOrEmpty<T>(this T[] value)
+        {
+            return value == null || value.Length == 0;
+        }
+
+        /// <summary>
+        /// 判断null,空集合
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的集合</param>
+        /// <returns>判断结果,null或空集合返回true,否则返回false</returns>
+        public static bool IsNullOrEmpty<T>(this IList<T> value)
+        {
+            return value == null || value.Count == 0;
+        }
+
+        /// <summary>
+        /// 判断null,空字典
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的字典</param>
+        /// <returns>判断结果,null或空字典返回true,否则返回false</returns>
+        public static bool IsNullOrEmpty<T>(this IDictionary value)
+        {
+            return value == null || value.Keys.Count == 0;
+        }
+
+        /// <summary>
+        /// 判断null,空枚举器
+        /// </summary>
+        /// <param name="value">要判断的字典</param>
+        /// <returns>判断结果,null或空枚举器返回true,否则返回false</returns>
+        public static bool IsNullOrEmpty(this IEnumerable value)
+        {
+            return value == null
+                || !value.GetEnumerator().MoveNext();
+        }
+
+        #endregion IsNull and IsNullOrEmpty
+
+        #region IsNotNull and IsNotNullOrEmpty
+
+        /// <summary>
+        /// 判断非null，非0长度
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的对象</param>
+        /// <returns>判断结果,非null，非0长度返回true,否则返回false</returns>
         /// <returns></returns>
         public static bool IsNotNullOrEmpty<T>(this T value)
           where T : class
@@ -197,6 +257,61 @@ namespace System
             //IsNullOrEmpty取反
             return !value.IsNullOrEmpty();
         }
+
+        /// <summary>
+        /// 判断非null
+        /// </summary>
+        /// <param name="value">要判断的对象</param>
+        /// <returns>判断结果,非null返回true,否则返回false</returns>
+        public static bool IsNotNull(this object value)
+        {
+            return !value.IsNull();
+        }
+
+        /// <summary>
+        /// 判断非null,非空数组
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的数组</param>
+        /// <returns>判断结果,非null和非空数组返回true,否则为false</returns>
+        public static bool IsNotNullOrEmpty<T>(this T[] value)
+        {
+            return !value.IsNotNullOrEmpty();
+        }
+
+        /// <summary>
+        /// 判断非null,非空集合
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的集合</param>
+        /// <returns>判断结果,非null和非空集合返回true,否则为false</returns>
+        public static bool IsNotNullOrEmpty<T>(this IList<T> value)
+        {
+            return !value.IsNotNullOrEmpty();
+        }
+
+        /// <summary>
+        /// 判断非null,非空字典
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">要判断的字典</param>
+        /// <returns>判断结果,非null和非空字典返回true,否则为false</returns>
+        public static bool IsNotNullOrEmpty(this IDictionary value)
+        {
+            return !value.IsNotNullOrEmpty();
+        }
+
+        /// <summary>
+        /// 判断非null,非空枚举器
+        /// </summary>
+        /// <param name="value">要判断的字典</param>
+        /// <returns>判断结果,null或空枚举器返回true,否则返回false</returns>
+        public static bool IsNotNullOrEmpty(this IEnumerable value)
+        {
+            return !value.IsNullOrEmpty();
+        }
+
+        #endregion IsNotNull and IsNotNullOrEmpty
 
         /// <summary>
         /// 判断对象是否是指定类型
