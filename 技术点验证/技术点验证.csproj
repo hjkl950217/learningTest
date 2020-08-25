@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Update="A10_读取文件到配置系统并监控变化\testA10.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="A06_配置与IOC接口\appsettingsTTT.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -49,7 +49,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="A09_读取文件并监控变化\testA9.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="A18_预测鸢尾花的类型_多类分类\Data\iris.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

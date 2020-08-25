@@ -27,7 +27,7 @@
     <IncludeContentInPack>true</IncludeContentInPack>
 
     <!--支持平台-->
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU</Platforms>
 
     <!--仓库地址-->
     <RepositoryUrl></RepositoryUrl>
