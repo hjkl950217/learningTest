@@ -34,7 +34,7 @@
 	
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Benchint.PublicHealth.$microSercviceName$.Dictionaries.Regionalization.DomainService;
+using Benchint.PublicHealth.$microSercviceName$.$domainName$.DomainService;
 
 namespace Benchint.PublicHealth.$microSercviceName$.$domainName$
 {
@@ -54,11 +54,11 @@ namespace Benchint.PublicHealth.$microSercviceName$.$domainName$
         private readonly I$domainName$Manager _$domainNamePara$Manager;
 
         public $domainName$AppService(
-            IRepository<$domainName$, string> $domainName$Para$Repository,
-            I$domainName$Manager $domainName$Manager)
+            IRepository<$domainName$, string> $domainNamePara$Repository,
+            I$domainName$Manager $domainNamePara$Manager)
         {
-            _$domainName$Repository = $domainName$Repository;
-            _$domainName$Manager = $domainName$Manager;
+            _$domainNamePara$Repository = $domainNamePara$Repository;
+            _$domainNamePara$Manager = $domainNamePara$Manager;
         }
     }
 }
