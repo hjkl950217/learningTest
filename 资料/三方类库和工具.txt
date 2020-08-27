@@ -1,4 +1,4 @@
-1. AspectCore.Extensions.DependencyInjection  一个轻量级AOP框架 支持双平台，静态织入
+﻿1. AspectCore.Extensions.DependencyInjection  一个轻量级AOP框架 支持双平台，静态织入
 2. AutoMapper 一个映射实体的框架 支持双平台
 3. FluentValidation.AspNetCore	一个模型验证的框架，不只是DTO
 4. Gapotchenko.FX 基础库的加强库
@@ -45,7 +45,8 @@
 44. FluentScheduler 勤快哥推荐的非分布式定时任务框架
 45. FluentHttpClient 流式调用httpClient
 46. Masuit.Tools 勤快哥的工具类，包含各种工具代码
-47. EasyCaching 缓存组件，有多个提供程序
+47. ExcelKit 群里nameof(鸡你太美) 开发的excel导入导出组件
+48. EasyCaching 缓存组件，有多个提供程序
 
 
 --工具
