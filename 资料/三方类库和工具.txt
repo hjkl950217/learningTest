@@ -45,6 +45,7 @@
 44. FluentScheduler 勤快哥推荐的非分布式定时任务框架
 45. FluentHttpClient 流式调用httpClient
 46. Masuit.Tools 勤快哥的工具类，包含各种工具代码
+47. EasyCaching 缓存组件，有多个提供程序
 
 
 --工具
