@@ -4,9 +4,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
+    <Description>$(LibName)的公共定义</Description>
+    <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
   </PropertyGroup>
-
-
 </Project>

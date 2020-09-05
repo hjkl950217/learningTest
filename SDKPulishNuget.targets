@@ -7,6 +7,11 @@
     <Authors>长空X</Authors>
     <RepositoryType>Github</RepositoryType>
     <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>$(AssemblyName)</PackageTags>
+    <Description>包含一些扩展方法、工具类、FP扩展代码，欢迎讨论,项目地址： https://github.com/hjkl950217/learningTest </Description>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <LibName>CkTools</LibName>
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
