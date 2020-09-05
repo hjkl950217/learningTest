@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\UT.targets" />
+
+  <ItemGroup>
+    <Compile Include="..\..\Src\CkTools\Attribute\EnumDescriptionAttribute.cs" Link="EnumDescriptionAttribute.cs" />
+    <Compile Include="..\..\Src\CkTools\Helper\TestHelper.cs" Link="TestHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\CkTools.BaseExtensions\CkTools.BaseExtensions.csproj" />
+  </ItemGroup>
+</Project>
