@@ -7,7 +7,7 @@ namespace 语法验证与学习.B17_Aggregate
     [VerifcationType(VerificationTypeEnum.B17_Aggregate)]
     public class B17_Aggregate : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             int[] sourceInts = new int[] { 1, 2, 3, 4 };
             int seed = 10;

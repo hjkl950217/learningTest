@@ -9,7 +9,7 @@ namespace 技术点验证.A29_快速分片
     [VerifcationType(VerificationTypeEnum.A29_快速分片)]
     public class A29_快速分片 : IVerification
     {
-        public void Start(string[] args)
+        public void Start(string[]? args)
         {
             //Console.WriteLine("测试开始");
             ////需要在发布模式下测试

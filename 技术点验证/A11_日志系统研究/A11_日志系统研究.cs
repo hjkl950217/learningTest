@@ -17,7 +17,7 @@ namespace 技术点验证
         public VerificationTypeEnum VerificationType =>
             VerificationTypeEnum.A11_日志系统研究;
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             System.Console.WriteLine("直接看代码");
         }

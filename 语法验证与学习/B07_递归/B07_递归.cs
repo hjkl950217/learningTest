@@ -16,7 +16,7 @@ namespace 语法验证与学习
          *
          */
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             // 1. 递推与递归
             //都是以阶乘为例子

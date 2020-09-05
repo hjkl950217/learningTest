@@ -1,4 +1,4 @@
-项目文件的一些说明，微软官方文档：https://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj#runtimes
+项目文件的一些说明，微软官方文档：https://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj
 
 深入.net core 配置：https://natemcmaster.com/blog/2019/01/09/netcore-primitives-3/
 2个配置的组合：https://www.cnblogs.com/maxzhang1985/p/7836088.html

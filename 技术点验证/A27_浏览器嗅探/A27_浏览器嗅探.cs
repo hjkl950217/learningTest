@@ -8,7 +8,7 @@ namespace 技术点验证
     {
         //文章地址：https://mp.weixin.qq.com/s/K436A6aSW2SQEfRyHzs8GA
 
-        public void Start(string[] args)
+        public void Start(string[]? args)
         {
             WebProgram.CreateHost().Run();
         }

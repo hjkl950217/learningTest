@@ -9,7 +9,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B16_特性_在泛型和委托上标记_40)]
     public class B16_特性_AttributeTargets_80 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine("请直接看代码");
         }

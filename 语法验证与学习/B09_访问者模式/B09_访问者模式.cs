@@ -8,7 +8,7 @@ namespace 语法验证与学习
     {
         //原始代码摘抄至：大话设计模式之访问者模式
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             new Code1().Run();
 

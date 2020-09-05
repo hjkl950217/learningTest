@@ -10,7 +10,7 @@ namespace 技术点验证
     {
         public static AsyncLocal<int> v = new AsyncLocal<int>();
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             var task = Task.Run(async () =>
             {

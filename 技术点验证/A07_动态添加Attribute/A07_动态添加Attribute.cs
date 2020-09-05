@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AspectCore.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using AspectCore.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Verification.Core;
 
 namespace 技术点验证
@@ -16,7 +16,7 @@ namespace 技术点验证
     {
 #pragma warning disable CS8602 // 取消引用可能出现的空引用。
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             var di = new ServiceCollection()
              .AddSingleton<TestInterface, TestClass>()

@@ -7,7 +7,7 @@ namespace 技术点验证.A25_查看调用者信息
     [VerifcationType(VerificationTypeEnum.A25_查看调用者信息)]
     public class A25_查看调用者信息 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
 

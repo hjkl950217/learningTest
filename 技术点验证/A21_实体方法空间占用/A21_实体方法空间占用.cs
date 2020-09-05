@@ -13,7 +13,7 @@ namespace 技术点验证
          *
          */
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             this.Test(10);
             this.Test(10 * 10);

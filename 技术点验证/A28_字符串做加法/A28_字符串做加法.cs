@@ -8,7 +8,7 @@ namespace 技术点验证.A28_字符串做加法
     public class A28_字符串做加法 : IVerification
     {
         //todo:需要迁移面试题中的代码过来
-        public void Start(string[] args)
+        public void Start(string[]? args)
         {
             string a = AddOnne.StringAddition("12321425443443", "433222");
 

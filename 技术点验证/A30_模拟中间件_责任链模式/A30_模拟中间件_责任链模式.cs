@@ -12,7 +12,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A30_模拟中间件_责任链模式)]
     public class A30_模拟中间件_责任链模式 : IVerification
     {
-        public void Start(string[] args)
+        public void Start(string[]? args)
         {
             MyApplicationBuilder application = new MyApplicationBuilder();
 

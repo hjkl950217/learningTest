@@ -29,7 +29,7 @@ namespace 技术点验证
         public const string? dataBaseAddr = @"A18_预测鸢尾花的类型_多类分类\data";
         public const string? _dataPath = dataBaseAddr + @"\iris.txt";
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             //创建ML上下文
             MLContext mlContext = new MLContext();

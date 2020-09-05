@@ -18,7 +18,7 @@ namespace 技术点验证
          * 原文：https://zhuanlan.zhihu.com/p/61028042
          */
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine("原始数据");
             foreach (var item in this.data)

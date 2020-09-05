@@ -7,7 +7,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B11_表达式树修改)]
     public class B11_表达式树修改 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             //https://www.cnblogs.com/snailblog/p/11521359.html
             Expression<Func<int, int, int>> func = (x, y) => x + y;

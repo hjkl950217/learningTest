@@ -8,7 +8,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A22_从表达式中解析成员变量名)]
     public class A22_从表达式中解析成员变量名 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Type typeA = typeof(A22TestEntity_A);
             Type typeB = typeof(A22TestEntity_B);

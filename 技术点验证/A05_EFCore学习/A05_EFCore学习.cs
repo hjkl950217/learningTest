@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using Verification.Core;
 
 namespace 技术点验证
@@ -20,7 +20,7 @@ namespace 技术点验证
          *
         */
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             /*
              * 教程地址：

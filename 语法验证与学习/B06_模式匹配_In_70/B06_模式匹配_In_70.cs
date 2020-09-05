@@ -6,7 +6,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B06_模式匹配_In_70)]
     public class B06_模式匹配_In_70 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine("if中使用is进行类型匹配");
             Circle circle = new Circle(3);

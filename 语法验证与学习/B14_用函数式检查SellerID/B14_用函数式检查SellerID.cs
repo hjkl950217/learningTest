@@ -6,7 +6,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B15_在CSharp中使用FSharp)]
     public class B14_用函数式检查SellerID : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             this.CheckSellerIDFormat("BH12", true);
         }

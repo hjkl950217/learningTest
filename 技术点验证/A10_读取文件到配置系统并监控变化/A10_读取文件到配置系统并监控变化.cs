@@ -23,7 +23,7 @@ namespace 技术点验证
 
         public static TestConfig? testConfig = null;//模拟业务代码中的单例引用
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             IConfiguration configuration = new ConfigurationBuilder()
                 //IConfiguration在构建webhost的时候就确定了

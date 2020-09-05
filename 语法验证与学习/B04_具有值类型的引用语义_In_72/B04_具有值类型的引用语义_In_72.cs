@@ -20,7 +20,7 @@ namespace 语法验证与学习
     [VerifcationType(VerificationTypeEnum.B04_具有值类型的引用语义_In_72)]
     public class B04_具有值类型的引用语义_In_72 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             this.ValueReference(new Point(10, 200));
             Console.WriteLine();

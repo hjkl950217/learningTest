@@ -7,7 +7,7 @@ namespace 技术点验证.A24_使用高阶函数
     [VerifcationType(VerificationTypeEnum.A24_使用高阶函数)]
     public class A24_使用高阶函数 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine("具体用法要查看代码");
 

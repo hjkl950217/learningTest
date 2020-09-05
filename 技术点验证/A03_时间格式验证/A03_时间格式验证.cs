@@ -7,7 +7,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A03_时间格式验证)]
     public class A03_时间格式验证 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine($"-{DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")}-");
             Console.WriteLine($"-{DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:sszzz")}-");

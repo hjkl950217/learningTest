@@ -10,7 +10,7 @@ namespace 技术点验证.A26_不同集合的对比纪录
     [VerifcationType(VerificationTypeEnum.A26_不同集合的对比纪录)]
     public class A26_不同集合的对比纪录 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             Console.WriteLine("运行起来只有验证代码,结论和分析在代码中");
 

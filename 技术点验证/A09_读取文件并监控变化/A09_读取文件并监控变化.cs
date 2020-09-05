@@ -22,7 +22,7 @@ namespace 技术点验证
 
         private const string? testFile = "testA9.json";
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             //设置一个目录映射
             //一个IFileProvider 可以看做是对一个目录的映射

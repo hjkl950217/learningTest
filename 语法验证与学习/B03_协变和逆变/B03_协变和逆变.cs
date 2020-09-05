@@ -26,7 +26,7 @@ namespace 语法验证与学习
         //    Console.WriteLine(s.ID);
         //}
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             /*
              * T->>IEnumerable<T> 这个过程可以看成是一个`投影`，或是说过程

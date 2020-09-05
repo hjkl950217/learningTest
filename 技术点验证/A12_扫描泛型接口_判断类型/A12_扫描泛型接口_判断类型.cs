@@ -6,7 +6,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A12_扫描泛型接口_判断类型)]
     public class A12_扫描泛型接口_判断类型 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             #region 1.获取泛型结构
 

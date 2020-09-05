@@ -8,7 +8,7 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A23_值对象)]
     public class A23_值对象 : IVerification
     {
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             //Show只是执行方法  try方法报错时会输出错误信息
             //这里这样写是为了方便复制+快速切换

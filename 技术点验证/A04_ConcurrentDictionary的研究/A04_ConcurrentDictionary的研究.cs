@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Verification.Core;
@@ -24,7 +25,7 @@ namespace 技术点验证
         // Create a new concurrent dictionary.
         private static readonly ConcurrentDictionary<string, CityInfo> cities = new ConcurrentDictionary<string, CityInfo>();
 
-        public void Start(string?[] args)
+        public void Start(string[]? args)
         {
             CityInfo[] data =
             {
@@ -49,7 +50,7 @@ namespace 技术点验证
 
             tasks[0] = Task.Run(() =>
             {
-                for (int i = 0 ; i < 2 ; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     if (cities.TryAdd(data[i].Name, data[i]))
                         Console.WriteLine("Added {0} on thread {1}", data[i],
@@ -61,7 +62,7 @@ namespace 技术点验证
 
             tasks[1] = Task.Run(() =>
             {
-                for (int i = 2 ; i < data.Length ; i++)
+                for (int i = 2; i < data.Length; i++)
                 {
                     if (cities.TryAdd(data[i].Name, data[i]))
                         Console.WriteLine("Added {0} on thread {1}", data[i],
@@ -320,9 +321,11 @@ namespace 技术点验证
             this.RecentHighTemperatures = new int[] { 0 };
         }
 
-        public bool Equals(CityInfo x, CityInfo y)
+        public bool Equals([AllowNull] CityInfo x, [AllowNull] CityInfo y)
         {
-            return x.Name == y.Name && x.Longitude == y.Longitude && x.Latitude == y.Latitude;
+            return x?.Name == y?.Name
+                   && x?.Longitude == y?.Longitude
+                   && x?.Latitude == y?.Latitude;
         }
 
         public int GetHashCode(CityInfo obj)
