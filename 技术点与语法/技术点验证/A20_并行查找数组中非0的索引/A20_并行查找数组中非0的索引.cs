@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AutoFixture;
+using System;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using AutoFixture;
 using Verification.Core;
 
 namespace 技术点验证
@@ -19,6 +19,14 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A20_并行查找数组中非0的索引)]
     public class A20_并行查找数组中非0的索引 : IVerification
     {
+        private readonly byte[] buffer1;
+
+        private readonly byte[] buffer2;
+
+        private readonly byte[] buffer3;
+
+        private readonly Fixture fixture;
+
         public A20_并行查找数组中非0的索引()
         {
             int countNum = 17;
@@ -40,25 +48,13 @@ namespace 技术点验证
             Console.WriteLine($"查找的索引为:{index}");
         }
 
-        private readonly byte[] buffer1;
-
-        private readonly byte[] buffer2;
-        private readonly byte[] buffer3;
-
-        private readonly Fixture fixture;
-
-        private T[] CreateTestData<T>(int? count = null)
-        {
-            return this.fixture.CreateMany<T>(count ?? 20).ToArray();
-        }
-
         /// <summary>
         /// 默认方式-遍历
         /// </summary>
         public int DefaultMethod()
         {
             byte[] buffer = this.buffer1;
-            for (int i = 0 ; i < buffer.Length ; i++)
+            for (int i = 0; i < buffer.Length; i++)
             {
                 if (buffer[i] != 0)
                     return i;
@@ -88,7 +84,7 @@ namespace 技术点验证
                 Span<long> longBuffer = MemoryMarshal.Cast<byte, long>(buffer);
                 remainingStart = longBuffer.Length * sizeof(long);//转换成longs后，剩余部分的起始索引
 
-                for (int i = 0 ; i < longBuffer.Length ; i++)
+                for (int i = 0; i < longBuffer.Length; i++)
                 {
                     if (longBuffer[i] != 0)
                     {
@@ -99,7 +95,7 @@ namespace 技术点验证
             }
 
             //确定位置
-            for (int i = remainingStart ; i < buffer.Length ; i++)
+            for (int i = remainingStart; i < buffer.Length; i++)
             {
                 if (buffer[i] != 0)
                     return i;
@@ -126,13 +122,18 @@ namespace 技术点验证
                 }
             }
 
-            for (int i = remainingStart ; i < buffer.Length ; i++)
+            for (int i = remainingStart; i < buffer.Length; i++)
             {
                 if (buffer[i] != 0)
                     return i;
             }
 
             return -1;
+        }
+
+        private T[] CreateTestData<T>(int? count = null)
+        {
+            return this.fixture.CreateMany<T>(count ?? 20).ToArray();
         }
     }
 }

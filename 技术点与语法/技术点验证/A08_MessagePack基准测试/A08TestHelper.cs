@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using CkTools.Helper;
 
 namespace 技术点验证
 {
@@ -20,7 +19,7 @@ namespace 技术点验证
             string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
-            for (int i = 0 ; i < totaol ; i++)
+            for (int i = 0; i < totaol; i++)
             {
                 TestEntity_Int temp = new TestEntity_Int()
                 {
@@ -54,7 +53,7 @@ namespace 技术点验证
             string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
-            for (int i = 0 ; i < totaol ; i++)
+            for (int i = 0; i < totaol; i++)
             {
                 TestEntity_String? temp = new TestEntity_String()
                 {
@@ -88,7 +87,7 @@ namespace 技术点验证
             string? testStr = UTF8Encoding.UTF8.GetString(tempByte);
             TestEnum[] testEnums = new TestEnum[3] { TestEnum.Open, TestEnum.Close, TestEnum.All };
 
-            for (int i = 0 ; i < totaol ; i++)
+            for (int i = 0; i < totaol; i++)
             {
                 TestEntity_Non temp = new TestEntity_Non()
                 {
