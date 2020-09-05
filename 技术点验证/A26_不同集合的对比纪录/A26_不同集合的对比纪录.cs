@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CkTools.Abstraction.ConstAndEnum;
+using CkTools.Helper;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CkTools.ConstAndEnum;
-using CkTools.Helper;
 using Verification.Core;
 
 namespace 技术点验证.A26_不同集合的对比纪录

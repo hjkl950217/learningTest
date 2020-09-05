@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CkTools.BaseExtensions.Comparer;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -6,12 +7,6 @@ namespace CkTools.Test.Test.Extensions
 {
     public class EqualComparerTest
     {
-        private static class MockHelper
-        {
-            public static IEqualityComparer<UserInfo> IdComparer = new EqualComparer<UserInfo>(
-                (a, b) => a.UserID == b.UserID);
-        }
-
         [Fact]
         public void List_Distinct()
         {
@@ -48,6 +43,12 @@ namespace CkTools.Test.Test.Extensions
                 .Contains(ComparerTestData.TestListA.FirstOrDefault(), MockHelper.IdComparer);
 
             Assert.True(result);
+        }
+
+        private static class MockHelper
+        {
+            public static IEqualityComparer<UserInfo> IdComparer = new EqualComparer<UserInfo>(
+                (a, b) => a.UserID == b.UserID);
         }
     }
 }

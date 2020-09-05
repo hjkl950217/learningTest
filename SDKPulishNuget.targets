@@ -10,7 +10,7 @@
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
-    <Version>3.1.0.6</Version>
+    <Version>3.1.0.7</Version>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)$(VersionSuffix)</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
