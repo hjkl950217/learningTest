@@ -197,7 +197,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Source_Null()
             {
-                List<SellerInfo> testData = null;
+                List<SellerInfo>? testData = null;
                 Func<SellerInfo, SellerInfo, bool> func = (a, b) => a.UserName == b.UserName;
 
                 var ex = Assert.Throws<ArgumentNullException>(() =>

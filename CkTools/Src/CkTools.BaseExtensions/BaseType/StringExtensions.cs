@@ -27,7 +27,7 @@ namespace System
             this string jsonStr,
             JsonSerializerSettings? jsonSerializerSettings = null)
         {
-            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
+            jsonSerializerSettings ??= JsonSerializerSettingConst.DefaultSetting;
 
             return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
         }
@@ -77,6 +77,55 @@ namespace System
             }
         };
 
+        public static int ToInt32(this string str)
+        {
+            return str.BaseConvert(System.Convert.ToInt32);
+        }
+
+        public static int ToInt32OrDefault(this string str, int defaultValue = 0)
+        {
+            return str.TryBaseConvert(System.Convert.ToInt32, defaultValue);
+        }
+
+        public static bool ToBool(this string str)
+        {
+            return str.BaseConvert(System.Convert.ToBoolean);
+        }
+
+        public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
+        {
+            return str.TryBaseConvert(System.Convert.ToBoolean, defaultValue);
+        }
+
+        public static decimal ToDecimal(this string str)
+        {
+            return str.BaseConvert(System.Convert.ToDecimal);
+        }
+
+        public static decimal ToDecimalOrDefault(
+                    this string str,
+                    decimal defaultValue = 0.00M)
+        {
+            return str.TryBaseConvert(System.Convert.ToDecimal, defaultValue);
+        }
+
+        public static double ToDouble(this string str)
+        {
+            return str.BaseConvert(System.Convert.ToDouble);
+        }
+
+        public static double ToDoubleOrDefault(
+                    this string str,
+                    double defaultValue = 0.00)
+        {
+            return str.TryBaseConvert(System.Convert.ToDouble, defaultValue);
+        }
+
+        public static long ToLong(this string str, long defaultValue = 0L)
+        {
+            return str.TryBaseConvert(TypeConvertDelegate.stringToLong, defaultValue);
+        }
+
         /// <summary>
         /// 基础转换,转换失败时会报错
         /// </summary>
@@ -110,66 +159,12 @@ namespace System
             return str.BaseConvertOrDefalut(defaultValue, convertTemp);
         }
 
-        public static int ToInt32(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToInt32);
-        }
-
-        public static int ToInt32OrDefault(this string str, int defaultValue = 0)
-        {
-            return str.TryBaseConvert(System.Convert.ToInt32, defaultValue);
-        }
-
-        public static bool ToBool(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToBoolean);
-        }
-
-        public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
-        {
-            return str.TryBaseConvert(System.Convert.ToBoolean, defaultValue);
-        }
-
-        public static decimal ToDecimal(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToDecimal);
-        }
-
-        public static decimal ToDecimalOrDefault(
-            this string str,
-            decimal defaultValue = 0.00M)
-        {
-            return str.TryBaseConvert(System.Convert.ToDecimal, defaultValue);
-        }
-
-        public static double ToDouble(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToDouble);
-        }
-
-        public static double ToDoubleOrDefault(
-            this string str,
-            double defaultValue = 0.00)
-        {
-            return str.TryBaseConvert(System.Convert.ToDouble, defaultValue);
-        }
-
         #region TryToDateTimeOffset
 
         /// <summary>
         /// 标准时间格式中包含的符号(用于和long区分使用)
         /// </summary>
         private static string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
-
-        private static DateTimeOffset TryToDateTimeOffsetBase(this string str, Func<string, DateTimeOffset> convert)
-        {
-            return str switch
-            {
-                string a when a.IsNullOrEmpty() => DateTimeOffset.MinValue,
-                var a when a.ContainsSymbol(timeSysmbols) => str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
-                _ => str.TryBaseConvert(convert)//匹配不上则为long
-            };
-        }
 
         public static DateTimeOffset TryToDateTimeOffset(this string str)
         {
@@ -196,12 +191,17 @@ namespace System
             return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds);
         }
 
-        #endregion TryToDateTimeOffset
-
-        public static long ToLong(this string str, long defaultValue = 0L)
+        private static DateTimeOffset TryToDateTimeOffsetBase(this string str, Func<string, DateTimeOffset> convert)
         {
-            return str.TryBaseConvert(TypeConvertDelegate.stringToLong, defaultValue);
+            return str switch
+            {
+                string a when a.IsNullOrEmpty() => DateTimeOffset.MinValue,
+                var a when a.ContainsSymbol(timeSysmbols) => str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
+                _ => str.TryBaseConvert(convert)//匹配不上则为long
+            };
         }
+
+        #endregion TryToDateTimeOffset
 
         #endregion 基础类型与string之间的转换
 

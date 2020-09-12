@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace System
 {
@@ -14,7 +15,8 @@ namespace System
         /// <param name="obj">      要检查的对象</param>
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null时抛出</exception>
-        public static void CheckNullWithException<T>(this T obj, string paramName)
+        public static void CheckNullWithException<T>(this T? obj, string paramName)
+            where T : class
         {
             if (obj == null) throw new ArgumentNullException(paramName);
         }
@@ -27,7 +29,8 @@ namespace System
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <param name="message">  抛出异常时,显示的错误信息</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null时抛出</exception>
-        public static void CheckNullWithException<T>(this T obj, string paramName, string message)
+        public static void CheckNullWithException<T>(this T? obj, string paramName, string message)
+            where T : class
         {
             if (obj == null) throw new ArgumentNullException(paramName, message);
         }
@@ -38,7 +41,7 @@ namespace System
         /// <param name="obj">      要检查的对象</param>
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
-        public static void CheckNullOrEmptyWithException(this IEnumerable obj, string paramName)
+        public static void CheckNullOrEmptyWithException(this IEnumerable? obj, string paramName)
         {
             if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName);
         }
@@ -50,7 +53,7 @@ namespace System
         /// <param name="paramName">抛出异常时,显示的参数名</param>
         /// <param name="message">  抛出异常时,显示的错误信息</param>
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
-        public static void CheckNullOrEmptyWithException(this IEnumerable obj, string paramName, string message)
+        public static void CheckNullOrEmptyWithException(this IEnumerable? obj, string paramName, string message)
         {
             if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName, message);
         }
@@ -108,7 +111,7 @@ namespace System
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="value">要判断的数组</param>
         /// <returns>判断结果,null或空数组返回true,否则返回false</returns>
-        public static bool IsNullOrEmpty<T>(this T[] value)
+        public static bool IsNullOrEmpty<T>(this T[]? value)
         {
             return value == null || value.Length == 0;
         }
@@ -140,7 +143,7 @@ namespace System
         /// </summary>
         /// <param name="value">要判断的字典</param>
         /// <returns>判断结果,null或空枚举器返回true,否则返回false</returns>
-        public static bool IsNullOrEmpty(this IEnumerable value)
+        public static bool IsNullOrEmpty(this IEnumerable? value)
         {
             return value == null
                 || !value.GetEnumerator().MoveNext();
@@ -217,5 +220,16 @@ namespace System
         }
 
         #endregion IsNotNull and IsNotNullOrEmpty
+
+        /// <summary>
+        /// 转换为<see cref="Task"/>类型
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Task<TResult> ToTask<TResult>(this TResult obj)
+        {
+            return Task.FromResult(obj);
+        }
     }
 }

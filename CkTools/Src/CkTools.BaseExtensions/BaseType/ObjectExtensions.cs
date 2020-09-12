@@ -65,7 +65,7 @@ namespace System
 
         #endregion Tojson
 
-        public static T DeepCopy<T>(this T obj)
+        public static T? DeepCopy<T>(this T obj)
             where T : class
         {
             string outPut = obj.ToJsonExt();
@@ -174,21 +174,6 @@ namespace System
         }
 
         #region 基础类型与Object之间的转换
-
-        /// <summary>
-        /// 转换为byte[]
-        /// </summary>
-        /// <param name="source">  </param>
-        /// <param name="encoding">编码格式，默认 <see cref="Encoding.UTF8" /></param>
-        /// <returns></returns>
-        public static byte[] ToBytes<T>(this T source, Encoding? encoding = null)
-        {
-            source.CheckNullWithException(nameof(source));
-
-            string objStr = JsonConvert.SerializeObject(source, JsonSerializerSettingConst.StorageSetting);
-            encoding = encoding ?? Encoding.UTF8;
-            return objStr.ToBytes(encoding);
-        }
 
         public static int ToInt32<T>(this T str)
             where T : class

@@ -5,6 +5,9 @@ namespace CKTols.FP.Test
 {
     public class Maybe_1Test
     {
+#pragma warning disable CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
+#pragma warning disable CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
+
         public class ConstructorTest
         {
             [Fact]
@@ -67,6 +70,9 @@ namespace CKTols.FP.Test
                 Assert.NotNull(ex);
             }
         }
+
+#pragma warning restore CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
+#pragma warning restore CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
 
         public class ImplicitOperatorTest
         {
