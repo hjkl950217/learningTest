@@ -53,6 +53,7 @@
         A32_序列化时按字段选择类型,
         A33_快速判断Int是否存在数组,
         A34_使用DispatchProxy代理非公开接口,
+        A35_ConfigureAwait配置True或是False,
 
         #endregion 技术点
 
