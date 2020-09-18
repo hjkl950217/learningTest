@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Verification.Core;
 
 namespace 技术点验证
@@ -20,21 +19,21 @@ namespace 技术点验证
                 .GetAwaiter();
         }
 
-        public void Teest(Task task, Task nextTask)
-        {
-            var currentSyncContext = SynchronizationContext.Current;
+        //public Task Test(Task task, Task nextTask)
+        //{
+        //    var currentSyncContext = SynchronizationContext.Current;
 
-            return task.ContinueWith(() =>
-            {
-                if (currentSyncContext == null)
-                {
-                    return nextTask;
-                }
-                else
-                {
-                    currentSyncContext.Post(() => nextTask, null);
-                }
-            }, TaskScheduler.Current);
-        }
+        //    return task.ContinueWith(() =>
+        //    {
+        //        if (currentSyncContext == null)
+        //        {
+        //            return nextTask;
+        //        }
+        //        else
+        //        {
+        //            currentSyncContext.Post(() => nextTask, null);
+        //        }
+        //    }, TaskScheduler.Current);
+        //}
     }
 }
