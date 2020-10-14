@@ -18,7 +18,7 @@
         /// 能转换的前提是<paramref name="taskContext"/>已经是<see cref="StepContext{TResult}"/>类型的上下文了。
         /// </remarks>
         /// <returns></returns>
-        public static StepContext<TResult> As<TResult>(this CkTools.Nova.Entity.StepContext taskContext)
+        public static StepContext<TResult>? As<TResult>(this StepContext taskContext)
         {
             return taskContext as StepContext<TResult>;
         }

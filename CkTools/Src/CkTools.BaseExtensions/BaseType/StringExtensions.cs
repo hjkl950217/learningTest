@@ -84,7 +84,7 @@ namespace System
 
         public static int ToInt32OrDefault(this string str, int defaultValue = 0)
         {
-            return str.TryBaseConvert(System.Convert.ToInt32, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
         }
 
         public static bool ToBool(this string str)
@@ -94,7 +94,7 @@ namespace System
 
         public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
         {
-            return str.TryBaseConvert(System.Convert.ToBoolean, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
         }
 
         public static decimal ToDecimal(this string str)
@@ -106,7 +106,7 @@ namespace System
                     this string str,
                     decimal defaultValue = 0.00M)
         {
-            return str.TryBaseConvert(System.Convert.ToDecimal, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
         }
 
         public static double ToDouble(this string str)
@@ -118,57 +118,47 @@ namespace System
                     this string str,
                     double defaultValue = 0.00)
         {
-            return str.TryBaseConvert(System.Convert.ToDouble, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
         }
 
         public static long ToLong(this string str, long defaultValue = 0L)
         {
-            return str.TryBaseConvert(TypeConvertDelegate.stringToLong, defaultValue);
+            return str.BaseConvertOrDefalut(TypeConvertDelegate.stringToLong, defaultValue);
         }
 
-        /// <summary>
-        /// 基础转换,转换失败时会报错
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">    要转换的字符串</param>
-        /// <param name="convert">转换的方法</param>
-        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
-        /// <exception cref="ArgumentException">The parameter 'str' is invalid、Empty、Null</exception>
-        private static TValue BaseConvert<TValue>(
-          this string str,
-          Func<string, TValue> convert)
+        public static DateTime ToLocalDateTime(this string str)
         {
-            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
-            return str.BaseConvert(convertTemp);
+            return str.BaseConvert(TypeConvertDelegate.stringToLocalDateTime);
         }
 
-        /// <summary>
-        /// 基础转换,转换失败时会返回默认值
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">要转换的字符串</param>
-        /// <param name="defaultValue">默认值</param>
-        /// <param name="convert">转换的方法</param>
-        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
-        private static TValue TryBaseConvert<TValue>(
-          this string str,
-          Func<string, TValue> convert,
-          TValue defaultValue = default)
-        {
-            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
-            return str.BaseConvertOrDefalut(defaultValue, convertTemp);
-        }
+        ///// <summary>
+        ///// 基础转换,转换失败时会返回默认值
+        ///// </summary>
+        ///// <typeparam name="TValue"></typeparam>
+        ///// <param name="str">要转换的字符串</param>
+        ///// <param name="defaultValue">默认值</param>
+        ///// <param name="convert">转换的方法</param>
+        ///// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
+        ///// <exception cref="ArgumentException">The parameter 'str' is invalid、Empty、Null</exception>
+        //private static TValue TryBaseConvert<TValue>(
+        //  this string str,
+        //  Func<string, TValue> convert,
+        //  TValue defaultValue = default)
+        //{
+        //    Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
+        //    return str.BaseConvertOrDefalut(defaultValue, convertTemp);
+        //}
 
         #region TryToDateTimeOffset
 
         /// <summary>
         /// 标准时间格式中包含的符号(用于和long区分使用)
         /// </summary>
-        private static string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
+        private static readonly string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
 
         public static DateTimeOffset TryToDateTimeOffset(this string str)
         {
-            return str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset);
+            return str.BaseConvertOrDefalut(TypeConvertDelegate.stringToDateTimeOffset, default(DateTimeOffset));
         }
 
         public static DateTimeOffset TryToUtcDateTimeOffset(this string str)
@@ -196,8 +186,8 @@ namespace System
             return str switch
             {
                 string a when a.IsNullOrEmpty() => DateTimeOffset.MinValue,
-                var a when a.ContainsSymbol(timeSysmbols) => str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
-                _ => str.TryBaseConvert(convert)//匹配不上则为long
+                var a when a.ContainsSymbol(timeSysmbols) => str.BaseConvertOrDefalut(TypeConvertDelegate.stringToDateTimeOffset, default(DateTimeOffset)),
+                _ => str.BaseConvertOrDefalut(convert, default(DateTimeOffset))//匹配不上则为long
             };
         }
 
@@ -290,7 +280,7 @@ namespace System
             ReadOnlySpan<char> chars = source.AsSpan();
 
             bool isExtra = false;
-            foreach (var item in symbols)
+            foreach (char item in symbols)
             {
                 isExtra = chars[source.Length - 1] == item;
                 if (isExtra == true) break;
@@ -333,14 +323,14 @@ namespace System
         /// <returns></returns>
         public static byte[] ToBytes(this string source, Encoding? encoding = null)
         {
-            encoding = encoding ?? Encoding.UTF8;
-            return source.BaseConvertOrDefalut(Array.Empty<byte>(), encoding.GetBytes);
+            encoding ??= Encoding.UTF8;
+            return source.BaseConvertOrDefalut(encoding.GetBytes, Array.Empty<byte>());
         }
 
         public static T ToEnum<T>(this string str, bool ignoreCase = false)
             where T : struct
         {
-            if (Enum.TryParse<T>(str, ignoreCase, out var enumValue))
+            if (Enum.TryParse<T>(str, ignoreCase, out T enumValue))
             {
                 return enumValue;
             }

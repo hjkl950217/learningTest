@@ -18,10 +18,12 @@
           this T source,
           Func<T, TValue> convert)
         {
-            if (typeof(T).IsClass && source == null)
+            if (typeof(T).IsClass
+                && (source == null || source.GetHashCode() == string.Empty.GetHashCode()))
             {
-                throw new ArgumentException("The parameter 'str' is invalid、Empty、Null", nameof(source));
+                throw new ArgumentException($"The parameter '{nameof(source)}' is invalid、Empty、Null", nameof(source));
             }
+
             return convert(source);
         }
 
@@ -31,13 +33,13 @@
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="source">要转换的字符串</param>
-        /// <param name="defaultValue">默认值</param>
         /// <param name="convert">转换的方法</param>
+        ///  <param name="defaultValue">默认值</param>
         /// <returns>类型为<typeparamref name="TValue"/>的值</returns>
         public static TValue BaseConvertOrDefalut<T, TValue>(
           this T source,
-          TValue defaultValue,
-          Func<T, TValue> convert)
+          Func<T, TValue> convert,
+          TValue defaultValue)
         {
             if (typeof(T).IsClass && source == null)
             {
