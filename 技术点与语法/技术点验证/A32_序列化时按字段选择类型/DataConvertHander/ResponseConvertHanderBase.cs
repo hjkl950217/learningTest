@@ -45,13 +45,13 @@ namespace 技术点验证.DataConvertHander
             if (dataSource.IsNullOrEmpty())
                 return Array.Empty<TOutPut>();
 
-            var initFunc = this.outPutInitializer.Currying()(dataSource)(this.HanderType);
+            Func<TOutPut>? initFunc = this.outPutInitializer.Currying()(dataSource)(this.HanderType);
 
-            var result = ArrayHelper.GetArray<TOutPut>(
+            TOutPut[]? result = ArrayHelper.GetArray<TOutPut>(
                count: this.fieldTypes.Length,
                createFactory: initFunc);
 
-            for (int i = 0 ; i < this.fieldTypes.Length ; i++)
+            for (int i = 0; i < this.fieldTypes.Length; i++)
             {
                 result[i] = this.outPutSetter(dataSource, this.fieldTypes[i], result[i]);
             }
@@ -60,19 +60,19 @@ namespace 技术点验证.DataConvertHander
         }
 
         /// <summary>
-        /// [重写]由子类重写，指示针对什么类型处理
+        /// [由子类重写]指示针对什么类型处理
         /// </summary>
         /// <returns></returns>
         public abstract TType SetHanderType();
 
         /// <summary>
-        /// [重写]由子类重写，指示针对什么数据类型处理
+        /// [由子类重写]指示针对什么数据类型处理
         /// </summary>
         /// <returns></returns>
         public abstract IEnumerable<TField> SetFieldTypes();
 
         /// <summary>
-        /// [重写]由子类重写,指示如何初始化返回结果
+        /// [由子类重写]指示如何初始化返回结果
         /// </summary>
         protected abstract Func<TDataSource, TType, TOutPut> SetOutPutInitializer();
 

@@ -29,7 +29,7 @@ namespace CkTools.Nova.Helper
         public static IList<(TAttribute attribute, Type Type)> GetCustomAttributesByAssemblies<TAttribute>(Func<Type, bool> predicate)
             where TAttribute : Attribute
         {
-            var types = AppDomain.CurrentDomain.GetAssemblies()
+            List<(TAttribute Attribute, Type type)>? types = AppDomain.CurrentDomain.GetAssemblies()
                  .SelectMany(i =>
                  {
                      try
@@ -44,29 +44,7 @@ namespace CkTools.Nova.Helper
                .Where(predicate)
                .Select(type => (Attribute: type.GetCustomAttribute<TAttribute>(false), type))
                .Where(attr => attr.Attribute != null)
-               .ToList()
-               ;
-
-            //var types = AppDomain.CurrentDomain.GetAssemblies()
-            //   .SelectMany(i =>
-            //   {
-            //       try
-            //       {
-            //           return i.GetExportedTypes();
-            //       }
-            //       catch
-            //       {
-            //           return new Type[0];
-            //       }
-            //   })
-            //   .Where(predicate)
-            //   .SelectMany(type => type
-            //               .GetCustomAttributes<TAttribute>()
-            //               .Select(attr => (attr, type)
-            //               )
-
-            //   );
-
+               .ToList();
             return types;
         }
 
@@ -131,12 +109,12 @@ namespace CkTools.Nova.Helper
            bool isAutoEnd = true)
         {
             //排序 一组接口内部排序
-            var stepList = taskArray
+            StepEntity[]? stepList = taskArray
                 .OrderBy(i => i.Attribute.StepEnumOrder)
                 .ToArray();
 
             StepEntity tempMw = stepList.First();//获取第一个中间件的引用
-            foreach (var item in stepList)
+            foreach (StepEntity? item in stepList)
             {
                 tempMw.StepInstanceObject.Next = item.StepInstanceObject;
                 tempMw = item;//将指针移动到下一个

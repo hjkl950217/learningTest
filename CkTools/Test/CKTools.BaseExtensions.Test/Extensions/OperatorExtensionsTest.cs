@@ -1,6 +1,8 @@
 ﻿using System;
 using Xunit;
 
+#pragma warning disable CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
+
 namespace CKTools.BaseExtensions.Test.Extensions
 {
     public class OperatorExtensionsTest
@@ -8,7 +10,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
         public class TestEntity
         {
             public int A { get; set; } = 10;
-            public string B { get; set; }
+            public string? B { get; set; }
         }
 
         public class GetDataOrDefaultTest
@@ -20,7 +22,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             {
                 TestEntity testEntity = new TestEntity();
                 int hashCode = testEntity.GetHashCode();
-                var result = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: () => new TestEntity());
+                TestEntity? result = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: () => new TestEntity());
 
                 Assert.Equal(hashCode, result.GetHashCode());
             }
@@ -28,8 +30,8 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void Two_DataIsNull_WithNoException()
             {
-                TestEntity testEntity = null;
-                var result = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: () => new TestEntity());
+                TestEntity? testEntity = null;
+                TestEntity? result = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: () => new TestEntity());
 
                 Assert.NotNull(result);
             }
@@ -37,15 +39,15 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void Two_DataIsNullAndIntPropertyIsNull_WithNoException()
             {
-                TestEntity testEntity = null;
-                var result = testEntity.GetDataOrDefault(getData: t => t.A, defaultValueFunc: () => 1);
+                TestEntity? testEntity = null;
+                int result = testEntity.GetDataOrDefault(getData: t => t.A, defaultValueFunc: () => 1);
             }
 
             [Fact]
             public void Two_DataIsNullAndStringPropertyIsNull_WithNoException()
             {
-                TestEntity testEntity = null;
-                var result = testEntity.GetDataOrDefault(getData: t => t.B, defaultValueFunc: () => string.Empty);
+                TestEntity? testEntity = null;
+                string? result = testEntity.GetDataOrDefault(getData: t => t.B, defaultValueFunc: () => string.Empty);
 
                 Assert.NotNull(result);
             }
@@ -55,7 +57,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             {
                 TestEntity testEntity = new TestEntity();
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {
                     _ = testEntity.GetDataOrDefault(getData: null, defaultValueFunc: () => new TestEntity());
                 });
@@ -68,7 +70,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             {
                 TestEntity testEntity = new TestEntity();
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {
                     _ = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: null);
                 });
@@ -83,7 +85,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void One_DataIsNull_WithNoException()
             {
-                TestEntity testEntity = null;
+                TestEntity? testEntity = null;
                 _ = testEntity.GetDataOrDefault(getData: t => t, defaultValue: new TestEntity());
             }
 
@@ -92,7 +94,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             {
                 TestEntity testEntity = new TestEntity();
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {
                     _ = testEntity.GetDataOrDefault(getData: null, defaultValue: new TestEntity());
                 });
@@ -103,8 +105,6 @@ namespace CKTools.BaseExtensions.Test.Extensions
             #endregion 一个委托的版本
         }
     }
-
-    public class FPExtensionTest
-    {
-    }
 }
+
+#pragma warning restore CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
