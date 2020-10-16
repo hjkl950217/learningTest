@@ -37,5 +37,30 @@
         {
             return new DateTimeOffset(source.UtcDateTime.Ticks, source.Offset + offset);
         }
+
+        /// <summary>
+        /// 获取时间片段的字符串(默认：X时X分X秒)
+        /// </summary>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="stratTime">开始时间</param>
+        /// <param name="format">格式化方法.入参: 总时、总分、总秒</param>
+        /// <returns></returns>
+        public static string GetTimeSpan(
+            this DateTime endTime,
+            DateTime stratTime,
+            Func<int, int, int, string>? format = null)
+        {
+            if (format == null)
+            {
+                format = (hours, minutes, seconds) => $"{hours}时{minutes}分{seconds}秒";
+            }
+
+            System.TimeSpan ts = endTime - stratTime;
+            int hourNum = (ts.Days * 24) + ts.Hours;
+            int minuteNum = ts.Minutes % 60;
+            int secondNum = ts.Seconds % 3600;
+
+            return format(hourNum, minuteNum, secondNum);
+        }
     }
 }
