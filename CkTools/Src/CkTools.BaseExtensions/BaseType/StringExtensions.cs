@@ -69,47 +69,6 @@ namespace System
 
         #region 基础类型与string之间的转换
 
-        private static readonly Action<string> emptyWithException = t =>
-        {
-            if (t.Length == 0)
-            {
-                throw new ArgumentException("The parameter 'str' is invalid、Empty、Null");
-            }
-        };
-
-        /// <summary>
-        /// 基础转换,转换失败时会报错
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">    要转换的字符串</param>
-        /// <param name="convert">转换的方法</param>
-        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
-        /// <exception cref="ArgumentException">The parameter 'str' is invalid、Empty、Null</exception>
-        private static TValue BaseConvert<TValue>(
-          this string str,
-          Func<string, TValue> convert)
-        {
-            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
-            return str.BaseConvert(convertTemp);
-        }
-
-        /// <summary>
-        /// 基础转换,转换失败时会返回默认值
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="str">要转换的字符串</param>
-        /// <param name="defaultValue">默认值</param>
-        /// <param name="convert">转换的方法</param>
-        /// <returns>类型为 <typeparamref name="TValue" /> 的值</returns>
-        private static TValue TryBaseConvert<TValue>(
-          this string str,
-          Func<string, TValue> convert,
-          TValue defaultValue = default)
-        {
-            Func<string, TValue> convertTemp = t => { emptyWithException(t); return convert(t); };
-            return str.BaseConvertOrDefalut(defaultValue, convertTemp);
-        }
-
         public static int ToInt32(this string str)
         {
             return str.BaseConvert(System.Convert.ToInt32);
@@ -117,7 +76,7 @@ namespace System
 
         public static int ToInt32OrDefault(this string str, int defaultValue = 0)
         {
-            return str.TryBaseConvert(System.Convert.ToInt32, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
         }
 
         public static bool ToBool(this string str)
@@ -127,7 +86,7 @@ namespace System
 
         public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
         {
-            return str.TryBaseConvert(System.Convert.ToBoolean, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
         }
 
         public static decimal ToDecimal(this string str)
@@ -139,7 +98,7 @@ namespace System
             this string str,
             decimal defaultValue = 0.00M)
         {
-            return str.TryBaseConvert(System.Convert.ToDecimal, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
         }
 
         public static double ToDouble(this string str)
@@ -151,7 +110,12 @@ namespace System
             this string str,
             double defaultValue = 0.00)
         {
-            return str.TryBaseConvert(System.Convert.ToDouble, defaultValue);
+            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
+        }
+
+        public static long ToLong(this string str, long defaultValue = 0L)
+        {
+            return str.BaseConvertOrDefalut(TypeConvertDelegate.stringToLong, defaultValue);
         }
 
         #region TryToDateTimeOffset
@@ -159,49 +123,135 @@ namespace System
         /// <summary>
         /// 标准时间格式中包含的符号(用于和long区分使用)
         /// </summary>
-        private static string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
+        private static readonly string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
 
-        private static DateTimeOffset TryToDateTimeOffsetBase(this string str, Func<string, DateTimeOffset> convert)
+        /// <summary>
+        /// 执行转换,会判断格式
+        /// <para>如果是标准格式，则调用默认方法转换<see cref="TypeConvertDelegate.stringToDateTimeOffset"/></para>
+        /// <para>如果不是标准格式，则调用传递的转换<paramref name="convert"/></para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="convert"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        private static DateTimeOffset TryToDateTimeOffsetBase(
+            this string str,
+            Func<string, DateTimeOffset> convert,
+            DateTimeOffset defaultValue)
         {
             return str switch
             {
-                string a when a.IsNullOrEmpty() => DateTimeOffset.MinValue,
-                var a when a.ContainsSymbol(timeSysmbols) => str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
-                _ => str.TryBaseConvert(convert)//匹配不上则为long
+                string a when a.IsNullOrEmpty() => defaultValue,
+                var a when a.ContainsSymbol(timeSysmbols) => str.BaseConvertOrDefalut(TypeConvertDelegate.stringToDateTimeOffset, defaultValue),
+                _ => str.BaseConvertOrDefalut(convert, defaultValue)   //匹配不上则为long
             };
         }
 
-        public static DateTimeOffset TryToDateTimeOffset(this string str)
+        /// <summary>
+        /// 转换为<see cref="DateTimeOffset"/>
+        /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset ToDateTimeOffset(this string str)
         {
-            return str.TryBaseConvert(TypeConvertDelegate.stringToDateTimeOffset);
+            return str.BaseConvert(TypeConvertDelegate.stringToDateTimeOffset);
         }
 
-        public static DateTimeOffset TryToUtcDateTimeOffset(this string str)
+        /// <summary>
+        /// 尝试转换为<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
+        /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset TryToDateTimeOffset(this string str, DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffset);
+            return str.BaseConvertOrDefalut(TypeConvertDelegate.stringToDateTimeOffset, defaultValue);
         }
 
-        public static DateTimeOffset TryToUtcDateTimeOffsetByMilliseconds(this string str)
+        #region TO->UTC
+
+        /// <summary>
+        /// 按秒转换为UTC的<see cref="DateTimeOffset"/>
+        /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T03:36:56+00:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset ToUtcDateTimeOffset(this string str)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds);
+            return str.BaseConvert(TypeConvertDelegate.longStringToUtcDateTimeOffset);
         }
 
-        public static DateTimeOffset TryToLocalDateTimeOffset(this string str)
+        /// <summary>
+        /// 尝试按秒转换为UTC的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
+        /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T03:36:56+00:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset TryToUtcDateTimeOffset(this string str, DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffset);
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffset, defaultValue);
         }
 
-        public static DateTimeOffset TryToLocalDateTimeOffsetByMilliseconds(this string str)
+        /// <summary>
+        /// 按毫秒转换为UTC的<see cref="DateTimeOffset"/>
+        /// <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T03:36:56+00:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset ToUtcDateTimeOffsetByMilliseconds(
+            this string str)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds);
+            return str.BaseConvert(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds);
         }
+
+        /// <summary>
+        /// 尝试按毫秒转换为UTC的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
+        /// <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T03:36:56+00:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset TryToUtcDateTimeOffsetByMilliseconds(
+            this string str,
+            DateTimeOffset defaultValue = default)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds, defaultValue);
+        }
+
+        #endregion TO->UTC
+
+        #region To->Local
+
+        /// <summary>
+        /// 尝试按秒转换为本地时区的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
+        /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T11:36:56+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset TryToLocalDateTimeOffset(
+            this string str,
+            DateTimeOffset defaultValue = default)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffset, defaultValue);
+        }
+
+        /// <summary>
+        /// 尝试转换为<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
+        ///  <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T11:36:56.123+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset TryToLocalDateTimeOffsetByMilliseconds(
+            this string str,
+            DateTimeOffset defaultValue = default)
+        {
+            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds, defaultValue);
+        }
+
+        #endregion To->Local
 
         #endregion TryToDateTimeOffset
-
-        public static long ToLong(this string str, long defaultValue = 0L)
-        {
-            return str.TryBaseConvert(TypeConvertDelegate.stringToLong, defaultValue);
-        }
 
         #endregion 基础类型与string之间的转换
 
@@ -290,7 +340,7 @@ namespace System
             ReadOnlySpan<char> chars = source.AsSpan();
 
             bool isExtra = false;
-            foreach (var item in symbols)
+            foreach (char item in symbols)
             {
                 isExtra = chars[source.Length - 1] == item;
                 if (isExtra == true) break;
@@ -333,14 +383,14 @@ namespace System
         /// <returns></returns>
         public static byte[] ToBytes(this string source, Encoding? encoding = null)
         {
-            encoding = encoding ?? Encoding.UTF8;
-            return source.BaseConvertOrDefalut(Array.Empty<byte>(), encoding.GetBytes);
+            encoding ??= Encoding.UTF8;
+            return source.BaseConvertOrDefalut(encoding.GetBytes, Array.Empty<byte>());
         }
 
         public static T ToEnum<T>(this string str, bool ignoreCase = false)
             where T : struct
         {
-            if (Enum.TryParse<T>(str, ignoreCase, out var enumValue))
+            if (Enum.TryParse<T>(str, ignoreCase, out T enumValue))
             {
                 return enumValue;
             }

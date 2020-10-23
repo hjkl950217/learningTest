@@ -40,5 +40,16 @@
 
             return format(hourNum, minuteNum, secondNum);
         }
+
+        /// <summary>
+        /// 在当前时间上面添加偏移
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static DateTimeOffset AddOffset(this DateTime source, TimeSpan offset)
+        {
+            return source.Add(offset);
+        }
     }
 }

@@ -199,7 +199,7 @@ namespace System
         public static int ToInt32OrDefault<T>(this T str, int defaultValue = 0)
              where T : class
         {
-            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToInt32);
+            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
         }
 
         public static bool ToBool<T>(this T str)
@@ -211,7 +211,7 @@ namespace System
         public static bool ToBoolOrDefault<T>(this T str, bool defaultValue = false)
               where T : class
         {
-            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToBoolean);
+            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
         }
 
         public static decimal ToDecimal<T>(this T str)
@@ -224,7 +224,7 @@ namespace System
             this T str,
             decimal defaultValue = 0.00M) where T : class
         {
-            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToDecimal);
+            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
         }
 
         public static double ToDouble<T>(this T str)
@@ -237,7 +237,7 @@ namespace System
             this T str,
             double defaultValue = 0.00) where T : class
         {
-            return str.BaseConvertOrDefalut(defaultValue, System.Convert.ToDouble);
+            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
         }
 
         #endregion 基础类型与Object之间的转换

@@ -12,8 +12,8 @@ namespace System
         /// <returns></returns>
         public static string ToStr(this byte[] source, Encoding? encoding = null)
         {
-            encoding = encoding ?? Encoding.UTF8;
-            return source.BaseConvertOrDefalut(string.Empty, encoding.GetString);
+            encoding ??= Encoding.UTF8;
+            return source.BaseConvertOrDefalut(encoding.GetString, string.Empty);
         }
     }
 }
