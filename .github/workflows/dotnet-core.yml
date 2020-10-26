@@ -19,6 +19,7 @@ jobs:
     - name: Restore
       run: |
         pwd
+        ls
         dotnet restore CkTools/CkTools.sln
     - name: UT
       run: dotnet test
