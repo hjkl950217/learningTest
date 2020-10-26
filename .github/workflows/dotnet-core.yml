@@ -17,9 +17,9 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: test
-      run: cd CkTools/Test/CKTools.Test | ls
-    - name: UT
-      run: dotnet test
+      run: |
+        cd CkTools/Test/CKTools.Test 
+        ls
     - name: UT
       run: dotnet test
     - name: Build
