@@ -24,7 +24,7 @@
         /// <returns></returns>
         public static DateTimeOffset AddOffset(this DateTimeOffset source, TimeSpan offset)
         {
-            return new DateTimeOffset(source.UtcDateTime.Ticks, source.Offset + offset);
+            return new DateTimeOffset(source.UtcDateTime.Ticks + offset.Ticks, source.Offset + offset);
         }
     }
 }

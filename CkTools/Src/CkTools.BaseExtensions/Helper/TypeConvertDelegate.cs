@@ -9,7 +9,7 @@
         /// <summary>
         /// int转bool,大于0为true
         /// </summary>
-        public static Func<int, bool> intToBool = t => t > 0 ? true : false;
+        public static Func<int, bool> intToBool = t => t > 0;
 
         #region To DateTimeOffset
 
@@ -24,7 +24,7 @@
         #region To DateTime
 
         /// <summary>
-        ///
+        /// 时间戳转<see cref="DateTime"/>
         /// </summary>
         public static Func<long, DateTime> longToDatetime =>
           ts => TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local)

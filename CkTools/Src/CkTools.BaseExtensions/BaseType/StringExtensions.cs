@@ -130,11 +130,31 @@ namespace System
         /// <para>如果是标准格式，则调用默认方法转换<see cref="TypeConvertDelegate.stringToDateTimeOffset"/></para>
         /// <para>如果不是标准格式，则调用传递的转换<paramref name="convert"/></para>
         /// </summary>
+        /// <param name="str">要转的值，支持标准ISO格式和时间戳，判断顺序:ISO>传递的委托</param>
+        /// <param name="convert"></param>
+        /// <returns></returns>
+        private static DateTimeOffset ConvertToDateTimeOffset(
+            this string str,
+            Func<string, DateTimeOffset> convert)
+        {
+            return str switch
+            {
+                string a when a.IsNullOrEmpty() => throw new FormatException($"format error,value: {str}."),
+                var a when a.ContainsSymbol(timeSysmbols) => str.BaseConvert(TypeConvertDelegate.stringToDateTimeOffset),
+                _ => str.BaseConvert(convert)   //匹配不上则为long
+            };
+        }
+
+        /// <summary>
+        /// 执行转换,会判断格式
+        /// <para>如果是标准格式，则调用默认方法转换<see cref="TypeConvertDelegate.stringToDateTimeOffset"/></para>
+        /// <para>如果不是标准格式，则调用传递的转换<paramref name="convert"/></para>
+        /// </summary>
         /// <param name="str"></param>
         /// <param name="convert"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private static DateTimeOffset TryToDateTimeOffsetBase(
+        private static DateTimeOffset TryConvertToDateTimeOffset(
             this string str,
             Func<string, DateTimeOffset> convert,
             DateTimeOffset defaultValue)
@@ -147,6 +167,8 @@ namespace System
             };
         }
 
+        #region To->原始时区
+
         /// <summary>
         /// 转换为<see cref="DateTimeOffset"/>
         /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
@@ -155,60 +177,71 @@ namespace System
         /// <returns></returns>
         public static DateTimeOffset ToDateTimeOffset(this string str)
         {
-            return str.BaseConvert(TypeConvertDelegate.stringToDateTimeOffset);
+            return str.ConvertToDateTimeOffset(TypeConvertDelegate.stringToDateTimeOffset);
         }
 
         /// <summary>
         /// 尝试转换为<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
-        /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
         /// <para><paramref name="str"/>示例:"2020-10-16T11:36:56+08:00" -> 2020-10-16T11:36:56+08:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static DateTimeOffset TryToDateTimeOffset(this string str, DateTimeOffset defaultValue = default)
         {
-            return str.BaseConvertOrDefalut(TypeConvertDelegate.stringToDateTimeOffset, defaultValue);
+            return str.TryConvertToDateTimeOffset(TypeConvertDelegate.stringToDateTimeOffset, defaultValue);
         }
+
+        #endregion To->原始时区
 
         #region TO->UTC
 
         /// <summary>
         /// 按秒转换为UTC的<see cref="DateTimeOffset"/>
         /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 03:36:56" -> 2020-10-16T03:36:56+00:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static DateTimeOffset ToUtcDateTimeOffset(this string str)
         {
-            return str.BaseConvert(TypeConvertDelegate.longStringToUtcDateTimeOffset);
+            return str.ConvertToDateTimeOffset(TypeConvertDelegate.longStringToUtcDateTimeOffset).UtcDateTime;
         }
 
         /// <summary>
         /// 尝试按秒转换为UTC的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
         /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 03:36:56" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+00:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static DateTimeOffset TryToUtcDateTimeOffset(this string str, DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffset, defaultValue);
+            return str
+                .TryConvertToDateTimeOffset(TypeConvertDelegate.longStringToUtcDateTimeOffset, defaultValue)
+                .UtcDateTime;
         }
 
         /// <summary>
         /// 按毫秒转换为UTC的<see cref="DateTimeOffset"/>
         /// <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 03:36:56" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+00:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static DateTimeOffset ToUtcDateTimeOffsetByMilliseconds(
-            this string str)
+        public static DateTimeOffset ToUtcDateTimeOffsetByMilliseconds(this string str)
         {
-            return str.BaseConvert(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds);
+            return str
+                .ConvertToDateTimeOffset(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds)
+                .UtcDateTime;
         }
 
         /// <summary>
         /// 尝试按毫秒转换为UTC的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
         /// <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 03:36:56" -> 2020-10-16T03:36:56+00:00</para>
+        /// <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+00:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -216,7 +249,9 @@ namespace System
             this string str,
             DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds, defaultValue);
+            return str
+                .TryConvertToDateTimeOffset(TypeConvertDelegate.longStringToUtcDateTimeOffsetByMilliseconds, defaultValue)
+                .UtcDateTime;
         }
 
         #endregion TO->UTC
@@ -224,8 +259,25 @@ namespace System
         #region To->Local
 
         /// <summary>
+        /// 尝试按秒转换为本地时区的<see cref="DateTimeOffset"/>
+        /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T11:36:56+08:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 11:36:56" -> 2020-10-16T11:36:56+08:00</para>
+        /// <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset ToLocalDateTimeOffset(this string str)
+        {
+            return str
+                .ConvertToDateTimeOffset(TypeConvertDelegate.longStringToLocalDateTimeOffset)
+                .LocalDateTime;
+        }
+
+        /// <summary>
         /// 尝试按秒转换为本地时区的<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
         /// <para><paramref name="str"/>示例:"1602819416" -> 2020-10-16T11:36:56+08:00</para>
+        /// <para><paramref name="str"/>示例:"2020-10-16 11:36:56" -> 2020-10-16T11:36:56+08:00</para>
+        /// <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+08:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -233,12 +285,30 @@ namespace System
             this string str,
             DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffset, defaultValue);
+            return str
+                .TryConvertToDateTimeOffset(TypeConvertDelegate.longStringToLocalDateTimeOffset, defaultValue)
+                .LocalDateTime;
+        }
+
+        /// <summary>
+        /// 尝试转换为<see cref="DateTimeOffset"/>
+        ///  <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T11:36:56.123+08:00</para>
+        ///  <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+08:00</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTimeOffset ToLocalDateTimeOffsetByMilliseconds(
+            this string str)
+        {
+            return str
+                .ConvertToDateTimeOffset(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds)
+                .LocalDateTime;
         }
 
         /// <summary>
         /// 尝试转换为<see cref="DateTimeOffset"/>,失败时返回<paramref name="defaultValue"/>
         ///  <para><paramref name="str"/>示例:"1602819416123" -> 2020-10-16T11:36:56.123+08:00</para>
+        ///  <para><paramref name="str"/>示例:"0" -> 1970-01-01T00:00:00.0000000+08:00</para>
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -246,7 +316,9 @@ namespace System
             this string str,
             DateTimeOffset defaultValue = default)
         {
-            return str.TryToDateTimeOffsetBase(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds, defaultValue);
+            return str
+                .TryConvertToDateTimeOffset(TypeConvertDelegate.longStringToLocalDateTimeOffsetByMilliseconds, defaultValue)
+                .LocalDateTime;
         }
 
         #endregion To->Local
