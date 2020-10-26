@@ -19,11 +19,11 @@ jobs:
     - name: test
       run: pwd
     - name: Restore
-      run: dotnet restore CkTools.sln
+      run: dotnet restore CkTools/CkTools.sln
     - name: UT
       run: dotnet test
     - name: Build
-      run: dotnet build CkTools.sln --configuration Release --no-restore -o package
+      run: dotnet build CkTools/CkTools.sln --configuration Release --no-restore -o package
     - name: Push
       run: dotnet nuget push "**/*.nupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
     - name: Push Symbol 
