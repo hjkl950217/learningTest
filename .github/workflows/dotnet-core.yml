@@ -20,6 +20,10 @@ jobs:
       run: |
         cd CkTools/Test/CKTools.Test 
         ls
+        cd ..
+        cd ..
+    - name: Restore
+      run: dotnet restore CkTools/CkTools.sln
     - name: UT
       run: dotnet test
     - name: Build
