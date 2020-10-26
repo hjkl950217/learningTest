@@ -17,11 +17,11 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Restore
-      run: dotnet restore CkTools
+      run: dotnet restore CkTools.sln
     - name: UT
       run: dotnet test
     - name: Build
-      run: dotnet build CkTools --configuration Release --no-restore -o package
+      run: dotnet build CkTools.sln --configuration Release --no-restore -o package
     - name: Push
       run: dotnet nuget push "**/*.nupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
     - name: Push Symbol 
