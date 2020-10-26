@@ -1,7 +1,7 @@
 ﻿namespace System
 {
     /// <summary>
-    /// DateTime扩展类
+    /// <see cref="DateTime"/>扩展类
     /// </summary>
     public static class DateTimeExtensions
     {
@@ -17,14 +17,28 @@
         }
 
         /// <summary>
-        /// 转换为Unix时间戳,单位为秒（前端默认是s）
+        /// 获取时间片段的字符串(默认：X时X分X秒)
         /// </summary>
-        /// <param name="source"></param>
-        /// <remarks>建议传递格林威治时间,从1970-01-01T00:00:00.000Z到现在的时间戳</remarks>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="stratTime">开始时间</param>
+        /// <param name="format">格式化方法.入参: 总时、总分、总秒</param>
         /// <returns></returns>
-        public static long ToUnixTimestamp(this DateTimeOffset source)
+        public static string GetTimeSpan(
+            this DateTime endTime,
+            DateTime stratTime,
+            Func<int, int, int, string>? format = null)
         {
-            return source.ToUnixTimeSeconds();
+            if (format == null)
+            {
+                format = (hours, minutes, seconds) => $"{hours}时{minutes}分{seconds}秒";
+            }
+
+            System.TimeSpan ts = endTime - stratTime;
+            int hourNum = (ts.Days * 24) + ts.Hours;
+            int minuteNum = ts.Minutes % 60;
+            int secondNum = ts.Seconds % 3600;
+
+            return format(hourNum, minuteNum, secondNum);
         }
 
         /// <summary>
@@ -33,9 +47,9 @@
         /// <param name="source"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public static DateTimeOffset AddOffset(this DateTimeOffset source, TimeSpan offset)
+        public static DateTimeOffset AddOffset(this DateTime source, TimeSpan offset)
         {
-            return new DateTimeOffset(source.UtcDateTime.Ticks, source.Offset + offset);
+            return source.Add(offset);
         }
     }
 }
