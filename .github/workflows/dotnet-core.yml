@@ -16,14 +16,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-    - name: test
-      run: |
-        cd CkTools/Test/CKTools.Test 
-        ls
-        cd ..
-        cd ..
     - name: Restore
-      run: dotnet restore CkTools/CkTools.sln
+      run: |
+        pwd
+        dotnet restore CkTools/CkTools.sln
     - name: UT
       run: dotnet test
     - name: Build
