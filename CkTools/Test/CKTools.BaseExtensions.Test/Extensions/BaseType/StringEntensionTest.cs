@@ -1,12 +1,24 @@
 ﻿using Xunit;
 using System;
+using System.Threading;
+using System.Globalization;
 
 namespace CKTools.BaseExtensions.Test.Extensions.BaseType
 {
     public class StringEntensionTest
     {
-        public class ToDateTimeOffset
+        public class ToDateTimeOffset : IDisposable
         {
+            public ToDateTimeOffset()
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN", false);
+            }
+
+            public void Dispose()
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            }
+
             [Fact]
             public void ToDateTimeOffsetTest()
             {
@@ -19,7 +31,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void ToDateTimeOffsetTest_Exception()
             {
                 FormatException? ex = Assert.Throws<FormatException>(() => _ = "1602819416".ToDateTimeOffset());
-
                 Assert.NotNull(ex);
             }
 
@@ -30,7 +41,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void ToUtcDateTimeOffsetTest(string source, string expected)
             {
                 DateTimeOffset result = source.ToUtcDateTimeOffset();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
 
@@ -41,7 +51,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void ToUtcDateTimeOffsetByMillisecondsTest(string source, string expected)
             {
                 DateTimeOffset result = source.ToUtcDateTimeOffsetByMilliseconds();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
 
@@ -52,7 +61,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void ToLocalDateTimeOffsetTest(string source, string expected)
             {
                 DateTimeOffset result = source.ToLocalDateTimeOffset();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
 
@@ -63,13 +71,22 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void ToLocalDateTimeOffsetByMillisecondsTest(string source, string expected)
             {
                 DateTimeOffset result = source.ToLocalDateTimeOffsetByMilliseconds();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
         }
 
-        public class TryToDateTimeOffset
+        public class TryToDateTimeOffset : IDisposable
         {
+            public TryToDateTimeOffset()
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN", false);
+            }
+
+            public void Dispose()
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            }
+
             [Fact]
             public void TryToDateTimeOffsetTest()
             {
@@ -103,7 +120,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void TryToUtcDateTimeOffsetByMillisecondsTest(string source, string expected)
             {
                 DateTimeOffset result = source.TryToUtcDateTimeOffsetByMilliseconds();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
 
@@ -126,7 +142,6 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void TryToLocalDateTimeOffsetByMillisecondsTest(string source, string expected)
             {
                 DateTimeOffset result = source.TryToLocalDateTimeOffsetByMilliseconds();
-
                 Assert.Equal(expected, result.ToString("O"));
             }
         }
