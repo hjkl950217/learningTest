@@ -3,6 +3,6 @@
   <Import Project="..\UT.targets" />
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\CkTools\CkTools.csproj" />
+    <ProjectReference Include="..\..\Src\CkTools.FP\CkTools.FP.csproj" />
   </ItemGroup>
 </Project>
