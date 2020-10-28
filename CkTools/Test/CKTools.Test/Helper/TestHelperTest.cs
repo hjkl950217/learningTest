@@ -9,9 +9,10 @@ namespace CkTools.Test.Helper
     {
         public class MockArrayTest
         {
+            [Fact]
             public void NoError()
             {
-                var source = TestHelper.MockArray<KeyValuePair<int, int>>(5);
+                KeyValuePair<int, int>[]? source = TestHelper.MockArray<KeyValuePair<int, int>>(5);
 
                 int result = source.Select(t => t.GetHashCode()).Distinct().Count();
                 Assert.Equal(5, result);
@@ -20,9 +21,10 @@ namespace CkTools.Test.Helper
 
         public class MocklListTest
         {
+            [Fact]
             public void NoError()
             {
-                var source = TestHelper.MockList<KeyValuePair<int, int>>(5);
+                List<KeyValuePair<int, int>>? source = TestHelper.MockList<KeyValuePair<int, int>>(5);
 
                 int result = source.Select(t => t.GetHashCode()).Distinct().Count();
                 Assert.Equal(5, result);
@@ -31,6 +33,7 @@ namespace CkTools.Test.Helper
 
         public class MockTest
         {
+            [Fact]
             public void NoException()
             {
                 _ = TestHelper.Mock<KeyValuePair<int, int>>();
