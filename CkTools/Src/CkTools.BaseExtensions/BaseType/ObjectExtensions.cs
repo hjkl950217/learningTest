@@ -241,5 +241,27 @@ namespace System
         }
 
         #endregion 基础类型与Object之间的转换
+
+        /// <summary>
+        /// 转换成单元素数组(用于包装结构)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static T[] AsToArray<T>(this T source)
+        {
+            return new T[] { source };
+        }
+
+        /// <summary>
+        /// 转换成<see cref="IEnumerable{T}"/>(用于包装结构)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> AsToEnumerable<T>(this T source)
+        {
+            yield return source;
+        }
     }
 }
