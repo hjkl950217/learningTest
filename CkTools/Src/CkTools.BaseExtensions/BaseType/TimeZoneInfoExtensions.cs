@@ -21,7 +21,7 @@ namespace System
         /// <returns></returns>
         public static string GetOffsetSymbol(this TimeZoneInfo timeZoneInfo)
         {
-            return timeZoneInfo.BaseUtcOffset.Hours > 0 ? "+" : "-";
+            return timeZoneInfo.BaseUtcOffset.Ticks < 0 ? "-" : "+";//0的时候也要返回+号
         }
     }
 }
