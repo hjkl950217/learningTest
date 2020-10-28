@@ -63,7 +63,7 @@ namespace System
 
         #endregion 返回Action
 
-        #region Func
+        #region 返回Func
 
         /// <summary>
         /// 管道 <para></para>
@@ -86,6 +86,6 @@ namespace System
             return t => func(sourceFunc(t));
         }
 
-        #endregion Func
+        #endregion 返回Func
     }
 }

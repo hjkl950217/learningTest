@@ -11,7 +11,7 @@ namespace System
         /// <returns></returns>
         public static string GetOffsetString(this TimeZoneInfo timeZoneInfo)
         {
-            return $"{timeZoneInfo.GetOffsetSymbol()}{timeZoneInfo.BaseUtcOffset.Hours.Abs():00}:{timeZoneInfo.BaseUtcOffset.Minutes:00}";
+            return $"{timeZoneInfo.GetOffsetSymbol()}{timeZoneInfo.BaseUtcOffset.Hours.Abs():00}:{timeZoneInfo.BaseUtcOffset.Minutes.Abs():00}";
         }
 
         /// <summary>
