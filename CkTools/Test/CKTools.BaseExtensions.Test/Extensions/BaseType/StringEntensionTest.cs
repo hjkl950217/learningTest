@@ -120,8 +120,10 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
 
     public class ToDateTimeOffsetUTData
     {
-        //todo :弄好偏移字符串后 local的数据处理下时区
+        //这里使用偏移处理是为了兼容docker环境下跑UT 时区的问题
         public static string OffsetStr = TimeZoneInfo.Local.GetOffsetString();
+
+        public static int offsetHours = TimeZoneInfo.Local.BaseUtcOffset.Hours.Abs();
 
         public static IEnumerable<object[]> Utc()
         {
@@ -139,16 +141,16 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
 
         public static IEnumerable<object[]> Local()
         {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T11:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "1602819416", $"2020-10-16T11:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "0", $"1970-01-01T08:00:00.0000000{OffsetStr}" };
+            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+            yield return new object[] { "1602819416", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+            yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
         }
 
         public static IEnumerable<object[]> LocalMilliseconds()
         {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T11:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "1602819416001", $"2020-10-16T11:36:56.0010000{OffsetStr}" };
-            yield return new object[] { "0", $"1970-01-01T08:00:00.0000000{OffsetStr}" };
+            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+            yield return new object[] { "1602819416001", $"2020-10-16T{offsetHours + 3:00}:36:56.0010000{OffsetStr}" };
+            yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
         }
 
         public static IEnumerable<object[]> TryUtc()
@@ -166,13 +168,13 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
         public static IEnumerable<object[]> TryLocal()
         {
             return ToDateTimeOffsetUTData.Local()
-                .Concat(new object[] { "", $"0001-01-01T08:00:00.0000000{OffsetStr}" }.AsToEnumerable());
+                .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
         }
 
         public static IEnumerable<object[]> TryLocalMilliseconds()
         {
             return ToDateTimeOffsetUTData.LocalMilliseconds()
-                .Concat(new object[] { "", $"0001-01-01T08:00:00.0000000{OffsetStr}" }.AsToEnumerable());
+                .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
         }
     }
 }

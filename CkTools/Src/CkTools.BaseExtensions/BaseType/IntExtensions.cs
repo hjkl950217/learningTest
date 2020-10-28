@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CkTools.Extensions.BaseType
+﻿namespace System
 {
     public static class IntExtensions
     {

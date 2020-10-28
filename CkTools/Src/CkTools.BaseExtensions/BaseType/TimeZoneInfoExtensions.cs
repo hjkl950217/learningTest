@@ -1,6 +1,4 @@
-﻿using CkTools.Extensions.BaseType;
-
-namespace System
+﻿namespace System
 {
     public static class TimeZoneInfoExtensions
     {
