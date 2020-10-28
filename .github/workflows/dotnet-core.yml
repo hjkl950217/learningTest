@@ -19,7 +19,7 @@ jobs:
     - name: Restore
       run: dotnet restore CkTools/CkTools.sln
     - name: UT
-      run: dotnet test CkTools/CkTools.sln -parallel collections
+      run: dotnet test CkTools/CkTools.sln
     - name: Build
       run: dotnet build CkTools/CkTools.sln --configuration Release --no-restore -o package
     - name: Push
