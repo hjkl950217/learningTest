@@ -10,7 +10,7 @@ namespace CkTools.Helper
         public static T[] MockArray<T>(int count = 3)
         {
             T[] result = new T[count];
-            for (int i = 0 ; i < result.Length ; i++)
+            for (int i = 0; i < result.Length; i++)
             {
                 result[i] = fixture.Create<T>();
             }
@@ -21,7 +21,12 @@ namespace CkTools.Helper
         public static List<T> MockList<T>(int count = 3)
         {
             List<T> result = new List<T>();
-            result.Add(fixture.Create<T>());
+
+            for (int i = 0; i < count; i++)
+            {
+                result.Add(fixture.Create<T>());
+            }
+
             return result;
         }
 

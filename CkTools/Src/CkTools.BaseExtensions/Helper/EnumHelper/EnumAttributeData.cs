@@ -7,7 +7,7 @@ namespace CkTools.Helper
     /// </summary>
     public class EnumAttributeData
     {
-        public const string BaseValueStringFormatStr = "D";
+        private const string BaseValueStringFormatStr = "D";
 
         public EnumAttributeData(
             string enumValueName,
