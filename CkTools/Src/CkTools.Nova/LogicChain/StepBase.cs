@@ -6,7 +6,7 @@ namespace CkTools.Nova.LogicChain
 {
     public abstract class StepBase : IStep
     {
-        public IStep Next { get; set; }
+        public IStep? Next { get; set; }
 
         public StepContext Context { get; set; }
 

@@ -57,7 +57,7 @@ namespace CkTools.Nova.Helper
             Func<Type, bool> func = i =>
             {
                 return i.IsClass //类
-                       && i.IsEnum //枚举
+                                 //&& i.IsEnum //枚举
                        && i.IsPublic //公共的
                                      //&& i.IsGenericType == false //泛型类型
                                      // && i.IsGenericTypeDefinition == false//泛型具体实现
@@ -87,7 +87,7 @@ namespace CkTools.Nova.Helper
         /// 传递false时会自动附加一个空的<see cref="IStep"/>以防止空指针异常
         /// </param>
         /// <returns>排好顺序后，第一个可执行的<see cref="IStep"/></returns>
-        public static IStep Sort(
+        public static IStep? Sort(
            IEnumerable<StepEntity> taskArray,
            bool isAutoEnd = true)
         {

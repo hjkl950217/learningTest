@@ -6,7 +6,7 @@ namespace CkTools.Nova.LogicChain
 {
     public abstract class StepBase<TResult> : StepBase, IStep<TResult>
     {
-        public new IStep<TResult> Next { get; set; }
+        public new IStep<TResult>? Next { get; set; }
         public new StepContext<TResult> Context { get; set; }
 
         public Task<TResult> InvokeAsync(StepContext<TResult> context)
