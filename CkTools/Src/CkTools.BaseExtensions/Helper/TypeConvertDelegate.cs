@@ -50,6 +50,8 @@
             .Pipe(longToUtcDateTimeOffsetByMilliseconds)
             .Pipe(utcToLocal);
 
+        public static Func<string, DateTime> stringToLocalDateTime = stringToLong.Pipe(longToDatetime);
+
         #endregion 组合转换
     }
 }

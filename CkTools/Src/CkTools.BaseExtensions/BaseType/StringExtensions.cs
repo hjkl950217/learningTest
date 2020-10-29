@@ -27,7 +27,7 @@ namespace System
             this string jsonStr,
             JsonSerializerSettings? jsonSerializerSettings = null)
         {
-            jsonSerializerSettings = jsonSerializerSettings ?? JsonSerializerSettingConst.DefaultSetting;
+            jsonSerializerSettings ??= JsonSerializerSettingConst.DefaultSetting;
 
             return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
         }
@@ -95,8 +95,8 @@ namespace System
         }
 
         public static decimal ToDecimalOrDefault(
-            this string str,
-            decimal defaultValue = 0.00M)
+                    this string str,
+                    decimal defaultValue = 0.00M)
         {
             return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
         }
@@ -107,8 +107,8 @@ namespace System
         }
 
         public static double ToDoubleOrDefault(
-            this string str,
-            double defaultValue = 0.00)
+                    this string str,
+                    double defaultValue = 0.00)
         {
             return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
         }

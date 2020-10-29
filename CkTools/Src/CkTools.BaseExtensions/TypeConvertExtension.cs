@@ -59,10 +59,12 @@
           this T source,
           Func<T, TValue> convert)
         {
-            if (typeof(T).IsClass && source == null)
+            if (typeof(T).IsClass
+                && (source == null || source.GetHashCode() == string.Empty.GetHashCode()))
             {
                 throw new ArgumentException($"The parameter is invalid,value:{source}", nameof(source));
             }
+
             return convert(source);
         }
 

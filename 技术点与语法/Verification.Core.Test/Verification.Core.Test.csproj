@@ -6,7 +6,7 @@
     <None Remove="VerificationCore\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Verification.Core\Verification.Core.csproj" />
+    <ProjectReference Include="..\Verification.Core\Verification.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="AutoFixture.AutoNSubstitute" Version="4.13.0" />

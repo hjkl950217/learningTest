@@ -15,7 +15,6 @@ namespace System
             TKey key,
             TValue defaultValue = default)
         {
-            key.CheckNullWithException(nameof(key));
             if (valuePairs.IsNullOrEmpty()) { return defaultValue; }
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
@@ -37,8 +36,6 @@ namespace System
              TKey key,
              TValue value)
         {
-            key.CheckNullWithException(nameof(key));
-            value.CheckNullWithException(nameof(value));
             valuePairs.CheckNullWithException(nameof(valuePairs));
 
             bool isExist = valuePairs.ContainsKey(key);
@@ -83,7 +80,6 @@ namespace System
             Func<TValue> factory)
 
         {
-            key.CheckNullWithException(nameof(key));
             valuePairs.CheckNullWithException(nameof(valuePairs));
             factory.CheckNullWithException(nameof(factory));
 
@@ -168,7 +164,6 @@ namespace System
            TValue value)
         {
             valuePairs.CheckNullWithException(nameof(valuePairs));
-            value.CheckNullWithException(nameof(value));
 
             if (valuePairs.ContainsKey(key))
             {

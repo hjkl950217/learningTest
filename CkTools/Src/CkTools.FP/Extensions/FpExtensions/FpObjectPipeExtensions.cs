@@ -37,6 +37,26 @@ namespace System
 
         /// <summary>
         /// 管道 <para></para>
+        /// a->(()->bool)->(b->c) => c <para></para>
+        /// 示例： string->(string->bool)->(string->int) => int
+        /// </summary>
+        /// <Value>
+        /// <para><paramref name="input"/>：要处理的值 </para>
+        /// <para><paramref name="isExecute"/>：判断是否执行，返回true为执行 </para>
+        /// <para><paramref name="func"/>：将要执行的处理 </para>
+        /// </Value>
+        /// <typeparam name="TInput">可传递任意类型</typeparam>
+        /// <returns></returns>
+        public static TInput Pipe<TInput>(
+            this TInput input,
+            bool isExecute,
+            Func<TInput, TInput> func)
+        {
+            return input.Pipe(t => isExecute, func);
+        }
+
+        /// <summary>
+        /// 管道 <para></para>
         /// a->(a->b) => b <para></para>
         /// 示例： string->(string->int) => int
         /// </summary>
