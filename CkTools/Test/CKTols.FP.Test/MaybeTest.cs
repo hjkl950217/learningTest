@@ -53,18 +53,22 @@ namespace CKTols.FP.Test
 
                 Assert.True(a.HasValue);
                 Assert.True(a.IsNothing());
-                Assert.Equal(2, (int)a.Value);
+                Assert.Equal(2, a.Value);
             }
 
             [Fact]
             public void Reference_Null_WithNothing()
             {
-                Maybe<object> a = Maybe.Pure((object?)null);
+#pragma warning disable CS8714 // 类型不能用作泛型类型或方法中的类型参数。类型参数的为 Null 性与 "notnull" 约束不匹配。
+#pragma warning disable CS8619 // 值中的引用类型的为 Null 性与目标类型不匹配。
+                Maybe<object> a = Maybe.Pure(value: (object?)null);
+#pragma warning restore CS8619 // 值中的引用类型的为 Null 性与目标类型不匹配。
+#pragma warning restore CS8714 // 类型不能用作泛型类型或方法中的类型参数。类型参数的为 Null 性与 "notnull" 约束不匹配。
 
                 Assert.False(a.HasValue);
                 Assert.False(a.IsNothing());
 
-                var ex = Assert.Throws<InvalidOperationException>(() => _ = a.Value);
+                InvalidOperationException? ex = Assert.Throws<InvalidOperationException>(() => _ = a.Value);
                 Assert.NotNull(ex);
             }
 

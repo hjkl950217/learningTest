@@ -1,4 +1,8 @@
-﻿using CkTools.Helper;
+﻿#pragma warning disable CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。
+#pragma warning disable CS8603 // 可能的 null 引用返回。
+#pragma warning disable CS8768 // 返回类型中引用类型的为 Null 性与实现的成员不匹配(可能是由于为 Null 性特性)。
+
+using CkTools.Helper;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +18,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Dictionary()
             {
-                var source = TestHelper.Mock<Dictionary<int, int>>();
+                Dictionary<int, int>? source = TestHelper.Mock<Dictionary<int, int>>();
 
                 IReadOnlyDictionary<int, int> result = source.ToReadOnly();
 
@@ -24,7 +28,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void ReadOnlyDictionary()
             {
-                var source = TestHelper.Mock<ReadOnlyDictionary<int, int>>();
+                ReadOnlyDictionary<int, int>? source = TestHelper.Mock<ReadOnlyDictionary<int, int>>();
 
                 IReadOnlyDictionary<int, int> result = source.ToReadOnly();
 
@@ -34,7 +38,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void TestArray()
             {
-                var source = TestHelper.MockArray<KeyValuePair<int, int>>(5);
+                KeyValuePair<int, int>[]? source = TestHelper.MockArray<KeyValuePair<int, int>>(5);
 
                 IReadOnlyDictionary<int, int> result = source.ToReadOnly();
 
@@ -44,7 +48,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void TestDictionary()
             {
-                var source = TestHelper.Mock<TestDictionary<int, int>>();
+                TestDictionary<int, int>? source = TestHelper.Mock<TestDictionary<int, int>>();
 
                 IReadOnlyDictionary<int, int> result = source.ToReadOnly();
 
@@ -102,7 +106,8 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             throw new NotImplementedException();
         }
 
-        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
+        IEnumerator<KeyValuePair<TKey, TValue>>? IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
+
         {
             return (this.InternelDic as IEnumerable<KeyValuePair<TKey, TValue>>)?.GetEnumerator();
         }
@@ -128,3 +133,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
         }
     }
 }
+
+#pragma warning restore CS8768 // 返回类型中引用类型的为 Null 性与实现的成员不匹配(可能是由于为 Null 性特性)。
+#pragma warning restore CS8603 // 可能的 null 引用返回。
+#pragma warning restore CS8618 // 不可为 null 的字段未初始化。请考虑声明为可以为 null。

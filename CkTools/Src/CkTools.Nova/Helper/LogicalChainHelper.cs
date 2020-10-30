@@ -29,7 +29,7 @@ namespace CkTools.Nova.Helper
         public static IList<(TAttribute attribute, Type Type)> GetCustomAttributesByAssemblies<TAttribute>(Func<Type, bool> predicate)
             where TAttribute : Attribute
         {
-            List<(TAttribute Attribute, Type type)>? types = AppDomain.CurrentDomain.GetAssemblies()
+            List<(TAttribute Attribute, Type type)> types = AppDomain.CurrentDomain.GetAssemblies()
                  .SelectMany(i =>
                  {
                      try
@@ -87,7 +87,7 @@ namespace CkTools.Nova.Helper
         /// 传递false时会自动附加一个空的<see cref="IStep"/>以防止空指针异常
         /// </param>
         /// <returns>排好顺序后，第一个可执行的<see cref="IStep"/></returns>
-        public static IStep? Sort(
+        public static IStep Sort(
            IEnumerable<StepEntity> taskArray,
            bool isAutoEnd = true)
         {
@@ -109,12 +109,12 @@ namespace CkTools.Nova.Helper
            bool isAutoEnd = true)
         {
             //排序 一组接口内部排序
-            StepEntity[]? stepList = taskArray
+            StepEntity[] stepList = taskArray
                 .OrderBy(i => i.Attribute.StepEnumOrder)
                 .ToArray();
 
             StepEntity tempMw = stepList.First();//获取第一个中间件的引用
-            foreach (StepEntity? item in stepList)
+            foreach (StepEntity item in stepList)
             {
                 tempMw.StepInstanceObject.Next = item.StepInstanceObject;
                 tempMw = item;//将指针移动到下一个

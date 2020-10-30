@@ -37,7 +37,7 @@ namespace CkTools.Nova.Factory
         {
             this.di = serviceProvider;
 
-            Dictionary<Type, StepEntity[]>? tempTaskList = this.GetNovaList(taskList);
+            Dictionary<Type, StepEntity[]> tempTaskList = this.GetNovaList(taskList);
             this.taskList = new ConcurrentDictionary<Type, StepEntity[]>(tempTaskList);
         }
 
@@ -46,7 +46,7 @@ namespace CkTools.Nova.Factory
         /// </summary>
         /// <typeparam name="TEnumType"></typeparam>
         /// <returns></returns>
-        public IStep? GetFirstTask<TEnumType>()
+        public IStep GetFirstTask<TEnumType>()
         {
             StepEntity[] taskEntity = this.taskList.GetOrAdd(
                 typeof(TEnumType),
@@ -70,7 +70,7 @@ namespace CkTools.Nova.Factory
         /// 如果是启动后调用：会返回缓存中的数据。
         /// </remarks>
         /// <returns></returns>
-        public Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity>? taskList = null)
+        public Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity> taskList = null)
         {
             if (this.taskList.IsNullOrEmpty())
             {
@@ -103,7 +103,7 @@ namespace CkTools.Nova.Factory
 
             //3.排序-排列接口上的Next
             //分组-以type为索引
-            List<StepEntity>? taskGroup = tempTaskList.FindAll(t => t.Attribute.StepEnumType == enumType);
+            List<StepEntity> taskGroup = tempTaskList.FindAll(t => t.Attribute.StepEnumType == enumType);
 
             //排列next属性
             return LogicalChainHelper.SortList(taskGroup);
@@ -120,7 +120,7 @@ namespace CkTools.Nova.Factory
 
         private List<StepEntity> B_CreateInstance(in List<StepEntity> taskList, IServiceProvider di)
         {
-            foreach (StepEntity? item in taskList)
+            foreach (StepEntity item in taskList)
             {
                 item.StepInstanceObject = this.CreateInstance<IStep>(item.StepType, di);
             }
@@ -134,13 +134,13 @@ namespace CkTools.Nova.Factory
         /// <returns></returns>
         private Dictionary<Type, StepEntity[]> C_SortAndPermutation(in List<StepEntity> taskList)
         {
-            ILookup<Type, StepEntity>? taskGroup = taskList
+            ILookup<Type, StepEntity> taskGroup = taskList
                 .ToLookup(t => t.Attribute.StepEnumType);
 
             Dictionary<Type, StepEntity[]> result = new Dictionary<Type, StepEntity[]>();
-            foreach (IGrouping<Type, StepEntity>? item in taskGroup)
+            foreach (IGrouping<Type, StepEntity> item in taskGroup)
             {
-                StepEntity[]? temp = LogicalChainHelper.SortList(item.ToList());
+                StepEntity[] temp = LogicalChainHelper.SortList(item.ToList());
 
                 result.Add(item.Key, temp);
             }
@@ -175,7 +175,7 @@ namespace CkTools.Nova.Factory
         private TInstance CreateInstance<TInstance>(Type type, params object[] args)
          where TInstance : class, new()
         {
-            TInstance? tempInstance = Activator.CreateInstance(type, args) as TInstance;//利用这个自带的激活器创建，也可以修改为DI实例
+            TInstance tempInstance = Activator.CreateInstance(type, args) as TInstance;//利用这个自带的激活器创建，也可以修改为DI实例
 
             return tempInstance;
         }

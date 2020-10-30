@@ -15,7 +15,7 @@ namespace CkTools.Nova.LogicChain
         /// <remarks>
         /// 由<see cref="LogicalChainHelper"/>中排序或初始化时统一指定
         /// </remarks>
-        IStep? Next { get; set; }
+        IStep Next { get; set; }
 
         /// <summary>
         /// 异步执行任务

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8604 // 可能的 null 引用参数。
+
+using System;
 using System.Collections;
 using Xunit;
 
@@ -48,7 +50,9 @@ namespace Nova.LogicChain.Test.Extensions
         public void IsNotNullOrEmpty_Null_Fasle()
         {
             IEnumerable testObject = null;
+
             bool result = testObject.IsNotNullOrEmpty();
+
             Assert.False(result);
         }
 
@@ -79,3 +83,5 @@ namespace Nova.LogicChain.Test.Extensions
         #endregion IsNotNullOrEmpty
     }
 }
+
+#pragma warning restore CS8604 // 可能的 null 引用参数。

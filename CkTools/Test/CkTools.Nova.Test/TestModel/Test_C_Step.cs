@@ -21,9 +21,7 @@ namespace CkTools.Nova.Test.TestModel
 
         public Task InvokeAsync(StepContext context)
         {
-            var t = new StepAttribute(TestTaskEnum.Start, typeof(StepContext));
-
-            var conText2 = context.As<TestResult>();
+            StepContext<TestResult>? conText2 = context.As<TestResult>();
 
             if (this.testConfig.IsRelease)
             {

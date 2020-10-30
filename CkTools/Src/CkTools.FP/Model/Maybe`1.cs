@@ -19,14 +19,14 @@ namespace System
         {
         }
 
-        public Maybe(T value)
+        public Maybe([AllowNull] T value)
         {
             if (value is null) return;
             this.innerValue = value;
             base.HasValue = true;
         }
 
-        public Maybe([NotNull]Maybe<T> value)
+        public Maybe([NotNull] Maybe<T> value)
         {
             if (value?.HasValue != true) return;
             this.innerValue = value.Value;

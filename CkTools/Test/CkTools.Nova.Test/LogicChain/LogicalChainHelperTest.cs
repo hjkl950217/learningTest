@@ -64,7 +64,7 @@ namespace CkTools.Nova.Test.LogicChain
                 int initOrder = int.MinValue;
                 bool result = true; //都是&& 有一个false都是false
 
-                foreach (var item in stepEntity)
+                foreach (StepEntity item in stepEntity)
                 {
                     result = result && item.Attribute.StepEnumOrder >= initOrder;//检查点
 
@@ -130,7 +130,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void Sort_SortIsTrue_AutoEnd()
         {
             IStep result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.Sort(MockHeler.GetTestArray());
             });
@@ -144,7 +144,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void Sort_SortIsTrue_NoAutoEnd()
         {
             IStep result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.Sort(MockHeler.GetTestArray(), false);
             });
@@ -158,7 +158,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void SortList_SortIsTrue_AutoEnd()
         {
             StepEntity[] result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.SortList(MockHeler.GetTestArray(), true);
             });
@@ -173,8 +173,8 @@ namespace CkTools.Nova.Test.LogicChain
         [Fact]
         public void SortList_SortIsTrue_NoAutoEnd()
         {
-            StepEntity[]? result = null;
-            var ex = Record.Exception(() =>
+            StepEntity[] result = null;
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.SortList(MockHeler.GetTestArray(), false);
             });
@@ -190,7 +190,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void SortList_AutoEnd()
         {
             StepEntity[] result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.SortList(MockHeler.GetTestArray());
             });
@@ -205,7 +205,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void SortList_NoAutoEnd()
         {
             StepEntity[] result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.SortList(MockHeler.GetTestArray(), false);
             });
@@ -220,7 +220,7 @@ namespace CkTools.Nova.Test.LogicChain
         public void Sort_NoException()
         {
             IStep result = null;
-            var ex = Record.Exception(() =>
+            Exception ex = Record.Exception(() =>
             {
                 result = LogicalChainHelper.Sort(MockHeler.GetTestArray());
             });

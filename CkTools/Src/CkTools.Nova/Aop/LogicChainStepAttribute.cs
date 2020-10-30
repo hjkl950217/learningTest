@@ -61,7 +61,7 @@ namespace CkTools.Nova.Aop
         /// </param>
         public StepAttribute(
             [NotNull] object stepEnumValue,
-            Type? contextResultType,
+            Type contextResultType,
             ServiceLifetime lifetime)
         {
             #region 检测
@@ -98,7 +98,7 @@ namespace CkTools.Nova.Aop
         /// <summary>
         /// 表示<see cref="StepContext{TResult}.Result"/>中的类型
         /// </summary>
-        public Type? ContextResultType { get; set; }
+        public Type ContextResultType { get; set; }
 
         public Enum StepEnumValue { get; set; }
 

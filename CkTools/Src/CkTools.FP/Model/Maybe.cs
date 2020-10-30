@@ -1,4 +1,6 @@
-﻿namespace System
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace System
 {
     /// <summary>
     /// Mayby基类，不包含Mayby本身的逻辑，仅包含快捷方法。Mayby具体逻辑参考<see cref="Maybe{T}"/>
@@ -20,6 +22,6 @@
         /// <typeparam name="A"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Maybe<A> Pure<A>(A value) where A : notnull => new Maybe<A>(value);
+        public static Maybe<A> Pure<A>([AllowNull] A value) where A : notnull => new Maybe<A>(value);
     }
 }

@@ -27,6 +27,6 @@ namespace CkTools.Nova.Factory
         /// 如果是启动后调用：会返回缓存中的数据。
         /// </remarks>
         /// <returns></returns>
-        Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity>? taskList = null);
+        Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity> taskList = null);
     }
 }

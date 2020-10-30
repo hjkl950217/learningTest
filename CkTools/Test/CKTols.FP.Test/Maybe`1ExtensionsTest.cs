@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
+#pragma warning disable CS8604 // 可能的 null 引用参数。
+
+using System;
 using Xunit;
 
 namespace CKTols.FP.Test
@@ -111,6 +114,7 @@ namespace CKTols.FP.Test
             public void AllNull_Applyed_WithNothing()
             {
                 Maybe<int> t2 = null;
+
                 Maybe<Func<int, bool>> func = null;
 
                 Assert.False(t2.Apply(func).HasValue);
@@ -159,3 +163,6 @@ namespace CKTols.FP.Test
         #endregion 函数式扩展
     }
 }
+
+#pragma warning restore CS8604 // 可能的 null 引用参数。
+#pragma warning restore CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。

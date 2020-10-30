@@ -1,4 +1,6 @@
-﻿using CkTools.Helper;
+﻿#pragma warning disable CS8604 // 可能的 null 引用参数。
+
+using CkTools.Helper;
 using System;
 
 namespace CkTools.Attribute
@@ -35,13 +37,15 @@ namespace CkTools.Attribute
             return GetAttributeValue(enumValue, t => t.Description);
         }
 
-        private static string? GetAttributeValue(this Enum enumValue, Func<EnumDescriptionAttribute?, string?> getFunc)
+        private static string? GetAttributeValue(this Enum enumValue, Func<EnumDescriptionAttribute, string> getFunc)
         {
-            var attribute = EnumHelper.Instance.GetFirstAttribute<EnumDescriptionAttribute>(enumValue);
+            EnumDescriptionAttribute? attribute = EnumHelper.Instance.GetFirstAttribute<EnumDescriptionAttribute>(enumValue);
 
             if (attribute.IsNullOrEmpty()) return string.Empty;
 
-            return getFunc(attribute);
+            return getFunc(arg: attribute);
         }
     }
 }
+
+#pragma warning restore CS8604 // 可能的 null 引用参数。
