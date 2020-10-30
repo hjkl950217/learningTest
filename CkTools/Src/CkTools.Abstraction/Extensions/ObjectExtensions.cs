@@ -185,7 +185,7 @@ namespace System
         /// <returns>判断结果,非null和非空数组返回true,否则为false</returns>
         public static bool IsNotNullOrEmpty<T>(this T[] value)
         {
-            return !value.IsNotNullOrEmpty();
+            return !value.IsNullOrEmpty();
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace System
         /// <returns>判断结果,非null和非空集合返回true,否则为false</returns>
         public static bool IsNotNullOrEmpty<T>(this IList<T> value)
         {
-            return !value.IsNotNullOrEmpty();
+            return !value.IsNullOrEmpty();
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace System
         /// <returns>判断结果,非null和非空字典返回true,否则为false</returns>
         public static bool IsNotNullOrEmpty(this IDictionary value)
         {
-            return !value.IsNotNullOrEmpty();
+            return !value.IsNullOrEmpty();
         }
 
         /// <summary>
