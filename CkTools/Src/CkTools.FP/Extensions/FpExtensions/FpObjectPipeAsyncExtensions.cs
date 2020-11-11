@@ -20,8 +20,7 @@ namespace System
         public static Task<TInput> PipeIfAsync<TInput>(
             this Task<TInput> input,
             bool isExecute,
-            [NotNull] Func<TInput, TInput> func
-            )
+            [NotNull] Func<TInput, TInput> func)
         {
             func.CheckNullWithException(nameof(func));
 
