@@ -3,7 +3,7 @@
   <Import Project="..\SDKPulishNuget.targets" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
     <Description>$(LibName)的逻辑链,在业务中使用中间件模式，可动态配置执行顺序,随意修改节点逻辑</Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
@@ -11,7 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"
+                      Version="3.1.8" />
   </ItemGroup>
 
   <ItemGroup>
