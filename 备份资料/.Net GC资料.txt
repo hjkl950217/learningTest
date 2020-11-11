@@ -1,15 +1,13 @@
-ÏîÄ¿ÎÄ¼şµÄÒ»Ğ©ËµÃ÷£¬Î¢Èí¹Ù·½ÎÄµµ£ºhttps://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj
+é¡¹ç›®æ–‡ä»¶çš„ä¸€äº›è¯´æ˜ï¼Œå¾®è½¯å®˜æ–¹æ–‡æ¡£ï¼šhttps://docs.microsoft.com/en-us/dotnet/core/tools/project-json-to-csproj
 
-ÉîÈë.net core ÅäÖÃ£ºhttps://natemcmaster.com/blog/2019/01/09/netcore-primitives-3/
-2¸öÅäÖÃµÄ×éºÏ£ºhttps://www.cnblogs.com/maxzhang1985/p/7836088.html
+æ·±å…¥.net core é…ç½®ï¼šhttps://natemcmaster.com/blog/2019/01/09/netcore-primitives-3/
+2ä¸ªé…ç½®çš„ç»„åˆï¼šhttps://www.cnblogs.com/maxzhang1985/p/7836088.html
 
-hostÅäÖÃ githubÎÄµµ£ºhttps://github.com/dotnet/coreclr/blob/v2.2.0/Documentation/project-docs/clr-configuration-knobs.md
+hosté…ç½® githubæ–‡æ¡£ï¼šhttps://github.com/dotnet/coreclr/blob/v2.2.0/Documentation/project-docs/clr-configuration-knobs.md
+é¡¹ç›®æ–‡ä»¶ç³»ç»Ÿï¼šhttps://github.com/dotnet/project-system
 
-
-²é¿´µ½ÒªµÄÅäÖÃºó£¬¿ÉÒÔ²é¿´Õâ¸öÎÄ¼şÓ³Éä£ºhttps://github.com/dotnet/sdk/blob/1a3277407fdad10d7fbb175c49b0fd917a44664c/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.targets
-
-
+æŸ¥çœ‹åˆ°è¦çš„é…ç½®åï¼Œå¯ä»¥æŸ¥çœ‹è¿™ä¸ªæ–‡ä»¶æ˜ å°„ï¼šhttps://github.com/dotnet/sdk/blob/1a3277407fdad10d7fbb175c49b0fd917a44664c/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.targets
 
 GenerateRuntimeConfigurationFiles
 	HostConfigurationOptions="@(RuntimeHostConfigurationOption)"
-		->RuntimeHostConfigurationOption[] Ò»¶Ñ¾ßÌåÅäÖÃ
+		->RuntimeHostConfigurationOption[] ä¸€å †å…·ä½“é…ç½®
