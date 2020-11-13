@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,7 +15,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNull_True()
         {
             object obj = null;
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullWithException("test"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullWithException("test"));
 
             Assert.NotNull(ex);
         }
@@ -22,7 +24,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNull_False()
         {
             object obj = new object();
-            var ex = Record.Exception(() => obj.CheckNullWithException("test"));
+            Exception? ex = Record.Exception(() => obj.CheckNullWithException("test"));
 
             Assert.Null(ex);
         }
@@ -31,7 +33,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNull2_True()
         {
             object obj = null;
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullWithException("test", "testMsg"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullWithException("test", "testMsg"));
 
             Assert.NotNull(ex);
             Assert.Contains("testMsg", ex.Message);
@@ -41,7 +43,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNull2_False()
         {
             object obj = new object();
-            var ex = Record.Exception(() => obj.CheckNullWithException("test", "testMsg"));
+            Exception? ex = Record.Exception(() => obj.CheckNullWithException("test", "testMsg"));
 
             Assert.Null(ex);
         }
@@ -54,7 +56,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty_Null_True()
         {
             List<int> obj = null;
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test"));
 
             Assert.NotNull(ex);
         }
@@ -63,7 +65,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty_Empty_True()
         {
             List<int> obj = new List<int>();
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test"));
 
             Assert.NotNull(ex);
         }
@@ -72,7 +74,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty_False()
         {
             List<int> obj = new List<int>() { 1 };
-            var ex = Record.Exception(() => obj.CheckNullOrEmptyWithException("test"));
+            Exception? ex = Record.Exception(() => obj.CheckNullOrEmptyWithException("test"));
 
             Assert.Null(ex);
         }
@@ -81,7 +83,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty2_Null_True()
         {
             List<int> obj = null;
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
 
             Assert.NotNull(ex);
             Assert.Contains("testMsg", ex.Message);
@@ -91,7 +93,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty2_Empty_True()
         {
             List<int> obj = new List<int>();
-            var ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
+            ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
 
             Assert.NotNull(ex);
             Assert.Contains("testMsg", ex.Message);
@@ -101,7 +103,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void CheckNullOrEmpty2_False()
         {
             List<int> obj = new List<int>() { 1 };
-            var ex = Record.Exception(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
+            Exception? ex = Record.Exception(() => obj.CheckNullOrEmptyWithException("test", "testMsg"));
 
             Assert.Null(ex);
         }
@@ -115,7 +117,7 @@ namespace Nova.LogicChain.Test.Extensions
         {
             object obj = null;
             Task<object> result = null;
-            var ex = Record.Exception(() => { result = obj.ToTask(); });
+            Exception? ex = Record.Exception(() => { result = obj.ToTask(); });
 
             Assert.Null(ex);
             Assert.True(result.IsCompleted);
@@ -126,8 +128,10 @@ namespace Nova.LogicChain.Test.Extensions
         public void ToTask_String_NotException()
         {
             string obj = "123";
+
             Task<string> result = null;
-            var ex = Record.Exception(() => { result = obj.ToTask(); });
+
+            Exception? ex = Record.Exception(() => { result = obj.ToTask(); });
 
             Assert.Null(ex);
             Assert.True(result.IsCompleted);
@@ -137,3 +141,5 @@ namespace Nova.LogicChain.Test.Extensions
         #endregion ToTask
     }
 }
+
+#pragma warning restore CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。

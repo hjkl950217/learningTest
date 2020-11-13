@@ -1,8 +1,8 @@
-﻿using CkTools.Nova.Aop;
+﻿using System.Threading.Tasks;
+using CkTools.Nova.Aop;
 using CkTools.Nova.Entity;
 using CkTools.Nova.LogicChain;
 using Nova.LogicalChain.Test;
-using System.Threading.Tasks;
 using StepContext = CkTools.Nova.Entity.StepContext;
 
 namespace CkTools.Nova.Test.TestModel
@@ -21,7 +21,7 @@ namespace CkTools.Nova.Test.TestModel
 
         public Task InvokeAsync(StepContext context)
         {
-            StepContext<TestResult>? conText2 = context.As<TestResult>();
+            StepContext<TestResult> conText2 = context.As<TestResult>();
 
             if (this.testConfig.IsRelease)
             {

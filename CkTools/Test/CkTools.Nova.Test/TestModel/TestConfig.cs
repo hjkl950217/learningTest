@@ -7,6 +7,6 @@
     {
         public bool IsRelease { get; set; }
 
-        public string? ServiceName { get; set; }
+        public string ServiceName { get; set; }
     }
 }

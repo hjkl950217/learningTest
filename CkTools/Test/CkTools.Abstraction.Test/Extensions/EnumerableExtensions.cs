@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS8604 // 可能的 null 引用参数。
+#pragma warning disable CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
 
 using System;
 using System.Collections;
@@ -30,6 +31,7 @@ namespace Nova.LogicChain.Test.Extensions
         public void IsNullOrEmpty_ZeroIsNull_Fasle()
         {
             IEnumerable testObject = new string[2] { null, null };
+
             bool result = testObject.IsNullOrEmpty();
             Assert.False(result);
         }
@@ -84,4 +86,5 @@ namespace Nova.LogicChain.Test.Extensions
     }
 }
 
+#pragma warning restore CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
 #pragma warning restore CS8604 // 可能的 null 引用参数。

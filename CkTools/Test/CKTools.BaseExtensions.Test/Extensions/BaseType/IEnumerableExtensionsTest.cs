@@ -1,8 +1,12 @@
-﻿using CkTools.Helper;
-using CKTools.BaseExtensions.Test.Extensions.TestModel;
+﻿#pragma warning disable CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
+#pragma warning disable CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
+#pragma warning disable CS8604 // 可能的 null 引用参数。
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CkTools.Helper;
+using CKTools.BaseExtensions.Test.Extensions.TestModel;
 using Xunit;
 
 namespace CKTools.BaseExtensions.Test.Extensions.BaseType
@@ -25,7 +29,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = null;
                 Func<SellerInfo, SellerInfo, bool> func = (a, b) => a.UserName == b.UserName;
 
-                var ex = Assert.Throws<ArgumentNullException>(() => testData.Distinct(func));
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => testData.Distinct(func));
 
                 Assert.NotNull(ex);
                 Assert.Equal("source", ex.ParamName);
@@ -37,7 +41,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() => testData.Distinct(func));
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => testData.Distinct(func));
 
                 Assert.NotNull(ex);
                 Assert.Equal("predicate", ex.ParamName);
@@ -49,7 +53,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, int> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() => testData.DistinctBy(func));
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => testData.DistinctBy(func));
 
                 Assert.NotNull(ex);
                 Assert.Equal("predicate", ex.ParamName);
@@ -59,9 +63,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Distinct_True()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.EqualFunc;
+                Func<UserInfo, UserInfo, bool>? func = MockHelper.EqualFunc;
 
-                var result = testData.Distinct(func)
+                List<UserInfo>? result = testData.Distinct(func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -72,9 +76,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Distinct_True2()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.HashCodeFunc;
+                Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
 
-                var result = testData.DistinctBy(func)
+                List<UserInfo>? result = testData.DistinctBy(func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -87,9 +91,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<UserInfo> testData = new List<UserInfo>();
                 testData.AddRange(ComparerTestData.TestListC);
                 testData.AddRange(ComparerTestData.TestListD);
-                var func = MockHelper.HashCodeFunc;
+                Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
 
-                var result = testData.DistinctBy(func)
+                List<UserInfo>? result = testData.DistinctBy(func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -109,7 +113,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = null;
                 Func<SellerInfo, SellerInfo, bool> func = (a, b) => a.UserName == b.UserName;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.Except(ComparerTestData.TestListB, func)
                     );
 
@@ -123,7 +127,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.Except(ComparerTestData.TestListB, func)
                     );
 
@@ -137,7 +141,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, int> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.ExceptBy(ComparerTestData.TestListB, func)
                     );
 
@@ -149,9 +153,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Except_True()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.EqualFunc;
+                Func<UserInfo, UserInfo, bool>? func = MockHelper.EqualFunc;
 
-                var result = testData.Except(ComparerTestData.TestListB, func)
+                List<UserInfo>? result = testData.Except(ComparerTestData.TestListB, func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -163,9 +167,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Except_True2()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.HashCodeFunc;
+                Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
 
-                var result = testData.ExceptBy(ComparerTestData.TestListB, func)
+                List<UserInfo>? result = testData.ExceptBy(ComparerTestData.TestListB, func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -179,9 +183,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<UserInfo> testData = ComparerTestData.TestListB
                     .Select(t => t as UserInfo)
                     .ToList();
-                var func = MockHelper.HashCodeFunc;
+                Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
 
-                var result = testData.ExceptBy(ComparerTestData.TestListC, func)
+                List<UserInfo>? result = testData.ExceptBy(ComparerTestData.TestListC, func)
                     .ToList();
 
                 Assert.Empty(result);//因为使用UserID去比较，所以应该没有差集
@@ -200,7 +204,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo>? testData = null;
                 Func<SellerInfo, SellerInfo, bool> func = (a, b) => a.UserName == b.UserName;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.Intersect(ComparerTestData.TestListB, func)
                     );
 
@@ -214,7 +218,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.Intersect(ComparerTestData.TestListB, func)
                     );
 
@@ -228,7 +232,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = new List<SellerInfo>();
                 Func<SellerInfo, int> func = null;
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.IntersectBy(ComparerTestData.TestListB, func)
                     );
 
@@ -240,9 +244,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Intersect_True()
             {
                 List<UserInfo> testData = ComparerTestData.TestListC;
-                var func = MockHelper.EqualFunc;
+                Func<UserInfo, UserInfo, bool>? func = MockHelper.EqualFunc;
 
-                var result = testData.Intersect(ComparerTestData.TestListD, func)
+                List<UserInfo>? result = testData.Intersect(ComparerTestData.TestListD, func)
                     .ToList();
 
                 Assert.NotNull(result);
@@ -253,9 +257,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Intersect_True2()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.HashCodeFunc;
+                Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
 
-                var result = testData.IntersectBy(ComparerTestData.TestListB, func)
+                List<UserInfo>? result = testData.IntersectBy(ComparerTestData.TestListB, func)
                     .ToList();
 
                 Assert.NotEmpty(result);
@@ -267,9 +271,9 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void Intersect_NoIntersection()
             {
                 List<SellerInfo> testData = ComparerTestData.TestListA;
-                var func = MockHelper.EqualFunc;
+                Func<UserInfo, UserInfo, bool>? func = MockHelper.EqualFunc;
 
-                var result = testData.Intersect(ComparerTestData.TestListB, func)
+                List<UserInfo>? result = testData.Intersect(ComparerTestData.TestListB, func)
                     .ToList();
 
                 Assert.NotNull(result);//因为使用UserName去比较，所以应该没有交集
@@ -287,7 +291,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceIsNull_WithException()
             {
                 List<SellerInfo> testData = null;
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.SelectMap(c => c.ToJsonExt())
                 );
 
@@ -315,7 +319,8 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceIsNull_WithException()
             {
                 List<SellerInfo> testData = null;
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.RemoveNull()
                 );
 
@@ -326,8 +331,10 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceIsNull_WithException2()
             {
                 List<SellerInfo> testData = null;
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
+
                     testData.RemoveNullBy(t => t.SellerID)
+
                 );
 
                 Assert.NotNull(ex);
@@ -339,7 +346,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
                 testData.Add(null);
 
-                var result = testData.RemoveNull().ToArray();
+                SellerInfo[]? result = testData.RemoveNull().ToArray();
                 Assert.Equal(5, result.Length);
             }
 
@@ -349,7 +356,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
                 testData[0].IDCard = null;
 
-                var result = testData.RemoveNullBy(t => t.IDCard).ToArray();
+                SellerInfo[]? result = testData.RemoveNullBy(t => t.IDCard).ToArray();
                 Assert.Equal(4, result.Length);
             }
 
@@ -361,7 +368,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void StringSourceIsNull_WithException()
             {
                 List<string> testData = null;
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.RemoveNull()
                 );
 
@@ -372,7 +379,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void StringSourceIsNull_WithException2()
             {
                 List<SellerInfo> testData = null;
-                var ex = Assert.Throws<ArgumentNullException>(() =>
+                ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                     testData.RemoveNullBy(t => t.SellerID)
                 );
 
@@ -385,7 +392,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 List<string> testData = TestHelper.MockArray<string>(5).ToList();
                 testData.Add(null);
 
-                var result = testData.RemoveNull().ToArray();
+                string[]? result = testData.RemoveNull().ToArray();
                 Assert.Equal(5, result.Length);
             }
 
@@ -393,9 +400,10 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void StringSourceNotNull_WithNoException2()
             {
                 List<SellerInfo> testData = TestHelper.MockArray<SellerInfo>(5).ToList();
+
                 testData[0].SellerID = null;
 
-                var result = testData.RemoveNullBy(t => t.SellerID).ToArray();
+                SellerInfo[]? result = testData.RemoveNullBy(t => t.SellerID).ToArray();
                 Assert.Equal(4, result.Length);
             }
 
@@ -419,7 +427,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceIsNull_WithNoExceptionAndDefault()
             {
                 List<SellerInfo> testData = null;
-                var result = testData.ToArray(t => t);
+                SellerInfo[]? result = testData.ToArray(t => t);
 
                 Assert.NotNull(result);
             }
@@ -428,7 +436,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceNotNull_WithNoException()
             {
                 List<SellerInfo> testData = TestHelper.MockList<SellerInfo>();
-                var result = testData.ToArray(t => t.SellerID);
+                string[]? result = testData.ToArray(t => t.SellerID);
 
                 Assert.NotNull(result);
                 Assert.Equal(testData.Count, result.Length);
@@ -448,7 +456,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceIsNull_WithNoExceptionAndDefault()
             {
                 List<SellerInfo> testData = null;
-                var result = testData.ToList(t => t);
+                List<SellerInfo>? result = testData.ToList(t => t);
 
                 Assert.NotNull(result);
             }
@@ -457,7 +465,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             public void SourceNotNull_WithNoException()
             {
                 List<SellerInfo> testData = TestHelper.MockList<SellerInfo>();
-                var result = testData.ToList(t => t.SellerID);
+                List<string>? result = testData.ToList(t => t.SellerID);
 
                 Assert.NotNull(result);
                 Assert.Equal(testData.Count, result.Count);
@@ -467,3 +475,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
         #endregion To集合
     }
 }
+
+#pragma warning restore CS8604 // 可能的 null 引用参数。
+#pragma warning restore CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
+#pragma warning restore CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
