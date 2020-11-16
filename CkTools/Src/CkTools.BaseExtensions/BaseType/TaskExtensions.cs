@@ -8,7 +8,7 @@ namespace System
     public static class TaskExtensions
     {
         /// <summary>
-        /// 注册异常处理委托
+        /// 注册异常处理委托,返回这段代码的<see cref="Task"/>
         /// </summary>
         /// <typeparam name="TTask"></typeparam>
         /// <param name="task"></param>
@@ -27,7 +27,7 @@ namespace System
         }
 
         /// <summary>
-        /// 注册异常处理委托
+        /// 注册异常处理委托,返回这段代码的<see cref="Task"/>
         /// </summary>
         /// <typeparam name="TTask"></typeparam>
         /// <param name="task"></param>
@@ -46,7 +46,7 @@ namespace System
         }
 
         /// <summary>
-        /// 注册异常处理委托
+        /// 注册异常处理委托,返回这段代码的<see cref="Task"/>
         /// </summary>
         /// <typeparam name="TTask"></typeparam>
         /// <param name="task"></param>
