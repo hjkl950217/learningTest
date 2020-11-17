@@ -10,16 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper"
-                      Version="10.0.0" />
-    <PackageReference Include="AutoFixture"
-                      Version="4.13.0" />
-    <PackageReference Include="FluentValidation"
-                      Version="9.2.0" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions"
-                      Version="9.2.0" />
-    <PackageReference Include="AspectCore.Extensions.Reflection"
-                      Version="2.1.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoFixture" Version="4.14.0" />
+    <PackageReference Include="FluentValidation" Version="9.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+    <PackageReference Include="AspectCore.Extensions.Reflection" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
