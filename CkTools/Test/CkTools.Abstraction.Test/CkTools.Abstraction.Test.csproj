@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\UT.targets" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\CkTools.Abstraction\CkTools.Abstraction.csproj" />
+  </ItemGroup>
+</Project>

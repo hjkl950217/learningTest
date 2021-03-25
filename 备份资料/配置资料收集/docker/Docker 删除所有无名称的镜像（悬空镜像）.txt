@@ -1,0 +1,14 @@
+#查看空间占用
+docker system df
+
+#删除悬空镜像
+docker rmi $(docker images -f "dangling=true" -q)
+
+#删除停止的容器
+docker container prune
+
+#清理docker磁盘、关闭的容器、无用的数据卷
+docker system prune
+
+#清理孤儿volume 
+docker volume rm $(docker volume ls -q)

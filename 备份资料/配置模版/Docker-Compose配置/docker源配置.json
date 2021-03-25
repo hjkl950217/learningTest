@@ -1,0 +1,15 @@
+{
+  "registry-mirrors": [
+    "https://5hh8258g.mirror.aliyuncs.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "http://hub-mirror.c.163.com",
+    "http://docker.mirrors.ustc.edu.cn"
+  ],
+  "insecure-registries": [
+    "registry.docker-cn.com",
+    "docker.mirrors.ustc.edu.cn"
+  ],
+  //"data-root":"/home/docker-data" //修改镜像和容器数据存储目录
+  "debug": true,
+  "experimental": true
+}

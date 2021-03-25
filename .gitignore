@@ -207,3 +207,8 @@ FakesAssemblies/
 project.lock.json
 **/sample/**/wwwroot/lib/
 **/samples/**/wwwroot/lib/
+
+
+package
+**/XmlDoc
+

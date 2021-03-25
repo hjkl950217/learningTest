@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\SDKPulishNuget.targets" />
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <Description>包含一些扩展方法、工具类、FP扩展代码，欢迎讨论,项目地址： https://github.com/hjkl950217/learningTest </Description>
+    <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoFixture" Version="4.14.0" />
+    <PackageReference Include="FluentValidation" Version="9.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+    <PackageReference Include="AspectCore.Extensions.Reflection" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CkTools.Abstraction\CkTools.Abstraction.csproj" />
+    <ProjectReference Include="..\CkTools.BaseExtensions\CkTools.BaseExtensions.csproj" />
+    <ProjectReference Include="..\CkTools.FP\CkTools.FP.csproj" />
+  </ItemGroup>
+</Project>

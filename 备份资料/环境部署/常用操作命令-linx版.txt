@@ -1,0 +1,14 @@
+uname -srm					#查看linux内核版本
+hostnamestl					#查看内核版本
+cat /etc/redhat-release				#centos 查看版本
+ifconfig						#centos6.5 查看IP地址
+ip addr						#centeos7  查看IP地址
+ls | find *.json					#用ls+find查看文件 可以筛选文件夹
+getconf LONG_BIT					#查看系统以32位还是64位模式运行
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c		#查看CPU型号
+unzip v2ray*.zip					#解压zip文件
+yum groupinstall chinese-support			#给centos安装中文
+find / -name jingyan123				#在所有路径下找 jingyan123
+systemctl restart docker.service				#重启 docker.service 服务
+chmod +x ./shellname.sh    				#使脚本具有执行权限
+docker rmi $(docker images -f "dangling=true" -q)		#删除所有名称为<none>的镜像
