@@ -1,0 +1,79 @@
+﻿1. AspectCore.Extensions.DependencyInjection  一个轻量级AOP框架 支持双平台，静态织入
+2. AutoMapper 一个映射实体的框架 支持双平台
+3. FluentValidation.AspNetCore	一个模型验证的框架，不只是DTO
+4. Gapotchenko.FX 基础库的加强库
+5. BenchmarkDotNet 基准测试的库
+6. Natasha  动态编织-使用roslyn方案打造高性能动态代码库。
+7. Newtonsoft.Json json序列化
+8. Autofixture 集成测试神器，可以在UT中动态生成数据
+9. ErrorProne.NET  一套基于roslyn的分析器，用于捕获常见的C＃错误
+10. PDFsharp 免费的处理PDF的库，无平台限制
+11. NSubstitute  moq UT中用于mock数据的框架
+12  Polly是一个.NET弹性和瞬态故障处理库，允许开发人员以流畅和线程安全的方式表达诸如重试，断路器，超时，隔离头和回退之类的策略
+13. language-ext 一个C#里使用FP风格的库
+14. FlubuCore 跨平台的构建和部署自动化系统，用于使用C＃代码构建项目和执行部署脚本
+15. Hangfire 执行后台作业处理的库
+16. Refit .NET的REST库,它可以实现按接口定义生成httpClient的功能
+17. WebApiClient 比refit功能更强的库，用法类似但扩展性更好
+18. Chinese 中文解析工具库
+19. DotnetSpider 爬虫库
+20. HtmlAgilityPack 另一个爬虫库，比DotnetSpider功能简单一些，但存在时间更久一些。
+21. Flurl 一个流式构建url的库，并且可以http调用
+22. AsyncEx 异步帮助库。涉及到队列、异步上下文时，可以考虑使用。
+23. Digipolis.DataAccess  EF的UnitOfWork和Repositories的基类。
+24. Exceptionless.DateTimeExtensions    DateTimeRange，工作日和各种DateTime，DateTimeOffset，TimeSpan扩展方法。
+25. FluentDateTime 流式的datetime操作扩展
+26. Enums.NET 高性能类型安全的.NET枚举实用程序库
+27. FluentFTP FTP和FTPS客户端
+28. Humanizer  满足显示字符串，枚举，日期，时间，时间跨度，数字和数量的所有.NET需求。
+30. pose - 用委托替换任何.NET方法(包括静态和非虚拟)
+31. Scrutor  Microsoft.Extensions.DependencyInjection的程序集扫描扩展。
+32. System.Linq.Dynamic.Core 可以在IQueryable上执行使用字符串的查询。
+33. Valit - Valit是对.NET Core的简单验证库，减少if的使用。
+34. EFCore.BulkExtensions EF的批量操作库
+35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集。 
+36. Elasticsearch.Net 官方推荐的 Elasticsearch .NET客户端
+37. SearchExtensions  IQueryable接口的高级搜索功能，例如Entity Framework查询。
+36. BinarySerializer - 二进制序列化库，用于控制字节和位级别的数据格式。
+37. MessagePack-CSharp MessagePack在C#中比较好的实现
+38. RazorLight 基于Microsoft针对.NET Core的Razor解析引擎的模板引擎。
+39. Bogus 简单而健全的C#假数据生成器。基于并从着名的faker.js移植。
+40. AutoFixture 快速创建假数据
+41. CommandLineUtils .NET Core和.NET Framework的命令行解析和实用程序。
+42  workflow-core .NET Standard的轻量级工作流引擎。
+43. LibVLCSharp VLC的包装库，可跨平台播放视频
+44. FluentScheduler 勤快哥推荐的非分布式定时任务框架
+45. FluentHttpClient 流式调用httpClient
+46. Masuit.Tools 勤快哥的工具类，包含各种工具代码
+47. ExcelKit 群里nameof(鸡你太美) 开发的excel导入导出组件
+48. EasyCaching 缓存组件，有多个提供程序
+49. Z.EntityFramework.Plus.EFCore ef的扩展库，包括过滤器，缓存，提前查询，批量操作等EF扩展功能。
+50. SharpCompress 纯C＃文件压缩操作库，支持unrar, un7zip, unzip, untar unbzip2, ungzip, unlzip
+51. Supersocket 即时通信的库，配置简单
+
+--工具
+1. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
+PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+2. ConfuserEx  混淆代码工具
+3. 10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw
+4. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
+5. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
+6. Artifactory harbory 用于存储docker image
+7. Jfrog Artifactory 用于存储各种包,集成nuget maven npm等等，包含了Artifactory
+8. RabbitMq 消息队列
+9. Kong 网关
+
+5. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
+
+6. Portainer.io   https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247483945&idx=1&sn=321b31d2b00ca3b36960206d80ce82cd&chksm=ebebc336dc9c4a20f178cbfbd21a0d980ad54f2e229e6c1dfa8f47d1c88354f2bdc5e8530617&mpshare=1&scene=1&srcid=&sharer_sharetime=1584524654143&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=56dae8b8a643d0f3631e5704b7d566964aec3fedb4773a7f71d50fdbff01a6b946d79c3ae25cbac60f16411b92886a0b64bed1edbcc97c8d159dc251893012dceef354ac95f4a09fa618f1cb2bad9d9c&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AU2weOrHTCpBquw5Rwo3f68%3D&pass_ticket=dbvqqcmTglYSj4sTLNgyj7eCrTbXMyAqeGYMFLiwryQ%3D
+
+7. dapr  还有istio/linkerd/kuma
+8. cncf
+9. Orleans，Orleans提供了一个简单直接的构建分布式高可扩展计算应用，并且不需要学习和掌握复杂的并发或者其他的扩展模式。 它是Microsoft Research为了在云端使用而设计并且创建。
+10. DotNetty  DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。dotNetty成功找到了一个无需折衷妥协而让开发、性能、稳定性和灵活性相互协调的方法。
+11. jumpserver JumpServer 是全球首款开源的堡垒机，使用 GNU GPL v2.0 开源协议，是符合 4A 机制的运维安全审计系统。
+
+12. Netch 一个游戏挂代理的加速器
+
+
+

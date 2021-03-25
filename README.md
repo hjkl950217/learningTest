@@ -1,11 +1,42 @@
-﻿# 长空自用学习与测试的项目
+# CkTools
 
-现在已经有：
-*	URL格式方面的验证--URL验证
-*	时间相关格式的验证--时间格式验证
-*	线程方面的验证--线程ID验证
-*	链式编程在业务逻辑上的研究--研究在DDD风格框架下如何链式编程
-*	AutoMapper学习与练习--单纯的autoMapper库研究与学习
+| NuGet | License |
+|--|--|
+| [![](https://img.shields.io/nuget/v/CkTools.svg)](https://www.nuget.org/packages/CkTools)| [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE) |
 
-所用IDE为 VS2017 
-所用.net环境为 .net core 2.1.4 
+包括大量扩展方法、工具方法、技术点验证、语法验证、C#以外的资料。
+
+# 包介绍
+## 核心包
+| 包名 | 介绍 |
+|---------------------------------|------------------------------------------------------ |
+|CkTools.FP                       |函数式扩展库,目前包括柯里化、管道的扩展。                  |
+|CkTools.BaseExtensions           |大量基础类型的扩展方法                                   |
+
+## 其它包
+| 包名 | 介绍 |
+|---------------------------------|------------------------------------- |
+|CkTools                       |包的合集，和一些独特的工具                  |
+|CkTools.Abstraction           |定义及其公共的代码结构                     |
+
+
+## 安装程序包
+包管理
+```shell
+PM> Install-Package CkTools 
+PM> Install-Package CkTools.Abstraction
+PM> Install-Package CkTools.FP
+PM> Install-Package CkTools.BaseExtensions
+```
+.Net Cli
+```shell
+dotnet add package CkTools 
+dotnet add package CkTools.Abstraction
+dotnet add package CkTools.FP
+dotnet add package CkTools.BaseExtensions
+```
+
+## 使用文档
+使用文档待空了添加...........
+
+

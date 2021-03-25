@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\SDKPulishNuget.targets" />
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <Description>$(LibName)的扩展方法库</Description>
+    <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NETCore.Encrypt" Version="2.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CkTools.Abstraction\CkTools.Abstraction.csproj" />
+    <ProjectReference Include="..\CkTools.FP\CkTools.FP.csproj" />
+  </ItemGroup>
+</Project>

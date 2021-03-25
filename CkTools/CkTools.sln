@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67F897C0-69F5-4C36-9EEB-A4FD3D0CA58F}"
+	ProjectSection(SolutionItems) = preProject
+		logo.png = logo.png
+		Src\SDKPulishNuget.targets = Src\SDKPulishNuget.targets
+		Test\UT.targets = Test\UT.targets
+		未填的坑.txt = 未填的坑.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{D3146C29-9318-45EC-B9BA-1EC7653421FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D80CD124-05E6-4F2F-ADCD-328ACACA04E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools", "Src\CkTools\CkTools.csproj", "{44711D06-9884-4F78-A965-B29D6A9D7E52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Abstraction", "Src\CkTools.Abstraction\CkTools.Abstraction.csproj", "{D60D9734-2DF2-431C-823E-1F91CD6FF3C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.BaseExtensions", "Src\CkTools.BaseExtensions\CkTools.BaseExtensions.csproj", "{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.FP", "Src\CkTools.FP\CkTools.FP.csproj", "{4D69FDC7-2652-4FB4-9C81-17480DD78841}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Test", "Test\CkTools.Test\CkTools.Test.csproj", "{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKTols.FP.Test", "Test\CKTols.FP.Test\CKTols.FP.Test.csproj", "{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Abstraction.Test", "Test\CkTools.Abstraction.Test\CkTools.Abstraction.Test.csproj", "{B9045104-1DE3-40C9-9DF2-7E896AEFE751}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKTools.BaseExtensions.Test", "Test\CKTools.BaseExtensions.Test\CKTools.BaseExtensions.Test.csproj", "{2C2E3545-4B13-4746-A702-0F999240818F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkTools.Nova", "Src\CkTools.Nova\CkTools.Nova.csproj", "{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkTools.Nova.Test", "Test\CkTools.Nova.Test\CkTools.Nova.Test.csproj", "{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44711D06-9884-4F78-A965-B29D6A9D7E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44711D06-9884-4F78-A965-B29D6A9D7E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44711D06-9884-4F78-A965-B29D6A9D7E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44711D06-9884-4F78-A965-B29D6A9D7E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60D9734-2DF2-431C-823E-1F91CD6FF3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60D9734-2DF2-431C-823E-1F91CD6FF3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60D9734-2DF2-431C-823E-1F91CD6FF3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60D9734-2DF2-431C-823E-1F91CD6FF3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D69FDC7-2652-4FB4-9C81-17480DD78841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D69FDC7-2652-4FB4-9C81-17480DD78841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D69FDC7-2652-4FB4-9C81-17480DD78841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D69FDC7-2652-4FB4-9C81-17480DD78841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9045104-1DE3-40C9-9DF2-7E896AEFE751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9045104-1DE3-40C9-9DF2-7E896AEFE751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9045104-1DE3-40C9-9DF2-7E896AEFE751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9045104-1DE3-40C9-9DF2-7E896AEFE751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2E3545-4B13-4746-A702-0F999240818F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2E3545-4B13-4746-A702-0F999240818F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2E3545-4B13-4746-A702-0F999240818F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2E3545-4B13-4746-A702-0F999240818F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44711D06-9884-4F78-A965-B29D6A9D7E52} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
+		{D60D9734-2DF2-431C-823E-1F91CD6FF3C0} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
+		{5BCAA5A0-A01D-4AF1-98A2-0853B8593AC7} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
+		{4D69FDC7-2652-4FB4-9C81-17480DD78841} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
+		{503EDFCD-E78E-4A13-9229-EF277F6F7DB5} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+		{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+		{B9045104-1DE3-40C9-9DF2-7E896AEFE751} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+		{2C2E3545-4B13-4746-A702-0F999240818F} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
+		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB04A57E-6447-4E76-862D-5D1B1638F2B6}
+	EndGlobalSection
+EndGlobal

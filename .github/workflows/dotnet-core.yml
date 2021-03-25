@@ -1,0 +1,29 @@
+name: Build And Push Nuget Package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core Build Env
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.100
+    - name: Restore
+      run: dotnet restore CkTools/CkTools.sln
+    - name: UT
+      run: dotnet test CkTools/CkTools.sln
+    - name: Build
+      run: dotnet build CkTools/CkTools.sln --configuration Release --no-restore -o package
+    - name: Push
+      run: dotnet nuget push "**/*.nupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+    - name: Push Symbol 
+      run: dotnet nuget push "**/*.snupkg" -k '${{secrets.NUGETKEY}}' -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+
