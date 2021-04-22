@@ -29,7 +29,7 @@
 27. FluentFTP FTP和FTPS客户端
 28. Humanizer  满足显示字符串，枚举，日期，时间，时间跨度，数字和数量的所有.NET需求。
 30. pose - 用委托替换任何.NET方法(包括静态和非虚拟)
-31. Scrutor  Microsoft.Extensions.DependencyInjection的程序集扫描扩展。
+31. Scrutor  Microsoft.Extensions.DependencyInjection的程序集自动扫描扩展。轻量级，直接对IOC注册的，无其它事
 32. System.Linq.Dynamic.Core 可以在IQueryable上执行使用字符串的查询。
 33. Valit - Valit是对.NET Core的简单验证库，减少if的使用。
 34. EFCore.BulkExtensions EF的批量操作库
@@ -55,6 +55,7 @@
 52. Enums.NET 解决不同枚举操作之间的一些问题
 53. Supersocket 即时通信的库，配置简单
 54. coverlet.msbuild 单元测试中收集覆盖率的插件库
+55. LogDashboard 日志可视化工具
 
 
 --工具
