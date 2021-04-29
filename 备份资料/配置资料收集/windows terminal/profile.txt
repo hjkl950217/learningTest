@@ -13,7 +13,7 @@ Import-Module posh-git
 Import-Module oh-my-posh
 
 # 设置 PowerShell 主题
-Set-Theme Paradox
+Set-PoshPrompt -Theme Paradox
 #------------------------------- Import Modules END   -------------------------------
 
 
