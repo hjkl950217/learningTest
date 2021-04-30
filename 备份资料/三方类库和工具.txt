@@ -85,6 +85,10 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 21. debezium 对接好多主流数据库通过订阅日志做分发
 22. Docsify  类似gitbook
      seafile 国内免费的云盘，有社区版。可利用资料库的功能搭建类似gitbook的东西
+23. apollo 携程框架部门研发的分布式配置中心
+	https://github.com/ctripcorp/apollo
+24. nacos 阿里开源的服务发现与配置的中间件
+	Ocelot.Provider.Nacos  支持与Ocelot集成
 
 
 --
