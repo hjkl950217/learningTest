@@ -86,6 +86,7 @@
         B16_特性_在泛型和委托上标记_40,
         B17_Aggregate,
         B18_ConcurrentDictionary原子操作,
+        B19_字符串驻留池,
 
         #endregion 语法类
 
