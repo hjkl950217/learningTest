@@ -56,6 +56,8 @@
 53. Supersocket 即时通信的库，配置简单
 54. coverlet.msbuild 单元测试中收集覆盖率的插件库
 55. LogDashboard 日志可视化工具
+56. ViewConfig  查看一个配置是由哪一个Provider执行的
+57. Ben.BlockingDetector 程序阻塞监控
 
 
 --工具

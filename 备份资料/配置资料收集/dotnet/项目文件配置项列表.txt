@@ -14,10 +14,15 @@ PropertyGroup
 	RuntimeIdentifier			指定单个平台,	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	TargetFramework			指定目标框架,	<TargetFramework>netcoreapp3.1</TargetFramework>
 					资料：	https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
-
+	GenerateDocumentationFile                     编译时生成文档文件    true
 
 ItemGroup
-
+                Compile                                                     告诉编译器，编译时需要做的事,参考：
+                                                              <ItemGroup>
+                                                                   <Compile Include="..\VMS.Data\Enum\*.*">
+                                                                     <Link>Enum\%(RecursiveDir)%(FileName)%(Extension)</Link>
+                                                                   </Compile>
+                                                               </ItemGroup>
 
 
 Target

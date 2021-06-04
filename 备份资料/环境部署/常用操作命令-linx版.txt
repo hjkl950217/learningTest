@@ -14,3 +14,4 @@ systemctl restart docker.service				#重启 docker.service 服务
 chmod +x ./shellname.sh    				#使脚本具有执行权限
 docker rmi $(docker images -f "dangling=true" -q)		#删除所有名称为<none>的镜像
 usermod -u 0 -o test					#使test的用户ID变为0,根用户
+rm -f /var/lib/rpm/__db.00* && rpm -vv --rebuilddb		#删除rpm数据库并重建

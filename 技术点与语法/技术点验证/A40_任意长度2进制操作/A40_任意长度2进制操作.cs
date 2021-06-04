@@ -14,6 +14,13 @@ namespace 技术点验证.A40_任意长度2进制操作
             bool[]? test = BitHelper.ToBoolArray(3L);
             ulong test2 = BitHelper.ToUlong(test);
 
+            ushort time = 1024;
+            int start = 1;
+            int end = 16;
+
+            ulong baseResult = ulong.MinValue;
+            baseResult = (ulong)(time << (64 - end)) | baseResult;
+
             //long result = this.Test2(2, 4, l1, 3);
 
             //string resultStr = Convert.ToString(result, 2);
@@ -89,6 +96,24 @@ namespace 技术点验证.A40_任意长度2进制操作
             }
 
             return result;
+        }
+    }
+
+    public static class StringEx
+    {
+        //bin 2进制
+        //oct 8进制
+        //dec 10进制
+        //hex 16进制
+
+        public static string ToBinString(this ushort source)
+        {
+            return Convert.ToString(source, 2);
+        }
+
+        public static string ToBinString(this ulong source)
+        {
+            return Convert.ToString((long)source, 2);
         }
     }
 }

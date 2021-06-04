@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using CkTools.BaseExtensions.ConstAndEnum;
@@ -30,41 +29,6 @@ namespace System
             jsonSerializerSettings ??= JsonSerializerSettingConst.DefaultSetting;
 
             return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
-        }
-
-        /// <summary>
-        /// 格式化国家名字，转换成首字母大写，其他小写。如CHINA-&gt;China
-        /// </summary>
-        /// <param name="countryName">国家名字</param>
-        /// <returns></returns>
-        public static string ToCountryName(this string countryName)
-        {
-            /* 思路
-           * 1.把国家名字按空格分拆成几部分,全小写。比如 ABC  DE F->[abc,de,f]
-           * 2.再把每部分的第一个字符变成大写。比如：[Abc,De,F]
-           * 3.再把字符串数组装回去。比如："Abc De F"
-           */
-
-            if (countryName.IsNullOrEmpty()) return string.Empty;
-
-            List<char[]> countryNameTempList = countryName
-                .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)//分割，去掉空字符串
-                .Where(t => t != null && t.Length > 0)//去掉空格字符的情况
-                .Select(t => t.ToLower().ToCharArray())
-                .ToList();
-
-            StringBuilder sb = new StringBuilder();
-
-            //遍历分割后的字符串，把首字母大写
-            for (int i = 0 ; i < countryNameTempList.Count ; i++)//froeach不能给枚举值赋值，所以用for
-            {
-                countryNameTempList[i][0] = char.ToUpper(countryNameTempList[i][0]);//首字母大写
-                sb.Append(countryNameTempList[i]);//添加到缓存变量里
-                sb.Append(' ');
-            }
-            sb.Remove(sb.Length - 1, 1);//移除最后一个多加的空格
-
-            return sb.ToString();
         }
 
         #region 基础类型与string之间的转换
