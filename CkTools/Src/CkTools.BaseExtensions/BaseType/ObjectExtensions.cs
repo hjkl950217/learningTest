@@ -1,11 +1,15 @@
-﻿using CkTools.BaseExtensions.ConstAndEnum;
-using CkTools.BaseExtensions.Serialization;
-using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Xml;
+using CkTools.BaseExtensions.ConstAndEnum;
+using CkTools.BaseExtensions.Serialization;
+using Newtonsoft.Json;
 
 namespace System
 {
@@ -248,5 +252,75 @@ namespace System
         {
             yield return source;
         }
+
+        #region 清理导航属性
+
+        public static ConcurrentDictionary<Type, object> AssignFuncDic = new ConcurrentDictionary<Type, object>();
+
+        public static TDbEntity? CleanNavigationProperty<TDbEntity>(this TDbEntity dbEntity)
+            where TDbEntity : class
+        {
+            dbEntity.CheckNullWithException(nameof(dbEntity));
+
+            Type entityTypeInfo = typeof(TDbEntity);
+            Func<TDbEntity, TDbEntity>? assignFunc = AssignFuncDic
+                ?.GetOrAdd(entityTypeInfo, BuildAssignFunc().Compile())
+                as Func<TDbEntity, TDbEntity>;
+
+            return assignFunc?.Invoke(dbEntity);
+
+            LambdaExpression BuildAssignFunc()
+            {
+                Type entityTypeInfo = typeof(TDbEntity);
+                Type stringTypeInfo = typeof(string);
+                ParameterExpression paramExpression = Expression.Parameter(entityTypeInfo, "t");//准备参数t
+
+                //获取要赋值的属性
+                PropertyInfo[] propertyInfos = entityTypeInfo.GetProperties()
+                     .Where(t => t.CanWrite
+                         && !t.PropertyType.IsValueType
+                         && (t.PropertyType != stringTypeInfo && Nullable.GetUnderlyingType(t.PropertyType) == null)
+                         )
+                     .ToArray();
+
+                //准备return标签
+                LabelTarget returnTarget = Expression.Label(entityTypeInfo);
+                GotoExpression returnExpression = Expression.Return(returnTarget, paramExpression, entityTypeInfo);
+                LabelExpression returnLabel = Expression.Label(returnTarget, Expression.Constant(null, entityTypeInfo));
+
+                //生成赋值表达式
+                Expression[] assignExps = propertyInfos
+                    .Select(t =>
+                    {
+                        MemberExpression propExp = Expression.Property(paramExpression, t);//获取属性访问表达式 t.xx
+                        return Expression.Assign(propExp, Expression.Constant(null, t.PropertyType)) as Expression;//赋值 t.xx=null
+                    })
+                    .Concat(new LabelExpression[] { returnLabel })//return t;
+                    .ToArray();
+                ;
+
+                //打包
+                BlockExpression body = Expression.Block(assignExps);
+                Expression<Func<TDbEntity, TDbEntity>> funcExp = Expression.Lambda<Func<TDbEntity, TDbEntity>>(body, paramExpression);
+
+                return funcExp;
+            }
+        }
+
+        public static IEnumerable<TDbEntity?> BatchCleanNavigationProperty<TDbEntity>(this IEnumerable<TDbEntity?> dbEntities)
+             where TDbEntity : class
+        {
+            dbEntities.CheckNullOrEmptyWithException(nameof(dbEntities));
+
+            dbEntities = dbEntities
+                .Select(t =>
+                {
+                    return t?.CleanNavigationProperty<TDbEntity>();
+                });
+
+            return dbEntities;
+        }
+
+        #endregion 清理导航属性
     }
 }
