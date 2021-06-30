@@ -58,6 +58,7 @@
 55. LogDashboard 日志可视化工具
 56. ViewConfig  查看一个配置是由哪一个Provider执行的
 57. Ben.BlockingDetector 程序阻塞监控
+58. miniblink 迷你的内核控件， 可以用做来桌面app,网络爬虫,自动化测试,打印
 
 
 --工具

@@ -1,0 +1,1 @@
+官方资料-GC设置   https://docs.microsoft.com/en-us/dotnet/core/run-time-config/garbage-collector
