@@ -5,10 +5,6 @@
     /// </summary>
     public static partial class CkFunctions
     {
-        //这个类是用来存放region的模版
-        //没有出参的为Do
-        //有出参的均为Func
-
         //todo 3.1.1.14版本目标
 
         /*
@@ -22,11 +18,13 @@
 
  ## FP库方法目标
 
- 2 .建立管道、管道的IF版本、管道的Try版本
- 3. 每个版本实现4种基本的出入参匹配
+目前进度:
+修改类名，屏蔽之前的全部改动。
 
-temp：
-        DO Pipe 还没有按4种基本参数梳理
+后续
+需要重新重构!
+        先从  CkFunctions compose  开始重写
+        从 CkFunctions  pipe 开始重写，写的时候保持 function =>FpExt=>objectExt  3边保持一致的入口，内部都调用function中的代码。  function中的代码需要遵循右结合(数据放在最右边,越向左，变化越少)
 
          *
          */

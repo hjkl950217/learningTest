@@ -9,6 +9,40 @@ namespace CkTools.FP
     /// </summary>
     public static partial class CkFunctions
     {
+        #region 返回Action
+
+        #region 0个入参
+
+        /// <summary>
+        /// 管道 <para></para>
+        /// (a->void)->(b->void)->...  => (a->void) <para></para>
+        /// 示例:  (string->void)->(int->void)->...  => (string->void)
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <param name="sourceExp"></param>
+        /// <param name="exps"></param>
+        /// <returns></returns>
+        public static Action<TInput> Pipe<TInput>(
+            [NotNull] Action<TInput> sourceExp,
+            [NotNull] params Action<TInput>[] exps)
+        {
+            sourceExp.CheckNullWithException(nameof(sourceExp));
+            exps.CheckNullWithException(nameof(exps));
+
+            return t =>
+            {
+                sourceExp(t);
+                foreach (Action<TInput> item in exps)
+                {
+                    item(t);
+                }
+            };
+        }
+
+        #endregion 0个入参
+
+        #endregion 返回Action
+
         #region Func - 0入参 1出参
 
         /// <summary>
@@ -106,22 +140,22 @@ namespace CkTools.FP
             };
         }
 
-        /// <summary>
-        /// 管道
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TCenter"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="exp"></param>
-        /// <param name="func"></param>
-        /// <returns></returns>
-        public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-          [NotNull] Func<TInput, TCenter> exp,
-          [NotNull] Func<TCenter, TResult> func)
-        {
-            exp.CheckNullWithException(nameof(exp));
-            func.CheckNullWithException(nameof(func));
-            return t => func(exp(t));
-        }
+        ///// <summary>
+        ///// 管道
+        ///// </summary>
+        ///// <typeparam name="TInput"></typeparam>
+        ///// <typeparam name="TCenter"></typeparam>
+        ///// <typeparam name="TResult"></typeparam>
+        ///// <param name="exp"></param>
+        ///// <param name="func"></param>
+        ///// <returns></returns>
+        //public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
+        //  [NotNull] Func<TInput, TCenter> exp,
+        //  [NotNull] Func<TCenter, TResult> func)
+        //{
+        //    exp.CheckNullWithException(nameof(exp));
+        //    func.CheckNullWithException(nameof(func));
+        //    return t => func(exp(t));
+        //}
     }
 }

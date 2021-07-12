@@ -12,7 +12,7 @@ namespace CKTols.FP.Test
         {
             int a = 1;
 
-            bool result = FpObjectPipeExtensions.Pipe(a, t => t == 1);
+            bool result = ObjectExt_Pipe.Pipe(a, t => t == 1);
             Assert.True(result);
         }
 

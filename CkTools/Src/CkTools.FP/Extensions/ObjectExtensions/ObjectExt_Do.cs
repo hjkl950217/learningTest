@@ -5,7 +5,7 @@ namespace System
     /// <summary>
     /// 从对象上面直接调用的FP方法
     /// </summary>
-    public static partial class FpObjectDoExtensions
+    public static class ObjectExt_Do
     {
         /// <summary>
         /// 对<paramref name="input"/>执行一些操作

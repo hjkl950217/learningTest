@@ -8,20 +8,527 @@ namespace CkTools.FP
     /// </summary>
     public static partial class CkFunctions
     {
-        /// <summary>
-        /// 结合
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TCenter"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="exp2"></param>
-        /// <param name="exp1"></param>
-        /// <returns></returns>
-        public static Func<TInput, TResult> Compose<TInput, TCenter, TResult>(
-            [NotNull] Func<TCenter, TResult> exp2,
-            [NotNull] Func<TInput, TCenter> exp1)
+        #region 私有
+
+        private static void Check<T2, T1>(T2 exp2, T1 exp1)
+            where T2 : class
+            where T1 : class
         {
-            return CkFunctions.Pipe(exp1, exp2);
+            exp2.CheckNullWithException(nameof(exp2));
+            exp1.CheckNullWithException(nameof(exp1));
         }
+
+        #endregion 私有
+
+        #region Action
+
+        /* 横 exp1  竖 exp2
+                        Action     Action<T>   Action<T2,T1>
+         Action         1           1          1
+         Action<T>      1           1          2
+         Action<T2,T1>  1           2          1
+         */
+
+        public static Action Compose(
+            [NotNull] Action exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return () => { exp1(); exp2(); };
+        }
+
+        public static Action<TInput> Compose<TInput>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(t); exp2(); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); exp2(); };
+        }
+
+        public static Action<TInput> Compose<TInput>(
+            [NotNull] Action<TInput> exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(); exp2(t); };
+        }
+
+        public static Action<TInput> Compose<TInput>(
+            [NotNull] Action<TInput> exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(t); exp2(t); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput2> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); exp2(t2); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); exp2(t1); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(); exp2(t2, t1); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput2> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2); exp2(t2, t1); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t1); exp2(t2, t1); };
+        }
+
+        public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); exp2(t2, t1); };
+        }
+
+        #endregion Action
+
+        #region Func
+
+        /* 横 exp1  竖 exp2
+                        Func<TR>     Func<T,TR>   Func<T2,T1,TR>
+         Func<TR>       1               1              1
+         Func<T,TR>     1               1              2
+         Func<T2,T1,TR> x               x              1
+         */
+
+        public static Func<TResult> Compose<TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return () => { exp1(); return exp2(); };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Func<TInput, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(t); return exp2(); };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); return exp2(); };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TInput, TResult> exp2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(); return exp2(t); };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TInput, TResult> exp2,
+            [NotNull] Func<TInput, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t => { exp1(t); return exp2(t); };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput1, TResult> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); return exp2(t1); };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TResult> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); return exp2(t2); };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TInput1, TResult> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) => { exp1(t2, t1); return exp2(t2, t1); };
+        }
+
+        #endregion Func
+
+        #region exp1 Func  -  exp2 Action
+
+        /* 横 exp1  竖 exp2
+                        Func<TR>     Func<T,TR>   Func<T2,T1,TR>
+         Action             1           1           1
+         Action<T>          1           1           1
+         Action<T2,T1>      1           2           1
+
+         */
+
+        public static Func<TResult> Compose<TResult>(
+            [NotNull] Action exp2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return () =>
+            {
+                TResult tempResult = exp1();
+                exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Action exp2,
+            [NotNull] Func<TInput, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t =>
+            {
+                TResult tempResult = exp1(t);
+                exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1(t2, t1);
+                exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TResult> Compose<TInput, TResult>(
+            [NotNull] Action<TResult> exp2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return () =>
+            {
+                TResult tempResult = exp1();
+                exp2(tempResult);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Action<TResult> exp2,
+            [NotNull] Func<TInput, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t =>
+            {
+                TResult tempResult = exp1(t);
+                exp2(tempResult);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action<TResult> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1(t2, t1);
+                exp2(tempResult);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1();
+                exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Func<TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1(t1);
+                exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Func<TInput2, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1(t2);
+                exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Func<TInput2, TInput1, TResult> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                TResult tempResult = exp1(t2, t1);
+                exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        #endregion exp1 Func  -  exp2 Action
+
+        #region exp2 Action  -  exp1 Func
+
+        /* 横 exp1  竖 exp2
+                        Action     Action<T>   Action<T2,T1>
+         Func<TR>       1           1           1
+         Func<T,TR>     1           1           2
+         Func<T2,T1,TR> 1           2           1
+
+         */
+
+        public static Func<TResult> Compose<TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return () =>
+            {
+                exp1();
+                TResult tempResult = exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t =>
+            {
+                exp1(t);
+                TResult tempResult = exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TResult> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t2, t1);
+                TResult tempResult = exp2();
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TInput, TResult> exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t =>
+            {
+                exp1();
+                TResult tempResult = exp2(t);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput, TResult> Compose<TInput, TResult>(
+            [NotNull] Func<TInput, TResult> exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return t =>
+            {
+                exp1(t);
+                TResult tempResult = exp2(t);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput1, TResult> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t2, t1);
+                TResult tempResult = exp2(t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TResult> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t2, t1);
+                TResult tempResult = exp2(t2);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TInput1, TResult> exp2,
+            [NotNull] Action exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1();
+                TResult tempResult = exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TInput1, TResult> exp2,
+            [NotNull] Action<TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t1);
+                TResult tempResult = exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TInput1, TResult> exp2,
+            [NotNull] Action<TInput2> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t2);
+                TResult tempResult = exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
+            [NotNull] Func<TInput2, TInput1, TResult> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CkFunctions.Check(exp2, exp1);
+
+            return (t2, t1) =>
+            {
+                exp1(t2, t1);
+                TResult tempResult = exp2(t2, t1);
+                return tempResult;
+            };
+        }
+
+        #endregion exp2 Action  -  exp1 Func
     }
 }

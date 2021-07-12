@@ -32,13 +32,9 @@ namespace CkTools.FP
             return () =>
             {
                 if (judgeExp())
-                {
                     exp1();
-                }
                 else
-                {
                     exp2();
-                }
             };
         }
 
@@ -68,13 +64,9 @@ namespace CkTools.FP
             return t =>
             {
                 if (judgeExp(t))
-                {
                     exp1(t);
-                }
                 else
-                {
                     exp2(t);
-                }
             };
         }
 
