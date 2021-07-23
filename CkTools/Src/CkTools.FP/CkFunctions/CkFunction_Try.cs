@@ -22,8 +22,8 @@ namespace CkTools.FP
             [NotNull] Action exp,
             [NotNull] Action<Exception> exExp)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exExp.CheckNullWithException(nameof(exExp));
+            CkFunctions.CheckNullWithException(exp, exExp);
+
             return () => { try { exp(); } catch (Exception ex) { exExp(ex); } };
         }
 
@@ -36,17 +36,17 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exEXP"/>：异常处理函数</para>
+        /// <para><paramref name="exExp"/>：异常处理函数</para>
         /// </Value>
         /// <typeparam name="TInput">输入参数类型</typeparam>
         /// <returns></returns>
         public static Action<TInput> Try<TInput>(
             [NotNull] Action<TInput> exp,
-            [NotNull] Action<TInput, Exception> exEXP)
+            [NotNull] Action<TInput, Exception> exExp)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exEXP.CheckNullWithException(nameof(exEXP));
-            return input => { try { exp(input); } catch (Exception ex) { exEXP(input, ex); } };
+            CkFunctions.CheckNullWithException(exp, exExp);
+
+            return input => { try { exp(input); } catch (Exception ex) { exExp(input, ex); } };
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exEXP"/>：异常处理函数</para>
+        /// <para><paramref name="exExp"/>：异常处理函数</para>
         /// </Value>
         /// <typeparam name="TInput">输入参数类型</typeparam>
         /// <returns></returns>
@@ -74,17 +74,17 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exEXP"/>：异常处理函数,需要返回发生异常时的返回值</para>
+        /// <para><paramref name="exExp"/>：异常处理函数,需要返回发生异常时的返回值</para>
         /// </Value>
         /// <typeparam name="TOutput">输出类型参数</typeparam>
         /// <returns></returns>
         public static Func<TOutput> Try<TOutput>(
             [NotNull] Func<TOutput> exp,
-            [NotNull] Func<Exception, TOutput> exEXP)
+            [NotNull] Func<Exception, TOutput> exExp)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exEXP.CheckNullWithException(nameof(exEXP));
-            return () => { try { return exp(); } catch (Exception ex) { return exEXP(ex); } };
+            CkFunctions.CheckNullWithException(exp, exExp);
+
+            return () => { try { return exp(); } catch (Exception ex) { return exExp(ex); } };
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exEXP"/>：异常处理函数,需要返回发生异常时的返回值</para>
+        /// <para><paramref name="exExp"/>：异常处理函数,需要返回发生异常时的返回值</para>
         /// </Value>
         /// <typeparam name="TOutput">输出类型参数</typeparam>
         /// <returns></returns>
@@ -112,18 +112,18 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exEXP"/>：异常处理函数,需要返回一个值</para>
+        /// <para><paramref name="exExp"/>：异常处理函数,需要返回一个值</para>
         /// </Value>
         /// <typeparam name="TInput">输入类型参数</typeparam>
         /// <typeparam name="TOutput">输出类型参数</typeparam>
         /// <returns></returns>
         public static Func<TInput, TOutput> Try<TInput, TOutput>(
             [NotNull] Func<TInput, TOutput> exp,
-            [NotNull] Func<TInput, Exception, TOutput> exEXP)
+            [NotNull] Func<TInput, Exception, TOutput> exExp)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exEXP.CheckNullWithException(nameof(exEXP));
-            return input => { try { return exp(input); } catch (Exception ex) { return exEXP(input, ex); } };
+            CkFunctions.CheckNullWithException(exp, exExp);
+
+            return input => { try { return exp(input); } catch (Exception ex) { return exExp(input, ex); } };
         }
 
         #endregion Func - 1入参 1出参

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace CkTools.FP
 {
@@ -9,39 +9,184 @@ namespace CkTools.FP
     /// </summary>
     public static partial class CkFunctions
     {
-        #region 返回Action
+        #region Action
 
-        #region 0个入参
+        #region Compose镜像版本
 
-        /// <summary>
-        /// 管道 <para></para>
-        /// (a->void)->(b->void)->...  => (a->void) <para></para>
-        /// 示例:  (string->void)->(int->void)->...  => (string->void)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <param name="sourceExp"></param>
-        /// <param name="exps"></param>
-        /// <returns></returns>
-        public static Action<TInput> Pipe<TInput>(
-            [NotNull] Action<TInput> sourceExp,
-            [NotNull] params Action<TInput>[] exps)
+        /* 横 exp1  竖 exp2
+                        Action     Action<T>   Action<T2,T1>
+         Action         1           1          1
+         Action<T>      1           1          2
+         Action<T2,T1>  1           2          1
+         */
+
+        public static Action Pipe(
+            [NotNull] Action exp2,
+            [NotNull] Action exp1)
         {
-            sourceExp.CheckNullWithException(nameof(sourceExp));
-            exps.CheckNullWithException(nameof(exps));
-
-            return t =>
-            {
-                sourceExp(t);
-                foreach (Action<TInput> item in exps)
-                {
-                    item(t);
-                }
-            };
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
-        #endregion 0个入参
+        public static Action<TInput> Pipe<TInput>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
 
-        #endregion 返回Action
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput> Pipe<TInput>(
+            [NotNull] Action<TInput> exp2,
+            [NotNull] Action exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput> Pipe<TInput>(
+            [NotNull] Action<TInput> exp2,
+            [NotNull] Action<TInput> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput2> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput1> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            CheckNullWithException(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion Compose镜像版本
+
+        #region 其它
+
+        public static Action Pipe(
+            [NotNull] params Action[] exps)
+        {
+            CheckNullWithException(exps);
+            switch (exps.Length)
+            {
+                case 0:
+                    return () => { };
+
+                case 1:
+                    return exps[0];
+
+                default:
+                {
+                    Action temp = exps[0];
+                    foreach (Action? item in exps[1..].Where(t => t != null))
+                    {
+                        temp += item;
+                    }
+                    return temp;
+                }
+            }
+        }
+
+        public static Action<TInput> Pipe<TInput>(
+            [NotNull] params Action<TInput>[] exps)
+        {
+            CheckNullWithException(exps);
+            switch (exps.Length)
+            {
+                case 0:
+                    return t => { };
+
+                case 1:
+                    return exps[0];
+
+                default:
+                {
+                    Action<TInput> temp = exps[0];
+                    foreach (Action<TInput>? item in exps[1..].Where(t => t != null))
+                    {
+                        temp += item;
+                    }
+                    return temp;
+                }
+            }
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            [NotNull] params Action<TInput1, TInput2>[] exps)
+        {
+            CheckNullWithException(exps);
+            switch (exps.Length)
+            {
+                case 0:
+                    return (t1, t2) => { };
+
+                case 1:
+                    return exps[0];
+
+                default:
+                {
+                    Action<TInput1, TInput2> temp = exps[0];
+                    foreach (Action<TInput1, TInput2>? item in exps[1..].Where(t => t != null))
+                    {
+                        temp += item;
+                    }
+                    return temp;
+                }
+            }
+        }
+
+        #endregion 其它
+
+        #endregion Action
 
         #region Func - 0入参 1出参
 
@@ -55,8 +200,7 @@ namespace CkTools.FP
             [NotNull] Func<TOutput> exp,
             [NotNull] params Action<TOutput>[] exps)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exps.CheckNullWithException(nameof(exps));
+            CkFunctions.CheckNullWithException(exp, exps);
 
             return () =>
             {
@@ -105,8 +249,7 @@ namespace CkTools.FP
             [NotNull] Func<TInput, TResult> exp,
             [NotNull] params Func<TResult, TResult>[] exps)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exps.CheckNullWithException(nameof(exps));
+            CkFunctions.CheckNullWithException(exp, exps);
 
             return t =>
             {
@@ -128,8 +271,7 @@ namespace CkTools.FP
             [NotNull] Func<TInput, TResult> exp,
             [NotNull] params Action<TResult>[] exps)
         {
-            exp.CheckNullWithException(nameof(exp));
-            exps.CheckNullWithException(nameof(exps));
+            CkFunctions.CheckNullWithException(exp, exps);
 
             return input =>
             {

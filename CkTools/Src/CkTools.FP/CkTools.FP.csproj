@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\CkTools.Abstraction\CkTools.Abstraction.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

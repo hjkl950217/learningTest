@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using CkTools.FP;
 
 namespace System
 {
@@ -27,8 +28,7 @@ namespace System
             [NotNull] Func<TInput, TOutput> func,
             Func<TInput, Exception, TOutput> handler)
         {
-            func.CheckNullWithException(nameof(func));
-            handler.CheckNullWithException(nameof(handler));
+            CkFunctions.CheckNullWithException(handler, func);
             return input.ContinueWith(
                 t => { try { return func(t.Result); } catch (Exception ex) { return handler(t.Result, ex); } },
                 TaskContinuationOptions.OnlyOnRanToCompletion);

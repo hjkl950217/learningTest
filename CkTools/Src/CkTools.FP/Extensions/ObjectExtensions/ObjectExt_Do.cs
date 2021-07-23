@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using CkTools.FP;
 
 namespace System
 {
@@ -20,7 +21,7 @@ namespace System
             this TInput input,
             [NotNull] Action<TInput> doFunc)
         {
-            doFunc.CheckNullWithException(nameof(doFunc));
+            CkFunctions.CheckNullWithException(doFunc);
             doFunc(input);
 
             return input;
@@ -41,8 +42,7 @@ namespace System
             [NotNull] Func<TInput, bool> isExecute,
             [NotNull] Action<TInput> doFunc)
         {
-            isExecute.CheckNullWithException(nameof(isExecute));
-            doFunc.CheckNullWithException(nameof(doFunc));
+            CkFunctions.CheckNullWithException(isExecute, doFunc);
 
             if (isExecute(input)) { doFunc(input); }
 

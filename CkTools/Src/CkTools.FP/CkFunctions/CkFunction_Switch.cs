@@ -23,9 +23,7 @@ namespace CkTools.FP
           [NotNull] Func<TCenter, byte> selectExp,
           [NotNull] params Func<TCenter, TResult>[] expArray)
         {
-            exp.CheckNullWithException(nameof(exp));
-            selectExp.CheckNullWithException(nameof(selectExp));
-            expArray.CheckNullWithException(nameof(expArray));
+            CkFunctions.CheckNullWithException(exp, selectExp, expArray);
 
             return t => exp(t).Pipe(c => expArray[selectExp(c)](c));
         }

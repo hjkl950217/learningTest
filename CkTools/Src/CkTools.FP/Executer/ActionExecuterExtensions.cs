@@ -17,7 +17,7 @@ namespace CkTools.FP.Executer
         /// <returns></returns>
         public static ActionExecuter Pipe(this ActionExecuter executer, Action action)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(action);
 
             executer.StepList.Add(action);
             return executer;
@@ -37,7 +37,7 @@ namespace CkTools.FP.Executer
             Action action1,
             Action action2)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(action2, action1);
 
             if (predicate)
             {
@@ -60,10 +60,11 @@ namespace CkTools.FP.Executer
         /// <returns></returns>
         public static ActionExecuter PipeIf(
             this ActionExecuter executer,
-            Func<bool> predicate, Action action1,
+            Func<bool> predicate,
+            Action action1,
             Action action2)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(executer, predicate, action2, action1);
 
             ActionExecuterExtensions.PipeIf(executer, predicate(), action1, action2);
             return executer;
@@ -84,7 +85,7 @@ namespace CkTools.FP.Executer
             Func<bool> predicate,
             Action onEnded)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(executer, predicate, onEnded);
 
             executer.StepList.Add(() =>
             {
@@ -101,7 +102,7 @@ namespace CkTools.FP.Executer
         /// <param name="isEnd">是否结束</param>
         public static ActionExecuter MayEndPipe(this ActionExecuter executer, bool isEnd)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(executer);
 
             return ActionExecuterExtensions.MayEndPipe(
                 executer: executer,
@@ -118,7 +119,7 @@ namespace CkTools.FP.Executer
             this ActionExecuter executer,
             Func<bool> predicate)
         {
-            executer.CheckNullWithException(nameof(executer));
+            CkFunctions.CheckNullWithException(executer, predicate);
 
             return ActionExecuterExtensions.MayEndPipe(
                 executer: executer,
@@ -138,8 +139,9 @@ namespace CkTools.FP.Executer
         public static ActionExecuter End(
             this ActionExecuter executer)
         {
-            executer.CheckNullWithException(nameof(executer));
-            executer.IsEnd = true;
+            CkFunctions.CheckNullWithException(executer);
+
+            executer.Pipe(() => executer.IsEnd = true);
             return executer;
         }
 
@@ -151,8 +153,9 @@ namespace CkTools.FP.Executer
         public static ActionExecuter Continue(
             this ActionExecuter executer)
         {
-            executer.CheckNullWithException(nameof(executer));
-            executer.IsEnd = false;
+            CkFunctions.CheckNullWithException(executer);
+
+            executer.Pipe(() => executer.IsEnd = false);
             return executer;
         }
 

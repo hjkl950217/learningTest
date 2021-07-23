@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using CkTools.FP;
 
 namespace System
 {
@@ -25,7 +26,7 @@ namespace System
             bool isExecute,
             [NotNull] Func<TInput, TInput> func)
         {
-            func.CheckNullWithException(nameof(func));
+            CkFunctions.CheckNullWithException(func);
 
             return input.ContinueWith(inObj =>
             {
@@ -55,8 +56,7 @@ namespace System
             [NotNull] Func<TInput, bool> isExecute,
             [NotNull] Func<TInput, TInput> func)
         {
-            isExecute.CheckNullWithException(nameof(isExecute));
-            func.CheckNullWithException(nameof(func));
+            CkFunctions.CheckNullWithException(isExecute, func);
 
             return input.ContinueWith(inObj =>
             {

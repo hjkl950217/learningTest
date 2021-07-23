@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using CkTools.FP;
 
 namespace System
 {
@@ -42,7 +43,7 @@ namespace System
 
         public static implicit operator T(Maybe<T> value)
         {
-            value.CheckNullWithException(nameof(value));
+            CkFunctions.CheckNullWithException(value);
             return value.Value;
         }
 

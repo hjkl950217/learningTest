@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using CkTools.FP;
 
 namespace System
 {
@@ -20,7 +21,7 @@ namespace System
             this TInput input,
             [NotNull] Func<TInput, TOutput> func)
         {
-            func.CheckNullWithException(nameof(func));
+            CkFunctions.CheckNullWithException(func);
 
             return func(input);
         }

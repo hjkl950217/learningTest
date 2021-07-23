@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using CkTools.FP;
 
 namespace System
 {
@@ -20,8 +20,8 @@ namespace System
             [NotNull] this Action<TInput> sourceExp,
             [NotNull] Action<TInput> exp)
         {
-            sourceExp.CheckNullWithException(nameof(sourceExp));
-            exp.CheckNullWithException(nameof(exp));
+            CkFunctions.CheckNullWithException(sourceExp, exp);
+
             sourceExp += exp;
             return sourceExp;
         }
@@ -37,8 +37,8 @@ namespace System
             [NotNull] this Action<TInput> sourceExp,
             [NotNull] params Action<TInput>[] exps)
         {
-            sourceExp.CheckNullWithException(nameof(sourceExp));
-            exps.CheckNullWithException(nameof(exps));
+            CkFunctions.CheckNullWithException(sourceExp, exps);
+
             exps.For(t => sourceExp += t);
             return sourceExp;
         }
@@ -59,8 +59,7 @@ namespace System
             [NotNull] this Func<TInput, TResult> sourceExp,
             [NotNull] Action<TResult> exp)
         {
-            sourceExp.CheckNullWithException(nameof(sourceExp));
-            exp.CheckNullWithException(nameof(exp));
+            CkFunctions.CheckNullWithException(sourceExp, exp);
 
             return t =>
             {
@@ -82,8 +81,7 @@ namespace System
             [NotNull] this Func<TInput, TResult> sourceExp,
             [NotNull] params Action<TResult>[] exps)
         {
-            sourceExp.CheckNullWithException(nameof(sourceExp));
-            exps.CheckNullWithException(nameof(exps));
+            CkFunctions.CheckNullWithException(sourceExp, exps);
 
             return t =>
             {

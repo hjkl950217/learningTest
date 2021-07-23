@@ -25,9 +25,7 @@ namespace CkTools.FP
             [NotNull] Action exp1,
             [NotNull] Func<bool> judgeExp)
         {
-            exp2.CheckNullWithException(nameof(exp2));
-            exp1.CheckNullWithException(nameof(exp1));
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return () =>
             {
@@ -57,9 +55,7 @@ namespace CkTools.FP
             [NotNull] Action<TInput> exp1,
             [NotNull] Func<TInput, bool> judgeExp)
         {
-            exp2.CheckNullWithException(nameof(exp2));
-            exp1.CheckNullWithException(nameof(exp1));
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return t =>
             {
@@ -85,7 +81,7 @@ namespace CkTools.FP
             [NotNull] Action exp1,
             [NotNull] Func<TInput, bool> judgeExp)
         {
-            exp1.CheckNullWithException(nameof(exp1));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return CkFunctions.If<TInput>(exp2, t => exp1(), judgeExp);
         }
@@ -105,7 +101,7 @@ namespace CkTools.FP
             [NotNull] Action<TInput> exp1,
             [NotNull] Func<bool> judgeExp)
         {
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return CkFunctions.If<TInput>(exp2, exp1, t => judgeExp());
         }
@@ -129,9 +125,7 @@ namespace CkTools.FP
             [NotNull] Func<TOutput> exp1,
             [NotNull] Func<bool> judgeExp)
         {
-            exp2.CheckNullWithException(nameof(exp2));
-            exp1.CheckNullWithException(nameof(exp1));
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return () => judgeExp()
             ? exp1()
@@ -158,9 +152,7 @@ namespace CkTools.FP
             [NotNull] Func<TInput, TOutput> exp1,
             [NotNull] Func<TInput, bool> judgeExp)
         {
-            exp2.CheckNullWithException(nameof(exp2));
-            exp1.CheckNullWithException(nameof(exp1));
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
 
             return input => judgeExp(input)
             ? exp1(input)
@@ -201,7 +193,7 @@ namespace CkTools.FP
             [NotNull] Func<TInput, TOutput> exp1,
             [NotNull] Func<bool> judgeExp)
         {
-            judgeExp.CheckNullWithException(nameof(judgeExp));
+            CkFunctions.CheckNullWithException(exp2, exp1, judgeExp);
             return CkFunctions.If<TInput, TOutput>(exp2, exp1, t => judgeExp());
         }
 
