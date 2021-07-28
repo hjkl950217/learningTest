@@ -43,7 +43,7 @@ namespace System.Collections
         /// <param name="otherAction">在转换后需要执行的其它委托</param>
         /// <returns></returns>
         [return: NotNull]
-        public static Dictionary<string, string> ToDictionary(
+        public static Dictionary<string?, string?> ToDictionary(
             this IDictionary dictionary,
             Func<IEnumerable<KeyValuePair<string, string>>, IEnumerable<KeyValuePair<string, string>>>? otherAction = null)
         {

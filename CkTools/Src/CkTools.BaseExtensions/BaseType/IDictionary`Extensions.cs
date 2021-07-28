@@ -133,20 +133,36 @@ namespace System.Collections.Generic
 
         /// <summary>
         /// 添加或更新一个值.<para></para>
-        /// 当key不存在时调用<paramref name="factory"/>获取一个新值并添加到<paramref name="valuePairs"/>中
+        /// 当key不存在时调用<paramref name="updateFunc"/>获取一个新值并添加到<paramref name="valuePairs"/>中
         /// </summary>
         /// <typeparam name="TKey"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="valuePairs"></param>
         /// <param name="key"></param>
-        /// <param name="factory"></param>
+        /// <param name="updateFunc">一个委托,指示如何更新。存在时传递旧值给委托,不存在时传递<see cref="default"/>给委托</param>
         /// <returns></returns>
         public static TValue AddOrUpdate<TKey, TValue>(
            this IDictionary<TKey, TValue> valuePairs,
            TKey key,
-           Func<TValue> factory)
+           Func<TValue, TValue> updateFunc)
         {
-            return valuePairs.AddOrUpdate(key, factory());
+            valuePairs.CheckNullWithException(nameof(valuePairs));
+            updateFunc.CheckNullWithException(nameof(updateFunc));
+
+            TValue value = default;
+            if (valuePairs.ContainsKey(key))
+            {
+                value = valuePairs[key];
+                value = updateFunc(value);
+                valuePairs[key] = value;
+            }
+            else
+            {
+                value = updateFunc(default);
+                valuePairs.Add(key, value);
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -165,16 +181,25 @@ namespace System.Collections.Generic
         {
             valuePairs.CheckNullWithException(nameof(valuePairs));
 
-            if (valuePairs.ContainsKey(key))
-            {
-                valuePairs[key] = value;
-            }
-            else
-            {
-                valuePairs.Add(key, value);
-            }
+            return valuePairs.AddOrUpdate(key, t => value);
+        }
 
-            return value;
+        /// <summary>
+        /// 添加或更新一个值.<para></para>
+        /// 当key不存在时调用<paramref name="factory"/>获取一个新值并添加到<paramref name="valuePairs"/>中
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="valuePairs"></param>
+        /// <param name="key"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        public static TValue AddOrUpdate<TKey, TValue>(
+           this IDictionary<TKey, TValue> valuePairs,
+           TKey key,
+           Func<TValue> factory)
+        {
+            return valuePairs.AddOrUpdate(key, t => factory());
         }
 
         public static IReadOnlyDictionary<TKey, TValue> ToReadOnly<TKey, TValue>(
