@@ -6,7 +6,7 @@ namespace CkTools.FP.Executer
 #pragma warning disable CS8603 // 可能返回 null 引用。
 
     /// <summary>
-    /// 方法执行器
+    /// 方法执行器-泛型返回
     /// </summary>
     public class ActionExecuter<TResult> : ActionExecuter
     {
@@ -17,9 +17,7 @@ namespace CkTools.FP.Executer
         /// <summary>
         /// 初始化<see cref="ActionExecuter{TResult}"/>
         /// </summary>
-
         protected ActionExecuter() : base()
-
         {
             this.Result = default;
         }
