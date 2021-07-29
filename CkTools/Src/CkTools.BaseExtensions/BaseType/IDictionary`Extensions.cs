@@ -144,12 +144,13 @@ namespace System.Collections.Generic
         public static TValue AddOrUpdate<TKey, TValue>(
            this IDictionary<TKey, TValue> valuePairs,
            TKey key,
-           Func<TValue, TValue> updateFunc)
+           Func<TValue, TValue> updateFunc,
+            TValue defaultValue = default)
         {
             valuePairs.CheckNullWithException(nameof(valuePairs));
             updateFunc.CheckNullWithException(nameof(updateFunc));
 
-            TValue value = default;
+            TValue value;
             if (valuePairs.ContainsKey(key))
             {
                 value = valuePairs[key];
@@ -158,7 +159,7 @@ namespace System.Collections.Generic
             }
             else
             {
-                value = updateFunc(default);
+                value = updateFunc(defaultValue);
                 valuePairs.Add(key, value);
             }
 
