@@ -92,7 +92,8 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 	https://github.com/ctripcorp/apollo
 24. nacos 阿里开源的服务发现与配置的中间件
 	Ocelot.Provider.Nacos  支持与Ocelot集成
-
+25. AgileConfig 轻量级配置中心,为非微服务的分布式应用准备的
+26. zabbix 服务器监控组件，可以统一监控服务器运行情况
 
 --
 https://hub.fastgit.org/ 国内镜像站

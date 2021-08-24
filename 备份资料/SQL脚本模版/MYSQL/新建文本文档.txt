@@ -1,0 +1,6 @@
+SELECT
+	* 
+FROM
+	table_name t1 
+WHERE
+	t1.update_time = ( SELECT max( t.update_time ) FROM table_name t WHERE t.id = t1.id );

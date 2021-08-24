@@ -9,8 +9,9 @@
                     UseProxy = true
                 };
             });
+ 	HttpClient.DefaultProxy = new WebProxy("127.0.0.1:10240");
 
-
+//另一个方式：
 var httpClientHandler=new HttpClientHandler()
 {
 Proxy = new WebProxy($"http://{ip}:{port}")
