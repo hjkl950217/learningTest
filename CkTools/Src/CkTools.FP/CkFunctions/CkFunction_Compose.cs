@@ -10,12 +10,14 @@ namespace CkTools.FP
     {
         #region Action
 
-        /* 横 exp1  竖 exp2
+        /* 竖 exp2  横 exp1
                         Action     Action<T>   Action<T2,T1>
          Action         1           1          1
          Action<T>      1           1          2
          Action<T2,T1>  1           2          1
          */
+
+        #region 第1排
 
         public static Action Compose(
             [NotNull] Action exp2,
@@ -40,6 +42,10 @@ namespace CkTools.FP
             CheckNullWithException(exp2, exp1);
             return (t2, t1) => { exp1(t2, t1); exp2(); };
         }
+
+        #endregion 第1排
+
+        #region 第2排
 
         public static Action<TInput> Compose<TInput>(
             [NotNull] Action<TInput> exp2,
@@ -73,6 +79,10 @@ namespace CkTools.FP
             return (t2, t1) => { exp1(t2, t1); exp2(t1); };
         }
 
+        #endregion 第2排
+
+        #region 第3排
+
         public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
             [NotNull] Action<TInput2, TInput1> exp2,
             [NotNull] Action exp1)
@@ -105,18 +115,20 @@ namespace CkTools.FP
             return (t2, t1) => { exp1(t2, t1); exp2(t2, t1); };
         }
 
+        #endregion 第3排
+
         #endregion Action
 
         #region Func
 
-        /* 横 exp1  竖 exp2
+        /* 竖 exp2  横 exp1
                         Func<TR>     Func<T,TR>   Func<T2,T1,TR>
          Func<TR>       x               x              x
          Func<T,TR>     1               1              1
          Func<T2,T1,TR> x               x              x
          */
 
-        public static Func<TResult> Compose<TInput, TResult>(
+        public static Func<TResult> Compose<TResult>(
             [NotNull] Func<TResult, TResult> exp2,
             [NotNull] Func<TResult> exp1)
         {
@@ -142,15 +154,17 @@ namespace CkTools.FP
 
         #endregion Func
 
-        #region exp1 Func  -  exp2 Action
+        #region exp2 Action  -  exp1 Func
 
-        /* 横 exp1  竖 exp2
+        /* 竖 exp2  横 exp1
                         Func<TR>     Func<T,TR>   Func<T2,T1,TR>
          Action             1           1           1
          Action<T>          1           1           1
          Action<T2,T1>      x           x           x
 
          */
+
+        #region 第1排
 
         public static Func<TResult> Compose<TResult>(
             [NotNull] Action exp2,
@@ -191,7 +205,11 @@ namespace CkTools.FP
             };
         }
 
-        public static Func<TResult> Compose<TInput, TResult>(
+        #endregion 第1排
+
+        #region 第2排
+
+        public static Func<TResult> Compose<TResult>(
             [NotNull] Action<TResult> exp2,
             [NotNull] Func<TResult> exp1)
         {
@@ -230,17 +248,21 @@ namespace CkTools.FP
             };
         }
 
-        #endregion exp1 Func  -  exp2 Action
+        #endregion 第2排
 
-        #region exp2 Action  -  exp1 Func
+        #endregion exp2 Action  -  exp1 Func
 
-        /* 横 exp1  竖 exp2
+        #region exp2 Func  -  exp1 Action
+
+        /* 竖 exp2  横 exp1
                         Action     Action<T>   Action<T2,T1>
          Func<TR>       1           1           1
          Func<T,TR>     1           1           x
          Func<T2,T1,TR> 1           2           1
 
          */
+
+        #region 第1排
 
         public static Func<TResult> Compose<TResult>(
             [NotNull] Func<TResult> exp2,
@@ -251,6 +273,7 @@ namespace CkTools.FP
             {
                 exp1();
                 TResult tempResult = exp2();
+
                 return tempResult;
             };
         }
@@ -264,6 +287,7 @@ namespace CkTools.FP
             {
                 exp1(t);
                 TResult tempResult = exp2();
+
                 return tempResult;
             };
         }
@@ -281,6 +305,10 @@ namespace CkTools.FP
             };
         }
 
+        #endregion 第1排
+
+        #region 第2排
+
         public static Func<TInput, TResult> Compose<TInput, TResult>(
             [NotNull] Func<TInput, TResult> exp2,
             [NotNull] Action exp1)
@@ -306,6 +334,10 @@ namespace CkTools.FP
                 return tempResult;
             };
         }
+
+        #endregion 第2排
+
+        #region 第3排
 
         public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
             [NotNull] Func<TInput2, TInput1, TResult> exp2,
@@ -359,6 +391,8 @@ namespace CkTools.FP
             };
         }
 
-        #endregion exp2 Action  -  exp1 Func
+        #endregion 第3排
+
+        #endregion exp2 Func  -  exp1 Action
     }
 }

@@ -13,7 +13,7 @@ namespace CkTools.FP
 
         #region Compose镜像版本
 
-        /* 横 exp1  竖 exp2
+        /* 竖 exp2  横 exp1
                         Action     Action<T>   Action<T2,T1>
          Action         1           1          1
          Action<T>      1           1          2

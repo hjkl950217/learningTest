@@ -26,6 +26,10 @@
         先从  CkFunctions compose  开始重写
         从 CkFunctions  pipe 开始重写，写的时候保持 function =>FpExt=>objectExt  3边保持一致的入口，内部都调用function中的代码。  function中的代码需要遵循右结合(数据放在最右边,越向左，变化越少)
 
+已完成:
+        Comopse
+        Do
+
          *
          */
 
