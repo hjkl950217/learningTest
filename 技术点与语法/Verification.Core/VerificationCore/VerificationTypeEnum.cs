@@ -59,6 +59,7 @@
         A38_Task不等待返回,
         A39_结构体类型的ToString,
         A40_任意长度2进制操作,
+        A41_生成WIFI二维码,
 
         #endregion 技术点
 
