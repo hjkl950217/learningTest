@@ -5,11 +5,11 @@ https://zhuanlan.zhihu.com/p/137595941
 安装 新版 Powershell 
 安装插件
 # 1. 安装 PSReadline 包，该插件可以让命令行很好用，类似 zsh
-Install-Module -Name PSReadLine -AllowPrerelease -Force -Verbose #需要管理员权限
+Install-Module -Name PSReadLine -AllowPrerelease -Force -Verbose -Proxy http://127.0.0.1:1080 #需要管理员权限
 # 2. 安装 posh-git 包，让你的 git 更好用
-Install-Module posh-git -Scope CurrentUser -Verbose
+Install-Module posh-git -Scope CurrentUser -Verbose -Proxy http://127.0.0.1:1080
 # 3. 安装 oh-my-posh 包，让你的命令行更酷炫、优雅
-Install-Module oh-my-posh -Scope CurrentUser -Verbose
+Install-Module oh-my-posh -Scope CurrentUser -Verbose -Proxy http://127.0.0.1:1080
 
 然后修改配置
 // 默认的配置就是我们的新 powershell（重要！！！）
