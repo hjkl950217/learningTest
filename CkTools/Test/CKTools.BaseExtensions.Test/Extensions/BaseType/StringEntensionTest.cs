@@ -189,14 +189,14 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void WhenExistEmptyWithNoError()
             {
-                byte[] result = StringExtensions.HexStringToBytes(testHexStr);
+                byte[] result = testHexStr.HexStringToBytes();
                 Assert.Equal(string.Join("", expectBytes), string.Join("", result));
             }
 
             [Fact]
             public void WhenNoEmptyWithNoError()
             {
-                byte[] result = StringExtensions.HexStringToBytes(testHexStr.Replace(" ", ""));
+                byte[] result = testHexStr.Replace(" ", "").HexStringToBytes();
                 Assert.Equal(string.Join("", expectBytes), string.Join("", result));
             }
         }

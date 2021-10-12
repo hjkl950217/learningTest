@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
 using CkTools.BaseExtensions.ConstAndEnum;
 using CkTools.BaseExtensions.Helper;
 using Newtonsoft.Json;
@@ -12,70 +10,7 @@ namespace System
     /// </summary>
     public static class StringExtensions
     {
-        public static readonly char[] DefualtSeparators = new[] { ',', ';' };
-
-        /// <summary>
-        /// 转成json对象
-        /// </summary>
-        /// <typeparam name="T">要序列化的string</typeparam>
-        /// <param name="jsonStr">               </param>
-        /// <param name="jsonSerializerSettings">自定义的序列化设置</param>
-        /// <returns></returns>
-        [return: MaybeNull]
-        public static T ToObjectExt<T>(
-            this string jsonStr,
-            JsonSerializerSettings? jsonSerializerSettings = null)
-        {
-            jsonSerializerSettings ??= JsonSerializerSettingConst.DefaultSetting;
-
-            return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
-        }
-
         #region 基础类型与string之间的转换
-
-        public static int ToInt32(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToInt32);
-        }
-
-        public static int ToInt32OrDefault(this string str, int defaultValue = 0)
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
-        }
-
-        public static bool ToBool(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToBoolean);
-        }
-
-        public static bool ToBoolOrDefault(this string str, bool defaultValue = false)
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
-        }
-
-        public static decimal ToDecimal(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToDecimal);
-        }
-
-        public static decimal ToDecimalOrDefault(
-                    this string str,
-                    decimal defaultValue = 0.00M)
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
-        }
-
-        public static double ToDouble(this string str)
-        {
-            return str.BaseConvert(System.Convert.ToDouble);
-        }
-
-        public static double ToDoubleOrDefault(
-                    this string str,
-                    double defaultValue = 0.00)
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
-        }
 
         public static long ToLong(this string str, long defaultValue = 0L)
         {
@@ -292,6 +227,23 @@ namespace System
         #endregion 基础类型与string之间的转换
 
         /// <summary>
+        /// 转成json对象
+        /// </summary>
+        /// <typeparam name="T">要序列化的string</typeparam>
+        /// <param name="jsonStr">               </param>
+        /// <param name="jsonSerializerSettings">自定义的序列化设置</param>
+        /// <returns></returns>
+        [return: MaybeNull]
+        public static T ToObjectExt<T>(
+            this string jsonStr,
+            JsonSerializerSettings? jsonSerializerSettings = null)
+        {
+            jsonSerializerSettings ??= JsonSerializerSettingConst.DefaultSetting;
+
+            return JsonConvert.DeserializeObject<T>(jsonStr, jsonSerializerSettings);
+        }
+
+        /// <summary>
         /// string转换为MD5字符串,null或""会返回""
         /// </summary>
         /// <param name="str"> 要加密的字符串</param>
@@ -302,178 +254,6 @@ namespace System
             if (str.IsNullOrEmpty() == true) return string.Empty;
 
             return EncryptionHelper.EncryptMD5(str, is32);
-        }
-
-        /// <summary>
-        /// 判断两个字符串是否相等，忽略大小写
-        /// </summary>
-        /// <param name="str1"></param>
-        /// <param name="str2"></param>
-        /// <returns></returns>
-        public static bool EqualsIgnoreCase(this string str1, string str2)
-        {
-            return string.Equals(str1, str2, StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
-        /// 判断两个字符串是否相等，忽略大小写，忽略首尾空格
-        /// </summary>
-        /// <param name="str1"></param>
-        /// <param name="str2"></param>
-        /// <returns></returns>
-        public static bool EqualsLoose(this string str1, string str2)
-        {
-            return string.Equals(str1?.Trim(), str2?.Trim(), StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
-        /// 分割为数组
-        /// </summary>
-        /// <param name="source">    要处理的字符串</param>
-        /// <param name="separators">
-        /// 要分割的字符串. 默认使用 ,或 ; 参考： <see cref="StringExtensions.DefualtSeparators" />
-        /// </param>
-        /// <param name="selector">  字符串的处理，默认使用Trim().ToUpper()</param>
-        /// <returns></returns>
-        public static string[] SplitToArray(
-            this string source,
-            char[]? separators = null,
-            Func<string, string>? selector = null)
-        {
-            if (source.IsNullOrEmpty())
-            {
-                return Array.Empty<string>();
-            }
-
-            selector = selector ?? (t => t.Trim().ToUpper());
-            return source
-                .Split(separators
-                        ?? StringExtensions.DefualtSeparators,
-                        StringSplitOptions.RemoveEmptyEntries)
-                .Where(i => !string.IsNullOrWhiteSpace(i))
-                .Select(i => selector(i))
-                .ToArray();
-        }
-
-        /// <summary>
-        /// 移除字符串中最后一位多余的符号.需要做trim操作的请先处理好
-        /// <para>例:"1;2;3;"--&gt;"1;2;3"</para>
-        /// </summary>
-        /// <param name="source"> </param>
-        /// <param name="symbols">要处理的符号集合</param>
-        /// <returns></returns>
-        public static string RemoveExtraSymbol(this string source, params char[] symbols)
-        {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            else if (source.Length < 2)
-            {
-                return source;
-            }
-
-            ReadOnlySpan<char> chars = source.AsSpan();
-
-            bool isExtra = false;
-            foreach (char item in symbols)
-            {
-                isExtra = chars[source.Length - 1] == item;
-                if (isExtra == true) break;
-            }
-            if (isExtra == true)
-            {
-                return chars.Slice(0, source.Length - 1).ToString();
-            }
-            else
-            {
-                return source;
-            }
-        }
-
-        /// <summary>
-        /// 截取字符串，默认从0开始截取。如果参数比实际值大，则用实际值 <para></para>
-        /// 如果 <paramref name="length" /> 大于 <paramref name="source" /> 的长度，则截取 <paramref
-        /// name="source" /> 的长度
-        /// </summary>
-        /// <param name="source">为null或长度为0时返回 <see cref="string.Empty" /></param>
-        /// <param name="length">要截取的长度。不能小于0</param>
-        /// <param name="startIndex">开始截取的索引号。默认为0,不能小于0</param>
-        /// <returns></returns>
-        public static string SubstringExt(this string source, int length, int startIndex = 0)
-        {
-            if (source.IsNullOrEmpty()) return string.Empty;
-            if (length < 0) throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(length));
-            if (startIndex < 0) throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(startIndex));
-
-            length = length > source.Length ? source.Length : length;//如果参数比实际值大，则用实际值
-
-            return source.Substring(startIndex, length);
-        }
-
-        /// <summary>
-        /// 转换为byte[]
-        /// </summary>
-        /// <param name="source">  </param>
-        /// <param name="encoding">编码格式，默认 <see cref="Encoding.UTF8" /></param>
-        /// <returns></returns>
-        public static byte[] ToBytes(this string source, Encoding? encoding = null)
-        {
-            encoding ??= Encoding.UTF8;
-            return source.BaseConvertOrDefalut(encoding.GetBytes, Array.Empty<byte>());
-        }
-
-        public static T ToEnum<T>(this string str, bool ignoreCase = false)
-            where T : struct
-        {
-            if (Enum.TryParse<T>(str, ignoreCase, out T enumValue))
-            {
-                return enumValue;
-            }
-            return default(T);
-        }
-
-        /// <summary>
-        /// 判断是否包含符号
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="symbols"></param>
-        /// <returns></returns>
-        public static bool ContainsSymbol(this string str, params string[] symbols)
-        {
-            return str switch
-            {
-                null => false,
-                string a when string.IsNullOrEmpty(a) => false,
-                string a when a == string.Empty => false,
-                _ => symbols.Any(t => str.Contains(t))
-            };
-        }
-
-        /// <summary>
-        /// 判断字符串是否为空
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this string s)
-        {
-            return string.IsNullOrEmpty(s);
-        }
-
-        /// <summary>
-        /// 16进制的<see cref="string"/>转换为对应的字节数组,默认以" "分割
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static byte[] HexStringToBytes(this string s)
-        {
-            s = s.Replace(" ", "");
-            byte[] buffer = new byte[s.Length / 2];
-            for (int i = 0 ; i < s.Length ; i += 2)
-            {
-                buffer[i / 2] = Convert.ToByte(s.Substring(i, 2), 16);
-            }
-            return buffer;
         }
     }
 }

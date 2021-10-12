@@ -1,9 +1,9 @@
-﻿using CkTools.Abstraction.ConstAndEnum;
-using NETCore.Encrypt;
-using NETCore.Encrypt.Internal;
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using CkTools.Abstraction.ConstAndEnum;
+using NETCore.Encrypt;
+using NETCore.Encrypt.Internal;
 
 namespace CkTools.BaseExtensions.Helper
 {
@@ -70,11 +70,11 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns>初试向量IV</returns>
         private static string GetAESLegalVector(string? aesEncryptionVector = null)
         {
-            var sTemp = aesEncryptionVector ?? AESEncryptionVector;
+            string? sTemp = aesEncryptionVector ?? AESEncryptionVector;
 
-            var ase = EncryptProvider.CreateAesKey();
-            var bytTemp = ase.IV;
-            var ivLength = bytTemp.Length;
+            AESKey? ase = EncryptProvider.CreateAesKey();
+            string? bytTemp = ase.IV;
+            int ivLength = bytTemp.Length;
 
             if (sTemp.Length > ivLength)
             {
@@ -102,9 +102,9 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns> </returns>
         public static string EncryptRSA(string content, string? rsaPublicKey = null)
         {
-            var rsa = EncryptProvider.RSAFromString(rsaKey: rsaPublicKey ?? RSAPublicKey);
-            var bytes = Encoding.Unicode.GetBytes(content);
-            var encryptedBytes = rsa.Encrypt(bytes, RSAEncryptionPadding.Pkcs1);
+            RSA? rsa = EncryptProvider.RSAFromString(rsaKey: rsaPublicKey ?? RSAPublicKey);
+            byte[]? bytes = Encoding.Unicode.GetBytes(content);
+            byte[]? encryptedBytes = rsa.Encrypt(bytes, RSAEncryptionPadding.Pkcs1);
             return System.Convert.ToBase64String(encryptedBytes, 0, encryptedBytes.Length);
         }
 
@@ -116,9 +116,9 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns></returns>
         public static string DecryptRSA(string content, string? rsaPrivateKey = null)
         {
-            var rsa = EncryptProvider.RSAFromString(rsaPrivateKey ?? RSAPrivateKey);
-            var bytes = System.Convert.FromBase64String(content);
-            var decryptedBytes = rsa.Decrypt(bytes, RSAEncryptionPadding.Pkcs1);
+            RSA? rsa = EncryptProvider.RSAFromString(rsaPrivateKey ?? RSAPrivateKey);
+            byte[]? bytes = System.Convert.FromBase64String(content);
+            byte[]? decryptedBytes = rsa.Decrypt(bytes, RSAEncryptionPadding.Pkcs1);
             return Encoding.Unicode.GetString(decryptedBytes);
         }
 
@@ -135,9 +135,9 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns></returns>
         public static string EncryptAES(string source, string? aesSecretKey = null, string? aesEncryptionVector = null)
         {
-            var key = GetAESLegalKey(aesSecretKey);
-            var iv = GetAESLegalVector(aesEncryptionVector);
-            var encryptedBytes = EncryptProvider.AESEncrypt(source, key, iv);
+            string? key = GetAESLegalKey(aesSecretKey);
+            string? iv = GetAESLegalVector(aesEncryptionVector);
+            string? encryptedBytes = EncryptProvider.AESEncrypt(source, key, iv);
             return encryptedBytes;
         }
 
@@ -150,9 +150,9 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns></returns>
         public static string DecryptAES(string source, string? aesSecretKey = null, string? aesEncryptionVector = null)
         {
-            var key = GetAESLegalKey(aesSecretKey);
-            var iv = GetAESLegalVector(aesEncryptionVector);
-            var encryptedBytes = EncryptProvider.AESDecrypt(source, key, iv);
+            string? key = GetAESLegalKey(aesSecretKey);
+            string? iv = GetAESLegalVector(aesEncryptionVector);
+            string? encryptedBytes = EncryptProvider.AESDecrypt(source, key, iv);
             return encryptedBytes;
         }
 
@@ -221,7 +221,7 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns></returns>
         private static string ProcessFence(string message, int rows, bool isEncrypt = true)
         {
-            int columns = (int)Math.Ceiling((double)message.Length / (double)rows);
+            int columns = (int)Math.Ceiling(message.Length / (double)rows);
             char[,] matrix = FillArray(message, rows, columns, isEncrypt);
             StringBuilder result = new StringBuilder();
 
@@ -267,9 +267,9 @@ namespace CkTools.BaseExtensions.Helper
             }
 
             //开始计算
-            for (int w = 0; w < width; w++)
+            for (int w = 0 ; w < width ; w++)
             {
-                for (int h = 0; h < height; h++)
+                for (int h = 0 ; h < height ; h++)
                 {
                     if (charPosition < message.Length)
                     {
@@ -308,9 +308,9 @@ namespace CkTools.BaseExtensions.Helper
             Random random = new Random();//随机变量
             string[] result = new string[confuseNum];//key集合
 
-            for (int num = 0; num < result.Length; num++)//key的数量
+            for (int num = 0 ; num < result.Length ; num++)//key的数量
             {
-                for (int length = 0; length < tempKey.Length; length++)//循环处理单个key的名字
+                for (int length = 0 ; length < tempKey.Length ; length++)//循环处理单个key的名字
                 {
                     tempKey[length] = words[random.Next(0, words.Length)];
                 }
