@@ -6,7 +6,6 @@ namespace 技术点验证
     [VerifcationType(VerificationTypeEnum.A41_生成WIFI二维码)]
     public class A41_生成WIFI二维码 : IVerification
     {
-        //
         public void Start(string[]? args)
         {
             Console.WriteLine("纯记录而已");
