@@ -14,7 +14,8 @@
         /// <returns></returns>
         public static long GetUnixTimestamp(this DateTime source, bool isUtc = true)
         {
-            return (isUtc ? DateTimeOffset.UtcNow : DateTimeOffset.Now).ToUnixTimeSeconds();
+            //return (isUtc ? DateTimeOffset.UtcNow : DateTimeOffset.Now).ToUnixTimeSeconds();
+            return DateTimeOffsetExtensions.GetUnixTimestamp(source, isUtc);
         }
 
         /// <summary>
@@ -26,7 +27,8 @@
         /// <returns></returns>
         public static long GetMilliUnixTimestamp(this DateTime source, bool isUtc = true)
         {
-            return (isUtc ? DateTimeOffset.UtcNow : DateTimeOffset.Now).ToUnixTimeMilliseconds();
+            //return (isUtc ? DateTimeOffset.UtcNow : DateTimeOffset.Now).ToUnixTimeMilliseconds();
+            return DateTimeOffsetExtensions.GetMilliUnixTimestamp(source, isUtc);
         }
 
         /// <summary>
