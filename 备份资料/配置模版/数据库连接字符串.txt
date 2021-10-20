@@ -25,6 +25,7 @@ Max Pool Size=40;Min Pool Size=1;
 Connection Reset=false;
 Allow User Variables=True;
 cachePrepStmts=true
+ConvertZeroDatetime=True
 
 mongodb:
 mongodb://root:scwj.123@172.27.112.30:27017
