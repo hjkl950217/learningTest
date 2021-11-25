@@ -94,6 +94,7 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 	Ocelot.Provider.Nacos  支持与Ocelot集成
 25. AgileConfig 轻量级配置中心,为非微服务的分布式应用准备的
 26. zabbix 服务器监控组件，可以统一监控服务器运行情况
+27. cassandra nosql数据库-基于列结构化，一组数据库节点的分布式网络服务, 分布式、无主节点、一致化软硬件环境、高度容错。
 
 --
 https://hub.fastgit.org/ 国内镜像站
