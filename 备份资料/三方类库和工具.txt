@@ -59,6 +59,7 @@
 56. ViewConfig  查看一个配置是由哪一个Provider执行的
 57. Ben.BlockingDetector 程序阻塞监控
 58. miniblink 迷你的内核控件， 可以用做来桌面app,网络爬虫,自动化测试,打印
+59. AutoHistory  ef 可用的实体变更记录组件 
 
 
 --工具
@@ -95,6 +96,7 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 25. AgileConfig 轻量级配置中心,为非微服务的分布式应用准备的
 26. zabbix 服务器监控组件，可以统一监控服务器运行情况
 27. cassandra nosql数据库-基于列结构化，一组数据库节点的分布式网络服务, 分布式、无主节点、一致化软硬件环境、高度容错。
+28. cefglue 一个可以嵌入到应用程序中的浏览器内核，实际上是一整个虚拟操作系统
 
 --
 https://hub.fastgit.org/ 国内镜像站
