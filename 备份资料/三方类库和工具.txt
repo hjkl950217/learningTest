@@ -97,6 +97,9 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 26. zabbix 服务器监控组件，可以统一监控服务器运行情况
 27. cassandra nosql数据库-基于列结构化，一组数据库节点的分布式网络服务, 分布式、无主节点、一致化软硬件环境、高度容错。
 28. cefglue 一个可以嵌入到应用程序中的浏览器内核，实际上是一整个虚拟操作系统
+29. echarts  Apache旗下的js图标库，支持在线调图表和样式
+30. highchart [个人免费] 兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库
+31. LiveCharts2 .net上的图表库,支持WPF winform Xamarin
 
 --
 https://hub.fastgit.org/ 国内镜像站

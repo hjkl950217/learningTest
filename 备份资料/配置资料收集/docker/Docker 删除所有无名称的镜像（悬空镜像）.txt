@@ -8,7 +8,7 @@ docker system prune -a -f
 docker rmi $(docker images -f "dangling=true" -q)
 
 #删除停止的容器
-docker container prune
+docker container prune -f
 docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm
 
 #清理孤儿volume 
