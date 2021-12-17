@@ -109,6 +109,64 @@ namespace System.Collections.Generic
 
         #endregion RemoveNull
 
+        #region OrderDistinctBy
+
+        /// <summary>
+        /// 顺序排序后去重
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TOrderKey"></typeparam>
+        /// <typeparam name="TDistinctKey"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="orderKeySelector"></param>
+        /// <param name="distinctKeySelector"></param>
+        /// <returns></returns>
+        public static IEnumerable<TSource> OrderDistinctBy<TSource, TOrderKey, TDistinctKey>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TOrderKey> orderKeySelector,
+            Func<TSource, TDistinctKey> distinctKeySelector)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                yield return default;
+            }
+
+            ILookup<TDistinctKey, TSource> lup = source.ToLookup(distinctKeySelector);
+            foreach (IGrouping<TDistinctKey, TSource> item in lup)
+            {
+                yield return item.OrderBy(orderKeySelector).First();
+            }
+        }
+
+        /// <summary>
+        /// 倒序排序后去重
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TOrderKey"></typeparam>
+        /// <typeparam name="TDistinctKey"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="orderKeySelector"></param>
+        /// <param name="distinctKeySelector"></param>
+        /// <returns></returns>
+        public static IEnumerable<TSource> OrderDescDistinctBy<TSource, TOrderKey, TDistinctKey>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TOrderKey> orderKeySelector,
+            Func<TSource, TDistinctKey> distinctKeySelector)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                yield return default;
+            }
+
+            ILookup<TDistinctKey, TSource> lup = source.ToLookup(distinctKeySelector);
+            foreach (IGrouping<TDistinctKey, TSource> item in lup)
+            {
+                yield return item.OrderByDescending(orderKeySelector).First();
+            }
+        }
+
+        #endregion OrderDistinctBy
+
         #endregion 新加Linq方法
 
         #region Linq方法扩展
