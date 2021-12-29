@@ -284,6 +284,38 @@ namespace System.Collections.Generic
 
         #endregion FirstOrDefault
 
+        #region JoinString
+
+        /// <summary>
+        /// 将对象集合转换成字符串
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="valueFunc"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static string JoinString<TSource, TValue>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TValue> valueFunc,
+            string separator = ",")
+        {
+            if (source == null || !source.Any())
+            {
+                return string.Empty;
+            }
+
+            if (valueFunc is null)
+            {
+                throw new ArgumentNullException(nameof(valueFunc));
+            }
+
+            return string.Join(separator, source.Select(valueFunc));
+        }
+
+        #endregion JoinString
+
         #endregion Linq方法扩展
     }
 }

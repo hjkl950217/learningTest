@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -301,11 +302,26 @@ namespace System
 
             //生成
             byte[] buffer = new byte[sourceStr.Length / 2];
-            for (int i = 0 ; i < sourceStr.Length ; i += 2)
+            for (int i = 0; i < sourceStr.Length; i += 2)
             {
                 buffer[i / 2] = Convert.ToByte(sourceStr.Substring(i, 2), 16);
             }
             return buffer;
+        }
+
+        /// <summary>
+        /// 将字符串集合转换成字符串
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static string JoinString<TSource, TValue>(
+            this string[] source,
+            string separator = ",")
+        {
+            return source.JoinString(t => t, separator);
         }
     }
 }
