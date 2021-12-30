@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using CkTools;
+﻿using CkTools;
 using Verification.Core;
 
 namespace 语法验证.B19_字符串驻留池
@@ -14,21 +12,9 @@ namespace 语法验证.B19_字符串驻留池
         {
             LinkAction
               .Start()
-              .Add(BitArray)
-              .Add(BitVector32)
+              .Add(this.BitArray)
+              .Add(this.BitVector32)
               .BatchRun();
-        }
-
-        /// <summary>
-        /// 获取引用类型的内存地址方法
-        /// </summary>
-        /// <param name="o"></param>
-        /// <returns></returns>
-        public static string GetMemory(object o)
-        {
-            GCHandle h = GCHandle.Alloc(o, GCHandleType.Pinned);//为指定对象分配指定类型的句柄。
-            IntPtr addr = h.AddrOfPinnedObject();//句柄中对象数据的地址
-            return addr.ToString("X");//转换成16进制
         }
 
         private void BitArray()
