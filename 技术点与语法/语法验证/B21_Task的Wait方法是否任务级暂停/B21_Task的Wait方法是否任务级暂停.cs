@@ -6,8 +6,10 @@ using Verification.Core;
 
 namespace 语法验证.B21_Task的Wait方法
 {
-    [VerifcationType(VerificationTypeEnum.B21_Task的Wait方法是否任务级暂停)]
-    public class B21_Task的Wait方法是否任务级暂停 : IVerification
+    //    [VerifcationType(VerificationTypeEnum.B21_Task的Wait方法是否任务级暂停)]
+    //    public class B21_Task的Wait方法是否任务级暂停 : IVerification
+
+    public class B21_Task的Wait方法是否任务级暂停 : IVerification<B21_Task的Wait方法是否任务级暂停>
     {
         public static int MaxCount = 0;
         public static List<string> MsgList = new List<string>();
