@@ -8,7 +8,7 @@
       </ViaProxy>
       <ExclusionList>%ComputerName%; localhost; *.local</ExclusionList>
     </Resolve>
-    <Encryption mode="disabled" />
+    <Encryption mode="basic" />
     <HttpProxiesSupport enabled="false" />
     <HandleDirectConnections enabled="false" />
     <ConnectionLoopDetection enabled="true" />
@@ -24,6 +24,11 @@
   </ProxyList>
   <ChainList />
   <RuleList>
+    <Rule enabled="true">
+      <Name>"Mobile Debug.exe" [auto-created]</Name>
+      <Applications>"Mobile Debug.exe"</Applications>
+      <Action type="Direct" />
+    </Rule>
     <Rule enabled="true">
       <Name>dotnet.exe [auto-created]</Name>
       <Applications>dotnet.exe</Applications>
@@ -54,9 +59,20 @@
       <Applications>devenv.exe</Applications>
       <Action type="Proxy">100</Action>
     </Rule>
-    <Rule enabled="true">
+    <Rule enabled="false">
       <Name>game</Name>
-      <Targets>*.*setam*.*</Targets>
+      <Targets>*.*setam*.*;*steamcommunity*</Targets>
+      <Action type="Proxy">100</Action>
+    </Rule>
+    <Rule enabled="false">
+      <Name>Turbo</Name>
+      <Applications>extract.exe; ksync.exe; makecab.exe; tnlr.exe; turbo.exe; turbodrive-x64.exe; turbo-launcher.exe; turbo-messagehost.exe; turboplay.exe; turbo-sandbox.exe; turbosh.exe</Applications>
+      <Targets>app.turbo.net</Targets>
+      <Action type="Proxy">100</Action>
+    </Rule>
+    <Rule enabled="false">
+      <Name>game2</Name>
+      <Applications>steamwebhelper.exe; html5app_steam.exe; drivers.exe; steamxboxutil64.exe; steamxboxutil.exe; steam_monitor.exe; steam.exe; gameoverlayui.exe; steamerrorreporter.exe; steamerrorreporter64.exe; streaming_client.exe</Applications>
       <Action type="Proxy">100</Action>
     </Rule>
     <Rule enabled="true">
