@@ -10,11 +10,11 @@ namespace CkTools.FP
     {
         #region Action
 
-        /* 竖 exp2  横 exp1
-                        Action     Action<T>   Action<T2,T1>
-         Action         1           1          1
-         Action<T>      1           1          2
-         Action<T2,T1>  1           2          1
+        /*
+         竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
+         Action             1           1          1
+         Action<T>          1           1          2
+         Action<T2,T1>      1           2          1
          */
 
         #region 第1排
@@ -27,15 +27,15 @@ namespace CkTools.FP
         }
 
         public static Action<TInput> Pipe<TInput>(
-            [NotNull] Action exp2,
-            [NotNull] Action<TInput> exp1)
+         [NotNull] Action<TInput> exp2,
+         [NotNull] Action exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
-            [NotNull] Action exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
+         [NotNull] Action<TInput2, TInput1> exp2,
+         [NotNull] Action exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
@@ -45,8 +45,8 @@ namespace CkTools.FP
         #region 第2排
 
         public static Action<TInput> Pipe<TInput>(
-         [NotNull] Action<TInput> exp2,
-         [NotNull] Action exp1)
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput> exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
@@ -54,31 +54,6 @@ namespace CkTools.FP
         public static Action<TInput> Pipe<TInput>(
             [NotNull] Action<TInput> exp2,
             [NotNull] Action<TInput> exp1)
-        {
-            return CkFunctions.Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
-            [NotNull] Action<TInput1> exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return CkFunctions.Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
-            [NotNull] Action<TInput2> exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return CkFunctions.Compose(exp2, exp1);
-        }
-
-        #endregion 第2排
-
-        #region 第3排
-
-        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
-         [NotNull] Action<TInput2, TInput1> exp2,
-         [NotNull] Action exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
@@ -93,6 +68,31 @@ namespace CkTools.FP
         public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
             [NotNull] Action<TInput2, TInput1> exp2,
             [NotNull] Action<TInput2> exp1)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第2排
+
+        #region 第3排
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Pipe<TInput2, TInput1>(
+            [NotNull] Action<TInput2> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
@@ -150,11 +150,11 @@ namespace CkTools.FP
 
         #region Func
 
-        /* 竖 exp2  横 exp1
-                        Func<TR>     Func<T,TR>   Func<T2,T1,TR>
-         Func<TR>       x               x              x
-         Func<T,TR>     1               1              1
-         Func<T2,T1,TR> x               x              x
+        /*
+         竖exp1\横exp2    Func<TR>     Func<T,TR>   Func<T2,T1,TR>
+         Func<TR>           x               x              x
+         Func<T,TR>         1               1              1
+         Func<T2,T1,TR>     x               x              x
          */
 
         #region 第2排
@@ -183,109 +183,5 @@ namespace CkTools.FP
         #endregion 第2排
 
         #endregion Func
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <param name="exp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Func<TOutput> Pipe<TOutput>(
-        //    [NotNull] Func<TOutput> exp,
-        //    [NotNull] params Action<TOutput>[] exps)
-        //{
-        //    CkFunctions.CheckNullWithException(exp, exps);
-
-        //    return () =>
-        //    {
-        //        TOutput result = exp();
-        //        exps.For(t => t(result));
-        //        return result;
-        //    };
-        //}
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <param name="exp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Func<TOutput> Pipe<TOutput>(
-        //    [NotNull] Func<TOutput> exp,
-        //    [NotNull] params Action<TOutput>[] exps)
-        //{
-        //    exp.CheckNullWithException(nameof(exp));
-        //    exps.CheckNullWithException(nameof(exps));
-
-        //    return () =>
-        //    {
-        //        TOutput result = exp();
-        //        exps.For(t => t(result));
-        //        return result;
-        //    };
-        //}
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <typeparam name="TResult"></typeparam>
-        ///// <param name="exp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Func<TInput, TResult> Pipe<TInput, TResult>(
-        //    [NotNull] Func<TInput, TResult> exp,
-        //    [NotNull] params Func<TResult, TResult>[] exps)
-        //{
-        //    CkFunctions.CheckNullWithException(exp, exps);
-
-        //    return t =>
-        //    {
-        //        TResult tempResult = exp(t);
-        //        exps.For(item => tempResult = item(tempResult));
-        //        return tempResult;
-        //    };
-        //}
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <typeparam name="TResult"></typeparam>
-        ///// <param name="exp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Func<TInput, TResult> Pipe<TInput, TResult>(
-        //    [NotNull] Func<TInput, TResult> exp,
-        //    [NotNull] params Action<TResult>[] exps)
-        //{
-        //    CkFunctions.CheckNullWithException(exp, exps);
-
-        //    return input =>
-        //    {
-        //        TResult tempResult = exp(input);
-        //        exps.For(item => item(tempResult));
-
-        //        return tempResult;
-        //    };
-        //}
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <typeparam name="TCenter"></typeparam>
-        ///// <typeparam name="TResult"></typeparam>
-        ///// <param name="exp"></param>
-        ///// <param name="func"></param>
-        ///// <returns></returns>
-        //public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-        //  [NotNull] Func<TInput, TCenter> exp,
-        //  [NotNull] Func<TCenter, TResult> func)
-        //{
-        //    exp.CheckNullWithException(nameof(exp));
-        //    func.CheckNullWithException(nameof(func));
-        //    return t => func(exp(t));
-        //}
     }
 }
