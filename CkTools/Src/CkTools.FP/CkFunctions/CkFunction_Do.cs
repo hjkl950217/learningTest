@@ -10,11 +10,11 @@ namespace CkTools.FP
     {
         #region Action
 
-        /* 竖 exp2  横 exp1
-                        Action     Action<T>   Action<T2,T1>
-         Action         1           1          1
-         Action<T>      1           1          2
-         Action<T2,T1>  1           2          1
+        /*
+         竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
+         Action             1           1          1
+         Action<T>          1           1          2
+         Action<T2,T1>      1           2          1
          */
 
         #region 第1排
@@ -27,15 +27,15 @@ namespace CkTools.FP
         }
 
         public static Action<TInput> Do<TInput>(
-            [NotNull] Action exp2,
-            [NotNull] Action<TInput> exp1)
+            [NotNull] Action<TInput> exp2,
+            [NotNull] Action exp1)
         {
             return Compose(exp2, exp1);
         }
 
         public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action exp1)
         {
             return Compose(exp2, exp1);
         }
@@ -45,8 +45,8 @@ namespace CkTools.FP
         #region 第2排
 
         public static Action<TInput> Do<TInput>(
-            [NotNull] Action<TInput> exp2,
-            [NotNull] Action exp1)
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput> exp1)
         {
             return Compose(exp2, exp1);
         }
@@ -54,31 +54,6 @@ namespace CkTools.FP
         public static Action<TInput> Do<TInput>(
             [NotNull] Action<TInput> exp2,
             [NotNull] Action<TInput> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput2> exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput1> exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        #endregion 第2排
-
-        #region 第3排
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput2, TInput1> exp2,
-            [NotNull] Action exp1)
         {
             return Compose(exp2, exp1);
         }
@@ -93,6 +68,31 @@ namespace CkTools.FP
         public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
             [NotNull] Action<TInput2, TInput1> exp2,
             [NotNull] Action<TInput1> exp1)
+        {
+            return Compose(exp2, exp1);
+        }
+
+        #endregion 第2排
+
+        #region 第3排
+
+        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            return Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
+            [NotNull] Action<TInput2> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
+        {
+            return Compose(exp2, exp1);
+        }
+
+        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
+            [NotNull] Action<TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
         {
             return Compose(exp2, exp1);
         }
@@ -150,11 +150,11 @@ namespace CkTools.FP
 
         #region Func
 
-        /* 竖 exp2  横 exp1
-                        Func<TR>     Func<T,TR>   Func<T2,T1,TR>
-         Func<TR>       x               x              x
-         Func<T,TR>     x               x              x
-         Func<T2,T1,TR> x               x              x
+        /*
+         竖exp1\横exp2    Func<TR>     Func<T,TR>   Func<T2,T1,TR>
+         Func<TR>           x               x              x
+         Func<T,TR>         x               x              x
+         Func<T2,T1,TR>     x               x              x
          */
 
         #region 其它
@@ -217,13 +217,13 @@ namespace CkTools.FP
 
         #endregion Func
 
-        #region exp2 Action  -  exp1 Func
+        #region exp1 Func  -  exp2 Action
 
-        /* 竖 exp2  横 exp1
-                        Func<TR>     Func<T,TR>   Func<T2,T1,TR>
-         Action             1           1           1
-         Action<T>          1           1           1
-         Action<T2,T1>      x           x           x
+        /*
+         竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
+         Func<TR>           1           x           x
+         Func<T,TR>         1           1           x
+         Func<T2,T1,TR>     x           x           x
 
          */
 
@@ -277,15 +277,15 @@ namespace CkTools.FP
 
         #endregion 第2排
 
-        #endregion exp2 Action  -  exp1 Func
+        #endregion exp1 Func  -  exp2 Action
 
-        #region exp2 Func  -  exp1 Action
+        #region exp1 Action  -  exp2 Func
 
-        /* 竖 exp2  横 exp1
-                        Action     Action<T>   Action<T2,T1>
-         Func<TR>       1           x           x
-         Func<T,TR>     1           1           x
-         Func<T2,T1,TR> x           x           x
+        /*
+         竖exp1\横exp2    Func<TR>     Func<T,TR>   Func<T2,T1,TR>
+         Action             1           1           1
+         Action<T>          1           1           1
+         Action<T2,T1>      x           x           x
 
          */
 
@@ -318,6 +318,6 @@ namespace CkTools.FP
 
         #endregion 第2排
 
-        #endregion exp2 Func  -  exp1 Action
+        #endregion exp1 Action  -  exp2 Func
     }
 }
