@@ -15,7 +15,7 @@ namespace CkTools.Helper
         /// <param name="parentIdGetter">父级id获取器</param>
         /// <param name="rootNodeJudge">根节点判断器，如:t=>t.id==null</param>
         /// <param name="nodeProcessor">节点处理器，指示子节点如何与父节点挂钩，如:(p,sub)=>p.Children.Add(sub)</param>
-        /// <param name="equalityComparer">比较器,默认使用<typeparamref name="T"/>的默认比较器</param>
+        /// <param name="equalityComparer">Id比较器,默认使用<typeparamref name="TId"/>的默认比较器</param>
         /// <returns></returns>
         public static List<T> BulidTree<T, TId>(
             IEnumerable<T> treeNodes,
