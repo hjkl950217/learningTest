@@ -12,20 +12,12 @@ namespace CkTools.FP
 
         /*
          竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
-         Action             1           1          1
+         Action            x*           1          1
          Action<T>          1           1          2
          Action<T2,T1>      1           2          1
          */
 
         #region 第1排
-
-        public static Action Compose(
-            [NotNull] Action exp2,
-            [NotNull] Action exp1)
-        {
-            CheckNullWithException(exp2, exp1);
-            return exp1 + exp2;
-        }
 
         public static Action<TInput> Compose<TInput>(
             [NotNull] Action<TInput> exp2,
@@ -125,9 +117,10 @@ namespace CkTools.FP
             CheckNullWithException(actions);
             return () =>
             {
-                foreach (Action? item in actions)
+                //倒序执行
+                for (int i = actions.Length - 1; i > -1; i--)
                 {
-                    item();
+                    actions[i]();
                 }
             };
         }
@@ -138,7 +131,8 @@ namespace CkTools.FP
             CheckNullWithException(actions);
             return t =>
             {
-                for (int i = 0; i < actions.Length; i++)
+                //倒序执行
+                for (int i = actions.Length - 1; i > -1; i--)
                 {
                     Action<TInput>? item = actions[i];
                     item(t);
@@ -213,6 +207,27 @@ namespace CkTools.FP
         {
             CheckNullWithException(exp5, exp4, exp3, exp2, exp1);
             return t => exp5(exp4(exp3(exp2(exp1(t)))));
+        }
+
+        public static Func<TResult> Compose<TResult>(
+            [NotNull] Action<TResult>[] exps2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.CheckNullWithException(exp1);
+            CkFunctions.CheckNullWithException(exps2);
+
+            TResult result1 = exp1();
+
+            return () =>
+            {
+                for (int i = 0; i < exps2.Length; i++)
+                {
+                    Action<TResult>? item = exps2[i];
+                    item(result1);
+                }
+
+                return result1;
+            };
         }
 
         #endregion 其它

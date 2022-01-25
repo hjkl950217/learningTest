@@ -12,19 +12,12 @@ namespace CkTools.FP
 
         /*
          竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
-         Action             1           1          1
+         Action            x*           1          1
          Action<T>          1           1          2
          Action<T2,T1>      1           2          1
          */
 
         #region 第1排
-
-        public static Action Pipe(
-            [NotNull] Action exp2,
-            [NotNull] Action exp1)
-        {
-            return CkFunctions.Compose(exp2, exp1);
-        }
 
         public static Action<TInput> Pipe<TInput>(
          [NotNull] Action<TInput> exp2,
@@ -109,39 +102,19 @@ namespace CkTools.FP
         #region 其它
 
         public static Action Pipe(
-            [NotNull] Action exp5,
-            [NotNull] Action exp4,
-            [NotNull] Action exp3,
-            [NotNull] Action? exp2 = null,
-            [NotNull] Action? exp1 = null)
+             params Action[] exps)
         {
-            CheckNullWithException(exp5, exp4, exp3);
+            CheckNullWithException(exps);
 
-            Action result = Pipe(exp5, exp4);
-            result = Pipe(result, exp3);
-            if (exp2 != null) result = Pipe(result, exp2);
-            if (exp1 != null) result = Pipe(result, exp1);
-#pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
-            return result;
-#pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
+            return Compose(exps);
         }
 
         public static Action<TInput> Pipe<TInput>(
-            [NotNull] Action<TInput> exp5,
-            [NotNull] Action<TInput> exp4,
-            [NotNull] Action<TInput> exp3,
-            [NotNull] Action<TInput>? exp2 = null,
-            [NotNull] Action<TInput>? exp1 = null)
+             params Action<TInput>[] exps)
         {
-            CheckNullWithException(exp5, exp4, exp3);
+            CheckNullWithException(exps);
 
-            Action<TInput> result = Pipe(exp5, exp4);
-            result = Pipe(result, exp3);
-            if (exp2 != null) result = Pipe(result, exp2);
-            if (exp1 != null) result = Pipe(result, exp1);
-#pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
-            return result;
-#pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
+            return Compose(exps);
         }
 
         #endregion 其它
@@ -181,6 +154,20 @@ namespace CkTools.FP
         }
 
         #endregion 第2排
+
+        #region 其它
+
+        public static Func<TResult> Pipe<TResult>(
+            [NotNull] Action<TResult>[] exps2,
+            [NotNull] Func<TResult> exp1)
+        {
+            CkFunctions.CheckNullWithException(exp1);
+            CkFunctions.CheckNullWithException(exps2);
+
+            return CkFunctions.Compose(exps2, exp1);
+        }
+
+        #endregion 其它
 
         #endregion Func
     }
