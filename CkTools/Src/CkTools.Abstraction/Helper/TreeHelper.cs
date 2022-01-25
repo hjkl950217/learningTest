@@ -23,9 +23,9 @@ namespace CkTools.Helper
             Func<T, TId> parentIdGetter,
             Func<T, bool> rootNodeJudge,
             Action<T, T> nodeProcessor,
-            IEqualityComparer<T> equalityComparer=null)
+            IEqualityComparer<TId>? equalityComparer = null)
         {
-            equalityComparer??=EqualityComparer<T>.Default;
+            equalityComparer ??= EqualityComparer<TId>.Default;
             List<T> trees = new List<T>();
 
             try
