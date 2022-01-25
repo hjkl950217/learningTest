@@ -22,11 +22,11 @@ namespace CkTools.FP
         }
 
         public static void CheckNullWithException<T5, T4, T3, T2, T1>(T5 exp5, T4 exp4, T3 exp3, T2 exp2, T1 exp1)
-            where T5 : class
-            where T4 : class
-            where T3 : class
-            where T2 : class
-            where T1 : class
+            where T5 : class?
+            where T4 : class?
+            where T3 : class?
+            where T2 : class?
+            where T1 : class?
         {
             if (exp1 == null) throw new ArgumentNullException(nameof(exp1));
             if (exp2 == null) throw new ArgumentNullException(nameof(exp2));
@@ -37,10 +37,10 @@ namespace CkTools.FP
 
         public static void CheckNullWithException<T4, T3, T2, T1>(T4 exp4, T3 exp3, T2 exp2, T1 exp1)
 
-            where T4 : class
-            where T3 : class
-            where T2 : class
-            where T1 : class
+            where T4 : class?
+            where T3 : class?
+            where T2 : class?
+            where T1 : class?
         {
             if (exp1 == null) throw new ArgumentNullException(nameof(exp1));
             if (exp2 == null) throw new ArgumentNullException(nameof(exp2));
@@ -49,9 +49,9 @@ namespace CkTools.FP
         }
 
         public static void CheckNullWithException<T3, T2, T1>(T3 exp3, T2 exp2, T1 exp1)
-            where T3 : class
-            where T2 : class
-            where T1 : class
+            where T3 : class?
+            where T2 : class?
+            where T1 : class?
         {
             if (exp1 == null) throw new ArgumentNullException(nameof(exp1));
             if (exp2 == null) throw new ArgumentNullException(nameof(exp2));
@@ -59,15 +59,15 @@ namespace CkTools.FP
         }
 
         public static void CheckNullWithException<T2, T1>(T2 exp2, T1 exp1)
-            where T2 : class
-            where T1 : class
+            where T2 : class?
+            where T1 : class?
         {
             if (exp1 == null) throw new ArgumentNullException(nameof(exp1));
             if (exp2 == null) throw new ArgumentNullException(nameof(exp2));
         }
 
         public static void CheckNullWithException<T1>(T1 exp1)
-            where T1 : class
+            where T1 : class?
         {
             if (exp1 == null) throw new ArgumentNullException(nameof(exp1));
         }
