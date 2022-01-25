@@ -19,12 +19,22 @@ namespace CkTools.FP
         /// </Value>
         /// <returns></returns>
         public static Action Try(
-            [NotNull] Action exp,
-            [NotNull] Action<Exception> exExp)
+            [NotNull] Action<Exception> exExp,
+            [NotNull] Action exp)
         {
             CkFunctions.CheckNullWithException(exp, exExp);
 
-            return () => { try { exp(); } catch (Exception ex) { exExp(ex); } };
+            return () =>
+            {
+                try
+                {
+                    exp();
+                }
+                catch (Exception ex)
+                {
+                    exExp(ex);
+                }
+            };
         }
 
         /// <summary>
@@ -37,12 +47,22 @@ namespace CkTools.FP
         /// <typeparam name="TInput">输入参数类型</typeparam>
         /// <returns></returns>
         public static Action<TInput> Try<TInput>(
-            [NotNull] Action<TInput> exp,
-            [NotNull] Action<TInput, Exception> exExp)
+            [NotNull] Action<TInput, Exception> exExp,
+            [NotNull] Action<TInput> exp)
         {
             CkFunctions.CheckNullWithException(exp, exExp);
 
-            return input => { try { exp(input); } catch (Exception ex) { exExp(input, ex); } };
+            return input =>
+            {
+                try
+                {
+                    exp(input);
+                }
+                catch (Exception ex)
+                {
+                    exExp(input, ex);
+                }
+            };
         }
 
         /// <summary>
@@ -55,10 +75,10 @@ namespace CkTools.FP
         /// <typeparam name="TInput">输入参数类型</typeparam>
         /// <returns></returns>
         public static Action<TInput> Try<TInput>(
-            Action<TInput> exp,
-            Action<Exception> exEXP)
+            Action<Exception> exExp,
+            Action<TInput> exp)
         {
-            return CkFunctions.Try(exp, (input, ex) => exEXP(ex));
+            return CkFunctions.Try((_, ex) => exExp(ex), exp);
         }
 
         #endregion Action
@@ -75,12 +95,22 @@ namespace CkTools.FP
         /// <typeparam name="TOutput">输出类型参数</typeparam>
         /// <returns></returns>
         public static Func<TOutput> Try<TOutput>(
-            [NotNull] Func<TOutput> exp,
-            [NotNull] Func<Exception, TOutput> exExp)
+            [NotNull] Func<Exception, TOutput> exExp,
+            [NotNull] Func<TOutput> exp)
         {
             CkFunctions.CheckNullWithException(exp, exExp);
 
-            return () => { try { return exp(); } catch (Exception ex) { return exExp(ex); } };
+            return () =>
+            {
+                try
+                {
+                    return exp();
+                }
+                catch (Exception ex)
+                {
+                    return exExp(ex);
+                }
+            };
         }
 
         /// <summary>
@@ -94,8 +124,8 @@ namespace CkTools.FP
         /// <typeparam name="TOutput">输出类型参数</typeparam>
         /// <returns></returns>
         public static Func<TInput, TOutput> Try<TInput, TOutput>(
-            [NotNull] Func<TInput, TOutput> exp,
-            [NotNull] Func<TInput, Exception, TOutput> exExp)
+            [NotNull] Func<TInput, Exception, TOutput> exExp,
+            [NotNull] Func<TInput, TOutput> exp)
         {
             CkFunctions.CheckNullWithException(exp, exExp);
 
