@@ -32,21 +32,5 @@
 
          *
          */
-
-        #region Action - 0入参 0出参
-
-        #endregion Action - 0入参 0出参
-
-        #region Action - 1入参 0出参
-
-        #endregion Action - 1入参 0出参
-
-        #region Func - 0入参 1出参
-
-        #endregion Func - 0入参 1出参
-
-        #region Fun - 1入参 1出参
-
-        #endregion Fun - 1入参 1出参
     }
 }
