@@ -57,41 +57,10 @@ namespace System
             [NotNull] this Func<TResult> sourceExp,
             [NotNull] params Action<TResult>[] exps)
         {
-            return CkFunctions.Pipe(exps, sourceExp);
+            return CkFunctions.Compose(exps, sourceExp);
         }
 
         #endregion Func-1个入参
-
-        ///// <summary>
-        ///// 管道 <para></para>
-        ///// (a->b)->(b->void)->...  => (a->void) <para></para>
-        ///// 示例:  (string->int)->(int->void)->...  => (string->void)
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <typeparam name="TResult"></typeparam>
-        ///// <param name="sourceExp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Action<TInput> Pipe<TInput, TResult>(
-        //    [NotNull] this Func<TInput, TResult> sourceExp,
-        //    [NotNull] params Action<TResult>[] exps)
-        //{
-        //    return CkFunctions.Pipe(sourceExp, exps);
-        //}
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <param name="sourceExp"></param>
-        ///// <param name="exps"></param>
-        ///// <returns></returns>
-        //public static Action<TInput> Pipe<TInput>(
-        //    [NotNull] this Action<TInput> sourceExp,
-        //    [NotNull] params Action<TInput>[] exps)
-        //{
-        //    return CkFunctions.Pipe(sourceExp, exps);
-        //}
 
         /// <summary>
         /// 管道
@@ -106,7 +75,7 @@ namespace System
           [NotNull] this Func<TInput, TCenter> sourceExp,
           [NotNull] Func<TCenter, TResult> exp)
         {
-            return CkFunctions.Pipe(sourceExp, exp);
+            return CkFunctions.Pipe(exp, sourceExp);
         }
     }
 }

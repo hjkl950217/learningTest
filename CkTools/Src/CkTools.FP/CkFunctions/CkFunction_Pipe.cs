@@ -126,7 +126,7 @@ namespace CkTools.FP
         /*
          竖exp1\横exp2    Func<TR>     Func<T,TR>   Func<T2,T1,TR>
          Func<TR>           x               x              x
-         Func<T,TR>         1               1              1
+         Func<T,TR>         1               2              1
          Func<T2,T1,TR>     x               x              x
          */
 
@@ -142,6 +142,13 @@ namespace CkTools.FP
         public static Func<TInput, TResult> Pipe<TInput, TResult>(
             [NotNull] Func<TResult, TResult> exp2,
             [NotNull] Func<TInput, TResult> exp1)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TInput, TResultEnd> Pipe<TInput, TResult1, TResultEnd>(
+            [NotNull] Func<TResult1, TResultEnd> exp2,
+            [NotNull] Func<TInput, TResult1> exp1)
         {
             return CkFunctions.Compose(exp2, exp1);
         }
