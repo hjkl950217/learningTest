@@ -123,6 +123,7 @@ namespace CkTools.FP.Executer
         /// <param name="executer">执行器实例</param>
         /// <param name="predicate">是否结束判断委托</param>
         /// <param name="onEnded">结束后执行的委托</param>
+        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
         public static ActionExecuter MayEndPipe(
             [NotNull] this ActionExecuter executer,
             [NotNull] Func<bool> predicate,
@@ -143,14 +144,15 @@ namespace CkTools.FP.Executer
         /// </summary>
         /// <param name="executer">执行器实例</param>
         /// <param name="isEnd">是否结束</param>
+        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
         public static ActionExecuter MayEndPipe(
             [NotNull] this ActionExecuter executer,
             [NotNull] bool isEnd)
         {
             CkFunctions.CheckNullWithException(executer);
 
-            return executer.MayEndPipe(
-                predicate: () => isEnd,
+            return executer.EndIf(
+                predicate: CkFunctions.True,
                 onEnded: ActionExecuter.NullAction);
         }
 
@@ -159,18 +161,95 @@ namespace CkTools.FP.Executer
         /// </summary>
         /// <param name="executer">执行器实例</param>
         /// <param name="predicate">是否结束判断委托</param>
+        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
         public static ActionExecuter MayEndPipe(
             [NotNull] this ActionExecuter executer,
             [NotNull] Func<bool> predicate)
         {
             CkFunctions.CheckNullWithException(executer);
 
-            return executer.MayEndPipe(
+            return executer.EndIf(
                 predicate: predicate,
                 onEnded: ActionExecuter.NullAction);
         }
 
         #endregion MayEndPipe 可能结束的管道
+
+        #region End
+
+        /// <summary>
+        /// 指定管道忽略之前的状态，结束执行
+        /// </summary>
+        /// <param name="executer"></param>
+        /// <returns></returns>
+        public static ActionExecuter End(
+            [NotNull] this ActionExecuter executer)
+        {
+            CkFunctions.CheckNullWithException(executer);
+
+            executer.Pipe(() => executer.IsEnd = true);
+            return executer;
+        }
+
+        /// <summary>
+        /// 管道在满足条件时，结束执行
+        /// </summary>
+        /// <param name="executer">执行器实例</param>
+        /// <param name="predicate">是否结束判断委托</param>
+        /// <param name="onEnded">结束后执行的委托</param>
+        /// <returns></returns>
+        public static ActionExecuter EndIf(
+            [NotNull] this ActionExecuter executer,
+            [NotNull] Func<bool> predicate,
+            Action? onEnded = null)
+        {
+            CkFunctions.CheckNullWithException(executer, predicate, onEnded);
+
+            executer.StepList.Add(() =>
+            {
+                executer.IsEnd = predicate();
+                if (executer.IsEnd) onEnded?.Invoke();//为true时执行后续
+            });
+            return executer;
+        }
+
+        /// <summary>
+        /// 管道在满足条件时，结束执行
+        /// </summary>
+        /// <param name="executer">执行器实例</param>
+        /// <param name="isEnd">是否结束</param>
+        /// <param name="onEnded">结束后执行的委托</param>
+        /// <returns></returns>
+        public static ActionExecuter EndIf(
+            [NotNull] this ActionExecuter executer,
+            [NotNull] bool isEnd,
+            Action? onEnded = null)
+        {
+            CkFunctions.CheckNullWithException(executer);
+
+            return executer.EndIf(
+                predicate: CkFunctions.Bool(isEnd),
+                onEnded: onEnded);
+        }
+
+        #endregion End
+
+        #region Continue
+
+        /// <summary>
+        /// 指定管道忽略之前的状态，继续执行
+        /// </summary>
+        /// <param name="executer"></param>
+        /// <returns></returns>
+        public static ActionExecuter Continue(
+            [NotNull] this ActionExecuter executer)
+        {
+            CkFunctions.CheckNullWithException(executer);
+            executer.Pipe(() => executer.IsEnd = false);
+            return executer;
+        }
+
+        #endregion Continue
 
         #region Debug调试
 
@@ -212,6 +291,30 @@ namespace CkTools.FP.Executer
         /// 调试,有条件添加一个调试的<see cref="Action"/>到管道中
         /// </summary>
         /// <param name="executer">执行器实例</param>
+        /// <param name="predicate">条件判断委托</param>
+        /// <param name="debugInfo">调试信息</param>
+        /// <param name="loggerAction">日志记录委托,默认为<see cref="CkFunctions.DefaultLog"/></param>
+        /// <returns></returns>
+        public static ActionExecuter DebugIf(
+            [NotNull] this ActionExecuter executer,
+            [NotNull] Func<bool> predicate,
+            [NotNull] string debugInfo,
+            Action<string>? loggerAction = null)
+        {
+            CkFunctions.CheckNullWithException(executer, predicate, loggerAction);
+            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
+
+            loggerAction ??= CkFunctions.DefaultLog;
+
+            return executer.PipeIf(
+                predicate,
+                () => loggerAction.Invoke(debugInfo));
+        }
+
+        /// <summary>
+        /// 调试,有条件添加一个调试的<see cref="Action"/>到管道中
+        /// </summary>
+        /// <param name="executer">执行器实例</param>
         /// <param name="isDebug">是否输出调试信息</param>
         /// <param name="debugInfo">调试信息</param>
         /// <returns></returns>
@@ -223,97 +326,15 @@ namespace CkTools.FP.Executer
             CkFunctions.CheckNullWithException(executer);
             if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
 
-            return executer.PipeIf(isDebug, () => Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {debugInfo}"));
-        }
-
-        /// <summary>
-        /// 调试,有条件添加一个调试的<see cref="Action"/>到管道中
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="predicate">条件判断委托</param>
-        /// <param name="debugInfo">调试信息</param>
-        /// <returns></returns>
-        public static ActionExecuter DebugIf(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] Func<bool> predicate,
-            [NotNull] string debugInfo)
-        {
-            CkFunctions.CheckNullWithException(executer, predicate);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
-
-            return executer.PipeIf(predicate, () => Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {debugInfo}"));
-        }
-
-        /// <summary>
-        /// 调试,有条件添加一个调试的<see cref="Action"/>到管道中
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="isDebug">是否输出调试信息</param>
-        /// <param name="debugInfo">调试信息</param>
-        /// <param name="loggerAction">日志记录委托</param>
-        /// <returns></returns>
-        public static ActionExecuter DebugIf(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] bool isDebug,
-            [NotNull] string debugInfo,
-            [NotNull] Action<string> loggerAction)
-        {
-            CkFunctions.CheckNullWithException(executer, loggerAction);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
-
-            return executer.PipeIf(isDebug, () => loggerAction?.Invoke(debugInfo));
-        }
-
-        /// <summary>
-        /// 调试,有条件添加一个调试的<see cref="Action"/>到管道中
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="predicate">条件判断委托</param>
-        /// <param name="debugInfo">调试信息</param>
-        /// <param name="loggerAction">日志记录委托</param>
-        /// <returns></returns>
-        public static ActionExecuter DebugIf(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] Func<bool> predicate,
-            [NotNull] string debugInfo,
-            [NotNull] Action<string> loggerAction)
-        {
-            CkFunctions.CheckNullWithException(executer, predicate, loggerAction);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
-
-            return executer.PipeIf(predicate, () => loggerAction?.Invoke(debugInfo));
+            return executer.DebugIf(
+                CkFunctions.Bool(isDebug),
+                debugInfo,
+                CkFunctions.DefaultLog);
         }
 
         #endregion Debug调试
 
         #region 其它
-
-        /// <summary>
-        /// 指定管道忽略之前的状态，结束执行
-        /// </summary>
-        /// <param name="executer"></param>
-        /// <returns></returns>
-        public static ActionExecuter End(
-            [NotNull] this ActionExecuter executer)
-        {
-            CkFunctions.CheckNullWithException(executer);
-
-            executer.Pipe(() => executer.IsEnd = true);
-            return executer;
-        }
-
-        /// <summary>
-        /// 指定管道忽略之前的状态，继续执行
-        /// </summary>
-        /// <param name="executer"></param>
-        /// <returns></returns>
-        public static ActionExecuter Continue(
-            [NotNull] this ActionExecuter executer)
-        {
-            CkFunctions.CheckNullWithException(executer);
-            executer.Pipe(() => executer.IsEnd = false);
-            return executer;
-        }
 
         #endregion 其它
     }
