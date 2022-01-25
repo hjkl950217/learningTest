@@ -8,7 +8,7 @@ namespace CkTools.FP
     /// </summary>
     public static partial class CkFunctions
     {
-        #region Action - 0入参 0出参
+        #region Action
 
         /// <summary>
         /// Try
@@ -26,10 +26,6 @@ namespace CkTools.FP
 
             return () => { try { exp(); } catch (Exception ex) { exExp(ex); } };
         }
-
-        #endregion Action - 0入参 0出参
-
-        #region Action - 1入参 0出参
 
         /// <summary>
         /// Try
@@ -65,9 +61,9 @@ namespace CkTools.FP
             return CkFunctions.Try(exp, (input, ex) => exEXP(ex));
         }
 
-        #endregion Action - 1入参 0出参
+        #endregion Action
 
-        #region Func - 0入参 1出参
+        #region Func
 
         /// <summary>
         /// Try
@@ -92,26 +88,6 @@ namespace CkTools.FP
         /// </summary>
         /// <Value>
         /// <para><paramref name="exp"/>：要执行的函数 </para>
-        /// <para><paramref name="exExp"/>：异常处理函数,需要返回发生异常时的返回值</para>
-        /// </Value>
-        /// <typeparam name="TOutput">输出类型参数</typeparam>
-        /// <returns></returns>
-        public static Func<TOutput> TryWithThrow<TOutput>(
-            [NotNull] Func<TOutput> exp,
-            [NotNull] Action<Exception> exEXP)
-        {
-            return CkFunctions.Try(exp, ex => { exEXP(ex); throw ex; });
-        }
-
-        #endregion Func - 0入参 1出参
-
-        #region Func - 1入参 1出参
-
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para><paramref name="exp"/>：要执行的函数 </para>
         /// <para><paramref name="exExp"/>：异常处理函数,需要返回一个值</para>
         /// </Value>
         /// <typeparam name="TInput">输入类型参数</typeparam>
@@ -123,9 +99,19 @@ namespace CkTools.FP
         {
             CkFunctions.CheckNullWithException(exp, exExp);
 
-            return input => { try { return exp(input); } catch (Exception ex) { return exExp(input, ex); } };
+            return input =>
+            {
+                try
+                {
+                    return exp(input);
+                }
+                catch (Exception ex)
+                {
+                    return exExp(input, ex);
+                }
+            };
         }
 
-        #endregion Func - 1入参 1出参
+        #endregion Func
     }
 }
