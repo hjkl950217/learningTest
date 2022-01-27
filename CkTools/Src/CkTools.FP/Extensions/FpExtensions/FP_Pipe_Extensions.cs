@@ -62,6 +62,8 @@ namespace System
 
         #endregion Func-1个入参
 
+        #region Func-2个入参
+
         /// <summary>
         /// 管道
         /// </summary>
@@ -77,5 +79,7 @@ namespace System
         {
             return CkFunctions.Pipe(exp, sourceExp);
         }
+
+        #endregion Func-2个入参
     }
 }
