@@ -6,6 +6,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>1701;1702;1705;1591;1573</NoWarn>
   </PropertyGroup>
 
