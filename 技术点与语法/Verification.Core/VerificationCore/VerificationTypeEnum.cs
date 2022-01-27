@@ -60,6 +60,7 @@
         A39_结构体类型的ToString,
         A40_任意长度2进制操作,
         A41_生成WIFI二维码,
+        A42_连接Kafka,
 
         #endregion 技术点
 
