@@ -9,32 +9,15 @@ namespace 技术点验证.A40_任意长度2进制操作
     {
         public void Start(string[]? args)
         {
-            Dictionary<int, ulong>? aaa = BitHelper.BitMap;
-
-            bool[]? test = BitHelper.ToBoolArray(3L);
-            ulong test2 = BitHelper.ToUlong(test);
-
-            ushort time = 1024;
-            int start = 1;
-            int end = 16;
-
-            ulong baseResult = ulong.MinValue;
-            baseResult = (ulong)(time << (64 - end)) | baseResult;
-
-            //long result = this.Test2(2, 4, l1, 3);
-
-            //string resultStr = Convert.ToString(result, 2);
-            //Console.WriteLine(resultStr);
-        }
-
-        public void Test()
-        {
+            bool[]? boolArray = BitHelper.ToBoolArray(3UL);
+            ulong ulongValue = BitHelper.ToUlong(boolArray);
+            long longValue = BitHelper.ToLong(boolArray);
         }
     }
 
     public static class BitHelper
     {
-        public const int SnowflakeIDLength = 64;
+        public const int LongLength = 64;
 
         private static Dictionary<int, ulong> bitMap;
 
@@ -50,10 +33,10 @@ namespace 技术点验证.A40_任意长度2进制操作
             {
                 if (bitMap == null)
                 {
-                    bitMap = new Dictionary<int, ulong>(SnowflakeIDLength);
-                    for (int i = 1 ; i < SnowflakeIDLength + 1 ; i++)
+                    bitMap = new Dictionary<int, ulong>(BitHelper.LongLength);
+                    for (int i = 1; i < BitHelper.LongLength + 1; i++)
                     {
-                        bitMap[i] = ulong.MaxValue >> (SnowflakeIDLength - i);
+                        bitMap[i] = ulong.MaxValue >> (BitHelper.LongLength - i);
                     }
                     return bitMap;
                 }
@@ -71,9 +54,9 @@ namespace 技术点验证.A40_任意长度2进制操作
         /// <returns></returns>
         public static bool[] ToBoolArray(ulong source)
         {
-            bool[] result = new bool[SnowflakeIDLength];
+            bool[] result = new bool[BitHelper.LongLength];
 
-            for (int i = 0 ; i < result.Length ; i++)
+            for (int i = 0; i < result.Length; i++)
             {
                 result[i] = (source | BitHelper.BitMap[i + 1]) == source;
             }
@@ -82,13 +65,13 @@ namespace 技术点验证.A40_任意长度2进制操作
 
         public static ulong ToUlong(bool[] source)
         {
-            if (source.Length != SnowflakeIDLength)
+            if (source.Length != BitHelper.LongLength)
             {
                 throw new ArgumentException("必须为64个长度");
             }
 
             ulong result = ulong.MinValue;
-            for (int i = 0 ; i < SnowflakeIDLength ; i++)
+            for (int i = 0; i < BitHelper.LongLength; i++)
             {
                 result = source[i]
                     ? (result | BitHelper.BitMap[i + 1])
@@ -96,6 +79,11 @@ namespace 技术点验证.A40_任意长度2进制操作
             }
 
             return result;
+        }
+
+        public static long ToLong(bool[] source)
+        {
+            return (long)BitHelper.ToUlong(source);
         }
     }
 
