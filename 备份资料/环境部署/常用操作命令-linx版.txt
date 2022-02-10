@@ -16,3 +16,51 @@ docker rmi $(docker images -f "dangling=true" -q)		#删除所有名称为<none>�
 usermod -u 0 -o test					#使test的用户ID变为0,根用户
 rm -f /var/lib/rpm/__db.00* && rpm -vv --rebuilddb		#删除rpm数据库并重建
 netstat -tnlp | grep  "被占用端口"			#查看被占用端口
+pdbedit -L						#列出Samba用户列表
+cat /etc/passwd | grep user1				#查看用户
+cat /etc/group					#查看用户组
+getfacl XXX					#查看xxx目录或文件的ACL配置
+setfacl -m default:group:dev:r-- ./test.txt			#设置dev组有读权限,default只能在目录上设置，会向下继承
+setfacl -m group:dev:r-- ./test.txt			#设置dev组有读权限
+setfacl -m group::r-- ./test.txt				#设置文件的组有读权限,其他的还有other,mask(user+group+other)
+tree						#查看目录结构,没有的话需要安装一下
+alias rm='rm -i'					#设置命令别名
+alias 						#查看别名列表
+unalias ll						#删除别名
+tail -n 1 /etc/bashrc					#查看'/etc/bashrc'文件最后一行。这个文件是全局用户的shell初始化脚本
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
