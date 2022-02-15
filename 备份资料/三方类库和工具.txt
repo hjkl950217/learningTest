@@ -67,44 +67,46 @@
 PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
 2. ConfuserEx  混淆代码工具
 3. 10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw
-4. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
-5. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
-7. Jfrog Artifactory 【收费】 用于存储各种包,集成nuget maven npm等等，包含了Artifactory
+4. ventoy 一个制作可启动U盘的开源工具,做好后把iso直接放U盘，让系统从选择的iso中启动
+5. Netch 一个游戏挂代理的加速器
+
+--中间件
+1. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
+2. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
+3. Jfrog Artifactory 【收费】 用于存储各种包,集成nuget maven npm等等，包含了Artifactory
 	Jfrog docker地址：releases-docker.jfrog.io 
 	Nexus OSS 支持主流的软件包
 	Harbor 针对docker仓库的
-8. RabbitMq 消息队列
-9. Kong 网关
-10. Portainer.io   https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247483945&idx=1&sn=321b31d2b00ca3b36960206d80ce82cd&chksm=ebebc336dc9c4a20f178cbfbd21a0d980ad54f2e229e6c1dfa8f47d1c88354f2bdc5e8530617&mpshare=1&scene=1&srcid=&sharer_sharetime=1584524654143&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=56dae8b8a643d0f3631e5704b7d566964aec3fedb4773a7f71d50fdbff01a6b946d79c3ae25cbac60f16411b92886a0b64bed1edbcc97c8d159dc251893012dceef354ac95f4a09fa618f1cb2bad9d9c&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AU2weOrHTCpBquw5Rwo3f68%3D&pass_ticket=dbvqqcmTglYSj4sTLNgyj7eCrTbXMyAqeGYMFLiwryQ%3D
-11. dapr  还有istio/linkerd/kuma
-12. cncf
-13. Orleans，Orleans提供了一个简单直接的构建分布式高可扩展计算应用，并且不需要学习和掌握复杂的并发或者其他的扩展模式。 它是Microsoft Research为了在云端使用而设计并且创建。
-14. DotNetty  DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。dotNetty成功找到了一个无需折衷妥协而让开发、性能、稳定性和灵活性相互协调的方法。
-15. jumpserver JumpServer 是全球首款开源的堡垒机，使用 GNU GPL v2.0 开源协议，是符合 4A 机制的运维安全审计系统。
-16. Netch 一个游戏挂代理的加速器
-17.Ocelot 网关 ，适合用的简单，不需要高性能
-18. Dapr 微软开源的微服务架构
-19. Quartz 开源定时任务调度平台
-20. SonarQube 代码质量管理平台。集合VS插件 SonarLint可以在编辑时做代码分析，推送git后做代码质量分析
-21. debezium 对接好多主流数据库通过订阅日志做分发
-22. Docsify  类似gitbook
+4. RabbitMq 消息队列
+5. Kong 网关
+6. Portainer.io   https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247483945&idx=1&sn=321b31d2b00ca3b36960206d80ce82cd&chksm=ebebc336dc9c4a20f178cbfbd21a0d980ad54f2e229e6c1dfa8f47d1c88354f2bdc5e8530617&mpshare=1&scene=1&srcid=&sharer_sharetime=1584524654143&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=56dae8b8a643d0f3631e5704b7d566964aec3fedb4773a7f71d50fdbff01a6b946d79c3ae25cbac60f16411b92886a0b64bed1edbcc97c8d159dc251893012dceef354ac95f4a09fa618f1cb2bad9d9c&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AU2weOrHTCpBquw5Rwo3f68%3D&pass_ticket=dbvqqcmTglYSj4sTLNgyj7eCrTbXMyAqeGYMFLiwryQ%3D
+7. dapr  还有istio/linkerd/kuma
+8. cncf
+9. Orleans，Orleans提供了一个简单直接的构建分布式高可扩展计算应用，并且不需要学习和掌握复杂的并发或者其他的扩展模式。 它是Microsoft Research为了在云端使用而设计并且创建。
+10. DotNetty  DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。dotNetty成功找到了一个无需折衷妥协而让开发、性能、稳定性和灵活性相互协调的方法。
+11. jumpserver JumpServer 是全球首款开源的堡垒机，使用 GNU GPL v2.0 开源协议，是符合 4A 机制的运维安全审计系统。
+12.Ocelot 网关 ，适合用的简单，不需要高性能
+13. Dapr 微软开源的微服务架构
+14. Quartz 开源定时任务调度平台
+14. SonarQube 代码质量管理平台。集合VS插件 SonarLint可以在编辑时做代码分析，推送git后做代码质量分析
+16. debezium 对接好多主流数据库通过订阅日志做分发
+17. Docsify  类似gitbook
      seafile 国内免费的云盘，有社区版。可利用资料库的功能搭建类似gitbook的东西
-23. apollo 携程框架部门研发的分布式配置中心
+18. apollo 携程框架部门研发的分布式配置中心
 	https://github.com/ctripcorp/apollo
-24. nacos 阿里开源的服务发现与配置的中间件
+19. nacos 阿里开源的服务发现与配置的中间件
 	Ocelot.Provider.Nacos  支持与Ocelot集成
-25. AgileConfig 轻量级配置中心,为非微服务的分布式应用准备的
-26. zabbix 服务器监控组件，可以统一监控服务器运行情况
-27. cassandra nosql数据库-基于列结构化，一组数据库节点的分布式网络服务, 分布式、无主节点、一致化软硬件环境、高度容错。
-28. cefglue 一个可以嵌入到应用程序中的浏览器内核，实际上是一整个虚拟操作系统
-29. echarts  Apache旗下的js图标库，支持在线调图表和样式
-30. highchart [个人免费] 兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库
-31. LiveCharts2 .net上的图表库,支持WPF winform Xamarin
+20. AgileConfig 轻量级配置中心,为非微服务的分布式应用准备的
+21. zabbix 服务器监控组件，可以统一监控服务器运行情况
+22. cassandra nosql数据库-基于列结构化，一组数据库节点的分布式网络服务, 分布式、无主节点、一致化软硬件环境、高度容错。
+23. cefglue 一个可以嵌入到应用程序中的浏览器内核，实际上是一整个虚拟操作系统
+24. echarts  Apache旗下的js图标库，支持在线调图表和样式
+25. highchart [个人免费] 兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库
+26. LiveCharts2 .net上的图表库,支持WPF winform Xamarin
 
 
---
-https://hub.fastgit.org/ 国内镜像站
-new sql: 
+
+--new sql: 
 CockroachDB（国外开源）
 TiDB（国内开源，许多银行、百度、头条在用，互联网企业用的多,和mysql比较像）
 SequoiaDB（国内开源，银行用的多）
