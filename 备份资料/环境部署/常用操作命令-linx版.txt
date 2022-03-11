@@ -31,6 +31,7 @@ alias 						#查看别名列表
 unalias ll						#删除别名
 tail -n 1 /etc/bashrc					#查看'/etc/bashrc'文件最后一行。这个文件是全局用户的shell初始化脚本
 echo abcd | tee 123.txt				#用tee命令将信息同时输出到屏幕和文件
+systemctl list-unit-files				#centos查看服务列表
 
 
 

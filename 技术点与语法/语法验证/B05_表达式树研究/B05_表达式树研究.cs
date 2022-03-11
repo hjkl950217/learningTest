@@ -1,11 +1,7 @@
 ﻿#pragma warning disable CS8602 // 取消引用可能出现的空引用。
 
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-using CkTools;
-using Verification.Core;
 
 namespace 语法验证与学习
 {
@@ -73,7 +69,7 @@ namespace 语法验证与学习
             Expression<Func<int, int>> expr = x => x + 10;
             Console.WriteLine(expr.ToString());
 
-            var lambdaExpr = expr as LambdaExpression;
+            LambdaExpression? lambdaExpr = expr as LambdaExpression;
             Console.WriteLine(lambdaExpr.Body);   // (x + 1)
             Console.WriteLine("返回值类型:" + lambdaExpr.ReturnType.ToString());  // System.Int32
             Console.WriteLine("第一个参数类型:" + lambdaExpr.Parameters[0].Name + "    " + lambdaExpr.Parameters[0].Type.Name);
@@ -117,7 +113,7 @@ namespace 语法验证与学习
 
             //翻译形参
             showTxt.AppendLine($@"表达式的形参有:{sum.Parameters.Count}个,");
-            foreach (var item in sum.Parameters)
+            foreach (ParameterExpression? item in sum.Parameters)
             {
                 showTxt.Append($"节点的节点类型是:{sum.Parameters[0].NodeType},");
                 showTxt.Append($"类型是:{sum.Parameters[0].Type.Name},");
@@ -127,7 +123,7 @@ namespace 语法验证与学习
             }
 
             //翻译主体
-            var sumBody = sum.Body as BinaryExpression;
+            BinaryExpression? sumBody = sum.Body as BinaryExpression;
 
             showTxt.AppendLine($"主体节点的节点类型是:{sumBody.NodeType}");
 
@@ -135,7 +131,7 @@ namespace 语法验证与学习
             showTxt.AppendLine();
 
             //翻译左节点
-            var leftNode = sumBody.Left as ParameterExpression;
+            ParameterExpression? leftNode = sumBody.Left as ParameterExpression;
             showTxt.AppendLine($"主体左节点的节点类型是:{leftNode.NodeType}");
             showTxt.AppendLine($"主体左节点的类型是：{leftNode.Type.Name}");
             showTxt.Append($"主体左节点的名字是:{leftNode.Name}");
@@ -143,7 +139,7 @@ namespace 语法验证与学习
             showTxt.AppendLine();
 
             //翻译右节点
-            var rightNode = sumBody.Left as ParameterExpression;
+            ParameterExpression? rightNode = sumBody.Right as ParameterExpression;
             showTxt.AppendLine($"主体右节点的节点类型是:{rightNode.NodeType}");
             showTxt.AppendLine($"主体右节点的类型是：{rightNode.Type.Name}");
             showTxt.Append($"主体右节点的名字是:{rightNode.Name}");

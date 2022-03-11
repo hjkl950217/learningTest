@@ -1,0 +1,10 @@
+免费
+1. everything 光速搜索
+2. Snipaste 截图贴图软件
+3. Motrix 全能型下载器 适用aria2做为内核，支持http、https、ftp、bt、磁链、迅雷地址
+	Motrix chrome插件地址：https://github.com/gautamkrishnar/motrix-webextension
+4. aria2 开源下载工具 http://aria2.baisheng999.com/
+5. fast os docker  可视化界面轻松构建 您的docker环境 https://www.dockernb.com/
+6. qBittorrent qt\bt 下载工具
+	qBittorrent-Enhanced-Edition 増强的版本
+7. Clash 新型飞机工具

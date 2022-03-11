@@ -20,7 +20,7 @@ services:
       - SA_PASSWORD=1234ABCD.
     #expose:
       #- "80" #在不向主机发布端口的情况下公开端口 - 链接的服务只能访问这些端口。只能指定内部端口。 
-    network_mode: "bridge" #网络模式 bridge、host、none、service:[service name]
+    network_mode: "bridge" #网络模式 bridge、host、none、service:[service name]、container:[container name/id
     volumes: #卷配置 相当于配置硬盘
       - type: bind #安装类型 
         source: ./sqlData

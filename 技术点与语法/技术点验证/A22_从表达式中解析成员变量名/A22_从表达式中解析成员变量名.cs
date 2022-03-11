@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Reflection;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -27,11 +25,14 @@ namespace 技术点验证
             LambdaExpression lambdaExpression = Expression.Lambda(member_AtoBToCToName, x);
 
             string? result = this.ResolvePropertyName((A22TestEntity_A a) => a.TestBObject.TestCObject.Name);
+            Console.WriteLine(result);
         }
 
         public string? ResolvePropertyName<T, TProperty>(Expression<Func<T, TProperty>> memberAccessor)
         {
-            string? propertyName = this.GetPropertyNameResolver()(typeof(T), this.GetMember(memberAccessor), memberAccessor);
+            Func<Type, MemberInfo?, LambdaExpression, string?>? resolver = this.GetPropertyNameResolver();
+
+            string? propertyName = resolver(typeof(T), this.GetMember(memberAccessor), memberAccessor);
             return propertyName;
         }
 
