@@ -3,6 +3,7 @@ docker system df
 
 #清理docker磁盘、关闭的容器、无用的数据卷
 docker system prune -a -f
+docker system prune -a -f --volumes
 
 #删除悬空镜像
 docker rmi $(docker images -f "dangling=true" -q)
