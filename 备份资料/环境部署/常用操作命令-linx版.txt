@@ -35,7 +35,7 @@ systemctl list-unit-files				#centos查看服务列表
 date						#查看现在时间
 date +%Y-%m-%d					#将时间格式化输出
 nohup XXXX					#确保后面的XXXX命令在网络中断的情况下也不会中断
-rsync -Pavzuhi6 xx xx				#快速复制文件命令，本地复制
+rsync -Pavzuhi6 xx xx				#快速复制文件命令，本地复制 带杠表示拷贝目录里面的内容不包括目录本身
 rsync -Pavzuhi6 xx root@192.168.1.10/xx			#快速复制文件命令，远端复制
 
 
