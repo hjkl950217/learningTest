@@ -34,8 +34,9 @@ echo abcd | tee 123.txt				#用tee命令将信息同时输出到屏幕和文件
 systemctl list-unit-files				#centos查看服务列表
 date						#查看现在时间
 date +%Y-%m-%d					#将时间格式化输出
-nohup XXXX					#确保后面的XXXX命令在网络中断的情况下也不会中断	
-
+nohup XXXX					#确保后面的XXXX命令在网络中断的情况下也不会中断
+rsync -Pavzuhi6 xx xx				#快速复制文件命令，本地复制
+rsync -Pavzuhi6 xx root@192.168.1.10/xx			#快速复制文件命令，远端复制
 
 
 
