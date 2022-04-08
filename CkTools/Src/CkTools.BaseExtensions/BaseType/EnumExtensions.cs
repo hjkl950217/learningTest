@@ -27,9 +27,9 @@ namespace System
         /// </summary>
         /// <param name="enumValue">枚举值</param>
         /// <returns>枚举值对应的值类型，字符串表现形式</returns>
-        public static string GetValueString(this Enum enumValue)
+        public static string? GetValueString(this Enum enumValue)
         {
-            return EnumHelper.Instance.GetEnumAttributeData(enumValue).BaseValueString;
+            return EnumHelper.Instance.GetEnumValueInfo(enumValue)?.BaseValueString;
         }
     }
 }
