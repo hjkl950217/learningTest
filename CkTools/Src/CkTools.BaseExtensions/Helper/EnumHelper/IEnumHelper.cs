@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using CkTools.BaseExtensions.Model;
 
 namespace CkTools.Helper
 {
@@ -11,6 +12,6 @@ namespace CkTools.Helper
         /// <param name="enumType">枚举的类型</param>
         /// <returns></returns>
         [return: NotNull]
-        EnumAttributeData[] GetAllEnumAttributeData(Type enumType);
+        EnumData GetOrAddEnumCache(Type enumType);
     }
 }
