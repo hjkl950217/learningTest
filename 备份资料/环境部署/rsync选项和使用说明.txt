@@ -16,4 +16,11 @@ rsync -Pavuhit6 /var/temp.tmp /home/var/
 rsync -Pavuhit6 /var/temp.tmp /home/var/tempppp.tmp	
 	
 #远端复制
-rsync -Pavzuhi6 /var/temp.tmp root@192.168.1.10/home/var/		
+rsync -Pavzuhi6 /var/temp.tmp root@192.168.1.10/home/var/
+
+#使用变量复制		
+addrVar=/var
+addrhome=/home/var
+rsync -Pavuhit6 $addrVar/temp.tmp $addrhome/	
+rsync -Pavuhit6 $addrVar/temp.tmp $addrhome/tempppp.tmp	
+
