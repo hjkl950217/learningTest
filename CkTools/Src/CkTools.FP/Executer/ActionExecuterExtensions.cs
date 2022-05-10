@@ -115,66 +115,6 @@ namespace CkTools.FP.Executer
 
         #endregion Pipe 管道
 
-        #region MayEndPipe 可能结束的管道
-
-        /// <summary>
-        /// 可能结束的管道节点,true时执行后续节点,false时结束执行
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="predicate">是否结束判断委托</param>
-        /// <param name="onEnded">结束后执行的委托</param>
-        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
-        public static ActionExecuter MayEndPipe(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] Func<bool> predicate,
-            [NotNull] Action onEnded)
-        {
-            CkFunctions.CheckNullWithException(executer, predicate, onEnded);
-
-            executer.StepList.Add(() =>
-            {
-                executer.IsEnd = predicate();
-                if (executer.IsEnd) onEnded();//为true时执行后续
-            });
-            return executer;
-        }
-
-        /// <summary>
-        /// 可能结束的管道节点,true时执行后续节点,false时结束执行
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="isEnd">是否结束</param>
-        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
-        public static ActionExecuter MayEndPipe(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] bool isEnd)
-        {
-            CkFunctions.CheckNullWithException(executer);
-
-            return executer.EndIf(
-                predicate: CkFunctions.True,
-                onEnded: ActionExecuter.NullAction);
-        }
-
-        /// <summary>
-        /// 可能结束的管道节点,true时执行后续节点,false时结束执行
-        /// </summary>
-        /// <param name="executer">执行器实例</param>
-        /// <param name="predicate">是否结束判断委托</param>
-        [Obsolete("请使用End、EndIf、Continue来让管道更加清晰")]
-        public static ActionExecuter MayEndPipe(
-            [NotNull] this ActionExecuter executer,
-            [NotNull] Func<bool> predicate)
-        {
-            CkFunctions.CheckNullWithException(executer);
-
-            return executer.EndIf(
-                predicate: predicate,
-                onEnded: ActionExecuter.NullAction);
-        }
-
-        #endregion MayEndPipe 可能结束的管道
-
         #region End
 
         /// <summary>
@@ -208,7 +148,8 @@ namespace CkTools.FP.Executer
             executer.StepList.Add(() =>
             {
                 executer.IsEnd = predicate();
-                if (executer.IsEnd) onEnded?.Invoke();//为true时执行后续
+                if (executer.IsEnd)
+                    onEnded?.Invoke();//为true时执行后续
             });
             return executer;
         }
@@ -264,7 +205,8 @@ namespace CkTools.FP.Executer
             [NotNull] string debugInfo)
         {
             CkFunctions.CheckNullWithException(executer);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
+            if (CkFunctions.IsNullOrEmpty(debugInfo))
+                return executer;
 
             return executer.Pipe(() => Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {debugInfo}"));
         }
@@ -282,7 +224,8 @@ namespace CkTools.FP.Executer
             [NotNull] Action<string> loggerAction)
         {
             CkFunctions.CheckNullWithException(executer, loggerAction);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
+            if (CkFunctions.IsNullOrEmpty(debugInfo))
+                return executer;
 
             return executer.Pipe(() => loggerAction?.Invoke(debugInfo));
         }
@@ -293,7 +236,7 @@ namespace CkTools.FP.Executer
         /// <param name="executer">执行器实例</param>
         /// <param name="predicate">条件判断委托</param>
         /// <param name="debugInfo">调试信息</param>
-        /// <param name="loggerAction">日志记录委托,默认为<see cref="CkFunctions.DefaultLog"/></param>
+        /// <param name="loggerAction">日志记录委托,默认为<see cref="CkFunctions.ConsoleLog(string)"/></param>
         /// <returns></returns>
         public static ActionExecuter DebugIf(
             [NotNull] this ActionExecuter executer,
@@ -302,9 +245,10 @@ namespace CkTools.FP.Executer
             Action<string>? loggerAction = null)
         {
             CkFunctions.CheckNullWithException(executer, predicate, loggerAction);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
+            if (CkFunctions.IsNullOrEmpty(debugInfo))
+                return executer;
 
-            loggerAction ??= CkFunctions.DefaultLog;
+            loggerAction ??= CkFunctions.ConsoleLog;
 
             return executer.PipeIf(
                 predicate,
@@ -324,12 +268,13 @@ namespace CkTools.FP.Executer
             [NotNull] string debugInfo)
         {
             CkFunctions.CheckNullWithException(executer);
-            if (CkFunctions.IsNullOrEmpty(debugInfo)) return executer;
+            if (CkFunctions.IsNullOrEmpty(debugInfo))
+                return executer;
 
             return executer.DebugIf(
                 CkFunctions.Bool(isDebug),
                 debugInfo,
-                CkFunctions.DefaultLog);
+                CkFunctions.ConsoleLog);
         }
 
         #endregion Debug调试
