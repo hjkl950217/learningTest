@@ -7,15 +7,25 @@ namespace CkTools.FP
     /// </summary>
     public static partial class CkFunctions
     {
-        public static Action<string> DefaultLog = debugInfo => Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {debugInfo}");
-        public static Action DefaultLogTime = () => Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}");
-
         public static Action EmtpyAction = () => { };
+
+        #region 基础数据转为常量表达式
+
         public static Func<bool> True = () => true;
         public static Func<bool> False = () => false;
-        public static Func<bool, Func<bool>> Bool = t => () => t;
-        public static Func<int, Func<int>> Int = t => () => t;
-        public static Func<string, Func<string>> String = t => () => t;
-        public static Func<long, Func<long>> Long = t => () => t;
+
+        #endregion 基础数据转为常量表达式
+
+        #region 时间相关
+
+        public static Func<string> NowDayStr = () => DateTime.Now.ToString("yyyy-MM-dd");
+        public static Func<string> NowTimeStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public static Func<string> NowTimeFStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+        public static Func<string> NowUtcDayStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd");
+        public static Func<string> NowUtcTimeStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+        public static Func<string> NowUtcTimeFStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+        #endregion 时间相关
     }
 }
