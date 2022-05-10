@@ -6,6 +6,9 @@ namespace CkTools.FP
     /// <summary>
     /// 函数式功能-文件
     /// </summary>
+    /// <remarks>
+    /// 定义文件相关的函数式函数或表达式
+    /// </remarks>
     public static partial class CkFunctions
     {
         public static Func<string, bool> IsFullFileName => fileName => Path.IsPathRooted(fileName) && Path.IsPathFullyQualified(fileName);

@@ -6,6 +6,9 @@ namespace CkTools.FP
     /// <summary>
     /// 函数式功能-日志
     /// </summary>
+    /// <remarks>
+    /// 定义简单日志相关的函数或表达式
+    /// </remarks>
     public static partial class CkFunctions
     {
         public static Func<string, string> DefaultLogFormat = debugMsg => $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]  {debugMsg}";

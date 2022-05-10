@@ -5,6 +5,9 @@ namespace CkTools.FP
     /// <summary>
     /// 函数式功能-常量
     /// </summary>
+    /// <remarks>
+    /// 定义被认为是"数据"的常量表达式
+    /// </remarks>
     public static partial class CkFunctions
     {
         public static Action EmtpyAction = () => { };
