@@ -151,7 +151,8 @@ namespace System
             foreach (char item in symbols)
             {
                 isExtra = chars[source.Length - 1] == item;
-                if (isExtra == true) break;
+                if (isExtra == true)
+                    break;
             }
             if (isExtra == true)
             {
@@ -174,9 +175,12 @@ namespace System
         /// <returns></returns>
         public static string SubstringExt(this string source, int length, int startIndex = 0)
         {
-            if (source.IsNullOrEmpty()) return string.Empty;
-            if (length < 0) throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(length));
-            if (startIndex < 0) throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(startIndex));
+            if (source.IsNullOrEmpty())
+                return string.Empty;
+            if (length < 0)
+                throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(length));
+            if (startIndex < 0)
+                throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(startIndex));
 
             length = length > source.Length ? source.Length : length;//如果参数比实际值大，则用实际值
 
@@ -302,7 +306,7 @@ namespace System
 
             //生成
             byte[] buffer = new byte[sourceStr.Length / 2];
-            for (int i = 0; i < sourceStr.Length; i += 2)
+            for (int i = 0 ; i < sourceStr.Length ; i += 2)
             {
                 buffer[i / 2] = Convert.ToByte(sourceStr.Substring(i, 2), 16);
             }
@@ -312,12 +316,10 @@ namespace System
         /// <summary>
         /// 将字符串集合转换成字符串
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
         /// <param name="source"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static string JoinString<TSource, TValue>(
+        public static string JoinString(
             this string[] source,
             string separator = ",")
         {
