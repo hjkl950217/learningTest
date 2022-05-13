@@ -1,17 +1,16 @@
-﻿using System;
+﻿#pragma warning disable CS8601 // 引用类型赋值可能为 null。
+#pragma warning disable CS8603 // 可能返回 null 引用。
+#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
+
+using System;
 
 namespace CkTools.FP.Executer
 {
-#pragma warning disable CS8601 // 引用类型赋值可能为 null。
-#pragma warning disable CS8603 // 可能返回 null 引用。
-
     /// <summary>
     /// 方法执行器-泛型返回
     /// </summary>
     public class ActionExecuter<TResult> : ActionExecuter
     {
-#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
-
         public TResult Result { get; set; }
 
         /// <summary>
@@ -21,8 +20,6 @@ namespace CkTools.FP.Executer
         {
             this.Result = default;
         }
-
-#pragma warning restore CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
 
         #region Init
 
@@ -70,6 +67,7 @@ namespace CkTools.FP.Executer
         }
     }
 
+#pragma warning restore CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
 #pragma warning restore CS8603 // 可能返回 null 引用。
 #pragma warning restore CS8601 // 引用类型赋值可能为 null。
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8602 // 解引用可能出现空引用。
+
+using System;
 using System.IO;
 
 namespace CkTools.FP
@@ -13,100 +15,94 @@ namespace CkTools.FP
     {
         public static Func<string, string> DefaultLogFormat = debugMsg => $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]  {debugMsg}";
 
-        public static void Log(
-            Action<string> log,
-            Func<string, string> format,
-            Func<string> msg)
-        {
-            log(format(msg()));
-        }
+        /// <summary>
+        ///
+        /// </summary>
+        public static Func<Action<string>, Func<Func<string, string>, Action<Func<string>>>> Log =>
+            log =>
+            format =>
+            msg => log(format(msg()));
+
+        public static Func<Action<string>, Func<Func<string, string>, Action<string>>> Log1 =>
+            log =>
+            format =>
+            msg => CkFunctions.Log(log)(format)(() => msg);
 
         #region Console
 
+        /// <summary>
+        /// 向控制台记录时间,使用默认格式
+        /// </summary>
         public static Action ConsoleLogTime = () => CkFunctions.ConsoleLog(string.Empty);
 
-        public static void ConsoleLog(Func<string> msg)
-        {
-            CkFunctions.ConsoleLog(CkFunctions.DefaultLogFormat, msg);
-        }
+        /// <summary>
+        /// 传递一个格式化函数,返回一个记录函数
+        /// </summary>
+        public static Func<Func<string, string>, Action<Func<string>>> ConsoleLog3 =
+            msgFormat =>
+            msg => CkFunctions.Log(Console.WriteLine)(msgFormat)(msg);
 
-        public static void ConsoleLog(string msg)
-        {
-            CkFunctions.ConsoleLog(CkFunctions.DefaultLogFormat, msg);
-        }
+        /// <summary>
+        /// 传递一个格式化函数,返回一个记录函数
+        /// </summary>
+        public static Func<Func<string, string>, Action<string>> ConsoleLog2 =
+            msgFormat =>
+            msg => CkFunctions.Log(Console.WriteLine)(msgFormat)(() => msg);
 
-        public static void ConsoleLog(Func<string, string> msgFormat, string msg)
-        {
-            CkFunctions.ConsoleLog(
-                msgFormat,
-                () => msg);
-        }
+        /// <summary>
+        /// 返回一个记录函数
+        /// </summary>
+        public static Action<Func<string>> ConsoleLog1 =
+           msg => CkFunctions.Log(Console.WriteLine)(CkFunctions.DefaultLogFormat)(msg);
 
-        public static void ConsoleLog(Func<string, string> msgFormat, Func<string> msg)
-        {
-            CkFunctions.Log(
-                Console.WriteLine,
-                msgFormat,
-                msg);
-        }
+        /// <summary>
+        /// 返回一个记录函数
+        /// </summary>
+        public static Action<string> ConsoleLog =
+            msg => CkFunctions.Log(Console.WriteLine)(CkFunctions.DefaultLogFormat)(() => msg);
 
         #endregion Console
 
         #region File
 
-        public static Action<string> DefaultFileLog(Func<string> logFileName)
-        {
-            string fileName = logFileName();
-            CkFunctions.TryCreateFile(fileName);
-
-            return msg =>
+        /// <summary>
+        /// 传递一个文件名函数返回一个记录函数
+        /// </summary>
+        public static Func<Func<string>, Action<string>> LogToFile =
+            logFileName =>
             {
-                File.AppendAllText(fileName, msg);
+                string fileName = logFileName();
+                CkFunctions.TryCreateFile(fileName);
+
+                return msg => File.AppendAllText(fileName, msg);
             };
-        }
 
-        public static void FileLog(Func<string> msg)
-        {
-            CkFunctions.FileLog(
-                CkFunctions.DefaultLogFormat,
-                msg);
-        }
+        /// <summary>
+        /// 默认文件名函数
+        /// </summary>
+        public static Action<string> DefaultFileLog = CkFunctions.LogToFile(CkFunctions.NowDayStr);
 
-        public static void FileLog(string msg)
-        {
-            CkFunctions.FileLog(
-                CkFunctions.DefaultLogFormat,
-                () => msg);
-        }
+        public static Func<Func<string>, Func<Func<string, string>, Action<Func<string>>>> FileLog4 =
+            logFileName =>
+            msgFormat =>
+            msg => CkFunctions.Log(CkFunctions.LogToFile(logFileName))(msgFormat)(msg);
 
-        public static void FileLog(Func<string, string> msgFormat, string msg)
-        {
-            CkFunctions.FileLog(
-                msgFormat,
-                () => msg);
-        }
+        public static Func<Func<string, string>, Action<Func<string>>> FileLog3 =
+            msgFormat =>
+            msg => CkFunctions.Log(CkFunctions.DefaultFileLog)(msgFormat)(msg);
 
-        public static void FileLog(Func<string, string> msgFormat, Func<string> msg)
-        {
-            CkFunctions.FileLog(
-                CkFunctions.NowDayStr,
-                msgFormat,
-                msg);
-        }
+        public static Func<Func<string, string>, Action<string>> FileLog2 =
+            msgFormat =>
+            msg => CkFunctions.Log(CkFunctions.DefaultFileLog)(msgFormat)(() => msg);
 
-        public static void FileLog(
-            Func<string> logFileName,
-            Func<string, string> msgFormat,
-            Func<string> msg)
-        {
-            Action<string>? fileLog = CkFunctions.DefaultFileLog(logFileName);
+        public static Action<Func<string>> FileLog1 =
+            msg => CkFunctions.Log(CkFunctions.DefaultFileLog)(CkFunctions.DefaultLogFormat)(msg);
 
-            CkFunctions.Log(
-                fileLog,
-                msgFormat,
-                msg);
-        }
+        public static Action<string> FileLog =
+            msg => CkFunctions.Log(CkFunctions.DefaultFileLog)(CkFunctions.DefaultLogFormat)(() => msg);
 
         #endregion File
     }
 }
+
+#pragma warning restore CS8602 // 解引用可能出现空引用。
