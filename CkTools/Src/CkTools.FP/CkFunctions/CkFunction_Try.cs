@@ -99,7 +99,7 @@ namespace CkTools.FP
         public static Func<
             Func<TInput, TOutput>,
             Func<TInput, TOutput>> Try<TInput, TOutput>(
-                [NotNull] Func<TInput, Exception, TOutput> exExp)
+                [NotNull] Action<TInput, Exception> exExp)
         {
             CkFunctions.CheckNullWithException(exExp);
 
@@ -113,8 +113,9 @@ namespace CkTools.FP
                     }
                     catch (Exception ex)
                     {
-                        return exExp(input, ex);
+                        exExp(input, ex);
                     }
+                    return default(TOutput);//这行是为了编译器能识别
                 };
         }
 
@@ -129,12 +130,12 @@ namespace CkTools.FP
         /// <returns></returns>
         public static Func<
             Func<TOutput>,
-            Func<TOutput>> Try<TOutput>(
-                [NotNull] Func<Exception, TOutput> exExp)
+            Func<TOutput>> Try2<TOutput>(
+                [NotNull] Action<Exception> exExp)
         {
             CkFunctions.CheckNullWithException(exExp);
 
-            Func<int, Exception, TOutput> exExp1 = (_, ex) => exExp(ex);
+            Action<int, Exception> exExp1 = (_, ex) => exExp(ex);
             return
                 exp =>
                 () => CkFunctions.Try<int, TOutput>(exExp1)(t => exp())(0);
