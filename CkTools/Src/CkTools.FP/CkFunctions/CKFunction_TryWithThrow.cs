@@ -91,7 +91,7 @@ namespace CkTools.FP
         {
             CkFunctions.CheckNullWithException(exExp);
 
-            Func<TInput, Exception, TOutput> exExp1 = (input, ex) => exExp(input, ex);
+            Func<TInput, Exception, TOutput> exExp1 = (input, ex) => { exExp(input, ex); throw ex; };
             return CkFunctions.Try<TInput, TOutput>(exExp1);
         }
 
@@ -111,7 +111,7 @@ namespace CkTools.FP
         {
             CkFunctions.CheckNullWithException(exExp);
 
-            Func<Exception, TOutput> exExp1 = ex => exExp(ex);
+            Func<Exception, TOutput> exExp1 = ex => { exExp(ex); throw ex; };
             return CkFunctions.Try<TOutput>(exExp1);
         }
 
