@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace CkTools.FP
 {
     /// <summary>
-    /// 函数式功能
+    /// 函数式功能-抛出异常
     /// </summary>
     public static partial class CkFunctions
     {
@@ -87,11 +87,11 @@ namespace CkTools.FP
         public static Func<
             Func<TInput, TOutput>,
             Func<TInput, TOutput>> TryWithThrow<TInput, TOutput>(
-                [NotNull] Func<TInput, Exception, TOutput> exExp)
+                [NotNull] Action<TInput, Exception> exExp)
         {
             CkFunctions.CheckNullWithException(exExp);
 
-            Func<TInput, Exception, TOutput> exExp1 = (input, ex) => { exExp(input, ex); throw ex; };
+            Action<TInput, Exception> exExp1 = (input, ex) => { exExp(input, ex); throw ex; };
             return CkFunctions.Try<TInput, TOutput>(exExp1);
         }
 
@@ -106,13 +106,13 @@ namespace CkTools.FP
         /// <returns></returns>
         public static Func<
             Func<TOutput>,
-            Func<TOutput>> TryWithThrow<TOutput>(
-                [NotNull] Func<Exception, TOutput> exExp)
+            Func<TOutput>> TryWithThrow2<TOutput>(
+                [NotNull] Action<Exception> exExp)
         {
             CkFunctions.CheckNullWithException(exExp);
 
-            Func<Exception, TOutput> exExp1 = ex => { exExp(ex); throw ex; };
-            return CkFunctions.Try<TOutput>(exExp1);
+            Action<Exception> exExp1 = ex => { exExp(ex); throw ex; };
+            return CkFunctions.Try2<TOutput>(exExp1);
         }
 
         #endregion Func
