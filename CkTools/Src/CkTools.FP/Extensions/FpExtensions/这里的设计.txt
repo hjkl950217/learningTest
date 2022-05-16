@@ -1,8 +1,0 @@
-﻿CkFunctions
-	设计为操作函数的操作符,从右向左执行。
-
-FpExtensions
-	设计为在委托上直接扩展函数式风格的代码，操作符种类会和 CkFunctions 差不多。
-	但FpExtensions中更多是为日常业务使用，所以需要从左向右执行
-
-
