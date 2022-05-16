@@ -27,7 +27,7 @@ namespace System
             return t =>
             {
                 sourceExp(t);
-                for (int i = 0; i < exps.Length; i++)
+                for (int i = 0 ; i < exps.Length ; i++)
                 {
                     exps[i](t);
                 }
@@ -64,21 +64,21 @@ namespace System
 
         #region Func-2个入参
 
-        /// <summary>
-        /// 管道
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TCenter"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sourceExp"></param>
-        /// <param name="exp"></param>
-        /// <returns></returns>
-        public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-          [NotNull] this Func<TInput, TCenter> sourceExp,
-          [NotNull] Func<TCenter, TResult> exp)
-        {
-            return CkFunctions.Pipe(exp, sourceExp);
-        }
+        ///// <summary>
+        ///// 管道
+        ///// </summary>
+        ///// <typeparam name="TInput"></typeparam>
+        ///// <typeparam name="TCenter"></typeparam>
+        ///// <typeparam name="TResult"></typeparam>
+        ///// <param name="sourceExp"></param>
+        ///// <param name="exp"></param>
+        ///// <returns></returns>
+        //public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
+        //  [NotNull] this Func<TInput, TCenter> sourceExp,
+        //  [NotNull] Func<TCenter, TResult> exp)
+        //{
+        //    return CkFunctions.Pipe(exp, sourceExp);
+        //}
 
         #endregion Func-2个入参
     }
