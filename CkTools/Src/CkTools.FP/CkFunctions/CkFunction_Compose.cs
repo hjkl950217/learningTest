@@ -118,7 +118,7 @@ namespace CkTools.FP
             return () =>
             {
                 //倒序执行
-                for (int i = actions.Length - 1; i > -1; i--)
+                for (int i = actions.Length - 1 ; i > -1 ; i--)
                 {
                     actions[i]();
                 }
@@ -132,7 +132,7 @@ namespace CkTools.FP
             return t =>
             {
                 //倒序执行
-                for (int i = actions.Length - 1; i > -1; i--)
+                for (int i = actions.Length - 1 ; i > -1 ; i--)
                 {
                     Action<TInput>? item = actions[i];
                     item(t);
@@ -205,7 +205,7 @@ namespace CkTools.FP
             [NotNull] Func<TResult1, TResult2> exp2,
             [NotNull] Func<TInput1, TResult1> exp1)
         {
-            CheckNullWithException(exp5, exp4, exp3, exp2, exp1);
+            CkFunctions.CheckNullWithException(exp5, exp4, exp3, exp2, exp1);
             return t => exp5(exp4(exp3(exp2(exp1(t)))));
         }
 
@@ -220,7 +220,7 @@ namespace CkTools.FP
 
             return () =>
             {
-                for (int i = 0; i < exps2.Length; i++)
+                for (int i = 0 ; i < exps2.Length ; i++)
                 {
                     Action<TResult>? item = exps2[i];
                     item(result1);
