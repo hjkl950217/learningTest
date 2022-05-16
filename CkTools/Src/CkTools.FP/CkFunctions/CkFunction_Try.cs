@@ -58,7 +58,7 @@ namespace CkTools.FP
             CkFunctions.CheckNullWithException(exExp);
 
             Action<TInput, Exception> exp1 = (_, ex) => exExp(ex);
-            return exp => CkFunctions.Try<TInput>(exp1)(exp);
+            return CkFunctions.Try<TInput>(exp1);
         }
 
         /// <summary>
