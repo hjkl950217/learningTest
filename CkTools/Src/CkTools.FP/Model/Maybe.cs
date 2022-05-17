@@ -11,7 +11,16 @@ namespace System
         {
         }
 
-        public bool HasValue { get; protected set; } = false;
+        private bool hasValue;
+
+        /// <summary>
+        /// 是否有值,对象为null或有值是返回true
+        /// </summary>
+        public bool HasValue
+        {
+            get { return this?.hasValue ?? false; }
+            protected set { this.hasValue = value; }
+        }
 
         public bool IsNothing() => this.HasValue;
 

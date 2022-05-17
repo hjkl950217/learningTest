@@ -25,14 +25,16 @@ namespace System
         {
             if (value is null)
                 return;
+
             this.innerValue = value;
             base.HasValue = true;
         }
 
         public Maybe([NotNull] Maybe<T> value)
         {
-            if (value?.HasValue != true)
+            if (!value.HasValue)
                 return;
+
             this.innerValue = value.Value;
             base.HasValue = true;
         }
