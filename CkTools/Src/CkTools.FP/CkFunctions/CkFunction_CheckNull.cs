@@ -120,18 +120,6 @@ namespace CkTools.FP
         #region CheckNullWithException
 
         public static void CheckNullWithException(params object[] exps)
-        //{
-        //    if (exps == null)
-        //        throw new ArgumentNullException(nameof(exps));
-
-        //    for (int i = exps.Length - 1 ; i > -1 ; i--)
-        //    {
-        //        if (exps[i] == null)
-        //            throw new ArgumentNullException($"exp{i + 1}");
-        //    }
-
-        //    Action<object[]>? aa = CkFunctions.BatchCkeckNull(CkFunctions.IsNull)(DefaultThrowBatchNull);
-        //}
          => CkFunctions.BatchProcessObject<object>(CkFunctions.IsNull)(CkFunctions.DefaultBatchThrow<object>())(exps);
 
         /// <summary>
@@ -144,15 +132,6 @@ namespace CkTools.FP
         #region CheckNullOrEmptyWithException
 
         public static void CheckNullOrEmptyWithException<T>(params IEnumerable[] exps)
-        //{
-        //    if (exps == null || !exps.Any())
-        //        throw new ArgumentNullException(nameof(exps));
-        //    foreach (IEnumerable exp in exps)
-        //    {
-        //        if (exp == null || !exp.Any())
-        //            throw new ArgumentNullException(nameof(exp));
-        //    }
-        //}
         => CkFunctions.BatchProcessObject<IEnumerable>(CkFunctions.IsNullOrEmpty)(CkFunctions.DefaultBatchThrow<IEnumerable>())(exps);
 
         #endregion CheckNullOrEmptyWithException
