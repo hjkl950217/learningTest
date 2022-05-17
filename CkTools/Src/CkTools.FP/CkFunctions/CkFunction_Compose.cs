@@ -242,6 +242,15 @@ namespace CkTools.FP
             };
         }
 
+        public static Func<TInput1, Func<TResultEnd>> Compose<TInput1, TResult1, TResultEnd>(
+            [NotNull] Func<TResult1, Func<TResultEnd>> exp2,
+            [NotNull] Func<TInput1, Func<TResult1>> exp1
+            )
+        {
+            CheckNullWithException(exp2, exp1);
+            return t => exp2(exp1(t)());
+        }
+
         #endregion 其它
 
         #endregion Func
