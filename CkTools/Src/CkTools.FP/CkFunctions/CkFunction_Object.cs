@@ -18,13 +18,17 @@ namespace CkTools.FP
             return () => obj;
         }
 
+        /// <summary>
+        /// 对象转为常量表达式
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static Func<T, Func<T>> Constant<T>()
         {
             return t => () => t;
         }
 
         public static Func<string, Func<string>> String = CkFunctions.Constant<string>();
-
         public static Func<byte, Func<byte>> Byte = CkFunctions.Constant<byte>();
         public static Func<bool, Func<bool>> Bool = CkFunctions.Constant<bool>();
         public static Func<int, Func<int>> Int = CkFunctions.Constant<int>();

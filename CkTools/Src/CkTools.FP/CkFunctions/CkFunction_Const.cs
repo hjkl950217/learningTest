@@ -30,5 +30,14 @@ namespace CkTools.FP
         public static Func<string> NowUtcTimeFStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
         #endregion 时间相关
+
+        #region 地址路径相关
+
+        /// <summary>
+        /// 获取程序基目录
+        /// </summary>
+        public static Func<string> BaseAddress = () => AppDomain.CurrentDomain.BaseDirectory;
+
+        #endregion 地址路径相关
     }
 }

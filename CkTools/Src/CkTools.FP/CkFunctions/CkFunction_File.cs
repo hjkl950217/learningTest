@@ -14,11 +14,6 @@ namespace CkTools.FP
         public static Func<string, bool> IsFullFileName => fileName => Path.IsPathRooted(fileName) && Path.IsPathFullyQualified(fileName);
 
         /// <summary>
-        /// 获取程序基目录
-        /// </summary>
-        public static Func<string> BaseAddress = () => AppDomain.CurrentDomain.BaseDirectory;
-
-        /// <summary>
         /// 传递一个文件名,尝试创建文件<para></para>
         /// 不包含地址: 使用程序基地址<para></para>
         /// 不存在目标文件夹: 创建文件夹<para></para>
