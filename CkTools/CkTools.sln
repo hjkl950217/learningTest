@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67F897C0-69F5-4C36-9EEB-A4FD3D0CA58F}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,15 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.FP", "Src\CkTools.F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Test", "Test\CkTools.Test\CkTools.Test.csproj", "{503EDFCD-E78E-4A13-9229-EF277F6F7DB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKTols.FP.Test", "Test\CKTols.FP.Test\CKTols.FP.Test.csproj", "{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKTools.FP.Test", "Test\CKTools.FP.Test\CKTools.FP.Test.csproj", "{759F7D6B-B88F-4B90-8DA6-9F6E8DD61DEC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Abstraction.Test", "Test\CkTools.Abstraction.Test\CkTools.Abstraction.Test.csproj", "{B9045104-1DE3-40C9-9DF2-7E896AEFE751}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKTools.BaseExtensions.Test", "Test\CKTools.BaseExtensions.Test\CKTools.BaseExtensions.Test.csproj", "{2C2E3545-4B13-4746-A702-0F999240818F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkTools.Nova", "Src\CkTools.Nova\CkTools.Nova.csproj", "{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Nova", "Src\CkTools.Nova\CkTools.Nova.csproj", "{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkTools.Nova.Test", "Test\CkTools.Nova.Test\CkTools.Nova.Test.csproj", "{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.Nova.Test", "Test\CkTools.Nova.Test\CkTools.Nova.Test.csproj", "{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CkTools.FP.Console", "Test\CkTools.FP.Console\CkTools.FP.Console.csproj", "{BCE2E043-1E46-47D6-9270-01B8EFB219E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE2E043-1E46-47D6-9270-01B8EFB219E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE2E043-1E46-47D6-9270-01B8EFB219E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE2E043-1E46-47D6-9270-01B8EFB219E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE2E043-1E46-47D6-9270-01B8EFB219E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{2C2E3545-4B13-4746-A702-0F999240818F} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
 		{6713F0C2-BB89-463B-AEB6-00BBFEC6DE00} = {D3146C29-9318-45EC-B9BA-1EC7653421FB}
 		{5837DBA3-47A0-43BF-9346-F2C8878F6AC4} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
+		{BCE2E043-1E46-47D6-9270-01B8EFB219E9} = {D80CD124-05E6-4F2F-ADCD-328ACACA04E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB04A57E-6447-4E76-862D-5D1B1638F2B6}

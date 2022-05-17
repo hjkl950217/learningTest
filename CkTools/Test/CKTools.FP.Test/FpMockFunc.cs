@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CKTols.FP.Test
+namespace CKTools.FP.Test
 {
     public static class FpMockFunc
     {

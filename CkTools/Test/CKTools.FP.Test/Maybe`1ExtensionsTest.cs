@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace CKTols.FP.Test
+namespace CKTools.FP.Test
 {
     public class Maybe_1ExtensionsTest
     {

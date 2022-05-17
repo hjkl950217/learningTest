@@ -2,7 +2,7 @@
 //using Xunit;
 //using static CKTols.FP.Test.FpMockFunc;
 
-//namespace CKTols.FP.Test
+//namespace CKTools.FP.Test
 //{
 //    public class Fp_Pipe_ExtensionTest
 //    {

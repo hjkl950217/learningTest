@@ -1,4 +1,4 @@
-﻿namespace CKTols.FP.Test.Executer
+﻿namespace CKTools.FP.Test.Executer
 {
     public class ActionExecuterTest
     {
