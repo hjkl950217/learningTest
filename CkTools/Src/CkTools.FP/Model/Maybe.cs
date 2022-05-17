@@ -25,6 +25,12 @@ namespace System
         public bool IsNothing() => this.HasValue;
 
         /// <summary>
+        /// 获取一个空值<see cref="Maybe"/>
+        /// </summary>
+        /// <returns></returns>
+        public static Maybe Nothing() => new Maybe();
+
+        /// <summary>
         /// Pure<para></para>
         /// 接收一个<paramref name="value"/>转换为<see cref="Maybe{T}"/>
         /// </summary>

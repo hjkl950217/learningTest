@@ -57,6 +57,10 @@ namespace System
             return base.HasValue ? this.Value.ToString() : "Nothing";
         }
 
+        /// <summary>
+        /// 获取一个空值<see cref="Maybe{T}"/>
+        /// </summary>
+        /// <returns></returns>
         public static Maybe<T> Nothing()
         {
             return new Maybe<T>();
