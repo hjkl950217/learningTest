@@ -3,7 +3,7 @@
 namespace CkTools.FP
 {
     /// <summary>
-    /// 函数式功能
+    /// 函数式功能-分部函数
     /// </summary>
     public static partial class CkFunctions
     {
