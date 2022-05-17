@@ -22,7 +22,7 @@ namespace CkTools.FP.Executer
         {
             CkFunctions.CheckNullWithException(executer, action);
 
-            executer.StepList.Add(action);
+            executer.StepList.AddLast(action);
             return executer;
         }
 
@@ -44,11 +44,11 @@ namespace CkTools.FP.Executer
 
             if (predicate)
             {
-                executer.StepList.Add(action1);
+                executer.StepList.AddLast(action1);
             }
             else
             {
-                executer.StepList.Add(action2);
+                executer.StepList.AddLast(action2);
             }
             return executer;
         }
@@ -69,7 +69,7 @@ namespace CkTools.FP.Executer
 
             if (predicate)
             {
-                executer.StepList.Add(action);
+                executer.StepList.AddLast(action);
             }
 
             return executer;
@@ -145,7 +145,7 @@ namespace CkTools.FP.Executer
         {
             CkFunctions.CheckNullWithException(executer, predicate, onEnded);
 
-            executer.StepList.Add(() =>
+            executer.StepList.AddLast(() =>
             {
                 executer.IsEnd = predicate();
                 if (executer.IsEnd)

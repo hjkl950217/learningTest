@@ -10,7 +10,11 @@ namespace CkTools.FP.Executer
     {
         #region 属性区
 
-        public List<Action> StepList { get; internal set; }
+        /// <summary>
+        /// 步骤集合
+        /// </summary>
+        public LinkedList<Action> StepList { get; internal set; }
+
         public static Action NullAction = () => { };
 
         /// <summary>
@@ -25,7 +29,7 @@ namespace CkTools.FP.Executer
         /// </summary>
         protected ActionExecuter()
         {
-            this.StepList = new List<Action>();
+            this.StepList = new LinkedList<Action>();
             this.IsEnd = false;
         }
 
@@ -34,13 +38,15 @@ namespace CkTools.FP.Executer
         /// </summary>
         public virtual void Execute()
         {
-            if (this.IsEnd) return;//用于幂等判定，结束后不再执行
+            if (this.IsEnd)
+                return;//用于幂等判定，结束后不再执行
 
             //执行中间步骤
             foreach (Action action in this.StepList)
             {
                 action();
-                if (this.IsEnd) return;//方法执行后结束则直接返回
+                if (this.IsEnd)
+                    return;//方法执行后结束则直接返回
             }
 
             this.IsEnd = true;//用于幂等判定，结束后不再执行

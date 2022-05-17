@@ -4,7 +4,8 @@ using CkTools.FP;
 namespace System
 {
     /// <summary>
-    /// 不可变数据结构.表示一个<see cref="Value"/>不可为null的数据结构
+    /// 一种函子,表示一个<see cref="Value"/>可能为null可能不为null的结构<para></para>
+    /// 在本库的实现Maybe时,在构造函数处做了处理不会返回null引用，如果传递的value是null,则返回Maybe的Nothing
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public sealed class Maybe<T> : Maybe
@@ -22,14 +23,16 @@ namespace System
 
         public Maybe([AllowNull] T value)
         {
-            if (value is null) return;
+            if (value is null)
+                return;
             this.innerValue = value;
             base.HasValue = true;
         }
 
         public Maybe([NotNull] Maybe<T> value)
         {
-            if (value?.HasValue != true) return;
+            if (value?.HasValue != true)
+                return;
             this.innerValue = value.Value;
             base.HasValue = true;
         }

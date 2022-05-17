@@ -1,7 +1,7 @@
 ﻿namespace CkTools.FP.Model
 {
     /// <summary>
-    /// 条目
+    /// 条目-用于带顺序的存储数据
     /// </summary>
     public struct Entry
     {

@@ -1,5 +1,9 @@
 ﻿namespace CkTools.FP.Model
 {
+    /// <summary>
+    /// 条目-用于带顺序的存储数据
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public struct Entry<T>
     {
         /// <summary>
