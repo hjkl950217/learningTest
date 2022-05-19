@@ -30,10 +30,10 @@ alias rm='rm -i'					#设置命令别名
 alias 						#查看别名列表
 unalias ll						#删除别名
 tail -n 1 /etc/bashrc					#查看'/etc/bashrc'文件最后一行。这个文件是全局用户的shell初始化脚本
-echo abcd | tee 123.txt				#用tee命令将信息同时输出到屏幕和文件
+echo abcd | tee -a 123.txt				#用tee命令将信息同时输出到屏幕和文件 -a是追加
 systemctl list-unit-files				#centos查看服务列表
 date						#查看现在时间
-date +%Y-%m-%d					#将时间格式化输出
+date "+%Y-%m-%d %k:%M:%S"			#将时间格式化输出
 nohup XXXX					#确保后面的XXXX命令在网络中断的情况下也不会中断
 rsync -Pavuhit6 /var/1.tmp /etc/			#快速复制文件命令，本地复制 带杠表示拷贝目录里面的内容不包括目录本身
 rsync -Pavuhit6 /var/1.tmp /etc/2.tmp			#快速复制文件命令，本地复制 带杠表示拷贝目录里面的内容不包括目录本身
@@ -41,6 +41,24 @@ rsync -Pavzuhit6 /var/1.tmp root@192.168.1.10/etc/		#快速复制文件命令，
 rsync -Pavzuhit6 /var/1.tmp root@192.168.1.10/etc/2.tmp	#快速复制文件命令，远端复制
 iotop -oP						#查看磁盘资源占用
 docker stats --no-stream				#docker查看容器资源占用情况, 不带参数会一直监控
+
+docker stats --format "table {{.Container}}\t{{.CPUPerc}}"	#docker查看容器资源占用情况,格式化输出
+docker stats --format 详细参数介绍如下：
+.Container		Container name or ID
+.Name		Container name
+.ID		 Container ID
+.CPUPerc		CPU 利用率
+.MemUsage	Memory 使用情况
+.NetIO		Network IO
+.BlockIO		Block IO
+.MemPerc		Memory percentage (Windows不可用)
+.PIDs		Number of PIDs (Windows不可用)
+
+cat /proc/<process-pid>/cgroup 			#通过pid反查容器id
+docker inspect --format '{{.Name}}' "abc" | sed 's/^\///'	#通守容器id查询名字
+cat 1.txt | tail -n +8 | head -n 2 				#查看文件第8行到第10行
+
+
 
 
 

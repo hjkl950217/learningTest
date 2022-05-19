@@ -1,6 +1,6 @@
 #!/bin/bash
 #================参数设定================
-maxFreeNum=8000
+maxFreeNum=3000
 dateStr=`date`
 usedNum=0
 freeNum=0
