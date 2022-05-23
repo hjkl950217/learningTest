@@ -34,6 +34,7 @@
     <Platforms>AnyCPU</Platforms>
 
     <!--仓库地址-->
+    <!--这块需要在项目文件中写，公用文件写了无用-->
     <RepositoryUrl></RepositoryUrl>
     <PackageProjectUrl></PackageProjectUrl>
 
