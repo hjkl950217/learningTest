@@ -61,6 +61,7 @@
         A40_任意长度2进制操作,
         A41_生成WIFI二维码,
         A42_连接Kafka,
+        A43_AspNetCore迷你,
 
         #endregion 技术点
 

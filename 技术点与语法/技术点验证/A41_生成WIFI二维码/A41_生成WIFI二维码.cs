@@ -1,7 +1,4 @@
-﻿using System;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A41_生成WIFI二维码)]
     public class A41_生成WIFI二维码 : IVerification
