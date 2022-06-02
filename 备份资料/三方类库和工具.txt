@@ -61,6 +61,9 @@
 58. miniblink 迷你的内核控件， 可以用做来桌面app,网络爬虫,自动化测试,打印
 59. AutoHistory  ef 可用的实体变更记录组件 
 60. hangfire  是一个开源的.NET任务调度框架，提供了内置集成化的控制台，可以直观明了的查看作业调度情况，并且不需要依赖于单独的应用程序执行（如：windows服务，window计划）。并且支持持久性存储。
+61. Collections.Pooled 基于span<T>改造了原生List Dictionary来提高性能。
+62. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列 
+
 
 --工具
 1. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
@@ -69,6 +72,7 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 3. 10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw
 4. ventoy 一个制作可启动U盘的开源工具,做好后把iso直接放U盘，让系统从选择的iso中启动
 5. Netch 一个游戏挂代理的加速器
+6. apifox  apipost.  fox亮点在对接了许多厂家的API，post的亮点在团队协作
 
 --中间件
 1. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/

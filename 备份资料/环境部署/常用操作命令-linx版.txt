@@ -57,6 +57,7 @@ docker stats --format 详细参数介绍如下：
 cat /proc/<process-pid>/cgroup 			#通过pid反查容器id
 docker inspect --format '{{.Name}}' "abc" | sed 's/^\///'	#通守容器id查询名字
 cat 1.txt | tail -n +8 | head -n 2 				#查看文件第8行到第10行
+lsblk						#查看硬盘挂载
 
 
 
