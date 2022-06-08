@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace System.Collections.Generic
@@ -284,6 +285,42 @@ namespace System.Collections.Generic
 
         #endregion FirstOrDefault
 
+        #region WhereIf
+
+        public static IEnumerable<TSource> WhereIf<TSource>(
+            this IEnumerable<TSource> source,
+            Func<bool> isCondition,
+            Func<TSource, bool> predicate)
+        {
+            return isCondition() ? Enumerable.Where(source, predicate) : source;
+        }
+
+        public static IEnumerable<TSource> WhereIf<TSource>(
+            this IEnumerable<TSource> source,
+            bool isCondition,
+            Func<TSource, bool> predicate)
+        {
+            return IEnumerableExtensions.WhereIf(source, () => isCondition, predicate);
+        }
+
+        public static IQueryable<TSource> WhereIf<TSource>(
+            this IQueryable<TSource> source,
+            Func<bool> isCondition,
+            Expression<Func<TSource, bool>> predicate)
+        {
+            return isCondition() ? Queryable.Where(source, predicate) : source;
+        }
+
+        public static IQueryable<TSource> WhereIf<TSource>(
+            this IQueryable<TSource> source,
+            bool isCondition,
+            Expression<Func<TSource, bool>> predicate)
+        {
+            return IEnumerableExtensions.WhereIf(source, () => isCondition, predicate);
+        }
+
+        #endregion WhereIf
+
         #region JoinString
 
         /// <summary>
@@ -315,6 +352,42 @@ namespace System.Collections.Generic
         }
 
         #endregion JoinString
+
+        #region SelectIf
+
+        public static IEnumerable<TSource> SelectIf<TSource>(
+            this IEnumerable<TSource> source,
+             Func<bool> isCondition,
+            Func<TSource, TSource> selector)
+        {
+            return isCondition() ? Enumerable.Select(source, selector) : source;
+        }
+
+        public static IEnumerable<TSource> SelectIf<TSource>(
+            this IEnumerable<TSource> source,
+             bool isCondition,
+            Func<TSource, TSource> selector)
+        {
+            return IEnumerableExtensions.SelectIf(source, () => isCondition, selector);
+        }
+
+        public static IQueryable<TSource> SelectIf<TSource>(
+            this IQueryable<TSource> source,
+            Func<bool> isCondition,
+            Expression<Func<TSource, TSource>> selector)
+        {
+            return isCondition() ? Queryable.Select(source, selector) : source;
+        }
+
+        public static IQueryable<TSource> SelectIf<TSource>(
+            this IQueryable<TSource> source,
+            bool isCondition,
+            Expression<Func<TSource, TSource>> selector)
+        {
+            return IEnumerableExtensions.SelectIf(source, () => isCondition, selector);
+        }
+
+        #endregion SelectIf
 
         #endregion Linq方法扩展
     }
