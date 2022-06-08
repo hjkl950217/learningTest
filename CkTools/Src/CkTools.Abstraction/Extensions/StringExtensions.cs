@@ -117,14 +117,50 @@ namespace System
                 return Array.Empty<string>();
             }
 
-            selector = selector ?? (t => t.Trim().ToUpper());
             return source
                 .Split(separators
                         ?? StringExtensions.DefualtSeparators,
                         StringSplitOptions.RemoveEmptyEntries)
                 .Where(i => !string.IsNullOrWhiteSpace(i))
-                .Select(i => selector(i))
+                .SelectIf(selector != null, i => selector?.Invoke(i))
                 .ToArray();
+        }
+
+        /// <summary>
+        /// 分割为数组 [仅适用于string as成object类型的情况]
+        /// </summary>
+        /// <param name="source">要处理的字符串</param>
+        /// <param name="separators">要分割的字符串.
+        /// 默认使用 ,或 ;  参考：<see cref="StringExtensions.DefualtSeparators"/>
+        /// </param>
+        /// <param name="selector">字符串的处理，默认使用Trim().ToUpper()</param>
+        /// <returns></returns>
+        public static string[] SplitToArray(
+            this object? source,
+            char[]? separators = null,
+            Func<string, string>? selector = null)
+        {
+            if (source == null || source as string == null)
+            {
+                return Array.Empty<string>();
+            }
+
+            return (source as string).SplitToArray(separators, selector);
+        }
+
+        /// <summary>
+        /// 分割为数组
+        /// </summary>
+        /// <param name="source">要处理的字符串</param>
+        /// <param name="separator">要分割的字符串.默认使用 ',' </param>
+        /// <param name="selector">字符串的处理，默认使用Trim().ToUpper()</param>
+        /// <returns></returns>
+        public static string[] SplitToArray(
+            this string source,
+            char separator = ',',
+            Func<string, string> selector = null)
+        {
+            return StringExtensions.SplitToArray(source, new char[] { separator }, selector);
         }
 
         /// <summary>
