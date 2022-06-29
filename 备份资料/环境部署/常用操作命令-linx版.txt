@@ -60,6 +60,7 @@ cat 1.txt | tail -n +8 | head -n 2 				#查看文件第8行到第10行
 lsblk						#查看硬盘挂载
 nslookup [可选 ip/域名]				#检查DNS解析
 traceroute [参数]主机]				#检查链路
+dig edoc2 +search +short | /usr/bin/sort			#用dig去DNS中解析edoc2这个地址，dig是一个dns工具
 
 
 
