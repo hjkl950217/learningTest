@@ -62,6 +62,7 @@
         A41_生成WIFI二维码,
         A42_连接Kafka,
         A43_AspNetCore迷你,
+        A44_Barrier同步基元的使用示例,
 
         #endregion 技术点
 
