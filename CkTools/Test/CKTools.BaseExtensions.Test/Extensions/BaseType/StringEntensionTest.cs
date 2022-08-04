@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using CkTools.BaseExtensions.BaseType;
 using Xunit;
 
 namespace CKTools.BaseExtensions.Test.Extensions.BaseType

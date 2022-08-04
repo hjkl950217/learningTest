@@ -1,9 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using CkTools.BaseExtensions.ConstAndEnum;
 using CkTools.BaseExtensions.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace System
+namespace CkTools.BaseExtensions.BaseType
 {
     /// <summary>
     /// 字符串扩展类
@@ -251,9 +253,33 @@ namespace System
         /// <returns></returns>
         public static string ToMD5(this string str, bool is32 = true)
         {
-            if (str.IsNullOrEmpty() == true) return string.Empty;
+            if (str.IsNullOrEmpty() == true)
+                return string.Empty;
 
             return EncryptionHelper.EncryptMD5(str, is32);
+        }
+
+        /// <summary>
+        /// 判断字符串是否为json格式
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsJson(this string str)
+        {
+            if (str.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            try
+            {
+                _ = JToken.Parse(str);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
