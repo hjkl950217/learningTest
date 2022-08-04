@@ -1,4 +1,5 @@
-﻿using CkTools.BaseExtensions.ConstAndEnum;
+﻿using CkTools.BaseExtensions.BaseType;
+using CkTools.BaseExtensions.ConstAndEnum;
 using Newtonsoft.Json;
 
 namespace System
