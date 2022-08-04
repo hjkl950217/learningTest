@@ -1,11 +1,10 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using CkTools.BaseExtensions.ConstAndEnum;
 using CkTools.BaseExtensions.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CkTools.BaseExtensions.BaseType
+namespace System
 {
     /// <summary>
     /// 字符串扩展类

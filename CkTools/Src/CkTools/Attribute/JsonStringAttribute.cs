@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using CkTools.BaseExtensions.BaseType;
 
 namespace CkTools.Attribute
 {
