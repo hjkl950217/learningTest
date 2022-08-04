@@ -63,6 +63,7 @@
 60. hangfire  是一个开源的.NET任务调度框架，提供了内置集成化的控制台，可以直观明了的查看作业调度情况，并且不需要依赖于单独的应用程序执行（如：windows服务，window计划）。并且支持持久性存储。
 61. Collections.Pooled 基于span<T>改造了原生List Dictionary来提高性能。
 62. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列 
+63. FreeRedis redis的Free版本，和FreeSql一个味道
 
 
 --工具
