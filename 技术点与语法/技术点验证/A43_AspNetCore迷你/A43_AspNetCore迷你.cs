@@ -11,6 +11,7 @@ namespace 技术点验证.A43_AspNetCore迷你
          *200行代码，7个对象——让你了解ASP.NET Core框架的本质
          *需要配合文章来看这个代码
          *原文  https://www.cnblogs.com/artech/p/inside-asp-net-core-framework.html
+         *爱迪生.周的：https://github.com/XiLife-OSPC/AspNetCore.Mini
          *
          *
          * WebHost
@@ -128,7 +129,7 @@ namespace 技术点验证.A43_AspNetCore迷你
             return httpContext =>
             {
                 RequestDelegate next = _ => { _.Response.StatusCode = 404; return Task.CompletedTask; };
-                foreach (var middleware in this._middlewares)
+                foreach(var middleware in this._middlewares)
                 {
                     next = middleware(next);
                 }
@@ -212,7 +213,7 @@ namespace 技术点验证.A43_AspNetCore迷你
 
             this._httpListener.Start();
 
-            while (true)
+            while(true)
             {
                 var listenerContext = await this._httpListener.GetContextAsync();
                 var feature = new HttpListenerFeature(listenerContext);
@@ -274,7 +275,7 @@ namespace 技术点验证.A43_AspNetCore迷你
         public IWebHost Build()
         {
             var builder = new ApplicationBuilder();
-            foreach (var configure in this._configures)
+            foreach(var configure in this._configures)
             {
                 configure(builder);
             }
