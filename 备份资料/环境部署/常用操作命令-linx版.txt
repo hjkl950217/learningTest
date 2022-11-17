@@ -62,6 +62,8 @@ nslookup [可选 ip/域名]				#检查DNS解析
 traceroute [参数]主机]				#检查链路
 dig edoc2 +search +short | /usr/bin/sort			#用dig去DNS中解析edoc2这个地址，dig是一个dns工具
 yum install ntpdate -y | ntpdate ntp1.aliyun.com		#linux 同步时间
+du -h --max-depth=1				#获取当前目录的文件夹大小
+df -h						#查看磁盘空间占用
 
 
 

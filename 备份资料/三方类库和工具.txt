@@ -68,7 +68,8 @@
 
 --工具
 1. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
-PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+   PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge:true /zip:true collect
+
 2. ConfuserEx  混淆代码工具
 3. 10个用于C＃.NET开发的基本调试工具   https://mp.weixin.qq.com/s/hWKLGvKjUdKGrGOgEFpeRw
 4. ventoy 一个制作可启动U盘的开源工具,做好后把iso直接放U盘，让系统从选择的iso中启动
@@ -106,6 +107,9 @@ PerfView.exe /GCCollectOnly /nogui /NoV2Rundown /NoNGENRundown /NoRundown /merge
 25. highchart [个人免费] 兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库
 26. LiveCharts2 .net上的图表库,支持WPF winform Xamarin
 27. apisix 网关[国产]，借鉴kong的思路，底层用etcd，性能比kong高
+28. haproxy -主要是做负载均衡的7层,也可以做4层负载均衡
+
+
 网关
 	Kong
 	apisix 国产，借鉴kong的思路，底层用etcd，性能比kong高
@@ -122,5 +126,12 @@ TiDB（国内开源，许多银行、百度、头条在用，互联网企业用�
 SequoiaDB（国内开源，银行用的多）
 
 https://get.daocloud.io/  一个docker国内镜像站,包含自动部署脚本
+
+
+--分布式Id算法
+1. UUID/GUID
+2. 雪花ID(8个节字)   MongoDb（12个字节）
+3. Hi/lo   base62思路
+4. CRC32 md5
 
 

@@ -5,12 +5,11 @@ curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-
 2.安装runner
 yum install gitlab-ci-multi-runner -y
 
-配置文件所在地址: /etc/gitlab-runner
+配置文件所在地址（可以修改runner线程数）: /etc/gitlab-runner
 
 3. 向GitLab-CI注册runner
 gitlab-ci-multi-runner register 
-
-需要打开gitlab，在注册runner的地方有地址和token
+地址和token在：http://code.gmpsoft.net:8000/groups/V5/-/settings/ci_cd 页面中获取
 
 4. 添加runner执行权限
 sudo usermod -aG docker gitlab-runner
