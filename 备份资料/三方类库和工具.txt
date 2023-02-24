@@ -64,7 +64,7 @@
 61. Collections.Pooled 基于span<T>改造了原生List Dictionary来提高性能。
 62. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列 
 63. FreeRedis redis的Free版本，和FreeSql一个味道
-
+64. RulesEngine  微软出的一个开源规则引擎类库，可以根据配置文件执行不同的逻辑处理。适合打折、促销等经常要换策略的场景
 
 --工具
 1. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
