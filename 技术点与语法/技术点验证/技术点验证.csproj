@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.3.0" />
     <PackageReference Include="Confluent.Kafka" Version="1.8.2" />
 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
