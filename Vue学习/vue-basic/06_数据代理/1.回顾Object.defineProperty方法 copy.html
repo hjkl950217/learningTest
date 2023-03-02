@@ -41,11 +41,11 @@
             //writable: false,//控制属性是否可以被修改，默认值是false
             configurable: false,//控制属性是否可以被删除，默认值是false
 
-            //当有人读取persion的age属性时，get函数(getter)就会被调用，且返回值是age的值
+            //当有人读取 persion2 的age属性时，get函数(getter)就会被调用，且返回值是age的值
             get: function perqi() {
                 return number;
             },
-            //当有人修改persion的age属性时，set函数(setter)就会被调用，且会收到修改的具体值
+            //当有人修改 persio2n 的age属性时，set函数(setter)就会被调用，且会收到修改的具体值
             set(value) {
                 number = value;
             }
