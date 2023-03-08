@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+
+    <style>
+        .box1 {
+            padding: 5px;
+            width: 40px;
+            height: 10px;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            width: 80px;
+            height: 10px;
+            background-color: orange;
+        }
+
+        .box3 {
+            width: 120px;
+            height: 10px;
+            background-color: red;
+        }
+    </style>
+
+
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--
+
+
+    -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!--绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定-->
+        <div class="box1" :class="mood" @click="changeModel"></div><br><br>
+
+        <!--绑定class样式--数组写法，适用于：要绑定的样式个数不确定、名字也不确定-->
+        <div class="box1" :class="classArr" @click="changeModel"></div><br><br>
+
+        <!--绑定class样式--对象写法，适用于：要绑定的样式个数确定、名字确定，但要动态决定用不用-->
+        <div class="box1" :class="classObj" @click="changeModel"></div><br><br>
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止 vue 在启动时生成生产提示。
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                fistName: "张",
+                lastName: "三",
+                mood: 'box2',
+                classArr: ['box1', 'box2', 'box3'],
+                classObj: {
+                    box1: true,
+                    box2: false,
+                }
+            },
+            methods: {
+                changeModel() {
+                    let arr = ['box1', 'box2', 'box3'];
+                    this.mood = arr[Math.floor(Math.random() * 3)];
+                }
+            },
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
