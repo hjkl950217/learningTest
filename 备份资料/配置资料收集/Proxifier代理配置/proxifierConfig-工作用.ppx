@@ -9,7 +9,7 @@
       <ExclusionList>%ComputerName%; localhost; *.local</ExclusionList>
       <DnsUdpMode>0</DnsUdpMode>
     </Resolve>
-    <Encryption mode="basic" />
+    <Encryption mode="disabled" />
     <HttpProxiesSupport enabled="false" />
     <HandleDirectConnections enabled="false" />
     <ConnectionLoopDetection enabled="true" />
@@ -35,16 +35,6 @@
       <Applications>"Mobile Debug.exe"</Applications>
       <Action type="Direct" />
     </Rule>
-    <Rule enabled="false">
-      <Name>dotnet.exe [auto-created]</Name>
-      <Applications>dotnet.exe</Applications>
-      <Action type="Direct" />
-    </Rule>
-    <Rule enabled="false">
-      <Name>shadowsocksr-dotnet4.0.exe [auto-created]</Name>
-      <Applications>shadowsocksr-dotnet4.0.exe</Applications>
-      <Action type="Direct" />
-    </Rule>
     <Rule enabled="true">
       <Name>Localhost</Name>
       <Targets>localhost; 127.0.0.1; %ComputerName%; ::1</Targets>
@@ -60,9 +50,9 @@
       <Applications>pwsh.exe</Applications>
       <Action type="Proxy">100</Action>
     </Rule>
-    <Rule enabled="false">
+    <Rule enabled="true">
       <Name>VS</Name>
-      <Applications>devenv.exe</Applications>
+      <Applications>devenv.exe; code.exe; inno_updater.exe</Applications>
       <Action type="Proxy">100</Action>
     </Rule>
     <Rule enabled="false">

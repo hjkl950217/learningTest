@@ -15,9 +15,6 @@ namespace CkTools.FP
     {
         public static Func<string, string> DefaultLogFormat = debugMsg => $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]  {debugMsg}";
 
-        /// <summary>
-        ///
-        /// </summary>
         public static Func<Action<string>, Func<Func<string, string>, Action<Func<string>>>> Log =>
             log =>
             format =>
@@ -28,7 +25,7 @@ namespace CkTools.FP
             format =>
             msg => CkFunctions.Log(log)(format)(() => msg);
 
-        #region Console
+        #region Log to Console
 
         /// <summary>
         /// 向控制台记录时间,使用默认格式
@@ -61,9 +58,9 @@ namespace CkTools.FP
         public static Action<string> ConsoleLog =
             msg => CkFunctions.Log(Console.WriteLine)(CkFunctions.DefaultLogFormat)(() => msg);
 
-        #endregion Console
+        #endregion Log to Console
 
-        #region File
+        #region Log to File
 
         /// <summary>
         /// 传递一个文件名函数返回一个记录函数
@@ -101,7 +98,7 @@ namespace CkTools.FP
         public static Action<string> FileLog =
             msg => CkFunctions.Log(CkFunctions.DefaultFileLog)(CkFunctions.DefaultLogFormat)(() => msg);
 
-        #endregion File
+        #endregion Log to File
     }
 }
 

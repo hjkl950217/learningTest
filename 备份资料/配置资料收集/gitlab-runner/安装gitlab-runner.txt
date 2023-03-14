@@ -16,3 +16,6 @@ sudo usermod -aG docker gitlab-runner
 验证是否生效
 sudo -u gitlab-runner -H docker info
 
+如果启动后报“gitlab-runner: Service is not running”
+chmod +x /etc/systemd/system/gitlab-runner.service
+
