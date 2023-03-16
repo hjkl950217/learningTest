@@ -35,18 +35,18 @@ namespace ConsoleApp1
 
             #region FP方式-添加Try
 
-            var setFunc2 = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
-            var downLoad2 = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            Func<string, Func<string, DownArg>> setFunc2 = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            Func<DownArg, bool> downLoad2 = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
 
             Action<Exception> showError = ex => Console.WriteLine("获取host异常");//准备异常时的处理函数
             Func<string> tryGetHostFromConfig = Try2<string>(showError)(FtpHelper.GetHostFromConfig);//添加异常时的处理
             //Func<string> tryGetHostFromConfig2 = TryWithThrow2<string>(showError)(FtpHelper.GetHostFromConfig);//处理完会抛出异常的版本
 
-            var buildArg2 = Compose(
+            Func<string, DownArg> buildArg2 = Compose(
                  setFunc2,
                  tryGetHostFromConfig);
 
-            var tryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
+            Func<string, bool> tryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
 
             tryDownFunction("/1.doc");//执行
 
@@ -70,6 +70,11 @@ namespace ConsoleApp1
         //public static Func<string> GetHostFromConfig = () => "localhost";//假设从配置文件中读取host
         public static Func<string> GetHostFromConfig = () => throw new Exception("error");//模拟异常
 
+        /// <summary>
+        /// 设置下载参数<para></para>
+        /// arg1:host<para></para>
+        /// arg2:url
+        /// </summary>
         public static Func<string, string, DownArg> SetDownlodArg =
             (host, url) => new DownArg()
             {
