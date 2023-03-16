@@ -20,11 +20,11 @@ namespace CkTools.BaseExtensions.Model
             this.EnumValue = enumValue;
             this.BaseValueType = baseValueType;
             this.EnumType = enumType;
+            this.AttributeArray = attributeArray ?? Array.Empty<Attribute>();
 
+            //额外处理的
             this.BaseValue = Convert.ChangeType(enumValue, baseValueType);
             this.BaseValueString = Enum.Format(enumType, enumValue, BaseValueStringFormatStr);
-
-            this.AttributeArray = attributeArray ?? Array.Empty<Attribute>();
         }
 
         /// <summary>
