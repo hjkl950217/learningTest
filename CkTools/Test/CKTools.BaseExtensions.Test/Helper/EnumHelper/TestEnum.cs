@@ -6,7 +6,10 @@ namespace CKTools.BaseExtensions.Test.Helper.EnumHelper
     internal enum TestEnumAttr
     {
         [EnumDescription(ShowValue: "-Default-", DbValue: "D", Description: "Default")]
-        Default
+        Default,
+
+        [EnumDescription(ShowValue: "-None-", DbValue: "N", Description: "None")]
+        None
     }
 
     internal enum TestEnumByte : byte
