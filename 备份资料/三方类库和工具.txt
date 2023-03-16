@@ -11,7 +11,7 @@
 9. ErrorProne.NET  一套基于roslyn的分析器，用于捕获常见的C＃错误
 10. PDFsharp 免费的处理PDF的库，无平台限制
 11. NSubstitute  moq UT中用于mock数据的框架
-12  Polly是一个.NET弹性和瞬态故障处理库，允许开发人员以流畅和线程安全的方式表达诸如重试，断路器，超时，隔离头和回退之类的策略
+12  Polly是一个.NET弹性和瞬态故障处理库，允许开发人员以流畅和线程安全的方式表达诸如重试，断路器，超时，隔离头和回退之类的策略。熔断 降级 重试
 13. language-ext 一个C#里使用FP风格的库
 14. FlubuCore 跨平台的构建和部署自动化系统，用于使用C＃代码构建项目和执行部署脚本
 15. Hangfire 执行后台作业处理的库
@@ -25,7 +25,7 @@
 23. Digipolis.DataAccess  EF的UnitOfWork和Repositories的基类。
 24. Exceptionless.DateTimeExtensions    DateTimeRange，工作日和各种DateTime，DateTimeOffset，TimeSpan扩展方法。
 25. FluentDateTime 流式的datetime操作扩展
-26. Enums.NET 高性能类型安全的.NET枚举实用程序库
+26. Enums.NET 高性能类型安全的.NET枚举实用程序库，解决不同枚举操作之间的一些问题
 27. FluentFTP FTP和FTPS客户端
 28. Humanizer  满足显示字符串，枚举，日期，时间，时间跨度，数字和数量的所有.NET需求。
 30. pose - 用委托替换任何.NET方法(包括静态和非虚拟)
@@ -52,6 +52,20 @@
 49. Z.EntityFramework.Plus.EFCore ef的扩展库，包括过滤器，缓存，提前查询，批量操作等EF扩展功能。
 50. SharpCompress 纯C＃文件压缩操作库，支持unrar, un7zip, unzip, untar unbzip2, ungzip, unlzip
 51. norns 大腿写的一个AOP库，比AspectCore轻量一些
+<<<<<<< HEAD
+52. Supersocket 即时通信的库，配置简单
+53. coverlet.msbuild 单元测试中收集覆盖率的插件库
+54. LogDashboard 日志可视化工具
+55. ViewConfig  查看一个配置是由哪一个Provider执行的
+56. Ben.BlockingDetector 程序阻塞监控
+57. miniblink 迷你的内核控件， 可以用做来桌面app,网络爬虫,自动化测试,打印
+58. AutoHistory  ef 可用的实体变更记录组件 
+59. hangfire  是一个开源的.NET任务调度框架，提供了内置集成化的控制台，可以直观明了的查看作业调度情况，并且不需要依赖于单独的应用程序执行（如：windows服务，window计划）。并且支持持久性存储。
+60. Collections.Pooled 基于span<T>改造了原生List Dictionary来提高性能。
+61. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列 
+62. FreeRedis redis的Free版本，和FreeSql一个味道
+63. HttpReports  一个简单好用的APM工具，针对http API调用的监控平台，有类库支持，还支持链路追踪
+=======
 52. Enums.NET 解决不同枚举操作之间的一些问题
 53. Supersocket 即时通信的库，配置简单
 54. coverlet.msbuild 单元测试中收集覆盖率的插件库
@@ -66,6 +80,7 @@
 63. FreeRedis redis的Free版本，和FreeSql一个味道
 64. RulesEngine  微软出的一个开源规则引擎类库，可以根据配置文件执行不同的逻辑处理。适合打折、促销等经常要换策略的场景
 65.  FluentAssertions 单元测试中可能用到的流式断言库
+>>>>>>> d4d7d570d752a09aa0107337899b8d80cd0ad5d7
 
 --工具
 1. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
