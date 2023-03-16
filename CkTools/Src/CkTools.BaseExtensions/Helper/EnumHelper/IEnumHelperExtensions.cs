@@ -29,14 +29,14 @@ namespace CkTools.Helper
 
             //遍历数据并组合成Dictionary
             EnumData enumData = enumHelper.GetOrAddEnumCache(typeof(TEnum));
-            foreach (EnumValueData? item in enumData.EnumValueDataArray)
+            foreach(EnumValueData? item in enumData.EnumValueDataArray)
             {
                 try
                 {
                     TValue value = convert(item);
                     resultList.Add(item.EnumValueName, value);
                 }
-                catch (InvalidCastException ex)
+                catch(InvalidCastException ex)
                 {
                     throw new InvalidCastException(
                         $"获取枚举结构时，枚举值的类型传递错误。枚举名:{item.EnumType.Name}",
@@ -127,7 +127,8 @@ namespace CkTools.Helper
         {
             EnumData enumData = enumHelper.GetOrAddEnumCache(enumValue.GetType());
 
-            return enumData.EnumValueDataArray.FirstOrDefault(t => t.EnumValue == enumValue);
+            return enumData.EnumValueDataArray
+                .FirstOrDefault(t => enumValue.Equals(t.EnumValue));
         }
 
         #endregion 获取结构
@@ -158,7 +159,7 @@ namespace CkTools.Helper
                 .Find(fieldArray, t => enumValue.Equals(t.EnumValue))
                 ?.AttributeArray;
 
-            if (enumValueAttributeArry == null)
+            if(enumValueAttributeArry == null)
             {
                 return null;
             }

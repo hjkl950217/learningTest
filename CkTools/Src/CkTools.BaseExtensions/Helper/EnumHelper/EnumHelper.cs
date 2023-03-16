@@ -47,13 +47,13 @@ namespace CkTools.Helper
             FieldInfo[] fields = enumType
                  .GetFields(BindingFlags.Static | BindingFlags.Public)
                  ?? Array.Empty<FieldInfo>();
-            List<EnumValueData> tempEnumValueDataList = new List<EnumValueData>();
 
-            foreach (FieldInfo? item in fields)
+            List<EnumValueData> tempEnumValueDataList = new List<EnumValueData>();
+            foreach(FieldInfo? item in fields)
             {
                 //解析数据
                 object enumValue = item.GetValue(null);
-                Type baseValueType = System.Enum.GetUnderlyingType(enumValue.GetType());
+                Type baseValueType = Enum.GetUnderlyingType(enumValue.GetType());
                 Attribute[] attributeArry = item
                     .GetCustomAttributes<Attribute>()
                     .ToArray();
@@ -81,7 +81,7 @@ namespace CkTools.Helper
         [return: NotNull]
         public EnumData GetOrAddEnumCache(Type enumType)
         {
-            if (enumType.BaseType != typeof(Enum))
+            if(enumType.BaseType != typeof(Enum))
             {
                 throw new ArgumentException($"{enumType} 's BaseType must be a subclass of A {typeof(Enum)}", $"{enumType}");
             }

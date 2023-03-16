@@ -33,9 +33,8 @@ namespace CkTools.BaseExtensions.Model
         public string EnumValueName { get; }
 
         /// <summary>
-        /// 枚举值
+        /// 枚举项数据，如果获取值请直接使用<see cref="BaseValue"/>
         /// </summary>
-        /// <remarks>因为从反射出来的数据类型是object</remarks>
         public Enum EnumValue { get; }
 
         /// <summary>
