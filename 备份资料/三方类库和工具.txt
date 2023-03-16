@@ -109,6 +109,7 @@
 26. LiveCharts2 .net上的图表库,支持WPF winform Xamarin
 27. apisix 网关[国产]，借鉴kong的思路，底层用etcd，性能比kong高
 28. haproxy -主要是做负载均衡的7层,也可以做4层负载均衡
+29. NewLifeX 全家桶，各个中间件和程序的分布式监控。有一个轻量的分布式服务框架，包括配置、监控、发布、服务发现等。地址：https://github.com/NewLifeX
 
 
 网关
