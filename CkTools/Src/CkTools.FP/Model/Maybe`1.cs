@@ -23,7 +23,7 @@ namespace System
 
         public Maybe([AllowNull] T value)
         {
-            if (value is null)
+            if(value is null)
                 return;
 
             this.innerValue = value;
@@ -32,7 +32,7 @@ namespace System
 
         public Maybe([NotNull] Maybe<T> value)
         {
-            if (!value.HasValue)
+            if(!value.HasValue)
                 return;
 
             this.innerValue = value.Value;
@@ -61,7 +61,7 @@ namespace System
         /// 获取一个空值<see cref="Maybe{T}"/>
         /// </summary>
         /// <returns></returns>
-        public static Maybe<T> Nothing()
+        public new static Maybe<T> Nothing()
         {
             return new Maybe<T>();
         }
