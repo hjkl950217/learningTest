@@ -26,31 +26,6 @@ namespace FileCopy
             DateTime lastModifiedTime = DateTime.MinValue; // 定义最新复制文件的修改时间
             DateTime now = DateTime.Now;//定义当前时间
 
-            // 创建日志文件夹
-            string logFolder = "logs";
-            if(!Directory.Exists(logFolder))
-            {
-                Directory.CreateDirectory(logFolder);
-            }
-
-            // 计算当前日期的字符串表示
-            string currentDateStr = DateTime.Now.ToString("yyyy-MM-dd");
-            string logFilePath = Path.Combine(logFolder, $"log_{currentDateStr}.txt");
-
-            // 如果当天的日志文件不存在，则创建一个新的日志文件
-            FileStream logFileStream = null;
-            StreamWriter logWriter = null;
-            if(!File.Exists(logFilePath))
-            {
-                logFileStream = new FileStream(logFilePath, FileMode.CreateNew, FileAccess.Write);
-                logWriter = new StreamWriter(logFileStream);
-            }
-            else
-            {
-                logFileStream = new FileStream(logFilePath, FileMode.Append, FileAccess.Write);
-                logWriter = new StreamWriter(logFileStream);
-            }
-
             #endregion 准备日志相关
 
             #region 复制文件
@@ -67,7 +42,7 @@ namespace FileCopy
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
                     string message = $"文件 {fileName} 不是允许的文件后缀，跳过复制";
-                    WriteLog(ref logWriter, message, now);
+                    LogHelper.WriteLog(message, now);
                     continue;
                 }
 
@@ -76,7 +51,7 @@ namespace FileCopy
                 if(File.Exists(targetFilePath))
                 {
                     string message = $"文件 {fileName} 已经存在于目标地址，跳过复制";
-                    WriteLog(ref logWriter, message, now);
+                    LogHelper.WriteLog(message, now);
                     continue;
                 }
 
@@ -86,7 +61,7 @@ namespace FileCopy
                 if(fileSize < fileSizeLimit)
                 {
                     string message = $"文件 {fileName} 小于限制大小，跳过复制";
-                    WriteLog(ref logWriter, message, now);
+                    LogHelper.WriteLog(message, now);
                     continue;
                 }
 
@@ -95,7 +70,7 @@ namespace FileCopy
                 if(lastWriteTime <= timeLimit)
                 {
                     string message = $"文件 {fileName} 修改时间早于限制时间，跳过复制";
-                    WriteLog(ref logWriter, message, now);
+                    LogHelper.WriteLog(message, now);
                     continue;
                 }
 
@@ -108,7 +83,7 @@ namespace FileCopy
                 #region 复制后
 
                 string successMessage = $"成功复制文件 {fileName}";
-                WriteLog(ref logWriter, successMessage, now);
+                LogHelper.WriteLog(successMessage, now);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
                 if(lastModifiedTime < lastWriteTime)
@@ -131,33 +106,12 @@ namespace FileCopy
                 File.WriteAllText("config.json", updatedJson);
 
                 string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新修改时间为 {lastModifiedTime}";
-                WriteLog(ref logWriter, updateTimeMessage, now);
+                LogHelper.WriteLog(updateTimeMessage, now);
             }
 
-            WriteLog(ref logWriter, separatorMsg, now); //输出分割符
-
-            //关闭日志流
-            logWriter.Close();
-            logFileStream.Close();
+            LogHelper.WriteLog(separatorMsg, now); //输出分割符
 
             #endregion 复制后的处理
-        }
-
-        public static void WriteLog(ref StreamWriter writer, string message, DateTime logDate)
-        {
-            string timestamp = DateTime.Now.ToString("HH:mm:ss");
-            string logMessage = $"[{timestamp}] {message}";
-            writer.WriteLine(logMessage);
-
-            // 每天创建一个新的日志文件，如果当前日期与日志日期不同，则关闭当前日志文件并创建一个新的日志文件
-            if(logDate != DateTime.Today)
-            {
-                writer.Close();
-                writer.Dispose();
-                writer = null;
-
-                writer = new StreamWriter(Path.Combine("logs", $"log_{logDate:yyyy-MM-dd}.txt"), true);
-            }
         }
     }
 }
