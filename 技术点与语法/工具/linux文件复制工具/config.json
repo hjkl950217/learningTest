@@ -1,5 +1,10 @@
 {
   "source": "E:\\个人\\tagCopy\\fileSource",
+  //"source": "E:\\个人\\tagCopy\\fileSource",
   "target": "E:\\个人\\tagCopy\\fileTarget",
+  //"target": "E:\\个人\\tagCopy\\fileTarget",
+  "allowedExtensions": [ "mp4", "avi" ],
+  "timeLimit": "2023-03-19",
+  "excludeAddrs": [],
   "fileSizeLimit": 20
 }

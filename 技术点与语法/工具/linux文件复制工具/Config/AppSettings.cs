@@ -33,5 +33,12 @@ namespace FileCopy
         /// </summary>
         [JsonProperty("allowedExtensions")]
         public string[] AllowedExtensions { get; set; }
+
+        /// <summary>
+        /// 排除地址
+        /// </summary>
+        [JsonProperty("excludeAddrs")]
+        public string[] ExcludeAddrs { get; set; }
+         
     }
 }

@@ -65,6 +65,8 @@
             string timestamp = DateTime.Now.ToString("HH:mm:ss");
             string logMessage = $"[{timestamp}] {message}";
             logWriter.WriteLine(logMessage);
+
+            //Console.WriteLine(logMessage;
         }
     }
 }
