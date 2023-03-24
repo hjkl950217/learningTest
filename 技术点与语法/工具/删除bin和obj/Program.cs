@@ -2,13 +2,15 @@
 {
     private static void Main(string[] args)
     {
-        string folderPath = @"E:\公司\成都-鸿翼医药\V5"; // 替换为您要扫描的文件夹路径
+        string folderPath = @"E:\个人\learningTest\技术点与语法";
 
         string[] includePatterns = { "obj", "bin" };
 
         string[] directories = Directory
-            .GetDirectories(folderPath, "*", SearchOption.AllDirectories)
-            .Where(t => includePatterns.Any(p => IsMatch(t, p)))
+            .GetDirectories(folderPath, "*bin", SearchOption.AllDirectories)
+            .Concat(Directory
+                .GetDirectories(folderPath, "*obj", SearchOption.AllDirectories))
+            .Where(t => includePatterns.Any(p => t.EndsWith(p)))
             .ToArray();
 
         foreach(string directory in directories)
@@ -19,10 +21,5 @@
 
         Console.WriteLine($"完成，删除了{directories.Length}个文件夹");
         Console.ReadLine();
-    }
-
-    public static bool IsMatch(string str, string matchStr)
-    {
-        return str.EndsWith(matchStr);
     }
 }
