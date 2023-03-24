@@ -13,10 +13,7 @@ namespace FileCopy
 
         public static void Main(string[] args)
         {
-
-
             #region 读取配置
-           
 
             AppSettings settings = ConfigHelper.GetConfig();
 
@@ -24,10 +21,8 @@ namespace FileCopy
             string targetDir = settings.Target;
             long fileSizeLimit = settings.FileSizeLimit * 1024 * 1024;
             DateTime timeLimit = settings.TimeLimit ?? DateTime.MinValue;
-            string[] allowedExtensions = settings.AllowedExtensions ?? new string[] { "*"};
+            string[] allowedExtensions = settings.AllowedExtensions ?? new string[] { "*" };
             string[] excludeAddrs = settings.ExcludeAddrs ?? Array.Empty<string>();
-
-          
 
             #endregion 读取配置
 
@@ -38,6 +33,7 @@ namespace FileCopy
 
             LogHelper.WriteLog(separatorMsg, now); //输出分割符
             LogHelper.WriteLog($"当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}", now);
+
             #endregion 准备日志相关
 
             #region 复制文件
@@ -52,7 +48,7 @@ namespace FileCopy
                 #region 条件判断
 
                 // 判断是否为排除地址，如果不是则跳过
-                if(excludeAddrs.Any(t=> sourceFilePath.Contains(t)))
+                if(excludeAddrs.Any(t => sourceFilePath.Contains(t)))
                 {
                     //string message = $"文件 {fileName} 在排除文件夹中，跳过复制";
                     //LogHelper.WriteLog(message, now);
@@ -105,7 +101,8 @@ namespace FileCopy
                 count++;
 
                 #region 复制后
-                var elapsedSec = stopwatch.ElapsedMilliseconds / 1000.0;
+
+                double elapsedSec = stopwatch.ElapsedMilliseconds / 1000.0;
                 double fileSizeMb = (new FileInfo(sourceFilePath)).Length / 1024.0 / 1024.0;
                 double speed = fileSizeMb / elapsedSec;
 
@@ -145,8 +142,5 @@ namespace FileCopy
 
             #endregion 复制后的处理
         }
-
-
-   
     }
 }
