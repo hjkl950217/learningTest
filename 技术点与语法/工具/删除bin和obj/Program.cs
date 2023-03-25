@@ -2,9 +2,9 @@
 {
     private static void Main(string[] args)
     {
-        string folderPath = @"E:\个人\learningTest\技术点与语法";
+        string folderPath = @"Y:\资料和文档等\学习相关\工作区\learningTest";
 
-        string[] includePatterns = { "obj", "bin" };
+        string[] includePatterns = { @"\obj", @"\bin" };
 
         string[] directories = Directory
             .GetDirectories(folderPath, "*bin", SearchOption.AllDirectories)
