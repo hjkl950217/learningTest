@@ -53,16 +53,16 @@
                     return this.isHot = !this.isHot;
                 }
             },
-            // watch: {
-            //     isHot: {
-            //         //handlerInterceptor 监视-拦截器的简写
-            //         handler(newValue, oldValue) {
-            //             console.log(newValue, oldValue);
-            //         },
-            //         immediate: true//初始化时让handler调用一次
+            watch: {
+                isHot: {
+                    //handlerInterceptor 监视-拦截器的简写
+                    handler(newValue, oldValue) {
+                        console.log(newValue, oldValue);
+                    },
+                    immediate: true//初始化时让handler调用一次
 
-            //     }
-            // }
+                }
+            }
 
 
         });
