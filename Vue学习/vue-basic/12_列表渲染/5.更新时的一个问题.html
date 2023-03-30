@@ -56,7 +56,10 @@
             methods: {
                 updateMei() {
                     // this.persons[0].name = '马冬梅2';
-                    this.persons[0] = { id: '001', name: '马冬梅22222', age: 180 }
+                    // this.persons[0] = { id: '001', name: '马冬梅22222', age: 180 }//无效
+                    this.persons.splice(0, 1, { id: '001', name: '马冬梅22222', age: 180 });
+
+
                 }
             },
 
