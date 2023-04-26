@@ -139,7 +139,7 @@ namespace FileCopy
             }
 
             LogHelper.WriteLog(separatorMsg, now); //输出分割符
-
+            LogHelper.CloseLog();
             #endregion 复制后的处理
         }
     }

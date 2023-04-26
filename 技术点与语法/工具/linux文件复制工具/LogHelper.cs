@@ -54,8 +54,8 @@
         public static void CloseLog()
         {
             //关闭日志流
-            logWriter.Close();
-            logFileStream.Close();
+            logWriter?.Close();
+            logFileStream?.Close();
         }
 
         public static void WriteLog(string message, DateTime logDate)
@@ -66,7 +66,7 @@
             string logMessage = $"[{timestamp}] {message}";
             logWriter.WriteLine(logMessage);
 
-            //Console.WriteLine(logMessage;
+            Console.WriteLine(logMessage);
         }
     }
 }
