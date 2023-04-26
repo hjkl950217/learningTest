@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using FileCopy.Config;
 using Newtonsoft.Json;
 
@@ -13,6 +14,8 @@ namespace FileCopy
 
         public static void Main(string[] args)
         {
+          
+
             #region 读取配置
 
             AppSettings settings = ConfigHelper.GetConfig();
@@ -43,8 +46,19 @@ namespace FileCopy
             string[] fileNameArray = Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories);
             foreach(string sourceFilePath in fileNameArray)
             {
+
+                if(!sourceFilePath.Contains("NGOD-177-C"))
+                {
+                    continue;
+                }
+               
+
+                FileInfo fileInfo = new(sourceFilePath);
                 string fileName = Path.GetFileName(sourceFilePath);
 
+                string folderPath = Path.GetDirectoryName(sourceFilePath);
+                DirectoryInfo folderInfo = new DirectoryInfo(folderPath);
+              
                 #region 条件判断
 
                 // 判断是否为排除地址，如果不是则跳过
@@ -74,7 +88,6 @@ namespace FileCopy
                 }
 
                 // 判断文件大小是否小于限制，如果小于则跳过该文件
-                FileInfo fileInfo = new(sourceFilePath);
                 long fileSize = fileInfo.Length;
                 if(fileSize < fileSizeLimit)
                 {
@@ -82,11 +95,15 @@ namespace FileCopy
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }
-
-                // 判断文件修改时间是否晚于限制，如果晚于则进行复制
-                DateTime lastWriteTime = fileInfo.LastWriteTime;
-                if(lastWriteTime <= timeLimit)
+              
+                  // 判断文件修改时间是否晚于限制，如果晚于则进行复制
+                  DateTime lastTime=new DateTime[] { folderInfo.LastAccessTime, fileInfo.LastWriteTime }
+                    .OrderByDescending(t=>t)
+                    .First();
+                if(lastTime <= timeLimit)
                 {
+                 
+                    
                     //string message = $"文件 {fileName} 修改时间早于限制时间，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
@@ -96,7 +113,8 @@ namespace FileCopy
 
                 //复制
                 stopwatch.Restart();
-                File.Copy(sourceFilePath, targetFilePath);
+                File.Copy(sourceFilePath, targetFilePath);//复制
+                File.SetLastWriteTime(targetFilePath, lastTime);//设置时间为最新（因为qb下载时间复制出来时不会更新）
                 stopwatch.Stop();
                 count++;
 
@@ -110,9 +128,9 @@ namespace FileCopy
                 LogHelper.WriteLog(successMessage, now);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
-                if(lastModifiedTime < lastWriteTime)
+                if(lastModifiedTime < lastTime)
                 {
-                    lastModifiedTime = lastWriteTime;
+                    lastModifiedTime = lastTime;
                 }
 
                 #endregion 复制后
@@ -129,7 +147,7 @@ namespace FileCopy
                 string updatedJson = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 File.WriteAllText("config.json", updatedJson);
 
-                string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新修改时间为 {lastModifiedTime:yyyy-MM-dd HH:mm:ss}";
+                string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新处理时间为 {lastModifiedTime:yyyy-MM-dd HH:mm:ss}";
                 LogHelper.WriteLog(updateTimeMessage, now);
             }
             else
