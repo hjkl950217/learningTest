@@ -21,7 +21,7 @@ namespace FileCopy
             string targetDir = settings.Target;
             long fileSizeLimit = settings.FileSizeLimit * 1024 * 1024;
             DateTime timeLimit = settings.TimeLimit ?? DateTime.MinValue;
-            string[] allowedExtensions = settings.AllowedExtensions ?? new string[] { "*" };
+            string[] allowedExtensions = settings.AllowedExtensions ?? Array.Empty<string>();
             string[] excludeAddrs = settings.ExcludeAddrs ?? Array.Empty<string>();
 
             #endregion 读取配置
@@ -56,7 +56,7 @@ namespace FileCopy
                 }
 
                 // 判断是否为允许的文件后缀，如果不是则跳过
-                string extension = Path.GetExtension(fileName).TrimStart('.');
+                string extension = Path.GetExtension(fileName).TrimStart('.').ToLower();
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
                     //string message = $"文件 {fileName} 不是允许的文件后缀，跳过复制";
