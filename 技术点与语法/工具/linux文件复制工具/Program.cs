@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using FileCopy.Config;
 using Newtonsoft.Json;
 
@@ -14,8 +13,6 @@ namespace FileCopy
 
         public static void Main(string[] args)
         {
-          
-
             #region 读取配置
 
             AppSettings settings = ConfigHelper.GetConfig();
@@ -46,19 +43,15 @@ namespace FileCopy
             string[] fileNameArray = Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories);
             foreach(string sourceFilePath in fileNameArray)
             {
+                FileInfo sourceFileInfo = new(sourceFilePath);
+                // string sourceFileName = Path.GetFileName(sourceFilePath);
 
-                if(!sourceFilePath.Contains("NGOD-177-C"))
-                {
-                    continue;
-                }
-               
+                string sourceFolderPath = Path.GetDirectoryName(sourceFilePath);
+                DirectoryInfo sourceFolderInfo = new DirectoryInfo(sourceFolderPath);
 
-                FileInfo fileInfo = new(sourceFilePath);
-                string fileName = Path.GetFileName(sourceFilePath);
+                string targetFilePath = Path.Combine(targetDir, sourceFileInfo.Name);
+                FileInfo targetFileInfo = new(targetFilePath);
 
-                string folderPath = Path.GetDirectoryName(sourceFilePath);
-                DirectoryInfo folderInfo = new DirectoryInfo(folderPath);
-              
                 #region 条件判断
 
                 // 判断是否为排除地址，如果不是则跳过
@@ -70,7 +63,9 @@ namespace FileCopy
                 }
 
                 // 判断是否为允许的文件后缀，如果不是则跳过
-                string extension = Path.GetExtension(fileName).TrimStart('.').ToLower();
+                string extension = sourceFileInfo.Extension
+                    .TrimStart('.')
+                    .ToLower();
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
                     //string message = $"文件 {fileName} 不是允许的文件后缀，跳过复制";
@@ -79,31 +74,37 @@ namespace FileCopy
                 }
 
                 // 判断目标地址下是否已经存在同名文件，如果存在则跳过该文件
-                string targetFilePath = Path.Combine(targetDir, fileName);
                 if(File.Exists(targetFilePath))
                 {
-                    //string message = $"文件 {fileName} 已经存在于目标地址，跳过复制";
-                    //LogHelper.WriteLog(message, now);
-                    continue;
+                    if(targetFileInfo.Length == sourceFileInfo.Length)
+                    {
+                        //string message = $"文件 {fileName} 已经存在于目标地址，跳过复制";
+                        //LogHelper.WriteLog(message, now);
+                        continue;
+                    }
+                    else
+                    {
+                        //遇到同名但东西不一样的文件，需要重命名
+                        targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetRandomFileName());
+                        targetFileInfo = new(targetFilePath);
+                    }
                 }
 
                 // 判断文件大小是否小于限制，如果小于则跳过该文件
-                long fileSize = fileInfo.Length;
-                if(fileSize < fileSizeLimit)
+                long sourceFileSize = sourceFileInfo.Length;
+                if(sourceFileSize < fileSizeLimit)
                 {
                     //string message = $"文件 {fileName} 小于限制大小，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }
-              
-                  // 判断文件修改时间是否晚于限制，如果晚于则进行复制
-                  DateTime lastTime=new DateTime[] { folderInfo.LastAccessTime, fileInfo.LastWriteTime }
-                    .OrderByDescending(t=>t)
-                    .First();
+
+                // 判断文件修改时间是否比限制时间新，如果新则进行复制
+                DateTime lastTime = new DateTime[] { sourceFolderInfo.LastAccessTime, sourceFileInfo.LastWriteTime }
+                  .OrderByDescending(t => t)
+                  .First();
                 if(lastTime <= timeLimit)
                 {
-                 
-                    
                     //string message = $"文件 {fileName} 修改时间早于限制时间，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
@@ -124,7 +125,7 @@ namespace FileCopy
                 double fileSizeMb = (new FileInfo(sourceFilePath)).Length / 1024.0 / 1024.0;
                 double speed = fileSizeMb / elapsedSec;
 
-                string successMessage = $"成功复制文件 {fileName},速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
+                string successMessage = $"成功复制文件 {sourceFileInfo.Name},速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
                 LogHelper.WriteLog(successMessage, now);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
@@ -158,6 +159,7 @@ namespace FileCopy
 
             LogHelper.WriteLog(separatorMsg, now); //输出分割符
             LogHelper.CloseLog();
+
             #endregion 复制后的处理
         }
     }
