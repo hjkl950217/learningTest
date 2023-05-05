@@ -1,3 +1,4 @@
+---centos包源
 etc/yum.repos.d 目录下面的文件就代表包源，通过删除文件可以控制删除包源
 
 阿里：
@@ -11,4 +12,9 @@ https://ius.io/setup
 缺失文件搜索（用IUS源安装时缺少文件可以在这里搜索，然后安装对应包）：
 https://pkgs.org/search/?q=libsecret-1.so.0
 
+
+---winget包源：
+USTC:
+winget source add winget https://mirrors.ustc.edu.cn/winget-source
+地址：http://cernet.mirrors.ustc.edu.cn/help/winget-source.html
 
