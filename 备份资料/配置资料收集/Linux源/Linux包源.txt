@@ -10,3 +10,5 @@ https://ius.io/setup
 
 缺失文件搜索（用IUS源安装时缺少文件可以在这里搜索，然后安装对应包）：
 https://pkgs.org/search/?q=libsecret-1.so.0
+
+
