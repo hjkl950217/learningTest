@@ -13,6 +13,13 @@ namespace FileCopy
 
         public static void Main(string[] args)
         {
+            //string addr = @"C:\Users\2A023\Desktop\Sf\f1\f2\f3\vide1.mp4";
+
+            //// 设置最后修改时间为当前时间
+            //File.SetCreationTime(addr, DateTime.Now.AddDays(-20));
+
+            //return;
+
             #region 读取配置
 
             AppSettings settings = ConfigHelper.GetConfig();
@@ -57,7 +64,7 @@ namespace FileCopy
                 // 判断是否为排除地址，如果不是则跳过
                 if(excludeAddrs.Any(t => sourceFilePath.Contains(t)))
                 {
-                    //string message = $"文件 {fileName} 在排除文件夹中，跳过复制";
+                    //string message = $"文件 {sourceFileInfo.Name} 在排除文件夹中，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }
@@ -68,7 +75,7 @@ namespace FileCopy
                     .ToLower();
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
-                    //string message = $"文件 {fileName} 不是允许的文件后缀，跳过复制";
+                    //string message = $"文件 {sourceFileInfo.Name} 不是允许的文件后缀，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }
@@ -78,14 +85,21 @@ namespace FileCopy
                 {
                     if(targetFileInfo.Length == sourceFileInfo.Length)
                     {
-                        //string message = $"文件 {fileName} 已经存在于目标地址，跳过复制";
+                        //string message = $"文件 {sourceFileInfo.Name} 已经存在于目标地址，跳过复制";
+                        //LogHelper.WriteLog(message, now);
+                        continue;
+                    }
+
+                    //遇到同名但长度不一样的文件，需要重命名后计算
+                    targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetRandomName());
+                    if(File.Exists(targetFilePath))
+                    {
+                        //string message = $"文件 {sourceFileInfo.GetRandomName()} 已经存在于目标地址，跳过复制";
                         //LogHelper.WriteLog(message, now);
                         continue;
                     }
                     else
                     {
-                        //遇到同名但东西不一样的文件，需要重命名
-                        targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetRandomFileName());
                         targetFileInfo = new(targetFilePath);
                     }
                 }
@@ -94,18 +108,22 @@ namespace FileCopy
                 long sourceFileSize = sourceFileInfo.Length;
                 if(sourceFileSize < fileSizeLimit)
                 {
-                    //string message = $"文件 {fileName} 小于限制大小，跳过复制";
+                    //string message = $"文件 {sourceFileInfo.Name} 小于限制大小，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }
 
                 // 判断文件修改时间是否比限制时间新，如果新则进行复制
-                DateTime lastTime = new DateTime[] { sourceFolderInfo.LastAccessTime, sourceFileInfo.LastWriteTime }
-                  .OrderByDescending(t => t)
-                  .First();
+                DateTime lastTime = new DateTime[]
+                {
+                    sourceFolderInfo.LastAccessTime,
+                    sourceFileInfo.LastWriteTime
+                }
+                .OrderByDescending(t => t)
+                .First();
                 if(lastTime <= timeLimit)
                 {
-                    //string message = $"文件 {fileName} 修改时间早于限制时间，跳过复制";
+                    //string message = $"文件 {sourceFileInfo.Name} 修改时间早于限制时间，跳过复制";
                     //LogHelper.WriteLog(message, now);
                     continue;
                 }

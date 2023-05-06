@@ -17,7 +17,7 @@ namespace FileCopy
         public string Target { get; set; }
 
         /// <summary>
-        /// 文件大小
+        /// 文件大小（M）
         /// </summary>
         [JsonProperty("fileSizeLimit")]
         public int FileSizeLimit { get; set; }
@@ -39,6 +39,5 @@ namespace FileCopy
         /// </summary>
         [JsonProperty("excludeAddrs")]
         public string[] ExcludeAddrs { get; set; }
-         
     }
 }
