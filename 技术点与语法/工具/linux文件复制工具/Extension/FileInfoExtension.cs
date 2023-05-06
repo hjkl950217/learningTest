@@ -35,11 +35,12 @@ namespace FileCopy
         }
 
         /// <summary>
-        /// 获取随机后的文件名，带后缀
+        /// 获取MD5后的文件名，带后缀
         /// </summary>
         /// <param name="fileInfo"></param>
+        /// <remarks>用带路径的文件名计算MD5并附加到文件名中</remarks>
         /// <returns></returns>
-        public static string GetRandomName(this FileInfo fileInfo)
+        public static string GetMD5Name(this FileInfo fileInfo)
         {
             return $"{FileInfoExtension.GetRandomFileName(fileInfo)}{fileInfo.Extension}";
         }

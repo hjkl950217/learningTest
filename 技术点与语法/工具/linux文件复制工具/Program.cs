@@ -91,10 +91,10 @@ namespace FileCopy
                     }
 
                     //遇到同名但长度不一样的文件，需要重命名后计算
-                    targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetRandomName());
+                    targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetMD5Name());
                     if(File.Exists(targetFilePath))
                     {
-                        //string message = $"文件 {sourceFileInfo.GetRandomName()} 已经存在于目标地址，跳过复制";
+                        //string message = $"文件 {sourceFileInfo.GetMD5Name()} 已经存在于目标地址，跳过复制";
                         //LogHelper.WriteLog(message, now);
                         continue;
                     }
