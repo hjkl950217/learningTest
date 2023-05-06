@@ -13,13 +13,7 @@ namespace FileCopy
 
         public static void Main(string[] args)
         {
-            //string addr = @"C:\Users\2A023\Desktop\Sf\f1\f2\f3\vide1.mp4";
-
-            //// 设置最后修改时间为当前时间
-            //File.SetCreationTime(addr, DateTime.Now.AddDays(-20));
-
-            //return;
-
+           
             #region 读取配置
 
             AppSettings settings = ConfigHelper.GetConfig();
@@ -36,10 +30,10 @@ namespace FileCopy
             #region 准备日志相关
 
             DateTime lastModifiedTime = DateTime.MinValue; // 定义最新复制文件的修改时间
-            DateTime now = DateTime.Now;//定义当前时间
+            DateTime runDateTime = DateTime.Now;//定义当前时间
 
-            LogHelper.WriteLog(separatorMsg, now); //输出分割符
-            LogHelper.WriteLog($"当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}", now);
+            LogHelper.WriteLog(separatorMsg, runDateTime); //输出分割符
+            LogHelper.WriteLog($"当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}", runDateTime);
 
             #endregion 准备日志相关
 
@@ -64,8 +58,8 @@ namespace FileCopy
                 // 判断是否为排除地址，如果不是则跳过
                 if(excludeAddrs.Any(t => sourceFilePath.Contains(t)))
                 {
-                    //string message = $"文件 {sourceFileInfo.Name} 在排除文件夹中，跳过复制";
-                    //LogHelper.WriteLog(message, now);
+                    string message = $"文件 [{sourceFileInfo.Name}] 在排除文件夹中，跳过复制";
+                    LogHelper.WriteLog(message, runDateTime,LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -75,8 +69,8 @@ namespace FileCopy
                     .ToLower();
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
-                    //string message = $"文件 {sourceFileInfo.Name} 不是允许的文件后缀，跳过复制";
-                    //LogHelper.WriteLog(message, now);
+                    string message = $"文件 [{sourceFileInfo.Name}] 不是允许的文件后缀，跳过复制";
+                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -85,8 +79,8 @@ namespace FileCopy
                 {
                     if(targetFileInfo.Length == sourceFileInfo.Length)
                     {
-                        //string message = $"文件 {sourceFileInfo.Name} 已经存在于目标地址，跳过复制";
-                        //LogHelper.WriteLog(message, now);
+                        string message = $"文件 [{sourceFileInfo.Name}] 已经存在于目标地址，跳过复制";
+                        LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
                         continue;
                     }
 
@@ -94,8 +88,8 @@ namespace FileCopy
                     targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetMD5Name());
                     if(File.Exists(targetFilePath))
                     {
-                        //string message = $"文件 {sourceFileInfo.GetMD5Name()} 已经存在于目标地址，跳过复制";
-                        //LogHelper.WriteLog(message, now);
+                        string message = $"文件 {sourceFileInfo.GetMD5Name()} 已经存在于目标地址，跳过复制";
+                        LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
                         continue;
                     }
                     else
@@ -108,8 +102,8 @@ namespace FileCopy
                 long sourceFileSize = sourceFileInfo.Length;
                 if(sourceFileSize < fileSizeLimit)
                 {
-                    //string message = $"文件 {sourceFileInfo.Name} 小于限制大小，跳过复制";
-                    //LogHelper.WriteLog(message, now);
+                    string message = $"文件 [{sourceFileInfo.Name}] 小于限制大小，跳过复制";
+                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -123,8 +117,8 @@ namespace FileCopy
                 .First();
                 if(lastTime <= timeLimit)
                 {
-                    //string message = $"文件 {sourceFileInfo.Name} 修改时间早于限制时间，跳过复制";
-                    //LogHelper.WriteLog(message, now);
+                    string message = $"文件 [{sourceFileInfo.Name}] 修改时间早于限制时间，跳过复制";
+                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -144,7 +138,7 @@ namespace FileCopy
                 double speed = fileSizeMb / elapsedSec;
 
                 string successMessage = $"成功复制文件 {sourceFileInfo.Name},速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
-                LogHelper.WriteLog(successMessage, now);
+                LogHelper.WriteLog(successMessage, runDateTime);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
                 if(lastModifiedTime < lastTime)
@@ -167,15 +161,15 @@ namespace FileCopy
                 File.WriteAllText("config.json", updatedJson);
 
                 string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新处理时间为 {lastModifiedTime:yyyy-MM-dd HH:mm:ss}";
-                LogHelper.WriteLog(updateTimeMessage, now);
+                LogHelper.WriteLog(updateTimeMessage, runDateTime);
             }
             else
             {
                 string updateTimeMessage = $"复制结束，未更新文件";
-                LogHelper.WriteLog(updateTimeMessage, now);
+                LogHelper.WriteLog(updateTimeMessage, runDateTime);
             }
 
-            LogHelper.WriteLog(separatorMsg, now); //输出分割符
+            LogHelper.WriteLog(separatorMsg, runDateTime); //输出分割符
             LogHelper.CloseLog();
 
             #endregion 复制后的处理

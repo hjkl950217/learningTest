@@ -4,6 +4,7 @@
     {
         public static FileStream logFileStream = null;
         public static StreamWriter logWriter = null;
+        private static string isDebug= Environment.GetEnvironmentVariable("CopyFileDebug");
 
         private static void PreLogWriter(DateTime logDate)
         {
@@ -58,13 +59,24 @@
             logFileStream?.Close();
         }
 
-        public static void WriteLog(string message, DateTime logDate)
+        public static void WriteLog(
+            string message, 
+            DateTime logDate,
+            LogTypeEnum logType=LogTypeEnum.Info)
         {
+
+           
+            if(logType==LogTypeEnum.Debug&&isDebug!="1")
+            {
+                return;
+            }
+         
+
             LogHelper.PreLogWriter(logDate);//初始化日志写入器
 
             string timestamp = DateTime.Now.ToString("HH:mm:ss");
-            string logMessage = $"[{timestamp}] {message}";
-            logWriter.WriteLine(logMessage);
+            string logMessage = $"[{timestamp}\t{logType}\t] {message}";
+           logWriter.WriteLine(logMessage);
 
             Console.WriteLine(logMessage);
         }
