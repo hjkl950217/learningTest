@@ -4,7 +4,7 @@
     {
         public static FileStream logFileStream = null;
         public static StreamWriter logWriter = null;
-        private static string isDebug= Environment.GetEnvironmentVariable("CopyFileDebug");
+        private static string isDebug= Environment.GetEnvironmentVariable("IsDebug");
 
         private static void PreLogWriter(DateTime logDate)
         {

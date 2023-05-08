@@ -126,6 +126,8 @@ namespace FileCopy
 
                 //复制
                 stopwatch.Restart();
+                string copyMsg = $"正在复制文件： [{sourceFileInfo.Name}]";
+                LogHelper.WriteLog(copyMsg, runDateTime);
                 File.Copy(sourceFilePath, targetFilePath);//复制
                 File.SetLastWriteTime(targetFilePath, lastTime);//设置时间为最新（因为qb下载时间复制出来时不会更新）
                 stopwatch.Stop();
@@ -137,7 +139,7 @@ namespace FileCopy
                 double fileSizeMb = (new FileInfo(sourceFilePath)).Length / 1024.0 / 1024.0;
                 double speed = fileSizeMb / elapsedSec;
 
-                string successMessage = $"成功复制文件 {sourceFileInfo.Name},速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
+                string successMessage = $"成功复制文件 [{sourceFileInfo.Name}],速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
                 LogHelper.WriteLog(successMessage, runDateTime);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
