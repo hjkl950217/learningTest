@@ -1,10 +1,10 @@
 ﻿using System.Security.Cryptography;
 
-namespace FileCopy
+namespace linux文件复制工具
 {
     internal static class FileInfoExtension
     {
-        public static string GetMd5Hash(this string input)
+        private static string GetMd5Hash(this string input)
         {
             using MD5 md5 = MD5.Create();
             byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
@@ -43,6 +43,35 @@ namespace FileCopy
         public static string GetMD5Name(this FileInfo fileInfo)
         {
             return $"{FileInfoExtension.GetRandomFileName(fileInfo)}{fileInfo.Extension}";
+        }
+    }
+
+    internal static class DateTimeExtension
+    {
+        /// <summary>
+        /// 获取字符串
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string GetString(
+            this DateTime dateTime,
+            string format = "yyyy-MM-dd HH:mm:ss")
+        {
+            return dateTime.ToString(format);
+        }
+
+        /// <summary>
+        /// 获取字符串
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string GetString(
+            this DateTime? dateTime,
+            string format = "yyyy-MM-dd HH:mm:ss")
+        {
+            return (dateTime ?? DateTime.MinValue).ToString(format);
         }
     }
 }

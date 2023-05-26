@@ -1,10 +1,10 @@
-﻿namespace FileCopy
+﻿namespace linux文件复制工具
 {
     public static class LogHelper
     {
         public static FileStream logFileStream = null;
         public static StreamWriter logWriter = null;
-        private static string isDebug= Environment.GetEnvironmentVariable("IsDebug");
+        private static string isDebug = Environment.GetEnvironmentVariable("IsDebug");
 
         private static void PreLogWriter(DateTime logDate)
         {
@@ -60,23 +60,20 @@
         }
 
         public static void WriteLog(
-            string message, 
+            string message,
             DateTime logDate,
-            LogTypeEnum logType=LogTypeEnum.Info)
+            LogTypeEnum logType = LogTypeEnum.Info)
         {
-
-           
-            if(logType==LogTypeEnum.Debug&&isDebug!="1")
+            if(logType == LogTypeEnum.Debug && isDebug != "1")
             {
                 return;
             }
-         
 
             LogHelper.PreLogWriter(logDate);//初始化日志写入器
 
             string timestamp = DateTime.Now.ToString("HH:mm:ss");
             string logMessage = $"[{timestamp}\t{logType}\t] {message}";
-           logWriter.WriteLine(logMessage);
+            logWriter.WriteLine(logMessage);
 
             Console.WriteLine(logMessage);
         }

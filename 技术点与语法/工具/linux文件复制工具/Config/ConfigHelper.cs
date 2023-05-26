@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace FileCopy.Config
+namespace linux文件复制工具.Config
 {
     public static class ConfigHelper
     {

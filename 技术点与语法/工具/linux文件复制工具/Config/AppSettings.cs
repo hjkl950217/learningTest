@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace FileCopy
+namespace linux文件复制工具
 {
     public class AppSettings
     {

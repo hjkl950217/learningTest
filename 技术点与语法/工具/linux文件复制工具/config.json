@@ -1,7 +1,7 @@
 {
   "source": "C:\\Users\\2A023\\Desktop\\Sf",
   "target": "C:\\Users\\2A023\\Desktop\\Tf",
-  "allowedExtensions": [ "mp4", "avi" ],
+  "allowedExtensions": [ "avi", "mp4", "ts", "wmv", "mpeg", "m4v", "mov", "asf", "flv", "f4v", "rmvb", "3gp", "mkv", "vob", "mts", "m2ts", "tp", "trp", "divx", "xvid" ],
   "timeLimit": "2023-03-19",
   "excludeAddrs": [],
   "fileSizeLimit": 20
