@@ -32,9 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链式编程在业务逻辑
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "需要Web项目的验证\内存缓存学习\内存缓存学习.csproj", "{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileCopy", "工具\linux文件复制工具\FileCopy.csproj", "{9520BE08-4403-4929-8B75-53A1796918AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "linux文件复制工具", "工具\linux文件复制工具\linux文件复制工具.csproj", "{9520BE08-4403-4929-8B75-53A1796918AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "删除bin和obj", "工具\删除bin和obj\删除bin和obj.csproj", "{4F1BD0AA-A908-4049-B2C4-435665F17038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "删除bin和obj", "工具\删除bin和obj\删除bin和obj.csproj", "{4F1BD0AA-A908-4049-B2C4-435665F17038}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
