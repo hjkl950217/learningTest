@@ -1,8 +1,10 @@
 {
-  "source": "C:\\Users\\2A023\\Desktop\\Sf",
-  "target": "C:\\Users\\2A023\\Desktop\\Tf",
+  "source": "Y:\\qBittorrentDownload",
+  "target": "Y:\\LoActionMovie\\115",
   "allowedExtensions": [ "avi", "mp4", "ts", "wmv", "mpeg", "m4v", "mov", "asf", "flv", "f4v", "rmvb", "3gp", "mkv", "vob", "mts", "m2ts", "tp", "trp", "divx", "xvid" ],
-  "timeLimit": "2023-03-19",
-  "excludeAddrs": [],
+  "timeLimit": "2023-05-29",
+  "excludeAddrs": [
+    "Y:\\qBittorrentDownload\\incomplete"
+  ],
   "fileSizeLimit": 20
 }

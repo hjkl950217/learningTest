@@ -46,7 +46,7 @@ namespace linux文件复制工具
                 if(excludeAddrs.Any(t => sourceFilePath.Contains(t)))
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 在排除文件夹中，跳过复制";
-                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -57,7 +57,7 @@ namespace linux文件复制工具
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 不是允许的文件后缀，跳过复制";
-                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -67,7 +67,7 @@ namespace linux文件复制工具
                     if(targetFileInfo.Length == sourceFileInfo.Length)
                     {
                         string message = $"文件 [{sourceFileInfo.Name}] 已经存在于目标地址，跳过复制";
-                        LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                        LogHelper.WriteLog(message, LogTypeEnum.Debug);
                         continue;
                     }
 
@@ -76,7 +76,7 @@ namespace linux文件复制工具
                     if(File.Exists(targetFilePath))
                     {
                         string message = $"文件 {sourceFileInfo.GetMD5Name()} 已经存在于目标地址，跳过复制";
-                        LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                        LogHelper.WriteLog(message, LogTypeEnum.Debug);
                         continue;
                     }
                     else
@@ -90,7 +90,7 @@ namespace linux文件复制工具
                 if(sourceFileSize < fileSizeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 小于限制大小，跳过复制";
-                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -106,7 +106,7 @@ namespace linux文件复制工具
                 if(lastTime <= timeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 修改时间早于限制时间，跳过复制";
-                    LogHelper.WriteLog(message, runDateTime, LogTypeEnum.Debug);
+                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -114,8 +114,8 @@ namespace linux文件复制工具
 
                 //复制
                 stopwatch.Restart();
-                string copyMsg = $"正在复制文件： [{sourceFileInfo.Name}]";
-                LogHelper.WriteLog(copyMsg, runDateTime);
+                string copyMsg = $"正在复制文件 [{sourceFileInfo.Name}]";
+                LogHelper.WriteLog(copyMsg);
                 File.Copy(sourceFilePath, targetFilePath);//复制
                 File.SetLastWriteTime(targetFilePath, lastTime);//设置时间为最新（因为qb下载时间复制出来时不会更新）
                 stopwatch.Stop();
@@ -128,7 +128,7 @@ namespace linux文件复制工具
                 double speed = fileSizeMb / elapsedSec;
 
                 string successMessage = $"成功复制文件 [{sourceFileInfo.Name}],速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
-                LogHelper.WriteLog(successMessage, runDateTime);
+                LogHelper.WriteLog(successMessage);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
                 if(lastModifiedTime < lastTime)
@@ -151,12 +151,12 @@ namespace linux文件复制工具
                 File.WriteAllText("config.json", updatedJson);
 
                 string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新处理时间为 {lastModifiedTime:yyyy-MM-dd HH:mm:ss}";
-                LogHelper.WriteLog(updateTimeMessage, runDateTime);
+                LogHelper.WriteLog(updateTimeMessage);
             }
             else
             {
                 string updateTimeMessage = $"复制结束，未更新文件";
-                LogHelper.WriteLog(updateTimeMessage, runDateTime);
+                LogHelper.WriteLog(updateTimeMessage);
             }
 
             #endregion 复制后的处理

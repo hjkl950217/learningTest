@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
