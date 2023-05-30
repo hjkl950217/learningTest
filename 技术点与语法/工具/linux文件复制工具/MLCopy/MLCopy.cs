@@ -2,9 +2,9 @@
 {
     public static class MLCopy
     {
-        public static async Task RunAsync(AppSettings settings, DateTime runDateTime)
+        public static void Run(AppSettings settings, DateTime runDateTime)
         {
-            await DataSetHelper.GenerateDataset(settings, runDateTime);
+             DataSetHelper.GenerateDataset(settings, runDateTime);
         }
     }
 }
