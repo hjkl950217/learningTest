@@ -9,11 +9,10 @@ namespace linux文件复制工具
         // 发布命令
         // dotnet publish -c Release -r linux-x64 --self-contained -p:PublishReadyToRun=true -p:PublishSingleFile=true
 
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
 #if DEBUG
             Environment.SetEnvironmentVariable("IsDebug", "1");
-
 #endif
 
             //读取配置
@@ -26,10 +25,12 @@ namespace linux文件复制工具
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
             LogHelper.WriteLog($"当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}");
 
-            await MLCopy.RunAsync(settings, runDateTime);
+            CodeCopy.Run(settings, runDateTime); 
+            
 
             //结束
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
+            Console.ReadLine();
             LogHelper.CloseLog();
         }
     }

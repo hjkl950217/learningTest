@@ -7,25 +7,26 @@ namespace linux文件复制工具
     /// </summary>
     public static class DataSetHelper
     {
-        public const string separator = "|";
+        public const string separator = ",";
+ 
 
         /// <summary>
         /// 获取数据文件信息
         /// </summary>
         /// <param name="settings"></param>
         /// <param name="runDateTime"></param>
-        public static async Task GenerateDataset(AppSettings settings, DateTime runDateTime)
-        {
+        public static  void GenerateDataset(AppSettings settings, DateTime runDateTime)
+        { 
             //获取原始文件信息
             LogHelper.StartLoad("开始生成数据集文件", LogTypeEnum.Debug);
-            FileInfo[] sourceFiles = new DirectoryInfo(settings.Source)
+            var sourceFiles = new DirectoryInfo(settings.Source)
                 .GetFiles("*", SearchOption.AllDirectories);
             LogHelper.StopLoad("原始文件信息获取完毕", LogTypeEnum.Debug);
-
+            
             //获取目标文件信息
             Dictionary<string, FileInfo> targetFileDic = new DirectoryInfo(settings.Target)
                .GetFiles("*", SearchOption.AllDirectories)
-               .Where(t => settings.AllowedExtensions.Contains(t.Extension.Trim().ToLower()))
+               .Where(t => settings.AllowedExtensions.Contains(t.Extension.Trim().ToLower()[1..]))
                .ToDictionary(t => t.Name, t => t);
 
             #region 准备数据
@@ -39,6 +40,7 @@ namespace linux文件复制工具
             sb.Append($"SourceLastWriteTime{separator}");
             sb.Append($"SourceFullName{separator}");
             sb.Append($"SourceFolderName{separator}");
+            sb.Append($"SourceFileLength{separator}");
 
             sb.Append($"IsTarget{separator}");
             sb.Append($"TimeLimit{separator}");
@@ -57,36 +59,38 @@ namespace linux文件复制工具
             {
                 FileInfo targetFileInfo = targetFileDic.GetValueOrDefault(sourceInfo.Name);
 
-                sb.Append(sourceInfo.Name + separator);
-                sb.Append(sourceInfo.CreationTime.GetString() + separator);
-                sb.Append(sourceInfo.LastAccessTime.GetString() + separator);
-                sb.Append(sourceInfo.LastWriteTime.GetString() + separator);
-                sb.Append(sourceInfo.FullName + separator);
-                sb.Append(sourceInfo.DirectoryName + separator);
+                sb.Append($"\"{sourceInfo.Name}\"{separator}");  
+                sb.Append($"\"{sourceInfo.CreationTime.GetString()}\"{separator}");
+                sb.Append($"\"{sourceInfo.LastAccessTime.GetString()}\"{separator}");
+                sb.Append($"\"{sourceInfo.LastWriteTime.GetString()}\"{separator}");
+                sb.Append($"\"{sourceInfo.FullName}\"{separator}");
+                sb.Append($"\"{sourceInfo.DirectoryName}\"{separator}");
+                sb.Append($"\"{sourceInfo.Length}\"{separator}");
 
                 if(targetFileInfo == null)
                 {
-                    sb.Append("False|");
-                    sb.Append(settings.TimeLimit.GetString() + "|");
+                    sb.Append($"False{separator}");
+                    sb.Append($"\"{settings.TimeLimit.GetString()}\"{separator}");
 
-                    sb.Append("-" + separator);
-                    sb.Append("-" + separator);
-                    sb.Append("-" + separator);
-                    sb.Append("-" + separator);
-                    sb.Append("-" + separator);
-                    sb.Append('-');
+                    sb.Append("无" + separator);
+                    sb.Append("无" + separator);
+                    sb.Append("无" + separator);
+                    sb.Append("无" + separator);
+                    sb.Append("无" + separator);
+                    sb.Append('无');
                 }
                 else
                 {
-                    sb.Append("True|");
-                    sb.Append(settings.TimeLimit.GetString() + "|");
+                    sb.Append($"True{separator}");
+                    sb.Append($"\"{settings.TimeLimit.GetString()}\"{separator}");
 
-                    sb.Append(targetFileInfo.Name + separator);
-                    sb.Append(targetFileInfo.CreationTime.GetString() + separator);
-                    sb.Append(targetFileInfo.LastAccessTime.GetString() + separator);
-                    sb.Append(targetFileInfo.LastWriteTime.GetString() + separator);
-                    sb.Append(targetFileInfo.FullName + separator);
-                    sb.Append(targetFileInfo.DirectoryName);
+                    sb.Append($"\"{targetFileInfo.Name}\"{separator}");
+                    sb.Append($"\"{targetFileInfo.CreationTime.GetString()}\"{separator}");
+                    sb.Append($"\"{targetFileInfo.LastAccessTime.GetString()}\"{separator}");
+                    sb.Append($"\"{targetFileInfo.LastWriteTime.GetString()}\"{separator}");
+                    sb.Append($"\"{targetFileInfo.FullName}\"{separator}");
+                    sb.Append($"\"{targetFileInfo.DirectoryName}\"");
+                 
                 }
 
                 sb.AppendLine();
