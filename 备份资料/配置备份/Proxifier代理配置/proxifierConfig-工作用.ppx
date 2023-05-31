@@ -1,68 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ProxifierProfile version="101" platform="Windows" product_id="0" product_minver="310">
-  <Options>
-    <Resolve>
-      <AutoModeDetection enabled="true" />
-      <ViaProxy enabled="false">
-        <TryLocalDnsFirst enabled="false" />
-      </ViaProxy>
-      <ExclusionList>%ComputerName%; localhost; *.local</ExclusionList>
-      <DnsUdpMode>0</DnsUdpMode>
-    </Resolve>
-    <Encryption mode="disabled" />
-    <HttpProxiesSupport enabled="false" />
-    <HandleDirectConnections enabled="false" />
-    <ConnectionLoopDetection enabled="true" />
-    <ProcessServices enabled="false" />
-    <ProcessOtherUsers enabled="false" />
-  </Options>
-  <ProxyList>
-    <Proxy id="100" type="SOCKS5">
-      <Address>127.0.0.1</Address>
-      <Port>1088</Port>
-      <Options>48</Options>
-    </Proxy>
-  </ProxyList>
-  <ChainList />
-  <RuleList>
-    <Rule enabled="true">
-      <Name>clash-win64.exe [auto-created]</Name>
-      <Applications>clash-win64.exe</Applications>
-      <Action type="Direct" />
-    </Rule>
-    <Rule enabled="true">
-      <Name>"Mobile Debug.exe" [auto-created]</Name>
-      <Applications>"Mobile Debug.exe"</Applications>
-      <Action type="Direct" />
-    </Rule>
-    <Rule enabled="true">
-      <Name>Localhost</Name>
-      <Targets>localhost; 127.0.0.1; %ComputerName%; ::1</Targets>
-      <Action type="Direct" />
-    </Rule>
-    <Rule enabled="true">
-      <Name>工作</Name>
-      <Targets>*visual*;*microsoft*;*github*;*azure*;*vsassets*;*powhershell*;*google*;*nuget*</Targets>
-      <Action type="Proxy">100</Action>
-    </Rule>
-    <Rule enabled="true">
-      <Name>PowherShell</Name>
-      <Applications>pwsh.exe</Applications>
-      <Action type="Proxy">100</Action>
-    </Rule>
-    <Rule enabled="true">
-      <Name>VS</Name>
-      <Applications>devenv.exe; code.exe; inno_updater.exe</Applications>
-      <Action type="Proxy">100</Action>
-    </Rule>
-    <Rule enabled="false">
-      <Name>game</Name>
-      <Targets>*.*setam*.*;*steamcommunity*</Targets>
-      <Action type="Proxy">100</Action>
-    </Rule>
-    <Rule enabled="true">
-      <Name>Default</Name>
-      <Action type="Direct" />
-    </Rule>
-  </RuleList>
+<ProxifierProfile version="102" platform="Windows" product_id="0" product_minver="400">
+	<Options>
+		<Resolve>
+			<AutoModeDetection enabled="true" />
+			<ViaProxy enabled="false" />
+			<ExclusionList OnlyFromListMode="false">%ComputerName%; localhost; *.local</ExclusionList>
+			<DnsUdpMode>0</DnsUdpMode>
+		</Resolve>
+		<Encryption mode="basic" />
+		<ConnectionLoopDetection enabled="true" resolve="true" />
+		<ProcessOtherUsers enabled="false" />
+		<ProcessServices enabled="false" />
+		<HandleDirectConnections enabled="false" />
+		<HttpProxiesSupport enabled="false" />
+	</Options>
+	<ProxyList>
+		<Proxy id="100" type="SOCKS5">
+			<Options>48</Options>
+			<Port>1088</Port>
+			<Address>127.0.0.1</Address>
+		</Proxy>
+	</ProxyList>
+	<ChainList />
+	<RuleList>
+		<Rule enabled="true">
+			<Action type="Direct" />
+			<Applications>clash-win64.exe</Applications>
+			<Name>clash-win64.exe [auto-created]</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Direct" />
+			<Applications>"Mobile Debug.exe"</Applications>
+			<Name>"Mobile Debug.exe" [auto-created]</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Direct" />
+			<Targets>localhost; 127.0.0.1; %ComputerName%; ::1</Targets>
+			<Name>Localhost</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Proxy">100</Action>
+			<Targets>*.*visual*.*;*.*microsoft*.*;*.*github*.*;*.*azure*.*;*.*vsassets*.*;*.*powhershell*.*;*.*google*.*;*.*nuget*.*;*.*docker*.*</Targets>
+			<Name>工作</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Proxy">100</Action>
+			<Applications>pwsh.exe</Applications>
+			<Name>PowherShell</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Proxy">100</Action>
+			<Applications>devenv.exe; code.exe; inno_updater.exe</Applications>
+			<Name>VS</Name>
+		</Rule>
+		<Rule enabled="false">
+			<Action type="Proxy">100</Action>
+			<Targets>*.*setam*.*;*steamcommunity*</Targets>
+			<Name>game</Name>
+		</Rule>
+		<Rule enabled="true">
+			<Action type="Direct" />
+			<Name>Default</Name>
+		</Rule>
+	</RuleList>
 </ProxifierProfile>
