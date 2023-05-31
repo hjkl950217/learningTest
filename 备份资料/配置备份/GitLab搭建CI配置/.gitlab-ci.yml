@@ -137,10 +137,18 @@ build_dockerImage2:
 deploy_app:
     stage: deploy
     script:
+#    - 这是直接整个堆栈的命令
     - echo "开始部署" 
-    - pwd
     - cd /opt
     - docker stack deploy -c docker-compose-citest.yml citest
+
+#    - 这是直接只堆栈中单独一个服务的命令
+#    - echo "开始部署" 
+#    - echo "运行tag:$CI_RUNNER_TAGS"
+#    - imageTag1=${ImageRepositoryUrl1,,}:latest
+#    - echo "更新镜像:${imageTag1}" | docker service update --image $imageTag1 gmp_qms
     tags:
     - deploy
+
+
 

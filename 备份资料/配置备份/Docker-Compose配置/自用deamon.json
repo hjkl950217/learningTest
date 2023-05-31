@@ -9,9 +9,12 @@
     "registry.docker-cn.com",
     "docker.mirrors.ustc.edu.cn"
   ],
-  "log-driver":"json-file",
-  "log-opts": {"max-size":"500m", "max-file":"3"}
-  
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "500m",
+    "max-file": "3"
+  },
+
   //"data-root":"/home/docker-data" //修改镜像和容器数据存储目录
   "debug": true,
   "experimental": true
