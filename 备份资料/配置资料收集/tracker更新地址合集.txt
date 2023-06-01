@@ -1,0 +1,8 @@
+github1:https://github.com/XIU2/TrackersListCollection
+	https://cf.trackerslist.com/all.txt
+
+github2：https://github.com/ngosang/trackerslist
+	https://ngosang.github.io/trackerslist/trackers_all.txt
+
+xdown自带的
+	https://newtrackon.com/api/stable
