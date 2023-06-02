@@ -24,4 +24,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CodeCopy\Logic\" />
+  </ItemGroup>
+
 </Project>

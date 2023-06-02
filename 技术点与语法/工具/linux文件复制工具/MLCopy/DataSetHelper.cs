@@ -8,21 +8,20 @@ namespace linux文件复制工具
     public static class DataSetHelper
     {
         public const string separator = ",";
- 
 
         /// <summary>
         /// 获取数据文件信息
         /// </summary>
         /// <param name="settings"></param>
         /// <param name="runDateTime"></param>
-        public static  void GenerateDataset(AppSettings settings, DateTime runDateTime)
-        { 
+        public static void GenerateDataset(AppSettings settings, DateTime runDateTime)
+        {
             //获取原始文件信息
             LogHelper.StartLoad("开始生成数据集文件", LogTypeEnum.Debug);
-            var sourceFiles = new DirectoryInfo(settings.Source)
+            FileInfo[] sourceFiles = new DirectoryInfo(settings.Source)
                 .GetFiles("*", SearchOption.AllDirectories);
             LogHelper.StopLoad("原始文件信息获取完毕", LogTypeEnum.Debug);
-            
+
             //获取目标文件信息
             Dictionary<string, FileInfo> targetFileDic = new DirectoryInfo(settings.Target)
                .GetFiles("*", SearchOption.AllDirectories)
@@ -59,7 +58,7 @@ namespace linux文件复制工具
             {
                 FileInfo targetFileInfo = targetFileDic.GetValueOrDefault(sourceInfo.Name);
 
-                sb.Append($"\"{sourceInfo.Name}\"{separator}");  
+                sb.Append($"\"{sourceInfo.Name}\"{separator}");
                 sb.Append($"\"{sourceInfo.CreationTime.GetString()}\"{separator}");
                 sb.Append($"\"{sourceInfo.LastAccessTime.GetString()}\"{separator}");
                 sb.Append($"\"{sourceInfo.LastWriteTime.GetString()}\"{separator}");
@@ -90,7 +89,6 @@ namespace linux文件复制工具
                     sb.Append($"\"{targetFileInfo.LastWriteTime.GetString()}\"{separator}");
                     sb.Append($"\"{targetFileInfo.FullName}\"{separator}");
                     sb.Append($"\"{targetFileInfo.DirectoryName}\"");
-                 
                 }
 
                 sb.AppendLine();
