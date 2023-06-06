@@ -33,7 +33,7 @@ namespace Verification.Core.VerificationCore
             {
                 VerifcationTypeAttribute? attr = i.GetCustomAttribute<VerifcationTypeAttribute>();
 
-                if (attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
+                if(attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
                 {
                     return true;
                 }
@@ -56,7 +56,7 @@ namespace Verification.Core.VerificationCore
                     .Where(typeJudge)
                     .ToArray();
 
-                switch (types.Length)
+                switch(types.Length)
                 {
 #pragma warning disable CS8603 // 可能的 null 引用返回。
                     case int a when a < 1:
@@ -73,7 +73,7 @@ namespace Verification.Core.VerificationCore
             }
 
             Type type = getType();
-            if (type == null)
+            if(type == null)
                 throw new NotSupportedException($"{verificationTypeEnum} 发生异常");
 
             #endregion 查找

@@ -1,7 +1,4 @@
-﻿using System;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A01_获取当前路径的方法)]
     public class A01_获取当前路径的方法 : IVerification

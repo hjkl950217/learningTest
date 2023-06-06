@@ -9,10 +9,6 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
-using AutoMapper学习与练习.Orders;
-using AutoMapper学习与练习.Role;
-using AutoMapper学习与练习.Sellers;
-
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -47,6 +43,9 @@ using AutoMapper学习与练习.Sellers;
 
 using System;
 using System.Collections.Generic;
+using AutoMapper学习与练习.Orders;
+using AutoMapper学习与练习.Role;
+using AutoMapper学习与练习.Sellers;
 
 namespace AutoMapper学习与练习.Infrastructure
 {

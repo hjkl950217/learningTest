@@ -92,7 +92,8 @@ namespace AutoMapper学习与练习.Role
         public static RoleEnum? CheckRole(this RoleEnum? sources, RoleEnum target)
         {
             //判断空
-            if (sources == null) return null;
+            if(sources == null)
+                return null;
 
             //做位与运算来判断权限
             bool isSeccess = (sources.Value | target) == sources.Value;
@@ -112,7 +113,8 @@ namespace AutoMapper学习与练习.Role
         private static RoleEnum? CheckRole(this RoleEnum sources, RoleEnum? target)
         {
             //判断空
-            if (target == null) return null;
+            if(target == null)
+                return null;
 
             //做位与运算来判断权限
             bool isSeccess = (sources | target) == target;

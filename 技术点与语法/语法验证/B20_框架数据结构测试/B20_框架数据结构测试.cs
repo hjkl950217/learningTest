@@ -1,7 +1,4 @@
-﻿using CkTools;
-using Verification.Core;
-
-namespace 语法验证.B19_字符串驻留池
+﻿namespace 语法验证.B19_字符串驻留池
 {
     [VerifcationType(VerificationTypeEnum.B20_框架数据结构测试)]
     public class B20_框架数据结构测试 : IVerification

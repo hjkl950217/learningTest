@@ -1,7 +1,4 @@
-﻿using System;
-using Verification.Core;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     [VerifcationType(VerificationTypeEnum.B06_模式匹配_In_70)]
     public class B06_模式匹配_In_70 : IVerification
@@ -36,9 +33,9 @@ namespace 语法验证与学习
              *
              */
             double result = 0;
-            if (shape is Square s)
+            if(shape is Square s)
             {
-                if (s.Side > 0)
+                if(s.Side > 0)
                 {
                     //如果上面的结论是错的，这里s.side应该是没有值的
                     Console.WriteLine("正方形的边长大于0");
@@ -46,11 +43,11 @@ namespace 语法验证与学习
 
                 result = s.Side * s.Side;
             }
-            else if (shape is Circle c)
+            else if(shape is Circle c)
             {
                 result = c.Radius * c.Radius * Math.PI;
             }
-            else if (shape is Rectangle r)//这是一个结构体类型
+            else if(shape is Rectangle r)//这是一个结构体类型
             {
                 result = r.Length * r.Height;
             }
@@ -78,7 +75,7 @@ namespace 语法验证与学习
              * default关键字无论你写在什么位置，永远最后一个执行
              */
 
-            switch (shape)
+            switch(shape)
             {
                 case Square s when s.Side == 0:
                 case Circle c when c.Radius == 0:
@@ -120,7 +117,7 @@ namespace 语法验证与学习
                 "circle" => new Circle(2),
                 "square" => new Square(4),
                 "large-circle" => new Circle(12),
-                var o when (o?.Trim().Length ?? 0) == 0 => null,// 匹配到空白字符
+                var o when(o?.Trim().Length ?? 0) == 0 => null,// 匹配到空白字符
                 _ => "invalid shape description",//永远不会被执行
             };
         }

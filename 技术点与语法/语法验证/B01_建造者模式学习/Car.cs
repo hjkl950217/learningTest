@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     /// <summary>
     /// 汽车类
@@ -27,7 +24,7 @@ namespace 语法验证与学习
         /// </summary>
         public void Show()
         {
-            foreach (var item in this.parts)
+            foreach(KeyValuePair<string, string?> item in this.parts)
             {
                 Console.WriteLine($"组件{item.Key}-{item.Value}已装好");
             }

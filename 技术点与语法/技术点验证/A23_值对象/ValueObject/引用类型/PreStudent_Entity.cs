@@ -1,7 +1,5 @@
 ﻿#nullable disable
 
-using System.Collections.Generic;
-
 namespace 技术点验证
 {
     /// <summary>

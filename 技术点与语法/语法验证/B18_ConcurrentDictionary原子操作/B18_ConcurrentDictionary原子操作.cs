@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Threading;
-using System.Threading.Tasks;
-using CkTools;
-using Verification.Core;
+﻿using System.Collections.Concurrent;
 
 namespace 语法验证与学习
 {
@@ -96,7 +91,7 @@ namespace 语法验证与学习
 
         public static void ShowValue2(string value)
         {
-            var valueFound = cache2.GetOrAdd(
+            Lazy<string> valueFound = cache2.GetOrAdd(
                 key: "key",
                 valueFactory: _ => new Lazy<string>(
                     () =>

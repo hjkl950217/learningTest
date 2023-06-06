@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace 语法验证与学习
 {
@@ -12,7 +11,7 @@ namespace 语法验证与学习
 
         private void UsePartBase(string partName, string? part = null)
         {
-            if (part == null)
+            if(part == null)
             {
                 part = $"Default Buick`s {partName}";
             }
@@ -38,7 +37,7 @@ namespace 语法验证与学习
             return this;
         }
 
-        public IBuilder UseOtherPart([NotNull]string partName, string? part)
+        public IBuilder UseOtherPart([NotNull] string partName, string? part)
         {
             this.buickCar.Add(partName, $"Buick`s{part}");
             return this;

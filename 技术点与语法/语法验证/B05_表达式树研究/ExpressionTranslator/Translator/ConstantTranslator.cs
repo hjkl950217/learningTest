@@ -5,7 +5,7 @@ namespace 语法验证与学习
 {
     public class ConstantTranslator : BaseTranslator
     {
-        private readonly new ConstantExpression Node;
+        private new readonly ConstantExpression Node;
 
         public ConstantTranslator(ConstantExpression node, string? strPrefix = null, StringBuilder? content = null) : base(node, strPrefix, content)
         {

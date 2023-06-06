@@ -24,7 +24,7 @@ public class B21_Task的Wait方法是否任务级暂停 : IVerification
                 new TaskJob(4),
         };
 
-        foreach (TaskJob job in taskJobs)
+        foreach(TaskJob job in taskJobs)
         {
             Task.Factory
                 .StartNew(job.Run)
@@ -33,7 +33,7 @@ public class B21_Task的Wait方法是否任务级暂停 : IVerification
 
         Task.Factory.StartNew(() =>
         {
-            while (B21_Task的Wait方法是否任务级暂停.MaxCount < 20)
+            while(B21_Task的Wait方法是否任务级暂停.MaxCount < 20)
             {
                 Console.WriteLine("等待中..");
                 Task.Delay(1 * 1000).Wait(); //休眠
@@ -54,7 +54,7 @@ public class TaskJob
 
     public void Run()
     {
-        while (B21_Task的Wait方法是否任务级暂停.MaxCount < 20)
+        while(B21_Task的Wait方法是否任务级暂停.MaxCount < 20)
         {
             B21_Task的Wait方法是否任务级暂停.MsgList.Add("-------------------------------------------------");
             B21_Task的Wait方法是否任务级暂停.MsgList.Add($"[{this.index}]:{DateTime.Now}");

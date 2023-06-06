@@ -1,2 +1,2 @@
-﻿global using Verification.Core;
-global using CkTools;
+﻿global using CkTools;
+global using Verification.Core;

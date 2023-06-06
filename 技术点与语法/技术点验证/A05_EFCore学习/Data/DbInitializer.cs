@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     public class DbInitializer
     {
@@ -16,7 +13,7 @@ namespace 技术点验证
             context.Database.EnsureCreated();
 
             //防御-防重复插种子数据
-            if (context.Students.Any())
+            if(context.Students.Any())
             {
                 return;//代表数据库已经有种子了
             }

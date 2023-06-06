@@ -12,7 +12,7 @@ namespace 链式编程在业务逻辑上的研究
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -23,12 +23,12 @@ namespace 链式编程在业务逻辑上的研究
         /// <param name="services"></param>
         public static void AddMapper(IServiceCollection services)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
            {
                cfg.AddProfile(new OrderMapFile());
            });
 
-            var mapper = config.CreateMapper();
+            AutoMapper.IMapper mapper = config.CreateMapper();
 
             services.AddSingleton(mapper);
         }
@@ -52,7 +52,7 @@ namespace 链式编程在业务逻辑上的研究
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

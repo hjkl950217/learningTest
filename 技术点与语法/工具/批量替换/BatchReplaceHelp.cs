@@ -49,9 +49,9 @@ namespace BatchReplace
         {
             List<FileData> fileNameList = new List<FileData>();
 
-            var dir = new DirectoryInfo(direAddress);
+            DirectoryInfo dir = new DirectoryInfo(direAddress);
 
-            var result = dir
+            List<FileData> result = dir
                 .GetFiles("*.*", SearchOption.AllDirectories)
                 .Select(t => new FileData()
                 {
@@ -67,13 +67,13 @@ namespace BatchReplace
         public List<FileData> ProcessFile(string sourceStr, string trgetStr)
         {
             //替换内容中的字符
-            foreach (var item in this.FileList)
+            foreach(FileData item in this.FileList)
             {
                 item.Content = item.Content.Replace(sourceStr, trgetStr);
             }
 
             //替换文件名
-            foreach (var item in this.FileList)
+            foreach(FileData item in this.FileList)
             {
                 item.FullName = item.FullName.Replace(this.SourceAddress, this.TragetAddress);
                 item.FullName = item.FullName.Replace(sourceStr, trgetStr);
@@ -84,11 +84,11 @@ namespace BatchReplace
 
         public void WriteFile()
         {
-            foreach (var item in this.FileList)
+            foreach(FileData item in this.FileList)
             {
                 FileInfo fi = new FileInfo(item.FullName);
-                var di = fi.Directory;
-                if (!di.Exists)
+                DirectoryInfo di = fi.Directory;
+                if(!di.Exists)
                     di.Create();
 
                 //创建文件流

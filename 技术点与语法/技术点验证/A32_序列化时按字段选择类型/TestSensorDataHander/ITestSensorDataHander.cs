@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using 技术点验证.DataConvertHander;
+﻿using 技术点验证.DataConvertHander;
 
 namespace 技术点验证.TestSensorDataHander
 {

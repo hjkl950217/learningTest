@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -50,9 +45,9 @@ namespace 技术点验证
 
             tasks[0] = Task.Run(() =>
             {
-                for (int i = 0; i < 2; i++)
+                for(int i = 0 ; i < 2 ; i++)
                 {
-                    if (cities.TryAdd(data[i].Name, data[i]))
+                    if(cities.TryAdd(data[i].Name, data[i]))
                         Console.WriteLine("Added {0} on thread {1}", data[i],
                             Thread.CurrentThread.ManagedThreadId);
                     else
@@ -62,9 +57,9 @@ namespace 技术点验证
 
             tasks[1] = Task.Run(() =>
             {
-                for (int i = 2; i < data.Length; i++)
+                for(int i = 2 ; i < data.Length ; i++)
                 {
-                    if (cities.TryAdd(data[i].Name, data[i]))
+                    if(cities.TryAdd(data[i].Name, data[i]))
                         Console.WriteLine("Added {0} on thread {1}", data[i],
                             Thread.CurrentThread.ManagedThreadId);
                     else
@@ -78,7 +73,7 @@ namespace 技术点验证
             // 从应用程序主线程枚举集合。
             // 请注意，ConcurrentDictionary是一个并发集合
             // 不支持线程安全枚举。
-            foreach (var city in cities)
+            foreach(KeyValuePair<string, CityInfo> city in cities)
             {
                 Console.WriteLine("{0} has been added.", city.Key);
             }
@@ -148,14 +143,14 @@ namespace 技术点验证
             {
                 retrievedValue = cities.GetOrAdd(searchKey, GetDataForCity(searchKey));
             }
-            catch (ArgumentException e)
+            catch(ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
 
             //使用数据
             //PS：只是为了显示效果而已，其实可以把取得的数据返回了
-            if (retrievedValue != null)
+            if(retrievedValue != null)
             {
                 UseData(retrievedValue, true);
             }
@@ -169,7 +164,7 @@ namespace 技术点验证
             string? searchKey = "Buenos Aires";
 
             //获取数据成功
-            if (cities.TryGetValue(searchKey, out CityInfo retrievedValue))
+            if(cities.TryGetValue(searchKey, out CityInfo retrievedValue))
             {
                 // 使用数据
                 UseData(retrievedValue);
@@ -183,7 +178,7 @@ namespace 技术点验证
 
                 // 用新值替换旧值。
                 //PS：这里应该理解为（key,要更新的新值,用来对比的对象）
-                if (!cities.TryUpdate(searchKey, retrievedValue, newValue))
+                if(!cities.TryUpdate(searchKey, retrievedValue, newValue))
                 {
                     //数据未更新。 记录错误，抛出异常等
                     Console.WriteLine("不能更新 {0}", retrievedValue.Name);
@@ -195,7 +190,7 @@ namespace 技术点验证
                 // 这里我们调用一个方法来获取新数据。
                 // 另一种选择是在这里添加一个默认值，稍后在其他线程上更新实际数据。
                 CityInfo newValue = GetDataForCity(searchKey);
-                if (cities.TryAdd(searchKey, newValue))
+                if(cities.TryAdd(searchKey, newValue))
                 {
                     // 使用数据
                     UseData(newValue);
@@ -210,7 +205,7 @@ namespace 技术点验证
         {
             //真正的实施留给读者作为练习。
             //PS:真实的情况可能是从其他数据源中查询数据
-            if (string.CompareOrdinal(name, "Caracas") == 0)
+            if(string.CompareOrdinal(name, "Caracas") == 0)
                 return new CityInfo()
                 {
                     Name = "Caracas",
@@ -218,7 +213,7 @@ namespace 技术点验证
                     Latitude = -66.916667M,
                     RecentHighTemperatures = new int[] { 91, 89, 91, 91, 87, 90, 91 }
                 };
-            else if (string.CompareOrdinal(name, "Buenos Aires") == 0)
+            else if(string.CompareOrdinal(name, "Buenos Aires") == 0)
                 return new CityInfo()
                 {
                     Name = "Buenos Aires",
@@ -257,7 +252,7 @@ namespace 技术点验证
             Console.Write("最近{0}的高温: ", showData.Name);
 
             int[] temps;
-            if (isDictory == false)
+            if(isDictory == false)
             {
                 temps = showData.RecentHighTemperatures;
             }
@@ -266,7 +261,8 @@ namespace 技术点验证
                 temps = cities[showData.Name].RecentHighTemperatures;
             }
 
-            foreach (var temp in temps) Console.Write("{0}, ", temp);
+            foreach(int temp in temps)
+                Console.Write("{0}, ", temp);
             Console.WriteLine();
             Console.WriteLine("--Use Data End--");
         }

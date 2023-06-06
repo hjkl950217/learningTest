@@ -1,9 +1,6 @@
-﻿using AutoFixture;
-using System;
-using System.Linq;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Runtime.InteropServices;
-using Verification.Core;
+using AutoFixture;
 
 namespace 技术点验证
 {
@@ -54,9 +51,9 @@ namespace 技术点验证
         public int DefaultMethod()
         {
             byte[] buffer = this.buffer1;
-            for (int i = 0; i < buffer.Length; i++)
+            for(int i = 0 ; i < buffer.Length ; i++)
             {
-                if (buffer[i] != 0)
+                if(buffer[i] != 0)
                     return i;
             }
             return -1;
@@ -79,14 +76,14 @@ namespace 技术点验证
             byte[] buffer = this.buffer2;
             int remainingStart = 0;
 
-            if (IntPtr.Size == sizeof(long))//平台上的面指针或句柄类型要与long的长度一致 sizeof返回的是类型占用的字节数
+            if(IntPtr.Size == sizeof(long))//平台上的面指针或句柄类型要与long的长度一致 sizeof返回的是类型占用的字节数
             {
                 Span<long> longBuffer = MemoryMarshal.Cast<byte, long>(buffer);
                 remainingStart = longBuffer.Length * sizeof(long);//转换成longs后，剩余部分的起始索引
 
-                for (int i = 0; i < longBuffer.Length; i++)
+                for(int i = 0 ; i < longBuffer.Length ; i++)
                 {
-                    if (longBuffer[i] != 0)
+                    if(longBuffer[i] != 0)
                     {
                         remainingStart = i * sizeof(long);
                         break;
@@ -95,9 +92,9 @@ namespace 技术点验证
             }
 
             //确定位置
-            for (int i = remainingStart; i < buffer.Length; i++)
+            for(int i = remainingStart ; i < buffer.Length ; i++)
             {
-                if (buffer[i] != 0)
+                if(buffer[i] != 0)
                     return i;
             }
 
@@ -109,12 +106,12 @@ namespace 技术点验证
             byte[] buffer = this.buffer3;
             int remainingStart = 0;
 
-            if (Vector.IsHardwareAccelerated)
+            if(Vector.IsHardwareAccelerated)
             {
-                while (remainingStart <= buffer.Length - Vector<byte>.Count)
+                while(remainingStart <= buffer.Length - Vector<byte>.Count)
                 {
-                    var vector = new Vector<byte>(buffer, remainingStart);
-                    if (!Vector.EqualsAll(vector, default))
+                    Vector<byte> vector = new Vector<byte>(buffer, remainingStart);
+                    if(!Vector.EqualsAll(vector, default))
                     {
                         break;
                     }
@@ -122,9 +119,9 @@ namespace 技术点验证
                 }
             }
 
-            for (int i = remainingStart; i < buffer.Length; i++)
+            for(int i = remainingStart ; i < buffer.Length ; i++)
             {
-                if (buffer[i] != 0)
+                if(buffer[i] != 0)
                     return i;
             }
 

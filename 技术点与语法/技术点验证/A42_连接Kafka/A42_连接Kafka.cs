@@ -113,7 +113,7 @@ public class KafkaService : IKafkaService
 
         try
         {
-            while (true)
+            while(true)
             {
                 try
                 {
@@ -121,7 +121,7 @@ public class KafkaService : IKafkaService
 
                     ConsumeResult<Ignore, string>? consumeResult = consumer.Consume(cancellationToken);
                     Console.WriteLine($"消费信息[{consumeResult?.TopicPartitionOffset}]: '{consumeResult.Message?.Value}'.");
-                    if (consumeResult.IsPartitionEOF)
+                    if(consumeResult.IsPartitionEOF)
                     {
                         Console.WriteLine($" - {DateTime.Now:yyyy-MM-dd HH:mm:ss} 已经到底了：{consumeResult.Topic}, 分区 {consumeResult.Partition}, 偏移 {consumeResult.Offset}.");
                         continue;
@@ -131,7 +131,7 @@ public class KafkaService : IKafkaService
                     {
                         messageResult = JsonConvert.DeserializeObject<TMessage>(consumeResult.Message.Value);
                     }
-                    catch (Exception ex)
+                    catch(Exception ex)
                     {
                         string? errorMessage = $" - {DateTime.Now:yyyy-MM-dd HH:mm:ss}【Exception 消息反序列化失败，Value：{consumeResult.Message.Value}】 ：{ex.StackTrace?.ToString()}";
                         Console.WriteLine(errorMessage);
@@ -142,14 +142,14 @@ public class KafkaService : IKafkaService
 
                     #region 执行委托以处理消息
 
-                    if (messageResult != null/* && consumeResult.Offset % commitPeriod == 0*/)
+                    if(messageResult != null/* && consumeResult.Offset % commitPeriod == 0*/)
                     {
                         messageFunc(messageResult);//执行传递进的委托处理消息
                         try
                         {
                             consumer.Commit(consumeResult);
                         }
-                        catch (KafkaException e)
+                        catch(KafkaException e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -157,13 +157,13 @@ public class KafkaService : IKafkaService
 
                     #endregion 执行委托以处理消息
                 }
-                catch (ConsumeException e)
+                catch(ConsumeException e)
                 {
                     Console.WriteLine($"消费错误: {e.Error.Reason}");
                 }
             }
         }
-        catch (OperationCanceledException)
+        catch(OperationCanceledException)
         {
             Console.WriteLine("关闭消费者。");
             consumer.Close();

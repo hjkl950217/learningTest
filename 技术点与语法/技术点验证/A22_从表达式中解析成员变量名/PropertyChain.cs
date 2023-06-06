@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -27,7 +25,7 @@ namespace 技术点验证
         /// </summary>
         public PropertyChain(PropertyChain parent)
         {
-            if (parent != null
+            if(parent != null
                 && parent._memberNames.Count > 0)
             {
                 this._memberNames.AddRange(parent._memberNames);
@@ -50,11 +48,11 @@ namespace 技术点验证
         /// <returns></returns>
         public static PropertyChain FromExpression(LambdaExpression expression)
         {
-            var memberNames = new Stack<string>();
+            Stack<string> memberNames = new Stack<string>();
 
-            var getMemberExp = new Func<Expression, MemberExpression?>(toUnwrap =>
+            Func<Expression, MemberExpression?> getMemberExp = new Func<Expression, MemberExpression?>(toUnwrap =>
             {
-                if (toUnwrap is UnaryExpression)
+                if(toUnwrap is UnaryExpression)
                 {
                     return ((UnaryExpression)toUnwrap).Operand as MemberExpression;
                 }
@@ -62,9 +60,9 @@ namespace 技术点验证
                 return toUnwrap as MemberExpression;
             });
 
-            var memberExp = getMemberExp(expression.Body);
+            MemberExpression? memberExp = getMemberExp(expression.Body);
 
-            while (memberExp != null)
+            while(memberExp != null)
             {
                 memberNames.Push(memberExp.Member.Name);
                 memberExp = getMemberExp(memberExp.Expression);
@@ -79,7 +77,7 @@ namespace 技术点验证
         /// <param name="member">Member to add</param>
         public void Add(MemberInfo member)
         {
-            if (member != null)
+            if(member != null)
                 this._memberNames.Add(member.Name);
         }
 
@@ -89,7 +87,7 @@ namespace 技术点验证
         /// <param name="propertyName">Name of the property to add</param>
         public void Add(string? propertyName)
         {
-            if (!string.IsNullOrEmpty(propertyName))
+            if(!string.IsNullOrEmpty(propertyName))
                 this._memberNames.Add(propertyName);
         }
 
@@ -103,7 +101,7 @@ namespace 技术点验证
         /// <param name="surroundWithBrackets">Whether square brackets should be applied before and after the indexer. Default true.</param>
         public void AddIndexer(object indexer, bool surroundWithBrackets = true)
         {
-            if (this._memberNames.Count == 0)
+            if(this._memberNames.Count == 0)
             {
                 throw new InvalidOperationException("Could not apply an Indexer because the property chain is empty.");
             }
@@ -141,7 +139,7 @@ namespace 技术点验证
         /// </summary>
         /// <param name="parentChain">The parent chain to compare</param>
         /// <returns>True if the current chain is the child of the other chain, otherwise false</returns>
-        public bool IsChildChainOf([NotNull]PropertyChain parentChain)
+        public bool IsChildChainOf([NotNull] PropertyChain parentChain)
         {
             return (this.ToString() ?? string.Empty).StartsWith(parentChain.ToString() ?? string.Empty);
         }
@@ -151,12 +149,12 @@ namespace 技术点验证
         /// </summary>
         public string? BuildPropertyName(string? propertyName)
         {
-            if (this._memberNames.Count == 0)
+            if(this._memberNames.Count == 0)
             {
                 return propertyName;
             }
 
-            var chain = new PropertyChain(this);
+            PropertyChain chain = new PropertyChain(this);
             chain.Add(propertyName);
             return chain.ToString();
         }

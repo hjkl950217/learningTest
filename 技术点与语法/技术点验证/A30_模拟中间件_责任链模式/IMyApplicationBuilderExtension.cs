@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AspectCore.DynamicProxy.Parameters;
-using Microsoft.AspNetCore.Http;
-using Verification.Core;
+﻿using AspectCore.DynamicProxy.Parameters;
 
 namespace 技术点验证
 {
@@ -47,7 +40,7 @@ namespace 技术点验证
         /// <returns></returns>
         public static MyApplicationBuilder Run(
             this IMyApplicationBuilder applicationBuilder,
-            [NotNull]Action<MockHttpContext> inlineDelegate)
+            [NotNull] Action<MockHttpContext> inlineDelegate)
         {
             return applicationBuilder.Run(context =>
             {

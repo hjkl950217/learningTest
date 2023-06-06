@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using BenchmarkDotNet.Attributes;
-using Verification.Core;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证.A28_字符串做加法
 {
@@ -39,14 +37,14 @@ namespace 技术点验证.A28_字符串做加法
         private List<(string, string)> GetTestDataList()
         {
             List<(string, string)> result = new List<(string, string)>();
-            for (int i = 0 ; i < this.DataCount ; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 int lenth = A08TestHelper.random.Next(20);
                 char[] tempChars = new char[lenth];
                 char[] tempChars2 = new char[lenth];
 
                 //随机一个字符数组
-                for (int j = 0 ; j < lenth ; j++)
+                for(int j = 0 ; j < lenth ; j++)
                 {
                     tempChars[j] = A08TestHelper.GetRandomNum();
                     tempChars2[j] = A08TestHelper.GetRandomNum();
@@ -88,7 +86,7 @@ namespace 技术点验证.A28_字符串做加法
         [Benchmark(Baseline = true)]
         public void MethodA_Master()
         {
-            foreach (var item in this.TestList)
+            foreach((string, string) item in this.TestList)
             {
                 this.MethodA(item.Item1, item.Item2);
             }
@@ -126,7 +124,7 @@ namespace 技术点验证.A28_字符串做加法
         [Benchmark]
         public void MethodB_Master()
         {
-            foreach (var item in this.TestList)
+            foreach((string, string) item in this.TestList)
             {
                 this.MethodB(item.Item1, item.Item2);
             }

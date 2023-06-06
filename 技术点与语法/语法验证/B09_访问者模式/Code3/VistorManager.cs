@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     /// <summary>
     /// 访问者管理器
@@ -45,7 +42,7 @@ namespace 语法验证与学习
         /// <param name="visitor"></param>
         public void Display(IVisitor visitor)
         {
-            foreach (var item in this.persons)
+            foreach(var item in this.persons)
             {
                 item.GetConclusion(visitor);
             }
@@ -62,6 +59,5 @@ namespace 语法验证与学习
         //    for (int i = 0 ; ; i++)
         //        if (i % 2 == 0)  return i;
         //}
-
     }
 }

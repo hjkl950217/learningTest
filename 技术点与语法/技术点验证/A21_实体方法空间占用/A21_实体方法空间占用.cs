@@ -1,6 +1,4 @@
-﻿using System;
-using AutoFixture;
-using Verification.Core;
+﻿using AutoFixture;
 
 namespace 技术点验证
 {
@@ -46,9 +44,9 @@ namespace 技术点验证
         public void Test<T>(string? name, int count, Func<int, T[]> testFunc)
         {
             System.Console.WriteLine(name);
-            var b1 = this.ShowMemoryUsage();
-            var result = testFunc(count);
-            var b2 = this.ShowMemoryUsage();
+            long b1 = this.ShowMemoryUsage();
+            T[] result = testFunc(count);
+            long b2 = this.ShowMemoryUsage();
             this.ShowDifference(b1, b2);
             System.Console.WriteLine(name);
             System.GC.Collect();
@@ -61,7 +59,7 @@ namespace 技术点验证
             Fixture fixture = new Fixture();
 
             T[] result = new T[count];
-            for (int i = 0 ; i < count ; i++)
+            for(int i = 0 ; i < count ; i++)
             {
                 result[i] = fixture.Create<T>();
             }

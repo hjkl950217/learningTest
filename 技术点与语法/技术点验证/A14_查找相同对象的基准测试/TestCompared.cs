@@ -29,7 +29,7 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
         private List<StudentTest> GetTestDataList()
         {
             List<StudentTest> studentTests = new List<StudentTest>();
-            for (int i = 0; i < this.DataCount; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 StudentTest tempStu = new StudentTest()
                 {

@@ -1,11 +1,7 @@
-﻿using AspectCore.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Reflection;
-using Verification.Core;
+using AspectCore.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace 技术点验证
 {
@@ -18,7 +14,7 @@ namespace 技术点验证
 
         public void Start(string[]? args)
         {
-            var di = new ServiceCollection()
+            ServiceProvider di = new ServiceCollection()
              .AddSingleton<TestInterface, TestClass>()
              .ConfigureDynamicProxy()
              .BuildDynamicProxyProvider();//编译
@@ -40,9 +36,9 @@ namespace 技术点验证
                                         where type.IsInterface == true
                                         select type;
 
-            var resultAttr = (from type in tragetAssembly.GetTypes()
-                              where type.FullName.Contains("动态添加Attribute2")
-                              select type.GetCustomAttributes<TestAttribute>().ToList()
+            List<List<TestAttribute>> resultAttr = (from type in tragetAssembly.GetTypes()
+                                                    where type.FullName.Contains("动态添加Attribute2")
+                                                    select type.GetCustomAttributes<TestAttribute>().ToList()
                              )
                              .ToList();
 

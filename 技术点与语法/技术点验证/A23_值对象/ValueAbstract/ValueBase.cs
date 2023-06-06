@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using CkTools;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -60,7 +58,7 @@ namespace 技术点验证
         /// <returns></returns>
         private bool IsNulReference(TValue data)
         {
-            if (typeof(TValue).IsValueType)
+            if(typeof(TValue).IsValueType)
             {
                 return false;
             }
@@ -185,12 +183,12 @@ namespace 技术点验证
         /// <returns></returns>
         (bool checkResult, BizError errorObj) IValueCheck<TValue>.Check(TValue value)
         {
-            if (this.IsNulReference(this.Value))
+            if(this.IsNulReference(this.Value))
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            if (this.BizCheckValue())
+            if(this.BizCheckValue())
             {
                 return (
                     true,
@@ -204,8 +202,8 @@ namespace 技术点验证
 
         private void CheckVlueWithException()
         {
-            var checkObj = ((IValueCheck<TValue>)this).Check(this.Value);
-            if (!checkObj.checkResult)
+            (bool checkResult, BizError errorObj) checkObj = ((IValueCheck<TValue>)this).Check(this.Value);
+            if(!checkObj.checkResult)
             {
                 throw new ArgumentException(checkObj.errorObj.ErrorMessage, nameof(this.Value));
             }

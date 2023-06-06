@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using System;
 
 namespace 内存缓存学习.Controllers
 {
@@ -20,7 +20,7 @@ namespace 内存缓存学习.Controllers
         [HttpGet("Get")]
         public dynamic Get()
         {
-            var result = this.memoryCache.Get<string>(this.key);
+            string result = this.memoryCache.Get<string>(this.key);
 
             return new
             {

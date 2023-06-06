@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using Verification.Core;
+﻿using System.Diagnostics;
 
 namespace 技术点验证
 {
@@ -59,7 +56,7 @@ namespace 技术点验证
 
             Stopwatch sp = new Stopwatch();
             long[] msArray = new long[100];
-            for (int i = 0 ; i < msArray.Length ; i++)
+            for(int i = 0 ; i < msArray.Length ; i++)
             {
                 sp.Start();
                 this.Show(() => _ = Value.Create("0") == Value.Create(getNewstring('c')));
@@ -136,7 +133,7 @@ namespace 技术点验证
             {
                 action();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }

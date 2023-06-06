@@ -4,7 +4,7 @@ namespace 技术点验证
 {
     public class IdCard : ValueBase<string>
     {
-        public IdCard([NotNull]string data) : base(data)
+        public IdCard([NotNull] string data) : base(data)
         {
         }
 

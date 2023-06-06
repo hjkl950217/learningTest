@@ -1,9 +1,7 @@
-﻿using System;
-using Microsoft.ML;
+﻿using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Transforms;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -48,7 +46,7 @@ namespace 技术点验证
 
             //添加转换估计器
             //把这4个特征组合成一个特征向量, 新特征列名叫Features
-            var columnConcatenatingEstimator = mlContext.Transforms.Concatenate("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth");
+            ColumnConcatenatingEstimator columnConcatenatingEstimator = mlContext.Transforms.Concatenate("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth");
             EstimatorChain<ColumnConcatenatingTransformer> chain = estimator.Append(columnConcatenatingEstimator);
 
             //添加检查点
@@ -73,7 +71,7 @@ namespace 技术点验证
                 .MapKeyToValue("PredictedLabel");
             EstimatorChain<KeyToValueMappingTransformer> chain3 = chain2.Append(kToVEstimator);
 
-            var pipeline = chain3;
+            EstimatorChain<KeyToValueMappingTransformer> pipeline = chain3;
 
             //var pipeline = mlContext.Transforms.Conversion.MapValueToKey("Label")
             // .Append(mlContext.Transforms.Concatenate("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"))
@@ -84,11 +82,11 @@ namespace 技术点验证
             #endregion 转换数据并添加学习者--构建模型
 
             //训练模型
-            var model = pipeline.Fit(trainingDataView);
+            TransformerChain<KeyToValueMappingTransformer> model = pipeline.Fit(trainingDataView);
 
             //预测类型
-            var predictionEngine = mlContext.Model.CreatePredictionEngine<IrisData, IrisPrediction>(model);
-            var prediction = predictionEngine.Predict(new IrisData()
+            PredictionEngine<IrisData, IrisPrediction> predictionEngine = mlContext.Model.CreatePredictionEngine<IrisData, IrisPrediction>(model);
+            IrisPrediction prediction = predictionEngine.Predict(new IrisData()
             {
                 SepalLength = 3.3f,
                 SepalWidth = 1.6f,
@@ -96,7 +94,8 @@ namespace 技术点验证
                 PetalWidth = 5.1f,
             });
 
-            Console.WriteLine($"预测结果：{prediction.ToJsonExt()}"); ; //这个方法需要迁移到验证库中
+            Console.WriteLine($"预测结果：{prediction.ToJsonExt()}");
+            ; //这个方法需要迁移到验证库中
         }
     }
 }

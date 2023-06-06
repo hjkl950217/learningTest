@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证._A15_分割字符串的基准测试_
 {
@@ -32,17 +30,17 @@ namespace 技术点验证._A15_分割字符串的基准测试_
         private string[] GetTestDataList()
         {
             string[] result = new string[this.DataCount];
-            for (int i = 0 ; i < this.DataCount ; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 int lenth = A08TestHelper.random.Next(10);
                 char[] tempChars = new char[lenth];
 
                 //随机一个字符串
-                for (int j = 0 ; j < lenth ; j++)
+                for(int j = 0 ; j < lenth ; j++)
                 {
                     tempChars[j] = A08TestHelper.GetRandomChar();
 
-                    if (j % 2 == 0)
+                    if(j % 2 == 0)
                     {
                         tempChars[j] = A08TestHelper.GetRandomChar();
                     }
@@ -62,7 +60,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
         [Benchmark(Baseline = true)]
         public void MethodA_Master()
         {
-            foreach (var item in this.TestList)
+            foreach(string item in this.TestList)
             {
                 this.MethodA(item, this.symbols);
             }
@@ -71,7 +69,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
         [Benchmark]
         public void MethodB_Master()
         {
-            foreach (var item in this.TestList)
+            foreach(string item in this.TestList)
             {
                 this.MethodB(item, this.symbols);
             }
@@ -79,11 +77,11 @@ namespace 技术点验证._A15_分割字符串的基准测试_
 
         public string? MethodA(string? source, params char[] symbols)
         {
-            if (source == null)
+            if(source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            else if (source.Length == 0)
+            else if(source.Length == 0)
             {
                 return source;
             }
@@ -91,7 +89,7 @@ namespace 技术点验证._A15_分割字符串的基准测试_
             char[] chars = source.ToCharArray();
 
             bool isExtra = symbols.Any(t => chars[chars.Length - 1] == t);
-            if (isExtra == true)
+            if(isExtra == true)
             {
                 return new string(chars.Take(chars.Length - 1).ToArray());
             }
@@ -103,23 +101,24 @@ namespace 技术点验证._A15_分割字符串的基准测试_
 
         public string? MethodB(string? source, params char[] symbols)
         {
-            if (source == null)
+            if(source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            else if (source.Length == 0)
+            else if(source.Length == 0)
             {
                 return source;
             }
 
-            var chars = source.AsSpan();
+            ReadOnlySpan<char> chars = source.AsSpan();
             bool isExtra = false;
-            foreach (var item in symbols)
+            foreach(char item in symbols)
             {
                 isExtra = chars[source.Length - 1] == item;
-                if (isExtra == true) break;
+                if(isExtra == true)
+                    break;
             }
-            if (isExtra == true)
+            if(isExtra == true)
             {
                 return chars.Slice(0, source.Length - 1).ToString();
             }

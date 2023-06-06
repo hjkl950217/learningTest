@@ -19,7 +19,7 @@ namespace 语法验证与学习
         {
             strPrefix ??= string.Empty;
             content ??= new StringBuilder();
-            switch (rootNode.NodeType)
+            switch(rootNode.NodeType)
             {
                 case ExpressionType.Add:
                     return new BinaryTranslator((BinaryExpression)rootNode, strPrefix, content);

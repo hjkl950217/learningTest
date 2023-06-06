@@ -19,7 +19,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
         // GET api/Order
         [HttpGet("{orderNumber=0:int}")]
         public async Task<IEnumerable<OrderOut>> GetOrder(
-            [FromRoute]int orderNumber,
+            [FromRoute] int orderNumber,
             [FromQuery] string sellerID)
         {
             return await this.OrderServices.GetAllOrder(sellerID);
@@ -27,7 +27,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
 
         // GET api/Order/100
         [HttpGet("{orderNumber:int}")]
-        public static dynamic GetOrder2([FromRoute]int orderNumber)
+        public static dynamic GetOrder2([FromRoute] int orderNumber)
         {
             // return this.OrderServices.GetOrder( orderNumber );
 

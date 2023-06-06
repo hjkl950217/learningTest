@@ -24,7 +24,7 @@
              *
              */
 
-            if (enableStrictMode)
+            if(enableStrictMode)
             {
                 return checkSellerIDFormatByStrictMode(value);
             }
@@ -87,9 +87,10 @@
         {
             return methods => inputValue =>
             {
-                for (int i = 0; i < methods.Length; i++)
+                for(int i = 0 ; i < methods.Length ; i++)
                 {
-                    if (!methods[i](inputValue)) return false;//有一个返回false则中断，然后直接返回 表示检查不过
+                    if(!methods[i](inputValue))
+                        return false;//有一个返回false则中断，然后直接返回 表示检查不过
                 }
                 return true;
             };

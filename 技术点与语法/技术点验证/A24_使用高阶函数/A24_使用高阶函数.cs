@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Verification.Core;
+﻿using System.Reflection;
 
 namespace 技术点验证.A24_使用高阶函数
 {
@@ -33,7 +31,7 @@ namespace 技术点验证.A24_使用高阶函数
                 return methodName =>
                 {
                     MethodInfo? methodInfo = classType.GetMethod(methodName);
-                    if (methodInfo != null)
+                    if(methodInfo != null)
                     {
                         Console.WriteLine($"方法名签名:{methodInfo.Name}");
                         return attrType => () =>
@@ -51,7 +49,7 @@ namespace 技术点验证.A24_使用高阶函数
 
     public class TestAttributeInfo
     {
-        public void TestGenericParameterMethod<[GenericParameter]T>(T value)
+        public void TestGenericParameterMethod<[GenericParameter] T>(T value)
         {
         }
     }

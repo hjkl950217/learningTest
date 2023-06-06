@@ -25,8 +25,7 @@ namespace linux文件复制工具
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
             LogHelper.WriteLog($"当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}");
 
-            CodeCopy.Run(settings, runDateTime); 
-            
+            CodeCopy.Run(settings, runDateTime);
 
             //结束
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符

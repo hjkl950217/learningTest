@@ -9,10 +9,6 @@
 //
 //</Description>
 // --------------------------------------------------------------------------------------------------------------------
-using AutoMapper;
-using AutoMapper学习与练习.Infrastructure;
-using AutoMapper学习与练习.Orders.DTO;
-
 /**
  *                             _ooOoo_
  *                            o8888888o
@@ -46,6 +42,9 @@ using AutoMapper学习与练习.Orders.DTO;
  */
 
 using System.Collections.Generic;
+using AutoMapper;
+using AutoMapper学习与练习.Infrastructure;
+using AutoMapper学习与练习.Orders.DTO;
 
 namespace AutoMapper学习与练习.Orders
 {

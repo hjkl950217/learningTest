@@ -1,8 +1,3 @@
-using System;
-using System.Threading;
-using CkTools;
-using Verification.Core;
-
 namespace 语法验证与学习
 {
     [VerifcationType(VerificationTypeEnum.B08_Chsarp中写函数式编程)]
@@ -36,7 +31,7 @@ namespace 语法验证与学习
             Func<DateTime> nowCached = now.Cache(3);
 
             Console.WriteLine("\tCurrent time\tCached time");
-            for (int i = 0 ; i < 9 ; i++)
+            for(int i = 0 ; i < 9 ; i++)
             {
                 Console.WriteLine("{0}.\t{1:T}\t{2:T}", i + 1, now(), nowCached());
                 Thread.Sleep(1000);
@@ -104,7 +99,7 @@ namespace 语法验证与学习
         public void CurryFunctionDemo()
         {
             Func<double, double, double> pow = Math.Pow;
-            var curriedPow = pow.Curry();
+            Func<double, Func<double, double>> curriedPow = pow.Curry();
             double p1 = Math.Pow(Math.E, 2);
             double p2 = curriedPow(Math.E)(2);
 
@@ -119,7 +114,7 @@ namespace 语法验证与学习
 
             // 柯里化
             Func<double, double, double, double> distance3D = Distance3D;
-            var curriedDistance = distance3D.Curry();
+            Func<double, Func<double, Func<double, double>>> curriedDistance = distance3D.Curry();
             double d1 = Distance3D(3, 4, 12);
             double d2 = curriedDistance(3)(4)(12);
 
@@ -159,13 +154,13 @@ namespace 语法验证与学习
     {
         public static Func<T> Cache<T>(this Func<T> func, int cacheInterval)
         {
-            var cachedValue = func();//记录第一次调用的值
-            var timeCached = DateTimeOffset.Now;//记录缓存方法第一次调用时的时间
+            T? cachedValue = func();//记录第一次调用的值
+            DateTimeOffset timeCached = DateTimeOffset.Now;//记录缓存方法第一次调用时的时间
 
             T cachedFunc()
             {
                 bool isExpired = (DateTimeOffset.Now - timeCached).Seconds >= cacheInterval;
-                if (isExpired)
+                if(isExpired)
                 {
                     timeCached = DateTimeOffset.Now;
                     cachedValue = func();//过期后，调用方法更新返回值

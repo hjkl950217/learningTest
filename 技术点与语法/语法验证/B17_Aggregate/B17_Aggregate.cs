@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using Verification.Core;
+﻿using System.Linq.Expressions;
 
 namespace 语法验证与学习.B17_Aggregate
 {

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper学习与练习.Orders;
+﻿using AutoMapper学习与练习.Orders;
 using AutoMapper学习与练习.Orders.DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +11,7 @@ namespace AutoMapper学习与练习
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -23,7 +22,7 @@ namespace AutoMapper学习与练习
         /// <param name="services"></param>
         public static void AddMapper(IServiceCollection services)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
            {
                //配置替换字符，一定要在创建map之前
                //cfg.ReplaceMemberName( "Ä" , "A" );//把源类型属性名中的Ä替换成A
@@ -39,7 +38,7 @@ namespace AutoMapper学习与练习
            });
 
             config.AssertConfigurationIsValid();
-            var mapper = config.CreateMapper();
+            AutoMapper.IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
         }
 
@@ -61,7 +60,7 @@ namespace AutoMapper学习与练习
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CkTools.Helper;
+﻿using CkTools.Helper;
 
 namespace 技术点验证.DataConvertHander
 {
@@ -42,7 +39,7 @@ namespace 技术点验证.DataConvertHander
 
         public IEnumerable<TOutPut> Parse(TDataSource dataSource)
         {
-            if (dataSource.IsNullOrEmpty())
+            if(dataSource.IsNullOrEmpty())
                 return Array.Empty<TOutPut>();
 
             Func<TOutPut>? initFunc = this.outPutInitializer.Currying()(dataSource)(this.HanderType);
@@ -51,7 +48,7 @@ namespace 技术点验证.DataConvertHander
                count: this.fieldTypes.Length,
                createFactory: initFunc);
 
-            for (int i = 0; i < this.fieldTypes.Length; i++)
+            for(int i = 0 ; i < this.fieldTypes.Length ; i++)
             {
                 result[i] = this.outPutSetter(dataSource, this.fieldTypes[i], result[i]);
             }

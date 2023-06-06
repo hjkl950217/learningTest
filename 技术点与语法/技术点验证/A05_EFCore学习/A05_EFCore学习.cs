@@ -2,9 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -59,7 +56,7 @@ namespace 技术点验证
             //模拟业务代码注册
             services.AddSingleton<TestCode>();
 
-            var di = services.BuildServiceProvider();
+            ServiceProvider di = services.BuildServiceProvider();
             SchoolContext context = di.GetRequiredService<SchoolContext>();
 
             DbInitializer.Initalze(context);//这行是初始化数据的
@@ -67,7 +64,7 @@ namespace 技术点验证
             #endregion 模拟注册
 
             //模拟业务代码开始
-            var testCode = di.GetRequiredService<TestCode>();
+            TestCode testCode = di.GetRequiredService<TestCode>();
             testCode.Run();
         }
 

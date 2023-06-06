@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using Verification.Core;
+﻿using System.Text;
 
 namespace 语法验证与学习
 {
@@ -14,7 +11,8 @@ namespace 语法验证与学习
         public const int ThreadCount = 10;//线程数
         public static int num = 1;
 
-        public class LockOject { public int Num { get; set; } = 1; }
+        public class LockOject
+        { public int Num { get; set; } = 1; }
 
         public static StringBuilder stringBuilder = new StringBuilder();
 
@@ -36,11 +34,11 @@ namespace 语法验证与学习
         public static void LockDemo()
         {
             Console.WriteLine("有锁版");
-            var lockObj = new LockOject();
+            LockOject lockObj = new LockOject();
 
             void addNum()
             {
-                lock (lockObj)
+                lock(lockObj)
                 {
                     stringBuilder.Append($"{lockObj.Num++}\r\n");
                 }
@@ -57,7 +55,7 @@ namespace 语法验证与学习
         public static void DemoBase(ThreadStart threadStart, Func<int> getEndValue)
         {
             Thread[] threads = new Thread[ThreadCount];
-            for (int i = 0 ; i < threads.Length ; i++)
+            for(int i = 0 ; i < threads.Length ; i++)
             {
                 Thread thread = new Thread(threadStart)
                 {
@@ -66,7 +64,7 @@ namespace 语法验证与学习
                 threads[i] = thread;
             }
 
-            for (int i = 0 ; i < threads.Length ; i++)
+            for(int i = 0 ; i < threads.Length ; i++)
             {
                 threads[i].Start();
             }

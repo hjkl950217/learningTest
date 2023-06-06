@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     /// <summary>
     /// 具体创建者，具体的车型的创建者，例如：奥迪
@@ -11,7 +9,7 @@ namespace 语法验证与学习
 
         private void UsePartBase(string partName, string? part = null)
         {
-            if (part == null)
+            if(part == null)
             {
                 part = $"Default Aodi`s {partName}";
             }

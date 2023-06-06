@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using CkTools;
-using Verification.Core;
+﻿using System.Runtime.InteropServices;
 
 namespace 语法验证.B19_字符串驻留池
 {

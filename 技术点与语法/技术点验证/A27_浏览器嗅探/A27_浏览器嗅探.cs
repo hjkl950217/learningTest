@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Verification.Core;
 
 namespace 技术点验证
 {

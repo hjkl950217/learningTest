@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace FromatErroInfo
 {
@@ -14,7 +13,7 @@ namespace FromatErroInfo
 
         public Form_Main()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             StringBuilder showInfo = new StringBuilder();
             showInfo.Append("如何使用？");
@@ -99,9 +98,7 @@ namespace FromatErroInfo
         /// <returns></returns>
         private StringBuilder ReplaceByAt(StringBuilder stringBuilder, string placeholder = Form_Main.DefaultPlaceholder)
         {
-
-           // stringBuilder.
-
+            // stringBuilder.
 
             return stringBuilder;
         }

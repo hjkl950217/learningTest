@@ -27,7 +27,7 @@
             outputList.Add(dt3);
 
             int index = 1;
-            foreach (object? item in outputList)
+            foreach(object? item in outputList)
             {
                 Console.WriteLine($"第{index++}个");
                 Console.WriteLine(item);
@@ -47,7 +47,7 @@
             outputList.Add(dt10);
             outputList.Add(dt20);
             outputList.Add(dt30);
-            foreach (object? item in outputList)
+            foreach(object? item in outputList)
             {
                 Console.WriteLine($"第{index++}个");
                 Console.WriteLine(item);

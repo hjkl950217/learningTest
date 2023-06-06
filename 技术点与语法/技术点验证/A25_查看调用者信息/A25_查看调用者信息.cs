@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Verification.Core;
 
 namespace 技术点验证.A25_查看调用者信息
 {
@@ -17,9 +16,9 @@ namespace 技术点验证.A25_查看调用者信息
         }
 
         public static void TraceMessage(string? message = null,
-            [CallerMemberName]string? memberName = "",
-            [CallerFilePath]string? sourceFilePath = "",
-            [CallerLineNumber]int sourceLineNumber = 0)
+            [CallerMemberName] string? memberName = "",
+            [CallerFilePath] string? sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
         {
             Trace.Indent();
 

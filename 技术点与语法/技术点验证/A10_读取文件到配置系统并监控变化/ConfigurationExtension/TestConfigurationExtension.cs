@@ -1,11 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace 技术点验证
 {
-  public static  class TestConfigurationExtension
+    public static class TestConfigurationExtension
     {
         /// <summary>
         /// 添加测试配置
@@ -16,18 +13,17 @@ namespace 技术点验证
         /// <returns></returns>
         public static IConfigurationBuilder AddTestConfiguration(
             this IConfigurationBuilder configurationBuilder,
-            string? configFileName ,
-            bool reloadOnChange=false
+            string? configFileName,
+            bool reloadOnChange = false
             )
         {
             IConfigurationSource testConfigurationSource = new TestConfigurationSource(
-                configFileName, 
+                configFileName,
                 reloadOnChange);
 
             configurationBuilder.Add(testConfigurationSource);//添加一个配置源
 
             return configurationBuilder;
         }
-
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using Verification.Core;
 
 namespace 技术点验证.A37_快速填0测试
 {
@@ -43,7 +41,7 @@ namespace 技术点验证.A37_快速填0测试
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for (int i = 0 ; i < this.DataCount ; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 stringBuilder.Append(this.GetRanmodString());
             }
@@ -55,7 +53,7 @@ namespace 技术点验证.A37_快速填0测试
         public string UseStringAdd()
         {
             string result = string.Empty;
-            for (int i = 0 ; i < this.DataCount ; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 result += this.GetRanmodString();
             }

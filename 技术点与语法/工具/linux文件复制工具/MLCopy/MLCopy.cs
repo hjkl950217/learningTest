@@ -4,7 +4,7 @@
     {
         public static void Run(AppSettings settings, DateTime runDateTime)
         {
-             DataSetHelper.GenerateDataset(settings, runDateTime);
+            DataSetHelper.GenerateDataset(settings, runDateTime);
         }
     }
 }

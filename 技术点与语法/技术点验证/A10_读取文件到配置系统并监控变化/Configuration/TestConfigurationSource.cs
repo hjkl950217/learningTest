@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
 
 namespace 技术点验证
 {
@@ -11,8 +9,6 @@ namespace 技术点验证
             this.ConfigFileName = fileName;
             this.ReloadOnChange = reloadOnChange;
         }
-
-        
 
         /// <summary>
         /// 是否是可选配置
@@ -43,7 +39,6 @@ namespace 技术点验证
         {
             string? debugAddress = Directory.GetCurrentDirectory();
             this.ConfigAddress = Path.Combine(debugAddress, $"{{{nameof(A10_读取文件到配置系统并监控变化)}}}");
-
 
             return new TestConfigurationProvider(this);
         }

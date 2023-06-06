@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
-using Verification.Core;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证.A29_快速分片
 {
@@ -57,9 +53,9 @@ namespace 技术点验证.A29_快速分片
 
         public IEnumerable<IEnumerable<T>> SliceByToLookup<T>(IEnumerable<T> source, int segmentSize = 10)
         {
-            var queryTemps = source.ToArray();
+            T[] queryTemps = source.ToArray();
 
-            var sliceQuerys = Enumerable.Range(1, queryTemps.Length)
+            List<List<T>> sliceQuerys = Enumerable.Range(1, queryTemps.Length)
                  .ToLookup(k => k / segmentSize, v => queryTemps[v - 1])
                  .Select(g => g.ToList())
                  .ToList();
@@ -74,9 +70,9 @@ namespace 技术点验证.A29_快速分片
 
         public IEnumerable<IEnumerable<T>> SliceByGroupBy<T>(IEnumerable<T> source, int segmentSize = 10)
         {
-            var queryTemps = source.ToArray();
+            T[] queryTemps = source.ToArray();
 
-            var sliceQuerys = Enumerable.Range(1, queryTemps.Length)
+            List<List<T>> sliceQuerys = Enumerable.Range(1, queryTemps.Length)
                  .GroupBy(k => k / segmentSize, v => queryTemps[v - 1])
                  .Select(g => g.ToList())
                  .ToList();
@@ -91,7 +87,7 @@ namespace 技术点验证.A29_快速分片
 
         public IEnumerable<IEnumerable<T>> SliceBySkipAndTake<T>(IEnumerable<T> source, int segmentSize = 10)
         {
-            var totalCount = (int)Math.Ceiling(source.Count() * 1.0 / segmentSize);
+            int totalCount = (int)Math.Ceiling(source.Count() * 1.0 / segmentSize);
             return Enumerable.Range(0, totalCount)
                 .Select(i => source.Skip(segmentSize * i).Take(segmentSize));
         }

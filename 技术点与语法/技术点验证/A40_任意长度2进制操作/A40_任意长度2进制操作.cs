@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Verification.Core;
-
-namespace 技术点验证.A40_任意长度2进制操作
+﻿namespace 技术点验证.A40_任意长度2进制操作
 {
     [VerifcationType(VerificationTypeEnum.A40_任意长度2进制操作)]
     public class A40_任意长度2进制操作 : IVerification
@@ -31,10 +27,10 @@ namespace 技术点验证.A40_任意长度2进制操作
         {
             get
             {
-                if (bitMap == null)
+                if(bitMap == null)
                 {
                     bitMap = new Dictionary<int, ulong>(BitHelper.LongLength);
-                    for (int i = 1; i < BitHelper.LongLength + 1; i++)
+                    for(int i = 1 ; i < BitHelper.LongLength + 1 ; i++)
                     {
                         bitMap[i] = ulong.MaxValue >> (BitHelper.LongLength - i);
                     }
@@ -56,7 +52,7 @@ namespace 技术点验证.A40_任意长度2进制操作
         {
             bool[] result = new bool[BitHelper.LongLength];
 
-            for (int i = 0; i < result.Length; i++)
+            for(int i = 0 ; i < result.Length ; i++)
             {
                 result[i] = (source | BitHelper.BitMap[i + 1]) == source;
             }
@@ -65,13 +61,13 @@ namespace 技术点验证.A40_任意长度2进制操作
 
         public static ulong ToUlong(bool[] source)
         {
-            if (source.Length != BitHelper.LongLength)
+            if(source.Length != BitHelper.LongLength)
             {
                 throw new ArgumentException("必须为64个长度");
             }
 
             ulong result = ulong.MinValue;
-            for (int i = 0; i < BitHelper.LongLength; i++)
+            for(int i = 0 ; i < BitHelper.LongLength ; i++)
             {
                 result = source[i]
                     ? (result | BitHelper.BitMap[i + 1])

@@ -44,21 +44,21 @@ namespace 技术点验证
         public MemberInfo? GetMember<T, TProperty>(Expression<Func<T, TProperty>> expression)
         {
             MemberExpression? memberExpression = RemoveUnary(expression.Body) as MemberExpression;
-            if (memberExpression == null)
+            if(memberExpression == null)
             {
                 return null;
             }
             Expression expression2 = memberExpression.Expression;
-            while (true)
+            while(true)
             {
                 expression2 = RemoveUnary(expression2);
-                if (expression2 == null || expression2.NodeType != ExpressionType.MemberAccess)
+                if(expression2 == null || expression2.NodeType != ExpressionType.MemberAccess)
                 {
                     break;
                 }
                 expression2 = ((MemberExpression)expression2).Expression;
             }
-            if (expression2 == null || expression2.NodeType != ExpressionType.Parameter)
+            if(expression2 == null || expression2.NodeType != ExpressionType.Parameter)
             {
                 return null;
             }
@@ -67,7 +67,7 @@ namespace 技术点验证
 
         private static Expression RemoveUnary(Expression toUnwrap)
         {
-            if (toUnwrap is UnaryExpression)
+            if(toUnwrap is UnaryExpression)
             {
                 return ((UnaryExpression)toUnwrap).Operand;
             }
@@ -76,10 +76,10 @@ namespace 技术点验证
 
         private string? DefaultPropertyNameResolver(Type type, MemberInfo? memberInfo, LambdaExpression expression)
         {
-            if (expression != null)
+            if(expression != null)
             {
                 PropertyChain propertyChain = PropertyChain.FromExpression(expression);
-                if (propertyChain.Count > 0)
+                if(propertyChain.Count > 0)
                 {
                     return propertyChain.ToString();
                 }

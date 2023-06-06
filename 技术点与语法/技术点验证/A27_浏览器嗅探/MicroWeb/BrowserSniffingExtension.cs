@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,10 +24,10 @@ namespace 技术点验证
 
         private static void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
-            if (options.SameSite == SameSiteMode.None)
+            if(options.SameSite == SameSiteMode.None)
             {
-                var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
-                if (CheckSameSiteToNoneByUserAgent(userAgent))
+                string userAgent = httpContext.Request.Headers["User-Agent"].ToString();
+                if(CheckSameSiteToNoneByUserAgent(userAgent))
                 {
                     options.SameSite = SameSiteMode.Unspecified;
                 }
@@ -48,7 +47,7 @@ namespace 技术点验证
 
             // Check if a null or empty string has been passed in, since this
             // will cause further interrogation of the useragent to fail.
-            if (String.IsNullOrWhiteSpace(userAgent))
+            if(String.IsNullOrWhiteSpace(userAgent))
                 return false;
 
             // Cover all iOS based browsers here. This includes:
@@ -57,7 +56,7 @@ namespace 技术点验证
             // - Chrome on iOS 12 for iPhone, iPod Touch, iPad
             // All of which are broken by SameSite=None, because they use the iOS networking
             // stack.
-            if (userAgent.Contains("CPU iPhone OS 12") ||
+            if(userAgent.Contains("CPU iPhone OS 12") ||
                 userAgent.Contains("iPad; CPU OS 12"))
             {
                 return true;
@@ -69,7 +68,7 @@ namespace 技术点验证
             // This does not include:
             // - Chrome on Mac OS X
             // Because they do not use the Mac OS networking stack.
-            if (userAgent.Contains("Macintosh; Intel Mac OS X 10_14") &&
+            if(userAgent.Contains("Macintosh; Intel Mac OS X 10_14") &&
                 userAgent.Contains("Version/") && userAgent.Contains("Safari"))
             {
                 return true;
@@ -79,7 +78,7 @@ namespace 技术点验证
             // and none in this range require it.
             // Note: this covers some pre-Chromium Edge versions,
             // but pre-Chromium Edge does not require SameSite=None.
-            if (userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6"))
+            if(userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6"))
             {
                 return true;
             }

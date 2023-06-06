@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证
@@ -24,11 +23,11 @@ namespace 技术点验证
         public void SetUp()
         {
             MsgSerializer.InitializeMsgPackSerializer();
-            var testIntDataT = A08TestHelper.GetIntTestData(this.TestTotal);
-            var testStringData = A08TestHelper.GetIntTestData2(this.TestTotal);
-            var testNonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
-            var testDefaultDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
-            var testJsonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
+            List<TestEntity_Int> testIntDataT = A08TestHelper.GetIntTestData(this.TestTotal);
+            List<TestEntity_String?> testStringData = A08TestHelper.GetIntTestData2(this.TestTotal);
+            List<TestEntity_Non> testNonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
+            List<TestEntity_Non> testDefaultDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
+            List<TestEntity_Non> testJsonDataT = A08TestHelper.GetIntTestData3(this.TestTotal);
 
             this.testIntData = MsgSerializer.Serialize(testIntDataT);
             this.testStringData = MsgSerializer.Serialize(testStringData);
