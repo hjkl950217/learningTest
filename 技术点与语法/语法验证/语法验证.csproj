@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <!--<PackageReference Include="FSharp.Core" Version="4.7.0" />-->
-    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="morelinq" Version="3.4.2" />
   </ItemGroup>
 
   <ItemGroup>
