@@ -40,7 +40,7 @@
 		</Rule>
 		<Rule enabled="true">
 			<Action type="Proxy">100</Action>
-			<Targets>*.*visual*.*;*.*microsoft*.*;*.*github*.*;*.*azure*.*;*.*vsassets*.*;*.*powhershell*.*;*.*google*.*;*.*nuget*.*;*.*docker*.*</Targets>
+			<Targets>*visual*;*microsoft*;*github*;*azure*;*vsassets*;*powhershell*;*google*;*nuget*;*docker*</Targets>
 			<Name>工作</Name>
 		</Rule>
 		<Rule enabled="true">
@@ -55,7 +55,7 @@
 		</Rule>
 		<Rule enabled="false">
 			<Action type="Proxy">100</Action>
-			<Targets>*.*setam*.*;*steamcommunity*</Targets>
+			<Targets>*setam*;*steamcommunity*</Targets>
 			<Name>game</Name>
 		</Rule>
 		<Rule enabled="true">
