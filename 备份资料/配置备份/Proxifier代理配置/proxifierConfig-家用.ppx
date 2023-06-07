@@ -102,7 +102,7 @@ Microsoft.Alm.Shared.Remoting.RemoteContainer.dll;</Applications>
 		</Rule>
 		<Rule enabled="true">
 			<Action type="Proxy">101</Action>
-			<Targets>*.*google*.*;*.*android*.*;*.*youtube*.*;*.*color-themes*.*;*.*seleniumhq*.*;*.*github*.*;*.*visual*.*;*.*microsoft*.*;*.*windows*.*;*.*nvidia*.*;*.*vsassets*.*;*.*powhershell*.*;*.*nuget*.*;</Targets>
+			<Targets>*google*;*android*;*youtube*;*color-themes*;*seleniumhq*;*github*;*visual*;*microsoft*;*windows*;*nvidia*;*vsassets*;*powhershell*;*nuget*;</Targets>
 			<Name>上网规则</Name>
 		</Rule>
 		<Rule enabled="true">
