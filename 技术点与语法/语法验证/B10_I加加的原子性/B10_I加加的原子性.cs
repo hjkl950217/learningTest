@@ -5,8 +5,8 @@ namespace 语法验证与学习
     //参考资料：https://stackoverflow.com/questions/4628243/is-the-operator-thread-safe
     //线程太少，无法真正观察到++操作符 有锁与无锁的版本
 
-    [VerifcationType(VerificationTypeEnum.B01_建造者模式学习)]
-    public class B10_I__的原子性 : IVerification
+    [VerifcationType(VerificationTypeEnum.B10_I加加的原子性)]
+    public class B10_I加加的原子性 : IVerification
     {
         public const int ThreadCount = 10;//线程数
         public static int num = 1;
@@ -55,7 +55,7 @@ namespace 语法验证与学习
         public static void DemoBase(ThreadStart threadStart, Func<int> getEndValue)
         {
             Thread[] threads = new Thread[ThreadCount];
-            for(int i = 0 ; i < threads.Length ; i++)
+            for(int i = 0; i < threads.Length; i++)
             {
                 Thread thread = new Thread(threadStart)
                 {
@@ -64,7 +64,7 @@ namespace 语法验证与学习
                 threads[i] = thread;
             }
 
-            for(int i = 0 ; i < threads.Length ; i++)
+            for(int i = 0; i < threads.Length; i++)
             {
                 threads[i].Start();
             }
