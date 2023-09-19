@@ -64,7 +64,17 @@ dig edoc2 +search +short | /usr/bin/sort			#用dig去DNS中解析edoc2这个地�
 yum install ntpdate -y | ntpdate ntp1.aliyun.com		#linux 同步时间
 du -h --max-depth=1				#获取当前目录的文件夹大小
 df -h						#查看磁盘空间占用
+find / -name createdump				#在"/"路径下查找名为createdump的文件
+mv a.txt b.txt					#改名，改文件名。将a.txt改为b.txt
+cp a.txt /tmp/b.txt					#复制并改名。将a.txt复制到/tmp下并改名。不改名时直接写/tmp
 
+dd if=/dev/zero of=/tmp/test bs=4k count=16k \
+conv=fdatasync oflag=direct && rm -rf /tmp/test		#使用dd直接测试硬盘性能（写入）
+
+fio -filename=//fio.txt -direct=1 -iodepth 6 -thread \
+-rw=write -ioengine=psync -bs=4k -size=3G -numjobs=8 \
+-runtime=15 -group_reporting -name=mytest | grep IOPS | \
+awk -F'IOPS=|,' '{print $2}' && rm -f //fio.txt		#测试硬盘性能（需要安装fio）
 
 
 
