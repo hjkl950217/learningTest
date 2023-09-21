@@ -84,7 +84,7 @@
         B07_递归,
         B08_Chsarp中写函数式编程,
         B09_访问者模式,
-        B10_I__的原子性,
+        B10_I加加的原子性,
         B11_表达式树修改,
         B12_Switch_In_80,
         B14_用函数式检查SellerID,
@@ -96,6 +96,7 @@
         B20_框架数据结构测试,
         B21_Task的Wait方法是否任务级暂停,
         B22_Linq使用IndexRange,
+        B23_获取调用者的信息,
 
         #endregion 语法类
 
