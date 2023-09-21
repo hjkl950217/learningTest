@@ -4,11 +4,14 @@
 		<Resolve>
 			<AutoModeDetection enabled="false" />
 			<ViaProxy enabled="false" />
+			<BlockNonATypes enabled="false" />
 			<ExclusionList OnlyFromListMode="false">%ComputerName%; localhost; *.local</ExclusionList>
 			<DnsUdpMode>0</DnsUdpMode>
 		</Resolve>
 		<Encryption mode="basic" />
 		<ConnectionLoopDetection enabled="true" resolve="true" />
+		<Udp mode="mode_bypass" />
+		<LeakPreventionMode enabled="false" />
 		<ProcessOtherUsers enabled="true" />
 		<ProcessServices enabled="true" />
 		<HandleDirectConnections enabled="false" />
@@ -17,6 +20,12 @@
 	<ProxyList>
 		<Proxy id="101" type="SOCKS5">
 			<Options>48</Options>
+			<Port>1088</Port>
+			<Address>127.0.0.1</Address>
+		</Proxy>
+		<Proxy id="102" type="HTTPS">
+			<UserAgent>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)</UserAgent>
+			<Options>50</Options>
 			<Port>1088</Port>
 			<Address>127.0.0.1</Address>
 		</Proxy>
