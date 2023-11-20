@@ -64,7 +64,7 @@ dig edoc2 +search +short | /usr/bin/sort			#用dig去DNS中解析edoc2这个地�
 yum install ntpdate -y | ntpdate ntp1.aliyun.com		#linux 同步时间
 du -h --max-depth=1				#获取当前目录的文件夹大小
 df -h						#查看磁盘空间占用
-find / -name createdump				#在"/"路径下查找名为createdump的文件
+find / -path /mnt -prune -o -name *.yaml -print		#在"/"路径下查找名为*.ymal的文件并排除/mnt目录
 mv a.txt b.txt					#改名，改文件名。将a.txt改为b.txt
 cp a.txt /tmp/b.txt					#复制并改名。将a.txt复制到/tmp下并改名。不改名时直接写/tmp
 
