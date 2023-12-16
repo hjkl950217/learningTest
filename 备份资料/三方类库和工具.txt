@@ -70,6 +70,7 @@
 67. Magicodes.IE 导入导出通用库，支持Dto导入导出、模板导出、花式导出以及动态导出，支持Excel、Csv、Word、Pdf和Html
 68. Commandline 一个命令行解析类库，支持在类名、属性名上通过特性的方式定义行为
 69. Spectre.Console 一个功能非常强大的命令行解析类库，支持颜色、table等输出。
+70. Zxing.net 对二维码 条形码进行生成和解码操作
 
 
 --工具
