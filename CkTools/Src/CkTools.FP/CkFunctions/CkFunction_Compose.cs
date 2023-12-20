@@ -101,10 +101,10 @@ namespace CkTools.FP
 
         #endregion 第3排
 
-        #region 其它
+        #region 其他
 
         public static Action Compose(
-            [NotNull] params Action[] actions)
+            [NotNull] params Action?[] actions)
         {
             CheckNullWithException(actions);
             return () =>
@@ -112,13 +112,13 @@ namespace CkTools.FP
                 //倒序执行
                 for(int i = actions.Length - 1 ; i > -1 ; i--)
                 {
-                    actions[i]();
+                    actions[i]?.Invoke();
                 }
             };
         }
 
         public static Action<TInput> Compose<TInput>(
-            [NotNull] params Action<TInput>[] actions)
+            [NotNull] params Action<TInput>?[] actions)
         {
             CheckNullWithException(actions);
             return t =>
@@ -126,13 +126,12 @@ namespace CkTools.FP
                 //倒序执行
                 for(int i = actions.Length - 1 ; i > -1 ; i--)
                 {
-                    Action<TInput>? item = actions[i];
-                    item(t);
+                    actions[i]?.Invoke(t);
                 }
             };
         }
 
-        #endregion 其它
+        #endregion 其他
 
         #endregion Action
 
@@ -181,7 +180,7 @@ namespace CkTools.FP
 
         #endregion 第3排
 
-        #region 其它
+        #region 其他
 
         public static Func<TInput1, TResultEnd> Compose<TInput1, TResult2, TResult3, TResult4, TResult5, TResultEnd>(
             [NotNull] Func<TResult5, TResultEnd> exp5,
@@ -222,27 +221,26 @@ namespace CkTools.FP
         }
 
         public static Func<TResult> Compose<TResult>(
-            [NotNull] Action<TResult>[] exps2,
+            [NotNull] Action<TResult>[] exps,
             [NotNull] Func<TResult> exp1)
         {
-            CkFunctions.CheckNullWithException(exp1);
-            CkFunctions.CheckNullWithException(exps2);
+            CkFunctions.CheckNullWithException(exps, exp1);
 
             TResult result1 = exp1();
 
             return () =>
             {
-                for(int i = 0 ; i < exps2.Length ; i++)
+                //倒序执行
+                for(int i = exps.Length - 1 ; i > -1 ; i--)
                 {
-                    Action<TResult>? item = exps2[i];
-                    item(result1);
+                    exps[i](result1);
                 }
 
                 return result1;
             };
         }
 
-        #endregion 其它
+        #endregion 其他
 
         #endregion Func
 
@@ -353,7 +351,7 @@ namespace CkTools.FP
         /*
          竖exp1\横exp2    Func<TR>     Func<T,TR>   Func<T2,T1,TR>
          Action             1           1           1
-         Action<T>          x           1           2
+         Action<T>          x           1           x
          Action<T2,T1>      x           x           1
 
          */
@@ -413,32 +411,6 @@ namespace CkTools.FP
             {
                 exp1(t);
                 TResult tempResult = exp2(t);
-                return tempResult;
-            };
-        }
-
-        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
-            [NotNull] Func<TInput2, TInput1, TResult> exp2,
-            [NotNull] Action<TInput1> exp1)
-        {
-            CheckNullWithException(exp2, exp1);
-            return (t2, t1) =>
-            {
-                exp1(t1);
-                TResult tempResult = exp2(t2, t1);
-                return tempResult;
-            };
-        }
-
-        public static Func<TInput2, TInput1, TResult> Compose<TInput2, TInput1, TResult>(
-            [NotNull] Func<TInput2, TInput1, TResult> exp2,
-            [NotNull] Action<TInput2> exp1)
-        {
-            CheckNullWithException(exp2, exp1);
-            return (t2, t1) =>
-            {
-                exp1(t2);
-                TResult tempResult = exp2(t2, t1);
                 return tempResult;
             };
         }

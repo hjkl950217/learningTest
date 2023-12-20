@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Compose_函数组合
+    public class Do_做
     {
         /// <summary>
         /// 测试接口
@@ -58,7 +58,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action result = CkFunctions.Compose(
+            Action result = CkFunctions.Do(
                 actionInterface.Test00,
                 actionInterface.Test0);
             result();
@@ -78,7 +78,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string> result = CkFunctions.Compose(
+            Action<string> result = CkFunctions.Do(
                 (Action<string>)actionInterface.Test1,
                 actionInterface.Test0);
             result("a");
@@ -98,7 +98,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string, string> result = CkFunctions.Compose(
+            Action<string, string> result = CkFunctions.Do(
                 (Action<string, string>)actionInterface.Test2,
                 actionInterface.Test0);
             result("a", "b");
@@ -122,7 +122,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string> result = CkFunctions.Compose<string>(
+            Action<string> result = CkFunctions.Do<string>(
                 actionInterface.Test0,
                 actionInterface.Test1);
             result("a");
@@ -142,7 +142,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string> result = CkFunctions.Compose<string>(
+            Action<string> result = CkFunctions.Do<string>(
                 actionInterface.Test1,
                 actionInterface.Test1);
             result("a");
@@ -162,7 +162,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string, string> result = CkFunctions.Compose<string, string>(
+            Action<string, string> result = CkFunctions.Do<string, string>(
                actionInterface.Test2,
                actionInterface.Test1);
             result("a", "b");
@@ -182,7 +182,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string, string> result = CkFunctions.Compose<string>(
+            Action<string, string> result = CkFunctions.Do<string>(
                actionInterface.Test2,
                actionInterface.Test1);
             result("a", "b");
@@ -206,7 +206,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string, string> result = CkFunctions.Compose<string, string>(
+            Action<string, string> result = CkFunctions.Do<string, string>(
                 actionInterface.Test0,
                 actionInterface.Test2);
             result("a", "b");
@@ -226,7 +226,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string, string> result = CkFunctions.Compose<string, string>(
+            Action<string, string> result = CkFunctions.Do<string, string>(
                 actionInterface.Test2,
                 actionInterface.Test2);
             result("a", "b");
@@ -250,7 +250,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action result = CkFunctions.Compose(
+            Action result = CkFunctions.Do(
                 actionInterface.Test0,
                 actionInterface.Test0,
                 actionInterface.Test0);
@@ -272,7 +272,7 @@ namespace CKTools.FP.Test
             IAction actionInterface = Substitute.For<IAction>();
 
             //执行
-            Action<string> result = CkFunctions.Compose<string>(
+            Action<string> result = CkFunctions.Do<string>(
                 actionInterface.Test1,
                 actionInterface.Test1,
                 actionInterface.Test1);
@@ -293,191 +293,93 @@ namespace CKTools.FP.Test
 
         #region Func
 
-        #region 第1排
-
-        [Fact]
-        public void Func_0参1返_1参1返()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<string> result = CkFunctions.Compose(
-                funcInterface.Test1,
-                funcInterface.Test0);
-            result();
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test0();
-                funcInterface.Received().Test1(Arg.Any<int>());
-            });
-        }
-
-        #endregion 第1排
-
-        #region 第2排
-
-        [Fact]
-        public void Func_1参1返_1参1返()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<int, int> result = CkFunctions.Compose<int, string, int>(
-                funcInterface.Test11,
-                funcInterface.Test1);
-            result(1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-            });
-        }
-
-        #endregion 第2排
-
-        #region 第3排
-
-        [Fact]
-        public void Func_2参1返_1参1返()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<string, int, double> result = CkFunctions.Compose<string, int, double>(
-                funcInterface.Test111,
-                funcInterface.Test2);
-            result("a", 1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
-                funcInterface.Received().Test111(Arg.Any<double>());
-            });
-        }
-
-        #endregion 第3排
-
         #region 其他
 
         [Fact]
-        public void Func_5连环()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<int, string> result = CkFunctions.Compose<int, string, int, string, int, string>(
-                funcInterface.Test1,
-                funcInterface.Test11,
-                funcInterface.Test1,
-                funcInterface.Test11,
-                funcInterface.Test1);
-            result(1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-            });
-        }
-
-        [Fact]
-        public void Func_4连环()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<int, int> result = CkFunctions.Compose<int, string, int, string, int>(
-                funcInterface.Test11,
-                funcInterface.Test1,
-                funcInterface.Test11,
-                funcInterface.Test1);
-            result(1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-            });
-        }
-
-        [Fact]
-        public void Func_3连环()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<int, string> result = CkFunctions.Compose<int, string, int, string>(
-                funcInterface.Test1,
-                funcInterface.Test11,
-                funcInterface.Test1);
-            result(1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-            });
-        }
-
-        [Fact]
-        public void Func_2连环()
-        {
-            //准备
-            IFunc funcInterface = Substitute.For<IFunc>();
-
-            //执行
-            Func<int, int> result = CkFunctions.Compose<int, string, int>(
-                funcInterface.Test11,
-                funcInterface.Test1);
-            result(1);
-
-            //断言
-            Received.InOrder(() =>
-            {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-            });
-        }
-
-        [Fact]
-        public void Func_0参1返_N个1参()
+        public void Func_5函数合并_0参1返()
         {
             //准备
             IAction actionInterface = Substitute.For<IAction>();
             IFunc funcInterface = Substitute.For<IFunc>();
+            funcInterface.Test0().Returns(10);
 
             //执行
-            Func<int> result = CkFunctions.Compose(
-                actionInterface.Test11,
-                funcInterface.Test0);
-            result();
+            Func<int> result = CkFunctions.Do(
+                funcInterface.Test0,
+                actionInterface.Test0,
+                actionInterface.Test0,
+                actionInterface.Test0,
+                actionInterface.Test0);
+            int resultCount = result();
 
             //断言
             Received.InOrder(() =>
             {
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
                 funcInterface.Received().Test0();
-                actionInterface.Received().Test11(Arg.Any<int>());
             });
+            Assert.Equal(10, resultCount);
+        }
+
+        [Fact]
+        public void Func_5函数合并_1参1返()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+            IFunc funcInterface = Substitute.For<IFunc>();
+            funcInterface.Test1(Arg.Any<int>()).Returns("a");
+
+            //执行
+            Func<int, string> result = CkFunctions.Do<int, string>(
+                funcInterface.Test1,
+                actionInterface.Test11,
+                actionInterface.Test11,
+                actionInterface.Test11,
+                actionInterface.Test11);
+            string resultStr = result(10);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                funcInterface.Received().Test0();
+            });
+            Assert.Equal("a", resultStr);
+        }
+
+        [Fact]
+        public void Func_5函数合并_1参1返_2()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+            IFunc funcInterface = Substitute.For<IFunc>();
+            funcInterface.Test1(Arg.Any<int>()).Returns("a");
+
+            //执行
+            Func<int, string> result = CkFunctions.Do<int, string>(
+                funcInterface.Test1,
+                actionInterface.Test0,
+                actionInterface.Test0,
+                actionInterface.Test0,
+                actionInterface.Test0);
+            string resultStr = result(10);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                actionInterface.Received().Test0();
+                funcInterface.Received().Test0();
+            });
+            Assert.Equal("a", resultStr);
         }
 
         #endregion 其他
@@ -496,7 +398,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int> result = CkFunctions.Compose(
+            Func<int> result = CkFunctions.Do(
                 actionInterface.TestVoid,
                 funcInterface.Test0);
             result();
@@ -517,7 +419,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int> result = CkFunctions.Compose(
+            Func<int> result = CkFunctions.Do(
                 actionInterface.Test11,
                 funcInterface.Test0);
             result();
@@ -542,7 +444,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int, string> result = CkFunctions.Compose<int, string>(
+            Func<int, string> result = CkFunctions.Do<int, string>(
                 actionInterface.TestVoid,
                 funcInterface.Test1);
             result(1);
@@ -563,7 +465,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int, string> result = CkFunctions.Compose<int, string>(
+            Func<int, string> result = CkFunctions.Do<int, string>(
                 actionInterface.Test1,
                 funcInterface.Test1);
             result(1);
@@ -588,7 +490,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<string, int, double> result = CkFunctions.Compose<string, int, double>(
+            Func<string, int, double> result = CkFunctions.Do<string, int, double>(
                 actionInterface.TestVoid,
                 funcInterface.Test2);
             result("a", 1);
@@ -609,7 +511,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<string, int, double> result = CkFunctions.Compose<string, int, double>(
+            Func<string, int, double> result = CkFunctions.Do<string, int, double>(
                 actionInterface.Test111,
                 funcInterface.Test2);
             result("a", 1);
@@ -638,7 +540,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int> result = CkFunctions.Compose(
+            Func<int> result = CkFunctions.Do(
                 funcInterface.Test0,
                 actionInterface.TestVoid);
             result();
@@ -659,7 +561,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int, string> result = CkFunctions.Compose<int, string>(
+            Func<int, string> result = CkFunctions.Do<int, string>(
                 funcInterface.Test1,
                 actionInterface.TestVoid);
             result(1);
@@ -680,7 +582,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<string, int, double> result = CkFunctions.Compose<string, int, double>(
+            Func<string, int, double> result = CkFunctions.Do<string, int, double>(
                 funcInterface.Test2,
                 actionInterface.TestVoid);
             result("a", 1);
@@ -705,7 +607,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<int, string> result = CkFunctions.Compose<int, string>(
+            Func<int, string> result = CkFunctions.Do<int, string>(
                 funcInterface.Test1,
                 actionInterface.Test11);
             result(1);
@@ -730,7 +632,7 @@ namespace CKTools.FP.Test
             IFunc funcInterface = Substitute.For<IFunc>();
 
             //执行
-            Func<string, int, double> result = CkFunctions.Compose<string, int, double>(
+            Func<string, int, double> result = CkFunctions.Do<string, int, double>(
                 funcInterface.Test2,
                 actionInterface.Test22);
             result("a", 1);

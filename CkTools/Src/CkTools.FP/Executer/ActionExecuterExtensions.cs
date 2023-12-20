@@ -279,7 +279,7 @@ namespace CkTools.FP.Executer
 
         #endregion Debug调试
 
-        #region 其它
+        #region 其他
 
         #endregion 其它
     }

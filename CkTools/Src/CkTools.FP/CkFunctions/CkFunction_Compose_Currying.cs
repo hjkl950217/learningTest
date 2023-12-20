@@ -12,7 +12,7 @@
 //    {
 //        #region Func
 
-//        #region 其它
+//        #region 其他
 
 //        public static Func<TInput2, TResultEnd> Compose<TInput1, TInput2, TResultEnd>(
 //            [NotNull] Func<TInput1, Func<TInput2, TResultEnd>> exp2,
