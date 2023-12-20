@@ -4,10 +4,9 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    //IAsyncLifetime
-    public class 日志写入
+    public class Log_日志写入
     {
-        public static string logFileName = $"log/{DateTime.Now:yyyy-MM-dd}.log";
+        private static string logFileName = $"log/{DateTime.Now:yyyy-MM-dd}.log";
 
         #region Log to Console
 

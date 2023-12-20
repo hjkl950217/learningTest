@@ -12,44 +12,49 @@ namespace CkTools.FP
     {
         public static Action EmtpyAction = () => { };
 
-        #region 基础数据转为常量表达式
+        #region 基础值对应的常量表达式
 
         public static Func<bool> True = () => true;
         public static Func<bool> False = () => false;
 
-        #endregion 基础数据转为常量表达式
+        #endregion 基础值对应的常量表达式
 
         #region 时间相关
 
         /// <summary>
+        /// 格式化时间为字符串
+        /// </summary>
+        public static Func<DateTime, Func<string, Func<string>>> FormatDateTime = dt => format => () => dt.ToString(format);
+
+        /// <summary>
         /// 获取当前日期的字符串
         /// </summary>
-        public static Func<string> NowDayStr = () => DateTime.Now.ToString("yyyy-MM-dd");
+        public static Func<string> NowDayStr = CkFunctions.FormatDateTime(DateTime.Now)("yyyy-MM-dd");
 
         /// <summary>
         /// 获取当前日期时间的字符串
         /// </summary>
-        public static Func<string> NowTimeStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public static Func<string> NowTimeStr = CkFunctions.FormatDateTime(DateTime.Now)("yyyy-MM-dd HH:mm:ss");
 
         /// <summary>
         /// 获取当前日期时间的字符串（带毫秒）
         /// </summary>
-        public static Func<string> NowTimeFStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        public static Func<string> NowTimeFStr = CkFunctions.FormatDateTime(DateTime.Now)("yyyy-MM-dd HH:mm:ss.fff");
 
         /// <summary>
         /// 获取当前日期的字符串（UTC时间）
         /// </summary>
-        public static Func<string> NowUtcDayStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd");
+        public static Func<string> NowUtcDayStr = CkFunctions.FormatDateTime(DateTime.UtcNow)("yyyy-MM-dd");
 
         /// <summary>
         /// 获取当前日期时间的字符串（UTC时间）
         /// </summary>
-        public static Func<string> NowUtcTimeStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+        public static Func<string> NowUtcTimeStr = CkFunctions.FormatDateTime(DateTime.UtcNow)("yyyy-MM-dd HH:mm:ss");
 
         /// <summary>
         /// 获取当前日期时间的字符串（UTC时间 带毫秒）
         /// </summary>
-        public static Func<string> NowUtcTimeFStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        public static Func<string> NowUtcTimeFStr = CkFunctions.FormatDateTime(DateTime.UtcNow)("yyyy-MM-dd HH:mm:ss.fff");
 
         #endregion 时间相关
 

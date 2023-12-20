@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using CkTools.FP.Model;
 
 namespace CkTools.FP
 {
@@ -15,14 +16,18 @@ namespace CkTools.FP
         /// [检查函数]检查对象集合中是否有空值,有空值时抛出异常
         /// </summary>
         /// <param name="exps"></param>
-        public static void CheckNullWithException(params object?[] exps)
+        public static void CheckNullWithException(params object?[]? exps)
         {
-            CkFunctions.BatchProcessObject<object>(CkFunctions.IsNull)(CkFunctions.DefaultBatchThrow<object>)(exps);
+            CkFunctions.Foreach<object>(t => throw new ArgumentNullException())(CkFunctions.IsNull)(exps);
         }
 
-        public static void CheckNullOrEmptyWithException(params IEnumerable[] exps)
+        /// <summary>
+        /// [检查函数]检查集合中是否有空值,有空值时抛出异常
+        /// </summary>
+        /// <param name="exps"></param>
+        public static void CheckNullOrEmptyWithException(params IEnumerable?[]? exps)
         {
-            CkFunctions.BatchProcessObject<IEnumerable>(CkFunctions.IsNullOrEmpty)(CkFunctions.DefaultBatchThrow<IEnumerable>)(exps);
+            CkFunctions.Foreach<IEnumerable>(t => throw new ArgumentNullException())(CkFunctions.isNullOrEmpty)(exps);
         }
 
         #endregion CheckNullWithException
@@ -57,6 +62,11 @@ namespace CkTools.FP
 
         #region IsNullOrEmpty
 
+        /// <summary>
+        /// <see cref="Entry{T}"/>的IsNullOrEmpty
+        /// </summary>
+        private static readonly Func<Entry<IEnumerable?>, bool> entryIsNullOrEmpty = exp => exp.Value == null || !exp.Value.Any();
+
         private static readonly Func<IEnumerable?, bool> isNullOrEmpty = exp => exp == null || !exp.Any();
 
         /// <summary>
@@ -64,7 +74,7 @@ namespace CkTools.FP
         /// </summary>
         /// <param name="exps"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty(params IEnumerable?[] exps)
+        public static bool IsNullOrEmpty(params IEnumerable?[]? exps)
         {
             return exps == null //检查空引用
                 || !exps.Any()  //检查空集合

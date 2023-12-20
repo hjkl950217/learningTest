@@ -4,33 +4,32 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class 检查空
+    public class CheckNull_检查空
     {
         #region CheckNullWithException
 
         [Fact]
-        public void 参数为空时抛出异常()
+        public void 参数有空时抛出异常()
         {
+            object? notNull = new();
+
             object? nullArg = null;
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => CkFunctions.CheckNullWithException(nullArg, nullArg));
+            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => CkFunctions.CheckNullWithException(notNull, nullArg));
 
             Assert.NotNull(ex);
         }
 
         [Fact]
-        public void 数组有空值时抛出异常()
+        public void 数组有空时抛出异常()
         {
-            object?[] nullArray = new object?[]
+            object?[] notNullArray = new object?[]
             {
                 new object[] { new() },
                 null
             };
 
-            object? nullArg = null;
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(
-                () =>
-                    CkFunctions.CheckNullWithException(nullArg, nullArg)
-                );
+            object?[]? nullArgArray = null;
+            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => CkFunctions.CheckNullOrEmptyWithException(notNullArray, nullArgArray));
 
             Assert.NotNull(ex);
         }
@@ -40,14 +39,15 @@ namespace CKTools.FP.Test
         {
             object?[] notNullArray = new object?[]
             {
-                new object[] { new() },
-                new object?[] {  null },
+               new() ,
+               null ,
             };
 
             try
             {
+                //检查多个参数的传递，只检查空和0长度
                 //不支持子级空元素的检查，需要时应该让调用方自己处理
-                CkFunctions.CheckNullWithException(notNullArray);
+                CkFunctions.CheckNullOrEmptyWithException(notNullArray, notNullArray);
             }
             catch(Exception ex)
             {

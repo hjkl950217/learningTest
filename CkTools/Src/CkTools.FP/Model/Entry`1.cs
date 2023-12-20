@@ -1,4 +1,6 @@
-﻿namespace CkTools.FP.Model
+﻿using System.Collections.Generic;
+
+namespace CkTools.FP.Model
 {
     /// <summary>
     /// 条目-用于带顺序的存储数据
@@ -27,9 +29,34 @@
             this.Value = value;
         }
 
-        public static implicit operator Entry<T>((int, T) entry)
+        public static implicit operator Entry<T?>(T? entry)
+        {
+            return Entry.Create(0, entry);
+        }
+
+        public static implicit operator Entry<T?>((int, T?) entry)
         {
             return Entry.Create(entry.Item1, entry.Item2);
+        }
+
+        public static bool operator ==(Entry<T> left, Entry<T> right)
+        {
+            return Comparer<T>.Default.Compare(left.Value, right.Value) == 0;
+        }
+
+        public static bool operator !=(Entry<T> left, Entry<T> right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(Entry<T> left, T right)
+        {
+            return Comparer<T>.Default.Compare(left.Value, right) == 0;
+        }
+
+        public static bool operator !=(Entry<T> left, T right)
+        {
+            return !(left == right);
         }
     }
 }

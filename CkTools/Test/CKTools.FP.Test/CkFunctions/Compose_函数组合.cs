@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class 函数组合
+    public class Compose_函数组合
     {
         /// <summary>
         /// 测试接口
