@@ -43,9 +43,9 @@
         /// </summary>
         /// <param name="index">索引值</param>
         /// <param name="value">值</param>
-        public static Entry<T> Create<T>(int index, T value)
+        public static Entry<T?> Create<T>(int index, T? value)
         {
-            return new Entry<T>(index, value);
+            return new Entry<T?>(index, value);
         }
 
         #endregion 静态方法

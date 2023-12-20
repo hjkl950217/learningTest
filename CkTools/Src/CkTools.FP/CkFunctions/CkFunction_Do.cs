@@ -14,7 +14,7 @@ namespace CkTools.FP
          竖exp1\横exp2    Action     Action<T>   Action<T2,T1>
          Action             1           1          1
          Action<T>          1           1          2
-         Action<T2,T1>      1           2          1
+         Action<T2,T1>      1           x          1
          */
 
         #region 第1排
@@ -60,13 +60,6 @@ namespace CkTools.FP
 
         public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
             [NotNull] Action<TInput2, TInput1> exp2,
-            [NotNull] Action<TInput2> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput2, TInput1> exp2,
             [NotNull] Action<TInput1> exp1)
         {
             return Compose(exp2, exp1);
@@ -78,20 +71,6 @@ namespace CkTools.FP
 
         public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
             [NotNull] Action exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput2> exp2,
-            [NotNull] Action<TInput2, TInput1> exp1)
-        {
-            return Compose(exp2, exp1);
-        }
-
-        public static Action<TInput2, TInput1> Do<TInput2, TInput1>(
-            [NotNull] Action<TInput1> exp2,
             [NotNull] Action<TInput2, TInput1> exp1)
         {
             return Compose(exp2, exp1);
@@ -119,8 +98,15 @@ namespace CkTools.FP
 
             Action result = Do(exp5, exp4);
             result = Do(result, exp3);
-            if (exp2 != null) result = Do(result, exp2);
-            if (exp1 != null) result = Do(result, exp1);
+            if(exp2 != null)
+            {
+                result = Do(result, exp2);
+            }
+
+            if(exp1 != null)
+            {
+                result = Do(result, exp1);
+            }
 #pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
             return result;
 #pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
@@ -137,8 +123,15 @@ namespace CkTools.FP
 
             Action<TInput> result = Do(exp5, exp4);
             result = Do(result, exp3);
-            if (exp2 != null) result = Do(result, exp2);
-            if (exp1 != null) result = Do(result, exp1);
+            if(exp2 != null)
+            {
+                result = Do(result, exp2);
+            }
+
+            if(exp1 != null)
+            {
+                result = Do(result, exp1);
+            }
 #pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
             return result;
 #pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
@@ -170,8 +163,15 @@ namespace CkTools.FP
 
             Func<TResult> result = Do(exp5, exp4);
             result = Do(result, exp3);
-            if (exp2 != null) result = Do(result, exp2);
-            if (exp1 != null) result = Do(result, exp1);
+            if(exp2 != null)
+            {
+                result = Do(result, exp2);
+            }
+
+            if(exp1 != null)
+            {
+                result = Do(result, exp1);
+            }
 #pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
             return result;
 #pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
@@ -188,8 +188,15 @@ namespace CkTools.FP
 
             Func<TInput, TResult> result = Do(exp5, exp4);
             result = Do(result, exp3);
-            if (exp2 != null) result = Do(result, exp2);
-            if (exp1 != null) result = Do(result, exp1);
+            if(exp2 != null)
+            {
+                result = Do(result, exp2);
+            }
+
+            if(exp1 != null)
+            {
+                result = Do(result, exp1);
+            }
 #pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
             return result;
 #pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。
@@ -206,8 +213,15 @@ namespace CkTools.FP
 
             Func<TInput, TResult> result = Do(exp5, exp4);
             result = Do(result, exp3);
-            if (exp2 != null) result = Do(result, exp2);
-            if (exp1 != null) result = Do(result, exp1);
+            if(exp2 != null)
+            {
+                result = Do(result, exp2);
+            }
+
+            if(exp1 != null)
+            {
+                result = Do(result, exp1);
+            }
 #pragma warning disable CS8777 // 退出时，参数必须具有非 null 值。
             return result;
 #pragma warning restore CS8777 // 退出时，参数必须具有非 null 值。

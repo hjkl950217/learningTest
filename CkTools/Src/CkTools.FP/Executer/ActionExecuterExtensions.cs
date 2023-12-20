@@ -236,7 +236,7 @@ namespace CkTools.FP.Executer
         /// <param name="executer">执行器实例</param>
         /// <param name="predicate">条件判断委托</param>
         /// <param name="debugInfo">调试信息</param>
-        /// <param name="loggerAction">日志记录委托,默认为<see cref="CkFunctions.ConsoleLog(string)"/></param>
+        /// <param name="loggerAction">日志记录委托,默认为<see cref="CkFunctions.LogToConsole(string)"/></param>
         /// <returns></returns>
         public static ActionExecuter DebugIf(
             [NotNull] this ActionExecuter executer,
@@ -248,7 +248,7 @@ namespace CkTools.FP.Executer
             if (CkFunctions.IsNullOrEmpty(debugInfo))
                 return executer;
 
-            loggerAction ??= CkFunctions.ConsoleLog;
+            loggerAction ??= CkFunctions.LogToConsole;
 
             return executer.PipeIf(
                 predicate,
@@ -274,7 +274,7 @@ namespace CkTools.FP.Executer
             return executer.DebugIf(
                 CkFunctions.Bool(isDebug),
                 debugInfo,
-                CkFunctions.ConsoleLog);
+                CkFunctions.LogToConsole);
         }
 
         #endregion Debug调试

@@ -21,12 +21,34 @@ namespace CkTools.FP
 
         #region 时间相关
 
+        /// <summary>
+        /// 获取当前日期的字符串
+        /// </summary>
         public static Func<string> NowDayStr = () => DateTime.Now.ToString("yyyy-MM-dd");
+
+        /// <summary>
+        /// 获取当前日期时间的字符串
+        /// </summary>
         public static Func<string> NowTimeStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+        /// <summary>
+        /// 获取当前日期时间的字符串（带毫秒）
+        /// </summary>
         public static Func<string> NowTimeFStr = () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
+        /// <summary>
+        /// 获取当前日期的字符串（UTC时间）
+        /// </summary>
         public static Func<string> NowUtcDayStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd");
+
+        /// <summary>
+        /// 获取当前日期时间的字符串（UTC时间）
+        /// </summary>
         public static Func<string> NowUtcTimeStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+
+        /// <summary>
+        /// 获取当前日期时间的字符串（UTC时间 带毫秒）
+        /// </summary>
         public static Func<string> NowUtcTimeFStr = () => DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
         #endregion 时间相关
