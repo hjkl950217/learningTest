@@ -6,7 +6,8 @@ namespace CkTools.FP
     /// 函数式功能-常量
     /// </summary>
     /// <remarks>
-    /// 定义被认为是"数据"的常量表达式
+    /// 定义被认为是"数据"的常量表达式<br/>
+    /// 只定义委托变量，不定义方法
     /// </remarks>
     public static partial class CkFunctions
     {

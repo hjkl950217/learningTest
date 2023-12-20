@@ -17,9 +17,13 @@
 
         void Test111(double a);
 
+        void Test1111(string a);
+
         void Test2(string b, string a);
 
         void Test22(string b, int a);
+
+        void Test222(string b, int a);
     }
 
     /// <summary>
@@ -31,12 +35,22 @@
 
         int Test00();
 
+        double Test000();
+
         string Test1(int a);
 
         int Test11(string a);
 
         double Test111(double a);
 
+        double Test1111(double a);
+
+        double Test11111(int a);
+
         double Test2(string b, int a);
+
+        int Test22(string b, int a);
+
+        double Test222(string b, int a);
     }
 }
