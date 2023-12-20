@@ -14,61 +14,70 @@ namespace CkTools.FP
     /// </remarks>
     public static partial class CkFunctions
     {
-        public static Func<string?, bool> IsFullFileName => fileName => Path.IsPathRooted(fileName)
-        && Path.IsPathFullyQualified(fileName);
+        /// <summary>
+        /// 判断文件是否为带路径的文件名，true为带路径
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool IsFullFileName(string? fileName)
+        {
+            return fileName != null
+                && fileName.Length > 0
+                && Path.IsPathRooted(fileName)
+                && Path.IsPathFullyQualified(fileName);
+        }
 
         /// <summary>
         /// 传递一个文件名,尝试创建文件<para></para>
         /// 不包含地址: 使用程序基地址<para></para>
         /// 不存在目标文件夹: 创建文件夹<para></para>
         /// </summary>
-        public static Action<string?> TryCreateFile =
-            fileName =>
+        public static bool TryCreateFile(string? fileName)
+        {
+            //为空时直接返回
+            if(CkFunctions.IsNullOrEmpty(fileName))
             {
-                //为空时直接返回
-                if(CkFunctions.IsNullOrEmpty(fileName))
+                return false;
+            }
+
+            //补全地址
+            bool isFull = CkFunctions.IsFullFileName(fileName);
+            if(!isFull)
+            {
+                fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+            }
+
+            //存在直接返回
+            if(File.Exists(fileName))
+            {
+                return false;
+            }
+
+            lock(fileName)
+            {
+                //尝试创建文件夹
+                string dirPath = Path.GetDirectoryName(fileName);
+                if(!Directory.Exists(dirPath))
                 {
-                    return;
+                    Directory.CreateDirectory(dirPath);
                 }
 
-                //补全地址
-                bool isFull = CkFunctions.IsFullFileName(fileName);
-                if(!isFull)
-                {
-                    fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-                }
-
-                //存在直接返回
-                if(File.Exists(fileName))
-                {
-                    return;
-                }
-
-                lock(fileName)
-                {
-                    //尝试创建文件夹
-                    string dirPath = Path.GetDirectoryName(fileName);
-                    if(!Directory.Exists(dirPath))
-                    {
-                        Directory.CreateDirectory(dirPath);
-                    }
-
-                    //创建空白文件
-                    File.Create(fileName);
-                }
-            };
+                //创建空白文件
+                File.Create(fileName).Close();
+            }
+            return true;
+        }
 
         /// <summary>
         /// 传递一个文件名,尝试删除文件<para></para>
         /// 不包含地址: 使用程序基地址<para></para>
         /// </summary>
-        public static Action<string?> TryDeleteFile =
-            fileName =>
+        public static bool TryDeleteFile(string? fileName)
         {
             //为空时直接返回
             if(CkFunctions.IsNullOrEmpty(fileName))
             {
-                return;
+                return false;
             }
 
             //补全地址
@@ -81,13 +90,13 @@ namespace CkTools.FP
             //不存在直接返回
             if(!File.Exists(fileName))
             {
-                return;
+                return false;
             }
 
             #region 尝试删除文件，3次后抛出异常
 
             int attempts = 0;
-            while(true)
+            while(attempts < 3)
             {
                 try
                 {
@@ -97,20 +106,21 @@ namespace CkTools.FP
                         File.Delete(fileName);
                     }
 
-                    break;
+                    break;//直接跳出循环
                 }
                 catch(IOException)
                 {
-                    if(++attempts == 3)
-                    {
-                        throw;
-                    }
+#pragma warning disable IDE0059 // 不需要赋值
+                    attempts++;
+#pragma warning restore IDE0059 // 不需要赋值
                     Task.Delay(500).Wait();
+                    break;//尝试3次后跳出循环
                 }
             }
+            return true;
 
             #endregion 尝试删除文件，3次后抛出异常
-        };
+        }
     }
 }
 
