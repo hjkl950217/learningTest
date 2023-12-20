@@ -10,7 +10,7 @@
     <PackageTags>$(AssemblyName)</PackageTags>
     <LibName>CkTools</LibName>
     <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
