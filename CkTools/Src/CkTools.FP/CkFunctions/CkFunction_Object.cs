@@ -36,5 +36,6 @@ namespace CkTools.FP
         public static Func<short, Func<short>> Short = CkFunctions.Constant<short>();
         public static Func<ushort, Func<ushort>> UShort = CkFunctions.Constant<ushort>();
         public static Func<long, Func<long>> Long = CkFunctions.Constant<long>();
+        public static Func<ulong, Func<ulong>> ULong = CkFunctions.Constant<ulong>();
     }
 }
