@@ -106,7 +106,6 @@ namespace CkTools.FP
         public static Action Compose(
             [NotNull] params Action?[] actions)
         {
-            CheckNullWithException(actions);
             return () =>
             {
                 //倒序执行
@@ -120,7 +119,6 @@ namespace CkTools.FP
         public static Action<TInput> Compose<TInput>(
             [NotNull] params Action<TInput>?[] actions)
         {
-            CheckNullWithException(actions);
             return t =>
             {
                 //倒序执行
