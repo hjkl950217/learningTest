@@ -118,6 +118,7 @@ namespace CkTools.FP
         /// <summary>
         /// 异常处理
         /// </summary>
+        /// <typeparam name="TInput"></typeparam>
         /// <typeparam name="TReuslt"></typeparam>
         /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
         /// <param name="exp">处理函数</param>

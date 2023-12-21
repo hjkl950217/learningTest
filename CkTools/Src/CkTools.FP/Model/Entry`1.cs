@@ -58,5 +58,15 @@ namespace CkTools.FP.Model
         {
             return !(left == right);
         }
+
+        public override bool Equals(object obj)
+        {
+            return object.Equals(this.Value, obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Value == null ? this.GetHashCode() : this.Value.GetHashCode();
+        }
     }
 }

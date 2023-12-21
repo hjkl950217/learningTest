@@ -1,8 +1,4 @@
-﻿#pragma warning disable CS8601 // 引用类型赋值可能为 null。
-#pragma warning disable CS8603 // 可能返回 null 引用。
-#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
-
-using System;
+﻿using System;
 
 namespace CkTools.FP.Executer
 {
@@ -11,7 +7,7 @@ namespace CkTools.FP.Executer
     /// </summary>
     public class ActionExecuter<TResult> : ActionExecuter
     {
-        public TResult Result { get; set; }
+        public TResult? Result { get; set; }
 
         /// <summary>
         /// 初始化<see cref="ActionExecuter{TResult}"/>
@@ -26,25 +22,25 @@ namespace CkTools.FP.Executer
         /// <summary>
         /// 初始化<see cref="ActionExecuter{TResult}"/>
         /// </summary>
-        /// <param name="defaultResultFunc">传递一个委托用于初始化返回值</param>
         /// <returns></returns>
-        public static ActionExecuter<TResult> Init(Func<TResult>? defaultResultFunc)
+        public new static ActionExecuter<TResult?> Init()
         {
-            TResult defaultResult = defaultResultFunc == null ? default : defaultResultFunc();
-
-            return new ActionExecuter<TResult>()
-            {
-                Result = defaultResult
-            };
+            return ActionExecuter<TResult?>.Init(() => default);
         }
 
         /// <summary>
         /// 初始化<see cref="ActionExecuter{TResult}"/>
         /// </summary>
+        /// <param name="defaultResultFunc">传递一个委托用于初始化返回值</param>
         /// <returns></returns>
-        public new static ActionExecuter<TResult> Init()
+        public static ActionExecuter<TResult?> Init(Func<TResult>? defaultResultFunc)
         {
-            return ActionExecuter<TResult>.Init(() => default);
+            TResult? defaultResult = defaultResultFunc == null ? default : defaultResultFunc();
+
+            return new ActionExecuter<TResult?>()
+            {
+                Result = defaultResult
+            };
         }
 
         #endregion Init
@@ -53,7 +49,7 @@ namespace CkTools.FP.Executer
         /// 执行并获取结果
         /// </summary>
         /// <returns></returns>
-        public TResult ExecuteAndResult()
+        public TResult? ExecuteAndResult()
         {
             if(this.IsEnd)
             {
@@ -66,8 +62,4 @@ namespace CkTools.FP.Executer
             }
         }
     }
-
-#pragma warning restore CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
-#pragma warning restore CS8603 // 可能返回 null 引用。
-#pragma warning restore CS8601 // 引用类型赋值可能为 null。
 }
