@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace CkTools.FP
 {
@@ -10,135 +9,113 @@ namespace CkTools.FP
     {
         #region Action
 
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para>函数1：异常处理函数</para>
-        /// <para>函数2：执行函数 </para>
-        /// </Value>
-        /// <typeparam name="TInput">输入参数类型</typeparam>
-        /// <returns></returns>
-        public static Func<
-            Action<TInput>,
-            Action<TInput>> Try<TInput>(
-                [NotNull] Action<TInput, Exception> exExp)
+        public static Action<TInput2?, TInput1?> Try<TInput2, TInput1>(
+            Action<TInput2?, TInput1?, Exception> exExp,
+            Action<TInput2?, TInput1?> exp)
         {
-            CkFunctions.CheckNullWithException(exExp);
-
-            return
-                exp =>
-                input =>
+            return (input2, input1) =>
+            {
+                try
                 {
-                    try
-                    {
-                        exp(input);
-                    }
-                    catch (Exception ex)
-                    {
-                        exExp(input, ex);
-                    }
-                };
+                    exp(input2, input1);
+                }
+                catch(Exception ex)
+                {
+                    exExp(input2, input1, ex);
+                }
+            };
         }
 
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para>函数1：异常处理函数</para>
-        /// <para>函数2：要执行的函数 </para>
-        /// </Value>
-        /// <typeparam name="TInput">输入参数类型</typeparam>
-        /// <returns></returns>
-        public static Func<
-            Action<TInput>,
-            Action<TInput>> Try<TInput>(
-                [NotNull] Action<Exception> exExp)
+        public static Action<TInput?> Try<TInput>(
+            Action<TInput?, Exception> exExp,
+            Action<TInput?> exp)
         {
-            CkFunctions.CheckNullWithException(exExp);
-
-            Action<TInput, Exception> exp1 = (_, ex) => exExp(ex);
-            return CkFunctions.Try<TInput>(exp1);
+            return input =>
+            {
+                try
+                {
+                    exp(input);
+                }
+                catch(Exception ex)
+                {
+                    exExp(input, ex);
+                }
+            };
         }
 
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para>函数1：异常处理函数</para>
-        /// <para>函数2：要执行的函数 </para>
-        /// </Value>
-        /// <returns></returns>
-        public static Func<
-            Action,
-            Action> Try(
-                [NotNull] Action<Exception> exExp)
+        public static Action Try(
+            Action<Exception> exExp,
+            Action exp)
         {
-            CkFunctions.CheckNullWithException(exExp);
-
-            Action<int, Exception> exp1 = (_, ex) => exExp(ex);
-            return
-                exp =>
-                () => CkFunctions.Try<int>(exp1)(t => exp())(0);
+            return () =>
+            {
+                try
+                {
+                    exp();
+                }
+                catch(Exception ex)
+                {
+                    exExp(ex);
+                }
+            };
         }
 
         #endregion Action
 
         #region Func
 
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para>函数1：异常处理函数,需要返回一个值</para>
-        /// <para>函数2：要执行的函数 </para>
-        /// </Value>
-        /// <typeparam name="TInput">输入类型参数</typeparam>
-        /// <typeparam name="TOutput">输出类型参数</typeparam>
-        /// <returns></returns>
-        public static Func<
-            Func<TInput, TOutput>,
-            Func<TInput, TOutput>> Try<TInput, TOutput>(
-                [NotNull] Action<TInput, Exception> exExp)
+        public static Func<TInput2?, TInput1?, TReuslt?> Try<TInput2, TInput1, TReuslt>(
+            Action<TInput2?, TInput1?, Exception> exExp,
+            Func<TInput2?, TInput1?, TReuslt?> exp)
         {
-            CkFunctions.CheckNullWithException(exExp);
-
-            return
-                exp =>
-                input =>
+            return (input2, input1) =>
+            {
+                try
                 {
-                    try
-                    {
-                        return exp(input);
-                    }
-                    catch (Exception ex)
-                    {
-                        exExp(input, ex);
-                    }
-                    return default(TOutput);//这行是为了编译器能识别
-                };
+                    return exp(input2, input1);
+                }
+                catch(Exception ex)
+                {
+                    exExp(input2, input1, ex);
+                    return default;
+                }
+            };
         }
 
-        /// <summary>
-        /// Try
-        /// </summary>
-        /// <Value>
-        /// <para>函数1：异常处理函数,需要返回发生异常时的返回值</para>
-        /// <para>函数2：要执行的函数 </para>
-        /// </Value>
-        /// <typeparam name="TOutput">输出类型参数</typeparam>
-        /// <returns></returns>
-        public static Func<
-            Func<TOutput>,
-            Func<TOutput>> Try2<TOutput>(
-                [NotNull] Action<Exception> exExp)
+        public static Func<TInput, TReuslt?> Try<TInput, TReuslt>(
+            Action<TInput, Exception> exExp,
+            Func<TInput, TReuslt?> exp)
         {
-            CkFunctions.CheckNullWithException(exExp);
+            return input =>
+            {
+                try
+                {
+                    return exp(input);
+                }
+                catch(Exception ex)
+                {
+                    exExp(input, ex);
+                    return default;
+                }
+            };
+        }
 
-            Action<int, Exception> exExp1 = (_, ex) => exExp(ex);
-            return
-                exp =>
-                () => CkFunctions.Try<int, TOutput>(exExp1)(t => exp())(0);
+        public static Func<TReuslt?> Try<TReuslt>(
+            Action<Exception> exExp,
+            Func<TReuslt?> exp)
+        {
+            return () =>
+            {
+                try
+                {
+                    return exp();
+                }
+                catch(Exception ex)
+                {
+                    exExp(ex);
+                    return default;
+                }
+            };
         }
 
         #endregion Func
