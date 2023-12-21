@@ -39,16 +39,16 @@ namespace ConsoleApp1
             Func<DownArg, bool> downLoad2 = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
 
             Action<Exception> showError = ex => Console.WriteLine("获取host异常");//准备异常时的处理函数
-            Func<string> tryGetHostFromConfig = Try2<string>(showError)(FtpHelper.GetHostFromConfig);//添加异常时的处理
-            //Func<string> tryGetHostFromConfig2 = TryWithThrow2<string>(showError)(FtpHelper.GetHostFromConfig);//处理完会抛出异常的版本
+                                                                              //Func<string> tryGetHostFromConfig = Try2<string>(showError)(FtpHelper.GetHostFromConfig);//添加异常时的处理
+                                                                              //Func<string> tryGetHostFromConfig2 = TryWithThrow2<string>(showError)(FtpHelper.GetHostFromConfig);//处理完会抛出异常的版本
 
-            Func<string, DownArg> buildArg2 = Compose(
-                 setFunc2,
-                 tryGetHostFromConfig);
+            //Func<string, DownArg> buildArg2 = Compose(
+            //     setFunc2,
+            //     tryGetHostFromConfig);
 
-            Func<string, bool> tryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
+            // Func<string, bool> tryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
 
-            tryDownFunction("/1.doc");//执行
+            //tryDownFunction("/1.doc");//执行
 
             #endregion FP方式-添加Try
 
