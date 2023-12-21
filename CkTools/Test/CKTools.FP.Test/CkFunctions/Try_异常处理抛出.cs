@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Try_异常处理
+    public class Try_异常处理抛出
     {
         #region Action
 
@@ -17,7 +17,7 @@ namespace CKTools.FP.Test
             Action<int, int> action = (_, _) => { };
 
             //执行
-            Action<int, int> tryAction = CkFunctions.Try(exAction, action);
+            Action<int, int> tryAction = CkFunctions.TryThrow(exAction, action);
             tryAction(1, 2);
 
             //断言
@@ -33,8 +33,8 @@ namespace CKTools.FP.Test
             Action<int, int> action = (_, _) => { throw new NotImplementedException(); };
 
             //执行
-            Action<int, int> tryAction = CkFunctions.Try(exAction, action);
-            tryAction(1, 2);
+            Action<int, int> tryAction = CkFunctions.TryThrow(exAction, action);
+            Assert.Throws<NotImplementedException>(() => tryAction(1, 2));
 
             //断言
             Assert.NotNull(ex);
@@ -49,7 +49,7 @@ namespace CKTools.FP.Test
             Action<int> action = _ => { };
 
             //执行
-            Action<int> tryAction = CkFunctions.Try(exAction, action);
+            Action<int> tryAction = CkFunctions.TryThrow(exAction, action);
             tryAction(1);
 
             //断言
@@ -65,12 +65,11 @@ namespace CKTools.FP.Test
             Action<int> action = _ => { throw new NotImplementedException(); };
 
             //执行
-            Action<int> tryAction = CkFunctions.Try(exAction, action);
-            tryAction(1);
+            Action<int> tryAction = CkFunctions.TryThrow(exAction, action);
+            Assert.Throws<NotImplementedException>(() => tryAction(1));
 
             //断言
             Assert.NotNull(ex);
-            Assert.IsType<NotImplementedException>(ex);
         }
 
         [Fact]
@@ -82,7 +81,7 @@ namespace CKTools.FP.Test
             Action action = () => { };
 
             //执行
-            Action tryAction = CkFunctions.Try(exAction, action);
+            Action tryAction = CkFunctions.TryThrow(exAction, action);
             tryAction();
 
             //断言
@@ -98,12 +97,11 @@ namespace CKTools.FP.Test
             Action action = () => { throw new NotImplementedException(); };
 
             //执行
-            Action tryAction = CkFunctions.Try(exAction, action);
-            tryAction();
+            Action tryAction = CkFunctions.TryThrow(exAction, action);
+            Assert.Throws<NotImplementedException>(() => tryAction());
 
             //断言
             Assert.NotNull(ex);
-            Assert.IsType<NotImplementedException>(ex);
         }
 
         #endregion Action
@@ -119,7 +117,7 @@ namespace CKTools.FP.Test
             Func<int, int, int> func = (_, _) => 1;
 
             //执行
-            Func<int, int, int> tryFunc = CkFunctions.Try(exAction, func);
+            Func<int, int, int> tryFunc = CkFunctions.TryThrow(exAction, func);
             tryFunc(1, 2);
 
             //断言
@@ -135,12 +133,11 @@ namespace CKTools.FP.Test
             Func<int, int, int> func = (_, _) => { throw new NotImplementedException(); };
 
             //执行
-            Func<int, int, int> tryFunc = CkFunctions.Try(exAction, func);
-            tryFunc(1, 2);
+            Func<int, int, int> tryFunc = CkFunctions.TryThrow(exAction, func);
+            Assert.Throws<NotImplementedException>(() => tryFunc(1, 2));
 
             //断言
             Assert.NotNull(ex);
-            Assert.IsType<NotImplementedException>(ex);
         }
 
         [Fact]
@@ -152,7 +149,7 @@ namespace CKTools.FP.Test
             Func<int, int> func = (_) => 1;
 
             //执行
-            Func<int, int> tryFunc = CkFunctions.Try(exAction, func);
+            Func<int, int> tryFunc = CkFunctions.TryThrow(exAction, func);
             tryFunc(1);
 
             //断言
@@ -168,12 +165,11 @@ namespace CKTools.FP.Test
             Func<int, int> func = (_) => { throw new NotImplementedException(); };
 
             //执行
-            Func<int, int> tryFunc = CkFunctions.Try(exAction, func);
-            tryFunc(1);
+            Func<int, int> tryFunc = CkFunctions.TryThrow(exAction, func);
+            Assert.Throws<NotImplementedException>(() => tryFunc(1));
 
             //断言
             Assert.NotNull(ex);
-            Assert.IsType<NotImplementedException>(ex);
         }
 
         [Fact]
@@ -185,7 +181,7 @@ namespace CKTools.FP.Test
             Func<int> func = () => 1;
 
             //执行
-            Func<int> tryFunc = CkFunctions.Try(exAction, func);
+            Func<int> tryFunc = CkFunctions.TryThrow(exAction, func);
             tryFunc();
 
             //断言
@@ -201,12 +197,11 @@ namespace CKTools.FP.Test
             Func<int> func = () => { throw new NotImplementedException(); };
 
             //执行
-            Func<int> tryFunc = CkFunctions.Try(exAction, func);
-            tryFunc();
+            Func<int> tryFunc = CkFunctions.TryThrow(exAction, func);
+            Assert.Throws<NotImplementedException>(() => tryFunc());
 
             //断言
             Assert.NotNull(ex);
-            Assert.IsType<NotImplementedException>(ex);
         }
 
         #endregion Func

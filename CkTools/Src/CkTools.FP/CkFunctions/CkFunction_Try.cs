@@ -9,6 +9,14 @@ namespace CkTools.FP
     {
         #region Action
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <typeparam name="TInput2"></typeparam>
+        /// <typeparam name="TInput1"></typeparam>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Action<TInput2?, TInput1?> Try<TInput2, TInput1>(
             Action<TInput2?, TInput1?, Exception> exExp,
             Action<TInput2?, TInput1?> exp)
@@ -26,6 +34,13 @@ namespace CkTools.FP
             };
         }
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Action<TInput?> Try<TInput>(
             Action<TInput?, Exception> exExp,
             Action<TInput?> exp)
@@ -43,6 +58,12 @@ namespace CkTools.FP
             };
         }
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Action Try(
             Action<Exception> exExp,
             Action exp)
@@ -64,6 +85,15 @@ namespace CkTools.FP
 
         #region Func
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <typeparam name="TInput2"></typeparam>
+        /// <typeparam name="TInput1"></typeparam>
+        /// <typeparam name="TReuslt"></typeparam>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Func<TInput2?, TInput1?, TReuslt?> Try<TInput2, TInput1, TReuslt>(
             Action<TInput2?, TInput1?, Exception> exExp,
             Func<TInput2?, TInput1?, TReuslt?> exp)
@@ -82,6 +112,14 @@ namespace CkTools.FP
             };
         }
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TReuslt"></typeparam>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Func<TInput, TReuslt?> Try<TInput, TReuslt>(
             Action<TInput, Exception> exExp,
             Func<TInput, TReuslt?> exp)
@@ -100,6 +138,13 @@ namespace CkTools.FP
             };
         }
 
+        /// <summary>
+        /// 异常处理（无异常抛出，有需要请在<paramref name="exExp"/>中处理）
+        /// </summary>
+        /// <typeparam name="TReuslt"></typeparam>
+        /// <param name="exExp">异常处理函数，会将调用参数传递进去</param>
+        /// <param name="exp">处理函数</param>
+        /// <returns></returns>
         public static Func<TReuslt?> Try<TReuslt>(
             Action<Exception> exExp,
             Func<TReuslt?> exp)
