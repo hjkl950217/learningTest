@@ -57,7 +57,7 @@ namespace CkTools
         /// <param name="t"></param>
         public static void BatchRun(this LinkAction t)
         {
-            foreach (var item in t.Actions)
+            foreach(Action item in t.Actions)
             {
                 item();//执行示例的委托
                 Console.WriteLine("--------------------------------");

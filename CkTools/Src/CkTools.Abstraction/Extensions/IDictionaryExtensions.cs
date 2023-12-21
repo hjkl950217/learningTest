@@ -23,7 +23,7 @@ namespace System.Collections
             Func<DictionaryEntry, TValue> valueSetter,
             Func<IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>>? otherAction = null)
         {
-            if (dictionary == null)
+            if(dictionary == null)
             {
                 throw new ArgumentNullException(nameof(dictionary));
             }

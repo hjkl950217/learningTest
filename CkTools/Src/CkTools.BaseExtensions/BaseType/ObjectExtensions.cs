@@ -22,8 +22,10 @@ namespace System
         /// <returns>  </returns>
         public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? setting = null)
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             //序列化并返回
             setting ??= JsonSerializerSettingConst.DefaultSetting;
@@ -40,8 +42,10 @@ namespace System
         public static string ToJsonExt<T>(this T obj, Action<JsonSerializerSettings> configAction)
             where T : class
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             //序列化并返回
             JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateDefaultSetting();
@@ -59,8 +63,10 @@ namespace System
         /// <returns>Json format string</returns>
         public static string ToJsonExt(this object obj, Type type)
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             //利用 转成json字符串又转回成对象的方式   替换掉对象中的类型信息
             object? tempObj = JsonConvert.DeserializeObject(
@@ -82,8 +88,10 @@ namespace System
         public static string ToJsonStorageExt<T>(this T obj, JsonSerializerSettings? settings = null)
             where T : class
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             return JsonConvert.SerializeObject(obj, settings ?? JsonSerializerSettingConst.StorageSetting);
         }
@@ -98,8 +106,10 @@ namespace System
         public static string ToJsonStorageExt<T>(this T obj, Action<JsonSerializerSettings> configAction)
             where T : class
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateSettingForStorage();
             configAction?.Invoke(settings);
@@ -116,8 +126,10 @@ namespace System
         /// <returns>Json format string</returns>
         public static string ToJsonStorageExt(this object obj, Type type)
         {
-            if (obj == null)
+            if(obj == null)
+            {
                 return string.Empty;
+            }
 
             //利用 转成json字符串又转回成对象的方式   替换掉对象中的类型信息
             object? tempObj = JsonConvert.DeserializeObject(

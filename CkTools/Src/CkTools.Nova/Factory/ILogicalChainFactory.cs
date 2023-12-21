@@ -1,7 +1,7 @@
-﻿using CkTools.Nova.Entity;
-using CkTools.Nova.LogicChain;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CkTools.Nova.Entity;
+using CkTools.Nova.LogicChain;
 
 namespace CkTools.Nova.Factory
 {

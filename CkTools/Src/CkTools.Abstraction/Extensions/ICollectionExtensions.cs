@@ -16,11 +16,11 @@ namespace System
             valueFactory.CheckNullWithException(nameof(valueFactory));
 
             T value = source.FirstOrDefault(predicate);
-            switch (value)
+            switch(value)
             {
                 case null:
                 {
-                    var tempValue = valueFactory();
+                    T tempValue = valueFactory();
                     source.Add(tempValue);
                     return tempValue;
                 }

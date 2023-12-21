@@ -30,7 +30,7 @@ namespace System
 
             return input.ContinueWith(inObj =>
             {
-                if (isExecute)
+                if(isExecute)
                 {
                     return func(inObj.Result);
                 }
@@ -60,7 +60,7 @@ namespace System
 
             return input.ContinueWith(inObj =>
             {
-                if (isExecute(inObj.Result))
+                if(isExecute(inObj.Result))
                 {
                     return func(inObj.Result);
                 }

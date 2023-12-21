@@ -112,7 +112,7 @@ namespace System
             char[]? separators = null,
             Func<string, string>? selector = null)
         {
-            if (source.IsNullOrEmpty())
+            if(source.IsNullOrEmpty())
             {
                 return Array.Empty<string>();
             }
@@ -140,7 +140,7 @@ namespace System
             char[]? separators = null,
             Func<string, string>? selector = null)
         {
-            if (source == null || source as string == null)
+            if(source == null || (source as string) == null)
             {
                 return Array.Empty<string>();
             }
@@ -172,11 +172,11 @@ namespace System
         /// <returns></returns>
         public static string RemoveExtraSymbol(this string source, params char[] symbols)
         {
-            if (source == null)
+            if(source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
-            else if (source.Length < 2)
+            else if(source.Length < 2)
             {
                 return source;
             }
@@ -184,15 +184,17 @@ namespace System
             ReadOnlySpan<char> chars = source.AsSpan();
 
             bool isExtra = false;
-            foreach (char item in symbols)
+            foreach(char item in symbols)
             {
                 isExtra = chars[source.Length - 1] == item;
-                if (isExtra == true)
+                if(isExtra == true)
+                {
                     break;
+                }
             }
-            if (isExtra == true)
+            if(isExtra == true)
             {
-                return chars.Slice(0, source.Length - 1).ToString();
+                return chars[..(source.Length - 1)].ToString();
             }
             else
             {
@@ -211,12 +213,20 @@ namespace System
         /// <returns></returns>
         public static string SubstringExt(this string source, int length, int startIndex = 0)
         {
-            if (source.IsNullOrEmpty())
+            if(source.IsNullOrEmpty())
+            {
                 return string.Empty;
-            if (length < 0)
+            }
+
+            if(length < 0)
+            {
                 throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(length));
-            if (startIndex < 0)
+            }
+
+            if(startIndex < 0)
+            {
                 throw new ArgumentException("The parameter must be greater than or equal to 0", nameof(startIndex));
+            }
 
             length = length > source.Length ? source.Length : length;//如果参数比实际值大，则用实际值
 
@@ -238,11 +248,11 @@ namespace System
         public static T ToEnum<T>(this string str, bool ignoreCase = false)
             where T : struct
         {
-            if (Enum.TryParse<T>(str, ignoreCase, out T enumValue))
+            if(Enum.TryParse<T>(str, ignoreCase, out T enumValue))
             {
                 return enumValue;
             }
-            return default(T);
+            return default;
         }
 
         /// <summary>
@@ -322,12 +332,14 @@ namespace System
             string separator = " ",
             string leadingCharacter = "")
         {
-            if (sourceStr.IsNullOrEmpty())
-                return Array.Empty<byte>();
-
-            if (sourceStr.Length > 1024)//1024是猜的
+            if(sourceStr.IsNullOrEmpty())
             {
-                StringBuilder stringBuilder = new StringBuilder(sourceStr);
+                return Array.Empty<byte>();
+            }
+
+            if(sourceStr.Length > 1024)//1024是猜的
+            {
+                StringBuilder stringBuilder = new(sourceStr);
                 sourceStr = stringBuilder
                   .Replace(separator, "")
                   .ReplaceIf(leadingCharacter.IsNotNullOrEmpty(), leadingCharacter, "")
@@ -342,7 +354,7 @@ namespace System
 
             //生成
             byte[] buffer = new byte[sourceStr.Length / 2];
-            for (int i = 0 ; i < sourceStr.Length ; i += 2)
+            for(int i = 0 ; i < sourceStr.Length ; i += 2)
             {
                 buffer[i / 2] = Convert.ToByte(sourceStr.Substring(i, 2), 16);
             }

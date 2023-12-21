@@ -10,7 +10,7 @@ namespace CkTools.Helper
 
             TEntity[] result = new TEntity[count];
 
-            for (int i = 0 ; i < count ; i++)
+            for(int i = 0 ; i < count ; i++)
             {
                 result[i] = createFactory();
             }

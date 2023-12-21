@@ -55,7 +55,7 @@ namespace CkTools.FP.Executer
         /// <returns></returns>
         public TResult ExecuteAndResult()
         {
-            if (this.IsEnd)
+            if(this.IsEnd)
             {
                 return this.Result;
             }

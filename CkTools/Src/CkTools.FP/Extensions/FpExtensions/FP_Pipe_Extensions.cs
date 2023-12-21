@@ -27,7 +27,7 @@ namespace System
             return t =>
             {
                 sourceExp(t);
-                for (int i = 0 ; i < exps.Length ; i++)
+                for(int i = 0 ; i < exps.Length ; i++)
                 {
                     exps[i](t);
                 }

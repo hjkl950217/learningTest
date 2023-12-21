@@ -5,12 +5,12 @@ namespace CkTools.Helper
 {
     public static class TestHelper
     {
-        public static Fixture fixture = new Fixture();
+        public static Fixture fixture = new();
 
         public static T[] MockArray<T>(int count = 3)
         {
             T[] result = new T[count];
-            for (int i = 0; i < result.Length; i++)
+            for(int i = 0 ; i < result.Length ; i++)
             {
                 result[i] = fixture.Create<T>();
             }
@@ -20,9 +20,9 @@ namespace CkTools.Helper
 
         public static List<T> MockList<T>(int count = 3)
         {
-            List<T> result = new List<T>();
+            List<T> result = new();
 
-            for (int i = 0; i < count; i++)
+            for(int i = 0 ; i < count ; i++)
             {
                 result.Add(fixture.Create<T>());
             }

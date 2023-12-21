@@ -11,10 +11,13 @@ namespace System
         /// <returns></returns>
         public static byte[] SaveAsByte(this MemoryStream memoryStream)
         {
-            if (memoryStream == null) return System.Array.Empty<byte>();
+            if(memoryStream == null)
+            {
+                return System.Array.Empty<byte>();
+            }
 
             byte[] byteArray;
-            using (memoryStream)
+            using(memoryStream)
             {
                 byteArray = memoryStream.ToArray();
             }

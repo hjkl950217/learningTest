@@ -51,11 +51,11 @@ namespace CkTools.BaseExtensions.Helper
 
             AESKey ase = EncryptProvider.CreateAesKey();
             int keyLength = ase.Key.Length;
-            if (sTemp.Length > keyLength)
+            if(sTemp.Length > keyLength)
             {
-                sTemp = sTemp.Substring(0, keyLength);
+                sTemp = sTemp[..keyLength];
             }
-            else if (sTemp.Length < keyLength)
+            else if(sTemp.Length < keyLength)
             {
                 sTemp = sTemp.PadRight(keyLength, ' ');//在右侧填充空字符
             }
@@ -76,11 +76,11 @@ namespace CkTools.BaseExtensions.Helper
             string? bytTemp = ase.IV;
             int ivLength = bytTemp.Length;
 
-            if (sTemp.Length > ivLength)
+            if(sTemp.Length > ivLength)
             {
-                sTemp = sTemp.Substring(0, ivLength);
+                sTemp = sTemp[..ivLength];
             }
-            else if (sTemp.Length < ivLength)
+            else if(sTemp.Length < ivLength)
             {
                 sTemp = sTemp.PadRight(ivLength, ' ');//在右侧填充空字符
             }
@@ -168,9 +168,12 @@ namespace CkTools.BaseExtensions.Helper
         /// <returns></returns>
         public static string EncryptMD5(string source, bool is32 = true)
         {
-            if (source.IsNullOrEmpty() == true) return string.Empty;
+            if(source.IsNullOrEmpty() == true)
+            {
+                return string.Empty;
+            }
 
-            if (is32 == true)
+            if(is32 == true)
             {
                 return EncryptProvider.Md5(source);
             }
@@ -194,7 +197,11 @@ namespace CkTools.BaseExtensions.Helper
         /// </returns>
         public static string EncryptFence(string source, int rows)
         {
-            if (string.IsNullOrEmpty(source)) return string.Empty;
+            if(string.IsNullOrEmpty(source))
+            {
+                return string.Empty;
+            }
+
             return ProcessFence(source, rows, isEncrypt: true);
         }
 
@@ -208,7 +215,11 @@ namespace CkTools.BaseExtensions.Helper
         /// </returns>
         public static string DecryptFence(string source, int rows)
         {
-            if (string.IsNullOrEmpty(source)) return string.Empty;
+            if(string.IsNullOrEmpty(source))
+            {
+                return string.Empty;
+            }
+
             return ProcessFence(source, rows, isEncrypt: false);
         }
 
@@ -223,11 +234,15 @@ namespace CkTools.BaseExtensions.Helper
         {
             int columns = (int)Math.Ceiling(message.Length / (double)rows);
             char[,] matrix = FillArray(message, rows, columns, isEncrypt);
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new();
 
-            foreach (char c in matrix)
+            foreach(char c in matrix)
             {
-                if (c == '*') continue;
+                if(c == '*')
+                {
+                    continue;
+                }
+
                 result.Append(c);
             }
 
@@ -253,7 +268,7 @@ namespace CkTools.BaseExtensions.Helper
             char[,] matrix;
 
             //初始化数据
-            if (isEncrypt == true)
+            if(isEncrypt == true)
             {
                 height = rowsCount;
                 width = columnsCount;
@@ -267,11 +282,11 @@ namespace CkTools.BaseExtensions.Helper
             }
 
             //开始计算
-            for (int w = 0 ; w < width ; w++)
+            for(int w = 0 ; w < width ; w++)
             {
-                for (int h = 0 ; h < height ; h++)
+                for(int h = 0 ; h < height ; h++)
                 {
-                    if (charPosition < message.Length)
+                    if(charPosition < message.Length)
                     {
                         matrix[h, w] = message[charPosition];
                     }
@@ -305,12 +320,12 @@ namespace CkTools.BaseExtensions.Helper
             //可以使用span再次提高下性能
             char[] words = customWords ?? new char[] { 'O', 'o', '0' };//混淆字符
             char[] tempKey = new char[keyLength];//存放一次处理出的key名
-            Random random = new Random();//随机变量
+            Random random = new();//随机变量
             string[] result = new string[confuseNum];//key集合
 
-            for (int num = 0 ; num < result.Length ; num++)//key的数量
+            for(int num = 0 ; num < result.Length ; num++)//key的数量
             {
-                for (int length = 0 ; length < tempKey.Length ; length++)//循环处理单个key的名字
+                for(int length = 0 ; length < tempKey.Length ; length++)//循环处理单个key的名字
                 {
                     tempKey[length] = words[random.Next(0, words.Length)];
                 }

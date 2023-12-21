@@ -17,7 +17,7 @@
             Func<T, TResult> func)
             where T : struct
         {
-            if (value.HasValue == false)
+            if(value.HasValue == false)
             {
                 return defauleValue;
             }

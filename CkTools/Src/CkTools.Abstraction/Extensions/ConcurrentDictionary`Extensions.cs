@@ -7,7 +7,7 @@
             TKey key,
             TValue newValue) where TValue : class
         {
-            if (dictionary.TryGetValue(key, out TValue value))
+            if(dictionary.TryGetValue(key, out TValue value))
             {
                 return value;
             }

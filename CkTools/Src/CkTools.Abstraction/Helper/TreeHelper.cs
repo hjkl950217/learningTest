@@ -26,17 +26,20 @@ namespace CkTools.Helper
             IEqualityComparer<TId>? equalityComparer = null)
         {
             equalityComparer ??= EqualityComparer<TId>.Default;
-            List<T> trees = new List<T>();
+            List<T> trees = new();
 
             try
             {
-                foreach (T treeNode in treeNodes)
+                foreach(T treeNode in treeNodes)
                 {
-                    if (rootNodeJudge(treeNode)) trees.Add(treeNode);
-
-                    foreach (T it in treeNodes)
+                    if(rootNodeJudge(treeNode))
                     {
-                        if (equalityComparer.Equals(parentIdGetter(it), idGetter(treeNode)))
+                        trees.Add(treeNode);
+                    }
+
+                    foreach(T it in treeNodes)
+                    {
+                        if(equalityComparer.Equals(parentIdGetter(it), idGetter(treeNode)))
                         {
                             nodeProcessor(treeNode, it);
                         }
@@ -44,7 +47,7 @@ namespace CkTools.Helper
                 }
                 return trees;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }

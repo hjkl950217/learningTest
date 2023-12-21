@@ -10,21 +10,34 @@
         /// <returns>如果是泛型接口的子类型，则返回 true，否则返回 false。</returns>
         public static bool IsImplementedForm(this Type checkType, Type type)
         {
-            if (checkType == null) throw new ArgumentNullException(nameof(checkType));
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if(checkType == null)
+            {
+                throw new ArgumentNullException(nameof(checkType));
+            }
+
+            if(type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
 
             // 接口类型
 
-            var intArray = checkType.GetInterfaces();
+            Type[] intArray = checkType.GetInterfaces();
 
             bool isTheRawGenericType = checkType.GetInterfaces().Any(IsTheRawGenericType);
-            if (isTheRawGenericType) return true;
+            if(isTheRawGenericType)
+            {
+                return true;
+            }
 
             // 普通类型
-            while (checkType != null && checkType != typeof(object))
+            while(checkType != null && checkType != typeof(object))
             {
                 isTheRawGenericType = IsTheRawGenericType(checkType);
-                if (isTheRawGenericType) return true;
+                if(isTheRawGenericType)
+                {
+                    return true;
+                }
 
                 checkType = checkType.BaseType;//测试他的父类
             }
@@ -35,7 +48,7 @@
             // 测试某个类型是否是指定的原始接口
             bool IsTheRawGenericType(Type test)
             {
-                if (type.IsGenericTypeDefinition)
+                if(type.IsGenericTypeDefinition)
                 {
                     return type == (test.IsGenericType ? test.GetGenericTypeDefinition() : test);
                 }

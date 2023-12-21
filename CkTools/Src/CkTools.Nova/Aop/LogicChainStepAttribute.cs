@@ -1,8 +1,8 @@
-﻿using CkTools.Nova.Entity;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using CkTools.Nova.Entity;
 using CkTools.Nova.LogicChain;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace CkTools.Nova.Aop
 {
@@ -68,7 +68,7 @@ namespace CkTools.Nova.Aop
 
             stepEnumValue.CheckNullWithException(nameof(stepEnumValue));
 
-            if (stepEnumValue.GetType().IsEnum == false)
+            if(stepEnumValue.GetType().IsEnum == false)
 
             {
                 throw new TypeAccessException($"{nameof(StepAttribute)} initialization need Enum type.{nameof(stepEnumValue)}'s type is {stepEnumValue.GetType().Name}");

@@ -57,7 +57,7 @@ namespace System
             CkFunctions.CheckNullWithException(handler, func);
 
             return input.ContinueWith(
-                t => { try { return func(t.Result); } catch (Exception ex) { return handler(t.Result, ex); } },
+                t => { try { return func(t.Result); } catch(Exception ex) { return handler(t.Result, ex); } },
                 TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 

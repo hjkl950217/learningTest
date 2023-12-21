@@ -7,7 +7,7 @@
     {
         private static readonly Action<string> emptyWithException = t =>
         {
-            if (t.Length == 0)
+            if(t.Length == 0)
             {
                 throw new ArgumentException("The parameter 'str' is invalid、Empty、Null");
             }
@@ -59,7 +59,7 @@
           this T source,
           Func<T, TValue> convert)
         {
-            if (typeof(T).IsClass
+            if(typeof(T).IsClass
                 && (source == null || source.GetHashCode() == string.Empty.GetHashCode()))
             {
                 throw new ArgumentException($"The parameter is invalid,value:{source}", nameof(source));
@@ -82,7 +82,7 @@
           Func<T, TValue> convert,
           TValue defaultValue)
         {
-            if (typeof(T).IsClass && source == null)
+            if(typeof(T).IsClass && source == null)
             {
                 return defaultValue;
             }

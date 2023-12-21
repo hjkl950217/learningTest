@@ -10,12 +10,22 @@
         /// <returns></returns>
         public static bool Any(this IEnumerable source, Func<object?, bool> predicate)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
-
-            foreach (object? item in source)
+            if(source == null)
             {
-                if (predicate(item)) return true;
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if(predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+
+            foreach(object? item in source)
+            {
+                if(predicate(item))
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -27,7 +37,11 @@
         /// <returns></returns>
         public static bool Any(this IEnumerable source)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if(source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             return Any(source, t => true);
         }
     }

@@ -252,8 +252,10 @@ namespace System
         /// <returns></returns>
         public static string ToMD5(this string str, bool is32 = true)
         {
-            if (str.IsNullOrEmpty() == true)
+            if(str.IsNullOrEmpty() == true)
+            {
                 return string.Empty;
+            }
 
             return EncryptionHelper.EncryptMD5(str, is32);
         }
@@ -265,7 +267,7 @@ namespace System
         /// <returns></returns>
         public static bool IsJson(this string str)
         {
-            if (str.IsNullOrEmpty())
+            if(str.IsNullOrEmpty())
             {
                 return false;
             }

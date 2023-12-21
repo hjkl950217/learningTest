@@ -1,8 +1,8 @@
-﻿using CkTools.Nova.Entity;
+﻿using System;
+using System.Collections.Generic;
+using CkTools.Nova.Entity;
 using CkTools.Nova.Factory;
 using CkTools.Nova.Helper;
-using System;
-using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -20,9 +20,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             //扫描并注册程序集中所有带标签的实现
             List<StepEntity> taskList = LogicalChainHelper.FindAllTaskEntity();
-            foreach (var item in taskList)
+            foreach(StepEntity item in taskList)
             {
-                ServiceDescriptor serviceDescriptor = new ServiceDescriptor(
+                ServiceDescriptor serviceDescriptor = new(
                     item.StepType,
                     item.StepType,
                     item.Attribute.Lifetime);

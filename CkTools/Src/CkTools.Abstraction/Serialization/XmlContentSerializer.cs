@@ -9,10 +9,10 @@ namespace CkTools.Abstraction.Serialization
 {
     public class Xml_System_Serializer
     {
-        public static readonly XmlWriterSettings GobalXmlWriterSettings = new XmlWriterSettings();
+        public static readonly XmlWriterSettings GobalXmlWriterSettings = new();
 
         private readonly ConcurrentDictionary<Type, XmlSerializer> _serializerPool =
-            new ConcurrentDictionary<Type, XmlSerializer>();
+            new();
 
         private readonly XmlWriterSettings writerSettings;
 
@@ -46,15 +46,15 @@ namespace CkTools.Abstraction.Serialization
 
         public string SerializeToString(object? request, object? options = null)
         {
-            if (request == null)
+            if(request == null)
             {
                 return string.Empty;
             }
 
-            using MemoryStream? stream = new MemoryStream();
+            using MemoryStream? stream = new();
             this.SerializeToStream(request, stream, options);
             stream.Seek(0, SeekOrigin.Begin);
-            StreamReader? reader = new StreamReader(stream, Encoding.UTF8);
+            StreamReader? reader = new(stream, Encoding.UTF8);
             return reader.ReadToEnd();
         }
     }

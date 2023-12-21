@@ -30,7 +30,7 @@ namespace System
         {
             return TaskExtensions.ContinueWithByAttached(task, t =>
             {
-                if (t.IsFaulted)
+                if(t.IsFaulted)
                 {
                     handle(t);
                 }
@@ -49,7 +49,7 @@ namespace System
         {
             return TaskExtensions.ContinueWithByAttached(task, t =>
             {
-                if (t.IsFaulted)
+                if(t.IsFaulted)
                 {
                     t.Exception.Handle(ex => { handle(ex); return true; });
                 }
@@ -68,7 +68,7 @@ namespace System
         {
             return TaskExtensions.ContinueWithByAttached(task, t =>
             {
-                if (t.IsCanceled)
+                if(t.IsCanceled)
                 {
                     handle(t);
                 }

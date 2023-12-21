@@ -69,14 +69,16 @@ namespace System.Linq.Expressions
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static Expression<Func<T, bool>> True<T>() { return param => true; }
+        public static Expression<Func<T, bool>> True<T>()
+        { return param => true; }
 
         /// <summary>
         /// Lambda（假）
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <returns></returns>
-        public static Expression<Func<T, bool>> False<T>() { return param => false; }
+        public static Expression<Func<T, bool>> False<T>()
+        { return param => false; }
 
         /// <summary>
         /// 组合And
@@ -163,7 +165,7 @@ namespace System.Linq.Expressions
             /// <returns>Expression</returns>
             protected override Expression VisitParameter(ParameterExpression p)
             {
-                if (this.map.TryGetValue(p, out ParameterExpression replacement))
+                if(this.map.TryGetValue(p, out ParameterExpression replacement))
                 {
                     p = replacement;
                 }

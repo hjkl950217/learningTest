@@ -43,7 +43,7 @@
             DateTime stratTime,
             Func<int, int, int, string>? format = null)
         {
-            if (format == null)
+            if(format == null)
             {
                 format = (hours, minutes, seconds) => $"{hours}时{minutes}分{seconds}秒";
             }

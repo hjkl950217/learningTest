@@ -6,11 +6,11 @@
             where T : struct
         {
             object? enumObj = Enum.ToObject(typeof(T), value);
-            if (enumObj != null)
+            if(enumObj != null)
             {
-                return (T)(enumObj);
+                return (T)enumObj;
             }
-            return default(T);
+            return default;
         }
 
         /// <summary>

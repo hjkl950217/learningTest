@@ -26,7 +26,10 @@ namespace System
         public static void CheckNullWithException<T>(this T? obj, string paramName)
             where T : class
         {
-            if (obj == null) throw new ArgumentNullException(paramName);
+            if(obj == null)
+            {
+                throw new ArgumentNullException(paramName);
+            }
         }
 
         /// <summary>
@@ -40,7 +43,10 @@ namespace System
         public static void CheckNullWithException<T>(this T? obj, string paramName, string message)
             where T : class
         {
-            if (obj == null) throw new ArgumentNullException(paramName, message);
+            if(obj == null)
+            {
+                throw new ArgumentNullException(paramName, message);
+            }
         }
 
         /// <summary>
@@ -51,7 +57,10 @@ namespace System
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
         public static void CheckNullOrEmptyWithException(this IEnumerable? obj, string paramName)
         {
-            if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName);
+            if(obj.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(paramName);
+            }
         }
 
         /// <summary>
@@ -63,7 +72,10 @@ namespace System
         /// <exception cref="ArgumentNullException"><paramref name="obj" /> 为null或emtpy时抛出</exception>
         public static void CheckNullOrEmptyWithException(this IEnumerable? obj, string paramName, string message)
         {
-            if (obj.IsNullOrEmpty()) throw new ArgumentNullException(paramName, message);
+            if(obj.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(paramName, message);
+            }
         }
 
         #endregion CheckNull
@@ -83,11 +95,17 @@ namespace System
 
             //引用为null
             bool isObjectNull = value == null;
-            if (isObjectNull == true) return true;
+            if(isObjectNull == true)
+            {
+                return true;
+            }
 
             //判断是否为集合
             IEnumerator? tempEnumerator = (value as IEnumerable)?.GetEnumerator();
-            if (tempEnumerator == null) return false;//这里出去代表是对象 且 引用不为null.所以为false
+            if(tempEnumerator == null)
+            {
+                return false;//这里出去代表是对象 且 引用不为null.所以为false
+            }
 
             #endregion 1.对象级别
 
@@ -96,7 +114,10 @@ namespace System
             //到这里就代表是集合且引用不为空，判断长度
             //MoveNext方法返回tue代表集合中至少有一个数据,返回false就代表0长度
             bool isZeroLenth = tempEnumerator.MoveNext() == false;
-            if (isZeroLenth == true) return true;
+            if(isZeroLenth == true)
+            {
+                return true;
+            }
 
             return isZeroLenth;
 
@@ -251,17 +272,20 @@ namespace System
              where T : class
         {
             // 0.数据检查
-            if (obj.IsNullOrEmpty()) return string.Empty;
+            if(obj.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
 
             // 1.获取定制的xml序列化器
-            XmlWriterSettings xmlSetting = new XmlWriterSettings
+            XmlWriterSettings xmlSetting = new()
             {
                 //忽略XML声明
                 OmitXmlDeclaration = isRemoveDeclaration,
                 Indent = true,
                 Encoding = Encoding.UTF8,
             };
-            Xml_System_Serializer? xmlSeria = new Xml_System_Serializer(xmlSetting);
+            Xml_System_Serializer? xmlSeria = new(xmlSetting);
 
             // 2.序列化并返回
             return xmlSeria.SerializeToString(obj);
@@ -283,7 +307,7 @@ namespace System
         public static bool EqualsType<T>(this T object1, Type targetType)
 #pragma warning restore IDE0060 // 删除未使用的参数
         {
-            return (typeof(T)).Equals(targetType);
+            return typeof(T).Equals(targetType);
         }
 
         /// <summary>
@@ -304,12 +328,17 @@ namespace System
           bool isIgnoreNull = false)
           where T : class
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if(source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
 
             //判断是否为集合
             IEnumerator? tempEnumerator = (source as IEnumerable)?.GetEnumerator();//为null才代表是对象
-            if (tempEnumerator != null)
+            if(tempEnumerator != null)
+            {
                 throw new TypeAccessException($"{nameof(source)}'s type not is array type!");
+            }
 
             PropertyDescriptorCollection props = TypeDescriptor.GetProperties(source);//获取对象的所有属性信息
             return GetAllPropertyValueIterator(source, props, isIgnoreNull);//遍历
@@ -332,10 +361,13 @@ namespace System
             //因为用yield返回迭代器，如果异常检查和逻辑放在一起，抛出异常时可能已距离发生源很远了
             //所以把遍历这部分独立成一个方法
 
-            foreach (PropertyDescriptor item in props)
+            foreach(PropertyDescriptor item in props)
             {
                 object value = item.GetValue(source);
-                if (isIgnoreNull && value == null) continue;
+                if(isIgnoreNull && value == null)
+                {
+                    continue;
+                }
 
                 yield return new KeyValuePair<string, object>(item.Name, item.GetValue(source));
             }
@@ -419,7 +451,7 @@ namespace System
 
         #region 清理导航属性
 
-        public static ConcurrentDictionary<Type, object> AssignFuncDic = new ConcurrentDictionary<Type, object>();
+        public static ConcurrentDictionary<Type, object> AssignFuncDic = new();
 
         public static TDbEntity? CleanNavigationProperty<TDbEntity>(this TDbEntity dbEntity)
             where TDbEntity : class
@@ -443,7 +475,7 @@ namespace System
                 PropertyInfo[] propertyInfos = entityTypeInfo.GetProperties()
                      .Where(t => t.CanWrite
                          && !t.PropertyType.IsValueType
-                         && (t.PropertyType != stringTypeInfo && Nullable.GetUnderlyingType(t.PropertyType) == null)
+                         && t.PropertyType != stringTypeInfo && Nullable.GetUnderlyingType(t.PropertyType) == null
                          )
                      .ToArray();
 

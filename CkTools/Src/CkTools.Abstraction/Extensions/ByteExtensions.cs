@@ -30,15 +30,15 @@ namespace System
             ReadOnlySpan<char> separator,
             bool uppercase = true)
         {
-            if (array.IsNullOrEmpty())
+            if(array.IsNullOrEmpty())
             {
                 return string.Empty;
             }
 
             string format = uppercase ? "X2" : "x2";
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
-            foreach (byte item in array)
+            foreach(byte item in array)
             {
                 stringBuilder.Append(item.ToString(format));
                 stringBuilder.Append(separator);
@@ -75,8 +75,5 @@ namespace System
         }
 
         #endregion BytesToHexstring
-
-
-
     }
 }

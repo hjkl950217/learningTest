@@ -35,9 +35,12 @@ namespace FluentValidation
         {
             return methods => str =>
             {
-                for (int i = 0; i < methods.Length; i++)
+                for(int i = 0 ; i < methods.Length ; i++)
                 {
-                    if (!methods[i](str)) return false;//有一个返回false则中断，然后直接返回 表示检查不过
+                    if(!methods[i](str))
+                    {
+                        return false;//有一个返回false则中断，然后直接返回 表示检查不过
+                    }
                 }
                 return true;
             };
@@ -129,7 +132,7 @@ namespace FluentValidation
              *
              */
 
-            if (enableStrictMode)
+            if(enableStrictMode)
             {
                 return checkSellerIDFormatByStrictMode(value);
             }
@@ -155,7 +158,7 @@ namespace FluentValidation
             return ruleBuilder
                 .NotNull()
                 .NotEmpty()
-                .Must((chars) => CheckSellerIDFormat(chars as string, enableStrictMode: false))
+                .Must((chars) => CheckSellerIDFormat(chars, enableStrictMode: false))
                 .WithMessage("SellerId length must be 4 after ignoring leading and trailing spaces");
         }
 
@@ -173,10 +176,17 @@ namespace FluentValidation
                 .NotEmpty()
                 .Must(chars =>
                 {
-                    if (chars == null) return false;
+                    if(chars == null)
+                    {
+                        return false;
+                    }
 
                     string? tempStr = chars as string;
-                    if (tempStr == null) tempStr = new string(tempStr.ToArray());
+                    if(tempStr == null)
+                    {
+                        tempStr = new string(tempStr.ToArray());
+                    }
+
                     return CheckSellerIDFormat(tempStr, enableStrictMode: true);
                 })
                 .WithMessage("SellerId is malformed. Cannot be null or \"\". It must not contain spaces at the beginning and end. It must be 4 digits in length and all words are capitalized.");

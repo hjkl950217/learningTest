@@ -18,7 +18,7 @@ namespace System.Collections.Generic
         /// <param name="action"></param>
         public static void For<T>(this IEnumerable<T> source, Action<T> action)
         {
-            foreach (T item in source)
+            foreach(T item in source)
             {
                 action(item);
             }
@@ -127,13 +127,13 @@ namespace System.Collections.Generic
             Func<TSource, TOrderKey> orderKeySelector,
             Func<TSource, TDistinctKey> distinctKeySelector)
         {
-            if (source.IsNullOrEmpty())
+            if(source.IsNullOrEmpty())
             {
                 yield return default;
             }
 
             ILookup<TDistinctKey, TSource> lup = source.ToLookup(distinctKeySelector);
-            foreach (IGrouping<TDistinctKey, TSource> item in lup)
+            foreach(IGrouping<TDistinctKey, TSource> item in lup)
             {
                 yield return item.OrderBy(orderKeySelector).First();
             }
@@ -154,13 +154,13 @@ namespace System.Collections.Generic
             Func<TSource, TOrderKey> orderKeySelector,
             Func<TSource, TDistinctKey> distinctKeySelector)
         {
-            if (source.IsNullOrEmpty())
+            if(source.IsNullOrEmpty())
             {
                 yield return default;
             }
 
             ILookup<TDistinctKey, TSource> lup = source.ToLookup(distinctKeySelector);
-            foreach (IGrouping<TDistinctKey, TSource> item in lup)
+            foreach(IGrouping<TDistinctKey, TSource> item in lup)
             {
                 yield return item.OrderByDescending(orderKeySelector).First();
             }
@@ -338,12 +338,12 @@ namespace System.Collections.Generic
             Func<TSource, TValue> valueFunc,
             string separator = ",")
         {
-            if (source == null || !source.Any())
+            if(source == null || !source.Any())
             {
                 return string.Empty;
             }
 
-            if (valueFunc is null)
+            if(valueFunc is null)
             {
                 throw new ArgumentNullException(nameof(valueFunc));
             }

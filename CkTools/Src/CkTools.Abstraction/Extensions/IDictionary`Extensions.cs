@@ -15,11 +15,14 @@ namespace System.Collections.Generic
             TKey key,
             TValue defaultValue = default)
         {
-            if (valuePairs.IsNullOrEmpty()) { return defaultValue; }
+            if(valuePairs.IsNullOrEmpty())
+            { return defaultValue; }
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
-            if (isExist) { return value; }
-            else { return defaultValue; }
+            if(isExist)
+            { return value; }
+            else
+            { return defaultValue; }
         }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace System.Collections.Generic
             valuePairs.CheckNullWithException(nameof(valuePairs));
 
             bool isExist = valuePairs.ContainsKey(key);
-            if (!isExist)
+            if(!isExist)
             {
                 valuePairs.Add(key, value);
                 return true;
@@ -60,7 +63,10 @@ namespace System.Collections.Generic
         public static string ConcatKey<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> valuePairs)
         {
-            if (valuePairs.IsNullOrEmpty()) return string.Empty;
+            if(valuePairs.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
 
             return string.Concat(valuePairs.Select(t => t.Key));
         }
@@ -84,11 +90,12 @@ namespace System.Collections.Generic
             factory.CheckNullWithException(nameof(factory));
 
             bool isExist = valuePairs.TryGetValue(key, out TValue value);
-            if (isExist) { return value; }
+            if(isExist)
+            { return value; }
             else
             {
                 TValue result = factory();
-                lock (valuePairs)
+                lock(valuePairs)
                 {
                     valuePairs.Add(key, result);
                 }
@@ -151,7 +158,7 @@ namespace System.Collections.Generic
             updateFunc.CheckNullWithException(nameof(updateFunc));
 
             TValue value;
-            if (valuePairs.ContainsKey(key))
+            if(valuePairs.ContainsKey(key))
             {
                 value = valuePairs[key];
                 value = updateFunc(value);
