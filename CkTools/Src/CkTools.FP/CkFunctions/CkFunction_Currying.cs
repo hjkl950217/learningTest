@@ -9,18 +9,6 @@ namespace CkTools.FP
     {
         #region Action
 
-        public static Action Currying(
-            Action exp)
-        {
-            return exp;//这个函数是为了方便将对象的方法转换为委托
-        }
-
-        public static Action<T1> Currying<T1>(
-             Action<T1> exp)
-        {
-            return exp;//这个函数是为了方便将对象的方法转换为委托
-        }
-
         public static Func<T1, Action<T2>> Currying<T1, T2>(
              Action<T1, T2> exp)
         {
@@ -42,18 +30,6 @@ namespace CkTools.FP
         #endregion Action
 
         #region Func
-
-        public static Func<TResult> Currying<TResult>(
-             Func<TResult> exp)
-        {
-            return exp;//这个函数是为了方便将对象的方法转换为委托
-        }
-
-        public static Func<T1, TResult> Currying<T1, TResult>(
-             Func<T1, TResult> exp)
-        {
-            return exp;//这个函数是为了方便将对象的方法转换为委托
-        }
 
         public static Func<T1, Func<T2, TResult>> Currying<T1, T2, TResult>(
              Func<T1, T2, TResult> exp)

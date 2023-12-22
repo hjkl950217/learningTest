@@ -9,12 +9,6 @@ namespace System
     {
         #region Action
 
-        public static Action<T1> Currying<T1>(
-            this Action<T1> exp)
-        {
-            return CkFunctions.Currying(exp);
-        }
-
         public static Func<T1, Action<T2>> Currying<T1, T2>(
             this Action<T1, T2> exp)
         {
@@ -36,12 +30,6 @@ namespace System
         #endregion Action
 
         #region Func
-
-        public static Func<T1, TResult> Currying<T1, TResult>(
-            this Func<T1, TResult> exp)
-        {
-            return CkFunctions.Currying(exp);
-        }
 
         public static Func<T1, Func<T2, TResult>> Currying<T1, T2, TResult>(
             this Func<T1, T2, TResult> exp)

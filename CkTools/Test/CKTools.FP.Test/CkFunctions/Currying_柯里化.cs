@@ -9,36 +9,6 @@ namespace CKTools.FP.Test
         #region Action
 
         [Fact]
-        public void Action柯里化_0个参数()
-        {
-            //准备
-            int count = 0;
-            Action process = () => count = 100;
-
-            //执行
-            Action result = CkFunctions.Currying(process);
-            result();
-
-            //断言
-            Assert.Equal(100, count);
-        }
-
-        [Fact]
-        public void Action柯里化_1个参数()
-        {
-            //准备
-            int count = 100;
-            Action<int> process = t1 => count = t1 + count;
-
-            //执行
-            Action<int> result = CkFunctions.Currying(process);
-            result(20);
-
-            //断言
-            Assert.Equal(120, count);
-        }
-
-        [Fact]
         public void Action柯里化_2个参数()
         {
             //准备
@@ -86,32 +56,6 @@ namespace CKTools.FP.Test
         #endregion Action
 
         #region Func
-
-        [Fact]
-        public void Func柯里化_0个参数()
-        {
-            //准备
-            Func<int> process = () => 100;
-
-            //执行
-            Func<int> result = CkFunctions.Currying(process);
-
-            //断言
-            Assert.Equal(100, result());
-        }
-
-        [Fact]
-        public void Func柯里化_1个参数()
-        {
-            //准备
-            Func<int, int> process = t1 => t1 + 100;
-
-            //执行
-            Func<int, int> result = CkFunctions.Currying(process);
-
-            //断言
-            Assert.Equal(120, result(20));
-        }
 
         [Fact]
         public void Func柯里化_2个参数()
