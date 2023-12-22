@@ -26,8 +26,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test0();
-                actionInterface.Received().Test00();
+                actionInterface.Test0();
+                actionInterface.Test00();
             });
         }
 
@@ -46,8 +46,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test0();
-                actionInterface.Received().Test1(Arg.Any<string>());
+                actionInterface.Test0();
+                actionInterface.Test1(Arg.Any<string>());
             });
         }
 
@@ -66,8 +66,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test0();
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test0();
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
             });
         }
 
@@ -90,8 +90,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test0();
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test0();
             });
         }
 
@@ -110,8 +110,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
             });
         }
 
@@ -130,8 +130,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
             });
         }
 
@@ -150,8 +150,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
             });
         }
 
@@ -174,8 +174,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
-                actionInterface.Received().Test0();
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test0();
             });
         }
 
@@ -194,8 +194,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
-                actionInterface.Received().Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
+                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
             });
         }
 
@@ -219,9 +219,9 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test0();
-                actionInterface.Received().Test0();
-                actionInterface.Received().Test0();
+                actionInterface.Test0();
+                actionInterface.Test0();
+                actionInterface.Test0();
             });
         }
 
@@ -241,9 +241,9 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test1(Arg.Any<string>());
-                actionInterface.Received().Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
             });
         }
 
@@ -270,8 +270,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test0();
-                funcInterface.Received().Test1(Arg.Any<int>());
+                funcInterface.Test0();
+                funcInterface.Test1(Arg.Any<int>());
             });
         }
 
@@ -294,8 +294,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
             });
         }
 
@@ -318,8 +318,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
-                funcInterface.Received().Test111(Arg.Any<double>());
+                funcInterface.Test2(Arg.Any<string>(), Arg.Any<int>());
+                funcInterface.Test111(Arg.Any<double>());
             });
         }
 
@@ -345,11 +345,11 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
             });
         }
 
@@ -370,10 +370,10 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
             });
         }
 
@@ -393,9 +393,9 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
-                funcInterface.Received().Test1(Arg.Any<int>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
             });
         }
 
@@ -414,8 +414,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                funcInterface.Received().Test11(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                funcInterface.Test11(Arg.Any<string>());
             });
         }
 
@@ -435,8 +435,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test0();
-                actionInterface.Received().Test11(Arg.Any<int>());
+                funcInterface.Test0();
+                actionInterface.Test11(Arg.Any<int>());
             });
         }
 
@@ -464,8 +464,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test0();
-                actionInterface.Received().TestVoid();
+                funcInterface.Test0();
+                actionInterface.TestVoid();
             });
         }
 
@@ -485,8 +485,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test0();
-                actionInterface.Received().Test11(Arg.Any<int>());
+                funcInterface.Test0();
+                actionInterface.Test11(Arg.Any<int>());
             });
         }
 
@@ -510,8 +510,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                actionInterface.Received().TestVoid();
+                funcInterface.Test1(Arg.Any<int>());
+                actionInterface.TestVoid();
             });
         }
 
@@ -531,8 +531,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test1(Arg.Any<int>());
-                actionInterface.Received().Test1(Arg.Any<string>());
+                funcInterface.Test1(Arg.Any<int>());
+                actionInterface.Test1(Arg.Any<string>());
             });
         }
 
@@ -556,8 +556,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
-                actionInterface.Received().TestVoid();
+                funcInterface.Test2(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.TestVoid();
             });
         }
 
@@ -577,8 +577,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
-                actionInterface.Received().Test111(Arg.Any<double>());
+                funcInterface.Test2(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.Test111(Arg.Any<double>());
             });
         }
 
@@ -606,8 +606,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().TestVoid();
-                funcInterface.Received().Test0();
+                actionInterface.TestVoid();
+                funcInterface.Test0();
             });
         }
 
@@ -627,8 +627,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().TestVoid();
-                funcInterface.Received().Test1(Arg.Any<int>());
+                actionInterface.TestVoid();
+                funcInterface.Test1(Arg.Any<int>());
             });
         }
 
@@ -648,8 +648,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().TestVoid();
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.TestVoid();
+                funcInterface.Test2(Arg.Any<string>(), Arg.Any<int>());
             });
         }
 
@@ -673,8 +673,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test11(Arg.Any<int>());
-                funcInterface.Received().Test1(Arg.Any<int>());
+                actionInterface.Test11(Arg.Any<int>());
+                funcInterface.Test1(Arg.Any<int>());
             });
         }
 
@@ -698,8 +698,8 @@ namespace CKTools.FP.Test
             //断言
             Received.InOrder(() =>
             {
-                actionInterface.Received().Test22(Arg.Any<string>(), Arg.Any<int>());
-                funcInterface.Received().Test2(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.Test22(Arg.Any<string>(), Arg.Any<int>());
+                funcInterface.Test2(Arg.Any<string>(), Arg.Any<int>());
             });
         }
 
