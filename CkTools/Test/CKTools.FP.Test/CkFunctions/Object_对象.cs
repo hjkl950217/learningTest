@@ -29,15 +29,16 @@ namespace CKTools.FP.Test
             //执行
 
             //断言
-            Assert.Equal("a", CkFunctions.Constant<string>()("a")());
-            Assert.Equal((byte)1, CkFunctions.Constant<byte>()(1)());
-            Assert.True(CkFunctions.Constant<bool>()(true)());
-            Assert.Equal(1, CkFunctions.Constant<int>()(1)());
-            Assert.Equal((uint)1, CkFunctions.Constant<uint>()(1)());
-            Assert.Equal((short)1, CkFunctions.Constant<short>()(1)());
-            Assert.Equal((ushort)1, CkFunctions.Constant<ushort>()(1)());
-            Assert.Equal(1, CkFunctions.Constant<long>()(1)());
-            Assert.Equal((ulong)1, CkFunctions.Constant<ulong>()(1)());
+            Assert.Equal('c', CkFunctions.Char('c')());
+            Assert.Equal("a", CkFunctions.String("a")());
+            Assert.Equal((byte)1, CkFunctions.Byte(1)());
+            Assert.True(CkFunctions.Bool(true)());
+            Assert.Equal(1, CkFunctions.Int(1)());
+            Assert.Equal((uint)1, CkFunctions.UInt(1)());
+            Assert.Equal((short)1, CkFunctions.Short(1)());
+            Assert.Equal((ushort)1, CkFunctions.UShort(1)());
+            Assert.Equal(1, CkFunctions.Long(1)());
+            Assert.Equal((ulong)1, CkFunctions.ULong(1)());
         }
 
         #endregion 产量表达式
