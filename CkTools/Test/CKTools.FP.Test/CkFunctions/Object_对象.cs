@@ -32,13 +32,16 @@ namespace CKTools.FP.Test
             Assert.Equal('c', CkFunctions.Char('c')());
             Assert.Equal("a", CkFunctions.String("a")());
             Assert.Equal((byte)1, CkFunctions.Byte(1)());
+            Assert.Equal((sbyte)1, CkFunctions.SByte(1)());
             Assert.True(CkFunctions.Bool(true)());
             Assert.Equal(1, CkFunctions.Int(1)());
-            Assert.Equal((uint)1, CkFunctions.UInt(1)());
+            Assert.Equal(1u, CkFunctions.UInt(1)());
+            Assert.Equal(1, CkFunctions.NInt(1)());
+            Assert.Equal((nuint)1, CkFunctions.NuInt(1)());
             Assert.Equal((short)1, CkFunctions.Short(1)());
             Assert.Equal((ushort)1, CkFunctions.UShort(1)());
-            Assert.Equal(1, CkFunctions.Long(1)());
-            Assert.Equal((ulong)1, CkFunctions.ULong(1)());
+            Assert.Equal(1L, CkFunctions.Long(1)());
+            Assert.Equal(1ul, CkFunctions.ULong(1)());
         }
 
         #endregion 产量表达式
