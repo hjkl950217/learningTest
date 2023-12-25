@@ -19,7 +19,7 @@ namespace CkTools.FP
         }
 
         /// <summary>
-        /// 对象转为常量表达式
+        /// 获取<typeparamref name="T"/>转为常量的表达式
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -28,6 +28,7 @@ namespace CkTools.FP
             return t => () => t;
         }
 
+        public static Func<char, Func<char>> Char = CkFunctions.Constant<char>();
         public static Func<string, Func<string>> String = CkFunctions.Constant<string>();
         public static Func<byte, Func<byte>> Byte = CkFunctions.Constant<byte>();
         public static Func<bool, Func<bool>> Bool = CkFunctions.Constant<bool>();
