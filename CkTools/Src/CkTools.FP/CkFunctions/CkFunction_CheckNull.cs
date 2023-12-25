@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using CkTools.FP.Model;
 
 namespace CkTools.FP
 {
@@ -61,11 +60,6 @@ namespace CkTools.FP
         #endregion IsNotNull
 
         #region IsNullOrEmpty
-
-        /// <summary>
-        /// <see cref="Entry{T}"/>的IsNullOrEmpty
-        /// </summary>
-        private static readonly Func<Entry<IEnumerable?>, bool> entryIsNullOrEmpty = exp => exp.Value == null || !exp.Value.Any();
 
         private static readonly Func<IEnumerable?, bool> isNullOrEmpty = exp => exp == null || !exp.Any();
 

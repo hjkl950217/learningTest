@@ -31,6 +31,12 @@ namespace CkTools.FP
 
         #region Func
 
+        public static Func<T1, Func<TResult>> Currying<T1, TResult>(
+            Func<T1, TResult> exp)
+        {
+            return x => () => exp(x);
+        }
+
         public static Func<T1, Func<T2, TResult>> Currying<T1, T2, TResult>(
              Func<T1, T2, TResult> exp)
         {
