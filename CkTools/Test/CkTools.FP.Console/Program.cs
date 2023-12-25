@@ -1,4 +1,5 @@
 ﻿using System;
+using CkTools.FP;
 using static CkTools.FP.CkFunctions;
 
 namespace ConsoleApp1
@@ -11,44 +12,46 @@ namespace ConsoleApp1
 
             #region 传统方式
 
-            //string host = FtpHelper.GetHostFromConfig();
+            //准备
+            string host = FtpHelper.GetHostFromConfig();
+            DownArg downArg = FtpHelper.SetDownlodArg(host, "/1.doc");
 
-            //DownArg downArg = FtpHelper.SetDownlodArg(host, "/1.doc");
-            //FtpHelper.Download(downArg);
+            //执行
+            FtpHelper.Download(downArg);
 
             #endregion 传统方式
 
             #region Fp方式
 
-            //var setFunc = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
-            //var downLoad = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            //准备
+            var setArgFunc = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            var downLoad = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            string hostStr = FtpHelper.GetHostFromConfig();
 
-            //var buildArg = Compose(
-            //     setFunc,
-            //     FtpHelper.GetHostFromConfig);//组合出构建参数的函数
+            //组装函数
+            var buildArg = setArgFunc(hostStr);//组合出构建参数的函数
+            var downFunction = Compose(downLoad, buildArg);//组合出下载函数
 
-            //var downFunction = Compose(downLoad, buildArg);//组合出下载函数
-
-            //downFunction("/1.doc");//执行
+            //执行
+            downFunction("/1.doc");
 
             #endregion Fp方式
 
             #region FP方式-添加Try
 
-            Func<string, Func<string, DownArg>> setFunc2 = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
-            Func<DownArg, bool> downLoad2 = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
-
+            //准备
+            var setFunc2 = Currying(FtpHelper.SetDownlodArg);//柯里化后方便函数处理-原生函数式风格不需要这一步
+            var downLoad2 = Currying(FtpHelper.Download);//柯里化后方便函数处理-原生函数式风格不需要这一步
             Action<Exception> showError = ex => Console.WriteLine("获取host异常");//准备异常时的处理函数
-                                                                              //Func<string> tryGetHostFromConfig = Try2<string>(showError)(FtpHelper.GetHostFromConfig);//添加异常时的处理
-                                                                              //Func<string> tryGetHostFromConfig2 = TryWithThrow2<string>(showError)(FtpHelper.GetHostFromConfig);//处理完会抛出异常的版本
+            var tryGetHostFromConfig = CkFunctions.TryThrow(showError, FtpHelper.GetHostFromConfig);
+            string hostStr2 = tryGetHostFromConfig();
 
-            //Func<string, DownArg> buildArg2 = Compose(
-            //     setFunc2,
-            //     tryGetHostFromConfig);
+            //组装函数
+            var buildArg2 = setFunc2(hostStr2);//组合出构建参数的函数
+            var TryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
 
-            // Func<string, bool> tryDownFunction = Compose(downLoad2, buildArg2);//组合出下载函数
-
-            //tryDownFunction("/1.doc");//执行
+            //执行
+            TryDownFunction("/1.doc");
 
             #endregion FP方式-添加Try
 
@@ -63,12 +66,15 @@ namespace ConsoleApp1
         public string Url { get; set; }
     }
 
+    /// <summary>
+    /// 模拟Ftp帮助类
+    /// </summary>
     public static class FtpHelper
     {
         //为了演示方便，这里改为委托的形式
 
-        //public static Func<string> GetHostFromConfig = () => "localhost";//假设从配置文件中读取host
-        public static Func<string> GetHostFromConfig = () => throw new Exception("error");//模拟异常
+        public static Func<string> GetHostFromConfig = () => "localhost";//假设从配置文件中读取host
+        public static Func<string> GetHostFromConfigExcetion = () => throw new Exception("error");//模拟异常
 
         /// <summary>
         /// 设置下载参数<para></para>
