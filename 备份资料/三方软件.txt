@@ -8,3 +8,6 @@
 6. qBittorrent qt\bt 下载工具
 	qBittorrent-Enhanced-Edition 増强的版本
 7. Clash 新型飞机工具
+8. pixpin 截图贴图工具，比Snipaste多了ocr 长截图
+9. sqlynx 麦聪软件的网页端sql工具
+10. bypass 抢火车票工具
