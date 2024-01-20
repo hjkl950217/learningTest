@@ -48,8 +48,8 @@ namespace CkTools.FP
         #region 第2排
 
         public static Action<TInput> Compose<TInput>(
-        [NotNull] Action exp2,
-        [NotNull] Action<TInput> exp1)
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput> exp1)
         {
             CheckNullWithException(exp2, exp1);
             return t => { exp1(t); exp2(); };
@@ -72,8 +72,8 @@ namespace CkTools.FP
         }
 
         public static Action<TInput, TInput> Compose<TInput>(
-          [NotNull] Action<TInput, TInput> exp2,
-          [NotNull] Action<TInput> exp1)
+            Action<TInput, TInput> exp2,
+            [NotNull] Action<TInput> exp1)
         {
             CheckNullWithException(exp2, exp1);
             return (t2, t1) => { exp1(t1); exp2(t2, t1); };
@@ -84,16 +84,16 @@ namespace CkTools.FP
         #region 第3排
 
         public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
-         [NotNull] Action exp2,
-         [NotNull] Action<TInput2, TInput1> exp1)
+            [NotNull] Action exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
         {
             CheckNullWithException(exp2, exp1);
             return (t2, t1) => { exp1(t2, t1); exp2(); };
         }
 
         public static Action<TInput2, TInput1> Compose<TInput2, TInput1>(
-             [NotNull] Action<TInput2, TInput1> exp2,
-             [NotNull] Action<TInput2, TInput1> exp1)
+            [NotNull] Action<TInput2, TInput1> exp2,
+            [NotNull] Action<TInput2, TInput1> exp1)
         {
             CheckNullWithException(exp2, exp1);
             return (t2, t1) => { exp1(t2, t1); exp2(t2, t1); };
