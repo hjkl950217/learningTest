@@ -33,12 +33,14 @@ namespace CkTools.FP
 
         #region IsNull
 
-        public static bool IsNull(params object?[] exps)
+        public static bool IsNull<T>(params T?[] exps)
+            where T : class?
         {
             return exps.Any(t => t == null);
         }
 
-        public static bool IsNull<T1>(T1 exp)
+        public static bool IsNull<T>(T exp)
+            where T : class?
         {
             return exp == null;
         }
@@ -48,11 +50,13 @@ namespace CkTools.FP
         #region IsNotNull
 
         public static bool IsNotNull<T>(params T[] exps)
+            where T : class?
         {
             return exps.All(t => t != null);
         }
 
-        public static bool IsNotNull<T1>(T1 exp)
+        public static bool IsNotNull<T>(T exp)
+            where T : class?
         {
             return exp != null;
         }
@@ -80,9 +84,9 @@ namespace CkTools.FP
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty(IEnumerable? exp)
+        public static bool IsNullOrEmpty(IEnumerable? array)
         {
-            return CkFunctions.isNullOrEmpty(exp);
+            return CkFunctions.isNullOrEmpty(array);
         }
 
         #endregion IsNullOrEmpty

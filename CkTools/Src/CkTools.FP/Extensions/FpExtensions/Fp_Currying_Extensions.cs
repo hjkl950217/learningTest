@@ -31,6 +31,12 @@ namespace System
 
         #region Func
 
+        public static Func<T, Func<TResult>> Currying<T, TResult>(
+           this Func<T, TResult> exp)
+        {
+            return CkFunctions.Currying(exp);
+        }
+
         public static Func<T1, Func<T2, TResult>> Currying<T1, T2, TResult>(
             this Func<T1, T2, TResult> exp)
         {
