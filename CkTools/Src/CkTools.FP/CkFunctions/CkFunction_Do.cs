@@ -193,17 +193,17 @@ namespace CkTools.FP
         #region 第1排
 
         public static Func<TResult> Do<TResult>(
-         [NotNull] Action exp2,
-         [NotNull] Func<TResult> exp1)
+            [NotNull] Action exp2,
+            [NotNull] Func<TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Func<TResult> Do<TResult>(
             [NotNull] Action<TResult> exp2,
             [NotNull] Func<TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第1排
@@ -214,14 +214,14 @@ namespace CkTools.FP
             [NotNull] Action exp2,
             [NotNull] Func<TInput, TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Func<TInput, TResult> Do<TInput, TResult>(
             [NotNull] Action<TResult> exp2,
             [NotNull] Func<TInput, TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第2排
@@ -232,14 +232,14 @@ namespace CkTools.FP
             [NotNull] Action exp2,
             [NotNull] Func<TInput2, TInput1, TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Func<TInput2, TInput1, TResult> Do<TInput2, TInput1, TResult>(
             [NotNull] Action<TResult> exp2,
             [NotNull] Func<TInput2, TInput1, TResult> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第3排
@@ -262,21 +262,21 @@ namespace CkTools.FP
             [NotNull] Func<TResult> exp2,
             [NotNull] Action exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Func<TInput, TResult> Do<TInput, TResult>(
             [NotNull] Func<TInput, TResult> exp2,
             [NotNull] Action exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         public static Func<TInput2, TInput1, TResult> Do<TInput2, TInput1, TResult>(
             [NotNull] Func<TInput2, TInput1, TResult> exp2,
             [NotNull] Action exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第1排
@@ -287,7 +287,7 @@ namespace CkTools.FP
              [NotNull] Func<TInput, TResult> exp2,
              [NotNull] Action<TInput> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第2排
@@ -298,7 +298,7 @@ namespace CkTools.FP
             [NotNull] Func<TInput2, TInput1, TResult> exp2,
             [NotNull] Action<TInput2, TInput1> exp1)
         {
-            return Compose(exp2, exp1);
+            return CkFunctions.Compose(exp2, exp1);
         }
 
         #endregion 第3排

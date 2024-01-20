@@ -21,8 +21,7 @@ namespace System
             [NotNull] this Action<TInput> sourceExp,
             [NotNull] params Action<TInput>[] exps)
         {
-            CkFunctions.CheckNullWithException(sourceExp);
-            CkFunctions.CheckNullWithException(exps);
+            CkFunctions.CheckNullWithException(sourceExp, exps);
 
             return t =>
             {
@@ -42,10 +41,6 @@ namespace System
 
         #region Func-0个入参
 
-        #endregion Func-0个入参
-
-        #region Func-1个入参
-
         /// <summary>
         ///
         /// </summary>
@@ -57,29 +52,43 @@ namespace System
             [NotNull] this Func<TResult> sourceExp,
             [NotNull] params Action<TResult>[] exps)
         {
-            return CkFunctions.Compose(exps, sourceExp);
+            CkFunctions.CheckNullWithException(sourceExp, exps);
+
+            TResult result1 = sourceExp();
+
+            return () =>
+            {
+                //倒序执行
+                for(int i = 0 ; i < exps.Length ; i++)
+                {
+                    exps[i](result1);
+                }
+
+                return result1;
+            };
+        }
+
+        #endregion Func-0个入参
+
+        #region Func-1个入参
+
+        /// <summary>
+        /// 管道
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TCenter"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="sourceExp"></param>
+        /// <param name="exp"></param>
+        /// <returns></returns>
+        public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
+          [NotNull] this Func<TInput, TCenter> sourceExp,
+          [NotNull] Func<TCenter, TResult> exp)
+        {
+            CkFunctions.CheckNullWithException(sourceExp, exp);
+            return input => exp(sourceExp(input));
         }
 
         #endregion Func-1个入参
-
-        #region Func-2个入参
-
-        ///// <summary>
-        ///// 管道
-        ///// </summary>
-        ///// <typeparam name="TInput"></typeparam>
-        ///// <typeparam name="TCenter"></typeparam>
-        ///// <typeparam name="TResult"></typeparam>
-        ///// <param name="sourceExp"></param>
-        ///// <param name="exp"></param>
-        ///// <returns></returns>
-        //public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-        //  [NotNull] this Func<TInput, TCenter> sourceExp,
-        //  [NotNull] Func<TCenter, TResult> exp)
-        //{
-        //    return CkFunctions.Pipe(exp, sourceExp);
-        //}
-
-        #endregion Func-2个入参
     }
 }

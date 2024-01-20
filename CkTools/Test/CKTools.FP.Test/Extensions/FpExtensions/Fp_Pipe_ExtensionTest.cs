@@ -1,92 +1,90 @@
-﻿//using System;
-//using Xunit;
-//using static CKTols.FP.Test.FpMockFunc;
+﻿using System;
+using Xunit;
+using static CKTools.FP.Test.FpMockFunc;
 
-//namespace CKTools.FP.Test
-//{
-//    public class Fp_Pipe_ExtensionTest
-//    {
-//        #region 单独验证
+namespace CKTools.FP.Test
+{
+    public class Fp_Pipe_ExtensionTest
+    {
+        #region 单独验证
 
-//        [Fact]
-//        public void PipeTest1()
-//        {
-//            //导航
-//            FP_Pipe_Extensions.Pipe(strToInt, intToDouble);
+        [Fact]
+        public void Action_多入()
+        {
+            //准备
+            //(string->void)->(string->void)->(string->void) => (string->void)
+            string str = "1";
+            var result = strToVoid
+             .Pipe(t => str = t)
+             .Pipe(strToVoid);
 
-//            //(string->int)->(int->double)->(double->string)  => (string->string)
-//            Func<string, string> result = strToInt
-//                .Pipe(intToDouble)
-//                .Pipe(doubleToStr);
+            //执行
+            result("2");
 
-//            Assert.Equal("1", result("1"));
-//        }
+            //断言
+            Assert.Equal("2", str);
+        }
 
-//        [Fact]
-//        public void PipeTest2()
-//        {
-//            //导航
-//            FP_Pipe_Extensions.Pipe(strToInt, intToVoid);
+        [Fact]
+        public void Func_0入1出_链接_1入的Action()
+        {
+            //准备
+            //(void->int)->(int->void)->(int->void)) => (void->int)
+            int num = 0;
+            var result = 10.ToFunc()
+                .Pipe(t => num = t + num)
+                .Pipe(t => num = t + num)
+                .Pipe(t => num = t + num);
 
-//            //(string->int)->(int->void) => (string->void)
-//            Action<string> result = strToInt
-//                .Pipe(intToVoid);
+            //执行
+            int resultNum = result();
+            Assert.Equal(10, resultNum);
+            Assert.Equal(30, num);
+        }
 
-//            result("1");
-//        }
+        [Fact]
+        public void Func_1入1出()
+        {
+            //准备
+            //(string->int)->(int->double)->(double->string) => (string->string)
+            Func<string, string> result = strToInt
+                .Pipe(intToDouble)
+                .Pipe(doubleToStr);
 
-//        [Fact]
-//        public void PipeTest3()
-//        {
-//            //导航
-//            FP_Pipe_Extensions.Pipe(strToVoid, strToVoid, strToVoid);
+            //执行
+            string resultNum = result("10");
 
-//            //(string->void)->(string->void)->...  => (string->void)
-//            Action<string> result = strToVoid
-//                .Pipe(strToVoid, strToVoid, strToVoid, strToVoid);
+            //断言
+            Assert.Equal("10", resultNum);
+        }
 
-//            result("1");
-//        }
+        #endregion 单独验证
 
-//        [Fact]
-//        public void PipeTest4()
-//        {
-//            //导航
-//            FP_Pipe_Extensions.Pipe(strToInt, intToVoid, intToVoid);
+        //#region 复合验证
 
-//            //(string->int)->(int->void)->...  => (string->void)
-//            Action<string> result = strToInt.Pipe(intToVoid, intToVoid, intToVoid);
+        //[Fact]
+        //public void Complex_PipeTest()
+        //{
+        //    //step 1:   (string->int)->(int->double)->(double->string) => (string->string)
+        //    //step 2:   (string->string)->(string->void)->...
+        //    //expect :  (string->void)
 
-//            result("1");
-//        }
+        //    //step 1
+        //    FP_Pipe_Extensions.Pipe(strToInt, intToDouble);
+        //    Func<string, string> step1 = strToInt
+        //        .Pipe(intToDouble)
+        //        .Pipe(doubleToStr);
 
-//        #endregion 单独验证
+        //    Assert.Equal("1", step1("1"));
 
-//        #region 复合验证
+        //    //step 2
+        //    FP_Pipe_Extensions.Pipe(step1, strToVoid, strToVoid);
+        //    Action<string> step2 = step1
+        //        .Pipe(strToVoid, strToVoid, strToVoid);
 
-//        [Fact]
-//        public void Complex_PipeTest()
-//        {
-//            //step 1:   (string->int)->(int->double)->(double->string)  => (string->string)
-//            //step 2:   (string->string)->(string->void)->...
-//            //expect :  (string->void)
+        //    step2("1");
+        //}
 
-//            //step 1
-//            FP_Pipe_Extensions.Pipe(strToInt, intToDouble);
-//            Func<string, string> step1 = strToInt
-//                .Pipe(intToDouble)
-//                .Pipe(doubleToStr);
-
-//            Assert.Equal("1", step1("1"));
-
-//            //step 2
-//            FP_Pipe_Extensions.Pipe(step1, strToVoid, strToVoid);
-//            Action<string> step2 = step1
-//                .Pipe(strToVoid, strToVoid, strToVoid);
-
-//            step2("1");
-//        }
-
-//        #endregion 复合验证
-//    }
-//}
+        //#endregion 复合验证
+    }
+}
