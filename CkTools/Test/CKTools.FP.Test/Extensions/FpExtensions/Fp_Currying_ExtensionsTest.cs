@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CKTools.FP.Test.Extensions.FpExtensions
 {
-    public class FpExt_Currying_柯里化
+    public class Fp_Currying_ExtensionsTest
     {
         #region Action
 
@@ -55,6 +55,19 @@ namespace CKTools.FP.Test.Extensions.FpExtensions
         #endregion Action
 
         #region Func
+
+        [Fact]
+        public void Func柯里化_1个参数()
+        {
+            //准备
+            Func<int, int> process = t => t + 100;
+
+            //执行
+            Func<int, Func<int>> result = process.Currying();
+
+            //断言
+            Assert.Equal(110, result(10)());
+        }
 
         [Fact]
         public void Func柯里化_2个参数()
