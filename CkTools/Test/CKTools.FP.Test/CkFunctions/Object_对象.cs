@@ -6,7 +6,7 @@ namespace CKTools.FP.Test
 {
     public class Object_对象
     {
-        #region 产量表达式
+        #region 常量表达式
 
         [Fact]
         public void Constant_值直接转换为常量表达式()
@@ -44,6 +44,6 @@ namespace CKTools.FP.Test
             Assert.Equal(1ul, CkFunctions.ULong(1)());
         }
 
-        #endregion 产量表达式
+        #endregion 常量表达式
     }
 }
