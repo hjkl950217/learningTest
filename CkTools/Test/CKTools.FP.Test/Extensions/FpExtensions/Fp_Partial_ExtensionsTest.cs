@@ -1,10 +1,9 @@
 ﻿using System;
-using CkTools.FP;
 using Xunit;
 
-namespace CKTools.FP.Test
+namespace CKTools.FP.Test.Extensions.FpExtensions
 {
-    public class Partial分部
+    public class Fp_Partial_ExtensionsTest
     {
         #region Action
 
@@ -16,7 +15,7 @@ namespace CKTools.FP.Test
             Func<int, Action<int>> process = t1 => t2 => count = t1 + t2 + count;
 
             //执行
-            Action<int, int> result = CkFunctions.Partial(process);
+            Action<int, int> result = process.Partial();
             result(10, 10);
 
             //断言
@@ -31,7 +30,7 @@ namespace CKTools.FP.Test
             Func<int, Func<int, Action<int>>> process = t1 => t2 => t3 => count = t1 + t2 + t3 + count;
 
             //执行
-            Action<int, int, int> result = CkFunctions.Partial(process);
+            Action<int, int, int> result = process.Partial();
             result(10, 10, 10);
 
             //断言
@@ -46,7 +45,7 @@ namespace CKTools.FP.Test
             Func<int, Func<int, Func<int, Action<int>>>> process = t1 => t2 => t3 => t4 => count = t1 + t2 + t3 + t4 + count;
 
             //执行
-            Action<int, int, int, int> result = CkFunctions.Partial(process);
+            Action<int, int, int, int> result = process.Partial();
             result(10, 10, 10, 10);
 
             //断言
@@ -65,7 +64,7 @@ namespace CKTools.FP.Test
             Func<int, int> process = t1 => t1 + count;
 
             //执行
-            Func<int, int> result = CkFunctions.Partial(process);
+            Func<int, int> result = process.Partial();
             int resultValue = result(20);
 
             //断言
@@ -80,7 +79,7 @@ namespace CKTools.FP.Test
             Func<int, Func<int, int>> process = t1 => t2 => t1 + t2 + count;
 
             //执行
-            Func<int, int, int> result = CkFunctions.Partial(process);
+            Func<int, int, int> result = process.Partial();
             int resultValue = result(10, 10);
 
             //断言
@@ -95,7 +94,7 @@ namespace CKTools.FP.Test
             Func<int, Func<int, Func<int, int>>> process = t1 => t2 => t3 => t1 + t2 + t3 + count;
 
             //执行
-            Func<int, int, int, int> result = CkFunctions.Partial(process);
+            Func<int, int, int, int> result = process.Partial();
             int resultValue = result(10, 10, 10);
 
             //断言
@@ -110,7 +109,7 @@ namespace CKTools.FP.Test
             Func<int, Func<int, Func<int, Func<int, int>>>> process = t1 => t2 => t3 => t4 => t1 + t2 + t3 + t4 + count;
 
             //执行
-            Func<int, int, int, int, int> result = CkFunctions.Partial(process);
+            Func<int, int, int, int, int> result = process.Partial();
             int resultValue = result(10, 10, 10, 10);
 
             //断言

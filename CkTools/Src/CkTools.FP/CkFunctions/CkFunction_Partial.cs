@@ -9,12 +9,6 @@ namespace CkTools.FP
     {
         #region Action
 
-        public static Action<T1> Partial<T1>(
-            Action<T1> exp)
-        {
-            return exp;//这个函数是为了方便将对象的方法转换为委托
-        }
-
         public static Action<T1, T2> Partial<T1, T2>(
             Func<T1, Action<T2>> exp)
         {

@@ -9,12 +9,6 @@ namespace System
     {
         #region Action
 
-        public static Action<T1> Partial<T1>(
-            this Action<T1> exp)
-        {
-            return CkFunctions.Partial(exp);
-        }
-
         public static Action<T1, T2> Partial<T1, T2>(
             this Func<T1, Action<T2>> exp)
         {
