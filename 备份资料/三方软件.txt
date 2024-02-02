@@ -11,3 +11,5 @@
 8. pixpin 截图贴图工具，比Snipaste多了ocr 长截图
 9. sqlynx 麦聪软件的网页端sql工具
 10. bypass 抢火车票工具
+11. wushowhide.diagcab 微软自己的更新禁用开启工具。可以指定屏蔽某一个更新，后期可以恢复
+	下载地址 http://download.microsoft.com/download/F/2/2/F22D5FDB-59CD-4275-8C95-1BE17BF70B21/wushowhide.diagcab
