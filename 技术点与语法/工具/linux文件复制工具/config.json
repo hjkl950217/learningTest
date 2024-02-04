@@ -6,5 +6,6 @@
   "excludeAddrs": [
     "Y:\\qBittorrentDownload\\incomplete"
   ],
-  "fileSizeLimit": 20
+  "minFileSizeLimit": 20, //20M
+  "maxFileSizeLimit": 10240 //10GB
 }

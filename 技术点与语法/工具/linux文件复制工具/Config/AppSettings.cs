@@ -17,10 +17,16 @@ namespace linux文件复制工具
         public string Target { get; set; }
 
         /// <summary>
-        /// 文件大小（M）
+        /// 最小文件限制（M）
         /// </summary>
-        [JsonProperty("fileSizeLimit")]
-        public int FileSizeLimit { get; set; }
+        [JsonProperty("minFileSizeLimit")]
+        public int MinFileSizeLimit { get; set; }
+
+        /// <summary>
+        /// 最大文件限制（M）
+        /// </summary>
+        [JsonProperty("maxFileSizeLimit")]
+        public int MaxFileSizeLimit { get; set; }
 
         /// <summary>
         /// 时间点，大于这个时间节点的数据不会被复制

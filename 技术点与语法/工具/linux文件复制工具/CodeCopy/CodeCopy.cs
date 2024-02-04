@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace linux文件复制工具
@@ -11,7 +12,8 @@ namespace linux文件复制工具
 
             string sourceDir = settings.Source;
             string targetDir = settings.Target;
-            long fileSizeLimit = settings.FileSizeLimit * 1024 * 1024;
+            long minFileSizeLimit = settings.MinFileSizeLimit * 1024 * 1024;
+            long maxFileSizeLimit = settings.MaxFileSizeLimit * 1024 * 1024;
             DateTime timeLimit = settings.TimeLimit ?? DateTime.MinValue;
             string[] allowedExtensions = settings.AllowedExtensions ?? Array.Empty<string>();
             string[] excludeAddrs = settings.ExcludeAddrs ?? Array.Empty<string>();
@@ -87,9 +89,17 @@ namespace linux文件复制工具
 
                 // 判断文件大小是否小于限制，如果小于则跳过该文件
                 long sourceFileSize = sourceFileInfo.Length;
-                if(sourceFileSize < fileSizeLimit)
+                if(sourceFileSize < minFileSizeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 小于限制大小，跳过复制";
+                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    continue;
+                }
+                
+                // 判断文件大小是否大于限制，如果大于则跳过该文件
+                if(sourceFileSize > maxFileSizeLimit)
+                {
+                    string message = $"文件 [{sourceFileInfo.Name}] 大于限制大小，跳过复制";
                     LogHelper.WriteLog(message, LogTypeEnum.Debug);
                     continue;
                 }
