@@ -29,7 +29,7 @@ namespace linux文件复制工具
 
             //结束
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
-            Console.ReadLine();
+            //Console.ReadLine();
             LogHelper.CloseLog();
         }
     }
