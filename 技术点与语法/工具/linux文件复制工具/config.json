@@ -7,5 +7,5 @@
     "Y:\\qBittorrentDownload\\incomplete"
   ],
   "minFileSizeLimit": 20, //20M
-  "maxFileSizeLimit": 10240 //10GB
+  "maxFileSizeLimit": 15360 //15GB
 }
