@@ -72,6 +72,7 @@
 69. Spectre.Console 一个功能非常强大的命令行解析类库，支持颜色、table等输出。
 70. Zxing.net 对二维码 条形码进行生成和解码操作
 71. dotnet-repl 一个dotnet cli 工具，可以让C#代码当脚本，直接在命令行中使用
+72. AreaCity-JsSpider-StatsGov 行政区划数据，带区县、乡镇，带边界坐标数据
 
 --工具
 01. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
@@ -82,6 +83,8 @@
 04. ventoy 一个制作可启动U盘的开源工具,做好后把iso直接放U盘，让系统从选择的iso中启动
 05. Netch 一个游戏挂代理的加速器
 06. apifox  apipost.  fox亮点在对接了许多厂家的API，post的亮点在团队协作
+07. tiny-rdm Redis客户端桌面工具，跨平台
+
 
 --中间件
 01. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
