@@ -45,5 +45,21 @@ namespace linux文件复制工具
         /// </summary>
         [JsonProperty("excludeAddrs")]
         public string[] ExcludeAddrs { get; set; }
+
+        /// <summary>
+        /// 尝试初始化配置
+        /// </summary>
+        public void TryInitDefaultConfig()
+        {
+            this.Source=string.IsNullOrEmpty(this.Source) ? "Y:\\qBittorrentDownload" : this.Source;
+            this.Target=string.IsNullOrEmpty(this.Target) ? "Y:\\LoActionMovie\\115" : this.Target;
+            this.MinFileSizeLimit=this.MinFileSizeLimit == 0 ? 20 : this.MinFileSizeLimit;
+            this.MaxFileSizeLimit=this.MaxFileSizeLimit == 0 ? 15*1024 : this.MaxFileSizeLimit;
+            this.TimeLimit=this.TimeLimit ?? DateTime.MinValue;
+            this.AllowedExtensions = this.AllowedExtensions ?? new string[] { "avi", "mp4", "ts", "wmv", "mpeg", "m4v", "mov", "asf", "flv", "f4v", "rmvb", "3gp", "mkv", "vob", "mts", "m2ts", "tp", "trp", "divx", "xvid" };
+            this.ExcludeAddrs = this.ExcludeAddrs ?? new string[] { "Y:\\qBittorrentDownload\\incomplete" };
+
+        }
+
     }
 }

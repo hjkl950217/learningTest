@@ -12,8 +12,8 @@ namespace linux文件复制工具
 
             string sourceDir = settings.Source;
             string targetDir = settings.Target;
-            long minFileSizeLimit = settings.MinFileSizeLimit * 1024 * 1024;
-            long maxFileSizeLimit = settings.MaxFileSizeLimit * 1024 * 1024;
+            long minFileSizeLimit = (long)settings.MinFileSizeLimit * 1024 * 1024;
+            long maxFileSizeLimit = (long)settings.MaxFileSizeLimit * 1024 * 1024;
             DateTime timeLimit = settings.TimeLimit ?? DateTime.MinValue;
             string[] allowedExtensions = settings.AllowedExtensions ?? Array.Empty<string>();
             string[] excludeAddrs = settings.ExcludeAddrs ?? Array.Empty<string>();
