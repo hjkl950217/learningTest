@@ -32,6 +32,7 @@
             this.textBox2 = new TextBox();
             this.button1 = new Button();
             this.textBox3 = new TextBox();
+            this.button2 = new Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -56,7 +57,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new Point(536, 140);
+            this.button1.Location = new Point(496, 124);
             this.button1.Name = "button1";
             this.button1.Size = new Size(108, 40);
             this.button1.TabIndex = 3;
@@ -73,11 +74,22 @@
             this.textBox3.TabIndex = 4;
             this.textBox3.Text = "1.将CDK复制到左边的输入框中\r\n2.点击 解析 按钮\r\n3.将右边解析出的CDK复制，打开游登录器中的“道具兑换”进行兑换\r\n";
             // 
+            // button2
+            // 
+            this.button2.Location = new Point(496, 176);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(300, 60);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "点击排序CDK,可多选";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += this.button2_Click;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new SizeF(7F, 17F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(1066, 638);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
@@ -95,5 +107,6 @@
         private TextBox textBox2;
         private Button button1;
         private TextBox textBox3;
+        private Button button2;
     }
 }
