@@ -13,3 +13,4 @@
 10. bypass 抢火车票工具
 11. wushowhide.diagcab 微软自己的更新禁用开启工具。可以指定屏蔽某一个更新，后期可以恢复
 	下载地址 http://download.microsoft.com/download/F/2/2/F22D5FDB-59CD-4275-8C95-1BE17BF70B21/wushowhide.diagcab
+12. WizTree 磁盘空间大小分析软件，可以分析每个文件夹占用大小
