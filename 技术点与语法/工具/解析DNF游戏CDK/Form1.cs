@@ -11,6 +11,8 @@ namespace FormGetCDK
             this.InitializeComponent();
         }
 
+        private static readonly string[] separator = new string[] { "\t", " " };
+
         #region 解析按钮-点击事件
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,8 +30,10 @@ namespace FormGetCDK
             foreach(string line in contentList)
             {
                 IEnumerable<string> lineStrs = line
-                    .Split("\t").Where(t => !string.IsNullOrEmpty(t))
-                    .Skip(1);
+                    .Split(separator, StringSplitOptions.None)
+                    .Where(t => !string.IsNullOrEmpty(t))
+                    .Select(t => t.Trim())
+                    .Skip(1);//拆开后第1个是名称，第2个才是CDK
 
                 foreach(var lineStr in lineStrs)
                 {
