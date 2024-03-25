@@ -123,6 +123,7 @@
 31. wgcloud  国产的一个服务器监控系统，以简单好用为卖点。个人免费，专业版可买源码二开
 32. safeline 社区WAF，简单好用的流量防护，防火墙
 33. pyroscope 运行时连续性能探查分析平台，支持go java py donet rest nodejs
+34. Garnet 微软开源的内存数据库，完美兼容Redis协议，使用C#开发
 
 网关
 	Kong
