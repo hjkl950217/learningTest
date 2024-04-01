@@ -94,9 +94,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
+            this.Name = "CDK解析工具-没想好QQ1817482  www.meixianghao.top";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "CDK解析工具-没想好QQ1817482  www.meixianghao.top";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
