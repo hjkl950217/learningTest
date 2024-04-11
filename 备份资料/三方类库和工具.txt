@@ -33,7 +33,7 @@
 32. System.Linq.Dynamic.Core 可以在IQueryable上执行使用字符串的查询。
 33. Valit - Valit是对.NET Core的简单验证库，减少if的使用。
 34. EFCore.BulkExtensions EF的批量操作库
-35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集。 
+35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集。
 36. Elasticsearch.Net 官方推荐的 Elasticsearch .NET客户端
 37. SearchExtensions  IQueryable接口的高级搜索功能，例如Entity Framework查询。
 36. BinarySerializer - 二进制序列化库，用于控制字节和位级别的数据格式。
@@ -58,10 +58,10 @@
 55. ViewConfig  查看一个配置是由哪一个Provider执行的
 56. Ben.BlockingDetector 程序阻塞监控
 57. miniblink 迷你的内核控件， 可以用做来桌面app,网络爬虫,自动化测试,打印
-58. AutoHistory  ef 可用的实体变更记录组件 
+58. AutoHistory  ef 可用的实体变更记录组件
 59. hangfire  是一个开源的.NET任务调度框架，提供了内置集成化的控制台，可以直观明了的查看作业调度情况，并且不需要依赖于单独的应用程序执行（如：windows服务，window计划）。并且支持持久性存储。
 60. Collections.Pooled 基于span<T>改造了原生List Dictionary来提高性能。
-61. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列 
+61. MediatR	一个简单的应用内部消息库，相当于应用内部的消息队列
 62. FreeRedis redis的Free版本，和FreeSql一个味道
 63. HttpReports  一个简单好用的APM工具，针对http API调用的监控平台，有类库支持，还支持链路追踪
 64. Enums.NET 解决不同枚举操作之间的一些问题
@@ -91,7 +91,7 @@
 01. rancher 和K3S docker相关的服务器和组件  K3S： https://www.rancher.cn/rancher-k3s/
 02. SkyWalking 数据收集的平台与协议 有多种语言集成  https://github.com/apache/skywalking-data-collect-protocol
 03. Jfrog Artifactory 【收费】 用于存储各种包,集成nuget maven npm等等，包含了Artifactory
-	Jfrog docker地址：releases-docker.jfrog.io 
+	Jfrog docker地址：releases-docker.jfrog.io
 	Nexus OSS 支持主流的软件包
 	Harbor 针对docker仓库的
 04. RabbitMq 消息队列
@@ -125,6 +125,7 @@
 32. safeline 社区WAF，简单好用的流量防护，防火墙
 33. pyroscope 运行时连续性能探查分析平台，支持go java py donet rest nodejs
 34. Garnet 微软开源的内存数据库，完美兼容Redis协议，使用C#开发
+35. 1panel 国产docker管理面板
 
 网关
 	Kong
@@ -136,7 +137,7 @@
 	consul 分布式高可用的服务发现组件
 
 
---new sql: 
+--new sql:
 CockroachDB（国外开源）
 TiDB（国内开源，许多银行、百度、头条在用，互联网企业用的多,和mysql比较像）
 SequoiaDB（国内开源，银行用的多）
@@ -153,4 +154,3 @@ https://get.daocloud.io/  一个docker国内镜像站,包含自动部署脚本
 --开源网站项目
 VuePress: Vue驱动的静态网站生成器，介绍博客：https://blog.csdn.net/zhenghongcs/article/details/120860966
 云策文档：hink 是一款开源知识管理工具   https://github.com/fantasticit/think
-
