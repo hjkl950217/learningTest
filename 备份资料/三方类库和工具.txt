@@ -74,6 +74,8 @@
 71. dotnet-repl 一个dotnet cli 工具，可以让C#代码当脚本，直接在命令行中使用
 72. AreaCity-JsSpider-StatsGov 行政区划数据，带区县、乡镇，带边界坐标数据
 73. TouchSocket TouchSocket是.Net(包括 C# 、VB.Net、F#)的一个整合性的socket网络通信框架。包含了 tcp、udp、ssl等一系列的通信模块。一键式解决 tcp 黏分包问题。
+74. SINI 一个简单的ini读写类库，但支持嵌套、换行
+
 
 --工具
 01. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
@@ -125,7 +127,7 @@
 32. safeline 社区WAF，简单好用的流量防护，防火墙
 33. pyroscope 运行时连续性能探查分析平台，支持go java py donet rest nodejs
 34. Garnet 微软开源的内存数据库，完美兼容Redis协议，使用C#开发
-35. 1panel 国产docker管理面板
+35. 1panel 国产linux管理面板，管理docker的略多
 
 网关
 	Kong

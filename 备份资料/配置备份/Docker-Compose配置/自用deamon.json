@@ -1,9 +1,13 @@
 {
   "registry-mirrors": [
+    "https://mirror.ccs.tencentyun.com",
+    "https://registry.docker-cn.com"
     "https://5hh8258g.mirror.aliyuncs.com",
     "https://docker.mirrors.ustc.edu.cn",
     "http://hub-mirror.c.163.com",
-    "http://docker.mirrors.ustc.edu.cn"
+    "http://docker.mirrors.ustc.edu.cn",
+	"https://reg-mirror.qiniu.com/",
+	"https://dockerhub.azk8s.cn"
   ],
   "insecure-registries": [
     "registry.docker-cn.com",
