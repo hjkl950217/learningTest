@@ -68,8 +68,8 @@
 65. RulesEngine  微软出的一个开源规则引擎类库，可以根据配置文件执行不同的逻辑处理。适合打折、促销等经常要换策略的场景
 66. FluentAssertions 单元测试中可能用到的流式断言库
 67. Magicodes.IE 导入导出通用库，支持Dto导入导出、模板导出、花式导出以及动态导出，支持Excel、Csv、Word、Pdf和Html
-68. Commandline 一个命令行解析类库，支持在类名、属性名上通过特性的方式定义行为
-69. Spectre.Console 一个功能非常强大的命令行解析类库，支持颜色、table等输出。
+68. Commandline 一个命令行解析类库，支持在类名、属性名上通过特性的方式定义行为。附带一些命令行解析功能
+69. Spectre.Console 一个功能非常强大的命令行美化类库，支持颜色、table等输出。
 70. Zxing.net 对二维码 条形码进行生成和解码操作
 71. dotnet-repl 一个dotnet cli 工具，可以让C#代码当脚本，直接在命令行中使用
 72. AreaCity-JsSpider-StatsGov 行政区划数据，带区县、乡镇，带边界坐标数据
