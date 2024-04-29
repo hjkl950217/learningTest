@@ -1,10 +1,10 @@
 # 源仓库地址 源仓库分支
-$source_repo = "https://github.com/truecharts/catalog.git"
+$source_repo = "https://mirror.ghproxy.com/https://github.com/truecharts/catalog"
 $source_branch = "main"
 # 目标仓库地址 目标仓库分支
 $target_repo = "https://gitee.com/GTXCK/true-charts-catalog"
 $target_branch = "main"
-# 仓库名称
+# 仓库文件夹名称
 $repo_name = "TrueCharts"
 
 # 检查仓库目录是否存在
@@ -29,10 +29,10 @@ git fetch gitee
 git checkout $source_branch
 
 # 将目标仓库的更改合并到当前分支
-git merge gitee/$target_branch --allow-unrelated-histories
+#git merge gitee/$target_branch --allow-unrelated-histories
 
 # 将更改强制推送到目标仓库
-git push gitee $source_branch:$target_branch --force
+git push gitee “$source_branch`:$target_branch” --force
 
 # 退出仓库文件夹
 cd ..

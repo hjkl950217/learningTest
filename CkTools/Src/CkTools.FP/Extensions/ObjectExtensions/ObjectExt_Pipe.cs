@@ -12,22 +12,6 @@ namespace System
         /// </summary>
         /// <typeparam name="TObject"></typeparam>
         /// <param name="sourceObject">源对象</param>
-        /// <param name="action">要执行的操作</param>
-        /// <returns></returns>
-        public static TObject Pipe<TObject>(
-            this TObject sourceObject,
-            [NotNull] Action action)
-        {
-            CkFunctions.CheckNullWithException(action);
-            action();
-            return sourceObject;
-        }
-
-        /// <summary>
-        /// 管道
-        /// </summary>
-        /// <typeparam name="TObject"></typeparam>
-        /// <param name="sourceObject">源对象</param>
         /// <param name="actions">要执行的操作集合</param>
         /// <returns></returns>
         public static TObject Pipe<TObject>(
@@ -36,7 +20,7 @@ namespace System
         {
             CkFunctions.CheckNullWithException(actions);
 
-            CkFunctions.Compose(actions)();
+            CkFunctions.ComposeReverse(actions)();
             return sourceObject;
         }
 
@@ -72,7 +56,7 @@ namespace System
             [NotNull] params Action<TObject>[] actions)
         {
             CkFunctions.CheckNullWithException(actions);
-            CkFunctions.Compose(actions)(sourceObject);
+            CkFunctions.ComposeReverse(actions)(sourceObject);
             return sourceObject;
         }
 

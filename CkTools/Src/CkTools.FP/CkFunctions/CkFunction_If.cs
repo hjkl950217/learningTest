@@ -17,7 +17,7 @@ namespace CkTools.FP
         Action<T2,T1>   1           1(类型推断问题，只能留1个)       1
         */
 
-        #region 第1排
+        #region 第1列
 
         /// <summary>
         /// If
@@ -109,9 +109,9 @@ namespace CkTools.FP
             };
         }
 
-        #endregion 第1排
+        #endregion 第1列
 
-        #region 第2排
+        #region 第2列
 
         /// <summary>
         /// If
@@ -204,9 +204,9 @@ namespace CkTools.FP
             };
         }
 
-        #endregion 第2排
+        #endregion 第2列
 
-        #region 第3排
+        #region 第3列
 
         /// <summary>
         /// If
@@ -301,7 +301,7 @@ namespace CkTools.FP
             };
         }
 
-        #endregion 第3排
+        #endregion 第3列
 
         #endregion Action
 
@@ -314,7 +314,7 @@ namespace CkTools.FP
          Func<T2,T1,TR>     1               1(类型推断问题，只能留1个)       1
          */
 
-        #region 第1排
+        #region 第1列
 
         /// <summary>
         /// If
@@ -373,9 +373,9 @@ namespace CkTools.FP
             return (t2, t1) => judgeExp() ? exp1() : exp2(t2, t1);
         }
 
-        #endregion 第1排
+        #endregion 第1列
 
-        #region 第2排
+        #region 第2列
 
         /// <summary>
         /// If
@@ -434,9 +434,9 @@ namespace CkTools.FP
             return (t2, t1) => judgeExp() ? exp1(t1) : exp2(t2, t1);
         }
 
-        #endregion 第2排
+        #endregion 第2列
 
-        #region 第3排
+        #region 第3列
 
         /// <summary>
         /// If
@@ -495,7 +495,7 @@ namespace CkTools.FP
             return (t2, t1) => judgeExp() ? exp1(t2, t1) : exp2(t2, t1);
         }
 
-        #endregion 第3排
+        #endregion 第3列
 
         #endregion Func
     }
