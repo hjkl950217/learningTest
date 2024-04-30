@@ -13,17 +13,16 @@ namespace System
         /// </summary>
         /// <Value>
         /// <para><paramref name="input"/>：要处理的值 </para>
-        /// <para><paramref name="doFunc"/>：将要执行的处理 </para>
+        /// <para><paramref name="doFuncs"/>：将要执行的处理集合 </para>
         /// </Value>
         /// <typeparam name="TInput">可传递任意类型</typeparam>
         /// <returns></returns>
         public static TInput Do<TInput>(
             this TInput input,
-            [NotNull] Action<TInput> doFunc)
+            [NotNull] params Action[] doFuncs)
         {
-            CkFunctions.CheckNullWithException(doFunc);
-            doFunc(input);
-
+            CkFunctions.CheckNullWithException(doFuncs);
+            CkFunctions.ComposeReverse(doFuncs)();
             return input;
         }
 
@@ -32,42 +31,17 @@ namespace System
         /// </summary>
         /// <Value>
         /// <para><paramref name="input"/>：要处理的值 </para>
-        /// <para><paramref name="isExecute"/>：判断是否执行，返回true为执行 </para>
-        /// <para><paramref name="doFunc"/>：将要执行的处理 </para>
+        /// <para><paramref name="doFuncs"/>：将要执行的处理集合 </para>
         /// </Value>
         /// <typeparam name="TInput">可传递任意类型</typeparam>
         /// <returns></returns>
-        public static TInput DoIf<TInput>(
+        public static TInput Do<TInput>(
             this TInput input,
-            [NotNull] Func<TInput, bool> isExecute,
-            [NotNull] Action<TInput> doFunc)
+            [NotNull] params Action<TInput>[] doFuncs)
         {
-            CkFunctions.CheckNullWithException(isExecute, doFunc);
-
-            if(isExecute(input))
-            {
-                doFunc(input);
-            }
-
+            CkFunctions.CheckNullWithException(doFuncs);
+            CkFunctions.ComposeReverse(doFuncs)(input);
             return input;
-        }
-
-        /// <summary>
-        /// 对<paramref name="input"/>执行一些操作
-        /// </summary>
-        /// <Value>
-        /// <para><paramref name="input"/>：要处理的值 </para>
-        /// <para><paramref name="isExecute"/>：判断是否执行，true为执行 </para>
-        /// <para><paramref name="doFunc"/>：将要执行的处理 </para>
-        /// </Value>
-        /// <typeparam name="TInput">可传递任意类型</typeparam>
-        /// <returns></returns>
-        public static TInput DoIf<TInput>(
-            this TInput input,
-            [NotNull] bool isExecute,
-            [NotNull] Action<TInput> doFunc)
-        {
-            return ObjectExt_Do.DoIf(input, t => isExecute, doFunc);
         }
     }
 }

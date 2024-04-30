@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Common_公共函数
+    public class 基础函数_Common_公共函数
     {
         [Fact]
         public void 单个对象处理()

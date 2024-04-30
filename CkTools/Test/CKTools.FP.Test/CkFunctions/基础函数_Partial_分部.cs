@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Partial分部
+    public class 基础函数_Partial_分部
     {
         #region Action
 

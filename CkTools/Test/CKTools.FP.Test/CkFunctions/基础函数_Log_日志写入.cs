@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Log_日志写入
+    public class 基础函数_Log_日志写入
     {
         private static string logFileName = $"log/{DateTime.Now:yyyy-MM-dd}.log";
 

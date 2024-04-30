@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Try_异常处理抛出
+    public class 基础函数_Try_异常处理抛出
     {
         #region Action
 

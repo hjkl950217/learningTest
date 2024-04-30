@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Object_对象
+    public class 基础函数_Constant_对象
     {
         #region 常量表达式
 

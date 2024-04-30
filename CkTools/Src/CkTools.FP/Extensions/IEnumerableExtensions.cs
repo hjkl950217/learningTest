@@ -1,6 +1,6 @@
 ﻿namespace System.Collections
 {
-    public static class IEnumerableExtensions
+    internal static class IEnumerableExtensions
     {
         /// <summary>
         /// 判断序列是否存在满足条件的元素
@@ -8,7 +8,7 @@
         /// <param name="source">要判断的序列</param>
         /// <param name="predicate">委托，判断元素是否满足条件</param>
         /// <returns></returns>
-        public static bool Any(this IEnumerable source, Func<object?, bool> predicate)
+        internal static bool Any(this IEnumerable source, Func<object?, bool> predicate)
         {
             if(source == null)
             {
@@ -35,7 +35,7 @@
         /// </summary>
         /// <param name="source">要判断的序列</param>
         /// <returns></returns>
-        public static bool Any(this IEnumerable source)
+        internal static bool Any(this IEnumerable source)
         {
             if(source == null)
             {

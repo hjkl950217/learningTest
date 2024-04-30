@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class File_文件
+    public class 基础函数_File_文件
     {
         [Theory]
         [InlineData(null, false)]

@@ -216,6 +216,13 @@ namespace System
             return CkFunctions.Compose(exp2, exp1);
         }
 
+        public static Func<TResult> Pipe<TResult>(
+            this Func<TResult> exp1,
+            [NotNull] Action<TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
         #endregion 第1列
 
         #region 第2列

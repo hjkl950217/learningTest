@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class If_如果
+    public class 基础函数_If_如果
     {
         #region Action
 

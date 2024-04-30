@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Currying_柯里化
+    public class 基础函数_Currying_柯里化
     {
         #region Action
 

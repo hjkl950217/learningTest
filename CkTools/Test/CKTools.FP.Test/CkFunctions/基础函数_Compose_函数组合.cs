@@ -5,11 +5,11 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class Compose_函数组合
+    public class 基础函数_Compose_函数组合
     {
         #region Action
 
-        #region 第1排
+        #region 第1行
 
         [Fact]
         public void Action_0参0返_0参0返()
@@ -71,9 +71,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第1排
+        #endregion 第1行
 
-        #region 第2排
+        #region 第2行
 
         [Fact]
         public void Action_1参0返_0参0返()
@@ -116,27 +116,7 @@ namespace CKTools.FP.Test
         }
 
         [Fact]
-        public void Action_1参0返_2参0返()
-        {
-            //准备
-            IAction actionInterface = Substitute.For<IAction>();
-
-            //执行
-            Action<string, string> result = CkFunctions.Compose<string, string>(
-               actionInterface.Test2,
-               actionInterface.Test1);
-            result("a", "b");
-
-            //断言
-            Received.InOrder(() =>
-            {
-                actionInterface.Test1(Arg.Any<string>());
-                actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
-            });
-        }
-
-        [Fact]
-        public void Action_1参0返_2参0返_相同类型()
+        public void Action_1参0返_2参0返_第1种情况()
         {
             //准备
             IAction actionInterface = Substitute.For<IAction>();
@@ -155,9 +135,49 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第2排
+        [Fact]
+        public void Action_1参0返_2参0返_第2种情况()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
 
-        #region 第3排
+            //执行
+            Action<string, int> result = CkFunctions.Compose<string, int>(
+               actionInterface.Test22,
+               actionInterface.Test11);
+            result("a", 1);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test11(Arg.Any<int>());
+                actionInterface.Test22(Arg.Any<string>(), Arg.Any<int>());
+            });
+        }
+
+        [Fact]
+        public void Action_1参0返_2参0返_第3种情况()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+
+            //执行
+            Action<string, int> result = CkFunctions.Compose<string, int>(
+               actionInterface.Test22,
+               actionInterface.Test1);
+            result("a", 1);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test22(Arg.Any<string>(), Arg.Any<int>());
+            });
+        }
+
+        #endregion 第2行
+
+        #region 第3行
 
         [Fact]
         public void Action_2参0返_0参0返()
@@ -176,6 +196,46 @@ namespace CKTools.FP.Test
             {
                 actionInterface.Test2(Arg.Any<string>(), Arg.Any<string>());
                 actionInterface.Test0();
+            });
+        }
+
+        [Fact]
+        public void Action_2参0返_1参0返_第1种情况()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+
+            //执行
+            Action<string, int> result = CkFunctions.Compose<string, int>(
+                actionInterface.Test11,
+                actionInterface.Test22);
+            result("a", 1);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test22(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.Test11(Arg.Any<int>());
+            });
+        }
+
+        [Fact]
+        public void Action_2参0返_1参0返_第2种情况()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+
+            //执行
+            Action<string, int> result = CkFunctions.Compose<string, int>(
+                actionInterface.Test1,
+                actionInterface.Test22);
+            result("a", 1);
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test22(Arg.Any<string>(), Arg.Any<int>());
+                actionInterface.Test1(Arg.Any<string>());
             });
         }
 
@@ -199,7 +259,7 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第3排
+        #endregion 第3行
 
         #region 其他
 
@@ -211,7 +271,7 @@ namespace CKTools.FP.Test
 
             //执行
             Action result = CkFunctions.Compose(
-                actionInterface.Test0,
+                actionInterface.Test00,
                 actionInterface.Test0,
                 actionInterface.Test0);
             result();
@@ -220,6 +280,28 @@ namespace CKTools.FP.Test
             Received.InOrder(() =>
             {
                 actionInterface.Test0();
+                actionInterface.Test0();
+                actionInterface.Test00();
+            });
+        }
+
+        [Fact]
+        public void Action_0参0返_3个以上_倒序()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+
+            //执行
+            Action result = CkFunctions.ComposeReverse(
+                actionInterface.Test00,
+                actionInterface.Test0,
+                actionInterface.Test0);
+            result();
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test00();
                 actionInterface.Test0();
                 actionInterface.Test0();
             });
@@ -233,7 +315,7 @@ namespace CKTools.FP.Test
 
             //执行
             Action<string> result = CkFunctions.Compose<string>(
-                actionInterface.Test1,
+                actionInterface.Test1111,
                 actionInterface.Test1,
                 actionInterface.Test1);
             result("a");
@@ -242,6 +324,28 @@ namespace CKTools.FP.Test
             Received.InOrder(() =>
             {
                 actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test1(Arg.Any<string>());
+                actionInterface.Test1111(Arg.Any<string>());
+            });
+        }
+
+        [Fact]
+        public void Action_1参0返_3个以上_倒序()
+        {
+            //准备
+            IAction actionInterface = Substitute.For<IAction>();
+
+            //执行
+            Action<string> result = CkFunctions.ComposeReverse<string>(
+                actionInterface.Test1111,
+                actionInterface.Test1,
+                actionInterface.Test1);
+            result("a");
+
+            //断言
+            Received.InOrder(() =>
+            {
+                actionInterface.Test1111(Arg.Any<string>());
                 actionInterface.Test1(Arg.Any<string>());
                 actionInterface.Test1(Arg.Any<string>());
             });
@@ -253,7 +357,7 @@ namespace CKTools.FP.Test
 
         #region Func
 
-        #region 第1排
+        #region 第1行
 
         [Fact]
         public void Func_0参1返_1参1返()
@@ -275,9 +379,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第1排
+        #endregion 第1行
 
-        #region 第2排
+        #region 第2行
 
         [Fact]
         public void Func_1参1返_1参1返()
@@ -299,9 +403,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第2排
+        #endregion 第2行
 
-        #region 第3排
+        #region 第3行
 
         [Fact]
         public void Func_2参1返_1参1返()
@@ -323,7 +427,7 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第3排
+        #endregion 第3行
 
         #region 其他
 
@@ -446,7 +550,7 @@ namespace CKTools.FP.Test
 
         #region exp1 Func  -  exp2 Action
 
-        #region 第1排
+        #region 第1行
 
         [Fact]
         public void 组合_0参1返_0参0返()
@@ -490,9 +594,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第1排
+        #endregion 第1行
 
-        #region 第2排
+        #region 第2行
 
         [Fact]
         public void 组合_1参1返_0参0返()
@@ -536,9 +640,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第2排
+        #endregion 第2行
 
-        #region 第3排
+        #region 第3行
 
         [Fact]
         public void 组合_2参1返_0参0返()
@@ -582,13 +686,13 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第3排
+        #endregion 第3行
 
         #endregion exp1 Func  -  exp2 Action
 
         #region exp1 Action  -  exp2 Func
 
-        #region 第1排
+        #region 第1行
 
         [Fact]
         public void 组合_0参0返_0参1返()
@@ -653,9 +757,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第1排
+        #endregion 第1行
 
-        #region 第2排
+        #region 第2行
 
         [Fact]
         public void 组合_1参0返_1参1返()
@@ -678,9 +782,9 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第2排
+        #endregion 第2行
 
-        #region 第3排
+        #region 第3行
 
         [Fact]
         public void 组合_2参0返_2参1返()
@@ -703,7 +807,7 @@ namespace CKTools.FP.Test
             });
         }
 
-        #endregion 第3排
+        #endregion 第3行
 
         #endregion exp1 Action  -  exp2 Func
     }

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class CheckNull_检查空
+    public class 基础函数_CheckNull_检查空
     {
         #region CheckNullWithException
 

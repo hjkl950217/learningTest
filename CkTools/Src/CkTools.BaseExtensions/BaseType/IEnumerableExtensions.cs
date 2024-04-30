@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using CkTools.BaseExtensions.Comparer;
+using CkTools.FP;
 
 namespace System
 {
@@ -209,5 +211,39 @@ namespace System
         #endregion Intersect
 
         #endregion Linq方法扩展
+
+        #region Any
+
+        /// <summary>
+        /// 判断序列是否存在满足条件的元素
+        /// </summary>
+        /// <param name="source">要判断的序列</param>
+        /// <param name="predicate">委托，判断元素是否满足条件</param>
+        /// <returns></returns>
+        public static bool Any(this IEnumerable source, Func<object?, bool> predicate)
+        {
+            CkFunctions.CheckNullWithException(source, predicate);
+
+            foreach(object? item in source)
+            {
+                if(predicate(item))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 判断序列是否存在满足条件的元素
+        /// </summary>
+        /// <param name="source">要判断的序列</param>
+        /// <returns></returns>
+        public static bool Any(this IEnumerable source)
+        {
+            return IEnumerableExtensions.Any(source, t => true);
+        }
+
+        #endregion Any
     }
 }
