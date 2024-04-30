@@ -12,10 +12,26 @@ namespace CKTools.FP.Test
         [InlineData("", false)]
         [InlineData("a", false)]
         [InlineData("a.a", false)]
-        [InlineData(@"c:\a.a", true)]
         public void 带路径文件名判断(string? file, bool expected)
         {
             Assert.Equal(expected, CkFunctions.IsFullFileName(file));
+        }
+
+        [Fact]
+        public void 带路径文件名判断_区分OS()
+        {
+            PlatformID platformID = Environment.OSVersion.Platform;
+            string fileName = platformID switch
+            {
+                PlatformID.Win32S => "C:\\a.txt",
+                PlatformID.Win32Windows => "C:\\a.txt",
+                PlatformID.Win32NT => "C:\\a.txt",
+                PlatformID.WinCE => "C:\\a.txt",
+                PlatformID.Unix => "/tmp/tt/a.txt",
+                _ => "a.txt"
+            };
+
+            Assert.True(CkFunctions.IsFullFileName(fileName));
         }
 
         [Theory]

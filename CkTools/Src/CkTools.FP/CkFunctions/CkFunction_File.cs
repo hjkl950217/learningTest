@@ -23,7 +23,7 @@ namespace CkTools.FP
         {
             return fileName != null
                 && fileName.Length > 0
-                && Path.IsPathRooted(fileName)
+                //&& Path.IsPathRooted(fileName)
                 && Path.IsPathFullyQualified(fileName);
         }
 
