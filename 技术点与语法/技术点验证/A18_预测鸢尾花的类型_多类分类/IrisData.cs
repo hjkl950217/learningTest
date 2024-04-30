@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.ML.Data;
-
+﻿using Microsoft.ML.Data;
 
 namespace 技术点验证
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using Verification.Core;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     public class Father
     { public int ID { get; set; } }

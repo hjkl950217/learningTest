@@ -6,7 +6,7 @@ namespace Verification.Core
     {
         public static VerificationInfo CheckNull(this VerificationInfo? verification)
         {
-            if (verification == null)
+            if(verification == null)
             {
                 throw new NotImplementedException($"{verification?.VerificationType} 发生异常");
             }

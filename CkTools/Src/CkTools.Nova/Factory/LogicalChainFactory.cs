@@ -1,11 +1,11 @@
-﻿using CkTools.Nova.Aop;
-using CkTools.Nova.Entity;
-using CkTools.Nova.Helper;
-using CkTools.Nova.LogicChain;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using CkTools.Nova.Aop;
+using CkTools.Nova.Entity;
+using CkTools.Nova.Helper;
+using CkTools.Nova.LogicChain;
 
 namespace CkTools.Nova.Factory
 {
@@ -72,7 +72,7 @@ namespace CkTools.Nova.Factory
         /// <returns></returns>
         public Dictionary<Type, StepEntity[]> GetNovaList(List<StepEntity> taskList = null)
         {
-            if (this.taskList.IsNullOrEmpty())
+            if(this.taskList.IsNullOrEmpty())
             {
                 //1.获取Type数据
                 taskList ??= this.A_FindAllTaskEntity();
@@ -120,7 +120,7 @@ namespace CkTools.Nova.Factory
 
         private List<StepEntity> B_CreateInstance(in List<StepEntity> taskList, IServiceProvider di)
         {
-            foreach (StepEntity item in taskList)
+            foreach(StepEntity item in taskList)
             {
                 item.StepInstanceObject = this.CreateInstance<IStep>(item.StepType, di);
             }
@@ -137,8 +137,8 @@ namespace CkTools.Nova.Factory
             ILookup<Type, StepEntity> taskGroup = taskList
                 .ToLookup(t => t.Attribute.StepEnumType);
 
-            Dictionary<Type, StepEntity[]> result = new Dictionary<Type, StepEntity[]>();
-            foreach (IGrouping<Type, StepEntity> item in taskGroup)
+            Dictionary<Type, StepEntity[]> result = new();
+            foreach(IGrouping<Type, StepEntity> item in taskGroup)
             {
                 StepEntity[] temp = LogicalChainHelper.SortList(item.ToList());
 

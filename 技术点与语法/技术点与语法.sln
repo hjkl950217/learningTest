@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Fsharp学习", "Fsharp学习\Fsharp学习.fsproj", "{841ADD25-52EF-4AF7-8060-808ACF9F4306}"
 EndProject
@@ -18,6 +18,27 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "堆栈信息格式化", "工具\堆栈信息格式化\堆栈信息格式化.csproj", "{E9EFB88A-B170-4AFB-ABD1-296794375133}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "批量替换", "工具\批量替换\批量替换.csproj", "{3378C51E-DE01-4E36-8E9E-D33BFB7C5860}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2CDDCDB-3DF5-4FB5-8620-E3F1B5742DA7}"
+	ProjectSection(SolutionItems) = preProject
+		UT.targets = UT.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "需要Web项目的验证", "需要Web项目的验证", "{ED3CE6A9-3A05-4858-AC30-5588C063736E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper学习与练习", "需要Web项目的验证\AutoMapper学习与练习\AutoMapper学习与练习.csproj", "{DC311106-EC55-4D14-90A0-6E4D42034C7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链式编程在业务逻辑上的研究", "需要Web项目的验证\链式编程在业务逻辑上的研究\链式编程在业务逻辑上的研究.csproj", "{1196C5E8-BB11-433C-B844-D33B31A231DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存学习", "需要Web项目的验证\内存缓存学习\内存缓存学习.csproj", "{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "linux文件复制工具", "工具\linux文件复制工具\linux文件复制工具.csproj", "{9520BE08-4403-4929-8B75-53A1796918AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "删除bin和obj", "工具\删除bin和obj\删除bin和obj.csproj", "{4F1BD0AA-A908-4049-B2C4-435665F17038}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "解析DNF游戏CDK", "工具\解析DNF游戏CDK\解析DNF游戏CDK.csproj", "{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "图片颜色提纯", "工具\图片颜色提纯\图片颜色提纯.csproj", "{0171A082-B501-4638-A1B8-7575BCE748D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +74,34 @@ Global
 		{3378C51E-DE01-4E36-8E9E-D33BFB7C5860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3378C51E-DE01-4E36-8E9E-D33BFB7C5860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3378C51E-DE01-4E36-8E9E-D33BFB7C5860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC311106-EC55-4D14-90A0-6E4D42034C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC311106-EC55-4D14-90A0-6E4D42034C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC311106-EC55-4D14-90A0-6E4D42034C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC311106-EC55-4D14-90A0-6E4D42034C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1196C5E8-BB11-433C-B844-D33B31A231DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1196C5E8-BB11-433C-B844-D33B31A231DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1196C5E8-BB11-433C-B844-D33B31A231DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1196C5E8-BB11-433C-B844-D33B31A231DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82CB77EE-DE89-494A-A45E-9E1CF48CCE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9520BE08-4403-4929-8B75-53A1796918AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9520BE08-4403-4929-8B75-53A1796918AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9520BE08-4403-4929-8B75-53A1796918AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9520BE08-4403-4929-8B75-53A1796918AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F1BD0AA-A908-4049-B2C4-435665F17038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F1BD0AA-A908-4049-B2C4-435665F17038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F1BD0AA-A908-4049-B2C4-435665F17038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F1BD0AA-A908-4049-B2C4-435665F17038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0171A082-B501-4638-A1B8-7575BCE748D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0171A082-B501-4638-A1B8-7575BCE748D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0171A082-B501-4638-A1B8-7575BCE748D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0171A082-B501-4638-A1B8-7575BCE748D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +109,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E9EFB88A-B170-4AFB-ABD1-296794375133} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
 		{3378C51E-DE01-4E36-8E9E-D33BFB7C5860} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{DC311106-EC55-4D14-90A0-6E4D42034C7B} = {ED3CE6A9-3A05-4858-AC30-5588C063736E}
+		{1196C5E8-BB11-433C-B844-D33B31A231DD} = {ED3CE6A9-3A05-4858-AC30-5588C063736E}
+		{82CB77EE-DE89-494A-A45E-9E1CF48CCE88} = {ED3CE6A9-3A05-4858-AC30-5588C063736E}
+		{9520BE08-4403-4929-8B75-53A1796918AD} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{4F1BD0AA-A908-4049-B2C4-435665F17038} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{0171A082-B501-4638-A1B8-7575BCE748D7} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB04A57E-6447-4E76-862D-5D1B1638F2B6}

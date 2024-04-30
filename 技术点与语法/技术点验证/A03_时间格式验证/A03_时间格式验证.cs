@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A03_时间格式验证)]
     public class A03_时间格式验证 : IVerification
@@ -31,7 +27,7 @@ namespace 技术点验证
             outputList.Add(dt3);
 
             int index = 1;
-            foreach (var item in outputList)
+            foreach(object? item in outputList)
             {
                 Console.WriteLine($"第{index++}个");
                 Console.WriteLine(item);
@@ -51,7 +47,7 @@ namespace 技术点验证
             outputList.Add(dt10);
             outputList.Add(dt20);
             outputList.Add(dt30);
-            foreach (var item in outputList)
+            foreach(object? item in outputList)
             {
                 Console.WriteLine($"第{index++}个");
                 Console.WriteLine(item);

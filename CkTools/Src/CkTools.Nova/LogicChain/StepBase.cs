@@ -16,7 +16,7 @@ namespace CkTools.Nova.LogicChain
             this.Context = context;
 
             //检查任务是否完成
-            if (this.Context.ProcessCompleted || this.Next == null)
+            if(this.Context.ProcessCompleted || this.Next == null)
             {
                 return Task.CompletedTask;
             }

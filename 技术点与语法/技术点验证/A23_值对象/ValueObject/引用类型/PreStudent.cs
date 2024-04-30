@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     /// <summary>
     /// 将要注册为学生的数据<para></para>
@@ -15,7 +12,7 @@ namespace 技术点验证
 
         public override bool BizCheckValue()
         {
-            var t = this.Value.ClassInfos.Value;
+            List<StuClassInfo> t = this.Value.ClassInfos.Value;
 
             return this.Value.StudentID > 0
                 && this.Value != null//模拟实体类的业务规则，这里只是不可空
@@ -27,7 +24,7 @@ namespace 技术点验证
             yield return this.Value.StudentID;
             yield return this.Value.Name;
 
-            foreach (object item in this.Value.ClassInfos.Value)//针对数组、集合类型
+            foreach(object item in this.Value.ClassInfos.Value)//针对数组、集合类型
             {
                 yield return item;
             }

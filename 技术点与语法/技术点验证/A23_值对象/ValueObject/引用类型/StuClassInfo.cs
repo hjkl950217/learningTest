@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     /// <summary>
     /// 学生课程

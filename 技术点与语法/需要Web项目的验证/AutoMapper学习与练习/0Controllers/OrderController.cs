@@ -44,7 +44,7 @@ namespace AutoMapper学习与练习.Orders
         // GET api/Order/1000
         [Route("api/[controller]/{orderNumber:int}")]
         [HttpGet]
-        public OrderBaseOut GetOrder([FromRoute]OrderIn orderIn)
+        public OrderBaseOut GetOrder([FromRoute] OrderIn orderIn)
         {
             return this.OrderServices.GetOrderBase(orderIn.OrderNumber);
         }
@@ -52,7 +52,7 @@ namespace AutoMapper学习与练习.Orders
         // GET api/OrderAmount/1000?
         [Route("api/[controller]Amount/{orderNumber:int}")]
         [HttpGet]
-        public OrderAmountOut GetOrderAmount([FromRoute]OrderIn orderIn)
+        public OrderAmountOut GetOrderAmount([FromRoute] OrderIn orderIn)
         {
             return this.OrderServices.GetAmountByOrder(orderIn.OrderNumber);
         }
@@ -60,7 +60,7 @@ namespace AutoMapper学习与练习.Orders
         // GET api/OrderPeole/1000?
         [Route("api/[controller]People/{orderNumber:int}")]
         [HttpGet]
-        public OrderPeopleOut GetPeople([FromRoute]OrderIn orderIn)
+        public OrderPeopleOut GetPeople([FromRoute] OrderIn orderIn)
         {
             return this.OrderServices.GetPeopleByOrder(orderIn.OrderNumber);
         }
@@ -70,7 +70,7 @@ namespace AutoMapper学习与练习.Orders
         [HttpGet]
         public dynamic GetMapperData()
         {
-            var order = new Order()
+            Order order = new Order()
             {
                 OrderNumber = 1000,
                 ItemTotalAmount = 100,
@@ -82,7 +82,7 @@ namespace AutoMapper学习与练习.Orders
                 InDate = Convert.ToDateTime("2017-01-01")
             };
 
-            var orderBase = new OrderBaseOut()
+            OrderBaseOut orderBase = new OrderBaseOut()
             {
                 InDate = DateTime.Now,
                 OrderNumber = 10,

@@ -1,14 +1,76 @@
-﻿using Xunit;
-using System;
-using System.Threading;
-using System.Globalization;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
+using Xunit;
 
 namespace CKTools.BaseExtensions.Test.Extensions.BaseType
 {
     public class StringEntensionTest
     {
+        #region 测试DateTimeOffset相关
+
+        public class ToDateTimeOffsetUTData
+        {
+            //这里使用偏移处理是为了兼容docker环境下跑UT 时区的问题
+            public static string OffsetStr = TimeZoneInfo.Local.GetOffsetString();
+
+            public static int offsetHours = TimeZoneInfo.Local.BaseUtcOffset.Hours.Abs();
+
+            public static IEnumerable<object[]> Utc()
+            {
+                yield return new object[] { "2020-10-16T11:36:56+08:00", "2020-10-16T03:36:56.0000000+00:00" };
+                yield return new object[] { "1602819416", "2020-10-16T03:36:56.0000000+00:00" };
+                yield return new object[] { "0", "1970-01-01T00:00:00.0000000+00:00" };
+            }
+
+            public static IEnumerable<object[]> UtcMilliseconds()
+            {
+                yield return new object[] { "2020-10-16T11:36:56+08:00", "2020-10-16T03:36:56.0000000+00:00" };
+                yield return new object[] { "1602819416001", "2020-10-16T03:36:56.0010000+00:00" };
+                yield return new object[] { "0", "1970-01-01T00:00:00.0000000+00:00" };
+            }
+
+            public static IEnumerable<object[]> Local()
+            {
+                yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+                yield return new object[] { "1602819416", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+                yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
+            }
+
+            public static IEnumerable<object[]> LocalMilliseconds()
+            {
+                yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
+                yield return new object[] { "1602819416001", $"2020-10-16T{offsetHours + 3:00}:36:56.0010000{OffsetStr}" };
+                yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
+            }
+
+            public static IEnumerable<object[]> TryUtc()
+            {
+                return ToDateTimeOffsetUTData.Utc()
+                    .Concat(new object[] { "", "0001-01-01T00:00:00.0000000+00:00" }.AsToEnumerable());
+            }
+
+            public static IEnumerable<object[]> TryUtcMilliseconds()
+            {
+                return ToDateTimeOffsetUTData.UtcMilliseconds()
+                    .Concat(new object[] { "", "0001-01-01T00:00:00.0000000+00:00" }.AsToEnumerable());
+            }
+
+            public static IEnumerable<object[]> TryLocal()
+            {
+                return ToDateTimeOffsetUTData.Local()
+                    .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
+            }
+
+            public static IEnumerable<object[]> TryLocalMilliseconds()
+            {
+                return ToDateTimeOffsetUTData.LocalMilliseconds()
+                    .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
+            }
+        }
+
         public class ToDateTimeOffset
         {
             [Fact]
@@ -116,65 +178,27 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
                 Assert.Equal(expected, result.ToString("O"));
             }
         }
-    }
 
-    public class ToDateTimeOffsetUTData
-    {
-        //这里使用偏移处理是为了兼容docker环境下跑UT 时区的问题
-        public static string OffsetStr = TimeZoneInfo.Local.GetOffsetString();
+        #endregion 测试DateTimeOffset相关
 
-        public static int offsetHours = TimeZoneInfo.Local.BaseUtcOffset.Hours.Abs();
-
-        public static IEnumerable<object[]> Utc()
+        public class HexStringToBytes
         {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", "2020-10-16T03:36:56.0000000+00:00" };
-            yield return new object[] { "1602819416", "2020-10-16T03:36:56.0000000+00:00" };
-            yield return new object[] { "0", "1970-01-01T00:00:00.0000000+00:00" };
-        }
+            public static string testHexStr = "06 E6 9D 8E E5 9B 9B 0A E6 9D 8E 00 14 E5 9B 9B 00";
+            public static byte[] expectBytes = new byte[] { 6, 230, 157, 142, 229, 155, 155, 10, 230, 157, 142, 0, 20, 229, 155, 155, 0 };
 
-        public static IEnumerable<object[]> UtcMilliseconds()
-        {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", "2020-10-16T03:36:56.0000000+00:00" };
-            yield return new object[] { "1602819416001", "2020-10-16T03:36:56.0010000+00:00" };
-            yield return new object[] { "0", "1970-01-01T00:00:00.0000000+00:00" };
-        }
+            [Fact]
+            public void WhenExistEmptyWithNoError()
+            {
+                byte[] result = testHexStr.HexStringToBytes();
+                Assert.Equal(string.Join("", expectBytes), string.Join("", result));
+            }
 
-        public static IEnumerable<object[]> Local()
-        {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "1602819416", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
-        }
-
-        public static IEnumerable<object[]> LocalMilliseconds()
-        {
-            yield return new object[] { "2020-10-16T11:36:56+08:00", $"2020-10-16T{offsetHours + 3:00}:36:56.0000000{OffsetStr}" };
-            yield return new object[] { "1602819416001", $"2020-10-16T{offsetHours + 3:00}:36:56.0010000{OffsetStr}" };
-            yield return new object[] { "0", $"1970-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" };
-        }
-
-        public static IEnumerable<object[]> TryUtc()
-        {
-            return ToDateTimeOffsetUTData.Utc()
-                .Concat(new object[] { "", "0001-01-01T00:00:00.0000000+00:00" }.AsToEnumerable());
-        }
-
-        public static IEnumerable<object[]> TryUtcMilliseconds()
-        {
-            return ToDateTimeOffsetUTData.UtcMilliseconds()
-                .Concat(new object[] { "", "0001-01-01T00:00:00.0000000+00:00" }.AsToEnumerable());
-        }
-
-        public static IEnumerable<object[]> TryLocal()
-        {
-            return ToDateTimeOffsetUTData.Local()
-                .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
-        }
-
-        public static IEnumerable<object[]> TryLocalMilliseconds()
-        {
-            return ToDateTimeOffsetUTData.LocalMilliseconds()
-                .Concat(new object[] { "", $"0001-01-01T{offsetHours:00}:00:00.0000000{OffsetStr}" }.AsToEnumerable());
+            [Fact]
+            public void WhenNoEmptyWithNoError()
+            {
+                byte[] result = testHexStr.Replace(" ", "").HexStringToBytes();
+                Assert.Equal(string.Join("", expectBytes), string.Join("", result));
+            }
         }
     }
 }

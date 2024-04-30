@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A33_快速判断Int是否存在数组)]
     public class A33_快速判断Int是否存在数组 : IVerification
@@ -50,7 +46,7 @@ namespace 技术点验证
             this.bits = new List<byte>();
 
             //扩充数据集
-            for (int i = 0 ; i < this.capacity ; i++)
+            for(int i = 0 ; i < this.capacity ; i++)
             {
                 this.bits.Add(0);
             }
@@ -58,7 +54,7 @@ namespace 技术点验证
 
         public BitMap Add(int num)
         {
-            if (num > this.max_value)
+            if(num > this.max_value)
             {
                 this.Expansion(num);
             }
@@ -75,7 +71,7 @@ namespace 技术点验证
 
         public bool Contains(int num)
         {
-            if (num > this.max_value)
+            if(num > this.max_value)
             {
                 return false;
             }
@@ -91,7 +87,7 @@ namespace 技术点验证
             uint newCapacity = (uint)((newMaxnum >> 3) + 1);//需要的新容量
             uint differenceCapacity = newCapacity - this.capacity;//需要扩充的容量
 
-            for (int i = 0 ; i < differenceCapacity ; i++)
+            for(int i = 0 ; i < differenceCapacity ; i++)
             {
                 this.bits.Add(0);
             }

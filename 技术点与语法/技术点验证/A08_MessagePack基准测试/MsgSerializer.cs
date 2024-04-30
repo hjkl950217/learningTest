@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using MessagePack;
@@ -26,7 +25,8 @@ namespace 技术点验证
         /// </summary>
         public static void InitializeMsgPackSerializer()
         {
-            if (MsgSerializer.IsSetup == true) { return; }
+            if(MsgSerializer.IsSetup == true)
+            { return; }
 
             //创建组合解析器
             IFormatterResolver resolver = CompositeResolver.Create(
@@ -79,7 +79,7 @@ namespace 技术点验证
             return Newtonsoft.Json.JsonConvert.SerializeObject(data);
         }
 
-        public static T DeserializeJson<T>([NotNull]string data)
+        public static T DeserializeJson<T>([NotNull] string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data);
         }

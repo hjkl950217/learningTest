@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
 {
@@ -27,9 +26,9 @@ namespace 技术点验证
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposedValue)
+            if(!this.disposedValue)
             {
-                if (disposing)
+                if(disposing)
                 {
                     // 释放托管状态(托管对象)。
                 }

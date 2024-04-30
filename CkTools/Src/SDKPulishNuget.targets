@@ -10,11 +10,11 @@
     <PackageTags>$(AssemblyName)</PackageTags>
     <LibName>CkTools</LibName>
     <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
 
     <!--库版本号-->
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
-    <Version>3.1.0.13</Version>
+    <Version>3.1.1.14</Version>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)$(VersionSuffix)</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
@@ -34,6 +34,7 @@
     <Platforms>AnyCPU</Platforms>
 
     <!--仓库地址-->
+    <!--这块需要在项目文件中写，公用文件写了无用-->
     <RepositoryUrl></RepositoryUrl>
     <PackageProjectUrl></PackageProjectUrl>
 
@@ -48,8 +49,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../logo.png"
-          Pack="true"
-          PackagePath="\" />
+    <None Include="../logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>

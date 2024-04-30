@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     public class Code2
     {
@@ -16,7 +14,7 @@ namespace 语法验证与学习
                 new Woman(){Status=StatusEnum.InLove}
             };
 
-            foreach (var item in persons)
+            foreach(Person item in persons)
             {
                 item.GetConclusion();
             }
@@ -40,15 +38,15 @@ namespace 语法验证与学习
     {
         public override void GetConclusion()
         {
-            if (base.Status == StatusEnum.CauseSuccess)
+            if(base.Status == StatusEnum.CauseSuccess)
             {
                 Console.WriteLine("男人成功时,背后多半有一个伟大的女人");
             }
-            else if (base.Status == StatusEnum.CauseFailure)
+            else if(base.Status == StatusEnum.CauseFailure)
             {
                 Console.WriteLine("男人失败时,闷头喝酒");
             }
-            else if (base.Status == StatusEnum.InLove)
+            else if(base.Status == StatusEnum.InLove)
             {
                 Console.WriteLine("男人恋爱时,凡事不懂也要装懂");
             }
@@ -61,7 +59,7 @@ namespace 语法验证与学习
     {
         public override void GetConclusion()
         {
-            switch (base.Status)
+            switch(base.Status)
             {
                 case StatusEnum.CauseSuccess:
                     Console.WriteLine("女人成功时,背后大多有一个不成功的男人");

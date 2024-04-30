@@ -23,9 +23,20 @@
         {
             useDefault ??= t => t == null;
 
-            if (getData == null) throw new ArgumentNullException($"{nameof(getData)} not can be null");
-            if (defaultValueFunc == null) throw new ArgumentNullException($"{nameof(defaultValueFunc)} not can be null");
-            if (data == null) return defaultValueFunc();
+            if(getData == null)
+            {
+                throw new ArgumentNullException($"{nameof(getData)} not can be null");
+            }
+
+            if(defaultValueFunc == null)
+            {
+                throw new ArgumentNullException($"{nameof(defaultValueFunc)} not can be null");
+            }
+
+            if(data == null)
+            {
+                return defaultValueFunc();
+            }
 
             TResult result = getData(data);
             return useDefault(result) ? defaultValueFunc() : result;

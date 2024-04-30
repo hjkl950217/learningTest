@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
@@ -37,7 +35,8 @@ namespace 技术点验证
             Exception exception,
             [NotNull] Func<TState, Exception, string?> formatter)
         {
-            if (state == null || exception.IsNullOrEmpty()) return;
+            if(state == null || exception.IsNullOrEmpty())
+                return;
 
             Task.Run(() =>
             {

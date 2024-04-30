@@ -20,7 +20,7 @@ let showBasic=
     let fun2 g a = g(a |> g) //f(g,a) = g(g(a))
 
     printfn "---演示-高阶函数---"
-    printfn "定义的函数为:f(g,a) = g(g(a))"
+    printfn "定义的函数为:f(g,a) = f(g(a))"
     printfn "普通写法:    let fun1 g a = g (g a)"
     printfn "管道式写法:  let fun2 g a = g a |> g   或   let fun2 g a = g(a |> g)"
 

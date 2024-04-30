@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace 技术点验证.DataConvertHander
+﻿namespace 技术点验证.DataConvertHander
 {
     /// <summary>
     /// 数据转换接口定义

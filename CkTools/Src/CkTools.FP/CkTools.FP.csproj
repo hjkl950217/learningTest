@@ -3,13 +3,13 @@
   <Import Project="..\SDKPulishNuget.targets" />
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <Description>$(LibName)的FP类库 </Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\CkTools.Abstraction\CkTools.Abstraction.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

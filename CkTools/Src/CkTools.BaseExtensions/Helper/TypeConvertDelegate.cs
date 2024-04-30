@@ -1,15 +1,25 @@
-﻿namespace System
+﻿using static CkTools.FP.CkFunctions;
+
+namespace System
 {
-    public static class TypeConvertDelegate
+    public static partial class TypeConvertDelegate
     {
         #region 基础转换
 
+        #region To Long
+
         public static Func<string, long> stringToLong = System.Convert.ToInt64;
+
+        #endregion To Long
+
+        #region To Bool
 
         /// <summary>
         /// int转bool,大于0为true
         /// </summary>
         public static Func<int, bool> intToBool = t => t > 0;
+
+        #endregion To Bool
 
         #region To DateTimeOffset
 
@@ -36,21 +46,27 @@
 
         #region 组合转换
 
-        public static Func<string, DateTimeOffset> longStringToUtcDateTimeOffset = stringToLong
-            .Pipe(longToUtcDateTimeOffset);
+        public static Func<string, DateTimeOffset> longStringToUtcDateTimeOffset = Compose(
+            longToUtcDateTimeOffset,
+            stringToLong);
 
-        public static Func<string, DateTimeOffset> longStringToLocalDateTimeOffset = stringToLong
-            .Pipe(longToUtcDateTimeOffset)
-            .Pipe(utcToLocal);
+        public static Func<string, DateTimeOffset> longStringToLocalDateTimeOffset = Compose(
+            utcToLocal,
+            longToUtcDateTimeOffset,
+            stringToLong);
 
-        public static Func<string, DateTimeOffset> longStringToUtcDateTimeOffsetByMilliseconds = stringToLong
-            .Pipe(longToUtcDateTimeOffsetByMilliseconds);
+        public static Func<string, DateTimeOffset> longStringToUtcDateTimeOffsetByMilliseconds = Compose(
+            longToUtcDateTimeOffsetByMilliseconds,
+            stringToLong);
 
-        public static Func<string, DateTimeOffset> longStringToLocalDateTimeOffsetByMilliseconds = stringToLong
-            .Pipe(longToUtcDateTimeOffsetByMilliseconds)
-            .Pipe(utcToLocal);
+        public static Func<string, DateTimeOffset> longStringToLocalDateTimeOffsetByMilliseconds = Compose(
+            utcToLocal,
+            longToUtcDateTimeOffsetByMilliseconds,
+            stringToLong);
 
-        public static Func<string, DateTime> stringToLocalDateTime = stringToLong.Pipe(longToDatetime);
+        public static Func<string, DateTime> stringToLocalDateTime = Compose(
+            longToDatetime,
+            stringToLong);
 
         #endregion 组合转换
     }

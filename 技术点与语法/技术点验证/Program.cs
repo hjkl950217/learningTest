@@ -1,5 +1,4 @@
-﻿using Verification.Core;
-using Verification.Core.VerificationCore;
+﻿using Verification.Core.VerificationCore;
 
 namespace 技术点验证
 {
@@ -8,7 +7,7 @@ namespace 技术点验证
         public static void Main(string[]? args)
         {
             //开始验证
-            VerificationHelper.StartVerification(VerificationTypeEnum.A34_使用DispatchProxy代理非公开接口, args);
+            VerificationHelper.StartVerification(VerificationTypeEnum.A46_控制台输出load效果, args);
         }
     }
 }

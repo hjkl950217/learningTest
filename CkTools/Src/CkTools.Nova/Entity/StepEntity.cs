@@ -1,6 +1,6 @@
-﻿using CkTools.Nova.Aop;
+﻿using System;
+using CkTools.Nova.Aop;
 using CkTools.Nova.LogicChain;
-using System;
 
 namespace CkTools.Nova.Entity
 {

@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.FileProviders;
+﻿using System.Text;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
-using System;
-using System.IO;
-using System.Text;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -36,8 +33,8 @@ namespace 技术点验证
             IFileProvider fileProvider = new PhysicalFileProvider(root);
 
             //先显示一波
-            var fileStream = fileProvider.GetFileInfo(testFile).CreateReadStream();
-            var testData = ReadData(fileStream);
+            Stream fileStream = fileProvider.GetFileInfo(testFile).CreateReadStream();
+            string? testData = ReadData(fileStream);
             Console.WriteLine($"原始数据:{testData}");
             Console.WriteLine();
 
@@ -52,8 +49,8 @@ namespace 技术点验证
 
         public static void ShowChange(IFileProvider fileProvider)
         {
-            var fileStream = fileProvider.GetFileInfo(testFile).CreateReadStream();
-            var testData = ReadData(fileStream);
+            Stream fileStream = fileProvider.GetFileInfo(testFile).CreateReadStream();
+            string? testData = ReadData(fileStream);
             Console.WriteLine($"改变后的数据:{testData}");
             Console.WriteLine();
         }

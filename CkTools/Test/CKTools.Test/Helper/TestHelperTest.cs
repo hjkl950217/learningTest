@@ -1,6 +1,6 @@
-﻿using CkTools.Helper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using CkTools.Helper;
 using Xunit;
 
 namespace CkTools.Test.Helper

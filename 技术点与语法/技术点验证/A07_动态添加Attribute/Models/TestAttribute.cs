@@ -1,6 +1,4 @@
 ﻿using AspectCore.DynamicProxy;
-using System;
-using System.Threading.Tasks;
 
 namespace 技术点验证
 {
@@ -18,7 +16,7 @@ namespace 技术点验证
                 Console.WriteLine($"触发了-{this.Name}");
                 await next(context);
             }
-            catch 
+            catch
             {
                 throw;
             }

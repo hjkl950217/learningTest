@@ -1,5 +1,5 @@
-﻿using CkTools.Nova.Entity;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CkTools.Nova.Entity;
 
 namespace CkTools.Nova.LogicChain
 {

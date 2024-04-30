@@ -1,0 +1,11 @@
+{
+  "source": "Y:\\qBittorrentDownload",
+  "target": "Y:\\LoActionMovie\\115",
+  "allowedExtensions": [ "avi", "mp4", "ts", "wmv", "mpeg", "m4v", "mov", "asf", "flv", "f4v", "rmvb", "3gp", "mkv", "vob", "mts", "m2ts", "tp", "trp", "divx", "xvid" ],
+  "timeLimit": "2023-05-29",
+  "excludeAddrs": [
+    "Y:\\qBittorrentDownload\\incomplete"
+  ],
+  "minFileSizeLimit": 20, //20M
+  "maxFileSizeLimit": 15360 //15GB
+}

@@ -2,25 +2,21 @@
 
 namespace System
 {
-
     public static class AutoMapperExtension
     {
 #pragma warning disable S2436 // 做兼容处理,用委托转一下。直接写时不支持?.这种写法
 
+        /*
 
-/*
+        万能映射
+                    this.CreateMap<WaterPatrolSetUp, WaterPatrolSetUpListDto>()
+                        .ForMember(dest => dest.WeekArrange, opt => opt.ResolveUsing((a, b, c, ctx) =>
+                        {
+                            int aa = ctx.Mapper.Map<object, int>(a.IsWeekArrange);
+                            return 1;
+                        }));
 
-万能映射
-            this.CreateMap<WaterPatrolSetUp, WaterPatrolSetUpListDto>()
-                .ForMember(dest => dest.WeekArrange, opt => opt.ResolveUsing((a, b, c, ctx) =>
-                {
-                    int aa = ctx.Mapper.Map<object, int>(a.IsWeekArrange);
-                    return 1;
-                }));
-
-
-
-*/
+        */
 
         /// <summary>
         /// 访问源和目标对象，使用自定义函数映射目标成员。

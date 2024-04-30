@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using Verification.Core;
+﻿using System.Linq.Expressions;
 
 namespace 语法验证与学习
 {
@@ -16,9 +14,9 @@ namespace 语法验证与学习
             Console.WriteLine($"func1:  {func.ToString()}");
             Console.WriteLine($"func2:  {func2.ToString()}");
 
-            var t = new Binary_ChangeType().Chage(func.Body, ExpressionType.Subtract);
+            Expression t = new Binary_ChangeType().Chage(func.Body, ExpressionType.Subtract);
 
-            var t2 = t as BinaryExpression;
+            BinaryExpression? t2 = t as BinaryExpression;
 
             //  Expression result1 = this.ChangeGreaterThanToSubtraction(func);
             //  Console.WriteLine($"result1:  {result1.ToString()}");

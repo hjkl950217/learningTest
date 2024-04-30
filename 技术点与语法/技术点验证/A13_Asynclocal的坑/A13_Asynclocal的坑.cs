@@ -1,8 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Verification.Core;
-
 namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A13_Asynclocal的坑)]
@@ -12,12 +7,12 @@ namespace 技术点验证
 
         public void Start(string[]? args)
         {
-            var task = Task.Run(async () =>
+            Task task = Task.Run(async () =>
             {
                 v.Value = 123;
                 A13_Asynclocal的坑.Show("await之前的值");
 
-                var intercept = new Intercept();
+                Intercept intercept = new Intercept();
                 await Intercept.Invoke();
 
                 A13_Asynclocal的坑.Show("await之后的值");

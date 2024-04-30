@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
-using System;
 using System.Diagnostics.CodeAnalysis;
-using Verification.Core;
 
 namespace 语法验证与学习
 {
@@ -18,7 +16,7 @@ namespace 语法验证与学习
     public class TestAttributeInfo
     {
         [return: ReturnValue]
-        public int TestGenericParameterMethod<[GenericParameter]T>([NotNull]T value)
+        public int TestGenericParameterMethod<[GenericParameter] T>([NotNull] T value)
         {
             //
             /*

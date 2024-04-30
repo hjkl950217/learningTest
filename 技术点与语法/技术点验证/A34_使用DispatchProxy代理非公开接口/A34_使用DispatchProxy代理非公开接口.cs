@@ -1,8 +1,5 @@
-﻿using CkTools;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Verification.Core;
+﻿using System.Reflection;
+using CkTools;
 
 namespace 技术点验证
 {
@@ -19,8 +16,8 @@ namespace 技术点验证
             //参考资料：https://www.cnblogs.com/lwqlun/p/11575686.html
 
             LinkAction.Start()
-                .Add(UseReflection)
-                .Add(UseDispatchProxy)
+                .Add(this.UseReflection)
+                .Add(this.UseDispatchProxy)
                 .BatchRun();
         }
 
@@ -37,16 +34,16 @@ namespace 技术点验证
                 ?? throw new TypeLoadException("未找到type信息");
 
             //提取方法
-            var methodInfo = helloType.GetMethod("ShowHello") ?? throw new TypeLoadException("未找到方法信息");
+            MethodInfo methodInfo = helloType.GetMethod("ShowHello") ?? throw new TypeLoadException("未找到方法信息");
 
             //调用
-            var instanceObj = Activator.CreateInstance(helloType);
+            object? instanceObj = Activator.CreateInstance(helloType);
             Console.WriteLine(methodInfo.Invoke(instanceObj, null));
         }
 
         public void UseDispatchProxy()
         {
-            var testInterfaceObj = DispatchProxy.Create<IIds, PublicHelloProxy>();
+            IIds testInterfaceObj = DispatchProxy.Create<IIds, PublicHelloProxy>();
             _ = testInterfaceObj.Ids;
         }
     }

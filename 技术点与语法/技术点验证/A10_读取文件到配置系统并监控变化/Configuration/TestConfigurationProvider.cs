@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
@@ -26,7 +23,7 @@ namespace 技术点验证
             this.FileProvider = new PhysicalFileProvider(this.ConfigurationSource.ConfigAddress);
 
             //注册改变时的事件
-            if (configurationSource.ReloadOnChange == true)//配置时说不监控，则不注册了
+            if(configurationSource.ReloadOnChange == true)//配置时说不监控，则不注册了
             {
                 ChangeToken.OnChange(
                     () => this.FileProvider.Watch(this.ConfigurationSource.ConfigFileName),
@@ -50,12 +47,12 @@ namespace 技术点验证
             Stream fileStream = this.FileProvider.GetFileInfo(this.ConfigurationSource.ConfigFileName)
                .CreateReadStream();
 
-            var newDate = this.ReadData(fileStream);
+            IDictionary<string, string?> newDate = this.ReadData(fileStream);
 
             //更新配置
-            foreach (var item in newDate)
+            foreach(KeyValuePair<string, string?> item in newDate)
             {
-                if (base.Data.ContainsKey(item.Key))//存在则更新
+                if(base.Data.ContainsKey(item.Key))//存在则更新
                 {
                     // var oldValue = base.Data[item.Key];
                     // Console.WriteLine($"老Key:{item.Key} 老值为:{oldValue}");
@@ -118,7 +115,7 @@ namespace 技术点验证
         {
             IConfigurationSection section = configuration.GetSection(sectionKey);
             //【1】获取新数据
-            var newConfig = JsonConvert.DeserializeObject<TestConfig>(section.Value);
+            TestConfig? newConfig = JsonConvert.DeserializeObject<TestConfig>(section.Value);
 
             //【2】赋值新数据
             /*

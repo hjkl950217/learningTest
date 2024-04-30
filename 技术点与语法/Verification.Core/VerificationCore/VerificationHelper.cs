@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Verification.Core.VerificationCore
 {
@@ -31,11 +29,11 @@ namespace Verification.Core.VerificationCore
             Func<Type, bool> isVerification = i => i.GetInterfaces().Contains(typeof(IVerification));
 
             //判断是否为我们要用的验证类
-            Func<Type, bool> isTargetVerification = i =>
+            Func<Type, bool> isEnumInterface = i =>
             {
-                var attr = i.GetCustomAttribute<VerifcationTypeAttribute>();
+                VerifcationTypeAttribute? attr = i.GetCustomAttribute<VerifcationTypeAttribute>();
 
-                if (attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
+                if(attr.VerificationTypeEnum == verificationTypeEnum)//判断标签中验证类型
                 {
                     return true;
                 }
@@ -49,7 +47,7 @@ namespace Verification.Core.VerificationCore
             Func<Type, bool> typeJudge = i =>
                    isClass(i)
                    && isVerification(i)
-                   && isTargetVerification(i);
+                   && isEnumInterface(i);
 
             Type getType()
             {
@@ -58,7 +56,7 @@ namespace Verification.Core.VerificationCore
                     .Where(typeJudge)
                     .ToArray();
 
-                switch (types.Length)
+                switch(types.Length)
                 {
 #pragma warning disable CS8603 // 可能的 null 引用返回。
                     case int a when a < 1:
@@ -75,7 +73,7 @@ namespace Verification.Core.VerificationCore
             }
 
             Type type = getType();
-            if (type == null)
+            if(type == null)
                 throw new NotSupportedException($"{verificationTypeEnum} 发生异常");
 
             #endregion 查找

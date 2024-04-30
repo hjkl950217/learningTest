@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A16_懒加载)]
     public class A16_懒加载 : IVerification
@@ -33,17 +28,19 @@ namespace 技术点验证
 
         public static IEnumerable<int> InfiniteEvenNumbersSet()
         {
-            for (int i = 0 ; ; i++)
+            for(int i = 0 ; ; i++)
             {
                 LazyDemo.ExecutCount++;
-                if (i % 2 == 0) yield return i;
+                if(i % 2 == 0)
+                    yield return i;
             }
         }
 
         public static int InfiniteEvenNumbersSet2()
         {
-            for (int i = 0 ; ; i++)
-                if (i % 2 == 0) return i;
+            for(int i = 0 ; ; i++)
+                if(i % 2 == 0)
+                    return i;
         }
     }
 }

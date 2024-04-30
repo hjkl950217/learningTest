@@ -77,7 +77,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// <returns></returns>
         public async Task<List<OrderOut>> GetAllOrder()
         {
-            var task = Task.Run(() =>
+            Task<List<OrderOut>> task = Task.Run(() =>
              {
                  return this.Mapper.Map<List<OrderOut>>(Data.OrderData);
              });
@@ -92,11 +92,12 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// <returns></returns>
         public async Task<List<OrderOut>> GetAllOrder(string sellerID)
         {
-            var task = Task.Run(() =>
+            Task<List<OrderOut>> task = Task.Run(() =>
            {
                //模拟有内部用户权限的才可以查所有的
                bool isRole = this.CheckRole.InternalOrderCheck(sellerID?.ToUpper());
-               if (isRole == false) return null;
+               if(isRole == false)
+                   return null;
 
                return this.Mapper.Map<List<OrderOut>>(Data.OrderData);
            });
@@ -111,7 +112,7 @@ namespace 链式编程在业务逻辑上的研究.Orders
         /// <returns></returns>
         public async Task<OrderOut> GetOrder(int orderNumber)
         {
-            var task = Task.Run(() =>
+            Task<OrderOut> task = Task.Run(() =>
            {
                Order result = Data
                .OrderData.Find(t => t.OrderNumber == orderNumber);

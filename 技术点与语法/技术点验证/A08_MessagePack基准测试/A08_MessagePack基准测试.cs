@@ -1,6 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using System;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -112,8 +110,8 @@ namespace 技术点验证
 
         public static TestEntity_Non BaseTest<T>(T obj)
         {
-            var byteT = MsgSerializer.Serialize(obj);
-            var result = MsgSerializer.Deserialize<TestEntity_Non>(byteT);
+            byte[] byteT = MsgSerializer.Serialize(obj);
+            TestEntity_Non result = MsgSerializer.Deserialize<TestEntity_Non>(byteT);
             return result;
         }
     }

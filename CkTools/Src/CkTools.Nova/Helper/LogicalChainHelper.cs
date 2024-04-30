@@ -1,10 +1,10 @@
-﻿using CkTools.Nova.Aop;
-using CkTools.Nova.Entity;
-using CkTools.Nova.LogicChain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using CkTools.Nova.Aop;
+using CkTools.Nova.Entity;
+using CkTools.Nova.LogicChain;
 
 namespace CkTools.Nova.Helper
 {
@@ -114,7 +114,7 @@ namespace CkTools.Nova.Helper
                 .ToArray();
 
             StepEntity tempMw = stepList.First();//获取第一个中间件的引用
-            foreach (StepEntity item in stepList)
+            foreach(StepEntity item in stepList)
             {
                 tempMw.StepInstanceObject.Next = item.StepInstanceObject;
                 tempMw = item;//将指针移动到下一个

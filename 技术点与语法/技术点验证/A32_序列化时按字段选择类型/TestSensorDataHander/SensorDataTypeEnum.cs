@@ -1,5 +1,4 @@
-﻿using CkTools;
-using Verification.Core;
+﻿using CkTools.Attribute;
 
 namespace 技术点验证.TestSensorDataHander
 {

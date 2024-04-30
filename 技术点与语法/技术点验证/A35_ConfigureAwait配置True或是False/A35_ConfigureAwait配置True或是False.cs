@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Verification.Core;
+﻿using System.Runtime.CompilerServices;
+using static System.Runtime.CompilerServices.ConfiguredTaskAwaitable;
 
 namespace 技术点验证
 {
@@ -8,20 +8,23 @@ namespace 技术点验证
     {
         public void Start(string[]? args)
         {
-            var a = new Task(() => { }).GetAwaiter();
-            var b = new Task(() => { }).ConfigureAwait(false).GetAwaiter();
+            System.Console.WriteLine("直接看代码即可");
 
-            var a1 = new Task(() => { }).ContinueWith(t => { }).GetAwaiter();
+            TaskAwaiter a = new Task(() => { }).GetAwaiter();
+            ConfiguredTaskAwaiter b = new Task(() => { }).ConfigureAwait(false).GetAwaiter();
 
-            var taskScheduler = TaskScheduler.Current;
+            TaskAwaiter a1 = new Task(() => { }).ContinueWith(t => { }).GetAwaiter();
 
-            var b1 = new Task(() => { }).ContinueWith(t => { }, TaskScheduler.FromCurrentSynchronizationContext())
+            TaskScheduler taskScheduler = TaskScheduler.Current;
+
+            TaskAwaiter b1 = new Task(() => { })
+                .ContinueWith(t => { }, TaskScheduler.FromCurrentSynchronizationContext())
                 .GetAwaiter();
         }
 
         //public Task Test(Task task, Task nextTask)
         //{
-        //    var currentSyncContext = SynchronizationContext.Current;
+        //    SynchronizationContext? currentSyncContext = SynchronizationContext.Current;
 
         //    return task.ContinueWith(() =>
         //    {

@@ -54,6 +54,17 @@
         A33_快速判断Int是否存在数组,
         A34_使用DispatchProxy代理非公开接口,
         A35_ConfigureAwait配置True或是False,
+        A36_Task对比yield的协程,
+        A37_构建字符串速度测试,
+        A38_Task不等待返回,
+        A39_结构体类型的ToString,
+        A40_任意长度2进制操作,
+        A41_生成WIFI二维码,
+        A42_连接Kafka,
+        A43_AspNetCore迷你,
+        A44_Barrier同步基元的使用示例,
+        A45_零宽字符加解密,
+        A46_控制台输出load效果,
 
         #endregion 技术点
 
@@ -73,7 +84,7 @@
         B07_递归,
         B08_Chsarp中写函数式编程,
         B09_访问者模式,
-        B10_I__的原子性,
+        B10_I加加的原子性,
         B11_表达式树修改,
         B12_Switch_In_80,
         B14_用函数式检查SellerID,
@@ -81,6 +92,11 @@
         B16_特性_在泛型和委托上标记_40,
         B17_Aggregate,
         B18_ConcurrentDictionary原子操作,
+        B19_字符串驻留池,
+        B20_框架数据结构测试,
+        B21_Task的Wait方法是否任务级暂停,
+        B22_Linq使用IndexRange,
+        B23_获取调用者的信息,
 
         #endregion 语法类
 

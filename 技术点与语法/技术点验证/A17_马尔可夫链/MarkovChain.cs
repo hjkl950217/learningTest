@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     /// <summary>
     /// 马尔可夫链节点实体，一个对象代表一个关系

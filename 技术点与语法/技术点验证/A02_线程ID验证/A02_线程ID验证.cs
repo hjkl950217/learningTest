@@ -1,9 +1,5 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -50,10 +46,10 @@ namespace 技术点验证
                 BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
 
 #pragma warning disable CS8605 // 取消装箱可能为 null 的值。
-            var pInternalThread = (IntPtr)f?.GetValue(thread);
+            IntPtr pInternalThread = (IntPtr)f?.GetValue(thread);
 #pragma warning restore CS8605 // 取消装箱可能为 null 的值。
             //var nativeId = Marshal.ReadInt32( pInternalThread , ( IntPtr.Size == 8 ) ? 548 : 348 );
-            var nativeId = Marshal.ReadInt32(pInternalThread, (IntPtr.Size == 8) ? 0x022C : 0x0160);
+            int nativeId = Marshal.ReadInt32(pInternalThread, (IntPtr.Size == 8) ? 0x022C : 0x0160);
             return nativeId;
         }
 

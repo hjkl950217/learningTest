@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace 技术点验证.A28_字符串做加法
+﻿namespace 技术点验证.A28_字符串做加法
 {
     public static class AddOnne
     {
@@ -24,25 +21,25 @@ namespace 技术点验证.A28_字符串做加法
 
             char[] result = new char[maxLen];
             Stack<char> charStack = new Stack<char>();
-            for (int i = 0 ; i < maxLen ; i++)
+            for(int i = 0 ; i < maxLen ; i++)
             {
                 charStack.Clear();
                 bool addOneCalc = addOneLen > i;
                 bool addTwoCalc = addTwoLen > i;
-                if (inc)
+                if(inc)
                 {
                     charStack.Push('1');
                 }
-                if (addTwoCalc)
+                if(addTwoCalc)
                 {
                     charStack.Push(addOneArray[i]);
                 }
-                if (addOneCalc)
+                if(addOneCalc)
                 {
                     charStack.Push(addTwoArray[i]);
                 }
                 char tempResultChar = '0';
-                while (0 != charStack.Count)
+                while(0 != charStack.Count)
                 {
                     char calcChar = charStack.Pop();
                     inc = false;
@@ -69,7 +66,7 @@ namespace 技术点验证.A28_字符串做加法
             int addendNum = addend - '0';
             int augendNum = augend - '0';
             int resultNum = addendNum + augendNum;
-            if (resultNum > 9)
+            if(resultNum > 9)
             {
                 increase = true;
                 resultNum = resultNum - 10;

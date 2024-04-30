@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using Verification.Core;
+﻿using System.Diagnostics;
 
 namespace 语法验证与学习
 {
@@ -61,7 +59,7 @@ namespace 语法验证与学习
         public int Iterative(int n)
         {
             int acc = 1;//递推需要使用一个累积器保存中间结果
-            for (int i = 1 ; i <= n ; i++)
+            for(int i = 1 ; i <= n ; i++)
             {
                 acc *= i;
             }
@@ -73,7 +71,8 @@ namespace 语法验证与学习
         /// </summary>
         public int Recursive(int n)
         {
-            if (n == 0) return 1;
+            if(n == 0)
+                return 1;
             return n * this.Recursive(n - 1);//把递归调用写在函数的最末尾，叫尾递归
         }
 
@@ -97,18 +96,18 @@ namespace 语法验证与学习
 
             int min_ret = money;
 
-            if (money == 1)
+            if(money == 1)
             {
                 return 1;
             }
-            if (coins.Length == 0 || money <= 0)
+            if(coins.Length == 0 || money <= 0)
             {
                 return 0;
             }
 
-            foreach (var c in coins)
+            foreach(int c in coins)
             {
-                if (money >= c)
+                if(money >= c)
                 {
                     /*
                      * 下面这二行代码是程序的出口。
@@ -120,7 +119,7 @@ namespace 语法验证与学习
                      */
 
                     int min_count = this.CountChange_Recursive(money - c, coins) + 1;
-                    if (min_count < min_ret)
+                    if(min_count < min_ret)
                     {
                         min_ret = min_count;
                     }
@@ -149,16 +148,17 @@ namespace 语法验证与学习
         /// <returns></returns>
         public int CountChange_DynamicPlan(int amount, int[] coins, int[]? sheets = null)
         {
-            if (sheets == null) sheets = new int[amount + 1];//这里都是整数，所以这样计算。其实是每一块钱都需要存下
+            if(sheets == null)
+                sheets = new int[amount + 1];//这里都是整数，所以这样计算。其实是每一块钱都需要存下
 
             //遍历金额，找出每种金额对应的找零方式
-            for (int money = 1 ; money < sheets.Length ; money++)//第一层：金钱
+            for(int money = 1 ; money < sheets.Length ; money++)//第一层：金钱
             {
                 int minWays = money;//临时变量-已经金钱为money时，最少的方式数
-                foreach (var item in coins)//第二层：金钱面额
+                foreach(int item in coins)//第二层：金钱面额
                 {
                     this.DynamicPlanNum++;
-                    if (money >= item)//当前的金钱必须要大于等于面额。 比如找补34块，面额不可能是50
+                    if(money >= item)//当前的金钱必须要大于等于面额。 比如找补34块，面额不可能是50
                     {
                         /*
                          * 这里的+1是因为已经找补了一张面额为item的钱
@@ -169,7 +169,7 @@ namespace 语法验证与学习
                         int temp_Money = sheets[money - item] + 1;
 
                         //如果找到的值比当前最少的方式还少，则修正
-                        if (temp_Money < minWays)
+                        if(temp_Money < minWays)
                             minWays = temp_Money;
                     }
                 }

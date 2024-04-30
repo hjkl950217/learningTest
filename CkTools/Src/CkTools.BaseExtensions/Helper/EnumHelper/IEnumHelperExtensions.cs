@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using CkTools.BaseExtensions.Model;
 
 namespace CkTools.Helper
 {
@@ -20,21 +21,22 @@ namespace CkTools.Helper
         [return: NotNull]
         public static IReadOnlyDictionary<string, TValue> GetEnumStruct<TEnum, TValue>(
             this IEnumHelper enumHelper,
-            [NotNull] Func<EnumAttributeData, TValue> convert)
+            [NotNull] Func<EnumValueData, TValue> convert)
             where TEnum : Enum
         {
             convert.CheckNullWithException(nameof(convert));
             Dictionary<string, TValue> resultList = new Dictionary<string, TValue>();
 
             //遍历数据并组合成Dictionary
-            foreach (EnumAttributeData? item in enumHelper.GetAllEnumAttributeData(typeof(TEnum)))//获取枚举结构数据
+            EnumData enumData = enumHelper.GetOrAddEnumCache(typeof(TEnum));
+            foreach(EnumValueData? item in enumData.EnumValueDataArray)
             {
                 try
                 {
                     TValue value = convert(item);
                     resultList.Add(item.EnumValueName, value);
                 }
-                catch (InvalidCastException ex)
+                catch(InvalidCastException ex)
                 {
                     throw new InvalidCastException(
                         $"获取枚举结构时，枚举值的类型传递错误。枚举名:{item.EnumType.Name}",
@@ -56,7 +58,9 @@ namespace CkTools.Helper
             this IEnumHelper enumHelper)
             where TEnum : Enum
         {
-            return IEnumHelperExtensions.GetEnumStruct<TEnum, int>(enumHelper, t => (int)t.BaseValue);
+            return IEnumHelperExtensions.GetEnumStruct<TEnum, int>(
+                enumHelper,
+                t => (int)t.BaseValue);
         }
 
         /// <summary>
@@ -69,7 +73,9 @@ namespace CkTools.Helper
             this IEnumHelper enumHelper)
             where TEnum : Enum
         {
-            return IEnumHelperExtensions.GetEnumStruct<TEnum, string>(enumHelper, t => t.BaseValueString);
+            return IEnumHelperExtensions.GetEnumStruct<TEnum, string>(
+                enumHelper,
+                t => t.BaseValueString);
         }
 
         /// <summary>
@@ -85,7 +91,44 @@ namespace CkTools.Helper
             where TValue : struct
 
         {
-            return IEnumHelperExtensions.GetEnumStruct<TEnum, TValue>(enumHelper, t => (TValue)t.BaseValue);
+            return IEnumHelperExtensions.GetEnumStruct<TEnum, TValue>(
+                enumHelper,
+                t => (TValue)t.BaseValue);
+        }
+
+        /// <summary>
+        /// 获取枚举的结构信息
+        /// </summary>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static IReadOnlyList<EnumValueData> GetEnumInfo(this IEnumHelper enumHelper, Type enumType)
+        {
+            return enumHelper.GetOrAddEnumCache(enumType).EnumValueDataArray;
+        }
+
+        /// <summary>
+        /// 获取枚举的结构信息
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <returns></returns>
+        public static IReadOnlyList<EnumValueData> GetEnumInfo<TEnum>(this IEnumHelper enumHelper)
+        {
+            return IEnumHelperExtensions.GetEnumInfo(enumHelper, typeof(TEnum));
+        }
+
+        /// <summary>
+        /// 获取枚举值的结构信息
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static EnumValueData? GetEnumValueInfo(
+            this IEnumHelper enumHelper,
+            Enum enumValue)
+        {
+            EnumData enumData = enumHelper.GetOrAddEnumCache(enumValue.GetType());
+
+            return enumData.EnumValueDataArray
+                .FirstOrDefault(t => enumValue.Equals(t.EnumValue));
         }
 
         #endregion 获取结构
@@ -107,13 +150,16 @@ namespace CkTools.Helper
             where TAttribute : Attribute
         {
             //获取枚举结构数据
-            EnumAttributeData[] fieldList = enumHelper.GetAllEnumAttributeData(enumValue.GetType());
+            EnumValueData[]? fieldArray = enumHelper
+                .GetOrAddEnumCache(enumValue.GetType())
+                .EnumValueDataArray;
 
             //获取枚举值上面的特性集合
-            Attribute[]? enumValueAttributeArry = Array.Find(fieldList, t => enumValue.Equals(t.EnumValue))
+            Attribute[]? enumValueAttributeArry = Array
+                .Find(fieldArray, t => enumValue.Equals(t.EnumValue))
                 ?.AttributeArray;
 
-            if (enumValueAttributeArry == null)
+            if(enumValueAttributeArry == null)
             {
                 return null;
             }
@@ -147,23 +193,5 @@ namespace CkTools.Helper
         }
 
         #endregion 获取枚举上的Attribute
-
-        #region 获取枚举的基础信息
-
-        /// <summary>
-        /// 获取枚举值上面的结构信息
-        /// </summary>
-        /// <param name="enumHelper"></param>
-        /// <param name="enumValue"></param>
-        /// <returns></returns>
-        public static EnumAttributeData GetEnumAttributeData(
-            this IEnumHelper enumHelper,
-            Enum enumValue)
-        {
-            return enumHelper.GetAllEnumAttributeData(enumValue.GetType())
-                .First(t => t.EnumValue.GetHashCode() == enumValue.GetHashCode());//枚举的哈希值是枚举值对应的int
-        }
-
-        #endregion 获取枚举的基础信息
     }
 }

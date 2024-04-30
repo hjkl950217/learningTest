@@ -1,7 +1,4 @@
-﻿using System;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A12_扫描泛型接口_判断类型)]
     public class A12_扫描泛型接口_判断类型 : IVerification

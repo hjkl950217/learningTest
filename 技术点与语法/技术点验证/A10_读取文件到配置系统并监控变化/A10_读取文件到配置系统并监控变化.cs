@@ -1,8 +1,6 @@
-using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Verification.Core;
 
 namespace 技术点验证
 {
@@ -35,8 +33,8 @@ namespace 技术点验证
 
             services.AddTransient(t =>
             {
-                var config = t.GetService<IConfiguration>();
-                var result = JsonConvert.DeserializeObject<TestConfig>(config["ConfigB"]);
+                IConfiguration? config = t.GetService<IConfiguration>();
+                TestConfig? result = JsonConvert.DeserializeObject<TestConfig>(config["ConfigB"]);
 
                 TestConfigurationProvider.Bind(config, "ConfigB", result);
 
@@ -48,7 +46,7 @@ namespace 技术点验证
 
             IServiceProvider di = services.BuildServiceProvider();
 
-            var configEntity = di.GetService<TestConfig>();
+            TestConfig? configEntity = di.GetService<TestConfig>();
             testConfig = configEntity;
             Console.WriteLine($"第一次从DI获取到值:{configEntity.TestName}");
         }

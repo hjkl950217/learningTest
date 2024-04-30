@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
@@ -78,11 +75,11 @@ namespace 技术点验证
             this.schoolContext.Students.Add(student);
             this.schoolContext.SaveChanges();
 
-            var result = this.schoolContext.Students
+            Student? result = this.schoolContext.Students
                 .FirstOrDefault(t => t.FirstName == "现");
             this.logger.LogInformation("新添加的成员：");
 
-            if (result != null)
+            if(result != null)
             {
                 this.Log(result.ToJsonExt());
                 this.Log("添加成功");
@@ -97,7 +94,7 @@ namespace 技术点验证
         {
             this.logger.LogInformation("U-更新学员");
 
-            var result = this.schoolContext.Students
+            Student? result = this.schoolContext.Students
                 .Find(1);
             string? tempStr = result.FirstName;
 
@@ -165,10 +162,10 @@ namespace 技术点验证
             //      .SingleOrDefault(t => t.FirstName == "李");
 
             this.Log("错误分组：");
-            var result = from a in this.schoolContext.Students
-                         group a by a.EnrollmentDate.Year into g
-                         select new KeyValuePair<int, List<Student>>(g.Key, g.ToList());
-            var resultInfo = result.ToDictionary(t => t.Key, t => t.Value);
+            IQueryable<KeyValuePair<int, List<Student>>> result = from a in this.schoolContext.Students
+                                                                  group a by a.EnrollmentDate.Year into g
+                                                                  select new KeyValuePair<int, List<Student>>(g.Key, g.ToList());
+            Dictionary<int, List<Student>> resultInfo = result.ToDictionary(t => t.Key, t => t.Value);
 
             this.Log("正确作法应该不使用EF，使用原生SQL.数据量少时使用错误的也可以");
 

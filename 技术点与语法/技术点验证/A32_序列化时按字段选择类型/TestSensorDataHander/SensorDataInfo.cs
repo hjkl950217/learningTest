@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace 技术点验证.TestSensorDataHander
+﻿namespace 技术点验证.TestSensorDataHander
 {
     public class SensorDataInfo
     {

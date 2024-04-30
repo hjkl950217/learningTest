@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AspectCore.DynamicProxy.Parameters;
-using Microsoft.AspNetCore.Http;
-using Verification.Core;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     [VerifcationType(VerificationTypeEnum.A30_模拟中间件_责任链模式)]
     public class A30_模拟中间件_责任链模式 : IVerification
@@ -33,7 +24,7 @@ namespace 技术点验证
             application.Run(context => { Console.WriteLine("进入末尾中间件"); return Task.CompletedTask; });
             //application.Run(_ => Console.WriteLine("进入末尾中间件"));
 
-            var mockPipe = application.Build();
+            MockRequestDelegate mockPipe = application.Build();
 
             mockPipe.Invoke(new MockHttpContext());
         }

@@ -1,91 +1,266 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using CkTools.FP;
 
 namespace System
 {
     /// <summary>
-    /// 函数式扩展-管道
+    /// 函数式扩展-组合
     /// </summary>
-    public static class FP_Pipe_Extensions
+    public static class Fp_Pipe_Extensions
     {
-        #region 返回Action
+        #region Action
 
-        #region 1个入参
+        /*
+         竖exp2\横exp1    Action     Action<T>   Action<T1,T2>
+         Action             1           1          1
+         Action<T>          1           1          2
+         Action<T1,T2>      1           2          1
+         */
 
-        /// <summary>
-        /// 管道 <para></para>
-        /// (a->void)->(a->void)->...  => (a->void) <para></para>
-        /// 示例:  (string->void)->(string->void)->...  => (string->void)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <param name="sourceFunc"></param>
-        /// <param name="actions"></param>
-        /// <returns></returns>
+        #region 第1列
+
+        public static Action Pipe(
+           this Action exp1,
+           [NotNull] Action exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
         public static Action<TInput> Pipe<TInput>(
-            [NotNull] this Action<TInput> sourceFunc,
-            [NotNull] params Action<TInput>[] actions)
+            this Action exp1,
+            [NotNull] Action<TInput> exp2)
         {
-            sourceFunc.CheckNullWithException(nameof(sourceFunc));
-            actions.CheckNullWithException(nameof(actions));
-
-            return t =>
-            {
-                sourceFunc(t);
-                actions.For(item => item(t));
-            };
+            return CkFunctions.Compose(exp2, exp1);
         }
 
-        /// <summary>
-        /// 管道 <para></para>
-        /// (a->b)->(b->void)->...  => (a->void) <para></para>
-        /// 示例:  (string->int)->(int->void)->...  => (string->void)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sourceFunc"></param>
-        /// <param name="actions"></param>
-        /// <returns></returns>
-        public static Action<TInput> Pipe<TInput, TResult>(
-            [NotNull] this Func<TInput, TResult> sourceFunc,
-            [NotNull] params Action<TResult>[] actions)
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action exp1,
+            [NotNull] Action<TInput1, TInput2> exp2)
         {
-            sourceFunc.CheckNullWithException(nameof(sourceFunc));
-            actions.CheckNullWithException(nameof(actions));
-
-            return t =>
-            {
-                TResult tempResult = sourceFunc(t);
-                actions.For(item => item(tempResult));
-            };
+            return CkFunctions.Compose(exp2, exp1);
         }
 
-        #endregion 1个入参
+        #endregion 第1列
 
-        #endregion 返回Action
+        #region 第2列
 
-        #region 返回Func
-
-        /// <summary>
-        /// 管道 <para></para>
-        /// (a->b)->(b->c) => (a->c) <para></para>
-        /// 示例： (string->int)->(int->bool) => (string->bool)
-        /// </summary>
-        /// <typeparam name="TInput"></typeparam>
-        /// <typeparam name="TCenter"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sourceFunc"></param>
-        /// <param name="func"></param>
-        /// <returns></returns>
-        public static Func<TInput, TResult> Pipe<TInput, TCenter, TResult>(
-          [NotNull] this Func<TInput, TCenter> sourceFunc,
-          [NotNull] Func<TCenter, TResult> func)
+        public static Action<TInput> Pipe<TInput>(
+            this Action<TInput> exp1,
+            [NotNull] Action exp2)
         {
-            sourceFunc.CheckNullWithException(nameof(sourceFunc));
-            func.CheckNullWithException(nameof(func));
-
-            return t => func(sourceFunc(t));
+            return CkFunctions.Compose(exp2, exp1);
         }
 
-        #endregion 返回Func
+        public static Action<TInput> Pipe<TInput>(
+            this Action<TInput> exp1,
+            [NotNull] Action<TInput> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action<TInput1> exp1,
+            [NotNull] Action<TInput1, TInput2> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action<TInput2> exp1,
+            [NotNull] Action<TInput1, TInput2> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第2列
+
+        #region 第3列
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action<TInput1, TInput2> exp1,
+            [NotNull] Action exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action<TInput1, TInput2> exp1,
+            [NotNull] Action<TInput1> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+            this Action<TInput1, TInput2> exp1,
+            [NotNull] Action<TInput2> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Action<TInput1, TInput2> Pipe<TInput1, TInput2>(
+             this Action<TInput1, TInput2> exp1,
+             [NotNull] Action<TInput1, TInput2> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第3列
+
+        #endregion Action
+
+        #region Func
+
+        /*
+         竖exp2\横exp1    Func<TR>     Func<T,TR>   Func<T1,T2,TR>
+         Func<TR>           x               x              x
+         Func<T,TR>         x               1              1
+         Func<T1,T2,TR>     x               x              x
+         */
+
+        #region 第1列
+
+        #endregion 第1列
+
+        #region 第2列
+
+        public static Func<TInput, TResultEnd> Pipe<TInput, TResultCenter, TResultEnd>(
+            this Func<TInput, TResultCenter> exp1,
+            [NotNull] Func<TResultCenter, TResultEnd> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第2列
+
+        #region 第3列
+
+        public static Func<TInput1, TInput2, TResult> Pipe<TInput1, TInput2, TResultCenter, TResult>(
+            this Func<TInput1, TInput2, TResultCenter> exp1,
+            [NotNull] Func<TResultCenter, TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第3列
+
+        #endregion Func
+
+        #region exp1 Func  -  exp2 Action
+
+        /*
+         竖exp2\横exp1    Action     Action<T>   Action<T1,T2>
+         Func<TR>           1           x           x
+         Func<T,TR>         1           1           x
+         Func<T1,T2,TR>     1           x           x
+
+         */
+
+        #region 第1列
+
+        public static Func<TResult> Pipe<TResult>(
+            this Action exp1,
+            [NotNull] Func<TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TInput, TResult> Pipe<TInput, TResult>(
+            this Action exp1,
+            [NotNull] Func<TInput, TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TInput1, TInput2, TResult> Pipe<TInput1, TInput2, TResult>(
+            this Action exp1,
+            [NotNull] Func<TInput1, TInput2, TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第1列
+
+        #region 第2列
+
+        public static Func<TInput, TResult> Pipe<TInput, TResult>(
+            this Action<TInput> exp1,
+            [NotNull] Func<TInput, TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第2列
+
+        #region 第3列
+
+        #endregion 第3列
+
+        #endregion exp1 Func  -  exp2 Action
+
+        #region exp1 Action  -  exp2 Func
+
+        /*
+         竖exp2\横exp1    Func<TR>     Func<T,TR>   Func<T1,T2,TR>
+         Action             1           1           1
+         Action<T>          x           1           x
+         Action<T1,T2>      x           x           1
+
+         */
+
+        #region 第1列
+
+        public static Func<TResult> Pipe<TResult>(
+            this Func<TResult> exp1,
+            [NotNull] Action exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TResult> Pipe<TResult>(
+            this Func<TResult> exp1,
+            [NotNull] Action<TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第1列
+
+        #region 第2列
+
+        public static Func<TInput, TResult> Pipe<TInput, TResult>(
+            this Func<TInput, TResult> exp1,
+            [NotNull] Action exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TInput, TResult> Pipe<TInput, TResult>(
+            this Func<TInput, TResult> exp1,
+            [NotNull] Action<TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第2列
+
+        #region 第3列
+
+        public static Func<TInput1, TInput2, TResult> Pipe<TInput1, TInput2, TResult>(
+            this Func<TInput1, TInput2, TResult> exp1,
+            [NotNull] Action exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        public static Func<TInput1, TInput2, TResult> Pipe<TInput1, TInput2, TResult>(
+            this Func<TInput1, TInput2, TResult> exp1,
+            [NotNull] Action<TResult> exp2)
+        {
+            return CkFunctions.Compose(exp2, exp1);
+        }
+
+        #endregion 第3列
+
+        #endregion exp1 Action  -  exp2 Func
     }
 }

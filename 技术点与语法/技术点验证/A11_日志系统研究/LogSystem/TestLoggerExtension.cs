@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace 技术点验证
@@ -11,7 +10,7 @@ namespace 技术点验证
             Func<string, LogLevel, bool>? globalCategoryLevelFilter = null,
             Func<string, LogLevel, bool>? testLoggerCategoryLevelFilter = null)
         {
-            if (globalCategoryLevelFilter != null)
+            if(globalCategoryLevelFilter != null)
             {
                 //这种是全局过滤的,第一个参数是categoryName
                 loggingBuilder.AddFilter(globalCategoryLevelFilter);

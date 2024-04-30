@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Verification.Core;
+﻿using System.Text;
 
 namespace 技术点验证
 {
@@ -21,7 +17,7 @@ namespace 技术点验证
         public void Start(string[]? args)
         {
             Console.WriteLine("原始数据");
-            foreach (var item in this.data)
+            foreach(string item in this.data)
             {
                 Console.WriteLine(item);
             }
@@ -31,8 +27,8 @@ namespace 技术点验证
             this.SplitData(this.data);
 
             Console.WriteLine("分析概率后的数据");
-            var markovData = this.AnalyzeData(this.CreateList, this.SplitData, this.data);
-            foreach (var item in markovData.OrderBy(t => t.Key))
+            Dictionary<string, MarkovChainNode> markovData = this.AnalyzeData(this.CreateList, this.SplitData, this.data);
+            foreach(KeyValuePair<string, MarkovChainNode> item in markovData.OrderBy(t => t.Key))
             {
                 Console.WriteLine($"key:{item.Key}\t到下一节点的数量：{item.Value.NextNodeNum}\t概率：{item.Value.NextNodeProbabilityString}");
             }
@@ -47,8 +43,8 @@ namespace 技术点验证
              *
              */
             Console.WriteLine("所有可能的路径");
-            var result = this.FindAllPath(markovData);
-            foreach (var item in result)
+            List<MarkovChainNode[]> result = this.FindAllPath(markovData);
+            foreach(MarkovChainNode[] item in result)
             {
                 Console.WriteLine(this.CombinPath(item));
             }
@@ -110,9 +106,9 @@ namespace 技术点验证
         {
             List<string[]> result = new List<string[]>();
 
-            foreach (var item in data)
+            foreach(string item in data)
             {
-                if (item == null || item.Length == 0 || item.Trim() == this.separator)
+                if(item == null || item.Length == 0 || item.Trim() == this.separator)
                     continue;
 
                 string[] tempArry = ($"{MarkovChainNode.StartNodeName}->{item.ToUpper()}->{MarkovChainNode.EndNodeName}")
@@ -141,19 +137,19 @@ namespace 技术点验证
 
             #region 遍历并处理
 
-            foreach (var item in splitedData)//遍历每条数据
+            foreach(string[] item in splitedData)//遍历每条数据
             {
-                for (int i = 0 ; i < item.Length ; i++)//遍历每条数据中的节点
+                for(int i = 0 ; i < item.Length ; i++)//遍历每条数据中的节点
                 {
                     //从结果区中拿到节点
-                    var tempNode = result.GetOrAdd(item[i], NodeFactory(item[i]));
+                    MarkovChainNode tempNode = result.GetOrAdd(item[i], NodeFactory(item[i]));
 
                     //添加节点 关联下一个节点
                     bool isEnd = i + 1 == item.Length;
-                    if (!isEnd)
+                    if(!isEnd)
                     {
                         //如果不是最后一个节点，关联下一个节点
-                        var nextNode = result.GetOrAdd(item[i + 1], NodeFactory(item[i + 1]));
+                        MarkovChainNode nextNode = result.GetOrAdd(item[i + 1], NodeFactory(item[i + 1]));
                         tempNode.NextNodeList.Add(nextNode);
                     }
 
@@ -179,7 +175,7 @@ namespace 技术点验证
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(markovChainNodes[0].NodeName);
-            foreach (var item in markovChainNodes.Skip(1))
+            foreach(MarkovChainNode? item in markovChainNodes.Skip(1))
             {
                 stringBuilder.AppendFormat(" -> {0}", item.NodeName);
             }
@@ -203,7 +199,7 @@ namespace 技术点验证
             resultSet ??= new List<MarkovChainNode[]>();
             tempList ??= new List<MarkovChainNode>();
 
-            switch (startKey)
+            switch(startKey)
             {
                 case MarkovChainNode.EndNodeName:
                     //如果要查找的key为end节点名，代表当前路径已经找完，需要把当前路径拷贝到结果集中
@@ -214,9 +210,9 @@ namespace 技术点验证
                     return resultSet;
 
                 default:
-                    var tempNode = data[startKey];
+                    MarkovChainNode tempNode = data[startKey];
                     tempList.Add(tempNode);//添加到临时集合中
-                    foreach (var item in tempNode.NextNodeList)//遍历子节点集合
+                    foreach(MarkovChainNode item in tempNode.NextNodeList)//遍历子节点集合
                     {
                         this.FindAllPath(data, resultSet, item.NodeName, tempList);
                     }

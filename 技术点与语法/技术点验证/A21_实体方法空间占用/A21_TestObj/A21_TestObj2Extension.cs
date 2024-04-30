@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace 技术点验证
+﻿namespace 技术点验证
 {
     public static class A21_TestObj2Extension
     {

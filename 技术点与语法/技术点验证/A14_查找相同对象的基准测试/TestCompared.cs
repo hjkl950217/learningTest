@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using BenchmarkDotNet.Attributes;
 
 namespace 技术点验证._A14_查找相同对象的基准测试_
@@ -31,7 +29,7 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
         private List<StudentTest> GetTestDataList()
         {
             List<StudentTest> studentTests = new List<StudentTest>();
-            for (int i = 0 ; i < this.DataCount ; i++)
+            for(int i = 0 ; i < this.DataCount ; i++)
             {
                 StudentTest tempStu = new StudentTest()
                 {
@@ -50,7 +48,7 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
         [Benchmark(Baseline = true)]
         public void MethodA_Base()
         {
-            var duplicates = this.testData
+            string? duplicates = this.testData
                 .GroupBy(i => i.Tag)
                 .Select(i => i.Count() > 1 ? i.Key : null)
                 .FirstOrDefault(i => i != null);
@@ -59,8 +57,8 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
         [Benchmark]
         public void MethodB()
         {
-            var duplicates = this.testData
-                .ToLookup(i => i.Tag)
+            string? duplicates = this.testData
+                .ToLookup(i => i.Tag)//相比MethodA的差异点
                 .Select(i => i.Count() > 1 ? i.Key : null)
                 .FirstOrDefault(i => i != null);
         }
@@ -69,7 +67,7 @@ namespace 技术点验证._A14_查找相同对象的基准测试_
         public void MethodC()
         {
             //经测试 这个写法性能最好
-            var duplicates = this.testData
+            string? duplicates = this.testData
                 .ToLookup(i => i.Tag)
                 .Where(i => i.Key != null && i.Key.Length != 0)
                 .FirstOrDefault(t => t.Count() > 1)

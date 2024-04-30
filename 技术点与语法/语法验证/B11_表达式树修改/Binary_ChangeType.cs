@@ -23,12 +23,13 @@ namespace 语法验证与学习
 
         public Expression Chage(Expression expression, ExpressionType expressionType)
         {
-            if (expression is BinaryExpression exp)
+            if(expression is BinaryExpression exp)
             {
                 _ = this.ChangeTo.AddOrUpdate(exp, expressionType, (k, v) => v = expressionType);
                 return base.Visit(expression);
             }
-            else return expression;
+            else
+                return expression;
         }
     }
 }

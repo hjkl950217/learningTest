@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace 语法验证与学习
+﻿namespace 语法验证与学习
 {
     public class CauseSuccessVistor : IVisitor
     {

@@ -8,11 +8,17 @@ namespace CkTools.Test.Extensions.TestModel
 {
     public class EqualComparerTest
     {
+        private static class MockHelper
+        {
+            public static IEqualityComparer<UserInfo> IdComparer = new EqualComparer<UserInfo>(
+                (a, b) => a.UserID == b.UserID);
+        }
+
         [Fact]
         public void List_Distinct()
         {
             //利用比较器去重
-            var result = ComparerTestData.TestListA
+            List<UserInfo> result = ComparerTestData.TestListA
                 .Distinct(MockHelper.IdComparer)
                 .ToList();
 
@@ -27,7 +33,7 @@ namespace CkTools.Test.Extensions.TestModel
             //利用比较器取差集
             //找出不在 MockHelper.TestListB 中的元素
 
-            var result = ComparerTestData.TestListA
+            List<UserInfo> result = ComparerTestData.TestListA
                 .Except(ComparerTestData.TestListB, MockHelper.IdComparer)
                 .ToList();
 
@@ -40,16 +46,10 @@ namespace CkTools.Test.Extensions.TestModel
         [Fact]
         public void List_CheckInherit()
         {
-            var result = ComparerTestData.TestListC
+            bool result = ComparerTestData.TestListC
                 .Contains(ComparerTestData.TestListA.FirstOrDefault(), MockHelper.IdComparer);
 
             Assert.True(result);
-        }
-
-        private static class MockHelper
-        {
-            public static IEqualityComparer<UserInfo> IdComparer = new EqualComparer<UserInfo>(
-                (a, b) => a.UserID == b.UserID);
         }
     }
 }
