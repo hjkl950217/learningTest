@@ -3,7 +3,7 @@
   <Import Project="..\SDKPulishNuget.targets" />
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
+    <!--<TargetFrameworks>net6.0</TargetFrameworks>-->
     <Description>包含一些扩展方法、工具类、FP扩展代码，欢迎讨论,项目地址： https://github.com/hjkl950217/learningTest </Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>

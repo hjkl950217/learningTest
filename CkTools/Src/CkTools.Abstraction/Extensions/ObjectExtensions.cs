@@ -256,7 +256,7 @@ namespace System
         /// <typeparam name="TResult"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static Task<TResult> ToTask<TResult>(this TResult obj)
+        public static Task<TResult?> ToTask<TResult>(this TResult? obj)
         {
             return Task.FromResult(obj);
         }

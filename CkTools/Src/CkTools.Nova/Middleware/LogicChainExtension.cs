@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             List<StepEntity> taskList = LogicalChainHelper.FindAllTaskEntity();
             foreach(StepEntity item in taskList)
             {
-                ServiceDescriptor serviceDescriptor = new(
+                ServiceDescriptor serviceDescriptor = new ServiceDescriptor(
                     item.StepType,
                     item.StepType,
                     item.Attribute.Lifetime);

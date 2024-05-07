@@ -137,7 +137,7 @@ namespace CkTools.Nova.Factory
             ILookup<Type, StepEntity> taskGroup = taskList
                 .ToLookup(t => t.Attribute.StepEnumType);
 
-            Dictionary<Type, StepEntity[]> result = new();
+            Dictionary<Type, StepEntity[]> result = new Dictionary<Type, StepEntity[]>();
             foreach(IGrouping<Type, StepEntity> item in taskGroup)
             {
                 StepEntity[] temp = LogicalChainHelper.SortList(item.ToList());

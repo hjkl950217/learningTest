@@ -3,7 +3,7 @@
   <Import Project="..\SDKPulishNuget.targets" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <!--<TargetFrameworks>net6.0</TargetFrameworks>-->
     <Description>$(LibName)的公共定义</Description>
     <PackageProjectUrl>https://github.com/hjkl950217/learningTest</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hjkl950217/learningTest</RepositoryUrl>

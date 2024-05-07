@@ -47,9 +47,9 @@ namespace CkTools.Helper
                 }
                 return trees;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }
