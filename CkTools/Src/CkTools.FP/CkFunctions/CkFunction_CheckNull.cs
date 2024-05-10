@@ -30,12 +30,17 @@ namespace CkTools.FP
         private static Action<IEnumerable<ArgInfo>> joinMsgThrow = arg => throw new ArgumentNullException(string.Join(",", arg.Select(t => t.Name)));
 
         /// <summary>
+        /// 判断参数值是否为空
+        /// </summary>
+        private static readonly Func<ArgInfo, bool> isArgNullOrEmpty = t => t.Arg == null;
+
+        /// <summary>
         /// [私有-检查函数]检查对象集合中是否有空值,有空值时抛出异常
         /// </summary>
         /// <param name="args"></param>
         private static void InternalCheckNullWithException(params ArgInfo[] args)
         {
-            CkFunctions.ForeachEnd<ArgInfo>(joinMsgThrow)(t => t.Arg == null)(args);
+            CkFunctions.ForeachEnd<ArgInfo>(joinMsgThrow)(isArgNullOrEmpty)(args);
         }
 
         public static void CheckNullWithException(
