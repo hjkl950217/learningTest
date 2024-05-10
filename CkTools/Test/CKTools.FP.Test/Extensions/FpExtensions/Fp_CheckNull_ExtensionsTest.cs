@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using CkTools.FP.Extensions.ObjectExtensions;
 using Xunit;
 
 namespace CKTools.FP.Test.Extensions.FpExtensions

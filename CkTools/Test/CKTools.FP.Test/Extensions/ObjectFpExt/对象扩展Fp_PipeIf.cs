@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class 对象扩展_PipeIf
+    public class 对象扩展Fp_PipeIf
     {
         #region Action版本
 

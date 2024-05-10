@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class 对象扩展_ToFp
+    public class 对象扩展Fp_ToFp
     {
         [Fact]
         public void ToFunc_直接执行不报错()

@@ -1,6 +1,8 @@
-﻿namespace System.Collections
+﻿using CkTools.FP;
+
+namespace System.Collections
 {
-    internal static class IEnumerableExtensions
+    public static class IEnumerableExtensions
     {
         /// <summary>
         /// 判断序列是否存在满足条件的元素
@@ -8,7 +10,7 @@
         /// <param name="source">要判断的序列</param>
         /// <param name="predicate">委托，判断元素是否满足条件</param>
         /// <returns></returns>
-        internal static bool Any(this IEnumerable source, Func<object?, bool> predicate)
+        public static bool Any(this IEnumerable source, Func<object?, bool> predicate)
         {
             if(source == null)
             {
@@ -35,7 +37,7 @@
         /// </summary>
         /// <param name="source">要判断的序列</param>
         /// <returns></returns>
-        internal static bool Any(this IEnumerable source)
+        public static bool Any(this IEnumerable source)
         {
             if(source == null)
             {
@@ -43,6 +45,16 @@
             }
 
             return Any(source, t => true);
+        }
+
+        public static bool IsNullOrEmpty(this IEnumerable? array)
+        {
+            return CkFunctions.IsNullOrEmpty(array);
+        }
+
+        public static bool IsNotNullOrEmpty(this IEnumerable? array)
+        {
+            return CkFunctions.IsNotNullOrEmpty(array);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace CKTools.FP.Test.Extensions.FpExtensions
             int count = 100;
             Action<int, int> process = (t1, t2) => count = t1 + t2 + count;
 
+            Func<int, Action<int>> aaa = process.Currying();
+
             //执行
             Action<int> result = process.Currying()(10);
             result(10);

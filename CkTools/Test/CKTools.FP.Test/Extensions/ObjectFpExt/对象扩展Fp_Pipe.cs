@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CKTools.FP.Test
 {
-    public class 对象扩展_Pipe
+    public class 对象扩展Fp_Pipe
     {
         [Fact]
         public void Pipe_直接执行不报错_0入()

@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using CkTools.FP.Extensions.ObjectExtensions;
 
 namespace CkTools.FP
 {
