@@ -39,27 +39,27 @@ namespace CkTools.FP.Model
             return Entry.Create(entry.Item1, entry.Item2);
         }
 
-        public static bool operator ==(Entry<T> left, Entry<T> right)
+        public static bool operator ==(Entry<T?> left, Entry<T?> right)
         {
-            return Comparer<T>.Default.Compare(left.Value, right.Value) == 0;
+            return Comparer<T?>.Default.Compare(left.Value, right.Value) == 0;
         }
 
-        public static bool operator !=(Entry<T> left, Entry<T> right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator ==(Entry<T> left, T right)
-        {
-            return Comparer<T>.Default.Compare(left.Value, right) == 0;
-        }
-
-        public static bool operator !=(Entry<T> left, T right)
+        public static bool operator !=(Entry<T?> left, Entry<T?> right)
         {
             return !(left == right);
         }
 
-        public override bool Equals(object obj)
+        public static bool operator ==(Entry<T?> left, T right)
+        {
+            return Comparer<T?>.Default.Compare(left.Value, right) == 0;
+        }
+
+        public static bool operator !=(Entry<T?> left, T right)
+        {
+            return !(left == right);
+        }
+
+        public override bool Equals(object? obj)
         {
             return object.Equals(this.Value, obj);
         }

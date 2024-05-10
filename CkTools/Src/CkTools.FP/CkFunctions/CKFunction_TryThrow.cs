@@ -30,7 +30,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(input2, input1, ex);
-                    throw ex;
+                    throw;
                 }
             };
         }
@@ -55,7 +55,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(input, ex);
-                    throw ex;
+                    throw;
                 }
             };
         }
@@ -79,7 +79,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(ex);
-                    throw ex;
+                    throw;
                 }
             };
         }
@@ -110,7 +110,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(input2, input1, ex);
-                    throw ex;
+                    throw;
                 }
             };
         }
@@ -136,7 +136,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(input, ex);
-                    throw ex;
+                    throw;
                 }
             };
         }
@@ -161,7 +161,7 @@ namespace CkTools.FP
                 catch(Exception ex)
                 {
                     exExp(ex);
-                    throw ex;
+                    throw;
                 }
             };
         }

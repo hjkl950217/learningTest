@@ -44,7 +44,9 @@ namespace CkTools.FP
             bool isFull = CkFunctions.IsFullFileName(fileName);
             if(!isFull)
             {
+#pragma warning disable CS8604 // 引用类型参数可能为 null。
                 fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+#pragma warning restore CS8604 // 引用类型参数可能为 null。
             }
 
             //存在直接返回
@@ -53,13 +55,20 @@ namespace CkTools.FP
                 return false;
             }
 
+            string? dirPath = Path.GetDirectoryName(fileName);
+            if(dirPath.IsNullOrEmpty())
+            {
+                return false;
+            }
+
             lock(fileName)
             {
                 //尝试创建文件夹
-                string dirPath = Path.GetDirectoryName(fileName);
                 if(!Directory.Exists(dirPath))
                 {
+#pragma warning disable CS8604 // 引用类型参数可能为 null。
                     Directory.CreateDirectory(dirPath);
+#pragma warning restore CS8604 // 引用类型参数可能为 null。
                 }
 
                 //创建空白文件
@@ -84,7 +93,9 @@ namespace CkTools.FP
             bool isFull = CkFunctions.IsFullFileName(fileName);
             if(!isFull)
             {
+#pragma warning disable CS8604 // 引用类型参数可能为 null。
                 fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+#pragma warning restore CS8604 // 引用类型参数可能为 null。
             }
 
             //不存在直接返回

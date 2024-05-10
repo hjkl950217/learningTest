@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace CkTools.FP
 {
@@ -11,14 +13,146 @@ namespace CkTools.FP
     {
         #region CheckNullWithException
 
+        #region 分参数名抛出异常
+
         /// <summary>
-        /// [检查函数]检查对象集合中是否有空值,有空值时抛出异常
+        /// 记录参数信息
         /// </summary>
-        /// <param name="exps"></param>
-        public static void CheckNullWithException(params object?[]? exps)
+        private struct ArgInfo
         {
-            CkFunctions.Foreach<object>(t => throw new ArgumentNullException())(CkFunctions.IsNull)(exps);
+            public object? Arg { get; set; }
+            public string Name { get; set; }
         }
+
+        /// <summary>
+        /// 聚合参数名，抛出参数为空异常
+        /// </summary>
+        private static Action<IEnumerable<ArgInfo>> joinMsgThrow = arg => throw new ArgumentNullException(string.Join(",", arg.Select(t => t.Name)));
+
+        /// <summary>
+        /// [私有-检查函数]检查对象集合中是否有空值,有空值时抛出异常
+        /// </summary>
+        /// <param name="args"></param>
+        private static void InternalCheckNullWithException(params ArgInfo[] args)
+        {
+            CkFunctions.ForeachEnd<ArgInfo>(joinMsgThrow)(t => t.Arg == null)(args);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name}
+            ];
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            object? arg2,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "",
+            [CallerArgumentExpression(nameof(arg2))] string arg2Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name},
+                new() {Arg = arg2, Name = arg2Name}
+            ];
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            object? arg2,
+            object? arg3,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "",
+            [CallerArgumentExpression(nameof(arg2))] string arg2Name = "",
+            [CallerArgumentExpression(nameof(arg3))] string arg3Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name},
+                new() {Arg = arg2, Name = arg2Name},
+                new() {Arg = arg3, Name = arg3Name}
+            ];
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            object? arg2,
+            object? arg3,
+            object? arg4,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "",
+            [CallerArgumentExpression(nameof(arg2))] string arg2Name = "",
+            [CallerArgumentExpression(nameof(arg3))] string arg3Name = "",
+            [CallerArgumentExpression(nameof(arg4))] string arg4Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name},
+                new() {Arg = arg2, Name = arg2Name},
+                new() {Arg = arg3, Name = arg3Name},
+                new() {Arg = arg4, Name = arg4Name}
+            ];
+
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            object? arg2,
+            object? arg3,
+            object? arg4,
+            object? arg5,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "",
+            [CallerArgumentExpression(nameof(arg2))] string arg2Name = "",
+            [CallerArgumentExpression(nameof(arg3))] string arg3Name = "",
+            [CallerArgumentExpression(nameof(arg4))] string arg4Name = "",
+            [CallerArgumentExpression(nameof(arg5))] string arg5Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name},
+                new() {Arg = arg2, Name = arg2Name},
+                new() {Arg = arg3, Name = arg3Name},
+                new() {Arg = arg4, Name = arg4Name},
+                new() {Arg = arg5, Name = arg5Name}
+            ];
+
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        public static void CheckNullWithException(
+            object? arg1,
+            object? arg2,
+            object? arg3,
+            object? arg4,
+            object? arg5,
+            object? arg6,
+            [CallerArgumentExpression(nameof(arg1))] string arg1Name = "",
+            [CallerArgumentExpression(nameof(arg2))] string arg2Name = "",
+            [CallerArgumentExpression(nameof(arg3))] string arg3Name = "",
+            [CallerArgumentExpression(nameof(arg4))] string arg4Name = "",
+            [CallerArgumentExpression(nameof(arg5))] string arg5Name = "",
+            [CallerArgumentExpression(nameof(arg6))] string arg6Name = "")
+        {
+            ArgInfo[] argArray =
+            [
+                new() {Arg = arg1, Name = arg1Name},
+                new() {Arg = arg2, Name = arg2Name},
+                new() {Arg = arg3, Name = arg3Name},
+                new() {Arg = arg4, Name = arg4Name},
+                new() {Arg = arg5, Name = arg5Name},
+                new() {Arg = arg6, Name = arg6Name}
+            ];
+
+            CkFunctions.InternalCheckNullWithException(argArray);
+        }
+
+        #endregion 分参数名抛出异常
 
         /// <summary>
         /// [检查函数]检查集合中是否有空值,有空值时抛出异常
@@ -82,7 +216,7 @@ namespace CkTools.FP
         /// <summary>
         /// 判断集合是否为空或长度为0
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="array"></param>
         /// <returns></returns>
         public static bool IsNullOrEmpty(IEnumerable? array)
         {

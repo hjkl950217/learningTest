@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CkTools.FP
 {
@@ -32,6 +33,13 @@ namespace CkTools.FP
                 };
         }
 
+        /// <summary>
+        /// 循环,返回一个循环处理对象的函数
+        /// </summary>
+        /// <value>
+        /// <para>函数1：处理函数，针对单个对象</para>
+        /// <para>函数2：判断函数,返回true时才会处理对象</para>
+        /// </value>
         public static Func<
             Func<T?, bool>,
             Action<IEnumerable<T?>?>> Foreach<T>(Action<T?> projessObj)
@@ -65,6 +73,48 @@ namespace CkTools.FP
                      {
                          projessObj(item);
                      }
+                 }
+             };
+        }
+
+        /// <summary>
+        /// 循环,返回一个循环处理对象的函数
+        /// </summary>
+        /// <value>
+        /// <para>函数1：处理函数，针对所有对象</para>
+        /// <para>函数2：过滤函数,返回true时才会筛选出来处理</para>
+        /// </value>
+        public static Func<
+            Func<T?, bool>,
+            Action<IEnumerable<T?>?>> ForeachEnd<T>(Action<IEnumerable<T?>> projessObj)
+        {
+            return judge =>
+             valueArray =>
+             {
+                 #region 异常检测
+
+                 if(judge == null)
+                 {
+                     throw new ArgumentNullException(nameof(judge));
+                 }
+
+                 if(projessObj == null)
+                 {
+                     throw new ArgumentNullException(nameof(projessObj));
+                 }
+
+                 if(valueArray == null)
+                 {
+                     throw new ArgumentNullException(nameof(valueArray));
+                 }
+
+                 #endregion 异常检测
+
+                 IEnumerable<T?> filterResult = valueArray.Where(judge);
+
+                 if(filterResult.Any())
+                 {
+                     projessObj(filterResult);
                  }
              };
         }
