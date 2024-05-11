@@ -1,9 +1,9 @@
 ﻿#pragma warning disable CS8602 // 解引用可能出现空引用。
 
 using System;
+using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
-using CkTools.FP.Extensions.ObjectExtensions;
 
 namespace CkTools.FP
 {

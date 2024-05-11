@@ -349,6 +349,19 @@ namespace CkTools.FP.Executer
         {
             CkFunctions.CheckNullWithException(executer);
             executer.IsEnd = false;
+
+            return executer;
+        }
+
+        /// <summary>
+        /// 指定管道忽略之前的状态，继续执行
+        /// </summary>
+        /// <param name="executer"></param>
+        /// <returns></returns>
+        public static ActionExecuter Continue(
+            this ActionExecuter executer)
+        {
+            executer.IsEnd = false;
             return executer;
         }
 

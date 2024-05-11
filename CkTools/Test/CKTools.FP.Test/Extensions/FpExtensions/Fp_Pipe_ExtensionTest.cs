@@ -14,7 +14,7 @@ namespace CKTools.FP.Test
             //准备
             //(string->void)->(string->void)->(string->void) => (string->void)
             string str = "1";
-            var result = strToVoid
+            Func<string, string> result = strToVoid
              .Pipe(t => str = t)
              .Pipe(strToVoid);
 
@@ -31,7 +31,7 @@ namespace CKTools.FP.Test
             //准备
             //(void->int)->(int->void)->(int->void)) => (void->int)
             int num = 0;
-            var result = 10.ToFunc()
+            Func<int> result = 10.ToFunc()
                 .Pipe(t => num = t + num)
                 .Pipe(t => num = t + num)
                 .Pipe(t => num = t + num);

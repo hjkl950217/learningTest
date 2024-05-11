@@ -2,6 +2,7 @@
 using CkTools.FP;
 using NSubstitute;
 using Xunit;
+using static CkTools.FP.CkFunctions;
 
 namespace CKTools.FP.Test
 {
@@ -21,7 +22,7 @@ namespace CKTools.FP.Test
             Action result = CkFunctions.If(
                 actionInterface.Test00,
                 actionInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result();
 
@@ -40,7 +41,7 @@ namespace CKTools.FP.Test
             Action<string> result = CkFunctions.If<string>(
                 actionInterface.Test1,
                 actionInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -60,7 +61,7 @@ namespace CKTools.FP.Test
             Action<string, string> result = CkFunctions.If<string, string>(
                 actionInterface.Test2,
                 actionInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", "b");
 
@@ -84,7 +85,7 @@ namespace CKTools.FP.Test
             Action<string> result = CkFunctions.If<string>(
                 actionInterface.Test0,
                 actionInterface.Test1,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -104,7 +105,7 @@ namespace CKTools.FP.Test
             Action<string> result = CkFunctions.If<string>(
                 actionInterface.Test1111,
                 actionInterface.Test1,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -124,7 +125,7 @@ namespace CKTools.FP.Test
             Action<string, string> result = CkFunctions.If<string, string>(
                 actionInterface.Test2,
                 actionInterface.Test1,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", "b");
 
@@ -148,7 +149,7 @@ namespace CKTools.FP.Test
             Action<string, string> result = CkFunctions.If<string, string>(
                 actionInterface.Test0,
                 actionInterface.Test2,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", "b");
 
@@ -168,7 +169,7 @@ namespace CKTools.FP.Test
             Action<string, string> result = CkFunctions.If<string, string>(
                 actionInterface.Test1,
                 actionInterface.Test2,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", "b");
 
@@ -188,7 +189,7 @@ namespace CKTools.FP.Test
             Action<string, int> result = CkFunctions.If<string, int>(
                 actionInterface.Test222,
                 actionInterface.Test22,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 
@@ -216,7 +217,7 @@ namespace CKTools.FP.Test
             Func<int> result = CkFunctions.If(
                 funcInterface.Test00,
                 funcInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result();
 
@@ -236,7 +237,7 @@ namespace CKTools.FP.Test
             Func<string, int> result = CkFunctions.If<string, int>(
                 funcInterface.Test11,
                 funcInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -256,7 +257,7 @@ namespace CKTools.FP.Test
             Func<string, int, int> result = CkFunctions.If<string, int, int>(
                 funcInterface.Test22,
                 funcInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 
@@ -280,7 +281,7 @@ namespace CKTools.FP.Test
             Func<string, int> result = CkFunctions.If<string, int>(
                 funcInterface.Test11,
                 funcInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -300,7 +301,7 @@ namespace CKTools.FP.Test
             Func<string, int> result = CkFunctions.If<string, int>(
                 funcInterface.Test11,
                 funcInterface.Test0,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a");
 
@@ -320,7 +321,7 @@ namespace CKTools.FP.Test
             Func<string, int, double> result = CkFunctions.If<string, int, double>(
                 funcInterface.Test2,
                 funcInterface.Test11111,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 
@@ -344,7 +345,7 @@ namespace CKTools.FP.Test
             Func<string, int, double> result = CkFunctions.If<string, int, double>(
                 funcInterface.Test000,
                 funcInterface.Test2,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 
@@ -363,7 +364,7 @@ namespace CKTools.FP.Test
             Func<string, int, double> result = CkFunctions.If<string, int, double>(
                 funcInterface.Test11111,
                 funcInterface.Test2,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 
@@ -382,7 +383,7 @@ namespace CKTools.FP.Test
             Func<string, int, double> result = CkFunctions.If<string, int, double>(
                 funcInterface.Test222,
                 funcInterface.Test2,
-                CkFunctions.False);
+                FpConst.False);
 
             result("a", 1);
 

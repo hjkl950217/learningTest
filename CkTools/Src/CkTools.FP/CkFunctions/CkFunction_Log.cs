@@ -26,6 +26,7 @@ namespace CkTools.FP
         /// </summary>
         public static void LogToConsole(string msg = "")
         {
+            Action<Func<string>> aaa = CkFunctions.Log(Console.WriteLine)(CkFunctions.DefaultLogFormat);
             CkFunctions.Log(Console.WriteLine)(CkFunctions.DefaultLogFormat)(() => msg);
         }
 
