@@ -15,25 +15,26 @@ if (Test-Path $repo_name) {
   git pull
 } else {
   # 如果不存在，克隆源仓库到本地
-  git clone $source_repo $repo_name
+  git clone $target_repo $repo_name
   # 进入仓库目录
   Set-Location $repo_name
 }
 
-# 添加目标仓库为远程仓库
-git remote add gitee $target_repo
+# 添加源仓库为远程仓库
+git remote add github $source_repo
 
-# 获取目标仓库的数据
-git fetch gitee
+# 获取源仓库的数据
+git fetch github
 
-# 切换到源分支
-git checkout $source_branch
-
-# 将目标仓库的更改合并到当前分支
-#git merge gitee/$target_branch --allow-unrelated-histories
+# 将源仓库的更改合并到当前分支
+git merge github/$source_branch --allow-unrelated-histories
+# 所有冲突使用远端
+git checkout --theirs *
+git add .
+git commit -m "合并"
 
 # 将更改强制推送到目标仓库
-git push gitee “$source_branch`:$target_branch” --force
+git push origin $target_branch --force
 
 # 退出仓库文件夹
 cd ..
