@@ -16,5 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CkTools.Abstraction\CkTools.Abstraction.csproj" />
+    <ProjectReference Include="..\CkTools.FP\CkTools.FP.csproj" />
+
   </ItemGroup>
 </Project>

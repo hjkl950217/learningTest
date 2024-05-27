@@ -3,7 +3,7 @@
     /// <summary>
     /// 扩展出一些操作符，用于不能使用新操作符的情况
     /// </summary>
-    public static class SdkExtension
+    public static class OperatorExtensions
     {
         /// <summary>
         /// 通用获取值的方式

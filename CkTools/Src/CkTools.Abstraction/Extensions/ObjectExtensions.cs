@@ -8,7 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using CkTools.Abstraction.ConstAndEnum;
 using CkTools.Abstraction.Serialization;
+using Newtonsoft.Json;
 
 namespace System
 {
@@ -250,6 +252,146 @@ namespace System
 
         #endregion IsNotNull and IsNotNullOrEmpty
 
+        #region To系列
+
+        #region Tojson
+
+        //针对某些时候引用了库却没有引用json.net的情况
+        public static string ToJsonExt<T>(this T obj)
+        {
+            return obj.ToJsonExt(null);
+        }
+
+        /// <summary>
+        ///  转换成json(利于查看调试的格式设置)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        ///  <param name="setting"></param>
+        /// <returns>  </returns>
+        public static string ToJsonExt<T>(this T obj, JsonSerializerSettings? setting = null)
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            //序列化并返回
+            setting ??= JsonSerializerSettingConst.DefaultSetting;
+            return JsonConvert.SerializeObject(obj, setting);
+        }
+
+        /// <summary>
+        ///  转换成json(利于查看调试的格式设置)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        ///  <param name="configAction"></param>
+        /// <returns>  </returns>
+        public static string ToJsonExt<T>(this T obj, Action<JsonSerializerSettings> configAction)
+            where T : class
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            //序列化并返回
+            JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateDefaultSetting();
+            configAction?.Invoke(settings);
+
+            return ToJsonExt<T>(obj, settings);
+        }
+
+        /// <summary>
+        /// 使用指定类型序列化成json字符串(利于查看调试的格式设置)
+        /// <para>如果属性名对不上 不会报错。规则参考json与实体的转换规则</para>
+        /// </summary>
+        /// <param name="obj"> </param>
+        /// <param name="type">指定类型</param>
+        /// <returns>Json format string</returns>
+        public static string ToJsonExt(this object obj, Type type)
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            //利用 转成json字符串又转回成对象的方式   替换掉对象中的类型信息
+            object? tempObj = JsonConvert.DeserializeObject(
+                  obj.ToJsonExt(),
+                  type,
+                  JsonSerializerSettingConst.DefaultSetting);
+
+            //序列化并返回
+            return JsonConvert.SerializeObject(tempObj, JsonSerializerSettingConst.DefaultSetting);
+        }
+
+        /// <summary>
+        /// 获取json字符串，默认使用<see cref="JsonSerializerSettingConst.StorageSetting"/>设置来序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        public static string ToJsonStorageExt<T>(this T obj, JsonSerializerSettings? settings = null)
+            where T : class
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            return JsonConvert.SerializeObject(obj, settings ?? JsonSerializerSettingConst.StorageSetting);
+        }
+
+        /// <summary>
+        /// 转换成json(利于存储的格式设置)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="configAction"></param>
+        /// <returns></returns>
+        public static string ToJsonStorageExt<T>(this T obj, Action<JsonSerializerSettings> configAction)
+            where T : class
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateSettingForStorage();
+            configAction?.Invoke(settings);
+
+            return ToJsonExt<T>(obj, settings);
+        }
+
+        /// <summary>
+        /// 使用指定类型转换成json(利于存储的格式设置)
+        /// <para>如果属性名对不上 不会报错。规则参考json与实体的转换规则</para>
+        /// </summary>
+        /// <param name="obj"> </param>
+        /// <param name="type">指定类型</param>
+        /// <returns>Json format string</returns>
+        public static string ToJsonStorageExt(this object obj, Type type)
+        {
+            if(obj == null)
+            {
+                return string.Empty;
+            }
+
+            //利用 转成json字符串又转回成对象的方式   替换掉对象中的类型信息
+            object? tempObj = JsonConvert.DeserializeObject(
+                  obj.ToJsonExt(),
+                  type,
+                  JsonSerializerSettingConst.StorageSetting);
+
+            //序列化并返回
+            return JsonConvert.SerializeObject(tempObj, JsonSerializerSettingConst.StorageSetting);
+        }
+
+        #endregion Tojson
+
         /// <summary>
         /// 转换为<see cref="Task"/>类型
         /// </summary>
@@ -291,6 +433,170 @@ namespace System
             return xmlSeria.SerializeToString(obj);
         }
 
+        #endregion To系列
+
+        #region AsTo系列
+
+        /// <summary>
+        /// 转换成单元素数组(用于包装结构)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static T[] AsToArray<T>(this T source)
+        {
+            return new T[] { source };
+        }
+
+        /// <summary>
+        /// 转换成<see cref="IEnumerable{T}"/>(用于包装结构)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> AsToEnumerable<T>(this T source)
+        {
+            yield return source;
+        }
+
+        #endregion AsTo系列
+
+        #region 基础类型与Object之间的转换
+
+        public static int ToInt32<T>(this T str)
+            where T : class
+        {
+            return str.BaseConvert(System.Convert.ToInt32);
+        }
+
+        public static int ToInt32OrDefault<T>(this T str, int defaultValue = 0)
+             where T : class
+        {
+            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
+        }
+
+        public static bool ToBool<T>(this T str)
+              where T : class
+        {
+            return str.BaseConvert(System.Convert.ToBoolean);
+        }
+
+        public static bool ToBoolOrDefault<T>(this T str, bool defaultValue = false)
+              where T : class
+        {
+            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
+        }
+
+        public static decimal ToDecimal<T>(this T str)
+              where T : class
+        {
+            return str.BaseConvert(System.Convert.ToDecimal);
+        }
+
+        public static decimal ToDecimalOrDefault<T>(
+            this T str,
+            decimal defaultValue = 0.00M) where T : class
+        {
+            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
+        }
+
+        public static double ToDouble<T>(this T str)
+              where T : class
+        {
+            return str.BaseConvert(System.Convert.ToDouble);
+        }
+
+        public static double ToDoubleOrDefault<T>(
+            this T str,
+            double defaultValue = 0.00) where T : class
+        {
+            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
+        }
+
+        #endregion 基础类型与Object之间的转换
+
+        #region 清理导航属性
+
+        public static ConcurrentDictionary<Type, object> AssignFuncDic = new();
+
+        /// <summary>
+        /// 清理导航属性(所有导航属性设置为null)
+        /// </summary>
+        /// <typeparam name="TDbEntity"></typeparam>
+        /// <param name="dbEntity"></param>
+        /// <returns></returns>
+        public static TDbEntity? CleanNavigationProperty<TDbEntity>(this TDbEntity dbEntity)
+            where TDbEntity : class
+        {
+            dbEntity.CheckNullWithException(nameof(dbEntity));
+
+            Type entityTypeInfo = typeof(TDbEntity);
+            Func<TDbEntity, TDbEntity>? assignFunc = AssignFuncDic
+                ?.GetOrAdd(entityTypeInfo, BuildAssignFunc().Compile())
+                as Func<TDbEntity, TDbEntity>;
+
+            return assignFunc?.Invoke(dbEntity);
+
+            LambdaExpression BuildAssignFunc()
+            {
+                Type entityTypeInfo = typeof(TDbEntity);
+                Type stringTypeInfo = typeof(string);
+                ParameterExpression paramExpression = Expression.Parameter(entityTypeInfo, "t");//准备参数t
+
+                //获取要赋值的属性
+                PropertyInfo[] propertyInfos = entityTypeInfo.GetProperties()
+                     .Where(t => t.CanWrite)//可写
+                     .Where(t => !t.PropertyType.IsValueType)//不是值类型 导航属性均为类或数组
+                     .Where(t => t.PropertyType != stringTypeInfo)//从引用类型中排除掉string
+                     .Where(t => Nullable.GetUnderlyingType(t.PropertyType) == null)//排除可空类型(可空类型不用管)
+                     .ToArray();
+
+                //准备return标签
+                LabelTarget returnTarget = Expression.Label(entityTypeInfo);
+                GotoExpression returnExpression = Expression.Return(returnTarget, paramExpression, entityTypeInfo);
+                LabelExpression returnLabel = Expression.Label(returnTarget, Expression.Constant(null, entityTypeInfo));
+
+                //生成赋值表达式
+                Expression[] assignExps = propertyInfos
+                    .Select(t =>
+                    {
+                        MemberExpression propExp = Expression.Property(paramExpression, t);//获取属性访问表达式 t.xx
+                        return Expression.Assign(propExp, Expression.Constant(null, t.PropertyType)) as Expression;//赋值 t.xx=null
+                    })
+                    .Concat(new LabelExpression[] { returnLabel })//return t;
+                    .ToArray();
+                ;
+
+                //打包
+                BlockExpression body = Expression.Block(assignExps);
+                Expression<Func<TDbEntity, TDbEntity>> funcExp = Expression.Lambda<Func<TDbEntity, TDbEntity>>(body, paramExpression);
+
+                return funcExp;
+            }
+        }
+
+        /// <summary>
+        /// 清理导航属性(所有导航属性设置为null)
+        /// </summary>
+        /// <typeparam name="TDbEntity"></typeparam>
+        /// <param name="dbEntities"></param>
+        /// <returns></returns>
+        public static IEnumerable<TDbEntity?> BatchCleanNavigationProperty<TDbEntity>(this IEnumerable<TDbEntity?> dbEntities)
+             where TDbEntity : class
+        {
+            dbEntities.CheckNullOrEmptyWithException(nameof(dbEntities));
+
+            dbEntities = dbEntities
+                .Select(t =>
+                {
+                    return t?.CleanNavigationProperty<TDbEntity>();
+                });
+
+            return dbEntities;
+        }
+
+        #endregion 清理导航属性
+
         /// <summary>
         /// 判断对象是否是指定类型
         /// </summary>
@@ -302,10 +608,8 @@ namespace System
         /// <para></para>
         /// 如果是继承关系，为false。 如果obect1为null，也不会影响判断
         /// </returns>
-#pragma warning disable IDE0060 // 删除未使用的参数
-
         public static bool EqualsType<T>(this T object1, Type targetType)
-#pragma warning restore IDE0060 // 删除未使用的参数
+
         {
             return typeof(T).Equals(targetType);
         }
@@ -373,150 +677,11 @@ namespace System
             }
         }
 
-        #region 基础类型与Object之间的转换
-
-        public static int ToInt32<T>(this T str)
-            where T : class
+        public static T? DeepCopy<T>(this T obj)
+    where T : class
         {
-            return str.BaseConvert(System.Convert.ToInt32);
+            string outPut = obj.ToJsonExt();
+            return outPut.ToObjectExt<T>();
         }
-
-        public static int ToInt32OrDefault<T>(this T str, int defaultValue = 0)
-             where T : class
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToInt32, defaultValue);
-        }
-
-        public static bool ToBool<T>(this T str)
-              where T : class
-        {
-            return str.BaseConvert(System.Convert.ToBoolean);
-        }
-
-        public static bool ToBoolOrDefault<T>(this T str, bool defaultValue = false)
-              where T : class
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToBoolean, defaultValue);
-        }
-
-        public static decimal ToDecimal<T>(this T str)
-              where T : class
-        {
-            return str.BaseConvert(System.Convert.ToDecimal);
-        }
-
-        public static decimal ToDecimalOrDefault<T>(
-            this T str,
-            decimal defaultValue = 0.00M) where T : class
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToDecimal, defaultValue);
-        }
-
-        public static double ToDouble<T>(this T str)
-              where T : class
-        {
-            return str.BaseConvert(System.Convert.ToDouble);
-        }
-
-        public static double ToDoubleOrDefault<T>(
-            this T str,
-            double defaultValue = 0.00) where T : class
-        {
-            return str.BaseConvertOrDefalut(System.Convert.ToDouble, defaultValue);
-        }
-
-        #endregion 基础类型与Object之间的转换
-
-        /// <summary>
-        /// 转换成单元素数组(用于包装结构)
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static T[] AsToArray<T>(this T source)
-        {
-            return new T[] { source };
-        }
-
-        /// <summary>
-        /// 转换成<see cref="IEnumerable{T}"/>(用于包装结构)
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static IEnumerable<T> AsToEnumerable<T>(this T source)
-        {
-            yield return source;
-        }
-
-        #region 清理导航属性
-
-        public static ConcurrentDictionary<Type, object> AssignFuncDic = new();
-
-        public static TDbEntity? CleanNavigationProperty<TDbEntity>(this TDbEntity dbEntity)
-            where TDbEntity : class
-        {
-            dbEntity.CheckNullWithException(nameof(dbEntity));
-
-            Type entityTypeInfo = typeof(TDbEntity);
-            Func<TDbEntity, TDbEntity>? assignFunc = AssignFuncDic
-                ?.GetOrAdd(entityTypeInfo, BuildAssignFunc().Compile())
-                as Func<TDbEntity, TDbEntity>;
-
-            return assignFunc?.Invoke(dbEntity);
-
-            LambdaExpression BuildAssignFunc()
-            {
-                Type entityTypeInfo = typeof(TDbEntity);
-                Type stringTypeInfo = typeof(string);
-                ParameterExpression paramExpression = Expression.Parameter(entityTypeInfo, "t");//准备参数t
-
-                //获取要赋值的属性
-                PropertyInfo[] propertyInfos = entityTypeInfo.GetProperties()
-                     .Where(t => t.CanWrite
-                         && !t.PropertyType.IsValueType
-                         && t.PropertyType != stringTypeInfo && Nullable.GetUnderlyingType(t.PropertyType) == null
-                         )
-                     .ToArray();
-
-                //准备return标签
-                LabelTarget returnTarget = Expression.Label(entityTypeInfo);
-                GotoExpression returnExpression = Expression.Return(returnTarget, paramExpression, entityTypeInfo);
-                LabelExpression returnLabel = Expression.Label(returnTarget, Expression.Constant(null, entityTypeInfo));
-
-                //生成赋值表达式
-                Expression[] assignExps = propertyInfos
-                    .Select(t =>
-                    {
-                        MemberExpression propExp = Expression.Property(paramExpression, t);//获取属性访问表达式 t.xx
-                        return Expression.Assign(propExp, Expression.Constant(null, t.PropertyType)) as Expression;//赋值 t.xx=null
-                    })
-                    .Concat(new LabelExpression[] { returnLabel })//return t;
-                    .ToArray();
-                ;
-
-                //打包
-                BlockExpression body = Expression.Block(assignExps);
-                Expression<Func<TDbEntity, TDbEntity>> funcExp = Expression.Lambda<Func<TDbEntity, TDbEntity>>(body, paramExpression);
-
-                return funcExp;
-            }
-        }
-
-        public static IEnumerable<TDbEntity?> BatchCleanNavigationProperty<TDbEntity>(this IEnumerable<TDbEntity?> dbEntities)
-             where TDbEntity : class
-        {
-            dbEntities.CheckNullOrEmptyWithException(nameof(dbEntities));
-
-            dbEntities = dbEntities
-                .Select(t =>
-                {
-                    return t?.CleanNavigationProperty<TDbEntity>();
-                });
-
-            return dbEntities;
-        }
-
-        #endregion 清理导航属性
     }
 }
