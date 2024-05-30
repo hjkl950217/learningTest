@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using Xunit;
 
-namespace CKTools.BaseExtensions.Test.Extensions.BaseType
+namespace CkTools.Abstraction.Test.Extensions.BaseType
 {
     public class StringEntensionTest
     {

@@ -1,7 +1,7 @@
 ﻿using CkTools.Attribute;
 using System;
 
-namespace CKTools.BaseExtensions.Test.Helper.EnumHelper
+namespace CkTools.Abstraction.Test.Helper.EnumHelper
 {
     internal enum TestEnumAttr
     {

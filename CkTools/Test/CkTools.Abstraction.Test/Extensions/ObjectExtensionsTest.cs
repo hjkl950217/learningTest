@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Nova.LogicChain.Test.Extensions
+namespace CkTools.Abstraction.Test.Extensions
 {
     public class ObjectExtensionsTest
     {

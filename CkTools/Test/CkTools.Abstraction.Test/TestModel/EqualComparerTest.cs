@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CKTools.BaseExtensions.Test.Extensions.TestModel;
+using CkTools.Abstraction.Comparer;
 using Xunit;
 
-namespace CkTools.Test.Extensions.TestModel
+namespace CkTools.Abstraction.Test.TestModel
 {
     public class EqualComparerTest
     {

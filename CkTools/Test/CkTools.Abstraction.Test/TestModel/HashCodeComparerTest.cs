@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CkTools.Abstraction.Comparer;
 using Xunit;
 
-namespace CKTools.BaseExtensions.Test.Extensions.TestModel
+namespace CkTools.Abstraction.Test.TestModel
 {
     public class HashCodeComparerTest
     {

@@ -1,12 +1,12 @@
-﻿using CkTools.Attribute;
-using CkTools.Helper;
-using CKTools.BaseExtensions.Test.Helper.EnumHelper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CkTools.Abstraction.Test.Helper.EnumHelper;
+using CkTools.Attribute;
+using CkTools.Helper;
 using Xunit;
 
-namespace CKTools.BaseExtensions.Test.Extensions.BaseType
+namespace CkTools.Abstraction.Test.Extensions.BaseType
 {
     public class EnumExtensionTest
     {
@@ -77,7 +77,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Tc_GetAttribute_Null()
             {
-                Attribute result = TestEnumAttr.Default.GetAttribute<FlagsAttribute>();
+                FlagsAttribute? result = TestEnumAttr.Default.GetAttribute<FlagsAttribute>();
 
                 Assert.Null(result);
             }

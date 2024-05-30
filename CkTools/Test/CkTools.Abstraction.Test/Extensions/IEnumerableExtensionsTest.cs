@@ -5,11 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CkTools.Abstraction.Test.TestModel;
 using CkTools.Helper;
-using CKTools.BaseExtensions.Test.Extensions.TestModel;
 using Xunit;
 
-namespace CKTools.BaseExtensions.Test.Extensions.BaseType
+namespace CkTools.Abstraction.Test.Extensions.BaseType
 {
     public class IEnumerableExtensionsTest
     {
@@ -38,7 +38,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => testData.Distinct(func));
@@ -50,7 +50,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null2()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, int> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() => testData.DistinctBy(func));
@@ -88,7 +88,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Distinct_NoRepeat()
             {
-                List<UserInfo> testData = new List<UserInfo>();
+                List<UserInfo> testData = new();
                 testData.AddRange(ComparerTestData.TestListC);
                 testData.AddRange(ComparerTestData.TestListD);
                 Func<UserInfo, int>? func = MockHelper.HashCodeFunc;
@@ -124,7 +124,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
@@ -138,7 +138,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null2()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, int> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
@@ -215,7 +215,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, SellerInfo, bool> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
@@ -229,7 +229,7 @@ namespace CKTools.BaseExtensions.Test.Extensions.BaseType
             [Fact]
             public void Func_Null2()
             {
-                List<SellerInfo> testData = new List<SellerInfo>();
+                List<SellerInfo> testData = new();
                 Func<SellerInfo, int> func = null;
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>

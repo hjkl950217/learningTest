@@ -3,7 +3,7 @@ using Xunit;
 
 #pragma warning disable CS8625 // 无法将 null 文本转换为不可为 null 的引用类型。
 
-namespace CKTools.BaseExtensions.Test.Extensions
+namespace CkTools.Abstraction.Test.Extensions
 {
     public class OperatorExtensionsTest
     {
@@ -20,7 +20,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void Two_Work_WithNoException()
             {
-                TestEntity testEntity = new TestEntity();
+                TestEntity testEntity = new();
                 int hashCode = testEntity.GetHashCode();
                 TestEntity? result = testEntity.GetDataOrDefault(getData: t => t, defaultValueFunc: () => new TestEntity());
 
@@ -55,7 +55,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void Two_GetDataIsNull_WithException()
             {
-                TestEntity testEntity = new TestEntity();
+                TestEntity testEntity = new();
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {
@@ -68,7 +68,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void Two_DefaultValueFunc_WithException()
             {
-                TestEntity testEntity = new TestEntity();
+                TestEntity testEntity = new();
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {
@@ -92,7 +92,7 @@ namespace CKTools.BaseExtensions.Test.Extensions
             [Fact]
             public void One_GetDataIsNull_WithException()
             {
-                TestEntity testEntity = new TestEntity();
+                TestEntity testEntity = new();
 
                 ArgumentNullException? ex = Assert.Throws<ArgumentNullException>(() =>
                 {

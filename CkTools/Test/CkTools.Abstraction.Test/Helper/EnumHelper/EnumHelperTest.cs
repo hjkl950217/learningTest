@@ -1,7 +1,8 @@
 ﻿using System;
+using CkTools.Abstraction.Model;
 using Xunit;
 
-namespace CKTools.BaseExtensions.Test.Helper.EnumHelper
+namespace CkTools.Abstraction.Test.Helper.EnumHelper
 {
     public class EnumHelperTest
     {
@@ -10,7 +11,7 @@ namespace CKTools.BaseExtensions.Test.Helper.EnumHelper
             [Fact]
             public void GetAllEnumAttributeData_NoError()
             {
-                CkTools.BaseExtensions.Model.EnumValueData[]? result = CkTools.Helper.EnumHelper.Instance.GetOrAddEnumCache(typeof(TestEnumMps)).EnumValueDataArray;
+                EnumValueData[]? result = CkTools.Helper.EnumHelper.Instance.GetOrAddEnumCache(typeof(TestEnumMps)).EnumValueDataArray;
 
                 Assert.NotNull(result);
                 Assert.NotEmpty(result);

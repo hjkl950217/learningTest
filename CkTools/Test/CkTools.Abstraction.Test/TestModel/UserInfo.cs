@@ -1,4 +1,4 @@
-﻿namespace CKTools.BaseExtensions.Test.Extensions.TestModel
+﻿namespace CkTools.Abstraction.Test.TestModel
 {
     /// <summary>
     /// 此对象仅做为UT使用
