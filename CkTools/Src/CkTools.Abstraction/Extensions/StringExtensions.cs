@@ -333,7 +333,7 @@ namespace System
         /// <summary>
         /// 标准时间格式中包含的符号(用于和long区分使用)
         /// </summary>
-        private static readonly string[] timeSysmbols = new string[] { ":", "+", "T", "Z", "-", "/" };
+        private static readonly string[] timeSysmbols = [":", "+", "T", "Z", "-", "/"];
 
         /// <summary>
         /// 执行转换,会判断格式
@@ -585,7 +585,7 @@ namespace System
         /// <param name="separator"></param>
         /// <returns></returns>
         public static string JoinString(
-            this string[] source,
+            this IEnumerable<string> source,
             string separator = ",")
         {
             return source.JoinString(t => t, separator);
