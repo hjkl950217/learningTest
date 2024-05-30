@@ -14,7 +14,7 @@ namespace CkTools.Abstraction.ConstAndEnum
         /// 默认json序列化设置<para></para>
         /// 包括空值、缩进，所以更适合调试、开发。
         /// </summary>
-        public static readonly JsonSerializerSettings DefaultSetting = SetOrCreateDefaultSetting();
+        public static readonly JsonSerializerSettings DefaultSetting = JsonSerializerSettingConst.SetOrCreateSettingForDefault();
 
         /// <summary>
         /// json序列化设置,用于存储。<para></para>
@@ -28,7 +28,7 @@ namespace CkTools.Abstraction.ConstAndEnum
         /// </summary>
         /// <param name="settings">json配置对象</param>
         /// <returns></returns>
-        public static JsonSerializerSettings SetOrCreateDefaultSetting(JsonSerializerSettings settings = null)
+        public static JsonSerializerSettings SetOrCreateSettingForDefault(JsonSerializerSettings settings = null)
         {
             settings ??= new JsonSerializerSettings();
 
@@ -59,7 +59,7 @@ namespace CkTools.Abstraction.ConstAndEnum
         /// <returns></returns>
         public static JsonSerializerSettings SetOrCreateSettingForStorage(JsonSerializerSettings? settings = null)
         {
-            settings ??= SetOrCreateDefaultSetting(settings);
+            settings ??= JsonSerializerSettingConst.SetOrCreateSettingForDefault(settings);
 
             settings.NullValueHandling = NullValueHandling.Ignore;//忽略空值
             settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//忽略循环引用
