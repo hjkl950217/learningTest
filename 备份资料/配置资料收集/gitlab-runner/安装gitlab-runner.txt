@@ -9,7 +9,7 @@ yum install gitlab-ci-multi-runner -y
 
 3. 向GitLab-CI注册runner
 gitlab-ci-multi-runner register 
-地址和token在：http://code.gmpsoft.net:8000/groups/V5/-/settings/ci_cd 页面中获取
+地址和token在：http://code.gxp2.com/groups/V5/-/settings/ci_cd 页面中获取
 
 4. 添加runner执行权限
 sudo usermod -aG docker gitlab-runner

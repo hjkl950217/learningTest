@@ -1,6 +1,7 @@
 # 如果要在runner-executor中用docker in docker，比较可行的方案是:
 # 1. 修改配置文件，把2个docker 的文件挂载进去
 # 2. 镜像中要安装docker-cli
+# 配置地址：/etc/gitlab-runner/config.toml
 
 concurrent = 1
 check_interval = 0
