@@ -646,5 +646,38 @@ namespace System
                 return false;
             }
         }
+
+        /// <summary>
+        /// 判断字符串是否包含指定数组中的某个字符串的值
+        /// </summary>
+        /// <param name="str">要检查的字符串</param>
+        /// <param name="keys">指定字符串数组</param>
+        /// <returns>如果字符串以指定数组中的某个字符串开头，则返回true，否则返回false</returns>
+        public static bool ContainArray(this string str, params string[] keys)
+        {
+            return keys.Any(t => str.Contains(t));
+        }
+
+        /// <summary>
+        /// 判断字符串是否以指定数组中的某个字符串开头
+        /// </summary>
+        /// <param name="str">要检查的字符串</param>
+        /// <param name="keys">指定字符串数组</param>
+        /// <returns>如果字符串以指定数组中的某个字符串开头，则返回true，否则返回false</returns>
+        public static bool StartWithArray(this string str, params string[] keys)
+        {
+            return keys.Any(t => str.StartsWith(t));
+        }
+
+        /// <summary>
+        /// 判断字符串是否以指定的字符串数组中的任意一个字符串结尾
+        /// </summary>
+        /// <param name="str">要判断的字符串</param>
+        /// <param name="keys">指定的字符串数组</param>
+        /// <returns>如果字符串以指定的字符串数组中的任意一个字符串结尾，则返回true，否则返回false</returns>
+        public static bool EndWithArray(this string str, params string[] keys)
+        {
+            return keys.Any(t => str.EndsWith(t));
+        }
     }
 }
