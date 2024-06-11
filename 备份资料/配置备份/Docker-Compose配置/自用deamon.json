@@ -7,7 +7,12 @@
     "http://hub-mirror.c.163.com",
     "http://docker.mirrors.ustc.edu.cn",
 	"https://reg-mirror.qiniu.com/",
-	"https://dockerhub.azk8s.cn"
+	"https://dockerhub.azk8s.cn",
+	"https://registry.cn-hangzhou.aliyuncs.com",
+	"https://daocloud.io",
+	"https://registry.cn-chengdu.aliyuncs.com",
+	"https://dockerproxy.com",
+	"https://ghproxy.com"
   ],
   "insecure-registries": [
     "registry.docker-cn.com",
