@@ -5,9 +5,9 @@ using System.Linq;
 namespace System.Collections.Generic
 {
     /// <summary>
-    /// Dictionary扩展类
+    /// IDictionary扩展类
     /// </summary>
-    public static class DictionaryExtensions
+    public static class IDictionaryTExtensions
     {
         [return: MaybeNull]
         public static TValue GetOrDefault<TKey, TValue>(

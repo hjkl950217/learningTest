@@ -46,6 +46,7 @@ namespace CkTools.Helper
         /// <para><paramref name="typerPreJudger"/>:初步判断类型是否为需要的</para>
         /// <para><paramref name="typeInfoConvert"/>:指示如何从初步过滤的type信息中获得自己需要的信息</para>
         /// <para><paramref name="filter"/>:指示如何从初步过滤的type信息中获得自己需要的信息</para>
+        /// <para><paramref name="findTypeByAppDomain"/>:指示如何获取类信息</para>
         /// </summary>
         /// <typeparam name="TTypeInfo"></typeparam>
         /// <param name="typerPreJudger"></param>

@@ -32,10 +32,10 @@ namespace System
            Func<TSource, TResult> mappingFunction)
 #pragma warning restore S2436 // Classes and methods should not have too many generic parameters
         {
-            mapConfig.MapFrom<TResult>((src, d) => mappingFunction(src));
+            mapConfig.MapFrom<TResult>((src, dest) => mappingFunction(src));
 
             //只是帮包装方法，翻译如下：
-            // Func<TSource, TDestination, TResult> map = (src, d) => mappingFunction(src);
+            // Func<TSource, TDestination, TResult> map = (src, dest) => mappingFunction(src);
         }
 
 #pragma warning disable S2436 // 兼容代码，新版不使用ResolveUsing了，为避免升级库时大规模修改代码才写的

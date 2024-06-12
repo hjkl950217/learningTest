@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using Xunit;
 
-namespace Nova.LogicChain.Test.Extensions
+namespace CkTools.Abstraction.Test.Extensions
 {
     public class EnumerableExtensions
     {
