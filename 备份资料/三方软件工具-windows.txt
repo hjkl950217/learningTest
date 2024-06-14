@@ -17,3 +17,8 @@
 13. TrayS 电脑任务栏美化&状态监测软件，在任务栏实时显示网速/CPU/内存/温度等信息
 14. trafficmonitor TrafficMonitor是一款开源免费的 Windows 平台实时网速监控软件,可以在任务栏或桌面悬浮窗显示系统资源占用信息。
 15. Process Monitor   进程监视器，Process Monitor是一个免费的系统监视和故障排除工具,可以实时监视系统进程、线程、文件操作、注册表操作等
+
+
+工具地址
+amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
+qbittorrent 增强版：https://github.com/c0re100/qBittorrent-Enhanced-Edition

@@ -1,1 +1,0 @@
-1. ShellClash 支持openWrt和linux的 多协议支持，科学上网
