@@ -33,7 +33,7 @@
 32. System.Linq.Dynamic.Core 可以在IQueryable上执行使用字符串的查询。
 33. Valit - Valit是对.NET Core的简单验证库，减少if的使用。
 34. EFCore.BulkExtensions EF的批量操作库
-35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集,主要针对动态构建where表达式
+35. LINQKit LINQKit是LINQ对SQL和Entity Framework的免费扩展集,主要针对动态构建where表达式，支持and or
 36. Elasticsearch.Net 官方推荐的 Elasticsearch .NET客户端
 37. SearchExtensions  IQueryable接口的高级搜索功能，例如Entity Framework查询。
 36. BinarySerializer - 二进制序列化库，用于控制字节和位级别的数据格式。
@@ -76,6 +76,7 @@
 73. TouchSocket TouchSocket是.Net(包括 C# 、VB.Net、F#)的一个整合性的socket网络通信框架。包含了 tcp、udp、ssl等一系列的通信模块。一键式解决 tcp 黏分包问题。
 74. SINI 一个简单的ini读写类库，但支持嵌套、换行
 75. certes  一个ACME客户端，可以向Let's Encrypt申请证书
+76. Hei.Hystrix  NetHystrix 2个polly库，封装成特性，可以熔断、降级、重试
 
 
 --工具
