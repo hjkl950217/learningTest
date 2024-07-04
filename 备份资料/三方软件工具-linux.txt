@@ -2,3 +2,4 @@
 2. htop		top的替代品，更好的查看当前电脑的资源占用情况
 3. proxychains  能在linux上代理。 proxychains4 xxx  xxx就是自己的命令
 4. ShellClash 支持openWrt和linux的clash客户端 多协议支持，科学上网
+5. wondershaper 能针对网卡限速，但识别不了虚拟网卡
