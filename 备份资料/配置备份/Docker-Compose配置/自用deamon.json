@@ -33,11 +33,17 @@
 //阿里 registry.cn-hangzhou.aliyuncs.com/library/{nginx:latest}
 //daocloud daocloud.io/library/{nginx:latest}
 //aws public.ecr.aws/docker/library/{nginx:latest}
+//1Panel docker.1panel.live/{nginx:latest}
+//耗子面板 hub.rat.dev/{nginx:latest}
+//daocloud m.daocloud.io/{nginx:latest}
 
-//一些镜像源记录
+//一些镜像源
 //docker.io       docker.m.daocloud.io
 //gcr.io          gcr.m.daocloud.io
 //ghcr.io         ghcr.m.daocloud.io
 //k8s.gcr.io      k8s-gcr.m.daocloud.io
 //registry.k8s.io k8s.m.daocloud.io
 //quay.io         quay.m.daocloud.io
+
+//新仓库
+//github https://github.com/search?type=registrypackages&q={nginx}
