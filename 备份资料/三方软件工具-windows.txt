@@ -18,7 +18,7 @@
 14. trafficmonitor TrafficMonitor是一款开源免费的 Windows 平台实时网速监控软件,可以在任务栏或桌面悬浮窗显示系统资源占用信息。
 15. Process Monitor   进程监视器，Process Monitor是一个免费的系统监视和故障排除工具,可以实时监视系统进程、线程、文件操作、注册表操作等
 16. Directory Opus  完美代替windows资源管理器，不卡，能替换win+e
-
+17. whisperdesktop 免费开源的视频转字幕工具，使用开源模型
 
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
