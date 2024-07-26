@@ -1,5 +1,5 @@
 {
-  "Version": "7.8.0",
+  "Version": "7.9.0",
   "Styles": [
     {
       "Key": "Keyword",
@@ -63,18 +63,11 @@
     },
     {
       "Key": "parameter name",
-      "Bold": false
+      "Bold": false,
+      "ForegroundColor": "#EDCFAB"
     },
     {
       "Key": "type parameter name",
-      "Bold": false
-    },
-    {
-      "Key": "Formal Language Priority",
-      "Bold": false
-    },
-    {
-      "Key": "Identifier",
       "Bold": false
     },
     {
@@ -527,6 +520,14 @@
     },
     {
       "Key": "C#: Metadata symbol",
+      "Bold": false
+    },
+    {
+      "Key": "Formal Language Priority",
+      "Bold": false
+    },
+    {
+      "Key": "Identifier",
       "Bold": false
     },
     {

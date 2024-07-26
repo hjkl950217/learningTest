@@ -1,10 +1,12 @@
 {
-  "Version": "7.8.0",
-  "Features": "Default",
+  "Version": "7.9.0",
+  "Features": "SyntaxHighlight, WebSearch, WrapText, AutoSurround",
+  "SpecialHighlightOptions": "Default, SearchResult",
   "MarkerOptions": "LongMemberDeclaration",
   "QuickInfoOptions": "BaseTypeInheritance, None, InterfacesInheritance, Selection, Default",
   "SmartBarOptions": "ExpansionIncludeTrivia",
   "NaviBarOptions": "SyntaxDetail, SymbolToolTip, LineOfCode, Default",
+  "BuildOptions": "Default, BuildTimestamp, ShowOutputPaneAfterBuild",
   "Labels": [
     {
       "Label": "!",
@@ -151,18 +153,11 @@
     },
     {
       "Key": "parameter name",
-      "Bold": false
+      "Bold": false,
+      "ForegroundColor": "#EDCFAB"
     },
     {
       "Key": "type parameter name",
-      "Bold": false
-    },
-    {
-      "Key": "Formal Language Priority",
-      "Bold": false
-    },
-    {
-      "Key": "Identifier",
       "Bold": false
     },
     {
@@ -618,6 +613,14 @@
       "Bold": false
     },
     {
+      "Key": "Formal Language Priority",
+      "Bold": false
+    },
+    {
+      "Key": "Identifier",
+      "Bold": false
+    },
+    {
       "Key": "keyword - control",
       "Bold": false
     }
@@ -692,6 +695,8 @@
   ],
   "SymbolReferenceMarkerSettings": {
     "ReferenceMarkerColor": "#00FFFF",
-    "WriteMarkerColor": "#F0E68C"
-  }
+    "WriteMarkerColor": "#F0E68C",
+    "SymbolDefinitionColor": "#000000"
+  },
+  "SyntaxHighlightThemeFolder": "E:\\个人\\learningTest\\备份资料\\配置备份\\VS"
 }
