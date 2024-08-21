@@ -24,3 +24,12 @@
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
 qbittorrent 增强版：https://github.com/c0re100/qBittorrent-Enhanced-Edition
+
+
+
+远程控制工具
+【付费】raylink				远程控制
+【免费】parsec				远程控制
+【免费】皎月连+sunshine		内网穿透		sunshine官网：https://app.lizardbyte.dev/Sunshine/?lng=zh-CN
+‌【免费】月光串流（Moonlight）   局域网串流工具
+
