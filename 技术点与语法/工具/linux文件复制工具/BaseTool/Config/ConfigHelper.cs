@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace linux文件复制工具.Config
+namespace linux文件复制工具.BaseTool.Config
 {
     public static class ConfigHelper
     {
@@ -12,12 +12,12 @@ namespace linux文件复制工具.Config
             if(appSettings == null)
             {
                 // 如果配置文件不存在，则创建默认配置文件
-                if(!File.Exists(ConfigHelper.ConfigPath))
+                if(!File.Exists(ConfigPath))
                 {
-                    appSettings=new AppSettings();
+                    appSettings = new AppSettings();
                     appSettings.TryInitDefaultConfig();
                     string jsonContent = JsonConvert.SerializeObject(appSettings, Formatting.Indented);
-                    File.WriteAllText(ConfigHelper.ConfigPath, jsonContent);
+                    File.WriteAllText(ConfigPath, jsonContent);
                     return appSettings;
                 }
 

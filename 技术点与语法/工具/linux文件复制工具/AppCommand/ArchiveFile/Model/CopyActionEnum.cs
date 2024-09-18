@@ -1,4 +1,4 @@
-﻿namespace linux文件复制工具
+﻿namespace linux文件复制工具.ArchiveFile.Model
 {
     public enum CopyActionEnum
     {

@@ -1,4 +1,4 @@
-﻿namespace linux文件复制工具
+﻿namespace linux文件复制工具.BaseTool.LogHlper
 {
     public static class LogHelper
     {
@@ -22,7 +22,7 @@
 
             if(logWriter == null)
             {
-                LogHelper.CreateWriter(DateTime.Now);
+                CreateWriter(DateTime.Now);
                 return;
             }
             else if(logDate.Date != DateTime.Today)
@@ -31,7 +31,7 @@
                 logWriter.Dispose();
                 logWriter = null;
 
-                LogHelper.CreateWriter(logDate);
+                CreateWriter(logDate);
                 return;
             }
         }
@@ -88,8 +88,8 @@
             string message,
             LogTypeEnum logType = LogTypeEnum.Info)
         {
-            LogHelper.loadCts = new CancellationTokenSource();
-            CancellationToken ct = LogHelper.loadCts.Token;
+            loadCts = new CancellationTokenSource();
+            CancellationToken ct = loadCts.Token;
 
             if(logType == LogTypeEnum.Debug && isDebug != "1")
             {
@@ -119,7 +119,7 @@
             Console.WriteLine();
             Console.WriteLine(logMessage);
             Console.CursorVisible = true;//显示光标
-            LogHelper.loadCts.Cancel();
+            loadCts.Cancel();
         }
     }
 
