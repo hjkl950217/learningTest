@@ -20,6 +20,7 @@
 16. Directory Opus  完美代替windows资源管理器，不卡，能替换win+e
 17. whisperdesktop 免费开源的视频转字幕工具，使用开源模型
 18. pyVideoTrans  AI视频翻译配音神器。可以配音、转字幕、字幕翻译、视频提取音频
+19. escrcpy 在电脑上直接遥控安卓手机的软件
 
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
