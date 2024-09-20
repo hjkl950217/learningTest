@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace linux文件复制工具
+namespace linux文件复制工具.BaseTool.Extension
 {
     internal static class FileInfoExtension
     {
@@ -42,36 +42,57 @@ namespace linux文件复制工具
         /// <returns></returns>
         public static string GetMD5Name(this FileInfo fileInfo)
         {
-            return $"{FileInfoExtension.GetRandomFileName(fileInfo)}{fileInfo.Extension}";
-        }
-    }
-
-    internal static class DateTimeExtension
-    {
-        /// <summary>
-        /// 获取字符串
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <param name="format"></param>
-        /// <returns></returns>
-        public static string GetString(
-            this DateTime dateTime,
-            string format = "yyyy-MM-dd HH:mm:ss")
-        {
-            return dateTime.ToString(format);
+            return $"{fileInfo.GetRandomFileName()}{fileInfo.Extension}";
         }
 
         /// <summary>
-        /// 获取字符串
+        /// 判断文件大小是否在指定范围内
         /// </summary>
-        /// <param name="dateTime"></param>
-        /// <param name="format"></param>
+        /// <param name="fileInfo"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         /// <returns></returns>
-        public static string GetString(
-            this DateTime? dateTime,
-            string format = "yyyy-MM-dd HH:mm:ss")
+        public static bool IsRange(this FileInfo fileInfo, long min, long max)
         {
-            return (dateTime ?? DateTime.MinValue).ToString(format);
+            return fileInfo.Length >= min && fileInfo.Length <= max;
+        }
+
+        /// <summary>
+        /// 获取文件最后修改时间（如果文件夹的时间比文件新，会返回文件夹的时间）<para></para>
+        /// 有些文件系统，修改文件后不会修改文件夹的时间，所以文件夹的时间可能比文件新
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public static DateTime GetLastTime(this FileInfo fileInfo)
+        {
+            DateTime lastTime = new DateTime[]
+            {
+                fileInfo.Directory.LastAccessTime,
+                fileInfo.LastWriteTime
+            }
+            .OrderByDescending(t => t)
+            .First();
+
+            return lastTime;
+        }
+
+        public static bool TryDelete(this FileInfo fileInfo)
+        {
+            try
+            {
+                // 尝试以独占模式打开文件
+                using(FileStream fs = File.Open(fileInfo.FullName, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                {
+                };
+                // 文件可以打开，说明没有被其他进程使用，可以安全删除
+                fileInfo.Delete();
+                return true;
+            }
+            catch(IOException)
+            {
+                // 文件正在被其他进程使用，无法删除
+                return false;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using linux文件复制工具.AppCommand;
 using linux文件复制工具.AppCommand.ArchiveFile;
 using linux文件复制工具.BaseTool.Config;
 using linux文件复制工具.BaseTool.Executer;
+using linux文件复制工具.BaseTool.Extension;
 using linux文件复制工具.BaseTool.LogHlper;
 using Newtonsoft.Json;
 
@@ -41,7 +42,7 @@ namespace linux文件复制工具.ArchiveFile
             string targetDir = this.appSettings.ArchiveFile.Target;
             long minFileSizeLimit = (long)this.appSettings.MinFileSizeLimit * 1024 * 1024;
             long maxFileSizeLimit = (long)this.appSettings.MaxFileSizeLimit * 1024 * 1024;
-            DateTime timeLimit = this.appSettings.TimeLimit ?? DateTime.MinValue;
+            DateTime timeLimit = this.appSettings.ArchiveFile.TimeLimit ?? DateTime.MinValue;
             string[] allowedExtensions = this.appSettings.AllowedExtensions ?? [];
             string[] excludeAddrs = this.appSettings.ArchiveFile.ExcludeAddrs ?? [];
 
@@ -94,7 +95,7 @@ namespace linux文件复制工具.ArchiveFile
                         continue;
                     }
 
-                    //遇到同名但长度不一样的文件，需要重命名后计算
+                    //遇到同名但大小不一样的文件，需要重命名后计算
                     targetFilePath = Path.Combine(targetDir, sourceFileInfo.GetMD5Name());
                     if(File.Exists(targetFilePath))
                     {
@@ -126,14 +127,7 @@ namespace linux文件复制工具.ArchiveFile
                 }
 
                 // 判断文件修改时间是否比限制时间新，如果新则进行复制
-                DateTime lastTime = new DateTime[]
-                {
-                    sourceFolderInfo.LastAccessTime,
-                    sourceFileInfo.LastWriteTime
-                }
-                .OrderByDescending(t => t)
-                .First();
-
+                DateTime lastTime = sourceFileInfo.GetLastTime();
                 if(lastTime <= timeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 修改时间早于限制时间，跳过复制";
@@ -154,11 +148,11 @@ namespace linux文件复制工具.ArchiveFile
 
                 #region 每个文件复制后的处理
 
-                double elapsedSec = stopwatch.ElapsedMilliseconds / 1000.0;
+                double copyTimeSec = stopwatch.ElapsedMilliseconds / 1000.0;
                 double fileSizeMb = new FileInfo(sourceFilePath).Length / 1024.0 / 1024.0;
-                double speed = fileSizeMb / elapsedSec;
+                double speed = fileSizeMb / copyTimeSec;
 
-                string successMessage = $"成功复制文件 [{sourceFileInfo.Name}],速度: {speed:F2} MiB/s,用时 {elapsedSec} 秒";
+                string successMessage = $"成功复制文件 [{sourceFileInfo.Name}],速度: {speed:F2} MiB/s,用时 {copyTimeSec} 秒";
                 LogHelper.WriteLog(successMessage);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
@@ -177,7 +171,7 @@ namespace linux文件复制工具.ArchiveFile
             // 如果成功复制过文件，则更新配置文件中的修改时间
             if(this.lastModifiedTime != DateTime.MinValue)
             {
-                this.appSettings.TimeLimit = this.lastModifiedTime;
+                this.appSettings.ArchiveFile.TimeLimit = this.lastModifiedTime;
                 string updatedJson = JsonConvert.SerializeObject(this.appSettings, Formatting.Indented);
                 File.WriteAllText("config.json", updatedJson);
 

@@ -20,7 +20,7 @@ namespace linux文件复制工具.BaseTool.Executer
         public static ActionExecuter Pipe(
             this ActionExecuter executer,
             Action action,
-            [CallerArgumentExpression("action")] string actionName = null)
+            [CallerArgumentExpression(nameof(action))] string actionName = null)
         {
             actionName ??= string.Empty;
             actionName = actionName.Replace("this.", string.Empty);
@@ -46,7 +46,7 @@ namespace linux文件复制工具.BaseTool.Executer
         public static ActionExecuter PipeTry(
             this ActionExecuter executer,
             Action action,
-            [CallerArgumentExpression("action")] string actionName = null)
+            [CallerArgumentExpression(nameof(action))] string actionName = null)
         {
             actionName ??= string.Empty;
             actionName = actionName.Replace("this.", string.Empty);

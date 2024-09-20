@@ -2,7 +2,7 @@
 
 namespace linux文件复制工具.AppCommand.RsyncToQb
 {
-    public class RsyncToQbSetting : CommandSettings
+    public class ArchiveFolderSetting : CommandSettings
     {
     }
 }

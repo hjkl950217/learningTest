@@ -1,4 +1,5 @@
 ﻿using linux文件复制工具.AppCommand;
+using linux文件复制工具.AppCommand.ArchiveFolder;
 using linux文件复制工具.ArchiveFile;
 using linux文件复制工具.BaseTool.LogHlper;
 using Spectre.Console.Cli;
@@ -17,18 +18,20 @@ namespace linux文件复制工具
 #if DEBUG
             Environment.SetEnvironmentVariable("IsDebug", "1");
 #endif
-
             //调试代码
             //args = new[] { "pack", "--db-type=MySql", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
             //args = new[] { "pack", "--db-type=Dm", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
 
+            args = new[] { "archiveFolder" };
+
+            DateTime runDateTime = DateTime.Now;//定义当前时间
+            LogHelper.PreLogWriter(runDateTime); //创建日志文件
+            LogHelper.WriteLog(Program.separatorMsg); //输出分割符
+
             CommandApp app = new();
 
+            //按命令执行
             ConfigureCommandApp(app);
-
-            //结束
-            LogHelper.WriteLog(Program.separatorMsg); //输出分割符
-            LogHelper.CloseLog();
 
             return app.Run(args);
         }
@@ -39,9 +42,10 @@ namespace linux文件复制工具
             {
                 #region 配置示例
 
-                //  config.AddExample(new[] { "archiveFile", "--db=MySql", "-i=intput", "-o=output", "-h=127.0.0.1", "-u=test", "-p=pwd", "--port=3306", "--connOther='abc=123;a=1'" });
+                //调试代码
                 config.AddExample(new[] { "archiveFile" });
-                config.AddExample(new[] { "pack", });
+                config.AddExample(new[] { "archiveFolder" });
+                // config.AddExample(new[] { "xxx","-x=1","--xx=2"});
 
                 #endregion 配置示例
 
@@ -49,14 +53,11 @@ namespace linux文件复制工具
 
                 config.AddCommand<ArchiveFileCommand>("archiveFile")
                     .WithAlias("packing")
-                    .WithDescription("打包,执行SQL脚本文件，将结果转换为csv中间数据");
+                    .WithDescription("将qb目录的文件进行归档");
 
-                //config.AddCommand<InitCommand>("init")
-                //    //.WithAlias("Init")
-                //    .WithDescription("初始化数据，将中间数据更新到数据库中");
-
-                //config.AddCommand<ShowEnvCommand>("showEnv")
-                //    .WithDescription("显示环境变量");
+                config.AddCommand<ArchiveFolderCommand>("archiveFolder")
+                    //.WithAlias("")
+                    .WithDescription("将115目录的文件复制到qb下载目录，替换掉qb文件");
 
                 #endregion 配置命令
 
