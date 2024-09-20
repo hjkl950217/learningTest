@@ -297,7 +297,7 @@ namespace System
             }
 
             //序列化并返回
-            JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateDefaultSetting();
+            JsonSerializerSettings settings = JsonSerializerSettingConst.SetOrCreateSettingForDefault();
             configAction?.Invoke(settings);
 
             return ToJsonExt<T>(obj, settings);
