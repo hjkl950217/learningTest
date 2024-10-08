@@ -19,8 +19,8 @@ rsync -Pavuhit6 /var/temp.tmp /home/var/tempppp.tmp
 rsync -Pavzuhi6 /var/temp.tmp root@192.168.1.10/home/var/
 
 #使用变量复制		
-addrVar=/var
-addrhome=/home/var
-rsync -Pavuhit6 $addrVar/temp.tmp $addrhome/	
-rsync -Pavuhit6 $addrVar/temp.tmp $addrhome/tempppp.tmp	
+sourceAddr=/var
+targetAddr=/home/var
+rsync -Pavuhit6 $sourceAddr/temp.tmp $targetAddr/	
+rsync -Pavuhit6 $sourceAddr/temp.tmp $targetAddr/tempppp.tmp	
 
