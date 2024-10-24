@@ -67,7 +67,8 @@ namespace linux文件复制工具.BaseTool.Extension
         {
             DateTime lastTime = new DateTime[]
             {
-                fileInfo.Directory.LastAccessTime,
+                fileInfo.Directory.LastWriteTime,
+                fileInfo.CreationTime,
                 fileInfo.LastWriteTime
             }
             .OrderByDescending(t => t)
