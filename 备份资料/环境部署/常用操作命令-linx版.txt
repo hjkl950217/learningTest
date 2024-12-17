@@ -78,6 +78,17 @@ awk -F'IOPS=|,' '{print $2}' && rm -f //fio.txt		#测试硬盘性能（需要安
 
 
 ls -lt					#查看文件信息，并以修改时间排序。 t排序 a包含隐藏文件
+hdparm -I /dev/sda		#查看sda硬盘的详细信息   -C是查看电源管理模式
+lsdblk					#查看硬盘名称 disk为物理硬盘，part为分区名
+
+lsblk -d -o NAME \
+| grep "^sd[a-z]" | while read device; do echo "Device: /dev/$device"; \
+sudo hdparm -I /dev/$device 2>/dev/null \
+| grep -i "APM level\|Advanced power management level" \
+|| echo "No power management information found for this device."; \
+echo "------------------------------------"; done		#查看当前电脑上所有硬盘的电源管理模式
+
+fatrace | grep '/mnt/nasData/FileBackup'	#针对特定路径监控有什么程序在读写
 
 
 
