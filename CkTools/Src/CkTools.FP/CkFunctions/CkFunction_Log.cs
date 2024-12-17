@@ -62,7 +62,7 @@ namespace CkTools.FP
         /// <summary>
         /// 默认文件日志写入器
         /// </summary>
-        public static Action<string> DefaultFileLoggr = CkFunctions.GenerateFileLogger(() => $"log/{DateTime.Now:yyyy-MM-dd}.log");
+        public static Action<string> DefaultFileLogger = CkFunctions.GenerateFileLogger(() => $"log/{DateTime.Now:yyyy-MM-dd}.log");
 
         /// <summary>
         /// 向文件中输出日志
@@ -70,7 +70,7 @@ namespace CkTools.FP
         /// <param name="msg"></param>
         public static void LogToFile(string msg = "")
         {
-            CkFunctions.Log(CkFunctions.DefaultFileLoggr)(CkFunctions.DefaultLogFormat)(() => msg);
+            CkFunctions.Log(CkFunctions.DefaultFileLogger)(CkFunctions.DefaultLogFormat)(() => msg);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace CkTools.FP
         /// <returns></returns>
         public static Action<string> LogToFile(Func<string, string> msgFormat)
         {
-            return msg => CkFunctions.Log(CkFunctions.DefaultFileLoggr)(msgFormat)(() => msg);
+            return msg => CkFunctions.Log(CkFunctions.DefaultFileLogger)(msgFormat)(() => msg);
         }
 
         /// <summary>
