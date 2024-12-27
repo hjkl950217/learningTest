@@ -34,22 +34,12 @@
 	<RuleList>
 		<Rule enabled="true">
 			<Action type="Direct" />
-			<Applications>clash-win64.exe</Applications>
-			<Name>clash-win64.exe [auto-created]</Name>
-		</Rule>
-		<Rule enabled="true">
-			<Action type="Direct" />
-			<Applications>ShadowsocksR-4.7-妹子最后一版.exe</Applications>
-			<Name>ShadowsocksR-4.7-妹子最后一版.exe [auto-created]</Name>
-		</Rule>
-		<Rule enabled="true">
-			<Action type="Direct" />
 			<Targets>localhost; 127.0.0.1; %ComputerName%;192.*;</Targets>
 			<Applications>任意</Applications>
 			<Name>Localhost</Name>
 		</Rule>
-		<Rule enabled="true">
-			<Action type="Proxy">101</Action>
+		<Rule enabled="false">
+			<Action type="Proxy">102</Action>
 			<Applications>steamerrorreporter64.exe;
 steamerrorreporter.exe;
 streaming_client.exe;
@@ -66,17 +56,12 @@ gldriverquery64.exe;
 gldriverquery.exe;
 wow_helper.exe;
 WriteMiniDump.exe;</Applications>
-			<Name>游戏</Name>
+			<Name>steam</Name>
 		</Rule>
 		<Rule enabled="true">
 			<Action type="Proxy">101</Action>
 			<Applications>PlagueIncSC.exe;PlagueIncEvolved.exe; </Applications>
 			<Name>瘟疫公司</Name>
-		</Rule>
-		<Rule enabled="false">
-			<Action type="Proxy">101</Action>
-			<Applications>KuGou.exe;KGService.exe</Applications>
-			<Name>平时</Name>
 		</Rule>
 		<Rule enabled="false">
 			<Action type="Proxy">101</Action>
@@ -104,15 +89,20 @@ Microsoft.Alm.Shared.Remoting.RemoteContainer.dll;</Applications>
 			<Applications>Dism++x64.exe;Dism++x86.exe;bcdboot.exe;bcdboot.exe</Applications>
 			<Name>Dism++</Name>
 		</Rule>
-		<Rule enabled="true">
+		<Rule enabled="false">
 			<Action type="Proxy">101</Action>
 			<Applications>SourceTreeUpdate.exe;SourceTree.exe;BsSndRpt.exe;Askpass.exe;stree_gri.exe;7za.exe;getopt.exe;pageant.exe;patch.exe;plink.exe;puttygen.exe</Applications>
 			<Name>SoucreTree</Name>
 		</Rule>
 		<Rule enabled="true">
 			<Action type="Proxy">101</Action>
-			<Targets>*google*;*android*;*youtube*;*color-themes*;*seleniumhq*;*github*;*visual*;*microsoft*;*windows*;*nvidia*;*vsassets*;*powhershell*;*nuget*;</Targets>
+			<Targets>*google*;*android*;*youtube*;*color-themes*;*seleniumhq*;*github*;*visual*;*microsoft*;*windows*;*vsassets*;*powhershell*;*nuget*;*docker*;*.live.com;</Targets>
 			<Name>上网规则</Name>
+		</Rule>
+		<Rule enabled="false">
+			<Action type="Proxy">101</Action>
+			<Applications>windowsterminal.exe; wt.exe; openconsole.exe;pwsh.exe</Applications>
+			<Name>windows终端</Name>
 		</Rule>
 		<Rule enabled="true">
 			<Action type="Direct" />
