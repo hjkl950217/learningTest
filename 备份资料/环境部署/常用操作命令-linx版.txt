@@ -88,6 +88,13 @@ sudo hdparm -I /dev/$device 2>/dev/null \
 || echo "No power management information found for this device."; \
 echo "------------------------------------"; done		#查看当前电脑上所有硬盘的电源管理模式
 
+lsblk -d -o NAME \
+| grep "^sd[a-z]" | while read device; do echo "Device: /dev/$device"; \
+sudo hdparm -C /dev/$device 2>/dev/null 
+done		#查看当前电脑上所有硬盘目前的电源模式
+
+
+
 fatrace | grep '/mnt/nasData/FileBackup'	#针对特定路径监控有什么程序在读写
 
 
