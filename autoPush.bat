@@ -21,15 +21,22 @@ if %errorlevel% equ 0 (
         echo 正在推送代码...
         git push
         echo 操作完成。
+        del status.log 2>nul
+        goto :end
     ) else if /i "%continue%"=="n" (
         echo 已取消提交和推送。
+        del status.log 2>nul
+        goto :end
     ) else (
         echo 输入无效，已取消提交和推送。
+         del status.log 2>nul
+         goto :end
     )
 ) else (
     echo 没有发现需要提交的改动。
+     del status.log 2>nul
 )
 
-del status.log 2>nul
+:end
 pause
 exit /b 0
