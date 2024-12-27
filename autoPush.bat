@@ -12,7 +12,7 @@ git status > status.log
 findstr "Changes to be committed" status.log > nul
 if %errorlevel% equ 0 (
     echo 发现有文件改动。
-    echo 是否继续提交并推送？ (Y/N)
+    echo 是否继续提交并推送？ (Y/N) 
     set /p "continue="
     echo.
     if /i "%continue%"=="y" (
