@@ -77,7 +77,7 @@
 74. SINI 一个简单的ini读写类库，但支持嵌套、换行
 75. certes  一个ACME客户端，可以向Let's Encrypt申请证书
 76. Hei.Hystrix  NetHystrix 2个polly库，封装成特性，可以熔断、降级、重试
-
+77. LibreHardwareMonitor 监控电脑的温度传感器、风扇、电压、负载等参数
 
 --工具
 01. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
