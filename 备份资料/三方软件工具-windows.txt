@@ -23,10 +23,13 @@
 19. escrcpy 在电脑上直接遥控安卓手机的软件
 20. Redmin VPN,在公网中组虚拟局域网
 21. Hamachi,在公网中组虚拟局域网，可开黑
+22. bosskey 老板键 地址：http://www.234soft.com/bosskeynew/index.htm
+
 
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
 qbittorrent 增强版：https://github.com/c0re100/qBittorrent-Enhanced-Edition
+Docker-Desktop-汉化包 地址：https://github.com/asxez/DockerDesktop-CN
 
 
 
