@@ -99,7 +99,7 @@
 	Nexus OSS 支持主流的软件包
 	Harbor 针对docker仓库的
 04. RabbitMq 消息队列
-06. Portainer.io   https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247483945&idx=1&sn=321b31d2b00ca3b36960206d80ce82cd&chksm=ebebc336dc9c4a20f178cbfbd21a0d980ad54f2e229e6c1dfa8f47d1c88354f2bdc5e8530617&mpshare=1&scene=1&srcid=&sharer_sharetime=1584524654143&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=56dae8b8a643d0f3631e5704b7d566964aec3fedb4773a7f71d50fdbff01a6b946d79c3ae25cbac60f16411b92886a0b64bed1edbcc97c8d159dc251893012dceef354ac95f4a09fa618f1cb2bad9d9c&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AU2weOrHTCpBquw5Rwo3f68%3D&pass_ticket=dbvqqcmTglYSj4sTLNgyj7eCrTbXMyAqeGYMFLiwryQ%3D
+06. Portainer.io  docker管理面板  https://mp.weixin.qq.com/s?__biz=MzI4NTU0NjYwOA==&mid=2247483945&idx=1&sn=321b31d2b00ca3b36960206d80ce82cd&chksm=ebebc336dc9c4a20f178cbfbd21a0d980ad54f2e229e6c1dfa8f47d1c88354f2bdc5e8530617&mpshare=1&scene=1&srcid=&sharer_sharetime=1584524654143&sharer_shareid=ec4ddca36a0be58dad76ad7ab88a3953&key=56dae8b8a643d0f3631e5704b7d566964aec3fedb4773a7f71d50fdbff01a6b946d79c3ae25cbac60f16411b92886a0b64bed1edbcc97c8d159dc251893012dceef354ac95f4a09fa618f1cb2bad9d9c&ascene=1&uin=MTkxNzAzOTk1&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AU2weOrHTCpBquw5Rwo3f68%3D&pass_ticket=dbvqqcmTglYSj4sTLNgyj7eCrTbXMyAqeGYMFLiwryQ%3D
 07. dapr  还有istio/linkerd/kuma
 08. cncf
 09. Orleans，Orleans提供了一个简单直接的构建分布式高可扩展计算应用，并且不需要学习和掌握复杂的并发或者其他的扩展模式。 它是Microsoft Research为了在云端使用而设计并且创建。
@@ -135,11 +135,11 @@
 37. Doris  一个基于MPP架构的易于使用，高性能和实时分析数据库，适用于报表、在线分析等场景，兼容mysql语法
 38. 免费ETL：Kettle、AirByte、ETLCloud
 
-网关
+--网关
 	Kong
 	apisix 国产，借鉴kong的思路，底层用etcd，性能比kong高
 	ocelot .net开发的网关
-服务发现
+--服务发现
 	Nacos 阿里开源的服务发现与配置的中间件
 		Ocelot.Provider.Nacos  支持与Ocelot集成
 	consul 分布式高可用的服务发现组件
@@ -162,3 +162,6 @@ https://get.daocloud.io/  一个docker国内镜像站,包含自动部署脚本
 --开源网站项目
 VuePress: Vue驱动的静态网站生成器，介绍博客：https://blog.csdn.net/zhenghongcs/article/details/120860966
 云策文档：hink 是一款开源知识管理工具   https://github.com/fantasticit/think
+
+--【概念相关】
+GraphQL API查询语言，统一一套结构，描述要查询的东西
