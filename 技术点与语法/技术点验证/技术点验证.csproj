@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.4.0" />
-    <PackageReference Include="Confluent.Kafka" Version="2.1.1" />
+    <PackageReference Include="Confluent.Kafka" Version="2.6.1" />
 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -24,17 +24,17 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
-    <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML" Version="4.0.0" />
 
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
 
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
-    <PackageReference Include="MessagePack" Version="3.1.0" />
-    <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" Version="3.1.0" />
-    <PackageReference Include="MessagePack.ImmutableCollection" Version="3.1.0" />
-    <PackageReference Include="MessagePackAnalyzer" Version="3.1.0">
+    <PackageReference Include="MessagePack" Version="3.1.1" />
+    <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" Version="3.1.1" />
+    <PackageReference Include="MessagePack.ImmutableCollection" Version="3.1.1" />
+    <PackageReference Include="MessagePackAnalyzer" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
