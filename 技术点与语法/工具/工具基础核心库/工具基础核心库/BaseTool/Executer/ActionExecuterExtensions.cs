@@ -132,10 +132,15 @@ namespace 工具基础核心库.BaseTool.Executer
         {
             executer.StepList.Add(() =>
             {
-                executer.IsEnd = predicate();
-                if(executer.IsEnd)
+                bool isContinue = predicate();
+
+                if(isContinue)
                 {
                     onEnded();//为true时执行后续
+                }
+                else
+                {
+                    executer.IsEnd = true;
                 }
             });
             return executer;
