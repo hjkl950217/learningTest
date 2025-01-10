@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using 工具基础核心库.BaseTool.ConfigHelper;
 
 namespace linux文件复制工具
 {
-    public class AppSettings
+    public class AppSettings : IConfig
     {
         /// <summary>
         /// 最小文件限制（M）
@@ -51,7 +52,7 @@ namespace linux文件复制工具
     /// <summary>
     /// 从QB下载完成的目录复制到归档目录（115）时， 使用的配置文件
     /// </summary>
-    public class ArchiveFileAppSettings
+    public class ArchiveFileAppSettings : IConfig
     {
         /// <summary>
         /// 源地址-完整地址
@@ -80,7 +81,7 @@ namespace linux文件复制工具
         /// <summary>
         /// 尝试初始化配置
         /// </summary>
-        internal void TryInitDefaultConfig()
+        public void TryInitDefaultConfig()
         {
             this.Source = string.IsNullOrEmpty(this.Source) ? "Y:\\qBittorrentDownload" : this.Source;
             this.Target = string.IsNullOrEmpty(this.Target) ? "Y:\\LoActionMovie\\115" : this.Target;
@@ -92,7 +93,7 @@ namespace linux文件复制工具
     /// <summary>
     /// 从115下载完成的目录复制到QB目录时， 使用的配置文件
     /// </summary>
-    public class ArchiveFolderAppSettings
+    public class ArchiveFolderAppSettings : IConfig
     {
         /// <summary>
         /// 源地址-115下载完成的地址
@@ -105,5 +106,9 @@ namespace linux文件复制工具
         /// </summary>
         [JsonProperty("targetAddr")]
         public string TargetAddr { get; set; }
+
+        public void TryInitDefaultConfig()
+        {
+        }
     }
 }

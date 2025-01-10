@@ -1,7 +1,7 @@
 ﻿using linux文件复制工具.AppCommand.ArchiveFile;
-using linux文件复制工具.BaseTool.Config;
-using linux文件复制工具.BaseTool.LogHlper;
 using Spectre.Console.Cli;
+using 工具基础核心库.BaseTool.ConfigHelper;
+using 工具基础核心库.BaseTool.LogHlper;
 
 namespace linux文件复制工具.ArchiveFile
 {
@@ -10,7 +10,7 @@ namespace linux文件复制工具.ArchiveFile
         public override int Execute(CommandContext context, ArchiveFileSetting settings)
         {
             //读取配置
-            AppSettings appSettings = ConfigHelper.GetConfig();
+            AppSettings appSettings = ConfigHelper.GetConfig<AppSettings>();
             DateTime timeLimit = appSettings.ArchiveFile.TimeLimit ?? DateTime.MinValue;
 
             //执行

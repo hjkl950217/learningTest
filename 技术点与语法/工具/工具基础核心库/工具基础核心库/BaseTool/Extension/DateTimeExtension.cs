@@ -1,4 +1,4 @@
-﻿namespace linux文件复制工具.BaseTool.Extension
+﻿namespace 工具基础核心库.BaseTool.Extension
 {
     public static class DateTimeExtension
     {

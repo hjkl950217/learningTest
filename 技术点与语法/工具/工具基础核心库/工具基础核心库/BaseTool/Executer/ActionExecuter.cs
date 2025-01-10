@@ -1,4 +1,4 @@
-﻿namespace linux文件复制工具.BaseTool.Executer
+﻿namespace 工具基础核心库.BaseTool.Executer
 {
     /// <summary>
     /// 方法执行器

@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 
-namespace linux文件复制工具.BaseTool.Extension
+namespace 工具基础核心库.BaseTool.Extension
 {
-    internal static class FileInfoExtension
+    public static class FileInfoExtension
     {
         private static string GetMd5Hash(this string input)
         {

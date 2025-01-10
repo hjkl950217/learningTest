@@ -42,6 +42,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "图片颜色提纯", "工�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生成DND法术表", "工具\生成DND法术表\生成DND法术表.csproj", "{E1E06C37-9D07-4516-A086-B20CD11A64AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "获取Tracker", "工具\获取Tracker\获取Tracker.csproj", "{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "工具基础核心库", "工具基础核心库", "{17433596-F29C-4D98-9D06-3F1C03CDDF82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "工具基础核心库", "工具\工具基础核心库\工具基础核心库\工具基础核心库.csproj", "{171A5F4D-673F-46CA-B6A1-8A4D05640EE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +114,14 @@ Global
 		{E1E06C37-9D07-4516-A086-B20CD11A64AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1E06C37-9D07-4516-A086-B20CD11A64AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1E06C37-9D07-4516-A086-B20CD11A64AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{171A5F4D-673F-46CA-B6A1-8A4D05640EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{171A5F4D-673F-46CA-B6A1-8A4D05640EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{171A5F4D-673F-46CA-B6A1-8A4D05640EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{171A5F4D-673F-46CA-B6A1-8A4D05640EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +137,9 @@ Global
 		{62F6DAED-3E4C-4FD3-82CA-5F235C2FF831} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
 		{0171A082-B501-4638-A1B8-7575BCE748D7} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
 		{E1E06C37-9D07-4516-A086-B20CD11A64AF} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{EEAA93A9-3ABE-451F-8EAE-BF6837C2D567} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{17433596-F29C-4D98-9D06-3F1C03CDDF82} = {6D9B647A-8AD2-4990-9A8C-ADE8C0155AE8}
+		{171A5F4D-673F-46CA-B6A1-8A4D05640EE8} = {17433596-F29C-4D98-9D06-3F1C03CDDF82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB04A57E-6447-4E76-862D-5D1B1638F2B6}

@@ -13,6 +13,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AppCommand\ArchiveFile\Logic\**" />
+    <Compile Remove="BaseTool\**" />
+    <EmbeddedResource Remove="AppCommand\ArchiveFile\Logic\**" />
+    <EmbeddedResource Remove="BaseTool\**" />
+    <None Remove="AppCommand\ArchiveFile\Logic\**" />
+    <None Remove="BaseTool\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AppCommand\BaseRunner.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
   </ItemGroup>
@@ -24,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppCommand\ArchiveFile\Logic\" />
+    <ProjectReference Include="..\工具基础核心库\工具基础核心库\工具基础核心库.csproj" />
   </ItemGroup>
 
 </Project>

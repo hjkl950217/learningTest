@@ -1,7 +1,7 @@
 ﻿using linux文件复制工具.AppCommand.RsyncToQb;
-using linux文件复制工具.BaseTool.Config;
-using linux文件复制工具.BaseTool.LogHlper;
 using Spectre.Console.Cli;
+using 工具基础核心库.BaseTool.ConfigHelper;
+using 工具基础核心库.BaseTool.LogHlper;
 
 namespace linux文件复制工具.AppCommand.ArchiveFolder
 {
@@ -10,7 +10,7 @@ namespace linux文件复制工具.AppCommand.ArchiveFolder
         public override int Execute(CommandContext context, ArchiveFolderSetting settings)
         {
             //读取配置
-            AppSettings appSettings = ConfigHelper.GetConfig();
+            AppSettings appSettings = ConfigHelper.GetConfig<AppSettings>();
 
             //执行
             LogHelper.WriteLog($"【ArchiveFolder】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
-using linux文件复制工具.BaseTool.LogHlper;
+using 工具基础核心库.BaseTool.LogHlper;
 
-namespace linux文件复制工具.BaseTool.Executer
+namespace 工具基础核心库.BaseTool.Executer
 {
     /// <summary>
     /// <see cref="ActionExecuter"/>的扩展

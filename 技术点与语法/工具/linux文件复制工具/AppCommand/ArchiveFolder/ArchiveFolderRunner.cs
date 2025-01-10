@@ -1,6 +1,7 @@
-﻿using linux文件复制工具.BaseTool.Executer;
-using linux文件复制工具.BaseTool.Extension;
-using linux文件复制工具.BaseTool.LogHlper;
+﻿using 工具基础核心库.AppCommand;
+using 工具基础核心库.BaseTool.Executer;
+using 工具基础核心库.BaseTool.Extension;
+using 工具基础核心库.BaseTool.LogHlper;
 
 namespace linux文件复制工具.AppCommand.RsyncToQb
 {
