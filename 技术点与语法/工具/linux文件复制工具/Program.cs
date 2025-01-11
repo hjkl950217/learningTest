@@ -40,7 +40,6 @@ namespace linux文件复制工具
             {
                 #region 配置示例
 
-                //调试代码
                 config.AddExample(new[] { "archiveFile" });
                 config.AddExample(new[] { "archiveFolder" });
                 // config.AddExample(new[] { "xxx","-x=1","--xx=2"});
