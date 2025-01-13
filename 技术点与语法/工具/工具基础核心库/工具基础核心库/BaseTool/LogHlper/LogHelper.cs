@@ -51,10 +51,9 @@ namespace 工具基础核心库.BaseTool.LogHlper
         /// <summary>
         /// 日志格式化函数
         /// </summary>
-        private static Func<DateTime, LogTypeEnum, string, string> logFormat = (logDate, logType, message) =>
+        private static readonly Func<DateTime, LogTypeEnum, string, string> logFormat = (logDate, logType, message) =>
         {
-            string timestamp = DateTime.Now.ToString("HH:mm:ss");
-            return $"[{timestamp}\t{logType}\t] {message}";
+            return $"[{DateTime.Now:HH:mm:ss}\t{logType}\t] {message}";
         };
 
         #region 创建日志写入器
