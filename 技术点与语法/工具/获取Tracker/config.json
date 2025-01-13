@@ -1,0 +1,16 @@
+{
+  //格式化模板 默认一行一个
+  "trackerFormatTemplet": "{url}\\n",
+
+  //qt配置文件路径
+  "qtConfigFilePath": "E:\\个人\\learningTest\\技术点与语法\\工具\\获取Tracker\\qBittorrent.conf",
+
+  //追加Tracker的配置名
+  "keyName_AppendTracker": "Session\\AdditionalTrackers",
+
+  //Tracker源地址列表
+  "trackerSourceUrlList": [
+    "https://cf.trackerslist.com/all.txt"
+
+  ]
+}

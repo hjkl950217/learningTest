@@ -20,6 +20,9 @@ namespace 获取Tracker.AppCommand.Combine
                     this.检测QT文件是否存在,
                     () => LogHelper.WriteLog("qt配置文件不存在，退出任务", LogTypeEnum.Error))
                .Pipe(this.获取所有Tracker源地址)
+               .MayEndPipe(
+                    this.检测是否获取到Tracker地址,
+                    () => LogHelper.WriteLog("未获取到Tracker地址，退出任务", LogTypeEnum.Error))
                .Pipe(this.设置QT配置文件)
                ;
         }
@@ -56,7 +59,7 @@ namespace 获取Tracker.AppCommand.Combine
                         .GetResult();
 
                     // 将响应文本拆分成行
-                    string[] lines = responseText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] lines = responseText.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
                     // 使用锁确保线程安全地将行添加到allLines列表中
                     lock(allLines)
@@ -71,6 +74,12 @@ namespace 获取Tracker.AppCommand.Combine
             });
 
             this.trackerSourceUrlList = [.. allLines.Distinct()];
+            LogHelper.WriteLog($"合并Tracker完成，共计 {this.trackerSourceUrlList.Length} 条");
+        }
+
+        private bool 检测是否获取到Tracker地址()
+        {
+            return this.trackerSourceUrlList.Length > 0;
         }
 
         private void 设置QT配置文件()

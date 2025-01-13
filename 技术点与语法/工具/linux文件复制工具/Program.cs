@@ -22,8 +22,7 @@ namespace linux文件复制工具
             //args = new[] { "pack", "--db-type=MySql", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
             //args = new[] { "pack", "--db-type=Dm", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
 
-            DateTime runDateTime = DateTime.Now;//定义当前时间
-            LogHelper.PreLogWriter(runDateTime); //创建日志文件
+            LogHelper.CleanLog(); //清理日志
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
 
             CommandApp app = new();

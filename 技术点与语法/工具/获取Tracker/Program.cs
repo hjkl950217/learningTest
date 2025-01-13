@@ -18,11 +18,9 @@ namespace 获取Tracker
             Environment.SetEnvironmentVariable("IsDebug", "1");
 #endif
             //调试代码
-            args = new[] { "combine" };
+            //args = new[] { "combine" };
             //args = new[] { "pack", "--db-type=Dm", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
-
-            DateTime runDateTime = DateTime.Now;//定义当前时间
-            LogHelper.PreLogWriter(runDateTime); //创建日志文件
+            LogHelper.CleanLog(); //清理日志
             LogHelper.WriteLog(Program.separatorMsg); //输出分割符
 
             CommandApp app = new();
@@ -39,7 +37,6 @@ namespace 获取Tracker
             {
                 #region 配置示例
 
-                //调试代码
                 config.AddExample(new[] { "combine" });
                 // config.AddExample(new[] { "xxx","-x=1","--xx=2"});
 

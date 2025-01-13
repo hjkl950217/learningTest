@@ -15,6 +15,12 @@
     <ProjectReference Include="..\工具基础核心库\工具基础核心库\工具基础核心库.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <!--<ItemGroup>
 
     --><!-- 引用 A 项目的 Common 文件夹下的所有 .cs 文件 --><!--
