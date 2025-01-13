@@ -88,7 +88,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             if(!targetFileInfo.Directory.Exists)
             {
                 string message = $"创建文件夹[{targetFileInfo.DirectoryName}]";
-                LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                LogHelper.Log(message, LogTypeEnum.Debug);
 
                 Directory.CreateDirectory(targetFileInfo.DirectoryName);
             }
@@ -100,7 +100,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
             {
                 string message = $"文件 [{sourceFileInfo.Name}] 不是允许的文件后缀，跳过复制";
-                LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                LogHelper.Log(message, LogTypeEnum.Debug);
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             if(sourceFileSize < minFileSizeLimit)
             {
                 string message = $"文件 [{sourceFileInfo.Name}] 小于限制大小，跳过复制";
-                LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                LogHelper.Log(message, LogTypeEnum.Debug);
                 return;
             }
 
@@ -117,7 +117,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             if(sourceFileSize > maxFileSizeLimit)
             {
                 string message = $"文件 [{sourceFileInfo.Name}] 大于限制大小，跳过复制";
-                LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                LogHelper.Log(message, LogTypeEnum.Debug);
                 return;
             }
 
@@ -125,7 +125,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             if(sourceFileInfo.GetLastTime() < targetFileInfo.GetLastTime())
             {
                 string message = $"文件 [{sourceFileInfo.Name}] 比文件晚，跳过复制";
-                LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                LogHelper.Log(message, LogTypeEnum.Debug);
                 return;
             }
 
@@ -136,7 +136,7 @@ namespace linux文件复制工具.AppCommand.RsyncToQb
             File.SetLastWriteTime(targetFileInfo.FullName, sourceFileInfo.LastWriteTime);//设置时间为源文件时间
 
             string successMessage = $"成功复制文件 [{sourceFileInfo.Name}]";
-            LogHelper.WriteLog(successMessage);
+            LogHelper.Log(successMessage);
 
             //删除文件
             FileInfo[] deleteFileNameArray = targetFileInfo.Directory.GetFiles("*.!qb", SearchOption.AllDirectories);

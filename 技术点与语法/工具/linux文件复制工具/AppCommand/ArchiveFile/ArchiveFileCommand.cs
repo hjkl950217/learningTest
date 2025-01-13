@@ -14,7 +14,7 @@ namespace linux文件复制工具.ArchiveFile
             DateTime timeLimit = appSettings.ArchiveFile.TimeLimit ?? DateTime.MinValue;
 
             //执行
-            LogHelper.WriteLog($"【ArchiveFile】当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}");
+            LogHelper.Log($"【ArchiveFile】当前最新复制时间:{timeLimit:yyyy-MM-dd HH:mm:ss}");
             new ArchiveFileRunner(appSettings, settings)
                 .Run();
 

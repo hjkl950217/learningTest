@@ -13,7 +13,7 @@ namespace linux文件复制工具.AppCommand.ArchiveFolder
             AppSettings appSettings = ConfigHelper.GetConfig<AppSettings>();
 
             //执行
-            LogHelper.WriteLog($"【ArchiveFolder】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+            LogHelper.Log($"【ArchiveFolder】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             new ArchiveFolderRunner(appSettings, settings)
                 .Run();
 

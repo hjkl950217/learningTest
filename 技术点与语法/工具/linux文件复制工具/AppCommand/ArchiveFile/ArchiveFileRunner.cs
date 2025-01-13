@@ -69,7 +69,7 @@ namespace linux文件复制工具.ArchiveFile
                 if(excludeAddrs.Any(t => sourceFilePath.Contains(t)))
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 在排除文件夹中，跳过复制";
-                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    LogHelper.Log(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -80,7 +80,7 @@ namespace linux文件复制工具.ArchiveFile
                 if(allowedExtensions.Length > 0 && !allowedExtensions.Contains(extension))
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 不是允许的文件后缀，跳过复制";
-                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    LogHelper.Log(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -90,7 +90,7 @@ namespace linux文件复制工具.ArchiveFile
                     if(targetFileInfo.Length == sourceFileInfo.Length)
                     {
                         string message = $"文件 [{sourceFileInfo.Name}] 已经存在于目标地址，跳过复制";
-                        LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                        LogHelper.Log(message, LogTypeEnum.Debug);
                         continue;
                     }
 
@@ -99,7 +99,7 @@ namespace linux文件复制工具.ArchiveFile
                     if(File.Exists(targetFilePath))
                     {
                         string message = $"文件 {sourceFileInfo.GetMD5Name()} 已经存在于目标地址，跳过复制";
-                        LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                        LogHelper.Log(message, LogTypeEnum.Debug);
                         continue;
                     }
                     else
@@ -113,7 +113,7 @@ namespace linux文件复制工具.ArchiveFile
                 if(sourceFileSize < minFileSizeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 小于限制大小，跳过复制";
-                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    LogHelper.Log(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -121,7 +121,7 @@ namespace linux文件复制工具.ArchiveFile
                 if(sourceFileSize > maxFileSizeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 大于限制大小，跳过复制";
-                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    LogHelper.Log(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -130,7 +130,7 @@ namespace linux文件复制工具.ArchiveFile
                 if(lastTime <= timeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 修改时间早于限制时间，跳过复制";
-                    LogHelper.WriteLog(message, LogTypeEnum.Debug);
+                    LogHelper.Log(message, LogTypeEnum.Debug);
                     continue;
                 }
 
@@ -139,7 +139,7 @@ namespace linux文件复制工具.ArchiveFile
                 //复制
                 stopwatch.Restart();
                 string copyMsg = $"正在复制文件 [{sourceFileInfo.Name}]";
-                LogHelper.WriteLog(copyMsg);
+                LogHelper.Log(copyMsg);
                 File.Copy(sourceFilePath, targetFilePath);//复制
                 File.SetLastWriteTime(targetFilePath, lastTime);//设置时间为最新（因为qb下载时间复制出来时不会更新）
                 stopwatch.Stop();
@@ -152,7 +152,7 @@ namespace linux文件复制工具.ArchiveFile
                 double speed = fileSizeMb / copyTimeSec;
 
                 string successMessage = $"成功复制文件 [{sourceFileInfo.Name}],速度: {speed:F2} MiB/s,用时 {copyTimeSec} 秒";
-                LogHelper.WriteLog(successMessage);
+                LogHelper.Log(successMessage);
 
                 // 更新最新复制文件的修改时间为当前文件的修改时间
                 if(this.lastModifiedTime < lastTime)
@@ -175,12 +175,12 @@ namespace linux文件复制工具.ArchiveFile
                 File.WriteAllText("config.json", updatedJson);
 
                 string updateTimeMessage = $"复制完成，成功更新{count}个文件,成功更新配置文件，最新处理时间为 {this.lastModifiedTime:yyyy-MM-dd HH:mm:ss}";
-                LogHelper.WriteLog(updateTimeMessage);
+                LogHelper.Log(updateTimeMessage);
             }
             else
             {
                 string updateTimeMessage = $"复制结束，未更新文件";
-                LogHelper.WriteLog(updateTimeMessage);
+                LogHelper.Log(updateTimeMessage);
             }
 
             #endregion 复制任务完成后的处理

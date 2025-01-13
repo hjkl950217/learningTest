@@ -17,13 +17,14 @@ namespace linux文件复制工具
         {
 #if DEBUG
             Environment.SetEnvironmentVariable("IsDebug", "1");
-#endif
+
             //调试代码
             //args = new[] { "pack", "--db-type=MySql", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
             //args = new[] { "pack", "--db-type=Dm", "-i=intput", "-o=output", "-h=192.168.1.241", "-u=eform", "-p=1qaz2WSX1qaz2WSX", "--port=30001", "" };
+#endif
 
             LogHelper.CleanLog(); //清理日志
-            LogHelper.WriteLog(Program.separatorMsg); //输出分割符
+            LogHelper.Log(Program.separatorMsg); //输出分割符
 
             CommandApp app = new();
 
