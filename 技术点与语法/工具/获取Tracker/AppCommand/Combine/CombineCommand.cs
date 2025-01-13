@@ -12,7 +12,7 @@ namespace 获取Tracker.AppCommand.Combine
             AppSettings appSettings = ConfigHelper.GetConfig<AppSettings>();
 
             //执行
-            LogHelper.WriteLog($"【Combine】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+            LogHelper.Log($"【Combine】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             new CombineRunner(appSettings, settings)
                 .Run();
 

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace 工具基础核心库.BaseTool.LogHlper
@@ -165,7 +166,7 @@ namespace 工具基础核心库.BaseTool.LogHlper
             }
         }
 
-        public static void WriteLog(
+        public static void Log(
             string message,
             LogTypeEnum logType = LogTypeEnum.Info)
         {
@@ -182,6 +183,25 @@ namespace 工具基础核心库.BaseTool.LogHlper
             //向多个通道写入日志
             logWriter.WriteLine(logMessage);
             Console.WriteLine(logMessage);
+        }
+
+        public static void LogError(
+            string message,
+            Exception? ex = null)
+        {
+            if(ex == null)
+            {
+                LogHelper.Log(message, LogTypeEnum.Error);
+            }
+            else
+            {
+                StringBuilder stringBuilder = new();
+                stringBuilder
+                    .Append(message).AppendLine()
+                    .Append($"异常信息:{ex.Message}").AppendLine()
+                    .Append($"堆栈:{ex.StackTrace}");
+                LogHelper.Log(stringBuilder.ToString(), LogTypeEnum.Error);
+            }
         }
 
         #region 加载效果

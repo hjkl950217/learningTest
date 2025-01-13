@@ -3,15 +3,22 @@
   "trackerFormatTemplet": "{url}\\n",
 
   //qt配置文件路径
-  "qtConfigFilePath": "E:\\个人\\learningTest\\技术点与语法\\工具\\获取Tracker\\qBittorrent.conf",
+  //win版:如果是win下的路径，需要转义符号 如   Y:\\AAA\\BBB\\qBittorrent.conf
+  //    一般配置文件地址在程序的主目录下，  主目录\profile\qBittorrent\config\qBittorrent.ini
+  //docker版：映射出来的配置目录下找找，一般叫“qBittorrent.conf”，可能在 qBittorrent/config  下面
+  "qtConfigFilePath": "Y:\\资料和文档等\\学习相关\\工作区\\learningTest\\技术点与语法\\工具\\获取Tracker\\qBittorrent.conf",
 
   //追加Tracker的配置名
   "keyName_AppendTracker": "Session\\AdditionalTrackers",
 
   //Tracker源地址列表
   "trackerSourceUrlList": [
-    "https://cf.trackerslist.com/all.txt"
-
+    "https://cf.trackerslist.com/all.txt",
+    "https://newtrackon.com/api/all",
+    "https://cdn.jsdelivr.net/gh/ngosang/trackerslist@master/trackers_all.txt",
+    "https://cdn.jsdelivr.net/gh/DeSireFire/animeTrackerList/AT_all.txt",
+    "https://cdn.jsdelivr.net/gh/adysec/tracker@main/trackers_all.txt",
+    "https://cdn.jsdelivr.net/gh/XIU2/TrackersListCollection@master/all.txt"
   ]
 
   //XIU2网站地址： https://trackerslist.com/#/zh

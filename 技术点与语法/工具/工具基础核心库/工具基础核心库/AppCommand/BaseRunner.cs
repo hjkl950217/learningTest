@@ -14,9 +14,9 @@ namespace 工具基础核心库.AppCommand
 
         public void Run()
         {
-            LogHelper.WriteLog($"========任务开始:[{this.GetType().Name}]========");
+            LogHelper.Log($"========任务开始:[{this.GetType().Name}]========");
             this.InternalRun();
-            LogHelper.WriteLog($"========任务完成:[{this.GetType().Name}]========");
+            LogHelper.Log($"========任务完成:[{this.GetType().Name}]========");
         }
 
         protected abstract void InternalRun();

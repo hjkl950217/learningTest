@@ -27,9 +27,9 @@ namespace 工具基础核心库.BaseTool.Executer
 
             Action newAction = () =>
             {
-                LogHelper.WriteLog($"步骤开始:[{actionName}]");
+                LogHelper.Log($"步骤开始:[{actionName}]");
                 action();
-                LogHelper.WriteLog($"步骤结束:[{actionName}]");
+                LogHelper.Log($"步骤结束:[{actionName}]");
             };
 
             executer.StepList.Add(newAction);
@@ -53,20 +53,18 @@ namespace 工具基础核心库.BaseTool.Executer
 
             Action newAction = () =>
             {
-                LogHelper.WriteLog($"步骤开始:[{actionName}]");
+                LogHelper.Log($"步骤开始:[{actionName}]");
                 try
                 {
                     action();
                 }
                 catch(Exception e)
                 {
-                    string errorMsg = @$"步骤异常:[{actionName}],异常信息:{e.Message},错误堆栈:
-{e.StackTrace}";
-                    LogHelper.WriteLog(errorMsg, LogTypeEnum.Error);
+                    LogHelper.LogError($"步骤异常:[{actionName}]", e);
                     throw;
                 }
 
-                LogHelper.WriteLog($"步骤结束:[{actionName}]");
+                LogHelper.Log($"步骤结束:[{actionName}]");
             };
 
             executer.StepList.Add(newAction);
@@ -134,13 +132,10 @@ namespace 工具基础核心库.BaseTool.Executer
             {
                 bool isContinue = predicate();
 
-                if(isContinue)
-                {
-                    onEnded();//为true时执行后续
-                }
-                else
+                if(!isContinue)
                 {
                     executer.IsEnd = true;
+                    onEnded();//为true时执行后续
                 }
             });
             return executer;
