@@ -57,7 +57,7 @@ namespace 获取Tracker
 
                 #region 配置命令
 
-                config.AddCommand<CombineCommand>("combineToQt")
+                config.AddCommand<CombineToQtCommand>("combineToQt")
                     .WithExample(["combineToQt"])
                     .WithAlias("ctqt")
                     .WithDescription("|别名:ctqt| 合并配置中的Tracker源地址中的所有Tracker");
