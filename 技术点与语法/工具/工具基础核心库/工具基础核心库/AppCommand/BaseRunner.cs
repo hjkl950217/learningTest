@@ -1,10 +1,13 @@
-﻿using 工具基础核心库.BaseTool.Executer;
+﻿using System.Text;
+using 工具基础核心库.BaseTool.Executer;
 using 工具基础核心库.BaseTool.LogHlper;
 
 namespace 工具基础核心库.AppCommand
 {
     public abstract class BaseRunner
     {
+        public static UTF8Encoding UTF8 = new(false);
+
         protected readonly ActionExecuter actionExecuter;
 
         protected BaseRunner()

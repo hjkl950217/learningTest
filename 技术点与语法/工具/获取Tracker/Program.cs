@@ -3,6 +3,7 @@ using Spectre.Console.Cli;
 using 工具基础核心库.BaseTool.LogHlper;
 using 获取Tracker.AppCommand;
 using 获取Tracker.AppCommand.Combine;
+using 获取Tracker.AppCommand.CombineOnly;
 
 namespace 获取Tracker
 {
@@ -60,11 +61,14 @@ namespace 获取Tracker
                 config.AddCommand<CombineToQtCommand>("combineToQt")
                     .WithExample(["combineToQt"])
                     .WithAlias("ctqt")
-                    .WithDescription("|别名:ctqt| 合并配置中的Tracker源地址中的所有Tracker");
+                    .WithDescription("\t|别名:ctqt|\t合并后替换qt配置");
 
-                //config.AddCommand<ArchiveFolderCommand>("archiveFolder")
-                //    //.WithAlias("")
-                //    .WithDescription("将115目录的文件复制到qb下载目录，替换掉qb文件");
+                config.AddCommand<CombineOnlyCommand>("combineOnly")
+                    .WithExample(["combineOnly"])
+                    .WithExample(["combineOnly", "-t=console"])
+                    .WithExample(["combineOnly", "-t=txt", "-o=.\\output\\tracker.txt"])
+                    .WithAlias("co")
+                    .WithDescription("\t|别名:co|\t合并后输出");
 
                 #endregion 配置命令
 

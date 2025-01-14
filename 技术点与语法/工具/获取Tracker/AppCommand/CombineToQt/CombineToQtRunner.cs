@@ -3,16 +3,17 @@ using 工具基础核心库.AppCommand;
 using 工具基础核心库.BaseTool.Executer;
 using 工具基础核心库.BaseTool.Extension;
 using 工具基础核心库.BaseTool.LogHlper;
+using 获取Tracker.AppCommand.Combine;
 
 namespace 获取Tracker.AppCommand.CombineToQt
 {
     public class CombineToQtRunner : BaseRunner
     {
         private readonly AppSettings appSettings;
-        public static UTF8Encoding UTF8 = new(false);
+
         private string[] trackerSourceUrlList = Array.Empty<string>();
 
-        public CombineToQtRunner(AppSettings appSettings, CombineSetting combineSetting)
+        public CombineToQtRunner(AppSettings appSettings, CombineToQtSetting combineSetting)
         {
             this.appSettings = appSettings;
 
@@ -91,7 +92,7 @@ namespace 获取Tracker.AppCommand.CombineToQt
         {
             string qtConfigFilePath = this.appSettings.QtConfigFilePath;
 
-            string[] qtConfigLineArray = File.ReadAllLines(qtConfigFilePath, CombineToQtRunner.UTF8);
+            string[] qtConfigLineArray = File.ReadAllLines(qtConfigFilePath, BaseRunner.UTF8);
             int trackerIndex = Array.FindIndex(qtConfigLineArray, x => x.Contains(this.appSettings.KeyName_AppendTracker));
 
             //准备新内容
@@ -103,7 +104,7 @@ namespace 获取Tracker.AppCommand.CombineToQt
             //设置回去并回写文件
             qtConfigLineArray[trackerIndex] = newLineContent;
             //string newFileContent = string.Join(Environment.NewLine, qtConfigLineArray);
-            File.WriteAllLines(qtConfigFilePath, qtConfigLineArray, CombineToQtRunner.UTF8);
+            File.WriteAllLines(qtConfigFilePath, qtConfigLineArray, BaseRunner.UTF8);
         }
     }
 }
