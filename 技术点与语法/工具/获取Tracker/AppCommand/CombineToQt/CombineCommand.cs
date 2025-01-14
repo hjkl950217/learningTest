@@ -4,16 +4,16 @@ using 工具基础核心库.BaseTool.LogHlper;
 
 namespace 获取Tracker.AppCommand.Combine
 {
-    public partial class CombineCommand : Command<CombineSetting>
+    public partial class CombineToQtCommand : Command<CombineToQtSetting>
     {
-        public override int Execute(CommandContext context, CombineSetting settings)
+        public override int Execute(CommandContext context, CombineToQtSetting settings)
         {
             //读取配置
             AppSettings appSettings = ConfigHelper.GetConfig<AppSettings>();
 
             //执行
             LogHelper.Log($"【Combine】当前执行时间:{DateTime.Now:yyyy-MM-dd HH:mm:ss}");
-            new CombineRunner(appSettings, settings)
+            new CombineToQtRunner(appSettings, settings)
                 .Run();
 
             LogHelper.CloseLog();

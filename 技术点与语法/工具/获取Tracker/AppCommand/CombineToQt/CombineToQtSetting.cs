@@ -2,7 +2,7 @@
 
 namespace 获取Tracker.AppCommand.Combine
 {
-    public class CombineSetting : CommandSettings
+    public class CombineToQtSetting : CommandSettings
     {
     }
 }

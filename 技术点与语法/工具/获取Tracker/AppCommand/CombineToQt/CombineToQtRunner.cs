@@ -4,15 +4,15 @@ using 工具基础核心库.BaseTool.Executer;
 using 工具基础核心库.BaseTool.Extension;
 using 工具基础核心库.BaseTool.LogHlper;
 
-namespace 获取Tracker.AppCommand.Combine
+namespace 获取Tracker.AppCommand.CombineToQt
 {
-    public class CombineRunner : BaseRunner
+    public class CombineToQtRunner : BaseRunner
     {
         private readonly AppSettings appSettings;
         public static UTF8Encoding UTF8 = new(false);
         private string[] trackerSourceUrlList = Array.Empty<string>();
 
-        public CombineRunner(AppSettings appSettings, CombineSetting combineSetting)
+        public CombineToQtRunner(AppSettings appSettings, CombineSetting combineSetting)
         {
             this.appSettings = appSettings;
 
@@ -61,7 +61,7 @@ namespace 获取Tracker.AppCommand.Combine
 
                     // 将响应文本拆分成行
                     string[] lines = responseText.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
-                    var tempLine = lines
+                    string[] tempLine = lines
                         .Select(t => t.Replace("\"", ""))
                         .ToArray();
 
@@ -91,7 +91,7 @@ namespace 获取Tracker.AppCommand.Combine
         {
             string qtConfigFilePath = this.appSettings.QtConfigFilePath;
 
-            string[] qtConfigLineArray = File.ReadAllLines(qtConfigFilePath, CombineRunner.UTF8);
+            string[] qtConfigLineArray = File.ReadAllLines(qtConfigFilePath, CombineToQtRunner.UTF8);
             int trackerIndex = Array.FindIndex(qtConfigLineArray, x => x.Contains(this.appSettings.KeyName_AppendTracker));
 
             //准备新内容
@@ -103,7 +103,7 @@ namespace 获取Tracker.AppCommand.Combine
             //设置回去并回写文件
             qtConfigLineArray[trackerIndex] = newLineContent;
             //string newFileContent = string.Join(Environment.NewLine, qtConfigLineArray);
-            File.WriteAllLines(qtConfigFilePath, qtConfigLineArray, CombineRunner.UTF8);
+            File.WriteAllLines(qtConfigFilePath, qtConfigLineArray, CombineToQtRunner.UTF8);
         }
     }
 }
