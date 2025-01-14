@@ -1,17 +1,20 @@
 {
+  //配置教程地址：
+
   //格式化模板 默认一行一个
   "trackerFormatTemplet": "{url}\\n",
 
-  //qt配置文件路径
+  //【必须改】qt配置文件路径
   //win版:如果是win下的路径，需要转义符号 如   Y:\\AAA\\BBB\\qBittorrent.conf
   //    一般配置文件地址在程序的主目录下，  主目录\profile\qBittorrent\config\qBittorrent.ini
   //docker版：映射出来的配置目录下找找，一般叫“qBittorrent.conf”，可能在 qBittorrent/config  下面
-  "qtConfigFilePath": "Y:\\资料和文档等\\学习相关\\工作区\\learningTest\\技术点与语法\\工具\\获取Tracker\\qBittorrent.conf",
+  "qtConfigFilePath": "Y:\\aaa\\qBittorrent.conf",
 
   //追加Tracker的配置名
   "keyName_AppendTracker": "Session\\AdditionalTrackers",
 
-  //Tracker源地址列表
+  //【必须改】Tracker源地址列表
+  // 要求：能通过浏览器访问，且是纯文本格式，一行一个tracker地址，可以有空行
   "trackerSourceUrlList": [
     "https://cf.trackerslist.com/all.txt",
     "https://newtrackon.com/api/all",
