@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using 工具基础核心库.BaseTool.Extension;
 
 namespace 工具基础核心库.BaseTool.LogHlper
 {
@@ -166,6 +167,8 @@ namespace 工具基础核心库.BaseTool.LogHlper
             }
         }
 
+        #region Log
+
         public static void Log(
             string message,
             LogTypeEnum logType = LogTypeEnum.Info)
@@ -187,22 +190,47 @@ namespace 工具基础核心库.BaseTool.LogHlper
 
         public static void LogError(
             string message,
+            LogExRange logExRange = LogExRange.All,
             Exception? ex = null)
         {
             if(ex == null)
             {
                 LogHelper.Log(message, LogTypeEnum.Error);
+                return;
             }
-            else
+
+            #region 按枚举附加错误信息
+
+            StringBuilder stringBuilder = new();
+
+            if(logExRange.IncludeFlags(LogExRange.ErrorMsg))
             {
-                StringBuilder stringBuilder = new();
-                stringBuilder
-                    .Append(message).AppendLine()
-                    .Append($"异常信息:{ex.Message}").AppendLine()
-                    .Append($"堆栈:{ex.StackTrace}");
-                LogHelper.Log(stringBuilder.ToString(), LogTypeEnum.Error);
+                stringBuilder.Append(message).AppendLine();
             }
+
+            if(logExRange.IncludeFlags(LogExRange.ErrorSourceExMsg))
+            {
+                stringBuilder.Append($"异常信息:{ex.Message}").AppendLine();
+            }
+
+            if(logExRange.IncludeFlags(LogExRange.ErrorStack))
+            {
+                stringBuilder.Append($"堆栈:{ex.StackTrace}");
+            }
+
+            #endregion 按枚举附加错误信息
+
+            LogHelper.Log(stringBuilder.ToString(), LogTypeEnum.Error);
         }
+
+        public static void LogError(
+            string message,
+            Exception? ex = null)
+        {
+            LogHelper.LogError(message, LogExRange.All, ex);
+        }
+
+        #endregion Log
 
         #region 加载效果
 
