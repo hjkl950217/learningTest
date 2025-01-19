@@ -47,8 +47,9 @@ namespace 工具基础核心库.BaseTool.LogHlper
         }
 
         public static FileStream logFileStream = null;
-        public static StreamWriter logWriter = null;
+        public static StreamWriter logFileWriter = null;
         public static LogConfig logConfig = new();
+        public static object LockLogObj = new();
 
         /// <summary>
         /// 日志格式化函数
@@ -64,16 +65,16 @@ namespace 工具基础核心库.BaseTool.LogHlper
         {
             // 每天创建一个新的日志文件，如果当前日期与日志日期不同，则关闭当前日志文件并创建一个新的日志文件
 
-            if(logWriter == null)
+            if(logFileWriter == null)
             {
                 CreateWriter(DateTime.Now);
                 return;
             }
             else if(logDate.Date != DateTime.Today)
             {
-                logWriter.Close();
-                logWriter.Dispose();
-                logWriter = null;
+                logFileWriter.Close();
+                logFileWriter.Dispose();
+                logFileWriter = null;
 
                 CreateWriter(logDate);
                 return;
@@ -96,12 +97,12 @@ namespace 工具基础核心库.BaseTool.LogHlper
             if(!File.Exists(logFilePath))
             {
                 logFileStream = new FileStream(logFilePath, FileMode.CreateNew, FileAccess.Write);
-                logWriter = new StreamWriter(logFileStream);
+                logFileWriter = new StreamWriter(logFileStream);
             }
             else
             {
                 logFileStream = new FileStream(logFilePath, FileMode.Append, FileAccess.Write);
-                logWriter = new StreamWriter(logFileStream);
+                logFileWriter = new StreamWriter(logFileStream);
             }
         }
 
@@ -113,7 +114,7 @@ namespace 工具基础核心库.BaseTool.LogHlper
         public static void CloseLog()
         {
             //关闭日志流
-            logWriter?.Close();
+            logFileWriter?.Close();
             logFileStream?.Close();
         }
 
@@ -183,9 +184,30 @@ namespace 工具基础核心库.BaseTool.LogHlper
 
             string logMessage = logFormat(currDateTime, logType, message);
 
-            //向多个通道写入日志
-            logWriter.WriteLine(logMessage);
-            Console.WriteLine(logMessage);
+            // 异步写入日志
+            _ = Task.Run(() =>
+            {
+                try
+                {
+                    //文件日志
+                    lock(LockLogObj)
+                    {
+                        logFileWriter?.WriteLineAsync(logMessage)
+                            .ConfigureAwait(false)
+                            .GetAwaiter()
+                            .GetResult();
+                    }
+
+                    //控制台日志
+                    Console.WriteLine(logMessage);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"日志写入失败: {ex.Message}");
+                }
+
+                return Task.CompletedTask;
+            });
         }
 
         public static void LogError(
