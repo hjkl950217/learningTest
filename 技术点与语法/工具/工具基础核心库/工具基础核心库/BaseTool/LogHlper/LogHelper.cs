@@ -191,7 +191,7 @@ namespace 工具基础核心库.BaseTool.LogHlper
         public static void LogError(
             string message,
             LogExRange logExRange = LogExRange.All,
-            Exception? ex = null)
+            Exception ex)
         {
             if(ex == null)
             {
