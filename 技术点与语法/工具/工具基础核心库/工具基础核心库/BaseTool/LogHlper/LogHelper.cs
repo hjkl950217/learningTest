@@ -190,8 +190,8 @@ namespace 工具基础核心库.BaseTool.LogHlper
 
         public static void LogError(
             string message,
-            LogExRange logExRange = LogExRange.All,
-            Exception ex)
+            Exception ex,
+            LogExRange logExRange = LogExRange.All)
         {
             if(ex == null)
             {
@@ -227,7 +227,7 @@ namespace 工具基础核心库.BaseTool.LogHlper
             string message,
             Exception? ex = null)
         {
-            LogHelper.LogError(message, LogExRange.All, ex);
+            LogHelper.LogError(message, ex, LogExRange.All);
         }
 
         #endregion Log

@@ -76,7 +76,7 @@ namespace 获取Tracker.AppCommand.CombineToQt
                 catch(Exception ex)
                 {
                     LogExRange logExRange = LogExRange.ErrorMsg | LogExRange.ErrorSourceExMsg;
-                    LogHelper.LogError($"获取源时遇到异常[{url}]，跳过。", logExRange, ex);
+                    LogHelper.LogError($"获取源时遇到异常[{url}]，跳过。", ex, logExRange);
                 }
             });
 
