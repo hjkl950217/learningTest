@@ -96,6 +96,7 @@ done		#查看当前电脑上所有硬盘目前的电源模式
 
 
 fatrace | grep '/mnt/nasData/FileBackup'			#针对特定路径监控有什么程序在读写
+mkdir -p /aaa/bbc/ccc								#递归创建文件夹，如果父目录不存在则先创建出来
 
 
 
