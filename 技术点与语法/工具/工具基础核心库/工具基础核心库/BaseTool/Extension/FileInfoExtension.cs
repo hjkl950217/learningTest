@@ -62,12 +62,17 @@ namespace 工具基础核心库.BaseTool.Extension
         /// 有些文件系统，修改文件后不会修改文件夹的时间，所以文件夹的时间可能比文件新
         /// </summary>
         /// <param name="fileInfo"></param>
+        /// <param name="isIgnoreFolderTime">忽略文件夹时间，true时忽略</param>
         /// <returns></returns>
-        public static DateTime GetLastTime(this FileInfo fileInfo)
+        public static DateTime GetLastTime(this FileInfo fileInfo, bool isIgnoreFolderTime = false)
         {
+            DateTime folderTime = isIgnoreFolderTime
+                ? DateTime.MinValue
+                : fileInfo.Directory.LastWriteTime;
+
             DateTime lastTime = new DateTime[]
             {
-                fileInfo.Directory.LastWriteTime,
+                folderTime,
                 fileInfo.CreationTime,
                 fileInfo.LastWriteTime
             }
@@ -75,6 +80,37 @@ namespace 工具基础核心库.BaseTool.Extension
             .First();
 
             return lastTime;
+        }
+
+        /// <summary>
+        /// 获取文件最后修改时间,根目录时不会计算文件夹的时间 <para></para>
+        /// 如果文件夹的时间比文件新，会返回文件夹的时）<para></para>
+        /// 有些文件系统，修改文件后不会修改文件夹的时间，所以文件夹的时间可能比文件新
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <param name="rootAddress">根目录地址，需要是full地址</param>
+        /// <returns></returns>
+        public static DateTime GetLastTime(this FileInfo fileInfo, string rootAddress)
+        {
+            if(fileInfo.Directory.FullName == rootAddress)
+            {
+                return FileInfoExtension.GetLastTime(fileInfo, true);
+            }
+            else
+            {
+                return FileInfoExtension.GetLastTime(fileInfo, false);
+            }
+        }
+
+        /// <summary>
+        /// 获取文件最后修改时间（如果文件夹的时间比文件新，会返回文件夹的时间）<para></para>
+        /// 有些文件系统，修改文件后不会修改文件夹的时间，所以文件夹的时间可能比文件新
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public static DateTime GetLastTime(this FileInfo fileInfo)
+        {
+            return FileInfoExtension.GetLastTime(fileInfo, false);
         }
 
         public static bool TryDelete(this FileInfo fileInfo)
