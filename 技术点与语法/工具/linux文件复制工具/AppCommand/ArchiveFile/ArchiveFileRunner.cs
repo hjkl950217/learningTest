@@ -126,7 +126,7 @@ namespace linux文件复制工具.ArchiveFile
                 }
 
                 // 判断文件修改时间是否比限制时间新，如果新则进行复制
-                DateTime lastTime = sourceFileInfo.GetLastTime();
+                DateTime lastTime = sourceFileInfo.GetLastTime(rootAddress: sourceDir);
                 if(lastTime <= timeLimit)
                 {
                     string message = $"文件 [{sourceFileInfo.Name}] 修改时间早于限制时间，跳过复制";
