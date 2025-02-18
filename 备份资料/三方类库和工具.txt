@@ -134,6 +134,7 @@
 	同步工具有：cloudcanal、seatunnel、datax、Debezium
 37. Doris  一个基于MPP架构的易于使用，高性能和实时分析数据库，适用于报表、在线分析等场景，兼容mysql语法
 38. 免费ETL：Kettle、AirByte、ETLCloud
+39. Wiki.js 一个开源的知识库，搭建教程地址：https://www.richarvin.com/docker-yi-jian-bu-shu-wiki-zhi-shi-ku-xi-tong/
 
 --网关
 	Kong
