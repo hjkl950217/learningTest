@@ -78,6 +78,9 @@
 75. certes  一个ACME客户端，可以向Let's Encrypt申请证书
 76. Hei.Hystrix  NetHystrix 2个polly库，封装成特性，可以熔断、降级、重试
 77. LibreHardwareMonitor 监控电脑的温度传感器、风扇、电压、负载等参数
+78. Microsoft.Extensions.AI  微软提供的AI调用SDK框架
+79. Microsoft.Extensions.VectorData 微软提供的语义搜索框架，也是与AI应用有关，做向量
+80. semantic kernel 微软提供的一种agent开发工具包，面向企业级的
 
 --工具
 01. 查看GC数据的工具：https://github.com/Microsoft/perfview#getting-perfview
