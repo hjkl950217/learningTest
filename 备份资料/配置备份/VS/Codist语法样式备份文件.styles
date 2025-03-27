@@ -1,5 +1,5 @@
 {
-  "Version": "7.9.0",
+  "Version": "7.9.3",
   "Styles": [
     {
       "Key": "Keyword",
@@ -15,7 +15,8 @@
     },
     {
       "Key": "class name",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "record class name",
@@ -144,191 +145,238 @@
     },
     {
       "Key": "C#: Control flow keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Abstraction keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Branching keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Loop keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Type cast keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Resource keyword",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Declaration",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Member declaration",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Alias namespace",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Local function declaration",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Variable captured expression",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Declaration brace",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Static member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Override member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Abstract member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Virtual member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Private member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Local declaration",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Local variable",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Label",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Attribute name",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Attribute notation",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Namespace",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Sealed class or member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Nested type member",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Read-only struct",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Ref struct",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Event",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Type parameter",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Constructor method",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Field",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Const field",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Read-only field",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Volatile field",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Enum field",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Property",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Method",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Extension method",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Extern method",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Parameter",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: XML Doc",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - text",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - name",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - attribute name",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - attribute value",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - delimiter",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "xml doc comment - cdata section",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Markdown: Heading 1",
@@ -480,43 +528,53 @@
     },
     {
       "Key": "Codist: Highlight 1",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 2",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 3",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 4",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 5",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 6",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 7",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 8",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "Codist: Highlight 9",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: User symbol",
-      "Bold": false
+      "Bold": false,
+      "Italic": false
     },
     {
       "Key": "C#: Metadata symbol",
