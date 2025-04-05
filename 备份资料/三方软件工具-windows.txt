@@ -26,6 +26,7 @@
 22. bosskey 老板键 地址：http://www.234soft.com/bosskeynew/index.htm
 23. 分流抢票 地址：https://www.bypass.cn/
 24. WechatRealFriends 在PC上运行的检测微信删除好友的软件
+25. MakeMKV 免费的蓝光翻录软件，小而美。官网 https://www.makemkv.com
 
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
