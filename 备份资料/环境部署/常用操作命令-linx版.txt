@@ -98,6 +98,7 @@ done		#查看当前电脑上所有硬盘目前的电源模式
 fatrace | grep '/mnt/nasData/FileBackup'			#针对特定路径监控有什么程序在读写
 mkdir -p /aaa/bbc/ccc								#递归创建文件夹，如果父目录不存在则先创建出来
 
-dmesg | grep -i gbe                                 #查看内核日志中千兆以太网相关的信息  dmesg -T 显示人类可读的时间戳
-lspci -v | grep -i SFP                              #查看pci设备中名称包含SFP的设备
-lspci -k -s 04:00                                   #查看 特定设备的内核驱动和可用的内核模块 04:00 是上个命令输出中包含的
+dmesg | grep -i gbe                                 			#查看内核日志中千兆以太网相关的信息  dmesg -T 显示人类可读的时间戳
+lspci -v | grep -i SFP                              			#查看pci设备中名称包含SFP的设备
+lspci -k -s 04:00                                   			#查看 特定设备的内核驱动和可用的内核模块 04:00 是上个命令输出中包含的
+ethtool xxx 					# 查看网络接口当前的信息 xxx为端口名字
