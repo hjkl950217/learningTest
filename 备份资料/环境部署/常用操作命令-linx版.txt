@@ -102,3 +102,4 @@ dmesg | grep -i gbe                                 			#查看内核日志中千
 lspci -v | grep -i SFP                              			#查看pci设备中名称包含SFP的设备
 lspci -k -s 04:00                                   			#查看 特定设备的内核驱动和可用的内核模块 04:00 是上个命令输出中包含的
 ethtool xxx 					# 查看网络接口当前的信息 xxx为端口名字
+tcpdump -i bond0 port 20881				#监听dond0这个网卡在20881上是否有流量
