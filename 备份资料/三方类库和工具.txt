@@ -164,6 +164,10 @@ https://get.daocloud.io/  一个docker国内镜像站,包含自动部署脚本
 03. Hi/lo   base62思路
 04. CRC32 md5
 
+-- 前端的库
+1. visactor 字节开源的图表库，图表+表格，TS插件，有react版本
+
+
 --开源网站项目
 VuePress: Vue驱动的静态网站生成器，介绍博客：https://blog.csdn.net/zhenghongcs/article/details/120860966
 云策文档：hink 是一款开源知识管理工具   https://github.com/fantasticit/think
