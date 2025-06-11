@@ -11,6 +11,8 @@ https://ghproxy.com/
 https://ghps.cc/
 https://gh.ddlc.top/
 
+地址发布网页：https://ghproxy.link/
+
 用法2：https://raw.gitmirror.com/{作者名}/{仓库名}/main/{仓库中的文件地址}
 例：   https://raw.gitmirror.com/jiuqianyuan/GKD_subscription/main/dist/gkd.json5
 
