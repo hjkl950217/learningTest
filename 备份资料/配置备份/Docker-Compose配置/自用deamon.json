@@ -41,6 +41,8 @@
 //1Panel docker.1panel.live/{nginx:latest}
 //耗子面板 hub.rat.dev/{nginx:latest}
 //daocloud m.daocloud.io/{nginx:latest}
+//群友搭建 https://proxy.wu.ink/{nginx:latest}
+
 
 //一些镜像源
 //docker.io       docker.m.daocloud.io
