@@ -141,6 +141,7 @@
 38. 免费ETL：Kettle、AirByte、ETLCloud
 39. Wiki.js 一个开源的知识库，搭建教程地址：https://www.richarvin.com/docker-yi-jian-bu-shu-wiki-zhi-shi-ku-xi-tong/
 40. newapi 大模型的API网关，提供统一的接口管理各种AI模型服务。官网：https://docs.newapi.pro/wiki/project-introduction/
+41. hubproxy github加速、docker加速、docker镜像下载 地址：https://github.com/sky22333/hubproxy
 
 --网关
 	Kong
