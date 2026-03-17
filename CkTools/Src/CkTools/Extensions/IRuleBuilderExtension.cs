@@ -317,6 +317,7 @@ namespace FluentValidation
             this IRuleBuilder<T, IEnumerable<char>> ruleBuilder,
             string? errorMsg = null)
         {
+
             return ruleBuilder.Predicate(
                 Enumerable.Any,
                 char.IsLower,
@@ -336,23 +337,21 @@ namespace FluentValidation
         ///  using Microsoft.Extensions.DependencyInjection;
         ///
         ///  base.RuleForEach(a => a.x)
-        ///       .InjectValidator(t => t.GetService<XXXXValidator>());
+        ///       .InjectValidator((t, p) => validator);
         ///  ]]>
         /// </example>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TProperty"></typeparam>
         /// <param name="ruleBuilder"></param>
-        /// <param name="simpCallback"></param>
+        /// <param name="validatorProvider"></param>
         /// <param name="ruleSets"></param>
         /// <returns></returns>
         public static IRuleBuilderOptions<T, TProperty> InjectValidator<T, TProperty>(
             this IRuleBuilder<T, TProperty> ruleBuilder,
-            Func<IServiceProvider, IValidator<TProperty>> simpCallback,
+            Func<T, TProperty, IValidator<TProperty>> validatorProvider,
             params string[] ruleSets)
         {
-            Func<IServiceProvider, ValidationContext<T>, IValidator<TProperty>> callback = (services, context) => simpCallback(services);
-
-            return ruleBuilder.InjectValidator(callback, ruleSets);
+            return ruleBuilder.SetValidator(validatorProvider, ruleSets);
         }
 
         #endregion 验证器注入
