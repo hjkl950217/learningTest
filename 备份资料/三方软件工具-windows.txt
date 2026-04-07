@@ -18,8 +18,6 @@
 14. trafficmonitor TrafficMonitor是一款开源免费的 Windows 平台实时网速监控软件,可以在任务栏或桌面悬浮窗显示系统资源占用信息。
 15. Process Monitor   进程监视器，Process Monitor是一个免费的系统监视和故障排除工具,可以实时监视系统进程、线程、文件操作、注册表操作等
 16. Directory Opus  完美代替windows资源管理器，不卡，能替换win+e
-17. whisperdesktop 免费开源的视频转字幕工具，使用开源模型
-18. pyVideoTrans  AI视频翻译配音神器。可以配音、转字幕、字幕翻译、视频提取音频
 19. escrcpy 在电脑上直接遥控安卓手机的软件
 20. Redmin VPN,在公网中组虚拟局域网
 21. Hamachi,在公网中组虚拟局域网，可开黑
@@ -27,6 +25,9 @@
 23. 分流抢票 地址：https://www.bypass.cn/
 24. WechatRealFriends 在PC上运行的检测微信删除好友的软件
 25. MakeMKV 免费的蓝光翻录软件，小而美。官网 https://www.makemkv.com
+26. rytunex github上开源的win11优化设置的软件
+27. VideoCaptioner 使用AI进行一站式字幕识别、翻译、合成
+28 RevokeMsgPatcher PC版微信防撤回补丁
 
 工具地址
 amd ryzen master vbs破解工具：	https://github.com/klauspost/ryzen-master-vbs-patch
